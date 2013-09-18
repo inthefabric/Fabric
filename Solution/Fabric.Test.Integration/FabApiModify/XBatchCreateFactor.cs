@@ -201,7 +201,7 @@ namespace Fabric.Test.Integration.FabApiModify {
 				}
 			});
 
-			//Missing Eventor.PrecisionId
+			//Missing Eventor.TypeId
 			vFactors.Add(new FabBatchNewFactor {
 				BatchId = batchId++,
 				PrimaryArtifactId = (long)SetupArtifacts.ArtifactId.Thi_Aei,
@@ -212,7 +212,6 @@ namespace Fabric.Test.Integration.FabApiModify {
 					TypeId = (byte)DescriptorTypeId.IsFoundIn
 				},
 				Eventor = new FabBatchNewFactorEventor {
-					TypeId = (byte)EventorTypeId.Continue,
 					Year = 2013,
 					Month = 1,
 					Day = 1

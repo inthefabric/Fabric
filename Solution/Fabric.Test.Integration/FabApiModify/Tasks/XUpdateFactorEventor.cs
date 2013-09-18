@@ -12,8 +12,8 @@ namespace Fabric.Test.Integration.FabApiModify.Tasks {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(EventorTypeId.Occur, 2013, 9, 15, 17, 10, 56)]
-		[TestCase(EventorTypeId.End, 2013, 9, 15, null, null, null)]
+		[TestCase(EventorTypeId.Occur, 2013, (byte)9, (byte)15, (byte)17, (byte)10, (byte)56)]
+		[TestCase(EventorTypeId.End, 2013, (byte)9, (byte)15, null, null, null)]
 		[TestCase(EventorTypeId.Start, -5000, null, null, null, null, null)]
 		public void Success(EventorTypeId pEveTypeId, long pYear, byte? pMonth, byte? pDay,
 															byte? pHour, byte? pMinute, byte? pSecond) {

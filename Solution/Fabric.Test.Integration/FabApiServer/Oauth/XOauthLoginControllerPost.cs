@@ -6,9 +6,9 @@ using Fabric.Api.Services;
 using Fabric.Db.Data.Setups;
 using Fabric.Infrastructure;
 using Fabric.Test.Util;
-using NUnit.Framework;
 using Nancy;
 using Nancy.Cookies;
+using NUnit.Framework;
 
 namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
@@ -208,7 +208,7 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase("zach", "asdf")]
-		[TestCase("", "")]
+		[TestCase("x", "x")]
 		public void LoginFailure(string pUsername, string pPassword) {
 			vLoginAction = "Login";
 			vUsername = pUsername;
@@ -216,7 +216,8 @@ namespace Fabric.Test.Integration.FabApiServer.Oauth {
 
 			TestPost();
 			FabOauthLogin login = vLoginCtrl.LoginDto;
-
+			
+			Assert.NotNull(login, "LoginDto should be filled.");
 			Assert.True(login.ShowLoginPage, "Incorrect LoginDto.ShowLoginPage.");
 			Assert.AreEqual(int.Parse(vClientId), login.AppId, "Incorrect LoginDto.ArtifactId.");
 			Assert.AreEqual(0, login.LoggedUserId, "Incorrect LoginDto.LoggedUserId.");
