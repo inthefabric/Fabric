@@ -1,9 +1,11 @@
+using System.Linq;
 using Fabric.Api.Common;
 using Fabric.Api.Dto;
 using Fabric.Api.Oauth.Tasks;
 using Fabric.Api.Services.Views;
 using Fabric.Api.Traversal;
 using Fabric.Api.Util;
+using Fabric.Infrastructure;
 using Fabric.Infrastructure.Api;
 using Nancy;
 using ServiceStack.Text;
@@ -26,6 +28,14 @@ namespace Fabric.Api.Services {
 		private static int TravUriLength;
 		private static int TravRootUriLength;
 
+		//Fabric: 166.78.102.115
+		private static readonly string[] Blacklist = new[] { //TODO: remove once robots.txt kicks in
+			"66.249.73.200", //GoogleBot
+			"66.249.64.8", //GoogleBot
+			"198.143.187.114", //BlexBot
+			"180.76.5.196", //Baidu
+		};
+
 		private readonly Route vRoute;
 
 
@@ -45,6 +55,13 @@ namespace Fabric.Api.Services {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Response BuildFabResponse() {
+			string incomingIp = NancyReq.UserHostAddress;
+
+			if ( Blacklist.Any(ip => (incomingIp == ip)) ) {
+				Log.Info(GetType().Name+" blocked "+incomingIp+".");
+				return null;
+			}
+
 			switch ( vRoute ) {
 				case Route.Home: 
 					return BuildHomeResponse();
