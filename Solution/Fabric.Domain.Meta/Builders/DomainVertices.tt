@@ -1,0 +1,66 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.Domain.Meta.Builders" #>
+<#@ import namespace="Fabric.Domain.Meta.Vertices" #>
+<#@ import namespace="Fabric.Domain.Meta.Vertices.Tools" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System.Collections.Generic;
+using Fabric.Domain.Meta.Vertices;
+
+namespace Fabric.Domain.Meta.Builders {
+<#
+IEnumerable<Type> vertexTypes = BuilderUtil.GetVertexTypes();
+
+foreach ( Type type in vertexTypes ) {
+	IVertexSchema v = BuilderUtil.GetVertex(type);
+	IVertexSchema vp = BuilderUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "VertexBase" : vp.Names.Domain);
+#>
+
+
+	/*================================================================================================*/
+	public class <#= v.Names.Domain #> : <#= baseName #> {
+
+<#
+	IList<DomainProperty> props = BuilderUtil.GetVertexDomainProperties(v);
+
+	foreach ( DomainProperty dp in props ) {
+#>
+		public <#= dp.GetDataTypeName() #> <#= dp.Name #> { get; set; }
+<#
+	} // end property loop
+#>
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= v.Names.Domain #>() {
+			DomainType = (byte)VertexDomainType.<#= v.Names.Domain #>;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDictionary<string, string> pData) {
+			base.Fill(pData);
+<#
+	foreach ( DomainProperty dp in props ) {
+#>
+			<#= dp.Name #> = TryGet<#= dp.GetCapitalizedDataTypeName() #>(pData, "<#= dp.DbName #>");
+<#
+	} // end property loop
+#>
+		}
+
+	}
+<#
+} // end vertex loop
+#>
+
+}

@@ -37,6 +37,25 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Builders\VertexBase.cs" />
+    <Compile Include="Builders\BuilderUtil.cs" />
+    <Compile Include="Builders\DomainVertices.cs">
+      <DependentUpon>DomainVertices.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Vertices\ArtifactSchema.cs" />
+    <Compile Include="Vertices\AppSchema.cs" />
+    <Compile Include="Vertices\IVertexSchema.cs" />
+    <Compile Include="Vertices\UserSchema.cs" />
+    <Compile Include="Vertices\MemberSchema.cs" />
+    <Compile Include="Vertices\Tools\ApiProperty.cs" />
+    <Compile Include="Vertices\Tools\ActionAccess.cs" />
+    <Compile Include="Vertices\Tools\ActionProvider.cs" />
+    <Compile Include="Vertices\Tools\PropertyMapping.cs" />
+    <Compile Include="Vertices\Tools\DomainProperty.cs" />
+    <Compile Include="Vertices\Tools\NameProvider.cs" />
+    <Compile Include="Vertices\VertexSchema.cs" />
     <Compile Include="FabricPropSchema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema.cs" />
@@ -52,6 +71,10 @@
     <Compile Include="SchemaHelperEdge.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Builders\DomainVertices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DomainVertices.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="SchemaHelper.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
