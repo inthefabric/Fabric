@@ -68,6 +68,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="NewSchema\DomainToApiCustom.cs" />
     <Compile Include="NewSchema\DomainToApi.cs">
       <DependentUpon>DomainToApi.tt</DependentUpon>
       <AutoGen>True</AutoGen>

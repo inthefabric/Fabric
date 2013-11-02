@@ -26,12 +26,8 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromApp(FabApp pApi, App pDomain) {
 			FromArtifact(pApi, pDomain);
-			//pApi.Name = pDomain.???;
-			FromAppCustom(pApi, pDomain);
+			pApi.Name = pDomain.Name;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromAppCustom(FabApp pApi, App pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,11 +41,7 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromArtifact(FabArtifact pApi, Artifact pDomain) {
 			FromVertex(pApi, pDomain);
-			FromArtifactCustom(pApi, pDomain);
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromArtifactCustom(FabArtifact pApi, Artifact pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,14 +55,10 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromClass(FabClass pApi, Class pDomain) {
 			FromArtifact(pApi, pDomain);
-			//pApi.Name = pDomain.???;
-			//pApi.Disamb = pDomain.???;
-			//pApi.Note = pDomain.???;
-			FromClassCustom(pApi, pDomain);
+			pApi.Name = pDomain.Name;
+			pApi.Disamb = pDomain.Disamb;
+			pApi.Note = pDomain.Note;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromClassCustom(FabClass pApi, Class pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,14 +72,38 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromFactor(FabFactor pApi, Factor pDomain) {
 			FromArtifact(pApi, pDomain);
-			//pApi.AssertionType = pDomain.???;
-			//pApi.IsDefining = pDomain.???;
-			//pApi.Note = pDomain.???;
+			pApi.Descriptor = new FabDescriptor();
+			pApi.Director = new FabDirector();
+			pApi.Eventor = new FabEventor();
+			pApi.Identor = new FabIdentor();
+			pApi.Locator = new FabLocator();
+			pApi.Vector = new FabVector();
+			pApi.AssertionType = pDomain.AssertionType;
+			pApi.IsDefining = pDomain.IsDefining;
+			pApi.Note = pDomain.Note;
+			pApi.Descriptor.DescriptorType = pDomain.DescriptorType.GetValueOrDefault();
+			pApi.Director.DirectorType = pDomain.DirectorType.GetValueOrDefault();
+			pApi.Director.PrimaryAction = pDomain.DirectorPrimaryAction.GetValueOrDefault();
+			pApi.Director.RelatedAction = pDomain.DirectorRelatedAction.GetValueOrDefault();
+			pApi.Eventor.EventorType = pDomain.EventorType.GetValueOrDefault();
+			//pApi.Eventor.Year <== pDomain.EventorDateTime  (requires custom)
+			//pApi.Eventor.Month <== pDomain.EventorDateTime  (requires custom)
+			//pApi.Eventor.Day <== pDomain.EventorDateTime  (requires custom)
+			//pApi.Eventor.Hour <== pDomain.EventorDateTime  (requires custom)
+			//pApi.Eventor.Minute <== pDomain.EventorDateTime  (requires custom)
+			//pApi.Eventor.Second <== pDomain.EventorDateTime  (requires custom)
+			pApi.Identor.IdentorType = pDomain.IdentorType.GetValueOrDefault();
+			pApi.Identor.Value = pDomain.Note;
+			pApi.Locator.LocatorType = pDomain.LocatorType.GetValueOrDefault();
+			pApi.Locator.ValueX = pDomain.LocatorValueX.GetValueOrDefault();
+			pApi.Locator.ValueY = pDomain.LocatorValueY.GetValueOrDefault();
+			pApi.Locator.ValueZ = pDomain.LocatorValueZ.GetValueOrDefault();
+			pApi.Vector.VectorType = pDomain.VectorType.GetValueOrDefault();
+			pApi.Vector.Unit = pDomain.VectorUnit.GetValueOrDefault();
+			pApi.Vector.UnitPrefix = pDomain.VectorUnitPrefix.GetValueOrDefault();
+			pApi.Vector.Value = pDomain.VectorValue.GetValueOrDefault();
 			FromFactorCustom(pApi, pDomain);
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromFactorCustom(FabFactor pApi, Factor pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,14 +117,10 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromInstance(FabInstance pApi, Instance pDomain) {
 			FromArtifact(pApi, pDomain);
-			//pApi.Name = pDomain.???;
-			//pApi.Disamb = pDomain.???;
-			//pApi.Note = pDomain.???;
-			FromInstanceCustom(pApi, pDomain);
+			pApi.Name = pDomain.Name;
+			pApi.Disamb = pDomain.Disamb;
+			pApi.Note = pDomain.Note;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromInstanceCustom(FabInstance pApi, Instance pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,12 +134,8 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromMember(FabMember pApi, Member pDomain) {
 			FromVertex(pApi, pDomain);
-			//pApi.AccessType = pDomain.???;
-			FromMemberCustom(pApi, pDomain);
+			pApi.AccessType = pDomain.AccessType;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromMemberCustom(FabMember pApi, Member pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,13 +149,9 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromUrl(FabUrl pApi, Url pDomain) {
 			FromArtifact(pApi, pDomain);
-			//pApi.Name = pDomain.???;
-			//pApi.FullPath = pDomain.???;
-			FromUrlCustom(pApi, pDomain);
+			pApi.Name = pDomain.Name;
+			pApi.FullPath = pDomain.FullPath;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromUrlCustom(FabUrl pApi, Url pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,12 +165,8 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromUser(FabUser pApi, User pDomain) {
 			FromArtifact(pApi, pDomain);
-			//pApi.Name = pDomain.???;
-			FromUserCustom(pApi, pDomain);
+			pApi.Name = pDomain.Name;
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromUserCustom(FabUser pApi, User pDomain);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -184,14 +180,11 @@ namespace Fabric.Domain.NewSchema {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromVertex(FabVertex pApi, Vertex pDomain) {
 			FromObject(pApi, pDomain);
-			//pApi.Id = pDomain.???;
-			//pApi.IdStr = pDomain.???;
-			//pApi.Timestamp = pDomain.???;
+			pApi.Id = pDomain.Id;
+			//pApi.IdStr <== pDomain.Id  (requires custom)
+			//pApi.Timestamp <== pDomain.Timestamp  (requires custom)
 			FromVertexCustom(pApi, pDomain);
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void FromVertexCustom(FabVertex pApi, Vertex pDomain);
 
 	}
 

@@ -29,8 +29,10 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	string baseName = (vp == null ? "FabObject" : vp.Names.Api);
 
-	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true);
+	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, false);
 	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
+	IDictionary<ApiProperty, PropertyMapping> propMap = SchemaUtil.GetVertexPropertyMappings(v);
+	bool custom = false;
 #>
 
 
@@ -46,18 +48,37 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		public static void From<#= v.Names.Domain #>(<#= v.Names.Api #> pApi, <#= v.Names.Domain #> pDomain) {
 			From<#= baseName.Substring(3) #>(pApi, pDomain);
 <#
-	foreach ( ApiProperty ap in props ) {
-		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf+".");
+	foreach ( string sub in subMap.Keys ) {
 #>
-			//pApi.<#= sub #><#= ap.Name #> = pDomain.???;
+			pApi.<#= sub.Substring(3) #> = new <#= sub #>();
+<#
+	} // end custom condition
+
+	foreach ( ApiProperty ap in props ) {
+		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".");
+		PropertyMapping pm = propMap[ap];
+
+		if ( pm.Custom ) {
+			custom = true;
+#>
+			//pApi.<#= sub #><#= ap.Name #> <== pDomain.<#= pm.Domain.Name #>  (requires custom)
+<#
+			continue;
+		}
+
+		string end = (pm.Domain.DataTypeNameHasQuestionMark() ? ".GetValueOrDefault()" : "");
+#>
+			pApi.<#= sub #><#= ap.Name #> = pDomain.<#= pm.Domain.Name #><#= end #>;
 <#
 	} // end property loop
+
+	if ( custom ) {
 #>
 			From<#= v.Names.Domain #>Custom(pApi, pDomain);
+<#
+	} // end custom condition
+#>
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		static partial void From<#= v.Names.Domain #>Custom(<#= v.Names.Api #> pApi, <#= v.Names.Domain #> pDomain);
 <#
 } // end vertex loop
 #>

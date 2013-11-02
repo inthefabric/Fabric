@@ -39,6 +39,12 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public bool DataTypeNameHasQuestionMark() {
+			string name = GetDataTypeName();
+			return (name.Substring(name.Length-1, 1) == "?");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public string GetDataTypeName() {
 			string end = (IsNullable ? "?" : "");
 

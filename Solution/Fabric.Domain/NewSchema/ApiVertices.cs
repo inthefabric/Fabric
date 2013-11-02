@@ -140,10 +140,10 @@ namespace Fabric.Domain.NewSchema {
 		public byte DirectorType { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public byte DirectorPrimaryAction { get; set; }
+		public byte PrimaryAction { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public byte DirectorRelatedAction { get; set; }
+		public byte RelatedAction { get; set; }
 		
 	}
 
@@ -155,22 +155,22 @@ namespace Fabric.Domain.NewSchema {
 		public byte EventorType { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public long EventorYear { get; set; }
+		public long Year { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorMonth { get; set; }
+		//[DtoProp(IsNullable=true)]
+		public byte? Month { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorDay { get; set; }
+		//[DtoProp(IsNullable=true)]
+		public byte? Day { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorHour { get; set; }
+		//[DtoProp(IsNullable=true)]
+		public byte? Hour { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorMinute { get; set; }
+		//[DtoProp(IsNullable=true)]
+		public byte? Minute { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorSecond { get; set; }
+		//[DtoProp(IsNullable=true)]
+		public byte? Second { get; set; }
 		
 	}
 
@@ -182,7 +182,7 @@ namespace Fabric.Domain.NewSchema {
 		public byte IdentorType { get; set; }
 		
 		//[DtoProp(IsNullable=true)]
-		public string IdentorValue { get; set; }
+		public string Value { get; set; }
 		
 	}
 
@@ -194,13 +194,13 @@ namespace Fabric.Domain.NewSchema {
 		public byte LocatorType { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public double LocatorValueX { get; set; }
+		public double ValueX { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public double LocatorValueY { get; set; }
+		public double ValueY { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public double LocatorValueZ { get; set; }
+		public double ValueZ { get; set; }
 		
 	}
 
@@ -212,13 +212,13 @@ namespace Fabric.Domain.NewSchema {
 		public byte VectorType { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public byte VectorUnit { get; set; }
+		public byte Unit { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public byte VectorUnitPrefix { get; set; }
+		public byte UnitPrefix { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public long VectorValue { get; set; }
+		public long Value { get; set; }
 		
 	}
 

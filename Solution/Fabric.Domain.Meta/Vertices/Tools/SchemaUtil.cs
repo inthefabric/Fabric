@@ -87,6 +87,19 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 			return subMap;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static IDictionary<ApiProperty, PropertyMapping> 
+													GetVertexPropertyMappings(IVertexSchema pVertex) {
+			Type pmt = typeof(PropertyMapping);
+
+			return pVertex
+				.GetType()
+				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
+				.Where(x => x.PropertyType.IsSubclassOf(pmt))
+				.Select(x => (PropertyMapping)x.GetValue(pVertex, null))
+				.ToDictionary(x => x.Api, x => x);
+		}
+
 	}
 
 }

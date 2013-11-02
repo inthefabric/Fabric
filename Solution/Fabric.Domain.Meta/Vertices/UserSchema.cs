@@ -45,8 +45,6 @@ namespace Fabric.Domain.Meta.Vertices {
 			////
 
 			FabNameMap = new PropertyMapping<string, string>(Name, FabName);
-			FabNameMap.DomainToApi = (x => x);
-			FabNameMap.ApiToDomain = (x => x);
 		}
 
 	}

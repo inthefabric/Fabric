@@ -1,12 +1,9 @@
-﻿using System;
-using Fabric.Domain.Meta.Vertices.Tools;
+﻿using Fabric.Domain.Meta.Vertices.Tools;
 
 namespace Fabric.Domain.Meta.Vertices {
 
 	/*================================================================================================*/
 	public class VertexSchema : IVertexSchema {
-
-		public static DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
 		public NameProvider Names { get; protected set; }
 		public ActionProvider Actions { get; protected set; }
@@ -55,13 +52,8 @@ namespace Fabric.Domain.Meta.Vertices {
 			////
 
 			FabIdMap = new PropertyMapping<long, long>(Id, FabId);
-			FabIdMap.DomainToApi = (x => x);
-
-			FabIdStrMap = new PropertyMapping<long, string>(Id, FabIdStr);
-			FabIdStrMap.DomainToApi = (x => x+"");
-
-			FabTimestampMap = new PropertyMapping<long, float>(Timestamp, FabTimestamp);
-			FabTimestampMap.DomainToApi = (x => (float)(new DateTime(x)-UnixEpoch).TotalSeconds);
+			FabIdStrMap = new PropertyMapping<long, string>(Id, FabIdStr, true);
+			FabTimestampMap = new PropertyMapping<long, float>(Timestamp, FabTimestamp, true);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

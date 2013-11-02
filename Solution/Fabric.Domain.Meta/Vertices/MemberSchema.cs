@@ -44,8 +44,6 @@ namespace Fabric.Domain.Meta.Vertices {
 			////
 
 			FabAccessTypeMap = new PropertyMapping<byte, byte>(AccessType, FabAccessType);
-			FabAccessTypeMap.DomainToApi = (x => x);
-			FabAccessTypeMap.ApiToDomain = (x => x);
 		}
 
 	}

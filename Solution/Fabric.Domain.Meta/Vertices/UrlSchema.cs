@@ -52,12 +52,7 @@ namespace Fabric.Domain.Meta.Vertices {
 			////
 
 			FabNameMap = new PropertyMapping<string, string>(Name, FabName);
-			FabNameMap.DomainToApi = (x => x);
-			FabNameMap.ApiToDomain = (x => x);
-
 			FabFullPathMap = new PropertyMapping<string, string>(FullPath, FabFullPath);
-			FabFullPathMap.DomainToApi = (x => x);
-			FabFullPathMap.ApiToDomain = (x => x);
 		}
 
 	}

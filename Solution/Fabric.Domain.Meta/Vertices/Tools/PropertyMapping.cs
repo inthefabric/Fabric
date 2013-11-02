@@ -1,22 +1,37 @@
-﻿using System;
-
-namespace Fabric.Domain.Meta.Vertices.Tools {
+﻿namespace Fabric.Domain.Meta.Vertices.Tools {
 
 	/*================================================================================================*/
-	public class PropertyMapping<TDomType, TApiType> {
+	public class PropertyMapping {
 
-		public DomainProperty<TDomType> Domain { get; private set; }
-		public ApiProperty<TApiType> Api { get; private set; }
-
-		public Func<TDomType, TApiType> DomainToApi { get; internal set; }
-		public Func<TApiType, TDomType> ApiToDomain { get; internal set; }
+		public DomainProperty Domain { get; private set; }
+		public ApiProperty Api { get; private set; }
+		public bool Custom { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public PropertyMapping(DomainProperty<TDomType> pDomain, ApiProperty<TApiType> pApi) {
-			Domain = pDomain;
+		public PropertyMapping(DomainProperty pDom, ApiProperty pApi, bool pCustom=false) {
+			Domain = pDom;
 			Api = pApi;
+			Custom = pCustom;
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	public class PropertyMapping<TDom, TApi> : PropertyMapping {
+
+		public DomainProperty<TDom> DomainT { get; private set; }
+		public ApiProperty<TApi> ApiT { get; private set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public PropertyMapping(DomainProperty<TDom> pDom, ApiProperty<TApi> pApi, bool pCustom=false) :
+																			base(pDom, pApi, pCustom) {
+			DomainT = pDom;
+			ApiT = pApi;
 		}
 
 	}
