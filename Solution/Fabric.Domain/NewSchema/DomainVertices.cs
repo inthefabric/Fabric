@@ -3,10 +3,9 @@
 // Changes made to this source file will be overwritten
 
 using System.Collections.Generic;
-using Fabric.Domain.Meta.Vertices;
 using Weaver.Titan.Elements;
 
-namespace Fabric.Domain.Meta.Builders {
+namespace Fabric.Domain.NewSchema {
 
 
 	/*================================================================================================*/

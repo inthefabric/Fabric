@@ -4,27 +4,6 @@ using Fabric.Domain.Meta.Vertices.Tools;
 namespace Fabric.Domain.Meta.Vertices {
 
 	/*================================================================================================*/
-	public enum VertexDomainType {
-		BaseClass = 0,
-		Unspecified,
-		App,
-		Class,
-		Instance,
-		Url,
-		User,
-		Member,
-		MemberTypeAssign,
-		Factor,
-		Email,
-		OauthAccess,
-		OauthDomain,
-		OauthGrant,
-		OauthScope,
-		Artifact,
-		Vertex
-	}
-
-	/*================================================================================================*/
 	public class VertexSchema : IVertexSchema {
 
 		public static DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

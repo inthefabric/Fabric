@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Fabric.Domain.Meta.Vertices;
-using Fabric.Domain.Meta.Vertices.Tools;
 
-namespace Fabric.Domain.Meta.Builders {
+namespace Fabric.Domain.Meta.Vertices.Tools {
 	
 	/*================================================================================================*/
-	public static class BuilderUtil {
+	public static class SchemaUtil {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

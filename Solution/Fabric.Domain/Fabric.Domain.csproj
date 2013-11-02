@@ -63,6 +63,12 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="NewSchema\DomainVertices.cs">
+      <DependentUpon>DomainVertices.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="NewSchema\VertexBase.cs" />
     <Compile Include="VertexEnums.cs" />
     <Compile Include="Edge.cs" />
     <Compile Include="IEdge.cs" />
@@ -76,6 +82,10 @@
     <Compile Include="IVertexWithId.cs" />
     <Compile Include="Vertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="NewSchema\DomainVertices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DomainVertices.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

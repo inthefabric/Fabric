@@ -1,7 +1,28 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.Domain.Meta.Builders {
-	
+namespace Fabric.Domain.NewSchema {
+
+	/*================================================================================================*/
+	public enum VertexDomainType {
+		BaseClass = 0,
+		Unspecified,
+		App,
+		Class,
+		Instance,
+		Url,
+		User,
+		Member,
+		MemberTypeAssign,
+		Factor,
+		Email,
+		OauthAccess,
+		OauthDomain,
+		OauthGrant,
+		OauthScope,
+		Artifact,
+		Vertex
+	}
+
 	/*================================================================================================*/
 	public abstract class VertexBase {
 
