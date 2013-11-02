@@ -40,6 +40,11 @@
     <Compile Include="Vertices\ArtifactSchema.cs" />
     <Compile Include="Vertices\AppSchema.cs" />
     <Compile Include="Vertices\ClassSchema.cs" />
+    <Compile Include="Vertices\OauthScopeSchema.cs" />
+    <Compile Include="Vertices\OauthGrantSchema.cs" />
+    <Compile Include="Vertices\OauthDomainSchema.cs" />
+    <Compile Include="Vertices\OauthAccessSchema.cs" />
+    <Compile Include="Vertices\EmailSchema.cs" />
     <Compile Include="Vertices\Tools\SchemaUtil.cs" />
     <Compile Include="Vertices\UrlSchema.cs" />
     <Compile Include="Vertices\InstanceSchema.cs" />
