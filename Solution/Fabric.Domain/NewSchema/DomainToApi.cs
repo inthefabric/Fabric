@@ -10,7 +10,7 @@ namespace Fabric.Domain.NewSchema {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromObject(FabObject pObject, Vertex pDomain) {
+		private static void FromObject(FabObject pApi, Vertex pDomain) {
 			//do nothing...
 		}
 

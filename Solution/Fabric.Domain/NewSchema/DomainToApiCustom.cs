@@ -5,13 +5,14 @@ namespace Fabric.Domain.NewSchema {
 	/*================================================================================================*/
 	public static partial class DomainToApi {
 		
-		private const int SecPerMin = (60+1);
-		private const int SecPerHour = SecPerMin*(60+1);
-		private const int SecPerDay = SecPerHour*(24+1);
-		private const int SecPerMonth = SecPerDay*(31+1);
-		private const int SecPerYear = SecPerMonth*(12+1); //38,698,400 sec; allows +/- 238 billion yrs
+		internal const int SecPerMin = (60+1);
+		internal const int SecPerHour = SecPerMin*(60+1);
+		internal const int SecPerDay = SecPerHour*(24+1);
+		internal const int SecPerMonth = SecPerDay*(31+1);
+		internal const int SecPerYear = SecPerMonth*(12+1); //38,698,400 sec; allows +/- 238 billion yrs
 
-		private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0,DateTimeKind.Utc);
+		internal static readonly DateTime UnixEpoch = 
+			new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

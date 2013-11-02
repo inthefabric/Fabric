@@ -89,7 +89,7 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static IDictionary<ApiProperty, PropertyMapping> 
-													GetVertexPropertyMappings(IVertexSchema pVertex) {
+													GetVertexApiPropertyMaps(IVertexSchema pVertex) {
 			Type pmt = typeof(PropertyMapping);
 
 			return pVertex
@@ -98,6 +98,30 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 				.Where(x => x.PropertyType.IsSubclassOf(pmt))
 				.Select(x => (PropertyMapping)x.GetValue(pVertex, null))
 				.ToDictionary(x => x.Api, x => x);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IDictionary<DomainProperty, IList<PropertyMapping>>
+													GetVertexDomainPropertyMaps(IVertexSchema pVertex) {
+			Type pmt = typeof(PropertyMapping);
+
+			IEnumerable<PropertyMapping> propMaps = pVertex
+				.GetType()
+				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
+				.Where(x => x.PropertyType.IsSubclassOf(pmt))
+				.Select(x => (PropertyMapping)x.GetValue(pVertex, null));
+
+			var map = new Dictionary<DomainProperty, IList<PropertyMapping>>();
+
+			foreach ( PropertyMapping pm in propMaps ) {
+				if ( !map.ContainsKey(pm.Domain) ) {
+					map.Add(pm.Domain, new List<PropertyMapping>());
+				}
+
+				map[pm.Domain].Add(pm);
+			}
+
+			return map;
 		}
 
 	}

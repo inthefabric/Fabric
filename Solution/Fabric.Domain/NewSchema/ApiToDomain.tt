@@ -14,12 +14,12 @@
 namespace Fabric.Domain.NewSchema {
 
 	/*================================================================================================*/
-	public static partial class DomainToApi {
+	public static partial class ApiToDomain {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromObject(FabObject pApi, Vertex pDomain) {
+		private static void FromFabObject(Vertex pDomain, FabObject pApi) {
 			//do nothing...
 		}
 <#
@@ -29,52 +29,60 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	string baseName = (vp == null ? "FabObject" : vp.Names.Api);
 
-	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, false);
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
 	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
-	IDictionary<ApiProperty, PropertyMapping> propMap = SchemaUtil.GetVertexApiPropertyMaps(v);
+	IDictionary<DomainProperty, IList<PropertyMapping>> propMap = 
+		SchemaUtil.GetVertexDomainPropertyMaps(v);
 	bool custom = false;
 #>
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static <#= v.Names.Api #> From<#= v.Names.Domain #>(<#= v.Names.Domain #> pDomain) {
-			var api = new <#= v.Names.Api #>();
-			From<#= v.Names.Domain #>(api, pDomain);
-			return api;
+		public static <#= v.Names.Domain #> From<#= v.Names.Api #>(<#= v.Names.Api #> pApi) {
+			var dom = new <#= v.Names.Domain #>();
+			From<#= v.Names.Api #>(dom, pApi);
+			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void From<#= v.Names.Domain #>(<#= v.Names.Api #> pApi, <#= v.Names.Domain #> pDomain) {
-			From<#= baseName.Substring(3) #>(pApi, pDomain);
+		public static void From<#= v.Names.Api #>(<#= v.Names.Domain #> pDomain, <#= v.Names.Api #> pApi) {
+			From<#= baseName #>(pDomain, pApi);
 <#
-	foreach ( string sub in subMap.Keys ) {
-#>
-			pApi.<#= sub.Substring(3) #> = new <#= sub #>();
-<#
-	} // end custom condition
-
-	foreach ( ApiProperty ap in props ) {
-		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".");
-		PropertyMapping pm = propMap[ap];
-
-		if ( pm.Custom ) {
-			custom = true;
-#>
-			//pApi.<#= sub #><#= ap.Name #> <== pDomain.<#= pm.Domain.Name #>  (requires custom)
-<#
+	foreach ( DomainProperty dp in props ) {
+		if ( !propMap.ContainsKey(dp) ) {
 			continue;
 		}
 
-		string end = (pm.Domain.DataTypeNameHasQuestionMark() ? ".GetValueOrDefault()" : "");
+		foreach ( PropertyMapping pm in propMap[dp] ) {
+			string sub = (pm.Api.SubObjectOf == null ? null : pm.Api.SubObjectOf.Substring(3));
+
+			if ( pm.Custom ) {
+				custom = true;
 #>
-			pApi.<#= sub #><#= ap.Name #> = pDomain.<#= pm.Domain.Name #><#= end #>;
+			//pDomain.<#= pm.Domain.Name #> <== pApi.<#= sub+(sub == null ? "" : ".") #><#= dp.Name #>  (requires custom)
 <#
+				continue;
+			}
+
+			if ( sub == null ) {
+#>
+			pDomain.<#= dp.Name #> = pApi.<#= pm.Api.Name #>;
+<#
+			}
+			else {
+#>
+			if ( pApi.<#= sub #> != null ) { pDomain.<#= dp.Name #> = pApi.<#= sub #>.<#= pm.Api.Name #>; }
+<#
+			} //end "sub" conditions
+
+		} // end propMap loop
+
 	} // end property loop
 
 	if ( custom ) {
 #>
-			From<#= v.Names.Domain #>Custom(pApi, pDomain);
+			From<#= v.Names.Api #>Custom(pDomain, pApi);
 <#
 	} // end custom condition
 #>

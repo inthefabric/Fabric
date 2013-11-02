@@ -68,6 +68,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="NewSchema\ApiToDomain.cs">
+      <DependentUpon>ApiToDomain.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="NewSchema\ApiToDomainCustom.cs" />
     <Compile Include="NewSchema\DomainToApiCustom.cs" />
     <Compile Include="NewSchema\DomainToApi.cs">
       <DependentUpon>DomainToApi.tt</DependentUpon>
@@ -102,6 +108,10 @@
     <None Include="NewSchema\ApiVertices.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiVertices.cs</LastGenOutput>
+    </None>
+    <None Include="NewSchema\ApiToDomain.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiToDomain.cs</LastGenOutput>
     </None>
     <None Include="NewSchema\DomainToApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
