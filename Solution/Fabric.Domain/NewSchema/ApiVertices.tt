@@ -1,0 +1,80 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.Domain.Meta.Vertices" #>
+<#@ import namespace="Fabric.Domain.Meta.Vertices.Tools" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System.Collections.Generic;
+
+namespace Fabric.Domain.NewSchema {
+<#
+IEnumerable<Type> vertexTypes = SchemaUtil.GetVertexTypes();
+
+foreach ( Type type in vertexTypes ) { 
+	IVertexSchema v = SchemaUtil.GetVertex(type);
+
+	if ( v.IsInternal ) {
+		continue;
+	}
+
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "FabVertexBase" : vp.Names.Api);
+#>
+
+
+	/*================================================================================================*/
+	public class <#= v.Names.Api #> : <#= baseName #> {
+
+<#
+	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v);
+
+	foreach ( ApiProperty ap in props ) {
+		string isNul = (ap.IsNullable+"").ToLower();
+#>
+		//[DtoProp(IsNullable=<#= isNul #>)]
+		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
+		
+<#
+	} // end property loop
+#>
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= v.Names.Api #>() {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(Vertex pVertex) {
+			base.Fill(pVertex);
+
+			<#= v.Names.Domain #> v = (<#= v.Names.Domain #>)pVertex;
+<#
+	foreach ( ApiProperty ap in props ) {
+#>
+			//<#= ap.Name #> = v.???;
+<#
+	} // end property loop
+#>
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static <#= v.Names.Api #> FromDomain(<#= v.Names.Domain #> pVertex) {
+			var v = new <#= v.Names.Api #>();
+			v.Fill(pVertex);
+			return v;
+		}
+
+	}
+<#
+} // end vertex loop
+#>
+
+}

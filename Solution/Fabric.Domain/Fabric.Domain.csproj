@@ -63,6 +63,12 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="NewSchema\ApiVertices.cs">
+      <DependentUpon>ApiVertices.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="NewSchema\FabVertexBase.cs" />
     <Compile Include="NewSchema\VerifyDbNames.cs">
       <DependentUpon>VerifyDbNames.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -87,6 +93,10 @@
     <Compile Include="IVertexWithId.cs" />
     <Compile Include="Vertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="NewSchema\ApiVertices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiVertices.cs</LastGenOutput>
+    </None>
     <None Include="NewSchema\VerifyDbNames.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VerifyDbNames.cs</LastGenOutput>

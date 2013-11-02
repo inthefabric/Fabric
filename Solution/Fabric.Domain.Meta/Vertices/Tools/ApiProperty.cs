@@ -44,6 +44,37 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 			DataType = pDataType;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetDataTypeName() {
+			string end = (IsNullable ? "?" : "");
+
+			switch ( DataType.Name ) {
+				case "String":
+					return "string";
+
+				case "Boolean":
+					return "bool"+end;
+
+				case "Byte":
+					return "byte"+end;
+
+				case "Int32":
+					return "int"+end;
+
+				case "Int64":
+					return "long"+end;
+
+				case "Single":
+					return "float"+end;
+
+				case "Double":
+					return "double"+end;
+
+				default:
+					return null;
+			}
+		}
+
 	}
 
 	/*================================================================================================*/

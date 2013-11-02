@@ -44,6 +44,18 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 				.ToList();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<ApiProperty> GetVertexApiProperties(IVertexSchema pVertex) {
+			Type apt = typeof(ApiProperty);
+
+			return pVertex
+				.GetType()
+				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
+				.Where(x => x.PropertyType.IsSubclassOf(apt))
+				.Select(pi => (ApiProperty)pi.GetValue(pVertex, null))
+				.ToList();
+		}
+
 	}
 
 }
