@@ -24,12 +24,23 @@ namespace Fabric.Domain.Meta.Vertices {
 			////
 
 			Name = new DomainProperty<string>("Name", "u.na");
+			Name.IsUnique = true;
+			Name.IsElastic = true;
+
 			NameKey = new DomainProperty<string>("NameKey", "u.nk");
+			NameKey.IsUnique = true;
+			NameKey.ToLowerCase = true;
+			NameKey.IsIndexed = true;
+
 			Password = new DomainProperty<string>("Password", "u.pa");
 
 			////
 
 			FabName = new ApiProperty<string>("Name", false, false);
+			FabName.IsUnique = true;
+			FabName.LenMin = 3;
+			FabName.LenMax = 64;
+			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
 
 			////
 

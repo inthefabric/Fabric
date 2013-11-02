@@ -39,11 +39,11 @@ namespace Fabric.Domain.Meta.Vertices {
 
 		public ApiProperty<long> FabId { get; private set; }
 		public ApiProperty<string> FabIdStr { get; private set; }
-		public ApiProperty<float> FabTime { get; private set; }
+		public ApiProperty<float> FabTimestamp { get; private set; }
 
 		public PropertyMapping<long, long> FabIdMap { get; private set; }
 		public PropertyMapping<long, string> FabIdStrMap { get; private set; }
-		public PropertyMapping<long, float> FabTimeMap { get; private set; }
+		public PropertyMapping<long, float> FabTimestampMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@ namespace Fabric.Domain.Meta.Vertices {
 			FabIdStr = new ApiProperty<string>("IdStr", false, false);
 			FabIdStr.IsUnique = true;
 
-			FabTime = new ApiProperty<float>("Time", false, false);
+			FabTimestamp = new ApiProperty<float>("Timestamp", false, false);
 
 			////
 
@@ -81,8 +81,8 @@ namespace Fabric.Domain.Meta.Vertices {
 			FabIdStrMap = new PropertyMapping<long, string>(Id, FabIdStr);
 			FabIdStrMap.DomainToApi = (x => x+"");
 
-			FabTimeMap = new PropertyMapping<long, float>(Ticks, FabTime);
-			FabTimeMap.DomainToApi = (x => (float)(new DateTime(x)-UnixEpoch).TotalSeconds);
+			FabTimestampMap = new PropertyMapping<long, float>(Ticks, FabTimestamp);
+			FabTimestampMap.DomainToApi = (x => (float)(new DateTime(x)-UnixEpoch).TotalSeconds);
 		}
 
 	}

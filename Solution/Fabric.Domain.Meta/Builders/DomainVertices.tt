@@ -14,6 +14,7 @@
 
 using System.Collections.Generic;
 using Fabric.Domain.Meta.Vertices;
+using Weaver.Titan.Elements;
 
 namespace Fabric.Domain.Meta.Builders {
 <#
@@ -27,18 +28,22 @@ foreach ( Type type in vertexTypes ) {
 
 
 	/*================================================================================================*/
+	[WeaverTitanVertex]
 	public class <#= v.Names.Domain #> : <#= baseName #> {
 
 <#
 	IList<DomainProperty> props = BuilderUtil.GetVertexDomainProperties(v);
 
 	foreach ( DomainProperty dp in props ) {
+		string isInd = (dp.IsIndexed+"").ToLower();
+		string isEla = (dp.IsElastic+"").ToLower();
 #>
+		[WeaverTitanProperty("<#= dp.DbName #>", TitanIndex=<#= isInd #>, TitanElasticIndex=<#= isEla #>)]
 		public <#= dp.GetDataTypeName() #> <#= dp.Name #> { get; set; }
+		
 <#
 	} // end property loop
 #>
-
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

@@ -8,6 +8,7 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 		public Type DataType { get; private set; }
 		public string Name { get; private set; }
 		public string DbName { get; private set; }
+
 		public bool IsUnique { get; internal set; }
 		public bool IsNullable { get; internal set; }
 		public bool ToLowerCase { get; internal set; }
@@ -31,32 +32,35 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 				return null;
 			}
 
-			return name.Substring(0, 1).ToUpper()+name.Substring(1);
+			return (IsNullable && name != "string" ? "Nullable" : "")+
+				name.Substring(0, 1).ToUpper()+name.Substring(1);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetDataTypeName() {
+			string end = (IsNullable ? "?" : "");
+
 			switch ( DataType.Name ) {
 				case "String":
 					return "string";
 
 				case "Boolean":
-					return "bool";
+					return "bool"+end;
 
 				case "Byte":
-					return "byte";
+					return "byte"+end;
 
 				case "Int32":
-					return "int";
+					return "int"+end;
 
 				case "Int64":
-					return "long";
+					return "long"+end;
 
 				case "Single":
-					return "float";
+					return "float"+end;
 
 				case "Double":
-					return "double";
+					return "double"+end;
 
 				default:
 					return null;

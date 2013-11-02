@@ -46,6 +46,9 @@
     </Compile>
     <Compile Include="Vertices\ArtifactSchema.cs" />
     <Compile Include="Vertices\AppSchema.cs" />
+    <Compile Include="Vertices\ClassSchema.cs" />
+    <Compile Include="Vertices\UrlSchema.cs" />
+    <Compile Include="Vertices\InstanceSchema.cs" />
     <Compile Include="Vertices\IVertexSchema.cs" />
     <Compile Include="Vertices\UserSchema.cs" />
     <Compile Include="Vertices\MemberSchema.cs" />
