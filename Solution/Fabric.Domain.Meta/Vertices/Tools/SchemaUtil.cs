@@ -21,28 +21,12 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 				.ToList();
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		public static IList<IVertexSchema> GetApiVertices() {
-			IList<Type> types = GetVertexTypes();
-			var verts = new List<IVertexSchema>();
-			var subMap = new HashSet<string>();
-
-			foreach ( Type t in types ) {
-				var vert = GetVertex(t);
-				verts.Add(vert);
-
-				IList<ApiProperty> props = GetVertexApiProperties(vert);
-
-				foreach ( ApiProperty prop in props ) {
-					if ( prop.SubObjectOf == null || subMap.Contains(prop.SubObjectOf) ) {
-						continue;
-					}
-
-					subMap.Add(prop.SubObjectOf);
-				}
-			}
-
-			return verts;
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<IVertexSchema> GetVertexSchemas(bool pSkipInternal=false) {
+			return GetVertexTypes()
+				.Select(GetVertex)
+				.Where(x => (!pSkipInternal || !x.IsInternal))
+				.ToList();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -64,32 +48,45 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 				.GetType()
 				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
 				.Where(x => x.PropertyType.IsSubclassOf(dpt))
-				.Select(pi => (DomainProperty)pi.GetValue(pVertex, null))
+				.Select(x => (DomainProperty)x.GetValue(pVertex, null))
 				.ToList();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<ApiProperty> GetVertexApiProperties(IVertexSchema pVertex) {
+		public static IList<ApiProperty> GetVertexApiProperties(
+													IVertexSchema pVertex, bool pSkipSubObjects=false) {
 			Type apt = typeof(ApiProperty);
 
 			return pVertex
 				.GetType()
 				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
 				.Where(x => x.PropertyType.IsSubclassOf(apt))
-				.Select(pi => (ApiProperty)pi.GetValue(pVertex, null))
+				.Select(x => (ApiProperty)x.GetValue(pVertex, null))
+				.Where(x => (!pSkipSubObjects || x.SubObjectOf == null))
 				.ToList();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static IDictionary<string, IList<ApiProperty>> 
+													GetVertexApiPropertySubMap(IVertexSchema pVertex) {
+			IList<ApiProperty> props = GetVertexApiProperties(pVertex);
+			var subMap = new Dictionary<string, IList<ApiProperty>>();
+
+			foreach ( ApiProperty ap in props ) {
+				if ( ap.SubObjectOf == null ) {
+					continue;
+				}
+
+				if ( !subMap.ContainsKey(ap.SubObjectOf) ) {
+					subMap.Add(ap.SubObjectOf, new List<ApiProperty>());
+				}
+
+				subMap[ap.SubObjectOf].Add(ap);
+			}
+
+			return subMap;
+		}
+
 	}
-
-	
-	/*================================================================================================* /
-	public static class SchemaUtilApiVertex<TDomType, TApiType> {
-
-		public ApiProperty<TApiType> Vertex { get; internal set; }
-		public IList<ApiProperty> Props { get; internal set; }
-		public IList<PropertyMapping<TDomType, TApiType>> Maps { get; internal set; }
-
-	}*/
 
 }

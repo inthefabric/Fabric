@@ -16,12 +16,13 @@ using Weaver.Titan.Elements;
 
 namespace Fabric.Domain.NewSchema {
 <#
-IEnumerable<Type> vertexTypes = SchemaUtil.GetVertexTypes();
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 
-foreach ( Type type in vertexTypes ) { 
-	IVertexSchema v = SchemaUtil.GetVertex(type);
+foreach ( IVertexSchema v in vertexSchemas ) { 
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	string baseName = (vp == null ? "VertexBase" : vp.Names.Domain);
+
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
 #>
 
 
@@ -30,8 +31,6 @@ foreach ( Type type in vertexTypes ) {
 	public class <#= v.Names.Domain #> : <#= baseName #> {
 
 <#
-	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
-
 	foreach ( DomainProperty dp in props ) {
 		string isInd = (dp.IsIndexed+"").ToLower();
 		string isEla = (dp.IsElastic+"").ToLower();

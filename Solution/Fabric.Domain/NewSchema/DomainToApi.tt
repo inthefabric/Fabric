@@ -12,6 +12,16 @@
 // Changes made to this source file will be overwritten
 
 namespace Fabric.Domain.NewSchema {
+
+	/*================================================================================================*/
+	public static partial class DomainToApi {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromObject(FabObject pObject, Vertex pDomain) {
+			//do nothing...
+		}
 <#
 IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas(true);
 
@@ -24,68 +34,34 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 
 
-	/*================================================================================================*/
-	public class <#= v.Names.Api #> : <#= baseName #> {
-
-<#
-	foreach ( ApiProperty ap in props ) {
-		string isNul = (ap.IsNullable+"").ToLower();
-#>
-		//[DtoProp(IsNullable=<#= isNul #>)]
-		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
-		
-<#
-	} // end property loop
-
-	foreach ( string sub in subMap.Keys ) {
-		string isSubNul = (v.IsSubObjectNullable(sub)+"").ToLower();
-#>
-		//[DtoProp(IsNullable=<#= isSubNul #>)]
-		public <#= sub #> <#= sub.Substring(3) #> { get; set; }
-		
-<#			
-	} // end subMap loop
-#>
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(Vertex pVertex) {
-			DomainToApi.From<#= v.Names.Domain #>(this, (<#= v.Names.Domain #>)pVertex);
+		public static <#= v.Names.Api #> From<#= v.Names.Domain #>(<#= v.Names.Domain #> pDomain) {
+			var api = new <#= v.Names.Api #>();
+			From<#= v.Names.Domain #>(api, pDomain);
+			return api;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static <#= v.Names.Api #> From<#= v.Names.Domain #>(<#= v.Names.Domain #> pVertex) {
-			var v = new <#= v.Names.Api #>();
-			v.Fill(pVertex);
-			return v;
-		}
-
-	}
+		public static void From<#= v.Names.Domain #>(<#= v.Names.Api #> pApi, <#= v.Names.Domain #> pDomain) {
+			From<#= baseName.Substring(3) #>(pApi, pDomain);
 <#
-	foreach ( string sub in subMap.Keys ) {
-#>
-
-
-	/*================================================================================================*/
-	public class <#= sub #> : FabObject {
-
-<#
-	props = subMap[sub];
-
 	foreach ( ApiProperty ap in props ) {
-		string isNul = (ap.IsNullable+"").ToLower();
+		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf+".");
 #>
-		//[DtoProp(IsNullable=<#= isNul #>)]
-		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
-		
+			//pApi.<#= sub #><#= ap.Name #> = pDomain.???;
 <#
 	} // end property loop
 #>
-	}
+			From<#= v.Names.Domain #>Custom(pApi, pDomain);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		static partial void From<#= v.Names.Domain #>Custom(<#= v.Names.Api #> pApi, <#= v.Names.Domain #> pDomain);
 <#
-	} //end subMap loop
-
 } // end vertex loop
 #>
+
+	}
 
 }

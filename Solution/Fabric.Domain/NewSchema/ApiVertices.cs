@@ -2,8 +2,6 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using System.Collections.Generic;
-
 namespace Fabric.Domain.NewSchema {
 
 
@@ -16,20 +14,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabApp() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			App v = (App)pVertex;
-			//Name = v.???;
+			DomainToApi.FromApp(this, (App)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabApp FromDomain(App pVertex) {
+		public static FabApp FromApp(App pVertex) {
 			var v = new FabApp();
 			v.Fill(pVertex);
 			return v;
@@ -44,19 +34,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifact() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			Artifact v = (Artifact)pVertex;
+			DomainToApi.FromArtifact(this, (Artifact)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabArtifact FromDomain(Artifact pVertex) {
+		public static FabArtifact FromArtifact(Artifact pVertex) {
 			var v = new FabArtifact();
 			v.Fill(pVertex);
 			return v;
@@ -80,22 +63,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabClass() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			Class v = (Class)pVertex;
-			//Name = v.???;
-			//Disamb = v.???;
-			//Note = v.???;
+			DomainToApi.FromClass(this, (Class)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabClass FromDomain(Class pVertex) {
+		public static FabClass FromClass(Class pVertex) {
 			var v = new FabClass();
 			v.Fill(pVertex);
 			return v;
@@ -137,43 +110,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabFactor() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			Factor v = (Factor)pVertex;
-			//AssertionType = v.???;
-			//IsDefining = v.???;
-			//Note = v.???;
-			//FabDescriptor.DescriptorType = v.???;
-			//FabDirector.DirectorType = v.???;
-			//FabDirector.DirectorPrimaryAction = v.???;
-			//FabDirector.DirectorRelatedAction = v.???;
-			//FabEventor.EventorType = v.???;
-			//FabEventor.EventorYear = v.???;
-			//FabEventor.EventorMonth = v.???;
-			//FabEventor.EventorDay = v.???;
-			//FabEventor.EventorHour = v.???;
-			//FabEventor.EventorMinute = v.???;
-			//FabEventor.EventorSecond = v.???;
-			//FabIdentor.IdentorType = v.???;
-			//FabIdentor.IdentorValue = v.???;
-			//FabLocator.LocatorType = v.???;
-			//FabLocator.LocatorValueX = v.???;
-			//FabLocator.LocatorValueY = v.???;
-			//FabLocator.LocatorValueZ = v.???;
-			//FabVector.VectorType = v.???;
-			//FabVector.VectorUnit = v.???;
-			//FabVector.VectorUnitPrefix = v.???;
-			//FabVector.VectorValue = v.???;
+			DomainToApi.FromFactor(this, (Factor)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabFactor FromDomain(Factor pVertex) {
+		public static FabFactor FromFactor(Factor pVertex) {
 			var v = new FabFactor();
 			v.Fill(pVertex);
 			return v;
@@ -296,22 +238,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabInstance() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			Instance v = (Instance)pVertex;
-			//Name = v.???;
-			//Disamb = v.???;
-			//Note = v.???;
+			DomainToApi.FromInstance(this, (Instance)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabInstance FromDomain(Instance pVertex) {
+		public static FabInstance FromInstance(Instance pVertex) {
 			var v = new FabInstance();
 			v.Fill(pVertex);
 			return v;
@@ -329,20 +261,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabMember() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			Member v = (Member)pVertex;
-			//AccessType = v.???;
+			DomainToApi.FromMember(this, (Member)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabMember FromDomain(Member pVertex) {
+		public static FabMember FromMember(Member pVertex) {
 			var v = new FabMember();
 			v.Fill(pVertex);
 			return v;
@@ -363,21 +287,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUrl() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			Url v = (Url)pVertex;
-			//Name = v.???;
-			//FullPath = v.???;
+			DomainToApi.FromUrl(this, (Url)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabUrl FromDomain(Url pVertex) {
+		public static FabUrl FromUrl(Url pVertex) {
 			var v = new FabUrl();
 			v.Fill(pVertex);
 			return v;
@@ -395,20 +310,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUser() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			User v = (User)pVertex;
-			//Name = v.???;
+			DomainToApi.FromUser(this, (User)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabUser FromDomain(User pVertex) {
+		public static FabUser FromUser(User pVertex) {
 			var v = new FabUser();
 			v.Fill(pVertex);
 			return v;
@@ -432,22 +339,12 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabVertex() {}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
-			base.Fill(pVertex);
-
-			Vertex v = (Vertex)pVertex;
-			//Id = v.???;
-			//IdStr = v.???;
-			//Timestamp = v.???;
+			DomainToApi.FromVertex(this, (Vertex)pVertex);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabVertex FromDomain(Vertex pVertex) {
+		public static FabVertex FromVertex(Vertex pVertex) {
 			var v = new FabVertex();
 			v.Fill(pVertex);
 			return v;

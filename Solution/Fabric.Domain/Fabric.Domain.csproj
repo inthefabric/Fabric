@@ -68,6 +68,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="NewSchema\DomainToApi.cs">
+      <DependentUpon>DomainToApi.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="NewSchema\FabObject.cs" />
     <Compile Include="NewSchema\VerifyDbNames.cs">
       <DependentUpon>VerifyDbNames.tt</DependentUpon>
@@ -96,6 +101,10 @@
     <None Include="NewSchema\ApiVertices.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiVertices.cs</LastGenOutput>
+    </None>
+    <None Include="NewSchema\DomainToApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DomainToApi.cs</LastGenOutput>
     </None>
     <None Include="NewSchema\VerifyDbNames.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
