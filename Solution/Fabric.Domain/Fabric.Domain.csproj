@@ -68,7 +68,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="NewSchema\FabVertexBase.cs" />
+    <Compile Include="NewSchema\FabObject.cs" />
     <Compile Include="NewSchema\VerifyDbNames.cs">
       <DependentUpon>VerifyDbNames.tt</DependentUpon>
       <AutoGen>True</AutoGen>

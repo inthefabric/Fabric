@@ -25,7 +25,7 @@ foreach ( Type type in vertexTypes ) {
 	}
 
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
-	string baseName = (vp == null ? "FabVertexBase" : vp.Names.Api);
+	string baseName = (vp == null ? "FabObject" : vp.Names.Api);
 #>
 
 
@@ -35,22 +35,8 @@ foreach ( Type type in vertexTypes ) {
 <#
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v);
 	var subMap = new Dictionary<string, IList<ApiProperty>>();
-	string currSub = null;
-	bool endSub = false;
-	bool inSub = false;
 
 	foreach ( ApiProperty ap in props ) {
-		endSub = (currSub != null && currSub != ap.SubObjectOf);
-		currSub = ap.SubObjectOf;
-
-		if ( endSub ) {
-			inSub = false;
-#>
-		}
-
-<#
-		} //end "endSub" condition
-
 		if ( ap.SubObjectOf != null ) {
 			if ( !subMap.ContainsKey(ap.SubObjectOf) ) {
 				subMap.Add(ap.SubObjectOf, new List<ApiProperty>());
@@ -58,44 +44,27 @@ foreach ( Type type in vertexTypes ) {
 #>
 		//[DtoProp(IsNullable=<#= isSubNul #>)]
 		public <#= ap.SubObjectOf #> <#= ap.SubObjectOf.Substring(3) #> { get; set; }
-
-		/*--------------------------------------------------------------------------------------------*/
-		public class <#= ap.SubObjectOf #> {
 		
-<#			}
+<#			
+			}
 
 			subMap[ap.SubObjectOf].Add(ap);
-			inSub = true;
+			continue;
 		} //end "SubObjectOf" condition
 
 		string isNul = (ap.IsNullable+"").ToLower();
-		string tab = (inSub ? "\t" : "");
 #>
-		<#= tab #>//[DtoProp(IsNullable=<#= isNul #>)]
-		<#= tab #>public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
+		//[DtoProp(IsNullable=<#= isNul #>)]
+		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
 		
 <#
 	} // end property loop
 
-	if ( inSub ) {
-#>
-		}
-
-<#
-	} // end "inSub" condition
 #>
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= v.Names.Api #>() {
-<#
-	foreach ( string sub in subMap.Keys ) {
-#>
-			<#= sub.Substring(3) #> = new <#= sub #>();
-<#
-	} // end subMap loop
-#>
-		}
+		public <#= v.Names.Api #>() {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -123,6 +92,29 @@ foreach ( Type type in vertexTypes ) {
 
 	}
 <#
+	foreach ( string sub in subMap.Keys ) {
+#>
+
+
+	/*================================================================================================*/
+	public class <#= sub #> : FabObject {
+
+<#
+	props = subMap[sub];
+
+	foreach ( ApiProperty ap in props ) {
+		string isNul = (ap.IsNullable+"").ToLower();
+#>
+		//[DtoProp(IsNullable=<#= isNul #>)]
+		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
+		
+<#
+	} // end property loop
+#>
+	}
+<#
+	} //end subMap loop
+
 } // end vertex loop
 #>
 
