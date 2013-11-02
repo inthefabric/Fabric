@@ -9,6 +9,11 @@ namespace Fabric.Domain.Meta.Vertices {
 		ActionProvider Actions { get; }
 		bool IsInternal { get; }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		bool IsSubObjectNullable(string pName);
+
 	}
 
 }

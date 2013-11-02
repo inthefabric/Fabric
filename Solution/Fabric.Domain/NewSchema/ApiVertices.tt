@@ -34,20 +34,68 @@ foreach ( Type type in vertexTypes ) {
 
 <#
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v);
+	var subMap = new Dictionary<string, IList<ApiProperty>>();
+	string currSub = null;
+	bool endSub = false;
+	bool inSub = false;
 
 	foreach ( ApiProperty ap in props ) {
-		string isNul = (ap.IsNullable+"").ToLower();
+		endSub = (currSub != null && currSub != ap.SubObjectOf);
+		currSub = ap.SubObjectOf;
+
+		if ( endSub ) {
+			inSub = false;
 #>
-		//[DtoProp(IsNullable=<#= isNul #>)]
-		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
+		}
+
+<#
+		} //end "endSub" condition
+
+		if ( ap.SubObjectOf != null ) {
+			if ( !subMap.ContainsKey(ap.SubObjectOf) ) {
+				subMap.Add(ap.SubObjectOf, new List<ApiProperty>());
+				string isSubNul = (v.IsSubObjectNullable(ap.SubObjectOf)+"").ToLower();
+#>
+		//[DtoProp(IsNullable=<#= isSubNul #>)]
+		public <#= ap.SubObjectOf #> <#= ap.SubObjectOf.Substring(3) #> { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public class <#= ap.SubObjectOf #> {
+		
+<#			}
+
+			subMap[ap.SubObjectOf].Add(ap);
+			inSub = true;
+		} //end "SubObjectOf" condition
+
+		string isNul = (ap.IsNullable+"").ToLower();
+		string tab = (inSub ? "\t" : "");
+#>
+		<#= tab #>//[DtoProp(IsNullable=<#= isNul #>)]
+		<#= tab #>public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
 		
 <#
 	} // end property loop
+
+	if ( inSub ) {
+#>
+		}
+
+<#
+	} // end "inSub" condition
 #>
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= v.Names.Api #>() {}
+		public <#= v.Names.Api #>() {
+<#
+	foreach ( string sub in subMap.Keys ) {
+#>
+			<#= sub.Substring(3) #> = new <#= sub #>();
+<#
+	} // end subMap loop
+#>
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -56,8 +104,9 @@ foreach ( Type type in vertexTypes ) {
 			<#= v.Names.Domain #> v = (<#= v.Names.Domain #>)pVertex;
 <#
 	foreach ( ApiProperty ap in props ) {
+		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf+".");
 #>
-			//<#= ap.Name #> = v.???;
+			//<#= sub #><#= ap.Name #> = v.???;
 <#
 	} // end property loop
 #>

@@ -21,6 +21,30 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 				.ToList();
 		}
 
+		/*--------------------------------------------------------------------------------------------* /
+		public static IList<IVertexSchema> GetApiVertices() {
+			IList<Type> types = GetVertexTypes();
+			var verts = new List<IVertexSchema>();
+			var subMap = new HashSet<string>();
+
+			foreach ( Type t in types ) {
+				var vert = GetVertex(t);
+				verts.Add(vert);
+
+				IList<ApiProperty> props = GetVertexApiProperties(vert);
+
+				foreach ( ApiProperty prop in props ) {
+					if ( prop.SubObjectOf == null || subMap.Contains(prop.SubObjectOf) ) {
+						continue;
+					}
+
+					subMap.Add(prop.SubObjectOf);
+				}
+			}
+
+			return verts;
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public static IVertexSchema GetVertexParent(IVertexSchema pVertex) {
 			Type type = pVertex.GetType().BaseType;
@@ -57,5 +81,15 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 		}
 
 	}
+
+	
+	/*================================================================================================* /
+	public static class SchemaUtilApiVertex<TDomType, TApiType> {
+
+		public ApiProperty<TApiType> Vertex { get; internal set; }
+		public IList<ApiProperty> Props { get; internal set; }
+		public IList<PropertyMapping<TDomType, TApiType>> Maps { get; internal set; }
+
+	}*/
 
 }

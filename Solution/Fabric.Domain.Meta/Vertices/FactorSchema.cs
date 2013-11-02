@@ -579,6 +579,11 @@ namespace Fabric.Domain.Meta.Vertices {
 			FabVectorValueMap.ApiToDomain = (x => x);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public override bool IsSubObjectNullable(string pName) {
+			return (pName != "FabDescriptor");
+		}
+
 	}
 
 }

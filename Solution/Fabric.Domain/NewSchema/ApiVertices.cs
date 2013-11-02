@@ -16,7 +16,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabApp() {}
+		public FabApp() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -44,7 +45,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabArtifact() {}
+		public FabArtifact() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -80,7 +82,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabClass() {}
+		public FabClass() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -117,72 +120,127 @@ namespace Fabric.Domain.NewSchema {
 		public string Note { get; set; }
 		
 		//[DtoProp(IsNullable=false)]
-		public byte DescriptorType { get; set; }
+		public FabDescriptor Descriptor { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public class FabDescriptor {
 		
-		//[DtoProp(IsNullable=false)]
-		public byte DirectorType { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public byte DescriptorType { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte DirectorPrimaryAction { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte DirectorRelatedAction { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorType { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public long EventorYear { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorMonth { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorDay { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorHour { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorMinute { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte EventorSecond { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
-		public byte IdentorType { get; set; }
-		
+		}
+
 		//[DtoProp(IsNullable=true)]
-		public string IdentorValue { get; set; }
+		public FabDirector Director { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public class FabDirector {
 		
-		//[DtoProp(IsNullable=false)]
-		public byte LocatorType { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public byte DirectorType { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public double LocatorValueX { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public byte DirectorPrimaryAction { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public double LocatorValueY { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public byte DirectorRelatedAction { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public double LocatorValueZ { get; set; }
+		}
+
+		//[DtoProp(IsNullable=true)]
+		public FabEventor Eventor { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public class FabEventor {
 		
-		//[DtoProp(IsNullable=false)]
-		public byte VectorType { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public byte EventorType { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte VectorUnit { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public long EventorYear { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public byte VectorUnitPrefix { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public byte EventorMonth { get; set; }
 		
-		//[DtoProp(IsNullable=false)]
-		public long VectorValue { get; set; }
+			//[DtoProp(IsNullable=false)]
+			public byte EventorDay { get; set; }
 		
+			//[DtoProp(IsNullable=false)]
+			public byte EventorHour { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public byte EventorMinute { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public byte EventorSecond { get; set; }
+		
+		}
+
+		//[DtoProp(IsNullable=true)]
+		public FabIdentor Identor { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public class FabIdentor {
+		
+			//[DtoProp(IsNullable=false)]
+			public byte IdentorType { get; set; }
+		
+			//[DtoProp(IsNullable=true)]
+			public string IdentorValue { get; set; }
+		
+		}
+
+		//[DtoProp(IsNullable=true)]
+		public FabLocator Locator { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public class FabLocator {
+		
+			//[DtoProp(IsNullable=false)]
+			public byte LocatorType { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public double LocatorValueX { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public double LocatorValueY { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public double LocatorValueZ { get; set; }
+		
+		}
+
+		//[DtoProp(IsNullable=true)]
+		public FabVector Vector { get; set; }
+
+		/*--------------------------------------------------------------------------------------------*/
+		public class FabVector {
+		
+			//[DtoProp(IsNullable=false)]
+			public byte VectorType { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public byte VectorUnit { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public byte VectorUnitPrefix { get; set; }
+		
+			//[DtoProp(IsNullable=false)]
+			public long VectorValue { get; set; }
+		
+		}
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabFactor() {}
+		public FabFactor() {
+			Descriptor = new FabDescriptor();
+			Director = new FabDirector();
+			Eventor = new FabEventor();
+			Identor = new FabIdentor();
+			Locator = new FabLocator();
+			Vector = new FabVector();
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -192,27 +250,27 @@ namespace Fabric.Domain.NewSchema {
 			//AssertionType = v.???;
 			//IsDefining = v.???;
 			//Note = v.???;
-			//DescriptorType = v.???;
-			//DirectorType = v.???;
-			//DirectorPrimaryAction = v.???;
-			//DirectorRelatedAction = v.???;
-			//EventorType = v.???;
-			//EventorYear = v.???;
-			//EventorMonth = v.???;
-			//EventorDay = v.???;
-			//EventorHour = v.???;
-			//EventorMinute = v.???;
-			//EventorSecond = v.???;
-			//IdentorType = v.???;
-			//IdentorValue = v.???;
-			//LocatorType = v.???;
-			//LocatorValueX = v.???;
-			//LocatorValueY = v.???;
-			//LocatorValueZ = v.???;
-			//VectorType = v.???;
-			//VectorUnit = v.???;
-			//VectorUnitPrefix = v.???;
-			//VectorValue = v.???;
+			//FabDescriptor.DescriptorType = v.???;
+			//FabDirector.DirectorType = v.???;
+			//FabDirector.DirectorPrimaryAction = v.???;
+			//FabDirector.DirectorRelatedAction = v.???;
+			//FabEventor.EventorType = v.???;
+			//FabEventor.EventorYear = v.???;
+			//FabEventor.EventorMonth = v.???;
+			//FabEventor.EventorDay = v.???;
+			//FabEventor.EventorHour = v.???;
+			//FabEventor.EventorMinute = v.???;
+			//FabEventor.EventorSecond = v.???;
+			//FabIdentor.IdentorType = v.???;
+			//FabIdentor.IdentorValue = v.???;
+			//FabLocator.LocatorType = v.???;
+			//FabLocator.LocatorValueX = v.???;
+			//FabLocator.LocatorValueY = v.???;
+			//FabLocator.LocatorValueZ = v.???;
+			//FabVector.VectorType = v.???;
+			//FabVector.VectorUnit = v.???;
+			//FabVector.VectorUnitPrefix = v.???;
+			//FabVector.VectorValue = v.???;
 		}
 
 
@@ -242,7 +300,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabInstance() {}
+		public FabInstance() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -275,7 +334,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabMember() {}
+		public FabMember() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -309,7 +369,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUrl() {}
+		public FabUrl() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -341,7 +402,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUser() {}
+		public FabUser() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -378,7 +440,8 @@ namespace Fabric.Domain.NewSchema {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabVertex() {}
+		public FabVertex() {
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {

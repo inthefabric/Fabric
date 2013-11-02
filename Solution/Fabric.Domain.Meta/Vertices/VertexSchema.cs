@@ -64,6 +64,11 @@ namespace Fabric.Domain.Meta.Vertices {
 			FabTimestampMap.DomainToApi = (x => (float)(new DateTime(x)-UnixEpoch).TotalSeconds);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual bool IsSubObjectNullable(string pName) {
+			return false;
+		}
+
 	}
 
 }
