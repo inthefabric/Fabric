@@ -32,6 +32,7 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 		public int? Max { get; internal set; }
 		public string ValidRegex { get; internal set; }
 		public Type FromEnum { get; internal set; }
+		public string SubObjectOf { get; internal set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

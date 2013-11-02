@@ -18,7 +18,7 @@ namespace Fabric.Domain.NewSchema {
 <#
 IEnumerable<Type> vertexTypes = SchemaUtil.GetVertexTypes();
 
-foreach ( Type type in vertexTypes ) {
+foreach ( Type type in vertexTypes ) { 
 	IVertexSchema v = SchemaUtil.GetVertex(type);
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	string baseName = (vp == null ? "VertexBase" : vp.Names.Domain);

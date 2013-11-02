@@ -126,6 +126,101 @@ namespace Fabric.Domain.NewSchema {
 
 	/*================================================================================================*/
 	[WeaverTitanVertex]
+	public class Factor : Artifact {
+
+		[WeaverTitanProperty("f.at", TitanIndex=false, TitanElasticIndex=false)]
+		public byte AssertionType { get; set; }
+		
+		[WeaverTitanProperty("f.de", TitanIndex=false, TitanElasticIndex=false)]
+		public bool IsDefining { get; set; }
+		
+		[WeaverTitanProperty("f.no", TitanIndex=false, TitanElasticIndex=false)]
+		public string Note { get; set; }
+		
+		[WeaverTitanProperty("f.det", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? DescriptorType { get; set; }
+		
+		[WeaverTitanProperty("f.dit", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? DirectorType { get; set; }
+		
+		[WeaverTitanProperty("f.dip", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? DirectorPrimaryAction { get; set; }
+		
+		[WeaverTitanProperty("f.dir", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? DirectorRelatedAction { get; set; }
+		
+		[WeaverTitanProperty("f.evt", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? EventorType { get; set; }
+		
+		[WeaverTitanProperty("f.evd", TitanIndex=false, TitanElasticIndex=false)]
+		public long? EventorDateTime { get; set; }
+		
+		[WeaverTitanProperty("f.idt", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? IdentorType { get; set; }
+		
+		[WeaverTitanProperty("f.idv", TitanIndex=true, TitanElasticIndex=true)]
+		public string IdentorValue { get; set; }
+		
+		[WeaverTitanProperty("f.lot", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? LocatorType { get; set; }
+		
+		[WeaverTitanProperty("f.lox", TitanIndex=false, TitanElasticIndex=false)]
+		public double? LocatorValueX { get; set; }
+		
+		[WeaverTitanProperty("f.loy", TitanIndex=false, TitanElasticIndex=false)]
+		public double? LocatorValueY { get; set; }
+		
+		[WeaverTitanProperty("f.loz", TitanIndex=false, TitanElasticIndex=false)]
+		public double? LocatorValueZ { get; set; }
+		
+		[WeaverTitanProperty("f.vet", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? VectorType { get; set; }
+		
+		[WeaverTitanProperty("f.veu", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? VectorUnit { get; set; }
+		
+		[WeaverTitanProperty("f.vep", TitanIndex=false, TitanElasticIndex=false)]
+		public byte? VectorUnitPrefix { get; set; }
+		
+		[WeaverTitanProperty("f.vev", TitanIndex=false, TitanElasticIndex=false)]
+		public long? VectorValue { get; set; }
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public Factor() {
+			DomainType = (byte)VertexDomainType.Factor;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDictionary<string, string> pData) {
+			base.Fill(pData);
+			AssertionType = TryGetByte(pData, "f.at");
+			IsDefining = TryGetBool(pData, "f.de");
+			Note = TryGetString(pData, "f.no");
+			DescriptorType = TryGetNullableByte(pData, "f.det");
+			DirectorType = TryGetNullableByte(pData, "f.dit");
+			DirectorPrimaryAction = TryGetNullableByte(pData, "f.dip");
+			DirectorRelatedAction = TryGetNullableByte(pData, "f.dir");
+			EventorType = TryGetNullableByte(pData, "f.evt");
+			EventorDateTime = TryGetNullableLong(pData, "f.evd");
+			IdentorType = TryGetNullableByte(pData, "f.idt");
+			IdentorValue = TryGetString(pData, "f.idv");
+			LocatorType = TryGetNullableByte(pData, "f.lot");
+			LocatorValueX = TryGetNullableDouble(pData, "f.lox");
+			LocatorValueY = TryGetNullableDouble(pData, "f.loy");
+			LocatorValueZ = TryGetNullableDouble(pData, "f.loz");
+			VectorType = TryGetNullableByte(pData, "f.vet");
+			VectorUnit = TryGetNullableByte(pData, "f.veu");
+			VectorUnitPrefix = TryGetNullableByte(pData, "f.vep");
+			VectorValue = TryGetNullableLong(pData, "f.vev");
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	[WeaverTitanVertex]
 	public class Instance : Artifact {
 
 		[WeaverTitanProperty("i.na", TitanIndex=false, TitanElasticIndex=true)]

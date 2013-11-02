@@ -32,6 +32,8 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 				return null;
 			}
 
+			name = name.Trim(new[] { '?' });
+
 			return (IsNullable && name != "string" ? "Nullable" : "")+
 				name.Substring(0, 1).ToUpper()+name.Substring(1);
 		}

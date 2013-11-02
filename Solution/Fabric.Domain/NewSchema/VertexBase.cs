@@ -3,24 +3,23 @@
 namespace Fabric.Domain.NewSchema {
 
 	/*================================================================================================*/
-	public enum VertexDomainType {
-		BaseClass = 0,
-		Unspecified,
-		App,
-		Class,
-		Instance,
-		Url,
-		User,
-		Member,
-		MemberTypeAssign,
-		Factor,
-		Email,
-		OauthAccess,
-		OauthDomain,
-		OauthGrant,
-		OauthScope,
-		Artifact,
-		Vertex
+	public enum VertexDomainType : byte {
+		Artifact = 0,
+		Vertex = 0,
+		//Skip = 1,
+		App = 2,
+		Class = 3,
+		Instance = 4,
+		Url = 5,
+		User = 6,
+		Member = 7,
+		//Skip = 8,
+		Factor = 9,
+		Email = 10,
+		OauthAccess = 11,
+		OauthDomain = 12,
+		OauthGrant = 13,
+		OauthScope = 14,
 	}
 
 	/*================================================================================================*/
@@ -41,39 +40,69 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected long TryGetLong(IDictionary<string, string> pData, string pDbName) {
+		protected long? TryGetNullableLong(IDictionary<string, string> pData, string pDbName) {
 			string val = TryGetString(pData, pDbName);
-			return (val == null ? 0 : long.Parse(val));
+			return (val == null ? (long?)null : long.Parse(val));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected int? TryGetNullableInt(IDictionary<string, string> pData, string pDbName) {
+			string val = TryGetString(pData, pDbName);
+			return (val == null ? (int?)null : int.Parse(val));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected byte? TryGetNullableByte(IDictionary<string, string> pData, string pDbName) {
+			string val = TryGetString(pData, pDbName);
+			return (val == null ? (byte?)null : byte.Parse(val));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected double? TryGetNullableDouble(IDictionary<string, string> pData, string pDbName) {
+			string val = TryGetString(pData, pDbName);
+			return (val == null ? (double?)null : double.Parse(val));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected float? TryGetNullableFloat(IDictionary<string, string> pData, string pDbName) {
+			string val = TryGetString(pData, pDbName);
+			return (val == null ? (float?)null : float.Parse(val));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected bool? TryGetNullableBool(IDictionary<string, string> pData, string pDbName) {
+			string val = TryGetString(pData, pDbName);
+			return (val == null ? (bool?)null : bool.Parse(val));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected long TryGetLong(IDictionary<string, string> pData, string pDbName) {
+			return (TryGetNullableLong(pData, pDbName) ?? 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected int TryGetInt(IDictionary<string, string> pData, string pDbName) {
-			string val = TryGetString(pData, pDbName);
-			return (val == null ? 0 : int.Parse(val));
+			return (TryGetNullableInt(pData, pDbName) ?? 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected byte TryGetByte(IDictionary<string, string> pData, string pDbName) {
-			string val = TryGetString(pData, pDbName);
-			return (val == null ? (byte)0 : byte.Parse(val));
+			return (TryGetNullableByte(pData, pDbName) ?? 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected double TryGetDouble(IDictionary<string, string> pData, string pDbName) {
-			string val = TryGetString(pData, pDbName);
-			return (val == null ? 0 : double.Parse(val));
+			return (TryGetNullableDouble(pData, pDbName) ?? 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected float TryGetFloat(IDictionary<string, string> pData, string pDbName) {
-			string val = TryGetString(pData, pDbName);
-			return (val == null ? 0 : float.Parse(val));
+			return (TryGetNullableFloat(pData, pDbName) ?? 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected bool TryGetBool(IDictionary<string, string> pData, string pDbName) {
-			string val = TryGetString(pData, pDbName);
-			return (val == null ? false : bool.Parse(val));
+			return (TryGetNullableBool(pData, pDbName) ?? false);
 		}
 
 	}
