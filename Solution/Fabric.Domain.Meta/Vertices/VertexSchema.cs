@@ -13,7 +13,7 @@ namespace Fabric.Domain.Meta.Vertices {
 		public bool IsInternal { get; protected set; }
 
 		public DomainProperty<long> Id { get; private set; }
-		public DomainProperty<long> Ticks { get; private set; }
+		public DomainProperty<long> Timestamp { get; private set; }
 		public DomainProperty<byte> DomainType { get; private set; }
 
 		public ApiProperty<long> FabId { get; private set; }
@@ -37,8 +37,8 @@ namespace Fabric.Domain.Meta.Vertices {
 			Id.IsUnique = true;
 			Id.IsIndexed = true;
 
-			Ticks = new DomainProperty<long>("Ticks", "v.ti");
-			Ticks.IsElastic = true;
+			Timestamp = new DomainProperty<long>("Timestamp", "v.ti");
+			Timestamp.IsElastic = true;
 
 			DomainType = new DomainProperty<byte>("DomainType", "v.dt");
 
@@ -60,7 +60,7 @@ namespace Fabric.Domain.Meta.Vertices {
 			FabIdStrMap = new PropertyMapping<long, string>(Id, FabIdStr);
 			FabIdStrMap.DomainToApi = (x => x+"");
 
-			FabTimestampMap = new PropertyMapping<long, float>(Ticks, FabTimestamp);
+			FabTimestampMap = new PropertyMapping<long, float>(Timestamp, FabTimestamp);
 			FabTimestampMap.DomainToApi = (x => (float)(new DateTime(x)-UnixEpoch).TotalSeconds);
 		}
 

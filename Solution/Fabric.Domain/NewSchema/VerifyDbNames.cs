@@ -63,7 +63,7 @@ namespace Fabric.Domain.NewSchema {
 
 		v (Vertex)
 		v.id (Vertex.Id)
-		v.ti (Vertex.Ticks)
+		v.ti (Vertex.Timestamp)
 		v.dt (Vertex.DomainType)
 
 		*/

@@ -41,6 +41,7 @@ namespace Fabric.Domain.Meta.Vertices {
 
 			Disamb = new DomainProperty<string>("Disamb", "c.di");
 			Disamb.IsNullable = true;
+			Disamb.IsElastic = true;
 
 			Note = new DomainProperty<string>("Note", "c.no");
 			Note.IsNullable = true;

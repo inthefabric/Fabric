@@ -68,7 +68,7 @@ namespace Fabric.Domain.NewSchema {
 		[WeaverTitanProperty("c.nk", TitanIndex=true, TitanElasticIndex=false)]
 		public string NameKey { get; set; }
 		
-		[WeaverTitanProperty("c.di", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("c.di", TitanIndex=false, TitanElasticIndex=true)]
 		public string Disamb { get; set; }
 		
 		[WeaverTitanProperty("c.no", TitanIndex=false, TitanElasticIndex=false)]
@@ -131,7 +131,7 @@ namespace Fabric.Domain.NewSchema {
 		[WeaverTitanProperty("i.na", TitanIndex=false, TitanElasticIndex=true)]
 		public string Name { get; set; }
 		
-		[WeaverTitanProperty("i.di", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("i.di", TitanIndex=false, TitanElasticIndex=true)]
 		public string Disamb { get; set; }
 		
 		[WeaverTitanProperty("i.no", TitanIndex=false, TitanElasticIndex=false)]
@@ -356,7 +356,7 @@ namespace Fabric.Domain.NewSchema {
 		public long Id { get; set; }
 		
 		[WeaverTitanProperty("v.ti", TitanIndex=false, TitanElasticIndex=true)]
-		public long Ticks { get; set; }
+		public long Timestamp { get; set; }
 		
 		[WeaverTitanProperty("v.dt", TitanIndex=false, TitanElasticIndex=false)]
 		public byte DomainType { get; set; }
@@ -372,7 +372,7 @@ namespace Fabric.Domain.NewSchema {
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
 			Id = TryGetLong(pData, "v.id");
-			Ticks = TryGetLong(pData, "v.ti");
+			Timestamp = TryGetLong(pData, "v.ti");
 			DomainType = TryGetByte(pData, "v.dt");
 		}
 
