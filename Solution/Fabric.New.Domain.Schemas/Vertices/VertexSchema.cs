@@ -26,8 +26,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public VertexSchema() {
 			Names = new NameProvider("Vertex", "Vertices", "v");
-			GetAccess = Access.Internal;
-			DeleteAccess = Access.Internal;
+			GetAccess = Access.None;
+			DeleteAccess = Access.None;
 
 			////
 

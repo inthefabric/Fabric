@@ -19,6 +19,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlSchema() {
 			Names = new NameProvider("Url", "Urls", "r");
+			GetAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
 
 			////

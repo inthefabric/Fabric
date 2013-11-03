@@ -20,6 +20,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public UserSchema() {
 			Names = new NameProvider("User", "Users", "u");
+			GetAccess = Access.Internal;
+			DeleteAccess = Access.Internal;
 
 			////
 

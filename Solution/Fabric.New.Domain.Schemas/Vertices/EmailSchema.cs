@@ -22,6 +22,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public EmailSchema() {
 			Names = new NameProvider("Email", "Emails", "e");
+			GetAccess = Access.Internal;
+			DeleteAccess = Access.Internal;
 
 			////
 

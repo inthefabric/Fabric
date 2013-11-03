@@ -22,6 +22,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public InstanceSchema() {
 			Names = new NameProvider("Instance", "Instances", "i");
+			GetAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
 
 			////

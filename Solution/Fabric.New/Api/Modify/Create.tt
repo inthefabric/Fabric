@@ -1,0 +1,53 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+namespace Fabric.New.Api.Modify {
+
+	/*================================================================================================*/
+	public static class Create {
+<#
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in vertexSchemas ) {
+	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, true);
+
+	if ( props.Count == 0 ) {
+		continue;
+	}
+
+	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
+#>
+
+		// <#= v.Names.Api #> (<#= v.GetAccess #>)
+<#
+	foreach ( ApiProperty ap in props ) {
+#>
+		// - <#= ap.Name #>  (<#= ap.CreateAccess #>)
+<#
+	} // end property loop
+
+	foreach ( string sub in subMap.Keys ) {
+		IList<ApiProperty> subProps = subMap[sub];
+
+		foreach ( ApiProperty ap in subProps ) {
+#>
+		// - <#= sub.Substring(3) #>.<#= ap.Name #>  (<#= ap.CreateAccess #>)
+<#
+		} // end subProp loop
+	} // end subMap loop
+}
+#>
+
+	}
+
+}

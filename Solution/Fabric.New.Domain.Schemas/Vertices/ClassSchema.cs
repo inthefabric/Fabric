@@ -23,6 +23,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassSchema() {
 			Names = new NameProvider("Class", "Classes", "c");
+			GetAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
 
 			////

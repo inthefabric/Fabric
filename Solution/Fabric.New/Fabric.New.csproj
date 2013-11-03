@@ -47,6 +47,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Api\Modify\Create.cs">
+      <DependentUpon>Create.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Api\Objects\Conversions\ApiToDomain.cs">
       <DependentUpon>ApiToDomain.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -81,6 +86,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Api\Modify\Create.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Create.cs</LastGenOutput>
+    </None>
     <None Include="Api\Objects\Conversions\ApiToDomain.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiToDomain.cs</LastGenOutput>
