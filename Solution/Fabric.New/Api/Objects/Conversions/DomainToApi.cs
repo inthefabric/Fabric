@@ -28,7 +28,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromApp(FabApp pApi, App pDomain) {
 			FromArtifact(pApi, pDomain);
-			pApi.Name = pDomain.Name;
+			//Custom: 
+			//pApi.Name <== pDomain.Name  (requires custom)
+			pApi.Secret = pDomain.Secret;
+			FromAppCustom(pApi, pDomain);
 		}
 
 
@@ -65,6 +68,23 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static FabEmail FromEmail(Email pDomain) {
+			var api = new FabEmail();
+			FromEmail(api, pDomain);
+			return api;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FromEmail(FabEmail pApi, Email pDomain) {
+			FromVertex(pApi, pDomain);
+			pApi.Secret = pDomain.Address;
+			pApi.Code = pDomain.Code;
+			pApi.Verified = pDomain.Verified;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public static FabFactor FromFactor(Factor pDomain) {
 			var api = new FabFactor();
 			FromFactor(api, pDomain);
@@ -88,11 +108,17 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pApi.Director.PrimaryAction = pDomain.DirectorPrimaryAction.GetValueOrDefault();
 			pApi.Director.RelatedAction = pDomain.DirectorRelatedAction.GetValueOrDefault();
 			pApi.Eventor.Type = pDomain.EventorType.GetValueOrDefault();
+			//Custom: Set Api.Year/Momth/etc. using Domain.EventorDateTime.
 			//pApi.Eventor.Year <== pDomain.EventorDateTime  (requires custom)
+			//Custom: 
 			//pApi.Eventor.Month <== pDomain.EventorDateTime  (requires custom)
+			//Custom: 
 			//pApi.Eventor.Day <== pDomain.EventorDateTime  (requires custom)
+			//Custom: 
 			//pApi.Eventor.Hour <== pDomain.EventorDateTime  (requires custom)
+			//Custom: 
 			//pApi.Eventor.Minute <== pDomain.EventorDateTime  (requires custom)
+			//Custom: 
 			//pApi.Eventor.Second <== pDomain.EventorDateTime  (requires custom)
 			pApi.Identor.Type = pDomain.IdentorType.GetValueOrDefault();
 			pApi.Identor.Value = pDomain.Note;
@@ -142,6 +168,62 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static FabOauthAccess FromOauthAccess(OauthAccess pDomain) {
+			var api = new FabOauthAccess();
+			FromOauthAccess(api, pDomain);
+			return api;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FromOauthAccess(FabOauthAccess pApi, OauthAccess pDomain) {
+			FromVertex(pApi, pDomain);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static FabOauthDomain FromOauthDomain(OauthDomain pDomain) {
+			var api = new FabOauthDomain();
+			FromOauthDomain(api, pDomain);
+			return api;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FromOauthDomain(FabOauthDomain pApi, OauthDomain pDomain) {
+			FromVertex(pApi, pDomain);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static FabOauthGrant FromOauthGrant(OauthGrant pDomain) {
+			var api = new FabOauthGrant();
+			FromOauthGrant(api, pDomain);
+			return api;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FromOauthGrant(FabOauthGrant pApi, OauthGrant pDomain) {
+			FromVertex(pApi, pDomain);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static FabOauthScope FromOauthScope(OauthScope pDomain) {
+			var api = new FabOauthScope();
+			FromOauthScope(api, pDomain);
+			return api;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void FromOauthScope(FabOauthScope pApi, OauthScope pDomain) {
+			FromVertex(pApi, pDomain);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public static FabUrl FromUrl(Url pDomain) {
 			var api = new FabUrl();
 			FromUrl(api, pDomain);
@@ -167,7 +249,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromUser(FabUser pApi, User pDomain) {
 			FromArtifact(pApi, pDomain);
-			pApi.Name = pDomain.Name;
+			//Custom: Leave Domain.Password encrpyted..
+			//pApi.Name <== pDomain.Name  (requires custom)
+			//Custom: 
+			//pApi.Password <== pDomain.Password  (requires custom)
+			FromUserCustom(pApi, pDomain);
 		}
 
 
@@ -183,7 +269,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 		public static void FromVertex(FabVertex pApi, Vertex pDomain) {
 			FromObject(pApi, pDomain);
 			pApi.Id = pDomain.Id;
+			//Custom: Set Api.IdStr = Domain.Id.ToString().
 			//pApi.IdStr <== pDomain.Id  (requires custom)
+			//Custom: Convert Domain.Timestamp to Unix-based seconds.
 			//pApi.Timestamp <== pDomain.Timestamp  (requires custom)
 			FromVertexCustom(pApi, pDomain);
 		}

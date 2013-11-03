@@ -12,7 +12,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomainSchema() {
 			Names = new NameProvider("OauthDomain", "OauthDomains", "od");
-			IsInternal = true;
 
 			////
 

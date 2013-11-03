@@ -23,10 +23,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public ClassSchema() {
 			Names = new NameProvider("Class", "Classes", "c");
-
-			Actions.Add = new ActionAccess();
-			Actions.Modify = new ActionAccess { Creator = true, AppDataProvider = true };
-			Actions.Delete = new ActionAccess { Creator = true, AppDataProvider = true };
+			DeleteAccess = Access.CreatorUserAndApp;
 
 			////
 
@@ -48,19 +45,22 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabName = new ApiProperty<string>("Name", true, true);
+			FabName = new ApiProperty<string>("Name");
+			FabName.SetOpenAccess();
 			FabName.IsUnique = true;
 			FabName.LenMin = 1;
 			FabName.LenMax = 128;
 			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
 
-			FabDisamb = new ApiProperty<string>("Disamb", true, true);
+			FabDisamb = new ApiProperty<string>("Disamb");
+			FabDisamb.SetOpenAccess();
 			FabDisamb.IsNullable = true;
 			FabDisamb.LenMin = 1;
 			FabDisamb.LenMax = 128;
 			FabDisamb.ValidRegex = ApiProperty.ValidTitleRegex;
 
-			FabNote = new ApiProperty<string>("Note", true, true);
+			FabNote = new ApiProperty<string>("Note");
+			FabNote.SetOpenAccess();
 			FabNote.IsNullable = true;
 			FabNote.LenMin = 1;
 			FabNote.LenMax = 256;

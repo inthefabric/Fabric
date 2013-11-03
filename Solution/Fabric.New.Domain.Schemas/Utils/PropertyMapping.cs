@@ -6,6 +6,8 @@
 		public DomainProperty Domain { get; private set; }
 		public ApiProperty Api { get; private set; }
 		public bool Custom { get; set; }
+		public string ApiToDomainNote { get; set; }
+		public string DomainToApiNote { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

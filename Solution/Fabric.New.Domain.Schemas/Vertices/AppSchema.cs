@@ -10,16 +10,16 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public DomainProperty<string> Secret { get; private set; }
 
 		public ApiProperty<string> FabName { get; private set; }
+		public ApiProperty<string> FabSecret { get; private set; }
 
 		public PropertyMapping<string, string> FabNameMap { get; private set; }
+		public PropertyMapping<string, string> FabSecretMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public AppSchema() {
 			Names = new NameProvider("App", "Apps", "p");
-
-			Actions.Modify = new ActionAccess { AppDataProvider = true };
 
 			////
 
@@ -36,15 +36,24 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabName = new ApiProperty<string>("Name", false, true);
+			FabName = new ApiProperty<string>("Name");
+			FabName.GetAccess = Access.All;
 			FabName.IsUnique = true;
 			FabName.LenMin = 3;
 			FabName.LenMax = 64;
 			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
 
+			FabSecret = new ApiProperty<string>("Secret");
+			FabSecret.LenMin = 32;
+			FabSecret.LenMax = 32;
+			FabSecret.ValidRegex = ApiProperty.ValidCodeRegex;
+
 			////
 
-			FabNameMap = new PropertyMapping<string, string>(Name, FabName);
+			FabNameMap = new PropertyMapping<string, string>(Name, FabName, true);
+			FabNameMap.ApiToDomainNote = "Set Domain.NameKey = Api.Name.ToLower()";
+
+			FabSecretMap = new PropertyMapping<string, string>(Secret, FabSecret);
 		}
 
 	}

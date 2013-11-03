@@ -28,6 +28,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabApp(App pDomain, CreateFabApp pApi) {
 			FromCreateFabArtifact(pDomain, pApi);
+			//Custom: Set Domain.NameKey = Api.Name.ToLower()
+			//pDomain.Name <== pApi.Name  (requires custom)
+			pDomain.Secret = pApi.Secret;
+			FromCreateFabAppCustom(pDomain, pApi);
 		}
 
 
@@ -64,6 +68,23 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static Email FromCreateFabEmail(CreateFabEmail pApi) {
+			var dom = new Email();
+			FromCreateFabEmail(dom, pApi);
+			return dom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromCreateFabEmail(Email pDomain, CreateFabEmail pApi) {
+			FromCreateFabVertex(pDomain, pApi);
+			pDomain.Address = pApi.Secret;
+			pDomain.Code = pApi.Code;
+			pDomain.Verified = pApi.Verified;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public static Factor FromCreateFabFactor(CreateFabFactor pApi) {
 			var dom = new Factor();
 			FromCreateFabFactor(dom, pApi);
@@ -82,11 +103,17 @@ namespace Fabric.New.Api.Objects.Conversions {
 			if ( pApi.Director != null ) { pDomain.DirectorPrimaryAction = pApi.Director.PrimaryAction; }
 			if ( pApi.Director != null ) { pDomain.DirectorRelatedAction = pApi.Director.RelatedAction; }
 			if ( pApi.Eventor != null ) { pDomain.EventorType = pApi.Eventor.Type; }
+			//Custom: Set Domain.EventorDateTime using Api.Year/Month/etc.
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
+			//Custom: 
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
+			//Custom: 
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
+			//Custom: 
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
+			//Custom: 
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
+			//Custom: 
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
 			if ( pApi.Identor != null ) { pDomain.IdentorType = pApi.Identor.Type; }
 			if ( pApi.Locator != null ) { pDomain.LocatorType = pApi.Locator.Type; }
@@ -135,6 +162,62 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static OauthAccess FromCreateFabOauthAccess(CreateFabOauthAccess pApi) {
+			var dom = new OauthAccess();
+			FromCreateFabOauthAccess(dom, pApi);
+			return dom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromCreateFabOauthAccess(OauthAccess pDomain, CreateFabOauthAccess pApi) {
+			FromCreateFabVertex(pDomain, pApi);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static OauthDomain FromCreateFabOauthDomain(CreateFabOauthDomain pApi) {
+			var dom = new OauthDomain();
+			FromCreateFabOauthDomain(dom, pApi);
+			return dom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromCreateFabOauthDomain(OauthDomain pDomain, CreateFabOauthDomain pApi) {
+			FromCreateFabVertex(pDomain, pApi);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static OauthGrant FromCreateFabOauthGrant(CreateFabOauthGrant pApi) {
+			var dom = new OauthGrant();
+			FromCreateFabOauthGrant(dom, pApi);
+			return dom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromCreateFabOauthGrant(OauthGrant pDomain, CreateFabOauthGrant pApi) {
+			FromCreateFabVertex(pDomain, pApi);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static OauthScope FromCreateFabOauthScope(CreateFabOauthScope pApi) {
+			var dom = new OauthScope();
+			FromCreateFabOauthScope(dom, pApi);
+			return dom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromCreateFabOauthScope(OauthScope pDomain, CreateFabOauthScope pApi) {
+			FromCreateFabVertex(pDomain, pApi);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public static Url FromCreateFabUrl(CreateFabUrl pApi) {
 			var dom = new Url();
 			FromCreateFabUrl(dom, pApi);
@@ -160,6 +243,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabUser(User pDomain, CreateFabUser pApi) {
 			FromCreateFabArtifact(pDomain, pApi);
+			//Custom: Encrypt Api.Password.
+			//pDomain.Name <== pApi.Name  (requires custom)
+			//Custom: 
+			//pDomain.Password <== pApi.Password  (requires custom)
+			FromCreateFabUserCustom(pDomain, pApi);
 		}
 
 

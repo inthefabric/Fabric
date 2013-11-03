@@ -6,8 +6,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 	public interface IVertexSchema {
 
 		NameProvider Names { get; }
-		ActionProvider Actions { get; }
-		bool IsInternal { get; }
+		Access GetAccess { get; }
+		Access DeleteAccess { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

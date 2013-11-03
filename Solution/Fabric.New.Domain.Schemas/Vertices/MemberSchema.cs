@@ -16,9 +16,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberSchema() {
 			Names = new NameProvider("Member", "Members", "m");
-
-			Actions.Add = new ActionAccess { AppDataProvider = true };
-			Actions.Modify = new ActionAccess { AppDataProvider = true };
+			GetAccess = Access.All;
+			DeleteAccess = Access.CreatorApp;
 
 			////
 
@@ -26,7 +25,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabMemberType = new ApiProperty<byte>("Type", true, true);
+			FabMemberType = new ApiProperty<byte>("Type");
+			FabMemberType.SetOpenAccess();
 			FabMemberType.FromEnum = "MemberType";
 
 			////

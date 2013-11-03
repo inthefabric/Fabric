@@ -19,10 +19,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public UrlSchema() {
 			Names = new NameProvider("Url", "Urls", "r");
-
-			Actions.Add = new ActionAccess();
-			Actions.Modify = new ActionAccess { Creator = true, AppDataProvider = true };
-			Actions.Delete = new ActionAccess { Creator = true, AppDataProvider = true };
+			DeleteAccess = Access.CreatorUserAndApp;
 
 			////
 
@@ -37,13 +34,15 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabName = new ApiProperty<string>("Name", true, true);
+			FabName = new ApiProperty<string>("Name");
+			FabName.SetOpenAccess();
 			FabName.IsNullable = true;
 			FabName.LenMin = 1;
 			FabName.LenMax = 128;
 			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
 
-			FabFullPath = new ApiProperty<string>("FullPath", true, true);
+			FabFullPath = new ApiProperty<string>("FullPath");
+			FabFullPath.SetOpenAccess();
 			FabFullPath.IsUnique = true;
 			FabFullPath.ToLowerCase = true;
 			FabFullPath.LenMin = 1;

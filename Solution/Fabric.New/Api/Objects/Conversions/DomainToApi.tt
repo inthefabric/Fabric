@@ -25,7 +25,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			//do nothing...
 		}
 <#
-IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas(true);
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 
 foreach ( IVertexSchema v in vertexSchemas ) { 
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
@@ -63,6 +63,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		if ( pm.Custom ) {
 			custom = true;
 #>
+			//Custom: <#= (pm.DomainToApiNote ?? "") #>
 			//pApi.<#= sub #><#= ap.Name #> <== pDomain.<#= pm.Domain.Name #>  (requires custom)
 <#
 			continue;

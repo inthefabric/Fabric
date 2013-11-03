@@ -18,6 +18,13 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		private static void FromAppCustom(FabApp pApi, App pDomain) {
+			//TODO: FromAppCustom
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		private static void FromFactorCustom(FabFactor pApi, Factor pDomain) {
 			if ( pDomain.DirectorType == null ) {
 				pApi.Director = null;
@@ -69,6 +76,13 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 			byte val = (byte)(diff/pSecs);
 			return (byte?)(val+pOffset);
+		}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromUserCustom(FabUser pApi, User pDomain) {
+			//TODO: FromUserCustom
 		}
 
 

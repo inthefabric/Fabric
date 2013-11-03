@@ -10,6 +10,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactSchema() {
 			Names = new NameProvider("Artifact", "Artifacts", "a");
+			GetAccess = Access.All;
 		}
 
 	}

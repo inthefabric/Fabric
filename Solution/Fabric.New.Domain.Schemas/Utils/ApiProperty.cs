@@ -5,6 +5,12 @@ namespace Fabric.New.Domain.Schemas.Utils {
 	/*================================================================================================*/
 	public abstract class ApiProperty {
 
+		public const string ValidEmailRegex = @"^(([^<>()[\]\\.,;:\s@\""]+" 
+			+ @"(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@" 
+			+ @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" 
+			+ @"\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+" 
+			+ @"[a-zA-Z]{2,}))$";
+
 		public const string ValidCodeRegex = 
 			@"^[a-zA-Z0-9]*$";
 
@@ -19,8 +25,10 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		public Type DataType { get; private set; }
 		public string Name { get; private set; }
-		public bool CanCreate { get; internal set; }
-		public bool CanModify { get; private set; }
+
+		public Access GetAccess { get; internal set; }
+		public Access CreateAccess { get; internal set; }
+		public Access ModifyAccess { get; internal set; }
 
 		public bool IsUnique { get; internal set; }
 		public bool IsNullable { get; internal set; }
@@ -30,16 +38,31 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public string ValidRegex { get; internal set; }
 		public string FromEnum { get; internal set; }
 		public string SubObjectOf { get; internal set; }
-		//TODO: custom validation
+		public bool CustomValidation { get; internal set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiProperty(string pName, bool pCanSet, bool pCanModify, Type pDataType) {
+		public ApiProperty(string pName, Type pDataType) {
 			Name = pName;
-			CanCreate = pCanSet;
-			CanModify = pCanModify;
+			GetAccess = Access.Internal;
+			CreateAccess = Access.Internal;
+			ModifyAccess = Access.Internal;
 			DataType = pDataType;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		internal void SetOpenAccess() {
+			GetAccess = Access.All;
+			CreateAccess = Access.All;
+			ModifyAccess = Access.CreatorUserAndApp;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		internal void SetOpenUnmodAccess() {
+			GetAccess = Access.All;
+			CreateAccess = Access.All;
+			ModifyAccess = Access.None;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -81,8 +104,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiProperty(string pName, bool pCanSet, bool pCanModify) :
-														base(pName, pCanSet, pCanModify, typeof(T)) {}
+		public ApiProperty(string pName) : base(pName, typeof(T)) {}
 
 	}
 

@@ -23,10 +23,9 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<IVertexSchema> GetVertexSchemas(bool pSkipInternal=false) {
+		public static IList<IVertexSchema> GetVertexSchemas() {
 			return GetVertexTypes()
 				.Select(GetVertex)
-				.Where(x => (!pSkipInternal || !x.IsInternal))
 				.ToList();
 		}
 
@@ -54,8 +53,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<ApiProperty> GetVertexApiProperties(
-													IVertexSchema pVertex, bool pSkipSubObjects=false) {
+		public static IList<ApiProperty> GetVertexApiProperties(IVertexSchema pVertex,
+												bool pSkipSubObjects=false, bool pCreateMode=false) {
 			Type apt = typeof(ApiProperty);
 
 			return pVertex
@@ -64,6 +63,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 				.Where(x => x.PropertyType.IsSubclassOf(apt))
 				.Select(x => (ApiProperty)x.GetValue(pVertex, null))
 				.Where(x => (!pSkipSubObjects || x.SubObjectOf == null))
+				.Where(x => (!pCreateMode || x.CreateAccess != Access.None))
 				.ToList();
 		}
 
@@ -103,7 +103,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static IDictionary<DomainProperty, IList<PropertyMapping>>
-								GetVertexDomainPropertyMaps(IVertexSchema pVertex, bool pAddModeOnly) {
+								GetVertexDomainPropertyMaps(IVertexSchema pVertex, bool pCreateMode) {
 			Type pmt = typeof(PropertyMapping);
 
 			IEnumerable<PropertyMapping> propMaps = pVertex
@@ -111,7 +111,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
 				.Where(x => x.PropertyType.IsSubclassOf(pmt))
 				.Select(x => (PropertyMapping)x.GetValue(pVertex, null))
-				.Where(x => (!pAddModeOnly || x.Api.CanCreate));
+				.Where(x => (!pCreateMode || x.Api.CreateAccess != Access.None));
 
 			var map = new Dictionary<DomainProperty, IList<PropertyMapping>>();
 

@@ -16,7 +16,7 @@ using Fabric.New.Domain;
 
 namespace Fabric.New.Api.Objects {
 <#
-IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas(true);
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 
 foreach ( IVertexSchema v in vertexSchemas ) { 
 	OutputVertex(v, false);
@@ -38,7 +38,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	string objectName = apiNamePrefix+"FabObject";
 	string baseName = (vp == null ? objectName : apiNamePrefix+vp.Names.Api);
 
-	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true);
+	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, pCreateMode);
 	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
 #>		
 
@@ -47,10 +47,6 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 
 <#+
 	foreach ( ApiProperty ap in props ) {
-		if ( pCreateMode && !ap.CanCreate ) {
-			continue;
-		}
-
 #>
 		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
 <#+
@@ -131,14 +127,10 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 <#+
 		
 	foreach ( ApiProperty ap in pProps ) {
-		if ( !ap.CanCreate ) {
-			continue;
-		}
-
 		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
 #>
 
-			//// Validate <#= ap.Name #>
+			//Validate <#= ap.Name #>
 <#+
 		if ( !ap.IsNullable && ap.DataType == typeof(string) ) {
 #>
@@ -160,7 +152,8 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 
 		if ( ap.ValidRegex != null ) {
 #>
-			ValidRegex("<#= displayName #>", <#= ap.Name #>, @"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
+			ValidRegex("<#= displayName #>", <#= ap.Name #>,
+				@"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
 <#+
 		}
 

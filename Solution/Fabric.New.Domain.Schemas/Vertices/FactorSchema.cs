@@ -80,9 +80,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorSchema() {
 			Names = new NameProvider("Factor", "Factors", "f");
-
-			Actions.Add = new ActionAccess();
-			Actions.Delete = new ActionAccess { Creator = true, AppDataProvider = true };
+			GetAccess = Access.All;
+			DeleteAccess = Access.CreatorUserAndApp;
 
 			////
 
@@ -144,95 +143,119 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabAssertionType = new ApiProperty<byte>("AssertionType", true, false);
+			FabAssertionType = new ApiProperty<byte>("AssertionType");
+			FabAssertionType.SetOpenUnmodAccess();
 			FabAssertionType.FromEnum = "FactorAssertionType";
 
-			FabIsDefining = new ApiProperty<bool>("IsDefining", true, false);
+			FabIsDefining = new ApiProperty<bool>("IsDefining");
+			FabIsDefining.SetOpenUnmodAccess();
 
-			FabNote = new ApiProperty<string>("Note", true, false);
+			FabNote = new ApiProperty<string>("Note");
+			FabNote.SetOpenUnmodAccess();
 			FabNote.IsNullable = true;
 			FabNote.LenMin = 1;
 			FabNote.LenMax = 256;
 
-			FabDescriptorType = new ApiProperty<byte>("Type", true, false);
+			FabDescriptorType = new ApiProperty<byte>("Type");
+			FabDescriptorType.SetOpenUnmodAccess();
 			FabDescriptorType.SubObjectOf = "FabDescriptor";
 			FabDescriptorType.FromEnum = "FactorDescriptorType";
 
-			FabDirectorType = new ApiProperty<byte>("DirectorType", true, false);
+			FabDirectorType = new ApiProperty<byte>("DirectorType");
+			FabDirectorType.SetOpenUnmodAccess();
 			FabDirectorType.SubObjectOf = "FabDirector";
 			FabDirectorType.FromEnum = "FactorDirectorType";
 
-			FabDirectorPrimaryAction = new ApiProperty<byte>("PrimaryAction", true, false);
+			FabDirectorPrimaryAction = new ApiProperty<byte>("PrimaryAction");
+			FabDirectorPrimaryAction.SetOpenUnmodAccess();
 			FabDirectorPrimaryAction.SubObjectOf = "FabDirector";
 			FabDirectorPrimaryAction.FromEnum = "FactorDirectorAction";
 
-			FabDirectorRelatedAction = new ApiProperty<byte>("RelatedAction", true, false);
+			FabDirectorRelatedAction = new ApiProperty<byte>("RelatedAction");
+			FabDirectorRelatedAction.SetOpenUnmodAccess();
 			FabDirectorRelatedAction.SubObjectOf = "FabDirector";
 			FabDirectorRelatedAction.FromEnum = "FactorDirectorAction";
 
-			FabEventorType = new ApiProperty<byte>("Type", true, false);
+			FabEventorType = new ApiProperty<byte>("Type");
+			FabEventorType.SetOpenUnmodAccess();
 			FabEventorType.SubObjectOf = "FabEventor";
 			FabEventorType.FromEnum = "FactorEventorType";
 
-			FabEventorYear = new ApiProperty<long>("Year", true, false);
+			FabEventorYear = new ApiProperty<long>("Year");
+			FabEventorYear.SetOpenUnmodAccess();
 			FabEventorYear.SubObjectOf = "FabEventor";
 
-			FabEventorMonth = new ApiProperty<byte>("Month", true, false);
+			FabEventorMonth = new ApiProperty<byte>("Month");
+			FabEventorMonth.SetOpenUnmodAccess();
 			FabEventorMonth.SubObjectOf = "FabEventor";
 			FabEventorMonth.IsNullable = true;
 
-			FabEventorDay = new ApiProperty<byte>("Day", true, false);
+			FabEventorDay = new ApiProperty<byte>("Day");
+			FabEventorDay.SetOpenUnmodAccess();
 			FabEventorDay.SubObjectOf = "FabEventor";
 			FabEventorDay.IsNullable = true;
 
-			FabEventorHour = new ApiProperty<byte>("Hour", true, false);
+			FabEventorHour = new ApiProperty<byte>("Hour");
+			FabEventorHour.SetOpenUnmodAccess();
 			FabEventorHour.SubObjectOf = "FabEventor";
 			FabEventorHour.IsNullable = true;
 
-			FabEventorMinute = new ApiProperty<byte>("Minute", true, false);
+			FabEventorMinute = new ApiProperty<byte>("Minute");
+			FabEventorMinute.SetOpenUnmodAccess();
 			FabEventorMinute.SubObjectOf = "FabEventor";
 			FabEventorMinute.IsNullable = true;
 
-			FabEventorSecond = new ApiProperty<byte>("Second", true, false);
+			FabEventorSecond = new ApiProperty<byte>("Second");
+			FabEventorSecond.SetOpenUnmodAccess();
 			FabEventorSecond.SubObjectOf = "FabEventor";
 			FabEventorSecond.IsNullable = true;
 
-			FabIdentorType = new ApiProperty<byte>("Type", true, false);
+			FabIdentorType = new ApiProperty<byte>("Type");
+			FabIdentorType.SetOpenUnmodAccess();
 			FabIdentorType.SubObjectOf = "FabIdentor";
 			FabIdentorType.FromEnum = "FactorIdentorType";
 
-			FabIdentorValue = new ApiProperty<string>("Value", true, false);
+			FabIdentorValue = new ApiProperty<string>("Value");
+			FabIdentorValue.SetOpenUnmodAccess();
 			FabIdentorValue.SubObjectOf = "FabIdentor";
 			FabIdentorValue.IsNullable = true;
 			FabIdentorValue.LenMin = 1;
 			FabIdentorValue.LenMax = 256;
 
-			FabLocatorType = new ApiProperty<byte>("Type", true, false);
+			FabLocatorType = new ApiProperty<byte>("Type");
+			FabLocatorType.SetOpenUnmodAccess();
 			FabLocatorType.SubObjectOf = "FabLocator";
 			FabLocatorType.FromEnum = "FactorLocatorType";
 
-			FabLocatorValueX = new ApiProperty<double>("ValueX", true, false);
+			FabLocatorValueX = new ApiProperty<double>("ValueX");
+			FabLocatorValueX.SetOpenUnmodAccess();
 			FabLocatorValueX.SubObjectOf = "FabLocator";
 
-			FabLocatorValueY = new ApiProperty<double>("ValueY", true, false);
+			FabLocatorValueY = new ApiProperty<double>("ValueY");
+			FabLocatorValueY.SetOpenUnmodAccess();
 			FabLocatorValueY.SubObjectOf = "FabLocator";
 
-			FabLocatorValueZ = new ApiProperty<double>("ValueZ", true, false);
+			FabLocatorValueZ = new ApiProperty<double>("ValueZ");
+			FabLocatorValueZ.SetOpenUnmodAccess();
 			FabLocatorValueZ.SubObjectOf = "FabLocator";
 
-			FabVectorType = new ApiProperty<byte>("Type", true, false);
+			FabVectorType = new ApiProperty<byte>("Type");
+			FabVectorType.SetOpenUnmodAccess();
 			FabVectorType.SubObjectOf = "FabVector";
 			FabVectorType.FromEnum = "FactorVectorType";
 
-			FabVectorUnit = new ApiProperty<byte>("Unit", true, false);
+			FabVectorUnit = new ApiProperty<byte>("Unit");
+			FabVectorUnit.SetOpenUnmodAccess();
 			FabVectorUnit.SubObjectOf = "FabVector";
 			FabVectorUnit.FromEnum = "FactorVectorUnit";
 
-			FabVectorUnitPrefix = new ApiProperty<byte>("UnitPrefix", true, false);
+			FabVectorUnitPrefix = new ApiProperty<byte>("UnitPrefix");
+			FabVectorUnitPrefix.SetOpenUnmodAccess();
 			FabVectorUnitPrefix.SubObjectOf = "FabVector";
 			FabVectorUnitPrefix.FromEnum = "FactorVectorUnitPrefix";
 
-			FabVectorValue = new ApiProperty<long>("Value", true, false);
+			FabVectorValue = new ApiProperty<long>("Value");
+			FabVectorValue.SetOpenUnmodAccess();
 			FabVectorValue.SubObjectOf = "FabVector";
 
 			////
@@ -242,15 +265,21 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabNoteMap = new PropertyMapping<string, string>(Note, FabNote);
 			FabDescriptorTypeMap = new PropertyMapping<byte, byte>(DescriptorType, FabDescriptorType);
 			FabDirectorTypeMap = new PropertyMapping<byte, byte>(DirectorType, FabDirectorType);
-			FabDirectorPrimaryActionMap = new PropertyMapping<byte, byte>(DirectorPrimaryAction, FabDirectorPrimaryAction);
-			FabDirectorRelatedActionMap = new PropertyMapping<byte, byte>(DirectorRelatedAction, FabDirectorRelatedAction);
+			FabDirectorPrimaryActionMap = new PropertyMapping<byte, byte>(
+				DirectorPrimaryAction, FabDirectorPrimaryAction);
+			FabDirectorRelatedActionMap = new PropertyMapping<byte, byte>(
+				DirectorRelatedAction, FabDirectorRelatedAction);
 			FabEventorTypeMap = new PropertyMapping<byte, byte>(EventorType, FabEventorType);
 			FabEventorYearMap = new PropertyMapping<long, long>(EventorDateTime, FabEventorYear, true);
-			FabEventorMonthMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorMonth, true);
+			FabEventorYearMap.ApiToDomainNote = "Set Domain.EventorDateTime using Api.Year/Month/etc.";
+			FabEventorYearMap.DomainToApiNote = "Set Api.Year/Momth/etc. using Domain.EventorDateTime.";
+			FabEventorMonthMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorMonth,true);
 			FabEventorDayMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorDay, true);
 			FabEventorHourMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorHour, true);
-			FabEventorMinuteMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorMinute, true);
-			FabEventorSecondMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorSecond, true);
+			FabEventorMinuteMap = new PropertyMapping<long, byte>(
+				EventorDateTime, FabEventorMinute, true);
+			FabEventorSecondMap = new PropertyMapping<long, byte>(
+				EventorDateTime, FabEventorSecond, true);
 			FabIdentorTypeMap = new PropertyMapping<byte, byte>(IdentorType, FabIdentorType);
 			FabIdentorValueMap = new PropertyMapping<string, string>(Note, FabIdentorValue);
 			FabLocatorTypeMap = new PropertyMapping<byte, byte>(LocatorType, FabLocatorType);
@@ -259,7 +288,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabLocatorValueZMap = new PropertyMapping<double, double>(LocatorValueZ, FabLocatorValueZ);
 			FabVectorTypeMap = new PropertyMapping<byte, byte>(VectorType, FabVectorType);
 			FabVectorUnitMap = new PropertyMapping<byte, byte>(VectorUnit, FabVectorUnit);
-			FabVectorUnitPrefixMap = new PropertyMapping<byte, byte>(VectorUnitPrefix, FabVectorUnitPrefix);
+			FabVectorUnitPrefixMap = new PropertyMapping<byte, byte>(
+				VectorUnitPrefix, FabVectorUnitPrefix);
 			FabVectorValueMap = new PropertyMapping<long, long>(VectorValue, FabVectorValue);
 		}
 

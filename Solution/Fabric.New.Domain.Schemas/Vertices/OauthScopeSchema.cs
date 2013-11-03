@@ -12,7 +12,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScopeSchema() {
 			Names = new NameProvider("OauthScope", "OauthScopes", "os");
-			IsInternal = true;
 
 			////
 
