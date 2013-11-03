@@ -21,7 +21,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromFabObject(Vertex pDomain, FabObject pApi) {
+		private static void FromCreateFabObject(Vertex pDomain, CreateFabObject pApi) {
 			//do nothing...
 		}
 <#
@@ -29,26 +29,27 @@ IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas(true);
 
 foreach ( IVertexSchema v in vertexSchemas ) { 
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
-	string baseName = (vp == null ? "FabObject" : vp.Names.Api);
+	string apiName = "Create"+v.Names.Api;
+	string baseName = (vp == null ? "CreateFabObject" : "Create"+vp.Names.Api);
 
 	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
 	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
 	IDictionary<DomainProperty, IList<PropertyMapping>> propMap = 
-		SchemaUtil.GetVertexDomainPropertyMaps(v);
+		SchemaUtil.GetVertexDomainPropertyMaps(v, true);
 	bool custom = false;
 #>
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static <#= v.Names.Domain #> From<#= v.Names.Api #>(<#= v.Names.Api #> pApi) {
+		public static <#= v.Names.Domain #> From<#= apiName #>(<#= apiName #> pApi) {
 			var dom = new <#= v.Names.Domain #>();
-			From<#= v.Names.Api #>(dom, pApi);
+			From<#= apiName #>(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void From<#= v.Names.Api #>(<#= v.Names.Domain #> pDomain, <#= v.Names.Api #> pApi) {
+		private static void From<#= apiName #>(<#= v.Names.Domain #> pDomain, <#= apiName #> pApi) {
 			From<#= baseName #>(pDomain, pApi);
 <#
 	foreach ( DomainProperty dp in props ) {
@@ -84,7 +85,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 	if ( custom ) {
 #>
-			From<#= v.Names.Api #>Custom(pDomain, pApi);
+			From<#= apiName #>Custom(pDomain, pApi);
 <#
 	} // end custom condition
 #>

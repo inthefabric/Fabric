@@ -103,14 +103,15 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static IDictionary<DomainProperty, IList<PropertyMapping>>
-													GetVertexDomainPropertyMaps(IVertexSchema pVertex) {
+								GetVertexDomainPropertyMaps(IVertexSchema pVertex, bool pAddModeOnly) {
 			Type pmt = typeof(PropertyMapping);
 
 			IEnumerable<PropertyMapping> propMaps = pVertex
 				.GetType()
 				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
 				.Where(x => x.PropertyType.IsSubclassOf(pmt))
-				.Select(x => (PropertyMapping)x.GetValue(pVertex, null));
+				.Select(x => (PropertyMapping)x.GetValue(pVertex, null))
+				.Where(x => (!pAddModeOnly || x.Api.CanCreate));
 
 			var map = new Dictionary<DomainProperty, IList<PropertyMapping>>();
 

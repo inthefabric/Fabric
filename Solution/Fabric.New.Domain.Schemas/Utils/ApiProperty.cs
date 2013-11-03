@@ -19,7 +19,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		public Type DataType { get; private set; }
 		public string Name { get; private set; }
-		public bool CanSet { get; internal set; }
+		public bool CanCreate { get; internal set; }
 		public bool CanModify { get; private set; }
 
 		public bool IsUnique { get; internal set; }
@@ -37,7 +37,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiProperty(string pName, bool pCanSet, bool pCanModify, Type pDataType) {
 			Name = pName;
-			CanSet = pCanSet;
+			CanCreate = pCanSet;
 			CanModify = pCanModify;
 			DataType = pDataType;
 		}

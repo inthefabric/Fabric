@@ -12,51 +12,50 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromFabObject(Vertex pDomain, FabObject pApi) {
+		private static void FromCreateFabObject(Vertex pDomain, CreateFabObject pApi) {
 			//do nothing...
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static App FromFabApp(FabApp pApi) {
+		public static App FromCreateFabApp(CreateFabApp pApi) {
 			var dom = new App();
-			FromFabApp(dom, pApi);
+			FromCreateFabApp(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabApp(App pDomain, FabApp pApi) {
-			FromFabArtifact(pDomain, pApi);
-			pDomain.Name = pApi.Name;
+		private static void FromCreateFabApp(App pDomain, CreateFabApp pApi) {
+			FromCreateFabArtifact(pDomain, pApi);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Artifact FromFabArtifact(FabArtifact pApi) {
+		public static Artifact FromCreateFabArtifact(CreateFabArtifact pApi) {
 			var dom = new Artifact();
-			FromFabArtifact(dom, pApi);
+			FromCreateFabArtifact(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabArtifact(Artifact pDomain, FabArtifact pApi) {
-			FromFabVertex(pDomain, pApi);
+		private static void FromCreateFabArtifact(Artifact pDomain, CreateFabArtifact pApi) {
+			FromCreateFabVertex(pDomain, pApi);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Class FromFabClass(FabClass pApi) {
+		public static Class FromCreateFabClass(CreateFabClass pApi) {
 			var dom = new Class();
-			FromFabClass(dom, pApi);
+			FromCreateFabClass(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabClass(Class pDomain, FabClass pApi) {
-			FromFabArtifact(pDomain, pApi);
+		private static void FromCreateFabClass(Class pDomain, CreateFabClass pApi) {
+			FromCreateFabArtifact(pDomain, pApi);
 			pDomain.Name = pApi.Name;
 			pDomain.Disamb = pApi.Disamb;
 			pDomain.Note = pApi.Note;
@@ -65,15 +64,15 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Factor FromFabFactor(FabFactor pApi) {
+		public static Factor FromCreateFabFactor(CreateFabFactor pApi) {
 			var dom = new Factor();
-			FromFabFactor(dom, pApi);
+			FromCreateFabFactor(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabFactor(Factor pDomain, FabFactor pApi) {
-			FromFabArtifact(pDomain, pApi);
+		private static void FromCreateFabFactor(Factor pDomain, CreateFabFactor pApi) {
+			FromCreateFabArtifact(pDomain, pApi);
 			pDomain.AssertionType = pApi.AssertionType;
 			pDomain.IsDefining = pApi.IsDefining;
 			pDomain.Note = pApi.Note;
@@ -98,21 +97,21 @@ namespace Fabric.New.Api.Objects.Conversions {
 			if ( pApi.Vector != null ) { pDomain.VectorUnit = pApi.Vector.Unit; }
 			if ( pApi.Vector != null ) { pDomain.VectorUnitPrefix = pApi.Vector.UnitPrefix; }
 			if ( pApi.Vector != null ) { pDomain.VectorValue = pApi.Vector.Value; }
-			FromFabFactorCustom(pDomain, pApi);
+			FromCreateFabFactorCustom(pDomain, pApi);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Instance FromFabInstance(FabInstance pApi) {
+		public static Instance FromCreateFabInstance(CreateFabInstance pApi) {
 			var dom = new Instance();
-			FromFabInstance(dom, pApi);
+			FromCreateFabInstance(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabInstance(Instance pDomain, FabInstance pApi) {
-			FromFabArtifact(pDomain, pApi);
+		private static void FromCreateFabInstance(Instance pDomain, CreateFabInstance pApi) {
+			FromCreateFabArtifact(pDomain, pApi);
 			pDomain.Name = pApi.Name;
 			pDomain.Disamb = pApi.Disamb;
 			pDomain.Note = pApi.Note;
@@ -121,30 +120,30 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Member FromFabMember(FabMember pApi) {
+		public static Member FromCreateFabMember(CreateFabMember pApi) {
 			var dom = new Member();
-			FromFabMember(dom, pApi);
+			FromCreateFabMember(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabMember(Member pDomain, FabMember pApi) {
-			FromFabVertex(pDomain, pApi);
+		private static void FromCreateFabMember(Member pDomain, CreateFabMember pApi) {
+			FromCreateFabVertex(pDomain, pApi);
 			pDomain.AccessType = pApi.AccessType;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Url FromFabUrl(FabUrl pApi) {
+		public static Url FromCreateFabUrl(CreateFabUrl pApi) {
 			var dom = new Url();
-			FromFabUrl(dom, pApi);
+			FromCreateFabUrl(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabUrl(Url pDomain, FabUrl pApi) {
-			FromFabArtifact(pDomain, pApi);
+		private static void FromCreateFabUrl(Url pDomain, CreateFabUrl pApi) {
+			FromCreateFabArtifact(pDomain, pApi);
 			pDomain.Name = pApi.Name;
 			pDomain.FullPath = pApi.FullPath;
 		}
@@ -152,34 +151,29 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static User FromFabUser(FabUser pApi) {
+		public static User FromCreateFabUser(CreateFabUser pApi) {
 			var dom = new User();
-			FromFabUser(dom, pApi);
+			FromCreateFabUser(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabUser(User pDomain, FabUser pApi) {
-			FromFabArtifact(pDomain, pApi);
-			pDomain.Name = pApi.Name;
+		private static void FromCreateFabUser(User pDomain, CreateFabUser pApi) {
+			FromCreateFabArtifact(pDomain, pApi);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static Vertex FromFabVertex(FabVertex pApi) {
+		public static Vertex FromCreateFabVertex(CreateFabVertex pApi) {
 			var dom = new Vertex();
-			FromFabVertex(dom, pApi);
+			FromCreateFabVertex(dom, pApi);
 			return dom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void FromFabVertex(Vertex pDomain, FabVertex pApi) {
-			FromFabObject(pDomain, pApi);
-			pDomain.Id = pApi.Id;
-			//pDomain.Id <== pApi.Id  (requires custom)
-			//pDomain.Timestamp <== pApi.Timestamp  (requires custom)
-			FromFabVertexCustom(pDomain, pApi);
+		private static void FromCreateFabVertex(Vertex pDomain, CreateFabVertex pApi) {
+			FromCreateFabObject(pDomain, pApi);
 		}
 
 	}

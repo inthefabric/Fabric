@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.New.Domain;
+﻿using Fabric.New.Domain;
 
 namespace Fabric.New.Api.Objects.Conversions {
 
@@ -9,14 +8,14 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromFabFactorCustom(Factor pDomain, FabFactor pApi) {
+		private static void FromCreateFabFactorCustom(Factor pDomain, CreateFabFactor pApi) {
 			if ( pApi.Eventor != null ) {
-				FromFabFactorEventor(pDomain, pApi.Eventor);
+				FromCreateFabFactorEventor(pDomain, pApi.Eventor);
 			}
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromFabFactorEventor(Factor pDomain, FabEventor pEventor) {
+		private static void FromCreateFabFactorEventor(Factor pDomain, CreateFabEventor pEventor) {
 			long t = pEventor.Year*DomainToApi.SecPerYear;
 
 			if ( pEventor.Month != null ) {
@@ -44,11 +43,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		private static void FromFabVertexCustom(Vertex pDomain, FabVertex pApi) {
 			long ticks = (long)(pApi.Timestamp*TimeSpan.TicksPerSecond);
 			pDomain.Timestamp = ticks+DomainToApi.UnixEpoch.Ticks;
-		}
+		}*/
 
 	}
 
