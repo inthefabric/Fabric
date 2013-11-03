@@ -54,7 +54,7 @@ namespace Fabric.New.Domain.Schemas {
 		i.no (Instance.Note)
 
 		m (Member)
-		m.at (Member.AccessType)
+		m.at (Member.MemberType)
 
 		oa (OauthAccess)
 		oa.to (OauthAccess.Token)

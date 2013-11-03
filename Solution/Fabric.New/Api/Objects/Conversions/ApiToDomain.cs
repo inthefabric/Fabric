@@ -77,23 +77,23 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pDomain.IsDefining = pApi.IsDefining;
 			pDomain.Note = pApi.Note;
 			if ( pApi.Identor != null ) { pDomain.Note = pApi.Identor.Value; }
-			if ( pApi.Descriptor != null ) { pDomain.DescriptorType = pApi.Descriptor.DescriptorType; }
+			if ( pApi.Descriptor != null ) { pDomain.DescriptorType = pApi.Descriptor.Type; }
 			if ( pApi.Director != null ) { pDomain.DirectorType = pApi.Director.DirectorType; }
 			if ( pApi.Director != null ) { pDomain.DirectorPrimaryAction = pApi.Director.PrimaryAction; }
 			if ( pApi.Director != null ) { pDomain.DirectorRelatedAction = pApi.Director.RelatedAction; }
-			if ( pApi.Eventor != null ) { pDomain.EventorType = pApi.Eventor.EventorType; }
+			if ( pApi.Eventor != null ) { pDomain.EventorType = pApi.Eventor.Type; }
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
-			if ( pApi.Identor != null ) { pDomain.IdentorType = pApi.Identor.IdentorType; }
-			if ( pApi.Locator != null ) { pDomain.LocatorType = pApi.Locator.LocatorType; }
+			if ( pApi.Identor != null ) { pDomain.IdentorType = pApi.Identor.Type; }
+			if ( pApi.Locator != null ) { pDomain.LocatorType = pApi.Locator.Type; }
 			if ( pApi.Locator != null ) { pDomain.LocatorValueX = pApi.Locator.ValueX; }
 			if ( pApi.Locator != null ) { pDomain.LocatorValueY = pApi.Locator.ValueY; }
 			if ( pApi.Locator != null ) { pDomain.LocatorValueZ = pApi.Locator.ValueZ; }
-			if ( pApi.Vector != null ) { pDomain.VectorType = pApi.Vector.VectorType; }
+			if ( pApi.Vector != null ) { pDomain.VectorType = pApi.Vector.Type; }
 			if ( pApi.Vector != null ) { pDomain.VectorUnit = pApi.Vector.Unit; }
 			if ( pApi.Vector != null ) { pDomain.VectorUnitPrefix = pApi.Vector.UnitPrefix; }
 			if ( pApi.Vector != null ) { pDomain.VectorValue = pApi.Vector.Value; }
@@ -129,7 +129,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabMember(Member pDomain, CreateFabMember pApi) {
 			FromCreateFabVertex(pDomain, pApi);
-			pDomain.AccessType = pApi.AccessType;
+			pDomain.MemberType = pApi.Type;
 		}
 
 

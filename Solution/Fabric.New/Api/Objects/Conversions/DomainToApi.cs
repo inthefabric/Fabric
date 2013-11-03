@@ -83,24 +83,24 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pApi.AssertionType = pDomain.AssertionType;
 			pApi.IsDefining = pDomain.IsDefining;
 			pApi.Note = pDomain.Note;
-			pApi.Descriptor.DescriptorType = pDomain.DescriptorType.GetValueOrDefault();
+			pApi.Descriptor.Type = pDomain.DescriptorType.GetValueOrDefault();
 			pApi.Director.DirectorType = pDomain.DirectorType.GetValueOrDefault();
 			pApi.Director.PrimaryAction = pDomain.DirectorPrimaryAction.GetValueOrDefault();
 			pApi.Director.RelatedAction = pDomain.DirectorRelatedAction.GetValueOrDefault();
-			pApi.Eventor.EventorType = pDomain.EventorType.GetValueOrDefault();
+			pApi.Eventor.Type = pDomain.EventorType.GetValueOrDefault();
 			//pApi.Eventor.Year <== pDomain.EventorDateTime  (requires custom)
 			//pApi.Eventor.Month <== pDomain.EventorDateTime  (requires custom)
 			//pApi.Eventor.Day <== pDomain.EventorDateTime  (requires custom)
 			//pApi.Eventor.Hour <== pDomain.EventorDateTime  (requires custom)
 			//pApi.Eventor.Minute <== pDomain.EventorDateTime  (requires custom)
 			//pApi.Eventor.Second <== pDomain.EventorDateTime  (requires custom)
-			pApi.Identor.IdentorType = pDomain.IdentorType.GetValueOrDefault();
+			pApi.Identor.Type = pDomain.IdentorType.GetValueOrDefault();
 			pApi.Identor.Value = pDomain.Note;
-			pApi.Locator.LocatorType = pDomain.LocatorType.GetValueOrDefault();
+			pApi.Locator.Type = pDomain.LocatorType.GetValueOrDefault();
 			pApi.Locator.ValueX = pDomain.LocatorValueX.GetValueOrDefault();
 			pApi.Locator.ValueY = pDomain.LocatorValueY.GetValueOrDefault();
 			pApi.Locator.ValueZ = pDomain.LocatorValueZ.GetValueOrDefault();
-			pApi.Vector.VectorType = pDomain.VectorType.GetValueOrDefault();
+			pApi.Vector.Type = pDomain.VectorType.GetValueOrDefault();
 			pApi.Vector.Unit = pDomain.VectorUnit.GetValueOrDefault();
 			pApi.Vector.UnitPrefix = pDomain.VectorUnitPrefix.GetValueOrDefault();
 			pApi.Vector.Value = pDomain.VectorValue.GetValueOrDefault();
@@ -136,7 +136,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromMember(FabMember pApi, Member pDomain) {
 			FromVertex(pApi, pDomain);
-			pApi.AccessType = pDomain.AccessType;
+			pApi.Type = pDomain.MemberType;
 		}
 
 

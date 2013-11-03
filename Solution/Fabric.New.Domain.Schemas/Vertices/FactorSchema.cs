@@ -3,255 +3,6 @@
 namespace Fabric.New.Domain.Schemas.Vertices {
 
 	/*================================================================================================*/
-	public enum FactorDescriptorType {
-		IsRelatedTo = 1,
-		IsA,
-		IsAnInstanceOf,
-		HasA,
-		IsLike,
-		IsNotLike,
-
-		RefersTo,
-		IsCreatedBy,
-		IsInterestedIn,
-		Receives,
-		Consumes,
-		Produces,
-		ParticipatesIn,
-		IsFoundIn,
-		BelongsTo,
-		Requires,
-		InteractsWith,
-
-		LooksLike,
-		SmellsLike,
-		TastesLike,
-		SoundsLike,
-		FeelsLike,
-		EmotesLike,
-
-		Uses
-	}
-
-	/*================================================================================================*/
-	public enum FactorDirectorAction {
-		Read = 1,
-		Listen,
-		View,
-		Consume,
-		Perform,
-		Produce,
-		Destroy,
-		Modify,
-		Obtain,
-		Locate,
-		Travel,
-		Become,
-		Explain,
-		Give,
-		Learn,
-		Start,
-		Stop
-	}
-
-	/*================================================================================================*/
-	public enum FactorDirectorType {
-		Hyperlink = 1,
-		DefinedPath,
-		SuggestPath,
-		AvoidPath,
-		Causality
-	}
-
-	/*================================================================================================*/
-	public enum FactorEventorType {
-		Start = 1,
-		End,
-		Pause,
-		Unpause,
-		Continue,
-		Occur,
-		Expected
-	}
-
-	/*================================================================================================*/
-	public enum FactorAssertionType {
-		Undefined = 1,
-		Fact,
-		Opinion,
-		Guess
-	}
-
-	/*================================================================================================*/
-	public enum FactorIdentorType {
-		Text = 1,
-		Key
-	}
-
-	/*================================================================================================*/
-	public enum FactorLocatorType {
-		EarthCoord = 1,
-		MoonCoord,
-		MarsCoord,
-		RelPos1D,
-		RelPos2D,
-		RelPos3D
-	}
-
-	/*================================================================================================*/
-	public enum FactorVectorRange {
-		FullNum = 1,
-		PosNum,
-		NegNum,
-		FullAgree,
-		PosAgree,
-		FullFavor,
-		PosFavor
-	}
-
-	/*================================================================================================*/
-	public enum FactorVectorRangeLevel {
-		Zero0 = 1,
-		Zero05,
-		Zero1,
-
-		Min0,
-		Max1,
-
-		CompDisagree,
-		MostDisagree,
-		SomeDisagree,
-		NoOpinion05,
-		SomeAgree,
-		MostAgree,
-		CompAgree,
-
-		NoOpinion0,
-		SomeAgreePos,
-		MostAgreePos,
-		CompAgreePos,
-
-		CompUnfavor,
-		MostUnfavor,
-		SomeUnfavor,
-		SomeFavor,
-		MostFavor,
-		CompFavor,
-
-		SomeFavorPos,
-		MostFavorPos,
-		CompFavorPos
-	}
-
-	/*================================================================================================*/
-	public enum FactorVectorType {
-		FullLong = 1,
-		PosLong,
-		NegLong,
-		FullPerc,
-		StdPerc,
-		OppPerc,
-		StdAgree,
-		OppAgree,
-		StdFavor,
-		OppFavor
-	}
-
-	/*================================================================================================*/
-	public enum FactorVectorUnit {
-		None = 1,
-		Unit,
-
-		Metre,
-		Gram,
-		Second,
-		Ampere,
-		Celsius,
-		Candela,
-		Mole,
-		Bit,
-		Byte,
-
-		Hertz,
-		Radian,
-		Newton,
-		Pascal,
-		Joule,
-		Watt,
-		Volt,
-		Ohm,
-
-		Area,
-		Volume,
-		Speed,
-		Acceleration,
-
-		Point,
-		Item,
-		Person,
-		Percent,
-		Index,
-		Pixel
-	}
-
-	/*================================================================================================*/
-	public enum FactorVectorUnitDerived {
-		HertzSec = 1,
-		NewtonGram,
-		NewtonMetre,
-		NewtonSec,
-		PascalGram,
-		PascalMetre,
-		PascalSec,
-		JouleGram,
-		JouleMetre,
-		JouleSec,
-		WattGram,
-		WattMetre,
-		WattSec,
-		VoltGram,
-		VoltMetre,
-		VoltSec,
-		VoltAmp,
-		OhmGram,
-		OhmMetre,
-		OhmSec,
-		OhmAmp,
-		AreaMetre,
-		VolumeMetre,
-		SpeedMetre,
-		SpeedSec,
-		AccelMetre,
-		AccelSec
-	}
-
-	/*================================================================================================*/
-	public enum FactorVectorUnitPrefix {
-		Base = 1,
-
-		Kilo,
-		Mega,
-		Giga,
-		Tera,
-		Peta,
-		Exa,
-
-		Milli,
-		Micro,
-		Nano,
-		Pico,
-		Femto,
-		Atto,
-
-		Kibi,
-		Mebi,
-		Gibi,
-		Tebi,
-		Pebi,
-		Exbi
-	}
-
-	/*================================================================================================*/
 	public class FactorSchema : ArtifactSchema {
 
 		public DomainProperty<byte> AssertionType { get; private set; }
@@ -394,7 +145,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			////
 
 			FabAssertionType = new ApiProperty<byte>("AssertionType", true, false);
-			FabAssertionType.FromEnum = typeof(FactorAssertionType);
+			FabAssertionType.FromEnum = "FactorAssertionType";
 
 			FabIsDefining = new ApiProperty<bool>("IsDefining", true, false);
 
@@ -403,25 +154,25 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabNote.LenMin = 1;
 			FabNote.LenMax = 256;
 
-			FabDescriptorType = new ApiProperty<byte>("DescriptorType", true, false);
+			FabDescriptorType = new ApiProperty<byte>("Type", true, false);
 			FabDescriptorType.SubObjectOf = "FabDescriptor";
-			FabDescriptorType.FromEnum = typeof(FactorDescriptorType);
+			FabDescriptorType.FromEnum = "FactorDescriptorType";
 
 			FabDirectorType = new ApiProperty<byte>("DirectorType", true, false);
 			FabDirectorType.SubObjectOf = "FabDirector";
-			FabDirectorType.FromEnum = typeof(FactorDirectorType);
+			FabDirectorType.FromEnum = "FactorDirectorType";
 
 			FabDirectorPrimaryAction = new ApiProperty<byte>("PrimaryAction", true, false);
 			FabDirectorPrimaryAction.SubObjectOf = "FabDirector";
-			FabDirectorPrimaryAction.FromEnum = typeof(FactorDirectorAction);
+			FabDirectorPrimaryAction.FromEnum = "FactorDirectorAction";
 
 			FabDirectorRelatedAction = new ApiProperty<byte>("RelatedAction", true, false);
 			FabDirectorRelatedAction.SubObjectOf = "FabDirector";
-			FabDirectorRelatedAction.FromEnum = typeof(FactorDirectorAction);
+			FabDirectorRelatedAction.FromEnum = "FactorDirectorAction";
 
-			FabEventorType = new ApiProperty<byte>("EventorType", true, false);
+			FabEventorType = new ApiProperty<byte>("Type", true, false);
 			FabEventorType.SubObjectOf = "FabEventor";
-			FabEventorType.FromEnum = typeof(FactorEventorType);
+			FabEventorType.FromEnum = "FactorEventorType";
 
 			FabEventorYear = new ApiProperty<long>("Year", true, false);
 			FabEventorYear.SubObjectOf = "FabEventor";
@@ -446,9 +197,9 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabEventorSecond.SubObjectOf = "FabEventor";
 			FabEventorSecond.IsNullable = true;
 
-			FabIdentorType = new ApiProperty<byte>("IdentorType", true, false);
+			FabIdentorType = new ApiProperty<byte>("Type", true, false);
 			FabIdentorType.SubObjectOf = "FabIdentor";
-			FabIdentorType.FromEnum = typeof(FactorIdentorType);
+			FabIdentorType.FromEnum = "FactorIdentorType";
 
 			FabIdentorValue = new ApiProperty<string>("Value", true, false);
 			FabIdentorValue.SubObjectOf = "FabIdentor";
@@ -456,9 +207,9 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabIdentorValue.LenMin = 1;
 			FabIdentorValue.LenMax = 256;
 
-			FabLocatorType = new ApiProperty<byte>("LocatorType", true, false);
+			FabLocatorType = new ApiProperty<byte>("Type", true, false);
 			FabLocatorType.SubObjectOf = "FabLocator";
-			FabLocatorType.FromEnum = typeof(FactorLocatorType);
+			FabLocatorType.FromEnum = "FactorLocatorType";
 
 			FabLocatorValueX = new ApiProperty<double>("ValueX", true, false);
 			FabLocatorValueX.SubObjectOf = "FabLocator";
@@ -469,17 +220,17 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabLocatorValueZ = new ApiProperty<double>("ValueZ", true, false);
 			FabLocatorValueZ.SubObjectOf = "FabLocator";
 
-			FabVectorType = new ApiProperty<byte>("VectorType", true, false);
+			FabVectorType = new ApiProperty<byte>("Type", true, false);
 			FabVectorType.SubObjectOf = "FabVector";
-			FabVectorType.FromEnum = typeof(FactorVectorType);
+			FabVectorType.FromEnum = "FactorVectorType";
 
 			FabVectorUnit = new ApiProperty<byte>("Unit", true, false);
 			FabVectorUnit.SubObjectOf = "FabVector";
-			FabVectorUnit.FromEnum = typeof(FactorVectorUnit);
+			FabVectorUnit.FromEnum = "FactorVectorUnit";
 
 			FabVectorUnitPrefix = new ApiProperty<byte>("UnitPrefix", true, false);
 			FabVectorUnitPrefix.SubObjectOf = "FabVector";
-			FabVectorUnitPrefix.FromEnum = typeof(FactorVectorUnitPrefix);
+			FabVectorUnitPrefix.FromEnum = "FactorVectorUnitPrefix";
 
 			FabVectorValue = new ApiProperty<long>("Value", true, false);
 			FabVectorValue.SubObjectOf = "FabVector";

@@ -40,7 +40,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabName.IsUnique = true;
 			FabName.LenMin = 3;
 			FabName.LenMax = 64;
-			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
+			FabName.ValidRegex = ApiProperty.ValidUserRegex;
 
 			////
 

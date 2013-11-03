@@ -3,25 +3,13 @@
 namespace Fabric.New.Domain.Schemas.Vertices {
 	
 	/*================================================================================================*/
-	public enum MemberAccessType : byte {
-		None = 1,
-		Request,
-		Invite,
-		Member,
-		Staff,
-		Admin,
-		Owner,
-		DataProvider
-	}
-	
-	/*================================================================================================*/
 	public class MemberSchema : VertexSchema {
 
-		public DomainProperty<byte> AccessType { get; private set; }
+		public DomainProperty<byte> MemberType { get; private set; }
 
-		public ApiProperty<byte> FabAccessType { get; private set; }
+		public ApiProperty<byte> FabMemberType { get; private set; }
 
-		public PropertyMapping<byte, byte> FabAccessTypeMap { get; private set; }
+		public PropertyMapping<byte, byte> FabMemberTypeMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,16 +22,16 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			AccessType = new DomainProperty<byte>("AccessType", "m.at");
+			MemberType = new DomainProperty<byte>("MemberType", "m.at");
 
 			////
 
-			FabAccessType = new ApiProperty<byte>("AccessType", true, true);
-			FabAccessType.FromEnum = typeof(MemberAccessType);
+			FabMemberType = new ApiProperty<byte>("Type", true, true);
+			FabMemberType.FromEnum = "MemberType";
 
 			////
 
-			FabAccessTypeMap = new PropertyMapping<byte, byte>(AccessType, FabAccessType);
+			FabMemberTypeMap = new PropertyMapping<byte, byte>(MemberType, FabMemberType);
 		}
 
 	}

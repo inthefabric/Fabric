@@ -255,7 +255,7 @@ namespace Fabric.New.Domain {
 	public class Member : Vertex {
 
 		[WeaverTitanProperty("m.at", TitanIndex=false, TitanElasticIndex=false)]
-		public byte AccessType { get; set; }
+		public byte MemberType { get; set; }
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,7 +267,7 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			AccessType = TryGetByte(pData, "m.at");
+			MemberType = TryGetByte(pData, "m.at");
 		}
 
 	}

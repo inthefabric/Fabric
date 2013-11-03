@@ -29,11 +29,11 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 }
 <#+
-public void OutputVertex(IVertexSchema pVertex, bool pAddMode) {
+public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	IVertexSchema v = pVertex;
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 
-	string apiNamePrefix = (pAddMode ? "Create" : "");
+	string apiNamePrefix = (pCreateMode ? "Create" : "");
 	string apiName = apiNamePrefix+v.Names.Api;
 	string objectName = apiNamePrefix+"FabObject";
 	string baseName = (vp == null ? objectName : apiNamePrefix+vp.Names.Api);
@@ -47,7 +47,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pAddMode) {
 
 <#+
 	foreach ( ApiProperty ap in props ) {
-		if ( pAddMode && !ap.CanSet ) {
+		if ( pCreateMode && !ap.CanCreate ) {
 			continue;
 		}
 
@@ -63,7 +63,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pAddMode) {
 <#+	
 	} // end subMap loop
 
-	if ( pAddMode ) {
+	if ( pCreateMode ) {
 		OutputVertexValidate(v, props);
 	}
 	else {
@@ -89,7 +89,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pAddMode) {
 <#+
 	} // end property loop
 			
-	if ( pAddMode ) {
+	if ( pCreateMode ) {
 		OutputVertexValidate(v, props);
 	}
 #>
@@ -131,40 +131,42 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 <#+
 		
 	foreach ( ApiProperty ap in pProps ) {
-		if ( !ap.CanSet ) {
+		if ( !ap.CanCreate ) {
 			continue;
 		}
+
+		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
 #>
 
 			//// Validate <#= ap.Name #>
 <#+
 		if ( !ap.IsNullable && ap.DataType == typeof(string) ) {
 #>
-			NotNull("<#= ap.Name #>", <#= ap.Name #>);
+			NotNull("<#= displayName #>", <#= ap.Name #>);
 <#+
 		}
 
 		if ( ap.LenMin != null ) {
 #>
-			LenMin("<#= ap.Name #>", <#= ap.Name #>, <#= ap.LenMin #>);
+			LenMin("<#= displayName #>", <#= ap.Name #>, <#= ap.LenMin #>);
 <#+
 		}
 
 		if ( ap.LenMax != null ) {
 #>
-			LenMax("<#= ap.Name #>", <#= ap.Name #>, <#= ap.LenMax #>);
+			LenMax("<#= displayName #>", <#= ap.Name #>, <#= ap.LenMax #>);
 <#+
 		}
 
 		if ( ap.ValidRegex != null ) {
 #>
-			ValidRegex("<#= ap.Name #>", <#= ap.Name #>, @"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
+			ValidRegex("<#= displayName #>", <#= ap.Name #>, @"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
 <#+
 		}
 
 		if ( ap.FromEnum != null ) {
 #>
-			ValidEnum<<#= ap.FromEnum.Name #>>("<#= ap.Name #>", <#= ap.Name #>);
+			ValidEnum<<#= ap.FromEnum #>>("<#= displayName #>", <#= ap.Name #>);
 <#+
 		}
 

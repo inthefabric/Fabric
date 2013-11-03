@@ -108,7 +108,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabDescriptor : FabObject {
 
-		public byte DescriptorType { get; set; }
+		public byte Type { get; set; }
 
 	}
 
@@ -126,7 +126,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabEventor : FabObject {
 
-		public byte EventorType { get; set; }
+		public byte Type { get; set; }
 		public long Year { get; set; }
 		public byte? Month { get; set; }
 		public byte? Day { get; set; }
@@ -140,7 +140,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabIdentor : FabObject {
 
-		public byte IdentorType { get; set; }
+		public byte Type { get; set; }
 		public string Value { get; set; }
 
 	}
@@ -149,7 +149,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabLocator : FabObject {
 
-		public byte LocatorType { get; set; }
+		public byte Type { get; set; }
 		public double ValueX { get; set; }
 		public double ValueY { get; set; }
 		public double ValueZ { get; set; }
@@ -160,7 +160,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabVector : FabObject {
 
-		public byte VectorType { get; set; }
+		public byte Type { get; set; }
 		public byte Unit { get; set; }
 		public byte UnitPrefix { get; set; }
 		public long Value { get; set; }
@@ -195,7 +195,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabMember : FabVertex {
 
-		public byte AccessType { get; set; }
+		public byte Type { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -378,7 +378,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabDescriptor : CreateFabObject {
 
-		public byte DescriptorType { get; set; }
+		public byte Type { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -386,8 +386,8 @@ namespace Fabric.New.Api.Objects {
 		public override void Validate() {
 			base.Validate();
 
-			//// Validate DescriptorType
-			ValidEnum<FactorDescriptorType>("DescriptorType", DescriptorType);
+			//// Validate Type
+			ValidEnum<FactorDescriptorType>("Descriptor.Type", Type);
 		}
 
 	}
@@ -407,13 +407,13 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//// Validate DirectorType
-			ValidEnum<FactorDirectorType>("DirectorType", DirectorType);
+			ValidEnum<FactorDirectorType>("Director.DirectorType", DirectorType);
 
 			//// Validate PrimaryAction
-			ValidEnum<FactorDirectorAction>("PrimaryAction", PrimaryAction);
+			ValidEnum<FactorDirectorAction>("Director.PrimaryAction", PrimaryAction);
 
 			//// Validate RelatedAction
-			ValidEnum<FactorDirectorAction>("RelatedAction", RelatedAction);
+			ValidEnum<FactorDirectorAction>("Director.RelatedAction", RelatedAction);
 		}
 
 	}
@@ -422,7 +422,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabEventor : CreateFabObject {
 
-		public byte EventorType { get; set; }
+		public byte Type { get; set; }
 		public long Year { get; set; }
 		public byte? Month { get; set; }
 		public byte? Day { get; set; }
@@ -436,8 +436,8 @@ namespace Fabric.New.Api.Objects {
 		public override void Validate() {
 			base.Validate();
 
-			//// Validate EventorType
-			ValidEnum<FactorEventorType>("EventorType", EventorType);
+			//// Validate Type
+			ValidEnum<FactorEventorType>("Eventor.Type", Type);
 
 			//// Validate Year
 
@@ -458,7 +458,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabIdentor : CreateFabObject {
 
-		public byte IdentorType { get; set; }
+		public byte Type { get; set; }
 		public string Value { get; set; }
 
 
@@ -467,12 +467,12 @@ namespace Fabric.New.Api.Objects {
 		public override void Validate() {
 			base.Validate();
 
-			//// Validate IdentorType
-			ValidEnum<FactorIdentorType>("IdentorType", IdentorType);
+			//// Validate Type
+			ValidEnum<FactorIdentorType>("Identor.Type", Type);
 
 			//// Validate Value
-			LenMin("Value", Value, 1);
-			LenMax("Value", Value, 256);
+			LenMin("Identor.Value", Value, 1);
+			LenMax("Identor.Value", Value, 256);
 		}
 
 	}
@@ -481,7 +481,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabLocator : CreateFabObject {
 
-		public byte LocatorType { get; set; }
+		public byte Type { get; set; }
 		public double ValueX { get; set; }
 		public double ValueY { get; set; }
 		public double ValueZ { get; set; }
@@ -492,8 +492,8 @@ namespace Fabric.New.Api.Objects {
 		public override void Validate() {
 			base.Validate();
 
-			//// Validate LocatorType
-			ValidEnum<FactorLocatorType>("LocatorType", LocatorType);
+			//// Validate Type
+			ValidEnum<FactorLocatorType>("Locator.Type", Type);
 
 			//// Validate ValueX
 
@@ -508,7 +508,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabVector : CreateFabObject {
 
-		public byte VectorType { get; set; }
+		public byte Type { get; set; }
 		public byte Unit { get; set; }
 		public byte UnitPrefix { get; set; }
 		public long Value { get; set; }
@@ -519,14 +519,14 @@ namespace Fabric.New.Api.Objects {
 		public override void Validate() {
 			base.Validate();
 
-			//// Validate VectorType
-			ValidEnum<FactorVectorType>("VectorType", VectorType);
+			//// Validate Type
+			ValidEnum<FactorVectorType>("Vector.Type", Type);
 
 			//// Validate Unit
-			ValidEnum<FactorVectorUnit>("Unit", Unit);
+			ValidEnum<FactorVectorUnit>("Vector.Unit", Unit);
 
 			//// Validate UnitPrefix
-			ValidEnum<FactorVectorUnitPrefix>("UnitPrefix", UnitPrefix);
+			ValidEnum<FactorVectorUnitPrefix>("Vector.UnitPrefix", UnitPrefix);
 
 			//// Validate Value
 		}
@@ -568,7 +568,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabMember : CreateFabVertex {
 
-		public byte AccessType { get; set; }
+		public byte Type { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -576,8 +576,8 @@ namespace Fabric.New.Api.Objects {
 		public override void Validate() {
 			base.Validate();
 
-			//// Validate AccessType
-			ValidEnum<MemberAccessType>("AccessType", AccessType);
+			//// Validate Type
+			ValidEnum<MemberType>("Type", Type);
 		}
 
 	}

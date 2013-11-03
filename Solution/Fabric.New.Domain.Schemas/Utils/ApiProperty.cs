@@ -28,7 +28,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public int? LenMin { get; internal set; }
 		public int? LenMax { get; internal set; }
 		public string ValidRegex { get; internal set; }
-		public Type FromEnum { get; internal set; }
+		public string FromEnum { get; internal set; }
 		public string SubObjectOf { get; internal set; }
 		//TODO: custom validation
 

@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Api\Objects\Conversions\DomainToApiCustom.cs" />
     <Compile Include="Api\Objects\FabObject.cs" />
+    <Compile Include="Domain\FabEnums.cs" />
     <Compile Include="Domain\DomainVertices.cs">
       <DependentUpon>DomainVertices.tt</DependentUpon>
       <AutoGen>True</AutoGen>
