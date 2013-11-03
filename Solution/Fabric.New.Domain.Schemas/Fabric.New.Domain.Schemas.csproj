@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</ProjectGuid>
+    <ProjectGuid>{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.Domain.Meta</RootNamespace>
-    <AssemblyName>Fabric.Domain.Meta</AssemblyName>
+    <RootNamespace>Fabric.New.Domain.Schemas</RootNamespace>
+    <AssemblyName>Fabric.New.Domain.Schemas</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,46 +31,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\..\Global\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="FabricPropSchema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schema.cs" />
-    <Compile Include="SchemaHelper.cs">
-      <DependentUpon>SchemaHelper.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="SchemaHelperBase.cs" />
-    <Compile Include="SchemaHelperVertex.cs" />
-    <Compile Include="SchemaHelperVertexEdge.cs" />
-    <Compile Include="SchemaHelperProp.cs" />
-    <Compile Include="SchemaHelperEdge.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="SchemaHelper.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SchemaHelper.cs</LastGenOutput>
-    </None>
+    <Compile Include="Utils\ActionAccess.cs" />
+    <Compile Include="Utils\ActionProvider.cs" />
+    <Compile Include="Utils\ApiProperty.cs" />
+    <Compile Include="Utils\DomainProperty.cs" />
+    <Compile Include="Utils\NameProvider.cs" />
+    <Compile Include="Utils\PropertyMapping.cs" />
+    <Compile Include="Utils\SchemaUtil.cs" />
+    <Compile Include="Vertices\AppSchema.cs" />
+    <Compile Include="Vertices\ArtifactSchema.cs" />
+    <Compile Include="Vertices\ClassSchema.cs" />
+    <Compile Include="Vertices\EmailSchema.cs" />
+    <Compile Include="Vertices\FactorSchema.cs" />
+    <Compile Include="Vertices\InstanceSchema.cs" />
+    <Compile Include="Vertices\IVertexSchema.cs" />
+    <Compile Include="Vertices\MemberSchema.cs" />
+    <Compile Include="Vertices\OauthAccessSchema.cs" />
+    <Compile Include="Vertices\OauthDomainSchema.cs" />
+    <Compile Include="Vertices\OauthGrantSchema.cs" />
+    <Compile Include="Vertices\OauthScopeSchema.cs" />
+    <Compile Include="Vertices\UrlSchema.cs" />
+    <Compile Include="Vertices\UserSchema.cs" />
+    <Compile Include="Vertices\VertexSchema.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Weaver.Core, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Weaver.Titan, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll</HintPath>
-    </Reference>
+    <Folder Include="Edges\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,90 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Fabric.New.Domain;
+
+namespace Fabric.New.Api.Objects.Conversions {
+
+	/*================================================================================================*/
+	public static partial class DomainToApi {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromObject(FabObject pApi, Vertex pDomain) {
+			//do nothing...
+		}
+<#
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas(true);
+
+foreach ( IVertexSchema v in vertexSchemas ) { 
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "FabObject" : vp.Names.Api);
+
+	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, false);
+	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
+	IDictionary<ApiProperty, PropertyMapping> propMap = SchemaUtil.GetVertexApiPropertyMaps(v);
+	bool custom = false;
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static <#= v.Names.Api #> From<#= v.Names.Domain #>(<#= v.Names.Domain #> pDomain) {
+			var api = new <#= v.Names.Api #>();
+			From<#= v.Names.Domain #>(api, pDomain);
+			return api;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void From<#= v.Names.Domain #>(<#= v.Names.Api #> pApi, <#= v.Names.Domain #> pDomain) {
+			From<#= baseName.Substring(3) #>(pApi, pDomain);
+<#
+	foreach ( string sub in subMap.Keys ) {
+#>
+			pApi.<#= sub.Substring(3) #> = new <#= sub #>();
+<#
+	} // end custom condition
+
+	foreach ( ApiProperty ap in props ) {
+		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".");
+		PropertyMapping pm = propMap[ap];
+
+		if ( pm.Custom ) {
+			custom = true;
+#>
+			//pApi.<#= sub #><#= ap.Name #> <== pDomain.<#= pm.Domain.Name #>  (requires custom)
+<#
+			continue;
+		}
+
+		string end = (pm.Domain.DataTypeNameHasQuestionMark() ? ".GetValueOrDefault()" : "");
+#>
+			pApi.<#= sub #><#= ap.Name #> = pDomain.<#= pm.Domain.Name #><#= end #>;
+<#
+	} // end property loop
+
+	if ( custom ) {
+#>
+			From<#= v.Names.Domain #>Custom(pApi, pDomain);
+<#
+	} // end custom condition
+#>
+		}
+<#
+} // end vertex loop
+#>
+
+	}
+
+}

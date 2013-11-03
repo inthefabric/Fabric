@@ -1,0 +1,65 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+namespace Fabric.New.Domain.Schemas {
+
+	/*================================================================================================*/
+	public static class VerifyDbNames {
+
+		/*
+<#
+IEnumerable<Type> vertexTypes = SchemaUtil.GetVertexTypes();
+var vertMap = new HashSet<string>();
+var propMap = new HashSet<string>();
+
+foreach ( Type type in vertexTypes ) {
+	IVertexSchema v = SchemaUtil.GetVertex(type);
+#>
+
+		<#= v.Names.Database #> (<#= v.Names.Domain #>)
+<#
+	if ( vertMap.Contains(v.Names.Database) ) {
+		throw new Exception("Duplicate vertex name: "+v.Names.Database);
+	}
+
+	vertMap.Add(v.Names.Database);
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
+
+	foreach ( DomainProperty dp in props ) {
+#>
+		<#= dp.DbName #> (<#= v.Names.Domain #>.<#= dp.Name #>)
+<#
+		int dotI = dp.DbName.IndexOf(".");
+
+		if ( dotI == -1 ) {
+			throw new Exception("Property missing dot: "+dp.DbName);
+		}
+
+		if ( dp.DbName.Substring(0, dotI) != v.Names.Database ) {
+			throw new Exception("Property invalid prefix: "+dp.DbName+" / "+v.Names.Database);
+		}
+			
+		if ( propMap.Contains(dp.DbName) ) {
+			throw new Exception("Duplicate property name: "+dp.DbName);
+		}
+
+		propMap.Add(dp.DbName);
+
+	} // end property loop
+} // end vertex loop
+#>
+
+		*/
+
+	}
+
+}
