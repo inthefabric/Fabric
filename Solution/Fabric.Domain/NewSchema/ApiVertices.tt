@@ -16,76 +16,158 @@ namespace Fabric.Domain.NewSchema {
 IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas(true);
 
 foreach ( IVertexSchema v in vertexSchemas ) { 
-	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
-	string baseName = (vp == null ? "FabObject" : vp.Names.Api);
+	OutputVertex(v, false);
+}
 
-	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true);
-	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
-#>
-
-
-	/*================================================================================================*/
-	public class <#= v.Names.Api #> : <#= baseName #> {
-
-<#
-	foreach ( ApiProperty ap in props ) {
-		string isNul = (ap.IsNullable+"").ToLower();
-#>
-		//[DtoProp(IsNullable=<#= isNul #>)]
-		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
-		
-<#
-	} // end property loop
-
-	foreach ( string sub in subMap.Keys ) {
-		string isSubNul = (v.IsSubObjectNullable(sub)+"").ToLower();
-#>
-		//[DtoProp(IsNullable=<#= isSubNul #>)]
-		public <#= sub #> <#= sub.Substring(3) #> { get; set; }
-		
-<#			
-	} // end subMap loop
-#>
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(Vertex pVertex) {
-			DomainToApi.From<#= v.Names.Domain #>(this, (<#= v.Names.Domain #>)pVertex);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static <#= v.Names.Api #> From<#= v.Names.Domain #>(<#= v.Names.Domain #> pVertex) {
-			var v = new <#= v.Names.Api #>();
-			v.Fill(pVertex);
-			return v;
-		}
-
-	}
-<#
-	foreach ( string sub in subMap.Keys ) {
-#>
-
-
-	/*================================================================================================*/
-	public class <#= sub #> : FabObject {
-
-<#
-	props = subMap[sub];
-
-	foreach ( ApiProperty ap in props ) {
-		string isNul = (ap.IsNullable+"").ToLower();
-#>
-		//[DtoProp(IsNullable=<#= isNul #>)]
-		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
-		
-<#
-	} // end property loop
-#>
-	}
-<#
-	} //end subMap loop
-
-} // end vertex loop
+foreach ( IVertexSchema v in vertexSchemas ) { 
+	OutputVertex(v, true);
+}
 #>
 
 }
+<#+
+public void OutputVertex(IVertexSchema pVertex, bool pAddMode) {
+	IVertexSchema v = pVertex;
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+
+	string apiNamePrefix = (pAddMode ? "Create" : "");
+	string apiName = apiNamePrefix+v.Names.Api;
+	string objectName = apiNamePrefix+"FabObject";
+	string baseName = (vp == null ? objectName : apiNamePrefix+vp.Names.Api);
+
+	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true);
+	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
+#>		
+
+	/*================================================================================================*/
+	public class <#= apiName #> : <#= baseName #> {
+
+<#+
+	foreach ( ApiProperty ap in props ) {
+		if ( pAddMode && !ap.CanSet ) {
+			continue;
+		}
+
+#>
+		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
+<#+
+	} // end property loop
+
+	foreach ( string sub in subMap.Keys ) {
+		//bool isSubNul = v.IsSubObjectNullable(sub);;
+#>
+		public <#= apiNamePrefix+sub #> <#= sub.Substring(3) #> { get; set; }
+<#+	
+	} // end subMap loop
+
+	if ( pAddMode ) {
+		OutputVertexValidate(v, props);
+	}
+	else {
+		OutputVertexFill(v);
+	}
+#>
+
+	}
+<#+
+	foreach ( string sub in subMap.Keys ) {
+#>
+
+
+	/*================================================================================================*/
+	public class <#= apiNamePrefix+sub #> : <#= objectName #> {
+
+<#+
+	props = subMap[sub];
+
+	foreach ( ApiProperty ap in props ) {
+#>
+		public <#= ap.GetDataTypeName() #> <#= ap.Name #> { get; set; }
+<#+
+	} // end property loop
+			
+	if ( pAddMode ) {
+		OutputVertexValidate(v, props);
+	}
+#>
+
+	}
+<#+
+	} //end subMap loop
+}
+
+
+public void OutputVertexFill(IVertexSchema pVertex) {
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(Vertex pVertex) {
+			DomainToApi.From<#= pVertex.Names.Domain #>(this, (<#= pVertex.Names.Domain #>)pVertex);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static <#= pVertex.Names.Api #> From<#= pVertex.Names.Domain #>(<#= pVertex.Names.Domain #> pVertex) {
+			var v = new <#= pVertex.Names.Api #>();
+			v.Fill(pVertex);
+			return v;
+		}
+<#+
+}
+
+
+public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProps) {
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+<#+
+		
+	foreach ( ApiProperty ap in pProps ) {
+		if ( !ap.CanSet ) {
+			continue;
+		}
+#>
+
+			//// Validate <#= ap.Name #>
+<#+
+		if ( !ap.IsNullable && ap.DataType == typeof(string) ) {
+#>
+			NotNull("<#= ap.Name #>", <#= ap.Name #>);
+<#+
+		}
+
+		if ( ap.LenMin != null ) {
+#>
+			LenMin("<#= ap.Name #>", <#= ap.Name #>, <#= ap.LenMin #>);
+<#+
+		}
+
+		if ( ap.LenMax != null ) {
+#>
+			LenMax("<#= ap.Name #>", <#= ap.Name #>, <#= ap.LenMax #>);
+<#+
+		}
+
+		if ( ap.ValidRegex != null ) {
+#>
+			ValidRegex("<#= ap.Name #>", <#= ap.Name #>, @"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
+<#+
+		}
+
+		if ( ap.FromEnum != null ) {
+#>
+			ValidEnum<<#= ap.FromEnum.Name #>>("<#= ap.Name #>", <#= ap.Name #>);
+<#+
+		}
+
+	} //end property loop
+#>
+		}
+<#+
+}
+#>

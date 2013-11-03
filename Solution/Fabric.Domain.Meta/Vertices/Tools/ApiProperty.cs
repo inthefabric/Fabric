@@ -25,14 +25,12 @@ namespace Fabric.Domain.Meta.Vertices.Tools {
 		public bool IsUnique { get; internal set; }
 		public bool IsNullable { get; internal set; }
 		public bool ToLowerCase { get; internal set; }
-		public int? Len { get; internal set; }
 		public int? LenMin { get; internal set; }
 		public int? LenMax { get; internal set; }
-		public int? Min { get; internal set; }
-		public int? Max { get; internal set; }
 		public string ValidRegex { get; internal set; }
 		public Type FromEnum { get; internal set; }
 		public string SubObjectOf { get; internal set; }
+		//TODO: custom validation
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

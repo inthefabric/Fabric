@@ -3,15 +3,14 @@
 // Changes made to this source file will be overwritten
 
 namespace Fabric.Domain.NewSchema {
-
+		
 
 	/*================================================================================================*/
 	public class FabApp : FabArtifact {
 
-		//[DtoProp(IsNullable=false)]
 		public string Name { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -26,12 +25,13 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 	}
-
+		
 
 	/*================================================================================================*/
 	public class FabArtifact : FabVertex {
 
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -46,21 +46,16 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 	}
-
+		
 
 	/*================================================================================================*/
 	public class FabClass : FabArtifact {
 
-		//[DtoProp(IsNullable=false)]
 		public string Name { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public string Disamb { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public string Note { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -75,39 +70,22 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 	}
-
+		
 
 	/*================================================================================================*/
 	public class FabFactor : FabArtifact {
 
-		//[DtoProp(IsNullable=false)]
 		public byte AssertionType { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public bool IsDefining { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public string Note { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public FabDescriptor Descriptor { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public FabDirector Director { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public FabEventor Eventor { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public FabIdentor Identor { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public FabLocator Locator { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public FabVector Vector { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -127,115 +105,74 @@ namespace Fabric.Domain.NewSchema {
 	/*================================================================================================*/
 	public class FabDescriptor : FabObject {
 
-		//[DtoProp(IsNullable=false)]
 		public byte DescriptorType { get; set; }
-		
+
 	}
 
 
 	/*================================================================================================*/
 	public class FabDirector : FabObject {
 
-		//[DtoProp(IsNullable=false)]
 		public byte DirectorType { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public byte PrimaryAction { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public byte RelatedAction { get; set; }
-		
+
 	}
 
 
 	/*================================================================================================*/
 	public class FabEventor : FabObject {
 
-		//[DtoProp(IsNullable=false)]
 		public byte EventorType { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public long Year { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public byte? Month { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public byte? Day { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public byte? Hour { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public byte? Minute { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public byte? Second { get; set; }
-		
+
 	}
 
 
 	/*================================================================================================*/
 	public class FabIdentor : FabObject {
 
-		//[DtoProp(IsNullable=false)]
 		public byte IdentorType { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public string Value { get; set; }
-		
+
 	}
 
 
 	/*================================================================================================*/
 	public class FabLocator : FabObject {
 
-		//[DtoProp(IsNullable=false)]
 		public byte LocatorType { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public double ValueX { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public double ValueY { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public double ValueZ { get; set; }
-		
+
 	}
 
 
 	/*================================================================================================*/
 	public class FabVector : FabObject {
 
-		//[DtoProp(IsNullable=false)]
 		public byte VectorType { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public byte Unit { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public byte UnitPrefix { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public long Value { get; set; }
-		
-	}
 
+	}
+		
 
 	/*================================================================================================*/
 	public class FabInstance : FabArtifact {
 
-		//[DtoProp(IsNullable=true)]
 		public string Name { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public string Disamb { get; set; }
-		
-		//[DtoProp(IsNullable=true)]
 		public string Note { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -250,15 +187,14 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 	}
-
+		
 
 	/*================================================================================================*/
 	public class FabMember : FabVertex {
 
-		//[DtoProp(IsNullable=false)]
 		public byte AccessType { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -273,18 +209,15 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 	}
-
+		
 
 	/*================================================================================================*/
 	public class FabUrl : FabArtifact {
 
-		//[DtoProp(IsNullable=true)]
 		public string Name { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public string FullPath { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -299,15 +232,14 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 	}
-
+		
 
 	/*================================================================================================*/
 	public class FabUser : FabArtifact {
 
-		//[DtoProp(IsNullable=false)]
 		public string Name { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -322,21 +254,16 @@ namespace Fabric.Domain.NewSchema {
 		}
 
 	}
-
+		
 
 	/*================================================================================================*/
 	public class FabVertex : FabObject {
 
-		//[DtoProp(IsNullable=false)]
 		public long Id { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public string IdStr { get; set; }
-		
-		//[DtoProp(IsNullable=false)]
 		public float Timestamp { get; set; }
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -348,6 +275,360 @@ namespace Fabric.Domain.NewSchema {
 			var v = new FabVertex();
 			v.Fill(pVertex);
 			return v;
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabApp : CreateFabArtifact {
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabArtifact : CreateFabVertex {
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabClass : CreateFabArtifact {
+
+		public string Name { get; set; }
+		public string Disamb { get; set; }
+		public string Note { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate Name
+			NotNull("Name", Name);
+			LenMin("Name", Name, 1);
+			LenMax("Name", Name, 128);
+			ValidRegex("Name", Name, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+
+			//// Validate Disamb
+			LenMin("Disamb", Disamb, 1);
+			LenMax("Disamb", Disamb, 128);
+			ValidRegex("Disamb", Disamb, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+
+			//// Validate Note
+			LenMin("Note", Note, 1);
+			LenMax("Note", Note, 256);
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabFactor : CreateFabArtifact {
+
+		public byte AssertionType { get; set; }
+		public bool IsDefining { get; set; }
+		public string Note { get; set; }
+		public CreateFabDescriptor Descriptor { get; set; }
+		public CreateFabDirector Director { get; set; }
+		public CreateFabEventor Eventor { get; set; }
+		public CreateFabIdentor Identor { get; set; }
+		public CreateFabLocator Locator { get; set; }
+		public CreateFabVector Vector { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate AssertionType
+			ValidEnum<FactorAssertionType>("AssertionType", AssertionType);
+
+			//// Validate IsDefining
+
+			//// Validate Note
+			LenMin("Note", Note, 1);
+			LenMax("Note", Note, 256);
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	public class CreateFabDescriptor : CreateFabObject {
+
+		public byte DescriptorType { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate DescriptorType
+			ValidEnum<FactorDescriptorType>("DescriptorType", DescriptorType);
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	public class CreateFabDirector : CreateFabObject {
+
+		public byte DirectorType { get; set; }
+		public byte PrimaryAction { get; set; }
+		public byte RelatedAction { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate DirectorType
+			ValidEnum<FactorDirectorType>("DirectorType", DirectorType);
+
+			//// Validate PrimaryAction
+			ValidEnum<FactorDirectorAction>("PrimaryAction", PrimaryAction);
+
+			//// Validate RelatedAction
+			ValidEnum<FactorDirectorAction>("RelatedAction", RelatedAction);
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	public class CreateFabEventor : CreateFabObject {
+
+		public byte EventorType { get; set; }
+		public long Year { get; set; }
+		public byte? Month { get; set; }
+		public byte? Day { get; set; }
+		public byte? Hour { get; set; }
+		public byte? Minute { get; set; }
+		public byte? Second { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate EventorType
+			ValidEnum<FactorEventorType>("EventorType", EventorType);
+
+			//// Validate Year
+
+			//// Validate Month
+
+			//// Validate Day
+
+			//// Validate Hour
+
+			//// Validate Minute
+
+			//// Validate Second
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	public class CreateFabIdentor : CreateFabObject {
+
+		public byte IdentorType { get; set; }
+		public string Value { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate IdentorType
+			ValidEnum<FactorIdentorType>("IdentorType", IdentorType);
+
+			//// Validate Value
+			LenMin("Value", Value, 1);
+			LenMax("Value", Value, 256);
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	public class CreateFabLocator : CreateFabObject {
+
+		public byte LocatorType { get; set; }
+		public double ValueX { get; set; }
+		public double ValueY { get; set; }
+		public double ValueZ { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate LocatorType
+			ValidEnum<FactorLocatorType>("LocatorType", LocatorType);
+
+			//// Validate ValueX
+
+			//// Validate ValueY
+
+			//// Validate ValueZ
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	public class CreateFabVector : CreateFabObject {
+
+		public byte VectorType { get; set; }
+		public byte Unit { get; set; }
+		public byte UnitPrefix { get; set; }
+		public long Value { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate VectorType
+			ValidEnum<FactorVectorType>("VectorType", VectorType);
+
+			//// Validate Unit
+			ValidEnum<FactorVectorUnit>("Unit", Unit);
+
+			//// Validate UnitPrefix
+			ValidEnum<FactorVectorUnitPrefix>("UnitPrefix", UnitPrefix);
+
+			//// Validate Value
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabInstance : CreateFabArtifact {
+
+		public string Name { get; set; }
+		public string Disamb { get; set; }
+		public string Note { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate Name
+			LenMin("Name", Name, 1);
+			LenMax("Name", Name, 128);
+			ValidRegex("Name", Name, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+
+			//// Validate Disamb
+			LenMin("Disamb", Disamb, 1);
+			LenMax("Disamb", Disamb, 128);
+			ValidRegex("Disamb", Disamb, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+
+			//// Validate Note
+			LenMin("Note", Note, 1);
+			LenMax("Note", Note, 256);
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabMember : CreateFabVertex {
+
+		public byte AccessType { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate AccessType
+			ValidEnum<MemberAccessType>("AccessType", AccessType);
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabUrl : CreateFabArtifact {
+
+		public string Name { get; set; }
+		public string FullPath { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+
+			//// Validate Name
+			LenMin("Name", Name, 1);
+			LenMax("Name", Name, 128);
+			ValidRegex("Name", Name, @"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
+
+			//// Validate FullPath
+			NotNull("FullPath", FullPath);
+			LenMin("FullPath", FullPath, 1);
+			LenMax("FullPath", FullPath, 2048);
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabUser : CreateFabArtifact {
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+		}
+
+	}
+		
+
+	/*================================================================================================*/
+	public class CreateFabVertex : CreateFabObject {
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
 		}
 
 	}
