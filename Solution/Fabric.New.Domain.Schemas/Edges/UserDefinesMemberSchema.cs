@@ -6,9 +6,9 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class UserDefinesMemberSchema : EdgeSchema<UserSchema, MemberSchema> {
 
-		public EdgeProperty<long> Timestamp { get; private set; }
-		public EdgeProperty<byte> MemberType { get; private set; }
-		public EdgeProperty<long> AppId { get; private set; }
+		public EdgeProperty<MemberSchema, long> Timestamp { get; private set; }
+		public EdgeProperty<MemberSchema, byte> MemberType { get; private set; }
+		public EdgeProperty<MemberSchema, MemberDefinedByAppSchema, long> AppId { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,9 +16,9 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public UserDefinesMemberSchema() : base(EdgeQuantity.Many) {
 			Names = new NameProvider("DefinesMember", "DefinesMembers", "dm");
 
-			Timestamp = new EdgeProperty<long>("Timestamp", "dm.ts", InVertex.Timestamp);
-			MemberType = new EdgeProperty<byte>("MemberType", "dm.mt", InVertex.MemberType);
-			AppId = new EdgeProperty<long>("AppId", "dm.ai", InVertex.DefinedByApp.ToVertexId);
+			Timestamp = Prop("Timestamp", "dm.ts", (x => x.Timestamp));
+			MemberType = Prop("MemberType", "dm.mt", (x => x.MemberType));
+			AppId = Prop("AppId", "dm.ai", (x => x.DefinedByApp), (x => x.ToVertexId));
 		}
 
 	}

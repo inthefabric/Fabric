@@ -93,7 +93,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabFactor(Factor pDomain, CreateFabFactor pApi) {
-			FromCreateFabArtifact(pDomain, pApi);
+			FromCreateFabVertex(pDomain, pApi);
 			pDomain.AssertionType = pApi.AssertionType;
 			pDomain.IsDefining = pApi.IsDefining;
 			pDomain.Note = pApi.Note;

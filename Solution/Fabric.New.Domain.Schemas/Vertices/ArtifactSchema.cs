@@ -15,12 +15,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactSchema() {
 			Names = new NameProvider("Artifact", "Artifacts", "a");
-
-			////
-
-			CreatedByMember = new ArtifactCreatedByMemberSchema();
-			UsedAsPrimaryByFactor = new ArtifactUsedAsPrimaryByFactor();
-			UsedAsRelatedByFactor = new ArtifactUsedAsRelatedByFactor();
 		}
 
 	}

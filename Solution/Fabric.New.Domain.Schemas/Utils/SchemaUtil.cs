@@ -9,6 +9,9 @@ namespace Fabric.New.Domain.Schemas.Utils {
 	/*================================================================================================*/
 	public static class SchemaUtil {
 
+		private readonly static IDictionary<Type, IVertexSchema> VertexSchemas =
+			new Dictionary<Type, IVertexSchema>();
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -34,10 +37,21 @@ namespace Fabric.New.Domain.Schemas.Utils {
 			Type type = pVertex.GetType().BaseType;
 			return (type == typeof(Object) ? null : GetVertex(type));
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static T GetVertex<T>() where T : IVertexSchema {
+			return (T)GetVertex(typeof(T));
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static IVertexSchema GetVertex(Type pVertexType) {
-			return (IVertexSchema)Activator.CreateInstance(pVertexType);
+			if ( VertexSchemas.ContainsKey(pVertexType) ) {
+				return VertexSchemas[pVertexType];
+			}
+
+			IVertexSchema vs = (IVertexSchema)Activator.CreateInstance(pVertexType);
+			VertexSchemas.Add(pVertexType, vs);
+			return vs;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

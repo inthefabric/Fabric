@@ -6,9 +6,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class ArtifactUsedAsRelatedByFactor : EdgeSchema<ArtifactSchema, FactorSchema> {
 
-		public EdgeProperty<long> Timestamp { get; private set; }
-		public EdgeProperty<byte> DescriptorType { get; private set; }
-		public EdgeProperty<long> PrimaryArtifactId { get; private set; }
+		public EdgeProperty<FactorSchema, long> Timestamp { get; private set; }
+		public EdgeProperty<FactorSchema, byte> DescriptorType { get; private set; }
+		public EdgeProperty<FactorSchema, FactorUsesPrimaryArtifactSchema, long> PrimaryArtifactId
+			{ get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,10 +17,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public ArtifactUsedAsRelatedByFactor() : base(EdgeQuantity.Many) {
 			Names = new NameProvider("UsedAsRelatedByFactor", "UsedAsRelatedByFactors", "urbf");
 
-			Timestamp = new EdgeProperty<long>("Timestamp", "urbf.ts", InVertex.Timestamp);
-			DescriptorType = new EdgeProperty<byte>("DesdcriptorType", "urbf.dt", InVertex.DescriptorType);
-			PrimaryArtifactId = new EdgeProperty<long>("PrimaryArtifactId", "urbf.pa",
-				InVertex.UsesPrimaryArtifact.ToVertexId);
+			Timestamp = Prop("Timestamp", "urbf.ts", (x => x.Timestamp));
+			DescriptorType = Prop("DesdcriptorType", "urbf.dt", (x => x.DescriptorType));
+			PrimaryArtifactId = Prop("PrimaryArtifactId", "urbf.pa",
+				(x => x.UsesPrimaryArtifact), (x => x.ToVertexId));
 		}
 
 	}

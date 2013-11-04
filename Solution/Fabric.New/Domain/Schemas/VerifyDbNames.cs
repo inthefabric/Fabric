@@ -83,9 +83,9 @@ namespace Fabric.New.Domain.Schemas {
 		u.pa (User.Password)
 
 		v (Vertex)
-		v.id (Vertex.Id)
-		v.ti (Vertex.Timestamp)
-		v.dt (Vertex.DomainType)
+		v.id (Vertex.VertexId)
+		v.ts (Vertex.Timestamp)
+		v.t (Vertex.VertexType)
 
 		*/
 

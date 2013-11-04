@@ -93,7 +93,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromFactor(FabFactor pApi, Factor pDomain) {
-			FromArtifact(pApi, pDomain);
+			FromVertex(pApi, pDomain);
 			pApi.Descriptor = new FabDescriptor();
 			pApi.Director = new FabDirector();
 			pApi.Eventor = new FabEventor();
@@ -268,11 +268,12 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromVertex(FabVertex pApi, Vertex pDomain) {
 			FromObject(pApi, pDomain);
-			pApi.Id = pDomain.Id;
+			pApi.Id = pDomain.VertexId;
 			//Custom: Set Api.IdStr = Domain.Id.ToString().
-			//pApi.IdStr <== pDomain.Id  (requires custom)
+			//pApi.IdStr <== pDomain.VertexId  (requires custom)
 			//Custom: Convert Domain.Timestamp to Unix-based seconds.
 			//pApi.Timestamp <== pDomain.Timestamp  (requires custom)
+			pApi.VertexType = pDomain.VertexType;
 			FromVertexCustom(pApi, pDomain);
 		}
 

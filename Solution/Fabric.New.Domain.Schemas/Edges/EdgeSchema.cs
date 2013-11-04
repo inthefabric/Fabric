@@ -35,16 +35,29 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 
 	/*================================================================================================*/
-	public class EdgeSchema<TOut, TIn> : EdgeSchema
-										where TOut : IVertexSchema where TIn : IVertexSchema, new() {
+	public class EdgeSchema<TFrom, TTo> : EdgeSchema
+												where TFrom : IVertexSchema where TTo : IVertexSchema {
 
-		protected TIn InVertex { get; private set; }
+		protected TTo InVertex { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EdgeSchema(EdgeQuantity pQuantity) : base(typeof(TOut), typeof(TIn), pQuantity) {
-			InVertex = new TIn();
+		protected EdgeSchema(EdgeQuantity pQuantity) : base(typeof(TFrom), typeof(TTo), pQuantity) {
+			InVertex = SchemaUtil.GetVertex<TTo>();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public EdgeProperty<TTo, TDataType> Prop<TDataType>(string pName, string pDbName, 
+													Func<TTo, DomainProperty<TDataType>> pDomPropFunc) {
+			return new EdgeProperty<TTo, TDataType>(pName, pDbName, pDomPropFunc);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public EdgeProperty<TTo, TEdge, TDataType> Prop<TEdge, TDataType>(string pName, string pDbName,
+					Func<TTo, TEdge> pEdgeFunc, Func<TEdge, DomainProperty<TDataType>> pEdgeDomPropFunc)
+					where TEdge : EdgeSchema {
+			return new EdgeProperty<TTo, TEdge, TDataType>(pName, pDbName, pEdgeFunc, pEdgeDomPropFunc);
 		}
 
 	}

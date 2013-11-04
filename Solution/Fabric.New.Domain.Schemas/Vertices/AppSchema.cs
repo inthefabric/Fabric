@@ -59,10 +59,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabNameMap.ApiToDomainNote = "Set Domain.NameKey = Api.Name.ToLower()";
 
 			FabSecretMap = new PropertyMapping<string, string>(Secret, FabSecret);
-
-			////
-
-			DefinesMember = new AppDefinesMemberSchema();
 		}
 
 	}

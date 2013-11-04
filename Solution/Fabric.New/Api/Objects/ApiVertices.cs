@@ -101,7 +101,7 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
-	public class FabFactor : FabArtifact {
+	public class FabFactor : FabVertex {
 
 		public byte AssertionType { get; set; }
 		public bool IsDefining { get; set; }
@@ -375,6 +375,7 @@ namespace Fabric.New.Api.Objects {
 		public long Id { get; set; }
 		public string IdStr { get; set; }
 		public float Timestamp { get; set; }
+		public byte VertexType { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -505,7 +506,7 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
-	public class CreateFabFactor : CreateFabArtifact {
+	public class CreateFabFactor : CreateFabVertex {
 
 		public byte AssertionType { get; set; }
 		public bool IsDefining { get; set; }

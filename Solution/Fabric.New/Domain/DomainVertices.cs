@@ -25,7 +25,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public App() {
-			DomainType = (byte)VertexType.App;
+			VertexType = (byte)VertexDomainType.App;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -47,7 +47,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Artifact() {
-			DomainType = (byte)VertexType.Artifact;
+			VertexType = (byte)VertexDomainType.Artifact;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -78,7 +78,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Class() {
-			DomainType = (byte)VertexType.Class;
+			VertexType = (byte)VertexDomainType.Class;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -110,7 +110,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Email() {
-			DomainType = (byte)VertexType.Email;
+			VertexType = (byte)VertexDomainType.Email;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -126,7 +126,7 @@ namespace Fabric.New.Domain {
 
 	/*================================================================================================*/
 	[WeaverTitanVertex]
-	public class Factor : Artifact {
+	public class Factor : Vertex {
 
 		[WeaverTitanProperty("f.at", TitanIndex=false, TitanElasticIndex=false)]
 		public byte AssertionType { get; set; }
@@ -189,7 +189,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Factor() {
-			DomainType = (byte)VertexType.Factor;
+			VertexType = (byte)VertexDomainType.Factor;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -236,7 +236,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Instance() {
-			DomainType = (byte)VertexType.Instance;
+			VertexType = (byte)VertexDomainType.Instance;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -261,7 +261,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Member() {
-			DomainType = (byte)VertexType.Member;
+			VertexType = (byte)VertexDomainType.Member;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -293,7 +293,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccess() {
-			DomainType = (byte)VertexType.OauthAccess;
+			VertexType = (byte)VertexDomainType.OauthAccess;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -319,7 +319,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthDomain() {
-			DomainType = (byte)VertexType.OauthDomain;
+			VertexType = (byte)VertexDomainType.OauthDomain;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -348,7 +348,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthGrant() {
-			DomainType = (byte)VertexType.OauthGrant;
+			VertexType = (byte)VertexDomainType.OauthGrant;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -373,7 +373,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthScope() {
-			DomainType = (byte)VertexType.OauthScope;
+			VertexType = (byte)VertexDomainType.OauthScope;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -399,7 +399,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Url() {
-			DomainType = (byte)VertexType.Url;
+			VertexType = (byte)VertexDomainType.Url;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -429,7 +429,7 @@ namespace Fabric.New.Domain {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public User() {
-			DomainType = (byte)VertexType.User;
+			VertexType = (byte)VertexDomainType.User;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -448,27 +448,27 @@ namespace Fabric.New.Domain {
 	public class Vertex : VertexBase {
 
 		[WeaverTitanProperty("v.id", TitanIndex=true, TitanElasticIndex=false)]
-		public long Id { get; set; }
+		public long VertexId { get; set; }
 		
-		[WeaverTitanProperty("v.ti", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("v.ts", TitanIndex=false, TitanElasticIndex=true)]
 		public long Timestamp { get; set; }
 		
-		[WeaverTitanProperty("v.dt", TitanIndex=false, TitanElasticIndex=false)]
-		public byte DomainType { get; set; }
+		[WeaverTitanProperty("v.t", TitanIndex=false, TitanElasticIndex=false)]
+		public byte VertexType { get; set; }
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Vertex() {
-			DomainType = (byte)VertexType.Vertex;
+			VertexType = (byte)VertexDomainType.Vertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Id = TryGetLong(pData, "v.id");
-			Timestamp = TryGetLong(pData, "v.ti");
-			DomainType = TryGetByte(pData, "v.dt");
+			VertexId = TryGetLong(pData, "v.id");
+			Timestamp = TryGetLong(pData, "v.ts");
+			VertexType = TryGetByte(pData, "v.t");
 		}
 
 	}

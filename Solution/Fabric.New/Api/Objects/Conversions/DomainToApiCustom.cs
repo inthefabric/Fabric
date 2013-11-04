@@ -89,7 +89,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromVertexCustom(FabVertex pApi, Vertex pDomain) {
-			pApi.IdStr = pDomain.Id+"";
+			pApi.IdStr = pDomain.VertexId+"";
 			pApi.Timestamp = (float)(new DateTime(pDomain.Timestamp)-UnixEpoch).TotalSeconds;
 		}
 
