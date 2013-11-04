@@ -62,6 +62,10 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabPasswordMap = new PropertyMapping<string, string>(Password, FabPassword, true);
 			FabNameMap.ApiToDomainNote = "Encrypt Api.Password.";
 			FabNameMap.DomainToApiNote = "Leave Domain.Password encrpyted..";
+
+			////
+
+			DefinesMember = new UserDefinesMemberSchema();
 		}
 
 	}

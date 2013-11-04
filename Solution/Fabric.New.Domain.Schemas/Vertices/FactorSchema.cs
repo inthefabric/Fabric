@@ -301,6 +301,16 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabVectorUnitPrefixMap = new PropertyMapping<byte, byte>(
 				VectorUnitPrefix, FabVectorUnitPrefix);
 			FabVectorValueMap = new PropertyMapping<long, long>(VectorValue, FabVectorValue);
+
+			////
+
+			CreatedByMember = new FactorCreatedByMemberSchema();
+			UsesPrimaryArtifact = new FactorUsesPrimaryArtifactSchema();
+			UsesRelatedArtifact = new FactorUsesRelatedArtifactSchema();
+			PrimaryRefinedByArtifact = new FactorPrimaryRefinedByArtifactSchema();
+			RelatedRefinedByArtifact = new FactorRelatedRefinedByArtifactSchema();
+			DescriptorTypeRefinedByArtifact = new FactorDescriptorTypeRefinedByArtifactSchema();
+			VectorUsesAxisArtifact = new FactorVectorUsesAxisArtifactSchema();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

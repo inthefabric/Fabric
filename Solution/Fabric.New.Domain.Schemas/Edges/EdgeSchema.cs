@@ -38,14 +38,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	public class EdgeSchema<TFrom, TTo> : EdgeSchema
 												where TFrom : IVertexSchema where TTo : IVertexSchema {
 
-		protected TTo InVertex { get; private set; }
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected EdgeSchema(EdgeQuantity pQuantity) : base(typeof(TFrom), typeof(TTo), pQuantity) {
-			InVertex = SchemaUtil.GetVertex<TTo>();
-		}
+		protected EdgeSchema(EdgeQuantity pQuantity) : base(typeof(TFrom), typeof(TTo), pQuantity) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EdgeProperty<TTo, TDataType> Prop<TDataType>(string pName, string pDbName, 

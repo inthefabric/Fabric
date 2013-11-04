@@ -38,6 +38,13 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			////
 
 			FabMemberTypeMap = new PropertyMapping<byte, byte>(MemberType, FabMemberType);
+
+			////
+
+			DefinedByApp = new MemberDefinedByAppSchema();
+			DefinedByUser = new MemberDefinedByUserSchema();
+			CreatesArtifact = new MemberCreatesArtifactSchema();
+			CreatesFactor = new MemberCreatesFactorSchema();
 		}
 
 	}
