@@ -11,6 +11,8 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorUsesPrimaryArtifactSchema() : base(EdgeQuantity.One) {
 			Names = new NameProvider("UsesPrimaryArtifact", "UsesPrimaryArtifact", "upa");
+			TypeName = "UsesPrimary";
+			CreateToVertexId = Access.All;
 		}
 
 	}

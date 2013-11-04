@@ -13,8 +13,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public AppDefinesMemberSchema() : base(EdgeQuantity.Many) {
+		public AppDefinesMemberSchema() : base(EdgeQuantity.ZeroOrMore) {
 			Names = new NameProvider("DefinesMember", "DefinesMembers", "dm");
+			TypeName = "Defines";
+			CreateFromOtherDirection = true;
 
 			Timestamp = Prop("Timestamp", "dm.ts", (x => x.Timestamp));
 			MemberType = Prop("MemberType", "dm.mt", (x => x.MemberType));

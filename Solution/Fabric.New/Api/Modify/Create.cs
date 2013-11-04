@@ -11,6 +11,9 @@ namespace Fabric.New.Api.Modify {
 		// - Name  (Internal)
 		// - Secret  (Internal)
 
+		// FabArtifact (None)
+		// * CreatedByMember  (Internal)
+
 		// FabClass (All)
 		// - Name  (All)
 		// - Disamb  (All)
@@ -46,6 +49,13 @@ namespace Fabric.New.Api.Modify {
 		// - Vector.Unit  (All)
 		// - Vector.UnitPrefix  (All)
 		// - Vector.Value  (All)
+		// * CreatedByMember  (Internal)
+		// * UsesPrimaryArtifact  (All)
+		// * UsesRelatedArtifact  (All)
+		// * PrimaryRefinedByArtifact  (All)
+		// * RelatedRefinedByArtifact  (All)
+		// * DescriptorTypeRefinedByArtifact  (All)
+		// * VectorUsesAxisArtifact  (All)
 
 		// FabInstance (All)
 		// - Name  (All)
@@ -54,6 +64,8 @@ namespace Fabric.New.Api.Modify {
 
 		// FabMember (All)
 		// - Type  (All)
+		// * DefinedByApp  (Internal)
+		// * DefinedByUser  (Internal)
 
 		// FabUrl (All)
 		// - Name  (All)

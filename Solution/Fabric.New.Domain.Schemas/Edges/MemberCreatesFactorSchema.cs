@@ -16,8 +16,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberCreatesFactorSchema() : base(EdgeQuantity.Many) {
+		public MemberCreatesFactorSchema() : base(EdgeQuantity.ZeroOrMore) {
 			Names = new NameProvider("CreatesFactor", "CreatesFactors", "cf");
+			TypeName = "Creates";
+			CreateFromOtherDirection = true;
 
 			Timestamp = Prop("Timestamp", "cf.ts", (x => x.Timestamp));
 			DescriptorType = Prop("DescriptorType", "cf.dt", (x => x.DescriptorType));

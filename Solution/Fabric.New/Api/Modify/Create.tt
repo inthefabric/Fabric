@@ -4,8 +4,9 @@
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
 <#@ output extension=".cs" #>
 
 // GENERATED CODE
@@ -20,8 +21,9 @@ IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 
 foreach ( IVertexSchema v in vertexSchemas ) {
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, true);
+	IList<IEdgeSchema> edges = SchemaUtil.GetVertexEdges(v, true);
 
-	if ( props.Count == 0 ) {
+	if ( props.Count == 0 && edges.Count == 0 ) {
 		continue;
 	}
 
@@ -45,6 +47,12 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 <#
 		} // end subProp loop
 	} // end subMap loop
+
+	foreach ( IEdgeSchema es in edges ) {
+#>
+		// * <#= es.Names.Domain #>  (<#= es.CreateToVertexId #>)
+<#
+	} // end edge loop
 }
 #>
 

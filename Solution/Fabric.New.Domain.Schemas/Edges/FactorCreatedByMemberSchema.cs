@@ -11,6 +11,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorCreatedByMemberSchema() : base(EdgeQuantity.One) {
 			Names = new NameProvider("CreatedByMember", "CreatedByMembers", "cbm");
+			TypeName = "CreatedBy";
 		}
 
 	}

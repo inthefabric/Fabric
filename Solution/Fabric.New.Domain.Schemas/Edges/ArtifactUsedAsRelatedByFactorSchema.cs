@@ -14,8 +14,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactUsedAsRelatedByFactor() : base(EdgeQuantity.Many) {
+		public ArtifactUsedAsRelatedByFactor() : base(EdgeQuantity.ZeroOrMore) {
 			Names = new NameProvider("UsedAsRelatedByFactor", "UsedAsRelatedByFactors", "urbf");
+			TypeName = "UsedAsRelatedBy";
+			CreateFromOtherDirection = true;
 
 			Timestamp = Prop("Timestamp", "urbf.ts", (x => x.Timestamp));
 			DescriptorType = Prop("DesdcriptorType", "urbf.dt", (x => x.DescriptorType));

@@ -7,20 +7,38 @@ namespace Fabric.New.Domain.Schemas.Utils {
 	/*================================================================================================*/
 	public abstract class EdgeProperty {
 
-		public string Name { get; internal set; }
-		public string DbName { get; internal set; }
+		public string Name { get; private set; }
+		public string DbName { get; private set; }
+		public Type DataType { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EdgeProperty(string pName, string pDbName) {
+		public EdgeProperty(string pName, string pDbName, Type pDataType) {
 			Name = pName;
 			DbName = pDbName;
+			DataType = pDataType;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract EdgeSchema GetEdgeToDomainProp();
+		public abstract IEdgeSchema GetEdgeToDomainProp();
 		public abstract DomainProperty GetDomainProp();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetDataTypeName() {
+			switch ( DataType.Name ) {
+				case "Byte":
+					return "byte";
+
+				case "Int64":
+					return "long";
+
+				default:
+					return null;
+			}
+		}
 
 	}
 
@@ -34,12 +52,13 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EdgeProperty(string pName, string pDbName, 
-						Func<TToVert, DomainProperty<TDataType>> pDomPropFunc) : base(pName, pDbName) {
+						Func<TToVert, DomainProperty<TDataType>> pDomPropFunc) : 
+						base(pName, pDbName, typeof(TDataType)) {
 			vDomPropFunc = pDomPropFunc;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override EdgeSchema GetEdgeToDomainProp() {
+		public override IEdgeSchema GetEdgeToDomainProp() {
 			return null;
 		}
 
@@ -53,7 +72,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 	/*================================================================================================*/
 	public class EdgeProperty<TToVert, TEdge, TDataType> : EdgeProperty 
-												where TToVert : IVertexSchema where TEdge : EdgeSchema {
+											where TToVert : IVertexSchema where TEdge : IEdgeSchema {
 
 		private readonly Func<TToVert, TEdge> vEdgeFunc;
 		private readonly Func<TEdge, DomainProperty<TDataType>> vEdgeDomPropFunc;
@@ -64,13 +83,13 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public EdgeProperty(string pName, string pDbName,
 											Func<TToVert, TEdge> pEdgeFunc, 
 											Func<TEdge, DomainProperty<TDataType>> pEdgeDomPropFunc) :
-											base(pName, pDbName) {
+											base(pName, pDbName, typeof(TDataType)) {
 			vEdgeFunc = pEdgeFunc;
 			vEdgeDomPropFunc = pEdgeDomPropFunc;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override EdgeSchema GetEdgeToDomainProp() {
+		public override IEdgeSchema GetEdgeToDomainProp() {
 			return vEdgeFunc(SchemaUtil.GetVertex<TToVert>());
 		}
 		

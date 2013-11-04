@@ -1,0 +1,76 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Weaver.Core.Elements;
+using Weaver.Titan.Elements;
+
+namespace Fabric.New.Domain {
+<#
+IList<IEdgeSchema> edgeSchemas = SchemaUtil.GetEdgeSchemas();
+IList<string> edgeTypeNames = SchemaUtil.GetEdgeTypeNames();
+
+foreach ( string tn in edgeTypeNames ) {
+#>
+
+
+	/*================================================================================================*/
+	public class <#= tn #> : IWeaverEdgeType {
+
+		public string Label { get { return null; } }
+
+	}
+<#
+} // end edgeTypeNames loop
+
+foreach ( IEdgeSchema e in edgeSchemas ) {
+	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+	IVertexSchema fv = e.GetFromVertex();
+	IVertexSchema tv = e.GetToVertex();
+	string outConn = e.GetOutgoingWeaverEdgeConn();
+	string inConn = e.GetIncomingWeaverEdgeConn();
+#>
+
+
+	/*================================================================================================*/
+	[WeaverTitanEdge("<#= e.Names.Database #>", WeaverEdgeConn.<#= outConn #>, typeof(<#= fv.Names.Domain #>),
+		WeaverEdgeConn.<#= inConn #>, typeof(<#= tv.Names.Domain #>))]
+	public class <#= fv.Names.Domain #><#= e.Names.Domain #> : EdgeBase<<#= fv.Names.Domain #>, <#= e.TypeName #>, <#= tv.Names.Domain #>> {
+<#
+	foreach ( EdgeProperty ep in props ) {
+#>
+
+		[WeaverTitanProperty("<#= ep.DbName #>")]
+		public virtual <#= ep.GetDataTypeName() #> <#= ep.Name #> { get; set; }
+<#
+	} // end property loop
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual <#= fv.Names.Domain #> From<#= fv.Names.Domain #> {
+			get { return OutVertex; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual <#= tv.Names.Domain #> To<#= tv.Names.Domain #> {
+			get { return InVertex; }
+		}
+
+	}
+<#
+} // end edges loop
+#>
+
+}

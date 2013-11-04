@@ -11,6 +11,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberDefinedByAppSchema() : base(EdgeQuantity.One) {
 			Names = new NameProvider("DefinedByApp", "DefinedByApps", "dba");
+			TypeName = "DefinedBy";
 		}
 
 	}

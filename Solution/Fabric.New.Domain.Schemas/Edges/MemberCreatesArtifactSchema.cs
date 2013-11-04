@@ -12,8 +12,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberCreatesArtifactSchema() : base(EdgeQuantity.Many) {
+		public MemberCreatesArtifactSchema() : base(EdgeQuantity.ZeroOrMore) {
 			Names = new NameProvider("CreatesArtifact", "CreatesArtifacts", "ca");
+			TypeName = "Creates";
+			CreateFromOtherDirection = true;
 
 			Timestamp = Prop("Timestamp", "ca.ts", (x => x.Timestamp));
 			VertexType = Prop("VertexType", "ca.vt", (x => x.VertexType));

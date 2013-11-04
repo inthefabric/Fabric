@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Weaver.Core.Elements;
 
 namespace Fabric.New.Domain {
 
 	/*================================================================================================*/
-	public abstract class VertexBase {
+	public abstract class VertexBase : WeaverVertex {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

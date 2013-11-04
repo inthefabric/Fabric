@@ -11,6 +11,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberDefinedByUserSchema() : base(EdgeQuantity.One) {
 			Names = new NameProvider("DefinedByUser", "DefinedByUsers", "dbu");
+			TypeName = "DefinedBy";
 		}
 
 	}

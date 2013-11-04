@@ -12,6 +12,9 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public FactorDescriptorTypeRefinedByArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
 			Names = new NameProvider("DescriptorTypeRefinedByArtifact",
 				"DescriptorTypeRefinedByArtifacts", "drba");
+			TypeName = "DescriptorTypeRefinedBy";
+			CreateToVertexId = Access.All;
+			SubObjectOf = "FabDescriptor";
 		}
 
 	}

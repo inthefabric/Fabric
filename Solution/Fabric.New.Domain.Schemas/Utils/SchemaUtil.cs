@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Fabric.New.Domain.Schemas.Edges;
 using Fabric.New.Domain.Schemas.Vertices;
 
 namespace Fabric.New.Domain.Schemas.Utils {
@@ -11,6 +12,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		private readonly static IDictionary<Type, IVertexSchema> VertexSchemas =
 			new Dictionary<Type, IVertexSchema>();
+		private readonly static IDictionary<Type, IEdgeSchema> EdgeSchemas =
+			new Dictionary<Type, IEdgeSchema>();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,6 +85,20 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public static IList<IEdgeSchema> GetVertexEdges(IVertexSchema pVertex, bool pCreateMode=false) {
+			Type ept = typeof(EdgeSchema);
+
+			return pVertex
+				.GetType()
+				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
+				.Where(x => x.PropertyType.IsSubclassOf(ept))
+				.Select(x => (IEdgeSchema)x.GetValue(pVertex, null))
+				.Where(x => (!pCreateMode || 
+					(x.CreateToVertexId != Access.None && !x.CreateFromOtherDirection)))
+				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public static IDictionary<string, IList<ApiProperty>> 
 													GetVertexApiPropertySubMap(IVertexSchema pVertex) {
 			IList<ApiProperty> props = GetVertexApiProperties(pVertex);
@@ -138,6 +155,68 @@ namespace Fabric.New.Domain.Schemas.Utils {
 			}
 
 			return map;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<Type> GetEdgeTypes() {
+			Type et = typeof(EdgeSchema);
+
+			return et.Assembly
+				.GetTypes()
+				.Where(x => x.IsSubclassOf(et) && x.Name.IndexOf(et.Name) != 0)
+				.OrderBy(x => x.Name)
+				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<IEdgeSchema> GetEdgeSchemas() {
+			return GetEdgeTypes()
+				.Select(GetEdge)
+				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static T GetEdge<T>() where T : IEdgeSchema {
+			return (T)GetEdge(typeof(T));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IEdgeSchema GetEdge(Type pEdgeType) {
+			if ( EdgeSchemas.ContainsKey(pEdgeType) ) {
+				return EdgeSchemas[pEdgeType];
+			}
+
+			IEdgeSchema es = (IEdgeSchema)Activator.CreateInstance(pEdgeType);
+			EdgeSchemas.Add(pEdgeType, es);
+			return es;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetEdgeTypeNames() {
+			var edges = GetEdgeSchemas();
+			var typeNames = new HashSet<string>();
+
+			foreach ( IEdgeSchema es in edges ) {
+				if ( !typeNames.Contains(es.TypeName) ) {
+					typeNames.Add(es.TypeName);
+				}
+			}
+
+			return typeNames.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<EdgeProperty> GetEdgeProperties(IEdgeSchema pEdge) {
+			Type ept = typeof(EdgeProperty);
+
+			return pEdge
+				.GetType()
+				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
+				.Where(x => x.PropertyType.IsSubclassOf(ept))
+				.Select(x => (EdgeProperty)x.GetValue(pEdge, null))
+				.ToList();
 		}
 
 	}

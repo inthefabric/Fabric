@@ -11,6 +11,9 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorVectorUsesAxisArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
 			Names = new NameProvider("VectorUsesAxisArtifact", "VectorUsesAxisArtifacts", "uaa");
+			TypeName = "VectorUsesAxis";
+			CreateToVertexId = Access.All;
+			SubObjectOf = "FabVector";
 		}
 
 	}

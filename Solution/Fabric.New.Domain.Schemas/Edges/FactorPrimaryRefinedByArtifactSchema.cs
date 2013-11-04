@@ -11,6 +11,9 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorPrimaryRefinedByArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
 			Names = new NameProvider("PrimaryRefinedByArtifact", "PrimaryRefinedByArtifacts", "prba");
+			TypeName = "PrimaryRefinedBy";
+			CreateToVertexId = Access.All;
+			SubObjectOf = "FabDescriptor";
 		}
 
 	}
