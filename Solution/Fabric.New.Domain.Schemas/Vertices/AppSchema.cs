@@ -1,4 +1,5 @@
-﻿using Fabric.New.Domain.Schemas.Utils;
+﻿using Fabric.New.Domain.Schemas.Edges;
+using Fabric.New.Domain.Schemas.Utils;
 
 namespace Fabric.New.Domain.Schemas.Vertices {
 	
@@ -14,6 +15,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 		public PropertyMapping<string, string> FabNameMap { get; private set; }
 		public PropertyMapping<string, string> FabSecretMap { get; private set; }
+
+		public AppDefinesMemberSchema DefinesMember { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +59,10 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabNameMap.ApiToDomainNote = "Set Domain.NameKey = Api.Name.ToLower()";
 
 			FabSecretMap = new PropertyMapping<string, string>(Secret, FabSecret);
+
+			////
+
+			DefinesMember = new AppDefinesMemberSchema();
 		}
 
 	}

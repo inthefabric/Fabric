@@ -1,9 +1,10 @@
-﻿using Fabric.New.Domain.Schemas.Utils;
+﻿using Fabric.New.Domain.Schemas.Edges;
+using Fabric.New.Domain.Schemas.Utils;
 
 namespace Fabric.New.Domain.Schemas.Vertices {
 
 	/*================================================================================================*/
-	public class FactorSchema : ArtifactSchema {
+	public class FactorSchema : VertexSchema {
 
 		public DomainProperty<byte> AssertionType { get; private set; }
 		public DomainProperty<bool> IsDefining { get; private set; }
@@ -74,6 +75,15 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public PropertyMapping<byte, byte> FabVectorUnitMap { get; private set; }
 		public PropertyMapping<byte, byte> FabVectorUnitPrefixMap { get; private set; }
 		public PropertyMapping<long, long> FabVectorValueMap { get; private set; }
+
+		public FactorCreatedByMemberSchema CreatedByMember { get; private set; }
+		public FactorUsesPrimaryArtifactSchema UsesPrimaryArtifact { get; private set; }
+		public FactorUsesRelatedArtifactSchema UsesRelatedArtifact { get; private set; }
+		public FactorPrimaryRefinedByArtifactSchema PrimaryRefinedByArtifact { get; private set; }
+		public FactorRelatedRefinedByArtifactSchema RelatedRefinedByArtifact { get; private set; }
+		public FactorDescriptorTypeRefinedByArtifactSchema
+			DescriptorTypeRefinedByArtifact { get; private set; }
+		public FactorVectorUsesAxisArtifactSchema VectorUsesAxisArtifact { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -291,6 +301,16 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabVectorUnitPrefixMap = new PropertyMapping<byte, byte>(
 				VectorUnitPrefix, FabVectorUnitPrefix);
 			FabVectorValueMap = new PropertyMapping<long, long>(VectorValue, FabVectorValue);
+
+			////
+
+			CreatedByMember = new FactorCreatedByMemberSchema();
+			UsesPrimaryArtifact = new FactorUsesPrimaryArtifactSchema();
+			UsesRelatedArtifact = new FactorUsesRelatedArtifactSchema();
+			PrimaryRefinedByArtifact = new FactorPrimaryRefinedByArtifactSchema();
+			RelatedRefinedByArtifact = new FactorRelatedRefinedByArtifactSchema();
+			DescriptorTypeRefinedByArtifact = new FactorDescriptorTypeRefinedByArtifactSchema();
+			VectorUsesAxisArtifact = new FactorVectorUsesAxisArtifactSchema();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

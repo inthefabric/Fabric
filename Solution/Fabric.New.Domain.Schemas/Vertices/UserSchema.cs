@@ -1,4 +1,5 @@
-﻿using Fabric.New.Domain.Schemas.Utils;
+﻿using Fabric.New.Domain.Schemas.Edges;
+using Fabric.New.Domain.Schemas.Utils;
 
 namespace Fabric.New.Domain.Schemas.Vertices {
 	
@@ -14,6 +15,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 		public PropertyMapping<string, string> FabNameMap { get; private set; }
 		public PropertyMapping<string, string> FabPasswordMap { get; private set; }
+
+		public UserDefinesMemberSchema DefinesMember { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +62,10 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabPasswordMap = new PropertyMapping<string, string>(Password, FabPassword, true);
 			FabNameMap.ApiToDomainNote = "Encrypt Api.Password.";
 			FabNameMap.DomainToApiNote = "Leave Domain.Password encrpyted..";
+
+			////
+			
+			DefinesMember = new UserDefinesMemberSchema();
 		}
 
 	}

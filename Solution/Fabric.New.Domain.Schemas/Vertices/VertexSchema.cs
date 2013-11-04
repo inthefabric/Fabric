@@ -9,17 +9,19 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public Access GetAccess { get; protected set; }
 		public Access DeleteAccess { get; protected set; }
 
-		public DomainProperty<long> Id { get; private set; }
+		public DomainProperty<long> VertexId { get; private set; }
 		public DomainProperty<long> Timestamp { get; private set; }
-		public DomainProperty<byte> DomainType { get; private set; }
+		public DomainProperty<byte> VertexType { get; private set; }
 
 		public ApiProperty<long> FabId { get; private set; }
 		public ApiProperty<string> FabIdStr { get; private set; }
 		public ApiProperty<float> FabTimestamp { get; private set; }
+		public ApiProperty<byte> FabVertexType { get; private set; }
 
 		public PropertyMapping<long, long> FabIdMap { get; private set; }
 		public PropertyMapping<long, string> FabIdStrMap { get; private set; }
 		public PropertyMapping<long, float> FabTimestampMap { get; private set; }
+		public PropertyMapping<byte, byte> FabVertexTypeMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,14 +33,14 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Id = new DomainProperty<long>("Id", "v.id");
-			Id.IsUnique = true;
-			Id.IsIndexed = true;
+			VertexId = new DomainProperty<long>("VertexId", "v.id");
+			VertexId.IsUnique = true;
+			VertexId.IsIndexed = true;
 
-			Timestamp = new DomainProperty<long>("Timestamp", "v.ti");
+			Timestamp = new DomainProperty<long>("Timestamp", "v.ts");
 			Timestamp.IsElastic = true;
 
-			DomainType = new DomainProperty<byte>("DomainType", "v.dt");
+			VertexType = new DomainProperty<byte>("VertexType", "v.t");
 
 			////
 
@@ -59,16 +61,23 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabTimestamp.CreateAccess = Access.None;
 			FabTimestamp.ModifyAccess = Access.None;
 
+			FabVertexType = new ApiProperty<byte>("VertexType");
+			FabVertexType.GetAccess = Access.All;
+			FabVertexType.CreateAccess = Access.None;
+			FabVertexType.ModifyAccess = Access.None;
+
 			////
 
-			FabIdMap = new PropertyMapping<long, long>(Id, FabId);
+			FabIdMap = new PropertyMapping<long, long>(VertexId, FabId);
 
-			FabIdStrMap = new PropertyMapping<long, string>(Id, FabIdStr, true);
+			FabIdStrMap = new PropertyMapping<long, string>(VertexId, FabIdStr, true);
 			FabIdStrMap.DomainToApiNote = "Set Api.IdStr = Domain.Id.ToString().";
 
 			FabTimestampMap = new PropertyMapping<long, float>(Timestamp, FabTimestamp, true);
 			FabTimestampMap.ApiToDomainNote = "Convert Api.Timestamp from Unix-based seconds.";
 			FabTimestampMap.DomainToApiNote = "Convert Domain.Timestamp to Unix-based seconds.";
+
+			FabVertexTypeMap = new PropertyMapping<byte, byte>(VertexType, FabVertexType);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

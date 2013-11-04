@@ -1,7 +1,7 @@
 ﻿namespace Fabric.New.Domain {
 
 	/*================================================================================================*/
-	public enum VertexDomainType : byte {
+	public enum VertexType : byte {
 		Artifact = 0,
 		Vertex = 0,
 		//Skip = 1,

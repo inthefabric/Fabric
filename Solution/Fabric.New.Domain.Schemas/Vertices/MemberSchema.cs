@@ -1,4 +1,5 @@
-﻿using Fabric.New.Domain.Schemas.Utils;
+﻿using Fabric.New.Domain.Schemas.Edges;
+using Fabric.New.Domain.Schemas.Utils;
 
 namespace Fabric.New.Domain.Schemas.Vertices {
 	
@@ -10,6 +11,11 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public ApiProperty<byte> FabMemberType { get; private set; }
 
 		public PropertyMapping<byte, byte> FabMemberTypeMap { get; private set; }
+
+		public MemberDefinedByAppSchema DefinedByApp { get; private set; }
+		public MemberDefinedByUserSchema DefinedByUser { get; private set; }
+		public MemberCreatesArtifactSchema CreatesArtifact { get; private set; }
+		public MemberCreatesFactorSchema CreatesFactor { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,6 +38,13 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			////
 
 			FabMemberTypeMap = new PropertyMapping<byte, byte>(MemberType, FabMemberType);
+
+			////
+			
+			DefinedByApp = new MemberDefinedByAppSchema();
+			DefinedByUser = new MemberDefinedByUserSchema();
+			CreatesArtifact = new MemberCreatesArtifactSchema();
+			CreatesFactor = new MemberCreatesFactorSchema();
 		}
 
 	}
