@@ -15,13 +15,12 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactUsedAsPrimaryByFactor() : base(EdgeQuantity.ZeroOrMore) {
-			Names = new NameProvider("UsedAsPrimaryByFactor", "UsedAsPrimaryByFactors", "upbf");
-			TypeName = "UsedAsPrimaryBy";
+			SetNames("UsedAsPrimaryBy", "pb");
 			CreateFromOtherDirection = true;
 
-			Timestamp = Prop("Timestamp", "upbf.ts", (x => x.Timestamp));
-			DescriptorType = Prop("DesdcriptorType", "upbf.dt", (x => x.DescriptorType));
-			RelatedArtifactId = Prop("RelatedArtifactId", "upbf.ra",
+			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
+			DescriptorType = Prop("DesdcriptorType", "dt", (x => x.DescriptorType));
+			RelatedArtifactId = Prop("RelatedArtifactId", "ra",
 				(x => x.UsesRelatedArtifact), (x => x.ToVertexId));
 		}
 

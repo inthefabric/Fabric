@@ -41,7 +41,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	public class DescriptorTypeRefinedBy : IWeaverEdgeType {
+	public class DescriptorRefinesPrimaryWith : IWeaverEdgeType {
 
 		public string Label { get { return null; } }
 
@@ -49,7 +49,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	public class PrimaryRefinedBy : IWeaverEdgeType {
+	public class DescriptorRefinesRelatedWith : IWeaverEdgeType {
 
 		public string Label { get { return null; } }
 
@@ -57,7 +57,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	public class RelatedRefinedBy : IWeaverEdgeType {
+	public class DescriptorRefinesTypeWith : IWeaverEdgeType {
 
 		public string Label { get { return null; } }
 
@@ -105,17 +105,17 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("dm", WeaverEdgeConn.OutZeroOrMore, typeof(App),
+	[WeaverTitanEdge("pdm", WeaverEdgeConn.OutZeroOrMore, typeof(App),
 		WeaverEdgeConn.InZeroOrMore, typeof(Member))]
 	public class AppDefinesMember : EdgeBase<App, Defines, Member> {
 
-		[WeaverTitanProperty("dm.ts")]
+		[WeaverTitanProperty("pdm.ts")]
 		public virtual long Timestamp { get; set; }
 
-		[WeaverTitanProperty("dm.mt")]
+		[WeaverTitanProperty("pdm.mt")]
 		public virtual byte MemberType { get; set; }
 
-		[WeaverTitanProperty("dm.ui")]
+		[WeaverTitanProperty("pdm.ui")]
 		public virtual long UserId { get; set; }
 
 
@@ -134,7 +134,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("cbm", WeaverEdgeConn.OutOne, typeof(Artifact),
+	[WeaverTitanEdge("acbm", WeaverEdgeConn.OutOne, typeof(Artifact),
 		WeaverEdgeConn.InZeroOrMore, typeof(Member))]
 	public class ArtifactCreatedByMember : EdgeBase<Artifact, CreatedBy, Member> {
 
@@ -154,17 +154,17 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("upbf", WeaverEdgeConn.OutZeroOrMore, typeof(Artifact),
+	[WeaverTitanEdge("apbf", WeaverEdgeConn.OutZeroOrMore, typeof(Artifact),
 		WeaverEdgeConn.InZeroOrMore, typeof(Factor))]
 	public class ArtifactUsedAsPrimaryByFactor : EdgeBase<Artifact, UsedAsPrimaryBy, Factor> {
 
-		[WeaverTitanProperty("upbf.ts")]
+		[WeaverTitanProperty("apbf.ts")]
 		public virtual long Timestamp { get; set; }
 
-		[WeaverTitanProperty("upbf.dt")]
+		[WeaverTitanProperty("apbf.dt")]
 		public virtual byte DesdcriptorType { get; set; }
 
-		[WeaverTitanProperty("upbf.ra")]
+		[WeaverTitanProperty("apbf.ra")]
 		public virtual long RelatedArtifactId { get; set; }
 
 
@@ -183,17 +183,17 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("urbf", WeaverEdgeConn.OutZeroOrMore, typeof(Artifact),
+	[WeaverTitanEdge("arbf", WeaverEdgeConn.OutZeroOrMore, typeof(Artifact),
 		WeaverEdgeConn.InZeroOrMore, typeof(Factor))]
 	public class ArtifactUsedAsRelatedByFactor : EdgeBase<Artifact, UsedAsRelatedBy, Factor> {
 
-		[WeaverTitanProperty("urbf.ts")]
+		[WeaverTitanProperty("arbf.ts")]
 		public virtual long Timestamp { get; set; }
 
-		[WeaverTitanProperty("urbf.dt")]
+		[WeaverTitanProperty("arbf.dt")]
 		public virtual byte DesdcriptorType { get; set; }
 
-		[WeaverTitanProperty("urbf.pa")]
+		[WeaverTitanProperty("arbf.pa")]
 		public virtual long PrimaryArtifactId { get; set; }
 
 
@@ -212,7 +212,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("cbm", WeaverEdgeConn.OutOne, typeof(Factor),
+	[WeaverTitanEdge("fcbm", WeaverEdgeConn.OutOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Member))]
 	public class FactorCreatedByMember : EdgeBase<Factor, CreatedBy, Member> {
 
@@ -232,9 +232,9 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("drba", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
+	[WeaverTitanEdge("frpa", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorDescriptorTypeRefinedByArtifact : EdgeBase<Factor, DescriptorTypeRefinedBy, Artifact> {
+	public class FactorDescriptorRefinesPrimaryWithArtifact : EdgeBase<Factor, DescriptorRefinesPrimaryWith, Artifact> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -252,9 +252,9 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("prba", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
+	[WeaverTitanEdge("frra", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorPrimaryRefinedByArtifact : EdgeBase<Factor, PrimaryRefinedBy, Artifact> {
+	public class FactorDescriptorRefinesRelatedWithArtifact : EdgeBase<Factor, DescriptorRefinesRelatedWith, Artifact> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -272,9 +272,9 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("rrba", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
+	[WeaverTitanEdge("frta", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
-	public class FactorRelatedRefinedByArtifact : EdgeBase<Factor, RelatedRefinedBy, Artifact> {
+	public class FactorDescriptorRefinesTypeWithArtifact : EdgeBase<Factor, DescriptorRefinesTypeWith, Artifact> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -292,7 +292,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("upa", WeaverEdgeConn.OutOne, typeof(Factor),
+	[WeaverTitanEdge("fpa", WeaverEdgeConn.OutOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
 	public class FactorUsesPrimaryArtifact : EdgeBase<Factor, UsesPrimary, Artifact> {
 
@@ -312,7 +312,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("ura", WeaverEdgeConn.OutOne, typeof(Factor),
+	[WeaverTitanEdge("fra", WeaverEdgeConn.OutOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
 	public class FactorUsesRelatedArtifact : EdgeBase<Factor, UsesRelated, Artifact> {
 
@@ -332,7 +332,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("uaa", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
+	[WeaverTitanEdge("faa", WeaverEdgeConn.OutZeroOrOne, typeof(Factor),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
 	public class FactorVectorUsesAxisArtifact : EdgeBase<Factor, VectorUsesAxis, Artifact> {
 
@@ -352,14 +352,14 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("ca", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
+	[WeaverTitanEdge("mca", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
 	public class MemberCreatesArtifact : EdgeBase<Member, Creates, Artifact> {
 
-		[WeaverTitanProperty("ca.ts")]
+		[WeaverTitanProperty("mca.ts")]
 		public virtual long Timestamp { get; set; }
 
-		[WeaverTitanProperty("ca.vt")]
+		[WeaverTitanProperty("mca.vt")]
 		public virtual byte VertexType { get; set; }
 
 
@@ -378,20 +378,20 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("cf", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
+	[WeaverTitanEdge("mcf", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
 		WeaverEdgeConn.InZeroOrMore, typeof(Factor))]
 	public class MemberCreatesFactor : EdgeBase<Member, Creates, Factor> {
 
-		[WeaverTitanProperty("cf.ts")]
+		[WeaverTitanProperty("mcf.ts")]
 		public virtual long Timestamp { get; set; }
 
-		[WeaverTitanProperty("cf.dt")]
+		[WeaverTitanProperty("mcf.dt")]
 		public virtual byte DescriptorType { get; set; }
 
-		[WeaverTitanProperty("cf.pa")]
+		[WeaverTitanProperty("mcf.pa")]
 		public virtual long PrimaryArtifactId { get; set; }
 
-		[WeaverTitanProperty("cf.ra")]
+		[WeaverTitanProperty("mcf.ra")]
 		public virtual long RelatedArtifactId { get; set; }
 
 
@@ -410,7 +410,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("dba", WeaverEdgeConn.OutOne, typeof(Member),
+	[WeaverTitanEdge("mdbp", WeaverEdgeConn.OutOne, typeof(Member),
 		WeaverEdgeConn.InZeroOrMore, typeof(App))]
 	public class MemberDefinedByApp : EdgeBase<Member, DefinedBy, App> {
 
@@ -430,7 +430,7 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("dbu", WeaverEdgeConn.OutOne, typeof(Member),
+	[WeaverTitanEdge("mdbu", WeaverEdgeConn.OutOne, typeof(Member),
 		WeaverEdgeConn.InZeroOrMore, typeof(User))]
 	public class MemberDefinedByUser : EdgeBase<Member, DefinedBy, User> {
 
@@ -450,17 +450,17 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("dm", WeaverEdgeConn.OutZeroOrMore, typeof(User),
+	[WeaverTitanEdge("udm", WeaverEdgeConn.OutZeroOrMore, typeof(User),
 		WeaverEdgeConn.InZeroOrMore, typeof(Member))]
 	public class UserDefinesMember : EdgeBase<User, Defines, Member> {
 
-		[WeaverTitanProperty("dm.ts")]
+		[WeaverTitanProperty("udm.ts")]
 		public virtual long Timestamp { get; set; }
 
-		[WeaverTitanProperty("dm.mt")]
+		[WeaverTitanProperty("udm.mt")]
 		public virtual byte MemberType { get; set; }
 
-		[WeaverTitanProperty("dm.ai")]
+		[WeaverTitanProperty("udm.pi")]
 		public virtual long AppId { get; set; }
 
 

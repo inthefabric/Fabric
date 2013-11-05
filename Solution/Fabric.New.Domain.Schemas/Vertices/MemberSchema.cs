@@ -41,10 +41,10 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			DefinedByApp = new MemberDefinedByAppSchema();
-			DefinedByUser = new MemberDefinedByUserSchema();
-			CreatesArtifact = new MemberCreatesArtifactSchema();
-			CreatesFactor = new MemberCreatesFactorSchema();
+			//DefinedByApp = new MemberDefinedByAppSchema();
+			//DefinedByUser = new MemberDefinedByUserSchema();
+			//CreatesArtifact = new MemberCreatesArtifactSchema();
+			//CreatesFactor = new MemberCreatesFactorSchema();
 		}
 
 	}

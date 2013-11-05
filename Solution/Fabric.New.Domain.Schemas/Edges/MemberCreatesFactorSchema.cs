@@ -17,15 +17,14 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberCreatesFactorSchema() : base(EdgeQuantity.ZeroOrMore) {
-			Names = new NameProvider("CreatesFactor", "CreatesFactors", "cf");
-			TypeName = "Creates";
+			SetNames("Creates", "c");
 			CreateFromOtherDirection = true;
 
-			Timestamp = Prop("Timestamp", "cf.ts", (x => x.Timestamp));
-			DescriptorType = Prop("DescriptorType", "cf.dt", (x => x.DescriptorType));
-			PrimaryArtifactId = Prop("PrimaryArtifactId", "cf.pa",
+			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
+			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType));
+			PrimaryArtifactId = Prop("PrimaryArtifactId", "pa",
 				(x => x.UsesPrimaryArtifact), (x => x.ToVertexId));
-			RelatedArtifactId = Prop("RelatedArtifactId", "cf.ra",
+			RelatedArtifactId = Prop("RelatedArtifactId", "ra",
 				(x => x.UsesRelatedArtifact), (x => x.ToVertexId));
 		}
 

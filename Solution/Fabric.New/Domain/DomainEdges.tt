@@ -35,17 +35,18 @@ foreach ( string tn in edgeTypeNames ) {
 
 foreach ( IEdgeSchema e in edgeSchemas ) {
 	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
-	IVertexSchema fv = e.GetFromVertex();
-	IVertexSchema tv = e.GetToVertex();
+	string className = e.GetClassNameDom();
+	string fv = e.GetFromVertex().Names.Domain;
+	string tv = e.GetToVertex().Names.Domain;
 	string outConn = e.GetOutgoingWeaverEdgeConn();
 	string inConn = e.GetIncomingWeaverEdgeConn();
 #>
 
 
 	/*================================================================================================*/
-	[WeaverTitanEdge("<#= e.Names.Database #>", WeaverEdgeConn.<#= outConn #>, typeof(<#= fv.Names.Domain #>),
-		WeaverEdgeConn.<#= inConn #>, typeof(<#= tv.Names.Domain #>))]
-	public class <#= fv.Names.Domain #><#= e.Names.Domain #> : EdgeBase<<#= fv.Names.Domain #>, <#= e.TypeName #>, <#= tv.Names.Domain #>> {
+	[WeaverTitanEdge("<#= e.NameDb #>", WeaverEdgeConn.<#= outConn #>, typeof(<#= fv #>),
+		WeaverEdgeConn.<#= inConn #>, typeof(<#= tv #>))]
+	public class <#= className #> : EdgeBase<<#= fv #>, <#= e.NameDom #>, <#= tv #>> {
 <#
 	foreach ( EdgeProperty ep in props ) {
 #>
@@ -59,12 +60,12 @@ foreach ( IEdgeSchema e in edgeSchemas ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual <#= fv.Names.Domain #> From<#= fv.Names.Domain #> {
+		public virtual <#= fv #> From<#= fv #> {
 			get { return OutVertex; }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual <#= tv.Names.Domain #> To<#= tv.Names.Domain #> {
+		public virtual <#= tv #> To<#= tv #> {
 			get { return InVertex; }
 		}
 

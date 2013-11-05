@@ -18,9 +18,9 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			CreatedByMember = new ArtifactCreatedByMemberSchema();
-			UsedAsPrimaryByFactor = new ArtifactUsedAsPrimaryByFactor();
-			UsedAsRelatedByFactor = new ArtifactUsedAsRelatedByFactor();
+			//CreatedByMember = new ArtifactCreatedByMemberSchema();
+			//UsedAsPrimaryByFactor = new ArtifactUsedAsPrimaryByFactor();
+			//UsedAsRelatedByFactor = new ArtifactUsedAsRelatedByFactor();
 		}
 
 	}

@@ -25,7 +25,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	string baseName = (vp == null ? "VertexBase" : vp.Names.Domain);
 
 	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
-	IList<IEdgeSchema> edges = SchemaUtil.GetVertexEdges(v, false);
+	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, false);
 #>
 
 
@@ -52,9 +52,9 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		}
 <#
 	foreach ( IEdgeSchema es in edges ) {
-		string edgeClass = es.GetFromVertex().Names.Domain+es.Names.Domain;
+		string edgeClass = es.GetClassNameDom();
 		string outConn = es.GetOutgoingWeaverEdgeConn();
-		string edgeName = (outConn.IndexOf("More") == -1 ? es.Names.Domain : es.Names.DomainPlural);
+		string edgeName = es.GetPropNameDom(outConn.IndexOf("More") != -1);
 #>
 
 		/*--------------------------------------------------------------------------------------------*/

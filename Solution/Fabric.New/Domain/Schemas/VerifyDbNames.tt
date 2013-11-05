@@ -3,29 +3,27 @@
 <#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
 <#@ output extension=".cs" #>
 
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-namespace Fabric.New.Domain.Schemas {
+/*
 
-	/*================================================================================================*/
-	public static class VerifyDbNames {
 
-		/*
+--- VERTICES---
 <#
-IEnumerable<Type> vertexTypes = SchemaUtil.GetVertexTypes();
+IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
 var vertMap = new HashSet<string>();
 var propMap = new HashSet<string>();
 
-foreach ( Type type in vertexTypes ) {
-	IVertexSchema v = SchemaUtil.GetVertex(type);
+foreach ( IVertexSchema v in verts ) {
 #>
 
-		<#= v.Names.Database #> (<#= v.Names.Domain #>)
+<#= v.Names.Database #> (<#= v.Names.Domain #>)
 <#
 	if ( vertMap.Contains(v.Names.Database) ) {
 		throw new Exception("Duplicate vertex name: "+v.Names.Database);
@@ -36,7 +34,7 @@ foreach ( Type type in vertexTypes ) {
 
 	foreach ( DomainProperty dp in props ) {
 #>
-		<#= dp.DbName #> (<#= v.Names.Domain #>.<#= dp.Name #>)
+<#= dp.DbName #> (<#= dp.Name #>)
 <#
 		int dotI = dp.DbName.IndexOf(".");
 
@@ -58,8 +56,47 @@ foreach ( Type type in vertexTypes ) {
 } // end vertex loop
 #>
 
-		*/
 
+--- EDGES ---
+<#
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
+var edgeMap = new HashSet<string>();
+propMap = new HashSet<string>();
+
+foreach ( IEdgeSchema e in edges ) {
+#>
+
+<#= e.NameDb #> (<#= e.GetFromVertex().Names.Domain #>-<#= e.NameDom #>-<#= e.GetToVertex().Names.Domain #>)
+<#
+	if ( edgeMap.Contains(e.NameDb) ) {
+		throw new Exception("Duplicate vertex name: "+e.NameDb);
 	}
 
-}
+	edgeMap.Add(e.NameDb);
+	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+
+	foreach ( EdgeProperty ep in props ) {
+#>
+<#= ep.DbName #> (<#= e.NameDom #>.<#= ep.Name #>)
+<#
+		int dotI = ep.DbName.IndexOf(".");
+
+		if ( dotI == -1 ) {
+			throw new Exception("Property missing dot: "+ep.DbName);
+		}
+
+		if ( ep.DbName.Substring(0, dotI) != e.NameDb ) {
+			throw new Exception("Property invalid prefix: "+ep.DbName+" / "+e.NameDb);
+		}
+			
+		if ( propMap.Contains(ep.DbName) ) {
+			throw new Exception("Duplicate property name: "+ep.DbName);
+		}
+
+		propMap.Add(ep.DbName);
+
+	} // end property loop
+} // end vertex loop
+#>
+
+*/

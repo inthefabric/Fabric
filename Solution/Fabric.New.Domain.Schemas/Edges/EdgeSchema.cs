@@ -13,8 +13,9 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			ZeroOrMore,
 		};
 
-		public NameProvider Names { get; protected set; }
-		public string TypeName { get; internal set; }
+		public string NameDom { get; private set; }
+		public string NameApi { get; private set; }
+		public string NameDb { get; private set; }
 		public Type FromVertexType { get; private set; }
 		public Type ToVertexType { get; private set; }
 		public EdgeQuantity Quantity { get; private set; }
@@ -36,6 +37,13 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			CreateToVertexId = Access.Internal;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected void SetNames(string pNameDomain, string pNameDb, string pNameApi=null) {
+			NameDom = pNameDomain;
+			NameDb = GetFromVertex().Names.Database+pNameDb+GetToVertex().Names.Database;
+			NameApi = (pNameApi ?? pNameDomain);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -46,6 +54,30 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public IVertexSchema GetToVertex() {
 			return SchemaUtil.GetVertex(ToVertexType);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetClassNameDom() {
+			return GetFromVertex().Names.Domain+GetPropNameDom();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetClassNameApi() {
+			return GetFromVertex().Names.Api+GetPropNameApi();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetPropNameDom(bool pPlural=false) {
+			NameProvider np = GetToVertex().Names;
+			return NameDom+(pPlural ? np.DomainPlural : np.Domain);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetPropNameApi(bool pPlural=false) {
+			NameProvider np = GetToVertex().Names;
+			return NameApi+(pPlural ? np.ApiPlural : np.Api).Substring(3)+"Id";
 		}
 
 
@@ -94,14 +126,15 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public EdgeProperty<TTo, TDataType> Prop<TDataType>(string pName, string pDbName, 
 													Func<TTo, DomainProperty<TDataType>> pDomPropFunc) {
-			return new EdgeProperty<TTo, TDataType>(pName, pDbName, pDomPropFunc);
+			return new EdgeProperty<TTo, TDataType>(pName, NameDb+"."+pDbName, pDomPropFunc);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public EdgeProperty<TTo, TEdge, TDataType> Prop<TEdge, TDataType>(string pName, string pDbName,
 					Func<TTo, TEdge> pEdgeFunc, Func<TEdge, DomainProperty<TDataType>> pEdgeDomPropFunc)
 					where TEdge : EdgeSchema {
-			return new EdgeProperty<TTo, TEdge, TDataType>(pName, pDbName, pEdgeFunc, pEdgeDomPropFunc);
+			return new EdgeProperty<TTo, TEdge, TDataType>(
+				pName, NameDb+"."+pDbName, pEdgeFunc, pEdgeDomPropFunc);
 		}
 
 	}

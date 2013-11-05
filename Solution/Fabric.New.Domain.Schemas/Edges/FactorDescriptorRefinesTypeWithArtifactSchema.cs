@@ -4,14 +4,14 @@ using Fabric.New.Domain.Schemas.Vertices;
 namespace Fabric.New.Domain.Schemas.Edges {
 	
 	/*================================================================================================*/
-	public class FactorRelatedRefinedByArtifactSchema : EdgeSchema<FactorSchema, ArtifactSchema> {
+	public class FactorDescriptorRefinesTypeWithArtifactSchema : EdgeSchema<FactorSchema, ArtifactSchema> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FactorRelatedRefinedByArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
-			Names = new NameProvider("RelatedRefinedByArtifact", "RelatedRefinedByArtifacts", "rrba");
-			TypeName = "RelatedRefinedBy";
+		public FactorDescriptorRefinesTypeWithArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
+			//TODO: set this (and other edges) to IsNullable=true
+			SetNames("DescriptorRefinesTypeWith", "rt", "RefinesTypeWith");
 			CreateToVertexId = Access.All;
 			SubObjectOf = "FabDescriptor";
 		}

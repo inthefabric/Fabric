@@ -45,9 +45,9 @@
     <Compile Include="Edges\ArtifactUsedAsPrimaryByFactorSchema.cs" />
     <Compile Include="Edges\ArtifactUsedAsRelatedByFactorSchema.cs" />
     <Compile Include="Edges\IEdgeSchema.cs" />
-    <Compile Include="Edges\FactorDescriptorTypeRefinedByArtifactSchema.cs" />
-    <Compile Include="Edges\FactorRelatedRefinedByArtifactSchema.cs" />
-    <Compile Include="Edges\FactorPrimaryRefinedByArtifactSchema.cs" />
+    <Compile Include="Edges\FactorDescriptorRefinesTypeWithArtifactSchema.cs" />
+    <Compile Include="Edges\FactorDescriptorRefinesRelatedWithArtifactSchema.cs" />
+    <Compile Include="Edges\FactorDescriptorRefinesPrimaryWithArtifactSchema.cs" />
     <Compile Include="Edges\FactorVectorUsesAxisArtifactSchema.cs" />
     <Compile Include="Edges\FactorCreatedByMemberSchema.cs" />
     <Compile Include="Edges\FactorUsesRelatedArtifactSchema.cs" />

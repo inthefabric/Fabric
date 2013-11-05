@@ -85,20 +85,6 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<IEdgeSchema> GetVertexEdges(IVertexSchema pVertex, bool pCreateMode=false) {
-			Type ept = typeof(EdgeSchema);
-
-			return pVertex
-				.GetType()
-				.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
-				.Where(x => x.PropertyType.IsSubclassOf(ept))
-				.Select(x => (IEdgeSchema)x.GetValue(pVertex, null))
-				.Where(x => (!pCreateMode || 
-					(x.CreateToVertexId != Access.None && !x.CreateFromOtherDirection)))
-				.ToList();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public static IDictionary<string, IList<ApiProperty>> 
 													GetVertexApiPropertySubMap(IVertexSchema pVertex) {
 			IList<ApiProperty> props = GetVertexApiProperties(pVertex);
@@ -178,6 +164,18 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public static IList<IEdgeSchema> GetEdgeSchemasForVertex(
+														IVertexSchema pVertex, bool pCreateMode=false) {
+			Type vt = pVertex.GetType();
+
+			return GetEdgeSchemas()
+				.Where(x => x.FromVertexType == vt)
+				.Where(x => (!pCreateMode || 
+					(x.CreateToVertexId != Access.None && !x.CreateFromOtherDirection)))
+				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public static T GetEdge<T>() where T : IEdgeSchema {
 			return (T)GetEdge(typeof(T));
 		}
@@ -199,8 +197,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 			var typeNames = new HashSet<string>();
 
 			foreach ( IEdgeSchema es in edges ) {
-				if ( !typeNames.Contains(es.TypeName) ) {
-					typeNames.Add(es.TypeName);
+				if ( !typeNames.Contains(es.NameDom) ) {
+					typeNames.Add(es.NameDom);
 				}
 			}
 

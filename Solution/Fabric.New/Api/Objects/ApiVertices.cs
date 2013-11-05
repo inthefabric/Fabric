@@ -463,7 +463,7 @@ namespace Fabric.New.Api.Objects {
 	public class CreateFabArtifact : CreateFabVertex {
 		
 		//[Access(Internal)]
-		public virtual long CreatedByMember { get; set; }
+		public virtual long CreatedByMemberId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -472,7 +472,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate edges
-			ValidVertexId("CreatedByMember", CreatedByMember);
+			ValidVertexId("CreatedBy", CreatedByMemberId);
 		}
 
 	}
@@ -572,13 +572,13 @@ namespace Fabric.New.Api.Objects {
 		public virtual string Note { get; set; }
 		
 		//[Access(Internal)]
-		public virtual long CreatedByMember { get; set; }
+		public virtual long CreatedByMemberId { get; set; }
 		
 		//[Access(All)]
-		public virtual long UsesPrimaryArtifact { get; set; }
+		public virtual long UsesPrimaryArtifactId { get; set; }
 		
 		//[Access(All)]
-		public virtual long UsesRelatedArtifact { get; set; }
+		public virtual long UsesRelatedArtifactId { get; set; }
 
 		public CreateFabDescriptor Descriptor { get; set; }
 
@@ -608,9 +608,9 @@ namespace Fabric.New.Api.Objects {
 			LenMax("Note", Note, 256);
 
 			//Validate edges
-			ValidVertexId("CreatedByMember", CreatedByMember);
-			ValidVertexId("UsesPrimaryArtifact", UsesPrimaryArtifact);
-			ValidVertexId("UsesRelatedArtifact", UsesRelatedArtifact);
+			ValidVertexId("CreatedBy", CreatedByMemberId);
+			ValidVertexId("UsesPrimary", UsesPrimaryArtifactId);
+			ValidVertexId("UsesRelated", UsesRelatedArtifactId);
 		}
 
 	}
@@ -623,13 +623,13 @@ namespace Fabric.New.Api.Objects {
 		public virtual byte Type { get; set; }
 		
 		//[Access(All)]
-		public virtual long PrimaryRefinedByArtifact { get; set; }
+		public virtual long RefinesPrimaryWithArtifactId { get; set; }
 		
 		//[Access(All)]
-		public virtual long RelatedRefinedByArtifact { get; set; }
+		public virtual long RefinesRelatedWithArtifactId { get; set; }
 		
 		//[Access(All)]
-		public virtual long DescriptorTypeRefinedByArtifact { get; set; }
+		public virtual long RefinesTypeWithArtifactId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -641,9 +641,9 @@ namespace Fabric.New.Api.Objects {
 			ValidEnum<FactorDescriptorType>("Descriptor.Type", Type);
 
 			//Validate edges
-			ValidVertexId("Descriptor.PrimaryRefinedByArtifact", PrimaryRefinedByArtifact);
-			ValidVertexId("Descriptor.RelatedRefinedByArtifact", RelatedRefinedByArtifact);
-			ValidVertexId("Descriptor.DescriptorTypeRefinedByArtifact", DescriptorTypeRefinedByArtifact);
+			ValidVertexId("Descriptor.RefinesPrimaryWith", RefinesPrimaryWithArtifactId);
+			ValidVertexId("Descriptor.RefinesRelatedWith", RefinesRelatedWithArtifactId);
+			ValidVertexId("Descriptor.RefinesTypeWith", RefinesTypeWithArtifactId);
 		}
 
 	}
@@ -813,7 +813,7 @@ namespace Fabric.New.Api.Objects {
 		public virtual long Value { get; set; }
 		
 		//[Access(All)]
-		public virtual long VectorUsesAxisArtifact { get; set; }
+		public virtual long UsesAxisArtifactId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -833,7 +833,7 @@ namespace Fabric.New.Api.Objects {
 			//Validate Value
 
 			//Validate edges
-			ValidVertexId("Vector.VectorUsesAxisArtifact", VectorUsesAxisArtifact);
+			ValidVertexId("Vector.UsesAxis", UsesAxisArtifactId);
 		}
 
 	}
@@ -886,10 +886,10 @@ namespace Fabric.New.Api.Objects {
 		public virtual byte Type { get; set; }
 		
 		//[Access(Internal)]
-		public virtual long DefinedByApp { get; set; }
+		public virtual long DefinedByAppId { get; set; }
 		
 		//[Access(Internal)]
-		public virtual long DefinedByUser { get; set; }
+		public virtual long DefinedByUserId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -901,8 +901,8 @@ namespace Fabric.New.Api.Objects {
 			ValidEnum<MemberType>("Type", Type);
 
 			//Validate edges
-			ValidVertexId("DefinedByApp", DefinedByApp);
-			ValidVertexId("DefinedByUser", DefinedByUser);
+			ValidVertexId("DefinedBy", DefinedByAppId);
+			ValidVertexId("DefinedBy", DefinedByUserId);
 		}
 
 	}

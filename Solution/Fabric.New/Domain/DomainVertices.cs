@@ -227,6 +227,21 @@ namespace Fabric.New.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual FactorDescriptorRefinesPrimaryWithArtifact DescriptorRefinesPrimaryWithArtifact {
+			get { return NewEdge<FactorDescriptorRefinesPrimaryWithArtifact>(WeaverEdgeConn.OutZeroOrOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual FactorDescriptorRefinesRelatedWithArtifact DescriptorRefinesRelatedWithArtifact {
+			get { return NewEdge<FactorDescriptorRefinesRelatedWithArtifact>(WeaverEdgeConn.OutZeroOrOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual FactorDescriptorRefinesTypeWithArtifact DescriptorRefinesTypeWithArtifact {
+			get { return NewEdge<FactorDescriptorRefinesTypeWithArtifact>(WeaverEdgeConn.OutZeroOrOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesPrimaryArtifact UsesPrimaryArtifact {
 			get { return NewEdge<FactorUsesPrimaryArtifact>(WeaverEdgeConn.OutOne); }
 		}
@@ -234,21 +249,6 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual FactorUsesRelatedArtifact UsesRelatedArtifact {
 			get { return NewEdge<FactorUsesRelatedArtifact>(WeaverEdgeConn.OutOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorPrimaryRefinedByArtifact PrimaryRefinedByArtifact {
-			get { return NewEdge<FactorPrimaryRefinedByArtifact>(WeaverEdgeConn.OutZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorRelatedRefinedByArtifact RelatedRefinedByArtifact {
-			get { return NewEdge<FactorRelatedRefinedByArtifact>(WeaverEdgeConn.OutZeroOrOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual FactorDescriptorTypeRefinedByArtifact DescriptorTypeRefinedByArtifact {
-			get { return NewEdge<FactorDescriptorTypeRefinedByArtifact>(WeaverEdgeConn.OutZeroOrOne); }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -333,16 +333,6 @@ namespace Fabric.New.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberDefinedByApp DefinedByApp {
-			get { return NewEdge<MemberDefinedByApp>(WeaverEdgeConn.OutOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public virtual MemberDefinedByUser DefinedByUser {
-			get { return NewEdge<MemberDefinedByUser>(WeaverEdgeConn.OutOne); }
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesArtifact CreatesArtifacts {
 			get { return NewEdge<MemberCreatesArtifact>(WeaverEdgeConn.OutZeroOrMore); }
 		}
@@ -350,6 +340,16 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesFactor CreatesFactors {
 			get { return NewEdge<MemberCreatesFactor>(WeaverEdgeConn.OutZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual MemberDefinedByApp DefinedByApp {
+			get { return NewEdge<MemberDefinedByApp>(WeaverEdgeConn.OutOne); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual MemberDefinedByUser DefinedByUser {
+			get { return NewEdge<MemberDefinedByUser>(WeaverEdgeConn.OutOne); }
 		}
 
 

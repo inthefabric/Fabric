@@ -1,5 +1,4 @@
-﻿using Fabric.New.Domain.Schemas.Utils;
-using Fabric.New.Domain.Schemas.Vertices;
+﻿using Fabric.New.Domain.Schemas.Vertices;
 
 namespace Fabric.New.Domain.Schemas.Edges {
 	
@@ -10,8 +9,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactCreatedByMemberSchema() : base(EdgeQuantity.One) {
-			Names = new NameProvider("CreatedByMember", "CreatedByMembers", "cbm");
-			TypeName = "CreatedBy";
+			SetNames("CreatedBy", "cb");
 		}
 
 	}

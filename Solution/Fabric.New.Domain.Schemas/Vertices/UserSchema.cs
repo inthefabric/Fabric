@@ -65,7 +65,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			DefinesMember = new UserDefinesMemberSchema();
+			//DefinesMember = new UserDefinesMemberSchema();
 		}
 
 	}

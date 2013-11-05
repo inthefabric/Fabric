@@ -14,13 +14,12 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public UserDefinesMemberSchema() : base(EdgeQuantity.ZeroOrMore) {
-			Names = new NameProvider("DefinesMember", "DefinesMembers", "dm");
-			TypeName = "Defines";
+			SetNames("Defines", "d");
 			CreateFromOtherDirection = true;
 
-			Timestamp = Prop("Timestamp", "dm.ts", (x => x.Timestamp));
-			MemberType = Prop("MemberType", "dm.mt", (x => x.MemberType));
-			AppId = Prop("AppId", "dm.ai", (x => x.DefinedByApp), (x => x.ToVertexId));
+			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
+			MemberType = Prop("MemberType", "mt", (x => x.MemberType));
+			AppId = Prop("AppId", "pi", (x => x.DefinedByApp), (x => x.ToVertexId));
 		}
 
 	}

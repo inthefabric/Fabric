@@ -7,8 +7,9 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public interface IEdgeSchema {
 
-		NameProvider Names { get; }
-		string TypeName { get; }
+		string NameDom { get; }
+		string NameApi { get; }
+		string NameDb { get; }
 		Type FromVertexType { get; }
 		Type ToVertexType { get; }
 		EdgeSchema.EdgeQuantity Quantity { get; }
@@ -25,6 +26,20 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 		/*--------------------------------------------------------------------------------------------*/
 		IVertexSchema GetToVertex();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		string GetClassNameDom();
+
+		/*--------------------------------------------------------------------------------------------*/
+		string GetClassNameApi();
+
+		/*--------------------------------------------------------------------------------------------*/
+		string GetPropNameDom(bool pPlural=false);
+
+		/*--------------------------------------------------------------------------------------------*/
+		string GetPropNameApi(bool pPlural=false);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

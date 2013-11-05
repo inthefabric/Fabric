@@ -79,9 +79,9 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public FactorCreatedByMemberSchema CreatedByMember { get; private set; }
 		public FactorUsesPrimaryArtifactSchema UsesPrimaryArtifact { get; private set; }
 		public FactorUsesRelatedArtifactSchema UsesRelatedArtifact { get; private set; }
-		public FactorPrimaryRefinedByArtifactSchema PrimaryRefinedByArtifact { get; private set; }
-		public FactorRelatedRefinedByArtifactSchema RelatedRefinedByArtifact { get; private set; }
-		public FactorDescriptorTypeRefinedByArtifactSchema
+		public FactorDescriptorRefinesPrimaryWithArtifactSchema PrimaryRefinedByArtifact { get; private set; }
+		public FactorDescriptorRefinesRelatedWithArtifactSchema RelatedRefinedByArtifact { get; private set; }
+		public FactorDescriptorRefinesTypeWithArtifactSchema
 			DescriptorTypeRefinedByArtifact { get; private set; }
 		public FactorVectorUsesAxisArtifactSchema VectorUsesAxisArtifact { get; private set; }
 
@@ -304,13 +304,13 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			CreatedByMember = new FactorCreatedByMemberSchema();
-			UsesPrimaryArtifact = new FactorUsesPrimaryArtifactSchema();
-			UsesRelatedArtifact = new FactorUsesRelatedArtifactSchema();
-			PrimaryRefinedByArtifact = new FactorPrimaryRefinedByArtifactSchema();
-			RelatedRefinedByArtifact = new FactorRelatedRefinedByArtifactSchema();
-			DescriptorTypeRefinedByArtifact = new FactorDescriptorTypeRefinedByArtifactSchema();
-			VectorUsesAxisArtifact = new FactorVectorUsesAxisArtifactSchema();
+			//CreatedByMember = new FactorCreatedByMemberSchema();
+			//UsesPrimaryArtifact = new FactorUsesPrimaryArtifactSchema();
+			//UsesRelatedArtifact = new FactorUsesRelatedArtifactSchema();
+			//PrimaryRefinedByArtifact = new FactorDescriptorRefinesPrimaryWithArtifactSchema();
+			//RelatedRefinedByArtifact = new FactorDescriptorRefinesRelatedWithArtifactSchema();
+			//DescriptorTypeRefinedByArtifact = new FactorDescriptorRefinesTypeWithArtifactSchema();
+			//VectorUsesAxisArtifact = new FactorVectorUsesAxisArtifactSchema();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

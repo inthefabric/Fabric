@@ -12,12 +12,12 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public NameProvider(string pDomain, string pDomainPlural, string pDatabase) {
+		public NameProvider(string pDomain, string pDomainPlural, string pDatabase, bool pFab=true) {
 			Domain = pDomain;
 			DomainPlural = pDomainPlural;
 			Database = pDatabase;
-			Api = "Fab"+pDomain;
-			ApiPlural = "Fab"+pDomainPlural;
+			Api = (pFab ? "Fab" : "")+pDomain;
+			ApiPlural = (pFab ? "Fab" : "")+pDomainPlural;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

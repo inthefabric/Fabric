@@ -2,93 +2,140 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-namespace Fabric.New.Domain.Schemas {
+/*
 
-	/*================================================================================================*/
-	public static class VerifyDbNames {
 
-		/*
+--- VERTICES---
 
-		p (App)
-		p.na (App.Name)
-		p.nk (App.NameKey)
-		p.se (App.Secret)
+p (App)
+p.na (Name)
+p.nk (NameKey)
+p.se (Secret)
 
-		a (Artifact)
+a (Artifact)
 
-		c (Class)
-		c.na (Class.Name)
-		c.nk (Class.NameKey)
-		c.di (Class.Disamb)
-		c.no (Class.Note)
+c (Class)
+c.na (Name)
+c.nk (NameKey)
+c.di (Disamb)
+c.no (Note)
 
-		e (Email)
-		e.ad (Email.Address)
-		e.co (Email.Code)
-		e.ve (Email.Verified)
+e (Email)
+e.ad (Address)
+e.co (Code)
+e.ve (Verified)
 
-		f (Factor)
-		f.at (Factor.AssertionType)
-		f.de (Factor.IsDefining)
-		f.no (Factor.Note)
-		f.det (Factor.DescriptorType)
-		f.dit (Factor.DirectorType)
-		f.dip (Factor.DirectorPrimaryAction)
-		f.dir (Factor.DirectorRelatedAction)
-		f.evt (Factor.EventorType)
-		f.evd (Factor.EventorDateTime)
-		f.idt (Factor.IdentorType)
-		f.idv (Factor.IdentorValue)
-		f.lot (Factor.LocatorType)
-		f.lox (Factor.LocatorValueX)
-		f.loy (Factor.LocatorValueY)
-		f.loz (Factor.LocatorValueZ)
-		f.vet (Factor.VectorType)
-		f.veu (Factor.VectorUnit)
-		f.vep (Factor.VectorUnitPrefix)
-		f.vev (Factor.VectorValue)
+f (Factor)
+f.at (AssertionType)
+f.de (IsDefining)
+f.no (Note)
+f.det (DescriptorType)
+f.dit (DirectorType)
+f.dip (DirectorPrimaryAction)
+f.dir (DirectorRelatedAction)
+f.evt (EventorType)
+f.evd (EventorDateTime)
+f.idt (IdentorType)
+f.idv (IdentorValue)
+f.lot (LocatorType)
+f.lox (LocatorValueX)
+f.loy (LocatorValueY)
+f.loz (LocatorValueZ)
+f.vet (VectorType)
+f.veu (VectorUnit)
+f.vep (VectorUnitPrefix)
+f.vev (VectorValue)
 
-		i (Instance)
-		i.na (Instance.Name)
-		i.di (Instance.Disamb)
-		i.no (Instance.Note)
+i (Instance)
+i.na (Name)
+i.di (Disamb)
+i.no (Note)
 
-		m (Member)
-		m.at (Member.MemberType)
+m (Member)
+m.at (MemberType)
 
-		oa (OauthAccess)
-		oa.to (OauthAccess.Token)
-		oa.re (OauthAccess.Refresh)
-		oa.ex (OauthAccess.Expires)
-		oa.co (OauthAccess.IsClientOnly)
+oa (OauthAccess)
+oa.to (Token)
+oa.re (Refresh)
+oa.ex (Expires)
+oa.co (IsClientOnly)
 
-		od (OauthDomain)
-		od.do (OauthDomain.Domain)
+od (OauthDomain)
+od.do (Domain)
 
-		og (OauthGrant)
-		og.ru (OauthGrant.RedirectUri)
-		og.co (OauthGrant.Code)
-		og.ex (OauthGrant.Expires)
+og (OauthGrant)
+og.ru (RedirectUri)
+og.co (Code)
+og.ex (Expires)
 
-		os (OauthScope)
-		os.al (OauthScope.Allow)
+os (OauthScope)
+os.al (Allow)
 
-		r (Url)
-		r.na (Url.Name)
-		r.fp (Url.FullPath)
+r (Url)
+r.na (Name)
+r.fp (FullPath)
 
-		u (User)
-		u.na (User.Name)
-		u.nk (User.NameKey)
-		u.pa (User.Password)
+u (User)
+u.na (Name)
+u.nk (NameKey)
+u.pa (Password)
 
-		v (Vertex)
-		v.id (Vertex.VertexId)
-		v.ts (Vertex.Timestamp)
-		v.t (Vertex.VertexType)
+v (Vertex)
+v.id (VertexId)
+v.ts (Timestamp)
+v.t (VertexType)
 
-		*/
 
-	}
+--- EDGES ---
 
-}
+pdm (App-Defines-Member)
+pdm.ts (Defines.Timestamp)
+pdm.mt (Defines.MemberType)
+pdm.ui (Defines.UserId)
+
+acbm (Artifact-CreatedBy-Member)
+
+apbf (Artifact-UsedAsPrimaryBy-Factor)
+apbf.ts (UsedAsPrimaryBy.Timestamp)
+apbf.dt (UsedAsPrimaryBy.DesdcriptorType)
+apbf.ra (UsedAsPrimaryBy.RelatedArtifactId)
+
+arbf (Artifact-UsedAsRelatedBy-Factor)
+arbf.ts (UsedAsRelatedBy.Timestamp)
+arbf.dt (UsedAsRelatedBy.DesdcriptorType)
+arbf.pa (UsedAsRelatedBy.PrimaryArtifactId)
+
+fcbm (Factor-CreatedBy-Member)
+
+frpa (Factor-DescriptorRefinesPrimaryWith-Artifact)
+
+frra (Factor-DescriptorRefinesRelatedWith-Artifact)
+
+frta (Factor-DescriptorRefinesTypeWith-Artifact)
+
+fpa (Factor-UsesPrimary-Artifact)
+
+fra (Factor-UsesRelated-Artifact)
+
+faa (Factor-VectorUsesAxis-Artifact)
+
+mca (Member-Creates-Artifact)
+mca.ts (Creates.Timestamp)
+mca.vt (Creates.VertexType)
+
+mcf (Member-Creates-Factor)
+mcf.ts (Creates.Timestamp)
+mcf.dt (Creates.DescriptorType)
+mcf.pa (Creates.PrimaryArtifactId)
+mcf.ra (Creates.RelatedArtifactId)
+
+mdbp (Member-DefinedBy-App)
+
+mdbu (Member-DefinedBy-User)
+
+udm (User-Defines-Member)
+udm.ts (Defines.Timestamp)
+udm.mt (Defines.MemberType)
+udm.pi (Defines.AppId)
+
+*/

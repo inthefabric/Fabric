@@ -10,8 +10,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorUsesRelatedArtifactSchema() : base(EdgeQuantity.One) {
-			Names = new NameProvider("UsesRelatedArtifact", "UsesRelatedArtifact", "ura");
-			TypeName = "UsesRelated";
+			SetNames("UsesRelated", "r");
 			CreateToVertexId = Access.All;
 		}
 

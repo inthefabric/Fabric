@@ -40,7 +40,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	string baseName = (vp == null ? objectName : apiNamePrefix+vp.Names.Api);
 
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, pCreateMode);
-	IList<IEdgeSchema> edges = SchemaUtil.GetVertexEdges(v, true);
+	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, true);
 	var keepEdges = new List<IEdgeSchema>();
 	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
 	var subPropMap = new Dictionary<string, IList<IEdgeSchema>>();
@@ -68,7 +68,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 		}
 
 		keepEdges.Add(es);
-		OutputVertexProp("long", es.Names.Domain, (pCreateMode ? es.CreateToVertexId+"" : null));
+		OutputVertexProp("long", es.GetPropNameApi(), (pCreateMode ? es.CreateToVertexId+"" : null));
 	}
 	
 	foreach ( string sub in subMap.Keys ) {
@@ -104,7 +104,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	}
 
 	foreach ( IEdgeSchema es in edges ) {
-		OutputVertexProp("long", es.Names.Domain, (pCreateMode ? es.CreateToVertexId+"" : null));
+		OutputVertexProp("long", es.GetPropNameApi(), (pCreateMode ? es.CreateToVertexId+"" : null));
 	}
 			
 	if ( pCreateMode ) {
@@ -206,10 +206,9 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 			//Validate edges
 <#+
 	foreach ( IEdgeSchema es in pEdges ) {
-		string displayName = (es.SubObjectOf == null ? "" :
-			es.SubObjectOf.Substring(3)+".")+es.Names.Domain;
+		string displayName = (es.SubObjectOf == null ? "" :	es.SubObjectOf.Substring(3)+".")+es.NameApi;
 #>
-			ValidVertexId("<#= displayName #>", <#= es.Names.Domain #>);
+			ValidVertexId("<#= displayName #>", <#= es.GetPropNameApi() #>);
 <#+
 	}
 #>
