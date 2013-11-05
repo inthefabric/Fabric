@@ -20,8 +20,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 			DescriptorType = Prop("DesdcriptorType", "dt", (x => x.DescriptorType));
-			RelatedArtifactId = Prop("RelatedArtifactId", "ra",
-				(x => x.UsesRelatedArtifact), (x => x.ToVertexId));
+			RelatedArtifactId = PropFromEdge<FactorUsesRelatedArtifactSchema>("RelatedArtifactId","ra");
 		}
 
 	}

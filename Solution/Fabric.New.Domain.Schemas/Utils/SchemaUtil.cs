@@ -10,11 +10,6 @@ namespace Fabric.New.Domain.Schemas.Utils {
 	/*================================================================================================*/
 	public static class SchemaUtil {
 
-		private readonly static IDictionary<Type, IVertexSchema> VertexSchemas =
-			new Dictionary<Type, IVertexSchema>();
-		private readonly static IDictionary<Type, IEdgeSchema> EdgeSchemas =
-			new Dictionary<Type, IEdgeSchema>();
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -48,13 +43,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static IVertexSchema GetVertex(Type pVertexType) {
-			if ( VertexSchemas.ContainsKey(pVertexType) ) {
-				return VertexSchemas[pVertexType];
-			}
-
-			IVertexSchema vs = (IVertexSchema)Activator.CreateInstance(pVertexType);
-			VertexSchemas.Add(pVertexType, vs);
-			return vs;
+			return (IVertexSchema)Activator.CreateInstance(pVertexType);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -182,13 +171,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static IEdgeSchema GetEdge(Type pEdgeType) {
-			if ( EdgeSchemas.ContainsKey(pEdgeType) ) {
-				return EdgeSchemas[pEdgeType];
-			}
-
-			IEdgeSchema es = (IEdgeSchema)Activator.CreateInstance(pEdgeType);
-			EdgeSchemas.Add(pEdgeType, es);
-			return es;
+			return (IEdgeSchema)Activator.CreateInstance(pEdgeType);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

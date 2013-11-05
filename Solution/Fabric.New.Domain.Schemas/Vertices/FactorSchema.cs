@@ -1,5 +1,4 @@
-﻿using Fabric.New.Domain.Schemas.Edges;
-using Fabric.New.Domain.Schemas.Utils;
+﻿using Fabric.New.Domain.Schemas.Utils;
 
 namespace Fabric.New.Domain.Schemas.Vertices {
 
@@ -75,15 +74,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public PropertyMapping<byte, byte> FabVectorUnitMap { get; private set; }
 		public PropertyMapping<byte, byte> FabVectorUnitPrefixMap { get; private set; }
 		public PropertyMapping<long, long> FabVectorValueMap { get; private set; }
-
-		public FactorCreatedByMemberSchema CreatedByMember { get; private set; }
-		public FactorUsesPrimaryArtifactSchema UsesPrimaryArtifact { get; private set; }
-		public FactorUsesRelatedArtifactSchema UsesRelatedArtifact { get; private set; }
-		public FactorDescriptorRefinesPrimaryWithArtifactSchema PrimaryRefinedByArtifact { get; private set; }
-		public FactorDescriptorRefinesRelatedWithArtifactSchema RelatedRefinedByArtifact { get; private set; }
-		public FactorDescriptorRefinesTypeWithArtifactSchema
-			DescriptorTypeRefinedByArtifact { get; private set; }
-		public FactorVectorUsesAxisArtifactSchema VectorUsesAxisArtifact { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -301,16 +291,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabVectorUnitPrefixMap = new PropertyMapping<byte, byte>(
 				VectorUnitPrefix, FabVectorUnitPrefix);
 			FabVectorValueMap = new PropertyMapping<long, long>(VectorValue, FabVectorValue);
-
-			////
-
-			//CreatedByMember = new FactorCreatedByMemberSchema();
-			//UsesPrimaryArtifact = new FactorUsesPrimaryArtifactSchema();
-			//UsesRelatedArtifact = new FactorUsesRelatedArtifactSchema();
-			//PrimaryRefinedByArtifact = new FactorDescriptorRefinesPrimaryWithArtifactSchema();
-			//RelatedRefinedByArtifact = new FactorDescriptorRefinesRelatedWithArtifactSchema();
-			//DescriptorTypeRefinedByArtifact = new FactorDescriptorRefinesTypeWithArtifactSchema();
-			//VectorUsesAxisArtifact = new FactorVectorUsesAxisArtifactSchema();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

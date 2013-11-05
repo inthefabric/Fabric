@@ -74,23 +74,20 @@ namespace Fabric.New.Domain.Schemas.Utils {
 	public class EdgeProperty<TToVert, TEdge, TDataType> : EdgeProperty 
 											where TToVert : IVertexSchema where TEdge : IEdgeSchema {
 
-		private readonly Func<TToVert, TEdge> vEdgeFunc;
 		private readonly Func<TEdge, DomainProperty<TDataType>> vEdgeDomPropFunc;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public EdgeProperty(string pName, string pDbName,
-											Func<TToVert, TEdge> pEdgeFunc, 
 											Func<TEdge, DomainProperty<TDataType>> pEdgeDomPropFunc) :
 											base(pName, pDbName, typeof(TDataType)) {
-			vEdgeFunc = pEdgeFunc;
 			vEdgeDomPropFunc = pEdgeDomPropFunc;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override IEdgeSchema GetEdgeToDomainProp() {
-			return vEdgeFunc(SchemaUtil.GetVertex<TToVert>());
+			return SchemaUtil.GetEdge<TEdge>();
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

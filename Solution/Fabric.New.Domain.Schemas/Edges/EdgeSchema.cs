@@ -124,17 +124,15 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		protected EdgeSchema(EdgeQuantity pQuantity) : base(typeof(TFrom), typeof(TTo), pQuantity) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EdgeProperty<TTo, TDataType> Prop<TDataType>(string pName, string pDbName, 
+		protected EdgeProperty<TTo, TDataType> Prop<TDataType>(string pName, string pDbName, 
 													Func<TTo, DomainProperty<TDataType>> pDomPropFunc) {
 			return new EdgeProperty<TTo, TDataType>(pName, NameDb+"."+pDbName, pDomPropFunc);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public EdgeProperty<TTo, TEdge, TDataType> Prop<TEdge, TDataType>(string pName, string pDbName,
-					Func<TTo, TEdge> pEdgeFunc, Func<TEdge, DomainProperty<TDataType>> pEdgeDomPropFunc)
-					where TEdge : EdgeSchema {
-			return new EdgeProperty<TTo, TEdge, TDataType>(
-				pName, NameDb+"."+pDbName, pEdgeFunc, pEdgeDomPropFunc);
+		protected EdgeProperty<TTo, TEdge, long> PropFromEdge<TEdge>(string pName, string pDbName)
+																			where TEdge : EdgeSchema {
+			return new EdgeProperty<TTo, TEdge, long>(pName, NameDb+"."+pDbName, (x => x.ToVertexId));
 		}
 
 	}

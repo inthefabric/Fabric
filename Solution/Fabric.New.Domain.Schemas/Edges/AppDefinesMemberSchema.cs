@@ -19,7 +19,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 			MemberType = Prop("MemberType", "mt", (x => x.MemberType));
-			UserId = Prop("UserId", "ui", (x => x.DefinedByUser), (x => x.ToVertexId));
+			UserId = PropFromEdge<MemberDefinedByUserSchema>("UserId", "ui");
 		}
 
 	}

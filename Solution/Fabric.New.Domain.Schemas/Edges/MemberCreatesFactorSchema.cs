@@ -22,10 +22,8 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType));
-			PrimaryArtifactId = Prop("PrimaryArtifactId", "pa",
-				(x => x.UsesPrimaryArtifact), (x => x.ToVertexId));
-			RelatedArtifactId = Prop("RelatedArtifactId", "ra",
-				(x => x.UsesRelatedArtifact), (x => x.ToVertexId));
+			PrimaryArtifactId = PropFromEdge<FactorUsesPrimaryArtifactSchema>("PrimaryArtifactId","pa");
+			RelatedArtifactId = PropFromEdge<FactorUsesRelatedArtifactSchema>("RelatedArtifactId","ra");
 		}
 
 	}
