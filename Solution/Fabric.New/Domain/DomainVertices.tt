@@ -54,7 +54,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	foreach ( IEdgeSchema es in edges ) {
 		string edgeClass = es.GetClassNameDom();
 		string outConn = es.GetOutgoingWeaverEdgeConn();
-		string edgeName = es.GetPropNameDom(outConn.IndexOf("More") != -1);
+		string edgeName = es.GetPropNameDom(es.GetIsMultiple());
 #>
 
 		/*--------------------------------------------------------------------------------------------*/

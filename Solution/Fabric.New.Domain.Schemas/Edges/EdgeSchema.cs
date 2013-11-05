@@ -59,6 +59,18 @@ namespace Fabric.New.Domain.Schemas.Edges {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public bool GetIsOptional() {
+			return (Quantity == EdgeQuantity.ZeroOrOne || Quantity == EdgeQuantity.ZeroOrMore);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool GetIsMultiple() {
+			return (Quantity == EdgeQuantity.ZeroOrMore);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public string GetClassNameDom() {
 			return GetFromVertex().Names.Domain+GetPropNameDom();
 		}

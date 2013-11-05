@@ -54,7 +54,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	public class <#= apiName #> : <#= baseName #> {
 <#+
 	foreach ( ApiProperty ap in props ) {
-		OutputVertexProp(ap.GetDataTypeName(), ap.Name, (pCreateMode ? ap.CreateAccess+"" : null));
+		OutputVertexProp(ap, pCreateMode);
 	}
 
 	foreach ( IEdgeSchema es in edges ) {
@@ -68,7 +68,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 		}
 
 		keepEdges.Add(es);
-		OutputVertexProp("long", es.GetPropNameApi(), (pCreateMode ? es.CreateToVertexId+"" : null));
+		OutputVertexProp(es, pCreateMode);
 	}
 	
 	foreach ( string sub in subMap.Keys ) {
@@ -100,11 +100,11 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	edges = subPropMap[sub];
 
 	foreach ( ApiProperty ap in props ) {
-		OutputVertexProp(ap.GetDataTypeName(), ap.Name, (pCreateMode ? ap.CreateAccess+"" : null));
+		OutputVertexProp(ap, pCreateMode);
 	}
 
 	foreach ( IEdgeSchema es in edges ) {
-		OutputVertexProp("long", es.GetPropNameApi(), (pCreateMode ? es.CreateToVertexId+"" : null));
+		OutputVertexProp(es, pCreateMode);
 	}
 			
 	if ( pCreateMode ) {
@@ -115,6 +115,17 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	}
 <#+
 	} //end subMap loop
+}
+
+
+public void OutputVertexProp(ApiProperty pProp, bool pCreateMode) {
+	OutputVertexProp(pProp.GetDataTypeName(), pProp.Name, (pCreateMode ? pProp.CreateAccess+"" : null));
+}
+
+
+public void OutputVertexProp(IEdgeSchema pEdge, bool pCreateMode) {
+	OutputVertexProp("long"+(pEdge.GetIsOptional() ? "?" : ""), pEdge.GetPropNameApi(),
+			(pCreateMode ? pEdge.CreateToVertexId+"" : null));
 }
 
 

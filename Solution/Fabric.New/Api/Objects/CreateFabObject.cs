@@ -50,8 +50,8 @@ namespace Fabric.New.Api.Objects {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected void ValidVertexId(string pName, long pValue) {
-			if ( pValue <= 0 ) {
+		protected void ValidVertexId(string pName, long? pValue) {
+			if ( pValue != null && pValue <= 0 ) {
 				throw new Exception(PropStr(pName, pValue)+"cannot be less than 1.");
 			}
 		}

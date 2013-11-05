@@ -623,13 +623,13 @@ namespace Fabric.New.Api.Objects {
 		public virtual byte Type { get; set; }
 		
 		//[Access(All)]
-		public virtual long RefinesPrimaryWithArtifactId { get; set; }
+		public virtual long? RefinesPrimaryWithArtifactId { get; set; }
 		
 		//[Access(All)]
-		public virtual long RefinesRelatedWithArtifactId { get; set; }
+		public virtual long? RefinesRelatedWithArtifactId { get; set; }
 		
 		//[Access(All)]
-		public virtual long RefinesTypeWithArtifactId { get; set; }
+		public virtual long? RefinesTypeWithArtifactId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -813,7 +813,7 @@ namespace Fabric.New.Api.Objects {
 		public virtual long Value { get; set; }
 		
 		//[Access(All)]
-		public virtual long UsesAxisArtifactId { get; set; }
+		public virtual long? UsesAxisArtifactId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

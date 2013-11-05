@@ -10,7 +10,6 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorDescriptorRefinesTypeWithArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
-			//TODO: set this (and other edges) to IsNullable=true
 			SetNames("DescriptorRefinesTypeWith", "rt", "RefinesTypeWith");
 			CreateToVertexId = Access.All;
 			SubObjectOf = "FabDescriptor";
