@@ -141,7 +141,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabDirector : FabObject {
 
-		public byte DirectorType { get; set; }
+		public byte Type { get; set; }
 		public byte PrimaryAction { get; set; }
 		public byte RelatedAction { get; set; }
 
@@ -558,7 +558,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabDirector : CreateFabObject {
 
-		public byte DirectorType { get; set; }
+		public byte Type { get; set; }
 		public byte PrimaryAction { get; set; }
 		public byte RelatedAction { get; set; }
 
@@ -568,8 +568,8 @@ namespace Fabric.New.Api.Objects {
 		public override void Validate() {
 			base.Validate();
 
-			//Validate DirectorType
-			ValidEnum<FactorDirectorType>("Director.DirectorType", DirectorType);
+			//Validate Type
+			ValidEnum<FactorDirectorType>("Director.Type", Type);
 
 			//Validate PrimaryAction
 			ValidEnum<FactorDirectorAction>("Director.PrimaryAction", PrimaryAction);

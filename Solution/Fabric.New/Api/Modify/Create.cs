@@ -29,7 +29,7 @@ namespace Fabric.New.Api.Modify {
 		// - IsDefining  (All)
 		// - Note  (All)
 		// - Descriptor.Type  (All)
-		// - Director.DirectorType  (All)
+		// - Director.Type  (All)
 		// - Director.PrimaryAction  (All)
 		// - Director.RelatedAction  (All)
 		// - Eventor.Type  (All)

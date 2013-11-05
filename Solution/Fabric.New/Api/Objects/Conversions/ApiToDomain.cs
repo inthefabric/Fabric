@@ -99,7 +99,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pDomain.Note = pApi.Note;
 			if ( pApi.Identor != null ) { pDomain.Note = pApi.Identor.Value; }
 			if ( pApi.Descriptor != null ) { pDomain.DescriptorType = pApi.Descriptor.Type; }
-			if ( pApi.Director != null ) { pDomain.DirectorType = pApi.Director.DirectorType; }
+			if ( pApi.Director != null ) { pDomain.DirectorType = pApi.Director.Type; }
 			if ( pApi.Director != null ) { pDomain.DirectorPrimaryAction = pApi.Director.PrimaryAction; }
 			if ( pApi.Director != null ) { pDomain.DirectorRelatedAction = pApi.Director.RelatedAction; }
 			if ( pApi.Eventor != null ) { pDomain.EventorType = pApi.Eventor.Type; }

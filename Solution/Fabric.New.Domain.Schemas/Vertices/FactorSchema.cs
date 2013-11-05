@@ -171,7 +171,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabDescriptorType.SubObjectOf = "FabDescriptor";
 			FabDescriptorType.FromEnum = "FactorDescriptorType";
 
-			FabDirectorType = new ApiProperty<byte>("DirectorType");
+			FabDirectorType = new ApiProperty<byte>("Type");
 			FabDirectorType.SetOpenUnmodAccess();
 			FabDirectorType.SubObjectOf = "FabDirector";
 			FabDirectorType.FromEnum = "FactorDirectorType";
