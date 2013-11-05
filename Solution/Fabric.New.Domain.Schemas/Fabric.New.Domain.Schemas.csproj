@@ -75,9 +75,6 @@
     <Compile Include="Vertices\IVertexSchema.cs" />
     <Compile Include="Vertices\MemberSchema.cs" />
     <Compile Include="Vertices\OauthAccessSchema.cs" />
-    <Compile Include="Vertices\OauthDomainSchema.cs" />
-    <Compile Include="Vertices\OauthGrantSchema.cs" />
-    <Compile Include="Vertices\OauthScopeSchema.cs" />
     <Compile Include="Vertices\UrlSchema.cs" />
     <Compile Include="Vertices\UserSchema.cs" />
     <Compile Include="Vertices\VertexSchema.cs" />
