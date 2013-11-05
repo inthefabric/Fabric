@@ -10,9 +10,10 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabApp : FabArtifact {
-
-		public string Name { get; set; }
-		public string Secret { get; set; }
+		
+		public virtual string Name { get; set; }
+		
+		public virtual string Secret { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,7 +36,6 @@ namespace Fabric.New.Api.Objects {
 	public class FabArtifact : FabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -54,10 +54,12 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabClass : FabArtifact {
-
-		public string Name { get; set; }
-		public string Disamb { get; set; }
-		public string Note { get; set; }
+		
+		public virtual string Name { get; set; }
+		
+		public virtual string Disamb { get; set; }
+		
+		public virtual string Note { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,10 +80,12 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabEmail : FabVertex {
-
-		public string Secret { get; set; }
-		public string Code { get; set; }
-		public bool Verified { get; set; }
+		
+		public virtual string Secret { get; set; }
+		
+		public virtual string Code { get; set; }
+		
+		public virtual bool Verified { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,15 +106,23 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabFactor : FabVertex {
+		
+		public virtual byte AssertionType { get; set; }
+		
+		public virtual bool IsDefining { get; set; }
+		
+		public virtual string Note { get; set; }
 
-		public byte AssertionType { get; set; }
-		public bool IsDefining { get; set; }
-		public string Note { get; set; }
 		public FabDescriptor Descriptor { get; set; }
+
 		public FabDirector Director { get; set; }
+
 		public FabEventor Eventor { get; set; }
+
 		public FabIdentor Identor { get; set; }
+
 		public FabLocator Locator { get; set; }
+
 		public FabVector Vector { get; set; }
 
 
@@ -132,73 +144,90 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabDescriptor : FabObject {
-
-		public byte Type { get; set; }
+		
+		public virtual byte Type { get; set; }
 
 	}
 
 
 	/*================================================================================================*/
 	public class FabDirector : FabObject {
-
-		public byte Type { get; set; }
-		public byte PrimaryAction { get; set; }
-		public byte RelatedAction { get; set; }
+		
+		public virtual byte Type { get; set; }
+		
+		public virtual byte PrimaryAction { get; set; }
+		
+		public virtual byte RelatedAction { get; set; }
 
 	}
 
 
 	/*================================================================================================*/
 	public class FabEventor : FabObject {
-
-		public byte Type { get; set; }
-		public long Year { get; set; }
-		public byte? Month { get; set; }
-		public byte? Day { get; set; }
-		public byte? Hour { get; set; }
-		public byte? Minute { get; set; }
-		public byte? Second { get; set; }
+		
+		public virtual byte Type { get; set; }
+		
+		public virtual long Year { get; set; }
+		
+		public virtual byte? Month { get; set; }
+		
+		public virtual byte? Day { get; set; }
+		
+		public virtual byte? Hour { get; set; }
+		
+		public virtual byte? Minute { get; set; }
+		
+		public virtual byte? Second { get; set; }
 
 	}
 
 
 	/*================================================================================================*/
 	public class FabIdentor : FabObject {
-
-		public byte Type { get; set; }
-		public string Value { get; set; }
+		
+		public virtual byte Type { get; set; }
+		
+		public virtual string Value { get; set; }
 
 	}
 
 
 	/*================================================================================================*/
 	public class FabLocator : FabObject {
-
-		public byte Type { get; set; }
-		public double ValueX { get; set; }
-		public double ValueY { get; set; }
-		public double ValueZ { get; set; }
+		
+		public virtual byte Type { get; set; }
+		
+		public virtual double ValueX { get; set; }
+		
+		public virtual double ValueY { get; set; }
+		
+		public virtual double ValueZ { get; set; }
 
 	}
 
 
 	/*================================================================================================*/
 	public class FabVector : FabObject {
-
-		public byte Type { get; set; }
-		public byte Unit { get; set; }
-		public byte UnitPrefix { get; set; }
-		public long Value { get; set; }
+		
+		public virtual byte Type { get; set; }
+		
+		public virtual byte Unit { get; set; }
+		
+		public virtual byte UnitPrefix { get; set; }
+		
+		public virtual long Value { get; set; }
 
 	}
 		
 
 	/*================================================================================================*/
 	public class FabInstance : FabArtifact {
-
-		public string Name { get; set; }
-		public string Disamb { get; set; }
-		public string Note { get; set; }
+		
+		public virtual string Name { get; set; }
+		
+		public virtual string Disamb { get; set; }
+		
+		public virtual string Note { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,8 +248,8 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabMember : FabVertex {
-
-		public byte Type { get; set; }
+		
+		public virtual byte Type { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -243,7 +272,6 @@ namespace Fabric.New.Api.Objects {
 	public class FabOauthAccess : FabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -262,7 +290,6 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabOauthDomain : FabVertex {
-
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -285,7 +312,6 @@ namespace Fabric.New.Api.Objects {
 	public class FabOauthGrant : FabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -306,7 +332,6 @@ namespace Fabric.New.Api.Objects {
 	public class FabOauthScope : FabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -325,9 +350,10 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabUrl : FabArtifact {
-
-		public string Name { get; set; }
-		public string FullPath { get; set; }
+		
+		public virtual string Name { get; set; }
+		
+		public virtual string FullPath { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -348,9 +374,10 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabUser : FabArtifact {
-
-		public string Name { get; set; }
-		public string Password { get; set; }
+		
+		public virtual string Name { get; set; }
+		
+		public virtual string Password { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -371,11 +398,14 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabVertex : FabObject {
-
-		public long Id { get; set; }
-		public string IdStr { get; set; }
-		public float Timestamp { get; set; }
-		public byte VertexType { get; set; }
+		
+		public virtual long Id { get; set; }
+		
+		public virtual string IdStr { get; set; }
+		
+		public virtual float Timestamp { get; set; }
+		
+		public virtual byte VertexType { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -396,9 +426,12 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabApp : CreateFabArtifact {
-
-		public string Name { get; set; }
-		public string Secret { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string Name { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string Secret { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -419,6 +452,8 @@ namespace Fabric.New.Api.Objects {
 			LenMax("Secret", Secret, 32);
 			ValidRegex("Secret", Secret,
 				@"^[a-zA-Z0-9]*$");
+
+			//Validate edges
 		}
 
 	}
@@ -426,13 +461,18 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabArtifact : CreateFabVertex {
-
+		
+		//[Access(Internal)]
+		public virtual long CreatedByMember { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
+
+			//Validate edges
+			ValidVertexId("CreatedByMember", CreatedByMember);
 		}
 
 	}
@@ -440,10 +480,15 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabClass : CreateFabArtifact {
-
-		public string Name { get; set; }
-		public string Disamb { get; set; }
-		public string Note { get; set; }
+		
+		//[Access(All)]
+		public virtual string Name { get; set; }
+		
+		//[Access(All)]
+		public virtual string Disamb { get; set; }
+		
+		//[Access(All)]
+		public virtual string Note { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -467,6 +512,8 @@ namespace Fabric.New.Api.Objects {
 			//Validate Note
 			LenMin("Note", Note, 1);
 			LenMax("Note", Note, 256);
+
+			//Validate edges
 		}
 
 	}
@@ -474,10 +521,15 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabEmail : CreateFabVertex {
-
-		public string Secret { get; set; }
-		public string Code { get; set; }
-		public bool Verified { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string Secret { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string Code { get; set; }
+		
+		//[Access(Internal)]
+		public virtual bool Verified { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -500,6 +552,8 @@ namespace Fabric.New.Api.Objects {
 				@"^[a-zA-Z0-9]*$");
 
 			//Validate Verified
+
+			//Validate edges
 		}
 
 	}
@@ -507,15 +561,35 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabFactor : CreateFabVertex {
+		
+		//[Access(All)]
+		public virtual byte AssertionType { get; set; }
+		
+		//[Access(All)]
+		public virtual bool IsDefining { get; set; }
+		
+		//[Access(All)]
+		public virtual string Note { get; set; }
+		
+		//[Access(Internal)]
+		public virtual long CreatedByMember { get; set; }
+		
+		//[Access(All)]
+		public virtual long UsesPrimaryArtifact { get; set; }
+		
+		//[Access(All)]
+		public virtual long UsesRelatedArtifact { get; set; }
 
-		public byte AssertionType { get; set; }
-		public bool IsDefining { get; set; }
-		public string Note { get; set; }
 		public CreateFabDescriptor Descriptor { get; set; }
+
 		public CreateFabDirector Director { get; set; }
+
 		public CreateFabEventor Eventor { get; set; }
+
 		public CreateFabIdentor Identor { get; set; }
+
 		public CreateFabLocator Locator { get; set; }
+
 		public CreateFabVector Vector { get; set; }
 
 
@@ -532,6 +606,11 @@ namespace Fabric.New.Api.Objects {
 			//Validate Note
 			LenMin("Note", Note, 1);
 			LenMax("Note", Note, 256);
+
+			//Validate edges
+			ValidVertexId("CreatedByMember", CreatedByMember);
+			ValidVertexId("UsesPrimaryArtifact", UsesPrimaryArtifact);
+			ValidVertexId("UsesRelatedArtifact", UsesRelatedArtifact);
 		}
 
 	}
@@ -539,8 +618,18 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabDescriptor : CreateFabObject {
-
-		public byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual long PrimaryRefinedByArtifact { get; set; }
+		
+		//[Access(All)]
+		public virtual long RelatedRefinedByArtifact { get; set; }
+		
+		//[Access(All)]
+		public virtual long DescriptorTypeRefinedByArtifact { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -550,6 +639,11 @@ namespace Fabric.New.Api.Objects {
 
 			//Validate Type
 			ValidEnum<FactorDescriptorType>("Descriptor.Type", Type);
+
+			//Validate edges
+			ValidVertexId("Descriptor.PrimaryRefinedByArtifact", PrimaryRefinedByArtifact);
+			ValidVertexId("Descriptor.RelatedRefinedByArtifact", RelatedRefinedByArtifact);
+			ValidVertexId("Descriptor.DescriptorTypeRefinedByArtifact", DescriptorTypeRefinedByArtifact);
 		}
 
 	}
@@ -557,10 +651,15 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabDirector : CreateFabObject {
-
-		public byte Type { get; set; }
-		public byte PrimaryAction { get; set; }
-		public byte RelatedAction { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual byte PrimaryAction { get; set; }
+		
+		//[Access(All)]
+		public virtual byte RelatedAction { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -576,6 +675,8 @@ namespace Fabric.New.Api.Objects {
 
 			//Validate RelatedAction
 			ValidEnum<FactorDirectorAction>("Director.RelatedAction", RelatedAction);
+
+			//Validate edges
 		}
 
 	}
@@ -583,14 +684,27 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabEventor : CreateFabObject {
-
-		public byte Type { get; set; }
-		public long Year { get; set; }
-		public byte? Month { get; set; }
-		public byte? Day { get; set; }
-		public byte? Hour { get; set; }
-		public byte? Minute { get; set; }
-		public byte? Second { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual long Year { get; set; }
+		
+		//[Access(All)]
+		public virtual byte? Month { get; set; }
+		
+		//[Access(All)]
+		public virtual byte? Day { get; set; }
+		
+		//[Access(All)]
+		public virtual byte? Hour { get; set; }
+		
+		//[Access(All)]
+		public virtual byte? Minute { get; set; }
+		
+		//[Access(All)]
+		public virtual byte? Second { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -612,6 +726,8 @@ namespace Fabric.New.Api.Objects {
 			//Validate Minute
 
 			//Validate Second
+
+			//Validate edges
 		}
 
 	}
@@ -619,9 +735,12 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabIdentor : CreateFabObject {
-
-		public byte Type { get; set; }
-		public string Value { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual string Value { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -635,6 +754,8 @@ namespace Fabric.New.Api.Objects {
 			//Validate Value
 			LenMin("Identor.Value", Value, 1);
 			LenMax("Identor.Value", Value, 256);
+
+			//Validate edges
 		}
 
 	}
@@ -642,11 +763,18 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabLocator : CreateFabObject {
-
-		public byte Type { get; set; }
-		public double ValueX { get; set; }
-		public double ValueY { get; set; }
-		public double ValueZ { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual double ValueX { get; set; }
+		
+		//[Access(All)]
+		public virtual double ValueY { get; set; }
+		
+		//[Access(All)]
+		public virtual double ValueZ { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -662,6 +790,8 @@ namespace Fabric.New.Api.Objects {
 			//Validate ValueY
 
 			//Validate ValueZ
+
+			//Validate edges
 		}
 
 	}
@@ -669,11 +799,21 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabVector : CreateFabObject {
-
-		public byte Type { get; set; }
-		public byte Unit { get; set; }
-		public byte UnitPrefix { get; set; }
-		public long Value { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Unit { get; set; }
+		
+		//[Access(All)]
+		public virtual byte UnitPrefix { get; set; }
+		
+		//[Access(All)]
+		public virtual long Value { get; set; }
+		
+		//[Access(All)]
+		public virtual long VectorUsesAxisArtifact { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -691,6 +831,9 @@ namespace Fabric.New.Api.Objects {
 			ValidEnum<FactorVectorUnitPrefix>("Vector.UnitPrefix", UnitPrefix);
 
 			//Validate Value
+
+			//Validate edges
+			ValidVertexId("Vector.VectorUsesAxisArtifact", VectorUsesAxisArtifact);
 		}
 
 	}
@@ -698,10 +841,15 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabInstance : CreateFabArtifact {
-
-		public string Name { get; set; }
-		public string Disamb { get; set; }
-		public string Note { get; set; }
+		
+		//[Access(All)]
+		public virtual string Name { get; set; }
+		
+		//[Access(All)]
+		public virtual string Disamb { get; set; }
+		
+		//[Access(All)]
+		public virtual string Note { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -724,6 +872,8 @@ namespace Fabric.New.Api.Objects {
 			//Validate Note
 			LenMin("Note", Note, 1);
 			LenMax("Note", Note, 256);
+
+			//Validate edges
 		}
 
 	}
@@ -731,8 +881,15 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabMember : CreateFabVertex {
-
-		public byte Type { get; set; }
+		
+		//[Access(All)]
+		public virtual byte Type { get; set; }
+		
+		//[Access(Internal)]
+		public virtual long DefinedByApp { get; set; }
+		
+		//[Access(Internal)]
+		public virtual long DefinedByUser { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -742,6 +899,10 @@ namespace Fabric.New.Api.Objects {
 
 			//Validate Type
 			ValidEnum<MemberType>("Type", Type);
+
+			//Validate edges
+			ValidVertexId("DefinedByApp", DefinedByApp);
+			ValidVertexId("DefinedByUser", DefinedByUser);
 		}
 
 	}
@@ -751,11 +912,12 @@ namespace Fabric.New.Api.Objects {
 	public class CreateFabOauthAccess : CreateFabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
+
+			//Validate edges
 		}
 
 	}
@@ -765,11 +927,12 @@ namespace Fabric.New.Api.Objects {
 	public class CreateFabOauthDomain : CreateFabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
+
+			//Validate edges
 		}
 
 	}
@@ -779,11 +942,12 @@ namespace Fabric.New.Api.Objects {
 	public class CreateFabOauthGrant : CreateFabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
+
+			//Validate edges
 		}
 
 	}
@@ -793,11 +957,12 @@ namespace Fabric.New.Api.Objects {
 	public class CreateFabOauthScope : CreateFabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
+
+			//Validate edges
 		}
 
 	}
@@ -805,9 +970,12 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabUrl : CreateFabArtifact {
-
-		public string Name { get; set; }
-		public string FullPath { get; set; }
+		
+		//[Access(All)]
+		public virtual string Name { get; set; }
+		
+		//[Access(All)]
+		public virtual string FullPath { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -825,6 +993,8 @@ namespace Fabric.New.Api.Objects {
 			NotNull("FullPath", FullPath);
 			LenMin("FullPath", FullPath, 1);
 			LenMax("FullPath", FullPath, 2048);
+
+			//Validate edges
 		}
 
 	}
@@ -832,9 +1002,12 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabUser : CreateFabArtifact {
-
-		public string Name { get; set; }
-		public string Password { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string Name { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string Password { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -855,6 +1028,8 @@ namespace Fabric.New.Api.Objects {
 			LenMax("Password", Password, 128);
 			ValidRegex("Password", Password,
 				@"^[a-zA-Z0-9]*$");
+
+			//Validate edges
 		}
 
 	}
@@ -864,11 +1039,12 @@ namespace Fabric.New.Api.Objects {
 	public class CreateFabVertex : CreateFabObject {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
+
+			//Validate edges
 		}
 
 	}

@@ -48,9 +48,9 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Api\Modify\Create.cs">
-      <DependentUpon>Create.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Create.tt</DependentUpon>
     </Compile>
     <Compile Include="Api\Objects\Conversions\ApiToDomain.cs">
       <DependentUpon>ApiToDomain.tt</DependentUpon>

@@ -10,6 +10,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorVectorUsesAxisArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
+			//TODO: Remove "Vector" from API naming
 			Names = new NameProvider("VectorUsesAxisArtifact", "VectorUsesAxisArtifacts", "uaa");
 			TypeName = "VectorUsesAxis";
 			CreateToVertexId = Access.All;

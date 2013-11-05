@@ -10,6 +10,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorDescriptorTypeRefinedByArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
+			//TODO: set this (and other edges) to IsNullable=true
 			Names = new NameProvider("DescriptorTypeRefinedByArtifact",
 				"DescriptorTypeRefinedByArtifacts", "drba");
 			TypeName = "DescriptorTypeRefinedBy";
