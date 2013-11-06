@@ -41,6 +41,22 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
+	public class Uses : IWeaverEdgeType {
+
+		public string Label { get { return null; } }
+
+	}
+
+
+	/*================================================================================================*/
+	public class UsedBy : IWeaverEdgeType {
+
+		public string Label { get { return null; } }
+
+	}
+
+
+	/*================================================================================================*/
 	public class DescriptorRefinesPrimaryWith : IWeaverEdgeType {
 
 		public string Label { get { return null; } }
@@ -89,6 +105,14 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
+	public class AuthenticatedBy : IWeaverEdgeType {
+
+		public string Label { get { return null; } }
+
+	}
+
+
+	/*================================================================================================*/
 	public class Creates : IWeaverEdgeType {
 
 		public string Label { get { return null; } }
@@ -98,6 +122,14 @@ namespace Fabric.New.Domain {
 
 	/*================================================================================================*/
 	public class DefinedBy : IWeaverEdgeType {
+
+		public string Label { get { return null; } }
+
+	}
+
+
+	/*================================================================================================*/
+	public class Authenticates : IWeaverEdgeType {
 
 		public string Label { get { return null; } }
 
@@ -205,6 +237,46 @@ namespace Fabric.New.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual Factor ToFactor {
+			get { return InVertex; }
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	[WeaverTitanEdge("aue", WeaverEdgeConn.OutZeroOrMore, typeof(Artifact),
+		WeaverEdgeConn.InZeroOrMore, typeof(Email))]
+	public class ArtifactUsesEmail : EdgeBase<Artifact, Uses, Email> {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual Artifact FromArtifact {
+			get { return OutVertex; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual Email ToEmail {
+			get { return InVertex; }
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	[WeaverTitanEdge("eba", WeaverEdgeConn.OutOne, typeof(Email),
+		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
+	public class EmailUsedByArtifact : EdgeBase<Email, UsedBy, Artifact> {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual Email FromEmail {
+			get { return OutVertex; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual Artifact ToArtifact {
 			get { return InVertex; }
 		}
 
@@ -352,6 +424,29 @@ namespace Fabric.New.Domain {
 
 
 	/*================================================================================================*/
+	[WeaverTitanEdge("maboa", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
+		WeaverEdgeConn.InZeroOrMore, typeof(OauthAccess))]
+	public class MemberAuthenticatedByOauthAccess : EdgeBase<Member, AuthenticatedBy, OauthAccess> {
+
+		[WeaverTitanProperty("maboa.ts")]
+		public virtual long Timestamp { get; set; }
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual Member FromMember {
+			get { return OutVertex; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual OauthAccess ToOauthAccess {
+			get { return InVertex; }
+		}
+
+	}
+
+
+	/*================================================================================================*/
 	[WeaverTitanEdge("mca", WeaverEdgeConn.OutZeroOrMore, typeof(Member),
 		WeaverEdgeConn.InZeroOrMore, typeof(Artifact))]
 	public class MemberCreatesArtifact : EdgeBase<Member, Creates, Artifact> {
@@ -443,6 +538,26 @@ namespace Fabric.New.Domain {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual User ToUser {
+			get { return InVertex; }
+		}
+
+	}
+
+
+	/*================================================================================================*/
+	[WeaverTitanEdge("oaam", WeaverEdgeConn.OutOne, typeof(OauthAccess),
+		WeaverEdgeConn.InZeroOrMore, typeof(Member))]
+	public class OauthAccessAuthenticatesMember : EdgeBase<OauthAccess, Authenticates, Member> {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual OauthAccess FromOauthAccess {
+			get { return OutVertex; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual Member ToMember {
 			get { return InVertex; }
 		}
 

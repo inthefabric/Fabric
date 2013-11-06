@@ -24,6 +24,8 @@ namespace Fabric.New.Api.Modify {
 		// - Secret  (Internal)
 		// - Code  (Internal)
 		// - Verified  (Internal)
+		// * UsedByApp  (Internal)
+		// * UsedByUser  (Internal)
 
 		// FabFactor (All)
 		// - AssertionType  (All)
@@ -77,6 +79,7 @@ namespace Fabric.New.Api.Modify {
 		// - Refresh  (Internal)
 		// - Expires  (Internal)
 		// - IsClientOnly  (Internal)
+		// * AuthenticatesMember  (Internal)
 
 		// FabUrl (All)
 		// - Name  (All)

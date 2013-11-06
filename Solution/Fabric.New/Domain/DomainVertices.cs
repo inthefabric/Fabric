@@ -77,6 +77,11 @@ namespace Fabric.New.Domain {
 			get { return NewEdge<ArtifactUsedAsRelatedByFactor>(WeaverEdgeConn.OutZeroOrMore); }
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual ArtifactUsesEmail UsesEmails {
+			get { return NewEdge<ArtifactUsesEmail>(WeaverEdgeConn.OutZeroOrMore); }
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -142,6 +147,11 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public Email() {
 			VertexType = (byte)VertexDomainType.Email;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual EmailUsedByArtifact UsedByArtifact {
+			get { return NewEdge<EmailUsedByArtifact>(WeaverEdgeConn.OutOne); }
 		}
 
 
@@ -349,6 +359,11 @@ namespace Fabric.New.Domain {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public virtual MemberAuthenticatedByOauthAccess AuthenticatedByOauthAccesses {
+			get { return NewEdge<MemberAuthenticatedByOauthAccess>(WeaverEdgeConn.OutZeroOrMore); }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public virtual MemberCreatesArtifact CreatesArtifacts {
 			get { return NewEdge<MemberCreatesArtifact>(WeaverEdgeConn.OutZeroOrMore); }
 		}
@@ -404,6 +419,11 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthAccess() {
 			VertexType = (byte)VertexDomainType.OauthAccess;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual OauthAccessAuthenticatesMember AuthenticatesMember {
+			get { return NewEdge<OauthAccessAuthenticatesMember>(WeaverEdgeConn.OutOne); }
 		}
 
 

@@ -436,7 +436,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate edges
-			ValidVertexId("CreatedBy", CreatedByMemberId);
+			ValidVertexId("CreatedByMemberId", CreatedByMemberId);
 		}
 
 	}
@@ -494,6 +494,9 @@ namespace Fabric.New.Api.Objects {
 		
 		//[Access(Internal)]
 		public virtual bool Verified { get; set; }
+		
+		//[Access(Internal)]
+		public virtual long UsedByArtifactId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -518,6 +521,7 @@ namespace Fabric.New.Api.Objects {
 			//Validate Verified
 
 			//Validate edges
+			ValidVertexId("UsedByArtifactId", UsedByArtifactId);
 		}
 
 	}
@@ -572,9 +576,9 @@ namespace Fabric.New.Api.Objects {
 			LenMax("Note", Note, 256);
 
 			//Validate edges
-			ValidVertexId("CreatedBy", CreatedByMemberId);
-			ValidVertexId("UsesPrimary", UsesPrimaryArtifactId);
-			ValidVertexId("UsesRelated", UsesRelatedArtifactId);
+			ValidVertexId("CreatedByMemberId", CreatedByMemberId);
+			ValidVertexId("UsesPrimaryArtifactId", UsesPrimaryArtifactId);
+			ValidVertexId("UsesRelatedArtifactId", UsesRelatedArtifactId);
 		}
 
 	}
@@ -605,9 +609,9 @@ namespace Fabric.New.Api.Objects {
 			ValidEnum<FactorDescriptorType>("Descriptor.Type", Type);
 
 			//Validate edges
-			ValidVertexId("Descriptor.RefinesPrimaryWith", RefinesPrimaryWithArtifactId);
-			ValidVertexId("Descriptor.RefinesRelatedWith", RefinesRelatedWithArtifactId);
-			ValidVertexId("Descriptor.RefinesTypeWith", RefinesTypeWithArtifactId);
+			ValidVertexId("Descriptor.RefinesPrimaryWithArtifactId", RefinesPrimaryWithArtifactId);
+			ValidVertexId("Descriptor.RefinesRelatedWithArtifactId", RefinesRelatedWithArtifactId);
+			ValidVertexId("Descriptor.RefinesTypeWithArtifactId", RefinesTypeWithArtifactId);
 		}
 
 	}
@@ -797,7 +801,7 @@ namespace Fabric.New.Api.Objects {
 			//Validate Value
 
 			//Validate edges
-			ValidVertexId("Vector.UsesAxis", UsesAxisArtifactId);
+			ValidVertexId("Vector.UsesAxisArtifactId", UsesAxisArtifactId);
 		}
 
 	}
@@ -891,8 +895,8 @@ namespace Fabric.New.Api.Objects {
 			//Validate OauthGrantExpires
 
 			//Validate edges
-			ValidVertexId("DefinedBy", DefinedByAppId);
-			ValidVertexId("DefinedBy", DefinedByUserId);
+			ValidVertexId("DefinedByAppId", DefinedByAppId);
+			ValidVertexId("DefinedByUserId", DefinedByUserId);
 		}
 
 	}
@@ -912,6 +916,9 @@ namespace Fabric.New.Api.Objects {
 		
 		//[Access(Internal)]
 		public virtual bool IsClientOnly { get; set; }
+		
+		//[Access(Internal)]
+		public virtual long AuthenticatesMemberId { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -936,6 +943,7 @@ namespace Fabric.New.Api.Objects {
 			//Validate IsClientOnly
 
 			//Validate edges
+			ValidVertexId("AuthenticatesMemberId", AuthenticatesMemberId);
 		}
 
 	}

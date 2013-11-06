@@ -99,6 +99,10 @@ arbf.ts (UsedAsRelatedBy.Timestamp)
 arbf.dt (UsedAsRelatedBy.DesdcriptorType)
 arbf.pa (UsedAsRelatedBy.PrimaryArtifactId)
 
+aue (Artifact-Uses-Email)
+
+eba (Email-UsedBy-Artifact)
+
 fcbm (Factor-CreatedBy-Member)
 
 frpa (Factor-DescriptorRefinesPrimaryWith-Artifact)
@@ -113,6 +117,9 @@ fra (Factor-UsesRelated-Artifact)
 
 faa (Factor-VectorUsesAxis-Artifact)
 
+maboa (Member-AuthenticatedBy-OauthAccess)
+maboa.ts (AuthenticatedBy.Timestamp)
+
 mca (Member-Creates-Artifact)
 mca.ts (Creates.Timestamp)
 mca.vt (Creates.VertexType)
@@ -126,6 +133,8 @@ mcf.ra (Creates.RelatedArtifactId)
 mdbp (Member-DefinedBy-App)
 
 mdbu (Member-DefinedBy-User)
+
+oaam (OauthAccess-Authenticates-Member)
 
 udm (User-Defines-Member)
 udm.ts (Defines.Timestamp)

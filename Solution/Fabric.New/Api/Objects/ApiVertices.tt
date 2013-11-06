@@ -217,7 +217,8 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 			//Validate edges
 <#+
 	foreach ( IEdgeSchema es in pEdges ) {
-		string displayName = (es.SubObjectOf == null ? "" :	es.SubObjectOf.Substring(3)+".")+es.NameApi;
+		string displayName = (es.SubObjectOf == null ? "" :	es.SubObjectOf.Substring(3)+".")+
+			es.GetPropNameApi();
 #>
 			ValidVertexId("<#= displayName #>", <#= es.GetPropNameApi() #>);
 <#+
