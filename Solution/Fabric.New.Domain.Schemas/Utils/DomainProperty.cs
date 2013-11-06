@@ -71,7 +71,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 					return "double"+end;
 
 				default:
-					return null;
+					return DataType.Name;
 			}
 		}
 

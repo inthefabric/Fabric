@@ -31,6 +31,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			//Custom: 
 			//pApi.Name <== pDomain.Name  (requires custom)
 			pApi.Secret = pDomain.Secret;
+			pApi.OauthDomains = pDomain.OauthDomains;
 			FromAppCustom(pApi, pDomain);
 		}
 
@@ -163,6 +164,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 		public static void FromMember(FabMember pApi, Member pDomain) {
 			FromVertex(pApi, pDomain);
 			pApi.Type = pDomain.MemberType;
+			pApi.OauthScopeAllow = pDomain.OauthScopeAllow.GetValueOrDefault();
+			pApi.OauthGrantRedirectUri = pDomain.OauthGrantRedirectUri;
+			pApi.OauthGrantCode = pDomain.OauthGrantCode;
+			pApi.OauthGrantExpires = pDomain.OauthGrantExpires.GetValueOrDefault();
 		}
 
 
@@ -176,48 +181,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromOauthAccess(FabOauthAccess pApi, OauthAccess pDomain) {
-			FromVertex(pApi, pDomain);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthDomain FromOauthDomain(OauthDomain pDomain) {
-			var api = new FabOauthDomain();
-			FromOauthDomain(api, pDomain);
-			return api;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void FromOauthDomain(FabOauthDomain pApi, OauthDomain pDomain) {
-			FromVertex(pApi, pDomain);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthGrant FromOauthGrant(OauthGrant pDomain) {
-			var api = new FabOauthGrant();
-			FromOauthGrant(api, pDomain);
-			return api;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void FromOauthGrant(FabOauthGrant pApi, OauthGrant pDomain) {
-			FromVertex(pApi, pDomain);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthScope FromOauthScope(OauthScope pDomain) {
-			var api = new FabOauthScope();
-			FromOauthScope(api, pDomain);
-			return api;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void FromOauthScope(FabOauthScope pApi, OauthScope pDomain) {
 			FromVertex(pApi, pDomain);
 		}
 

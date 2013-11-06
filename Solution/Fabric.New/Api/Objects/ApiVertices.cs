@@ -14,6 +14,8 @@ namespace Fabric.New.Api.Objects {
 		public virtual string Name { get; set; }
 		
 		public virtual string Secret { get; set; }
+		
+		public virtual string OauthDomains { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -250,6 +252,14 @@ namespace Fabric.New.Api.Objects {
 	public class FabMember : FabVertex {
 		
 		public virtual byte Type { get; set; }
+		
+		public virtual bool? OauthScopeAllow { get; set; }
+		
+		public virtual string OauthGrantRedirectUri { get; set; }
+		
+		public virtual string OauthGrantCode { get; set; }
+		
+		public virtual long? OauthGrantExpires { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -281,66 +291,6 @@ namespace Fabric.New.Api.Objects {
 		/*--------------------------------------------------------------------------------------------*/
 		public static FabOauthAccess FromOauthAccess(OauthAccess pVertex) {
 			var v = new FabOauthAccess();
-			v.Fill(pVertex);
-			return v;
-		}
-
-	}
-		
-
-	/*================================================================================================*/
-	public class FabOauthDomain : FabVertex {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(Vertex pVertex) {
-			DomainToApi.FromOauthDomain(this, (OauthDomain)pVertex);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthDomain FromOauthDomain(OauthDomain pVertex) {
-			var v = new FabOauthDomain();
-			v.Fill(pVertex);
-			return v;
-		}
-
-	}
-		
-
-	/*================================================================================================*/
-	public class FabOauthGrant : FabVertex {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(Vertex pVertex) {
-			DomainToApi.FromOauthGrant(this, (OauthGrant)pVertex);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthGrant FromOauthGrant(OauthGrant pVertex) {
-			var v = new FabOauthGrant();
-			v.Fill(pVertex);
-			return v;
-		}
-
-	}
-		
-
-	/*================================================================================================*/
-	public class FabOauthScope : FabVertex {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(Vertex pVertex) {
-			DomainToApi.FromOauthScope(this, (OauthScope)pVertex);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthScope FromOauthScope(OauthScope pVertex) {
-			var v = new FabOauthScope();
 			v.Fill(pVertex);
 			return v;
 		}
@@ -432,6 +382,9 @@ namespace Fabric.New.Api.Objects {
 		
 		//[Access(Internal)]
 		public virtual string Secret { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string OauthDomains { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -452,6 +405,9 @@ namespace Fabric.New.Api.Objects {
 			LenMax("Secret", Secret, 32);
 			ValidRegex("Secret", Secret,
 				@"^[a-zA-Z0-9]*$");
+
+			//Validate OauthDomains
+			NotNull("OauthDomains", OauthDomains);
 
 			//Validate edges
 		}
@@ -886,6 +842,18 @@ namespace Fabric.New.Api.Objects {
 		public virtual byte Type { get; set; }
 		
 		//[Access(Internal)]
+		public virtual bool? OauthScopeAllow { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string OauthGrantRedirectUri { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string OauthGrantCode { get; set; }
+		
+		//[Access(Internal)]
+		public virtual long? OauthGrantExpires { get; set; }
+		
+		//[Access(Internal)]
 		public virtual long DefinedByAppId { get; set; }
 		
 		//[Access(Internal)]
@@ -900,6 +868,20 @@ namespace Fabric.New.Api.Objects {
 			//Validate Type
 			ValidEnum<MemberType>("Type", Type);
 
+			//Validate OauthScopeAllow
+
+			//Validate OauthGrantRedirectUri
+			LenMin("OauthGrantRedirectUri", OauthGrantRedirectUri, 1);
+			LenMax("OauthGrantRedirectUri", OauthGrantRedirectUri, 1024);
+
+			//Validate OauthGrantCode
+			LenMin("OauthGrantCode", OauthGrantCode, 32);
+			LenMax("OauthGrantCode", OauthGrantCode, 32);
+			ValidRegex("OauthGrantCode", OauthGrantCode,
+				@"^[a-zA-Z0-9]*$");
+
+			//Validate OauthGrantExpires
+
 			//Validate edges
 			ValidVertexId("DefinedBy", DefinedByAppId);
 			ValidVertexId("DefinedBy", DefinedByUserId);
@@ -910,51 +892,6 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabOauthAccess : CreateFabVertex {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Validate() {
-			base.Validate();
-
-			//Validate edges
-		}
-
-	}
-		
-
-	/*================================================================================================*/
-	public class CreateFabOauthDomain : CreateFabVertex {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Validate() {
-			base.Validate();
-
-			//Validate edges
-		}
-
-	}
-		
-
-	/*================================================================================================*/
-	public class CreateFabOauthGrant : CreateFabVertex {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Validate() {
-			base.Validate();
-
-			//Validate edges
-		}
-
-	}
-		
-
-	/*================================================================================================*/
-	public class CreateFabOauthScope : CreateFabVertex {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

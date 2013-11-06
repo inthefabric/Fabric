@@ -31,6 +31,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			//Custom: Set Domain.NameKey = Api.Name.ToLower()
 			//pDomain.Name <== pApi.Name  (requires custom)
 			pDomain.Secret = pApi.Secret;
+			pDomain.OauthDomains = pApi.OauthDomains;
 			FromCreateFabAppCustom(pDomain, pApi);
 		}
 
@@ -157,6 +158,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static void FromCreateFabMember(Member pDomain, CreateFabMember pApi) {
 			FromCreateFabVertex(pDomain, pApi);
 			pDomain.MemberType = pApi.Type;
+			pDomain.OauthScopeAllow = pApi.OauthScopeAllow;
+			pDomain.OauthGrantRedirectUri = pApi.OauthGrantRedirectUri;
+			pDomain.OauthGrantCode = pApi.OauthGrantCode;
+			pDomain.OauthGrantExpires = pApi.OauthGrantExpires;
 		}
 
 
@@ -170,48 +175,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabOauthAccess(OauthAccess pDomain, CreateFabOauthAccess pApi) {
-			FromCreateFabVertex(pDomain, pApi);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static OauthDomain FromCreateFabOauthDomain(CreateFabOauthDomain pApi) {
-			var dom = new OauthDomain();
-			FromCreateFabOauthDomain(dom, pApi);
-			return dom;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static void FromCreateFabOauthDomain(OauthDomain pDomain, CreateFabOauthDomain pApi) {
-			FromCreateFabVertex(pDomain, pApi);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static OauthGrant FromCreateFabOauthGrant(CreateFabOauthGrant pApi) {
-			var dom = new OauthGrant();
-			FromCreateFabOauthGrant(dom, pApi);
-			return dom;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static void FromCreateFabOauthGrant(OauthGrant pDomain, CreateFabOauthGrant pApi) {
-			FromCreateFabVertex(pDomain, pApi);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static OauthScope FromCreateFabOauthScope(CreateFabOauthScope pApi) {
-			var dom = new OauthScope();
-			FromCreateFabOauthScope(dom, pApi);
-			return dom;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static void FromCreateFabOauthScope(OauthScope pDomain, CreateFabOauthScope pApi) {
 			FromCreateFabVertex(pDomain, pApi);
 		}
 

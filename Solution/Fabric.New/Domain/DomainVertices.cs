@@ -22,6 +22,9 @@ namespace Fabric.New.Domain {
 		[WeaverTitanProperty("p.se", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Secret { get; set; }
 		
+		[WeaverTitanProperty("p.od", TitanIndex=false, TitanElasticIndex=false)]
+		public virtual string OauthDomains { get; set; }
+		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -42,6 +45,7 @@ namespace Fabric.New.Domain {
 			Name = TryGetString(pData, "p.na");
 			NameKey = TryGetString(pData, "p.nk");
 			Secret = TryGetString(pData, "p.se");
+			OauthDomains = TryGetString(pData, "p.od");
 		}
 
 	}
@@ -325,6 +329,18 @@ namespace Fabric.New.Domain {
 		[WeaverTitanProperty("m.at", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte MemberType { get; set; }
 		
+		[WeaverTitanProperty("m.osa", TitanIndex=false, TitanElasticIndex=false)]
+		public virtual bool? OauthScopeAllow { get; set; }
+		
+		[WeaverTitanProperty("m.ogr", TitanIndex=false, TitanElasticIndex=false)]
+		public virtual string OauthGrantRedirectUri { get; set; }
+		
+		[WeaverTitanProperty("m.ogc", TitanIndex=true, TitanElasticIndex=false)]
+		public virtual string OauthGrantCode { get; set; }
+		
+		[WeaverTitanProperty("m.oge", TitanIndex=false, TitanElasticIndex=false)]
+		public virtual long? OauthGrantExpires { get; set; }
+		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -358,6 +374,10 @@ namespace Fabric.New.Domain {
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
 			MemberType = TryGetByte(pData, "m.at");
+			OauthScopeAllow = TryGetNullableBool(pData, "m.osa");
+			OauthGrantRedirectUri = TryGetString(pData, "m.ogr");
+			OauthGrantCode = TryGetString(pData, "m.ogc");
+			OauthGrantExpires = TryGetNullableLong(pData, "m.oge");
 		}
 
 	}
@@ -395,89 +415,6 @@ namespace Fabric.New.Domain {
 			Refresh = TryGetString(pData, "oa.re");
 			Expires = TryGetLong(pData, "oa.ex");
 			IsClientOnly = TryGetBool(pData, "oa.co");
-		}
-
-	}
-
-
-	/*================================================================================================*/
-	[WeaverTitanVertex]
-	public class OauthDomain : Vertex {
-
-		[WeaverTitanProperty("od.do", TitanIndex=false, TitanElasticIndex=false)]
-		public virtual string Domain { get; set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthDomain() {
-			VertexType = (byte)VertexDomainType.OauthDomain;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDictionary<string, string> pData) {
-			base.Fill(pData);
-			Domain = TryGetString(pData, "od.do");
-		}
-
-	}
-
-
-	/*================================================================================================*/
-	[WeaverTitanVertex]
-	public class OauthGrant : Vertex {
-
-		[WeaverTitanProperty("og.ru", TitanIndex=false, TitanElasticIndex=false)]
-		public virtual string RedirectUri { get; set; }
-		
-		[WeaverTitanProperty("og.co", TitanIndex=true, TitanElasticIndex=false)]
-		public virtual string Code { get; set; }
-		
-		[WeaverTitanProperty("og.ex", TitanIndex=false, TitanElasticIndex=false)]
-		public virtual long Expires { get; set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthGrant() {
-			VertexType = (byte)VertexDomainType.OauthGrant;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDictionary<string, string> pData) {
-			base.Fill(pData);
-			RedirectUri = TryGetString(pData, "og.ru");
-			Code = TryGetString(pData, "og.co");
-			Expires = TryGetLong(pData, "og.ex");
-		}
-
-	}
-
-
-	/*================================================================================================*/
-	[WeaverTitanVertex]
-	public class OauthScope : Vertex {
-
-		[WeaverTitanProperty("os.al", TitanIndex=false, TitanElasticIndex=false)]
-		public virtual bool Allow { get; set; }
-		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthScope() {
-			VertexType = (byte)VertexDomainType.OauthScope;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDictionary<string, string> pData) {
-			base.Fill(pData);
-			Allow = TryGetBool(pData, "os.al");
 		}
 
 	}

@@ -10,6 +10,7 @@ namespace Fabric.New.Api.Modify {
 		// FabApp (Internal)
 		// - Name  (Internal)
 		// - Secret  (Internal)
+		// - OauthDomains  (Internal)
 
 		// FabArtifact (None)
 		// * CreatedByMember  (Internal)
@@ -64,6 +65,10 @@ namespace Fabric.New.Api.Modify {
 
 		// FabMember (All)
 		// - Type  (All)
+		// - OauthScopeAllow  (Internal)
+		// - OauthGrantRedirectUri  (Internal)
+		// - OauthGrantCode  (Internal)
+		// - OauthGrantExpires  (Internal)
 		// * DefinedByApp  (Internal)
 		// * DefinedByUser  (Internal)
 

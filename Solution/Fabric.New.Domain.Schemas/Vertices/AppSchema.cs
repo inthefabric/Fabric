@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Fabric.New.Domain.Schemas.Utils;
+﻿using Fabric.New.Domain.Schemas.Utils;
 
 namespace Fabric.New.Domain.Schemas.Vertices {
 	
@@ -9,13 +8,15 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public DomainProperty<string> Name { get; private set; }
 		public DomainProperty<string> NameKey { get; private set; }
 		public DomainProperty<string> Secret { get; private set; }
-		public DomainProperty<IList<string>> OauthDomains { get; private set; }
+		public DomainProperty<string> OauthDomains { get; private set; }
 
 		public ApiProperty<string> FabName { get; private set; }
 		public ApiProperty<string> FabSecret { get; private set; }
+		public ApiProperty<string> FabOauthDomains { get; private set; }
 
 		public PropertyMapping<string, string> FabNameMap { get; private set; }
 		public PropertyMapping<string, string> FabSecretMap { get; private set; }
+		public PropertyMapping<string, string> FabOauthDomainsMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +39,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			Secret = new DomainProperty<string>("Secret", "p.se");
 
-			OauthDomains = new DomainProperty<IList<string>>("OauthDomains", "p.od");
+			OauthDomains = new DomainProperty<string>("OauthDomains", "p.od");
 
 			////
 
@@ -54,12 +55,17 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabSecret.LenMax = 32;
 			FabSecret.ValidRegex = ApiProperty.ValidCodeRegex;
 
+			FabOauthDomains = new ApiProperty<string>("OauthDomains");
+			FabOauthDomains.CustomValidation = true;
+
 			////
 
 			FabNameMap = new PropertyMapping<string, string>(Name, FabName, true);
 			FabNameMap.ApiToDomainNote = "Set Domain.NameKey = Api.Name.ToLower()";
 
 			FabSecretMap = new PropertyMapping<string, string>(Secret, FabSecret);
+
+			FabOauthDomainsMap = new PropertyMapping<string, string>(OauthDomains, FabOauthDomains);
 		}
 
 	}

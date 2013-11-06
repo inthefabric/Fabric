@@ -11,6 +11,7 @@ p (App)
 p.na (Name)
 p.nk (NameKey)
 p.se (Secret)
+p.od (OauthDomains)
 
 a (Artifact)
 
@@ -53,23 +54,16 @@ i.no (Note)
 
 m (Member)
 m.at (MemberType)
+m.osa (OauthScopeAllow)
+m.ogr (OauthGrantRedirectUri)
+m.ogc (OauthGrantCode)
+m.oge (OauthGrantExpires)
 
 oa (OauthAccess)
 oa.to (Token)
 oa.re (Refresh)
 oa.ex (Expires)
 oa.co (IsClientOnly)
-
-od (OauthDomain)
-od.do (Domain)
-
-og (OauthGrant)
-og.ru (RedirectUri)
-og.co (Code)
-og.ex (Expires)
-
-os (OauthScope)
-os.al (Allow)
 
 r (Url)
 r.na (Name)
