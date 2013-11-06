@@ -176,6 +176,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabOauthAccess(OauthAccess pDomain, CreateFabOauthAccess pApi) {
 			FromCreateFabVertex(pDomain, pApi);
+			pDomain.Token = pApi.Token;
+			pDomain.Refresh = pApi.Refresh;
+			pDomain.Expires = pApi.Expires;
+			pDomain.IsClientOnly = pApi.IsClientOnly;
 		}
 
 

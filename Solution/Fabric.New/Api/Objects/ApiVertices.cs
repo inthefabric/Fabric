@@ -280,6 +280,14 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabOauthAccess : FabVertex {
+		
+		public virtual string Token { get; set; }
+		
+		public virtual string Refresh { get; set; }
+		
+		public virtual long Expires { get; set; }
+		
+		public virtual bool IsClientOnly { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -892,12 +900,40 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabOauthAccess : CreateFabVertex {
+		
+		//[Access(Internal)]
+		public virtual string Token { get; set; }
+		
+		//[Access(Internal)]
+		public virtual string Refresh { get; set; }
+		
+		//[Access(Internal)]
+		public virtual long Expires { get; set; }
+		
+		//[Access(Internal)]
+		public virtual bool IsClientOnly { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
+
+			//Validate Token
+			LenMin("Token", Token, 32);
+			LenMax("Token", Token, 32);
+			ValidRegex("Token", Token,
+				@"^[a-zA-Z0-9]*$");
+
+			//Validate Refresh
+			LenMin("Refresh", Refresh, 32);
+			LenMax("Refresh", Refresh, 32);
+			ValidRegex("Refresh", Refresh,
+				@"^[a-zA-Z0-9]*$");
+
+			//Validate Expires
+
+			//Validate IsClientOnly
 
 			//Validate edges
 		}

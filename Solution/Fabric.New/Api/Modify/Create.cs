@@ -72,6 +72,12 @@ namespace Fabric.New.Api.Modify {
 		// * DefinedByApp  (Internal)
 		// * DefinedByUser  (Internal)
 
+		// FabOauthAccess (Internal)
+		// - Token  (Internal)
+		// - Refresh  (Internal)
+		// - Expires  (Internal)
+		// - IsClientOnly  (Internal)
+
 		// FabUrl (All)
 		// - Name  (All)
 		// - FullPath  (All)
