@@ -210,6 +210,14 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 			ValidEnum<<#= ap.FromEnum #>>("<#= displayName #>", <#= ap.Name #>);
 <#+
 		}
+			
+		if ( ap.CustomValidation ) {
+			string funcName = pVertex.Names.Domain+
+				(ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3))+ap.Name;
+#>
+			ApiVerticesCustom.Validate<#= funcName #>(this, "<#= displayName #>", <#= ap.Name #>);
+<#+
+		}
 
 	} //end property loop
 #>

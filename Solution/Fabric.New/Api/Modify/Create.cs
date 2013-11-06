@@ -24,8 +24,7 @@ namespace Fabric.New.Api.Modify {
 		// - Secret  (Internal)
 		// - Code  (Internal)
 		// - Verified  (Internal)
-		// * UsedByApp  (Internal)
-		// * UsedByUser  (Internal)
+		// * UsedByArtifact  (Internal)
 
 		// FabFactor (All)
 		// - AssertionType  (All)

@@ -416,6 +416,7 @@ namespace Fabric.New.Api.Objects {
 
 			//Validate OauthDomains
 			NotNull("OauthDomains", OauthDomains);
+			ApiVerticesCustom.ValidateAppOauthDomains(this, "OauthDomains", OauthDomains);
 
 			//Validate edges
 		}
@@ -684,16 +685,22 @@ namespace Fabric.New.Api.Objects {
 			ValidEnum<FactorEventorType>("Eventor.Type", Type);
 
 			//Validate Year
+			ApiVerticesCustom.ValidateFactorEventorYear(this, "Eventor.Year", Year);
 
 			//Validate Month
+			ApiVerticesCustom.ValidateFactorEventorMonth(this, "Eventor.Month", Month);
 
 			//Validate Day
+			ApiVerticesCustom.ValidateFactorEventorDay(this, "Eventor.Day", Day);
 
 			//Validate Hour
+			ApiVerticesCustom.ValidateFactorEventorHour(this, "Eventor.Hour", Hour);
 
 			//Validate Minute
+			ApiVerticesCustom.ValidateFactorEventorMinute(this, "Eventor.Minute", Minute);
 
 			//Validate Second
+			ApiVerticesCustom.ValidateFactorEventorSecond(this, "Eventor.Second", Second);
 
 			//Validate edges
 		}
@@ -754,10 +761,13 @@ namespace Fabric.New.Api.Objects {
 			ValidEnum<FactorLocatorType>("Locator.Type", Type);
 
 			//Validate ValueX
+			ApiVerticesCustom.ValidateFactorLocatorValueX(this, "Locator.ValueX", ValueX);
 
 			//Validate ValueY
+			ApiVerticesCustom.ValidateFactorLocatorValueY(this, "Locator.ValueY", ValueY);
 
 			//Validate ValueZ
+			ApiVerticesCustom.ValidateFactorLocatorValueZ(this, "Locator.ValueZ", ValueZ);
 
 			//Validate edges
 		}
@@ -799,6 +809,7 @@ namespace Fabric.New.Api.Objects {
 			ValidEnum<FactorVectorUnitPrefix>("Vector.UnitPrefix", UnitPrefix);
 
 			//Validate Value
+			ApiVerticesCustom.ValidateFactorVectorValue(this, "Vector.Value", Value);
 
 			//Validate edges
 			ValidVertexId("Vector.UsesAxisArtifactId", UsesAxisArtifactId);

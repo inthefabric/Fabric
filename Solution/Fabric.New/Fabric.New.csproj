@@ -63,6 +63,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Api\Objects\ApiVerticesCustom.cs" />
     <Compile Include="Api\Objects\CreateFabObject.cs" />
     <Compile Include="Api\Objects\Conversions\DomainToApi.cs">
       <DependentUpon>DomainToApi.tt</DependentUpon>

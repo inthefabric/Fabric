@@ -184,31 +184,37 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabEventorYear = new ApiProperty<long>("Year");
 			FabEventorYear.SetOpenUnmodAccess();
 			FabEventorYear.SubObjectOf = "FabEventor";
+			FabEventorYear.CustomValidation = true;
 
 			FabEventorMonth = new ApiProperty<byte>("Month");
 			FabEventorMonth.SetOpenUnmodAccess();
 			FabEventorMonth.SubObjectOf = "FabEventor";
 			FabEventorMonth.IsNullable = true;
+			FabEventorMonth.CustomValidation = true;
 
 			FabEventorDay = new ApiProperty<byte>("Day");
 			FabEventorDay.SetOpenUnmodAccess();
 			FabEventorDay.SubObjectOf = "FabEventor";
 			FabEventorDay.IsNullable = true;
+			FabEventorDay.CustomValidation = true;
 
 			FabEventorHour = new ApiProperty<byte>("Hour");
 			FabEventorHour.SetOpenUnmodAccess();
 			FabEventorHour.SubObjectOf = "FabEventor";
 			FabEventorHour.IsNullable = true;
+			FabEventorHour.CustomValidation = true;
 
 			FabEventorMinute = new ApiProperty<byte>("Minute");
 			FabEventorMinute.SetOpenUnmodAccess();
 			FabEventorMinute.SubObjectOf = "FabEventor";
 			FabEventorMinute.IsNullable = true;
+			FabEventorMinute.CustomValidation = true;
 
 			FabEventorSecond = new ApiProperty<byte>("Second");
 			FabEventorSecond.SetOpenUnmodAccess();
 			FabEventorSecond.SubObjectOf = "FabEventor";
 			FabEventorSecond.IsNullable = true;
+			FabEventorSecond.CustomValidation = true;
 
 			FabIdentorType = new ApiProperty<byte>("Type");
 			FabIdentorType.SetOpenUnmodAccess();
@@ -230,14 +236,17 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabLocatorValueX = new ApiProperty<double>("ValueX");
 			FabLocatorValueX.SetOpenUnmodAccess();
 			FabLocatorValueX.SubObjectOf = "FabLocator";
+			FabLocatorValueX.CustomValidation = true;
 
 			FabLocatorValueY = new ApiProperty<double>("ValueY");
 			FabLocatorValueY.SetOpenUnmodAccess();
 			FabLocatorValueY.SubObjectOf = "FabLocator";
+			FabLocatorValueY.CustomValidation = true;
 
 			FabLocatorValueZ = new ApiProperty<double>("ValueZ");
 			FabLocatorValueZ.SetOpenUnmodAccess();
 			FabLocatorValueZ.SubObjectOf = "FabLocator";
+			FabLocatorValueZ.CustomValidation = true;
 
 			FabVectorType = new ApiProperty<byte>("Type");
 			FabVectorType.SetOpenUnmodAccess();
@@ -257,6 +266,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabVectorValue = new ApiProperty<long>("Value");
 			FabVectorValue.SetOpenUnmodAccess();
 			FabVectorValue.SubObjectOf = "FabVector";
+			FabVectorValue.CustomValidation = true;
 
 			////
 
