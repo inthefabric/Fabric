@@ -512,13 +512,13 @@ namespace Fabric.New.Domain {
 	public class Vertex : VertexBase {
 
 		[WeaverTitanProperty("v.id", TitanIndex=true, TitanElasticIndex=false)]
-		public virtual long VertexId { get; set; }
+		public override long VertexId { get; set; }
 		
 		[WeaverTitanProperty("v.ts", TitanIndex=false, TitanElasticIndex=true)]
-		public virtual long Timestamp { get; set; }
+		public override long Timestamp { get; set; }
 		
 		[WeaverTitanProperty("v.t", TitanIndex=false, TitanElasticIndex=false)]
-		public virtual byte VertexType { get; set; }
+		public override byte VertexType { get; set; }
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

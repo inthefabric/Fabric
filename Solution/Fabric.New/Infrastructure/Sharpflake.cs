@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using Fabric.Domain;
+using Fabric.New.Domain;
 
-namespace Fabric.Infrastructure {
+namespace Fabric.New.Infrastructure {
 
 	//idea from: https://github.com/twitter/snowflake
 
@@ -36,7 +36,7 @@ namespace Fabric.Infrastructure {
 			long m = (DateTime.UtcNow.AddYears(-2011).Ticks/10000L);
 
 			if ( m < LastMilli ) {
-				Log.Debug("Clock moved backwards; sleeping for the next "+(LastMilli-m)+"ms...");
+				//Log.Debug("Clock moved backwards; sleeping for the next "+(LastMilli-m)+"ms...");
 				Thread.Sleep((int)(LastMilli-m+1));
 				return GetMilli();
 			}

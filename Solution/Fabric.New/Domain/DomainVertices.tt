@@ -37,9 +37,10 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	foreach ( DomainProperty dp in props ) {
 		string isInd = (dp.IsIndexed+"").ToLower();
 		string isEla = (dp.IsElastic+"").ToLower();
+		string virt = (vp == null ? "override" : "virtual");
 #>
 		[WeaverTitanProperty("<#= dp.DbName #>", TitanIndex=<#= isInd #>, TitanElasticIndex=<#= isEla #>)]
-		public virtual <#= dp.GetDataTypeName() #> <#= dp.Name #> { get; set; }
+		public <#= virt #> <#= dp.GetDataTypeName() #> <#= dp.Name #> { get; set; }
 		
 <#
 	} // end property loop

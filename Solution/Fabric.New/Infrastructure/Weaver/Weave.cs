@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Fabric.Domain;
+using Fabric.New.Domain;
 using Weaver.Core;
-using Weaver.Core.Graph;
 using Weaver.Titan.Elements;
 
-namespace Fabric.Infrastructure.Weaver {
+namespace Fabric.New.Infrastructure.Weaver {
 
 	/*================================================================================================*/
 	public static class Weave {
@@ -40,11 +39,11 @@ namespace Fabric.Infrastructure.Weaver {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static T ExactIndex<T>(this IWeaverAllVertices pAllVert, T pVertexWithId) 
-																	where T : class, IVertex, new() {
-			return pAllVert.ExactIndex(pVertexWithId.GetTypeIdProp<T>(), pVertexWithId.GetTypeId());
-		}
+		/*--------------------------------------------------------------------------------------------* /
+		public static T ExactIndex<T>(this IWeaverAllVertices pAllVert, T pVertex) 
+																			where T : IVertex, new() {
+			return pAllVert.ExactIndex<T>((x => x.VertexId), pVertex.VertexId);
+		}*/
 
 	}
 

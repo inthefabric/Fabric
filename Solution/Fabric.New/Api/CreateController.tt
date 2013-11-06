@@ -12,10 +12,29 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-namespace Fabric.New.Api.Modify {
+namespace Fabric.New.Api {
 
 	/*================================================================================================*/
-	public static class Create {
+	public class CreateController {
+
+		private readonly object vRoute;
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public CreateController(object pRequest, object pApiCtx, object pOauthTasks, object pRoute) {
+															//: base(pRequest, pApiCtx, pOauthTasks) {
+			vRoute = pRoute;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public object GetResponse() {
+			return null;
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 <#
 IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 

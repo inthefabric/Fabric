@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Weaver.Core">
@@ -47,10 +50,15 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Api\Modify\Create.cs">
+    <Compile Include="Api\CreateController.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Create.tt</DependentUpon>
+      <DependentUpon>CreateController.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Api\Operations\CreateOperations.cs">
+      <DependentUpon>CreateOperations.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Api\Objects\Conversions\ApiToDomain.cs">
       <DependentUpon>ApiToDomain.tt</DependentUpon>
@@ -72,6 +80,11 @@
     </Compile>
     <Compile Include="Api\Objects\Conversions\DomainToApiCustom.cs" />
     <Compile Include="Api\Objects\FabObject.cs" />
+    <Compile Include="Api\Operations\CreateOperationsUtil.cs" />
+    <Compile Include="Domain\IVertex.cs" />
+    <Compile Include="Infrastructure\Sharpflake.cs" />
+    <Compile Include="Infrastructure\Weaver\TxBuilder.cs" />
+    <Compile Include="Infrastructure\Weaver\Weave.cs" />
     <Compile Include="Domain\DomainEdges.cs">
       <DependentUpon>DomainEdges.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -93,9 +106,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Api\Modify\Create.tt">
+    <None Include="Api\CreateController.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Create.cs</LastGenOutput>
+      <LastGenOutput>CreateController.cs</LastGenOutput>
+    </None>
+    <None Include="Api\Operations\CreateOperations.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateOperations.cs</LastGenOutput>
     </None>
     <None Include="Api\Objects\Conversions\ApiToDomain.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -126,6 +143,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

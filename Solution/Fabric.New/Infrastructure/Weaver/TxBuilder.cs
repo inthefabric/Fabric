@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Domain;
+using Fabric.New.Domain;
 using Weaver.Core.Elements;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Titan;
 
-namespace Fabric.Infrastructure.Weaver {
+namespace Fabric.New.Infrastructure.Weaver {
 
 	/*================================================================================================*/
-	public class TxBuilder { //TEST: TxBuilder
+	public class TxBuilder {
 
 		public IWeaverTransaction Transaction { get; private set; }
 		public IList<IWeaverScript> Scripts { get; private set; }
@@ -61,20 +61,27 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetVertex<T>(T pVertexWithId, out IWeaverVarAlias<T> pVertexVar)
-																		where T : class, IVertex, new() {
-			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex(
-				pVertexWithId.GetTypeIdProp<T>(), pVertexWithId.GetTypeId()).Next().ToQuery();
+		public void GetVertex<T>(long pVertexId, out IWeaverVarAlias<T> pVertexVar) 
+																			where T : IVertex, new() {
+			IWeaverQuery q = Weave.Inst.Graph.V
+				.ExactIndex<T>((x => x.VertexId), pVertexId).Next()
+				.ToQuery();
+
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
 			Transaction.AddQuery(q);
 			Scripts.Add(q);
 			vVarHash.Add(pVertexVar);
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void GetVertex<T>(T pVertex, out IWeaverVarAlias<T> pVertexVar) where T : IVertex, new(){
+			GetVertex(pVertex.VertexId, out pVertexVar);
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetVertexByVertexId<T>(T pVertexWithVertexId, out IWeaverVarAlias<T> pVertexVar,
-												string pVarName=null) where T : class, IVertex, new() {
-			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pVertexWithVertexId.Id).ToQuery();
+		public void GetVertexByDatabaseId<T>(T pVertex, out IWeaverVarAlias<T> pVertexVar,
+														string pVarName=null) where T : IVertex, new() {
+			IWeaverQuery q = Weave.Inst.Graph.V.Id<T>(pVertex.Id).ToQuery();
 			string varName = (pVarName ?? GetNextVarName());
 			q = WeaverQuery.StoreResultAsVar(varName, q, out pVertexVar);
 			Transaction.AddQuery(q);
@@ -85,7 +92,7 @@ namespace Fabric.Infrastructure.Weaver {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddVertex<T>(T pVertex, out IWeaverVarAlias<T> pNewVertexVar) where T : class, IVertex {
+		public void AddVertex<T>(T pVertex, out IWeaverVarAlias<T> pNewVertexVar) where T : IVertex {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewVertexVar);
 			Transaction.AddQuery(q);

@@ -93,7 +93,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Weaver\Weave.cs" />
     <Compile Include="Api\EncryptUtil.cs" />
     <Compile Include="Api\AuthUtil.cs" />
     <Compile Include="Api\ICacheManager.cs" />
@@ -140,8 +139,6 @@
     <Compile Include="Traversal\IStepLink.cs" />
     <Compile Include="Traversal\StepLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sharpflake.cs" />
-    <Compile Include="Weaver\TxBuilder.cs" />
     <Compile Include="Weaver\DomainBuilders.cs">
       <DependentUpon>DomainBuilders.tt</DependentUpon>
       <AutoGen>True</AutoGen>

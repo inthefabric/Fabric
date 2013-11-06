@@ -4,11 +4,12 @@ using Weaver.Core.Elements;
 namespace Fabric.New.Domain {
 
 	/*================================================================================================*/
-	public abstract class VertexBase : WeaverVertex {
+	public abstract class VertexBase : WeaverVertex, IVertex {
 
+		public abstract long VertexId { get; set; }
+		public abstract long Timestamp { get; set; }
+		public abstract byte VertexType { get; set; }
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		public virtual void Fill(IDictionary<string, string> pData) {}
 
 
