@@ -23,7 +23,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public DomainProperty<long> ToVertexId { get; private set; }
 		public Access CreateToVertexId { get; protected set; }
 		public string SubObjectOf { get; protected set; }
-		public bool CreateFromOtherDirection { get; protected set; }
+		public Type CreateFromOtherDirection { get; protected set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

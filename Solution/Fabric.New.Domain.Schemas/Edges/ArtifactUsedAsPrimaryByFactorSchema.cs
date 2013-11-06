@@ -16,7 +16,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactUsedAsPrimaryByFactor() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("UsedAsPrimaryBy", "pb");
-			CreateFromOtherDirection = true;
+			CreateFromOtherDirection = typeof(FactorUsesPrimaryArtifactSchema);
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 			DescriptorType = Prop("DesdcriptorType", "dt", (x => x.DescriptorType));

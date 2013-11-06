@@ -16,7 +16,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactUsedAsRelatedByFactor() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("UsedAsRelatedBy", "rb");
-			CreateFromOtherDirection = true;
+			CreateFromOtherDirection = typeof(FactorUsesRelatedArtifactSchema);
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 			DescriptorType = Prop("DesdcriptorType", "dt", (x => x.DescriptorType));

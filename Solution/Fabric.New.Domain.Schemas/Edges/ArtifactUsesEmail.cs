@@ -10,7 +10,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactUsesEmail() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("Uses", "u");
-			CreateFromOtherDirection = true;
+			CreateFromOtherDirection = typeof(EmailUsedByArtifact);
 		}
 
 	}

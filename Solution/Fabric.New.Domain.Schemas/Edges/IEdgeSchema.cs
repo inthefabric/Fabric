@@ -17,7 +17,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		DomainProperty<long> ToVertexId { get; }
 		Access CreateToVertexId { get; }
 		string SubObjectOf { get; }
-		bool CreateFromOtherDirection { get; }
+		Type CreateFromOtherDirection { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

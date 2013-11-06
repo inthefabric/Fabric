@@ -13,7 +13,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberAuthenticatedByOauthAccess() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("AuthenticatedBy", "ab");
-			CreateFromOtherDirection = true;
+			CreateFromOtherDirection = typeof(OauthAccessAuthenticatesMember);
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 		}

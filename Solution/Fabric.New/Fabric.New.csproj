@@ -80,7 +80,7 @@
     </Compile>
     <Compile Include="Api\Objects\Conversions\DomainToApiCustom.cs" />
     <Compile Include="Api\Objects\FabObject.cs" />
-    <Compile Include="Api\Operations\CreateOperationsUtil.cs" />
+    <Compile Include="Api\Operations\CreateOperationBase.cs" />
     <Compile Include="Domain\IVertex.cs" />
     <Compile Include="Infrastructure\Sharpflake.cs" />
     <Compile Include="Infrastructure\Weaver\TxBuilder.cs" />

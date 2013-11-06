@@ -18,7 +18,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public MemberCreatesFactorSchema() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("Creates", "c");
-			CreateFromOtherDirection = true;
+			CreateFromOtherDirection = typeof(FactorCreatedByMemberSchema);
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType));

@@ -15,7 +15,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public AppDefinesMemberSchema() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("Defines", "d");
-			CreateFromOtherDirection = true;
+			CreateFromOtherDirection = typeof(MemberDefinedByAppSchema);
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
 			MemberType = Prop("MemberType", "mt", (x => x.MemberType));
