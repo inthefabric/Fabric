@@ -194,7 +194,7 @@ namespace Fabric.New.Domain {
 		public virtual long Timestamp { get; set; }
 
 		[WeaverTitanProperty("apbf.dt")]
-		public virtual byte DesdcriptorType { get; set; }
+		public virtual byte DescriptorType { get; set; }
 
 		[WeaverTitanProperty("apbf.ra")]
 		public virtual long RelatedArtifactId { get; set; }
@@ -223,7 +223,7 @@ namespace Fabric.New.Domain {
 		public virtual long Timestamp { get; set; }
 
 		[WeaverTitanProperty("arbf.dt")]
-		public virtual byte DesdcriptorType { get; set; }
+		public virtual byte DescriptorType { get; set; }
 
 		[WeaverTitanProperty("arbf.pa")]
 		public virtual long PrimaryArtifactId { get; set; }

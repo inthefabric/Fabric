@@ -104,7 +104,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pApi.AssertionType = pDomain.AssertionType;
 			pApi.IsDefining = pDomain.IsDefining;
 			pApi.Note = pDomain.Note;
-			pApi.Descriptor.Type = pDomain.DescriptorType.GetValueOrDefault();
+			pApi.Descriptor.Type = pDomain.DescriptorType;
 			pApi.Director.Type = pDomain.DirectorType.GetValueOrDefault();
 			pApi.Director.PrimaryAction = pDomain.DirectorPrimaryAction.GetValueOrDefault();
 			pApi.Director.RelatedAction = pDomain.DirectorRelatedAction.GetValueOrDefault();

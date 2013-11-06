@@ -91,12 +91,12 @@ acbm (Artifact-CreatedBy-Member)
 
 apbf (Artifact-UsedAsPrimaryBy-Factor)
 apbf.ts (UsedAsPrimaryBy.Timestamp)
-apbf.dt (UsedAsPrimaryBy.DesdcriptorType)
+apbf.dt (UsedAsPrimaryBy.DescriptorType)
 apbf.ra (UsedAsPrimaryBy.RelatedArtifactId)
 
 arbf (Artifact-UsedAsRelatedBy-Factor)
 arbf.ts (UsedAsRelatedBy.Timestamp)
-arbf.dt (UsedAsRelatedBy.DesdcriptorType)
+arbf.dt (UsedAsRelatedBy.DescriptorType)
 arbf.pa (UsedAsRelatedBy.PrimaryArtifactId)
 
 aue (Artifact-Uses-Email)

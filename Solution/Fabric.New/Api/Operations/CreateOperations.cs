@@ -16,6 +16,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<App> vVertexAlias;
 		private CreateFabApp vCreateObj;
+		private App vDomObj;
 		private FabApp vResult;
 
 
@@ -30,18 +31,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabApp GetFabAppResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabApp input;
-			App dom = ConvertInput(pJson, ApiToDomain.FromCreateFabApp, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabApp, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<App> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromApp(dom);
+			vResult = DomainToApi.FromApp(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -57,6 +63,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Artifact> vVertexAlias;
 		private CreateFabArtifact vCreateObj;
+		private Artifact vDomObj;
 		private FabArtifact vResult;
 
 
@@ -71,18 +78,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabArtifact GetFabArtifactResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabArtifact input;
-			Artifact dom = ConvertInput(pJson, ApiToDomain.FromCreateFabArtifact, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabArtifact, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Artifact> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromArtifact(dom);
+			vResult = DomainToApi.FromArtifact(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -95,8 +107,11 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<Artifact, ArtifactCreatedByMember, Member>(
 					vVertexAlias, vCreateObj.CreatedByMemberId);
 
-			AddReverseEdge<Member, MemberCreatesArtifact, Artifact>(acbmAlias, vVertexAlias);
-			//TODO: add 2 edge prop(s)
+			var mcaEdge = new MemberCreatesArtifact();
+			mcaEdge.Timestamp = vDomObj.Timestamp;
+			mcaEdge.VertexType = vDomObj.VertexType;
+
+			AddReverseEdge(acbmAlias, mcaEdge, vVertexAlias);
 		}
 
 	}
@@ -107,6 +122,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Class> vVertexAlias;
 		private CreateFabClass vCreateObj;
+		private Class vDomObj;
 		private FabClass vResult;
 
 
@@ -121,18 +137,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabClass GetFabClassResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabClass input;
-			Class dom = ConvertInput(pJson, ApiToDomain.FromCreateFabClass, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabClass, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Class> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromClass(dom);
+			vResult = DomainToApi.FromClass(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -148,6 +169,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Email> vVertexAlias;
 		private CreateFabEmail vCreateObj;
+		private Email vDomObj;
 		private FabEmail vResult;
 
 
@@ -162,18 +184,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabEmail GetFabEmailResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabEmail input;
-			Email dom = ConvertInput(pJson, ApiToDomain.FromCreateFabEmail, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabEmail, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Email> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromEmail(dom);
+			vResult = DomainToApi.FromEmail(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -186,8 +213,9 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<Email, EmailUsedByArtifact, Artifact>(
 					vVertexAlias, vCreateObj.UsedByArtifactId);
 
-			AddReverseEdge<Artifact, ArtifactUsesEmail, Email>(ebaAlias, vVertexAlias);
-			//TODO: add 0 edge prop(s)
+			var aueEdge = new ArtifactUsesEmail();
+
+			AddReverseEdge(ebaAlias, aueEdge, vVertexAlias);
 		}
 
 	}
@@ -198,6 +226,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Factor> vVertexAlias;
 		private CreateFabFactor vCreateObj;
+		private Factor vDomObj;
 		private FabFactor vResult;
 
 
@@ -212,18 +241,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabFactor GetFabFactorResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabFactor input;
-			Factor dom = ConvertInput(pJson, ApiToDomain.FromCreateFabFactor, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabFactor, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Factor> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromFactor(dom);
+			vResult = DomainToApi.FromFactor(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -236,8 +270,13 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<Factor, FactorCreatedByMember, Member>(
 					vVertexAlias, vCreateObj.CreatedByMemberId);
 
-			AddReverseEdge<Member, MemberCreatesFactor, Factor>(fcbmAlias, vVertexAlias);
-			//TODO: add 4 edge prop(s)
+			var mcfEdge = new MemberCreatesFactor();
+			mcfEdge.Timestamp = vDomObj.Timestamp;
+			mcfEdge.DescriptorType = vDomObj.DescriptorType;
+			mcfEdge.PrimaryArtifactId = vCreateObj.UsesPrimaryArtifactId;
+			mcfEdge.RelatedArtifactId = vCreateObj.UsesRelatedArtifactId;
+
+			AddReverseEdge(fcbmAlias, mcfEdge, vVertexAlias);
 
 			////
 
@@ -263,8 +302,12 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<Factor, FactorUsesPrimaryArtifact, Artifact>(
 					vVertexAlias, vCreateObj.UsesPrimaryArtifactId);
 
-			AddReverseEdge<Artifact, ArtifactUsedAsPrimaryByFactor, Factor>(fpaAlias, vVertexAlias);
-			//TODO: add 3 edge prop(s)
+			var apbfEdge = new ArtifactUsedAsPrimaryByFactor();
+			apbfEdge.Timestamp = vDomObj.Timestamp;
+			apbfEdge.DescriptorType = vDomObj.DescriptorType;
+			apbfEdge.RelatedArtifactId = vCreateObj.UsesRelatedArtifactId;
+
+			AddReverseEdge(fpaAlias, apbfEdge, vVertexAlias);
 
 			////
 
@@ -272,8 +315,12 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<Factor, FactorUsesRelatedArtifact, Artifact>(
 					vVertexAlias, vCreateObj.UsesRelatedArtifactId);
 
-			AddReverseEdge<Artifact, ArtifactUsedAsRelatedByFactor, Factor>(fraAlias, vVertexAlias);
-			//TODO: add 3 edge prop(s)
+			var arbfEdge = new ArtifactUsedAsRelatedByFactor();
+			arbfEdge.Timestamp = vDomObj.Timestamp;
+			arbfEdge.DescriptorType = vDomObj.DescriptorType;
+			arbfEdge.PrimaryArtifactId = vCreateObj.UsesPrimaryArtifactId;
+
+			AddReverseEdge(fraAlias, arbfEdge, vVertexAlias);
 
 			////
 
@@ -290,6 +337,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Instance> vVertexAlias;
 		private CreateFabInstance vCreateObj;
+		private Instance vDomObj;
 		private FabInstance vResult;
 
 
@@ -304,18 +352,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabInstance GetFabInstanceResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabInstance input;
-			Instance dom = ConvertInput(pJson, ApiToDomain.FromCreateFabInstance, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabInstance, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Instance> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromInstance(dom);
+			vResult = DomainToApi.FromInstance(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -331,6 +384,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Member> vVertexAlias;
 		private CreateFabMember vCreateObj;
+		private Member vDomObj;
 		private FabMember vResult;
 
 
@@ -345,18 +399,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabMember GetFabMemberResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabMember input;
-			Member dom = ConvertInput(pJson, ApiToDomain.FromCreateFabMember, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabMember, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Member> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromMember(dom);
+			vResult = DomainToApi.FromMember(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -369,8 +428,12 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<Member, MemberDefinedByApp, App>(
 					vVertexAlias, vCreateObj.DefinedByAppId);
 
-			AddReverseEdge<App, AppDefinesMember, Member>(mdbpAlias, vVertexAlias);
-			//TODO: add 3 edge prop(s)
+			var pdmEdge = new AppDefinesMember();
+			pdmEdge.Timestamp = vDomObj.Timestamp;
+			pdmEdge.MemberType = vDomObj.MemberType;
+			pdmEdge.UserId = vCreateObj.DefinedByUserId;
+
+			AddReverseEdge(mdbpAlias, pdmEdge, vVertexAlias);
 
 			////
 
@@ -378,8 +441,12 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<Member, MemberDefinedByUser, User>(
 					vVertexAlias, vCreateObj.DefinedByUserId);
 
-			AddReverseEdge<User, UserDefinesMember, Member>(mdbuAlias, vVertexAlias);
-			//TODO: add 3 edge prop(s)
+			var udmEdge = new UserDefinesMember();
+			udmEdge.Timestamp = vDomObj.Timestamp;
+			udmEdge.MemberType = vDomObj.MemberType;
+			udmEdge.AppId = vCreateObj.DefinedByAppId;
+
+			AddReverseEdge(mdbuAlias, udmEdge, vVertexAlias);
 		}
 
 	}
@@ -390,6 +457,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<OauthAccess> vVertexAlias;
 		private CreateFabOauthAccess vCreateObj;
+		private OauthAccess vDomObj;
 		private FabOauthAccess vResult;
 
 
@@ -404,18 +472,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabOauthAccess GetFabOauthAccessResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabOauthAccess input;
-			OauthAccess dom = ConvertInput(pJson, ApiToDomain.FromCreateFabOauthAccess, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabOauthAccess, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<OauthAccess> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromOauthAccess(dom);
+			vResult = DomainToApi.FromOauthAccess(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -428,8 +501,10 @@ namespace Fabric.New.Api.Operations {
 				AddEdge<OauthAccess, OauthAccessAuthenticatesMember, Member>(
 					vVertexAlias, vCreateObj.AuthenticatesMemberId);
 
-			AddReverseEdge<Member, MemberAuthenticatedByOauthAccess, OauthAccess>(oaamAlias, vVertexAlias);
-			//TODO: add 1 edge prop(s)
+			var maboaEdge = new MemberAuthenticatedByOauthAccess();
+			maboaEdge.Timestamp = vDomObj.Timestamp;
+
+			AddReverseEdge(oaamAlias, maboaEdge, vVertexAlias);
 		}
 
 	}
@@ -440,6 +515,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Url> vVertexAlias;
 		private CreateFabUrl vCreateObj;
+		private Url vDomObj;
 		private FabUrl vResult;
 
 
@@ -454,18 +530,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabUrl GetFabUrlResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabUrl input;
-			Url dom = ConvertInput(pJson, ApiToDomain.FromCreateFabUrl, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabUrl, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Url> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromUrl(dom);
+			vResult = DomainToApi.FromUrl(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -481,6 +562,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<User> vVertexAlias;
 		private CreateFabUser vCreateObj;
+		private User vDomObj;
 		private FabUser vResult;
 
 
@@ -495,18 +577,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabUser GetFabUserResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabUser input;
-			User dom = ConvertInput(pJson, ApiToDomain.FromCreateFabUser, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabUser, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<User> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromUser(dom);
+			vResult = DomainToApi.FromUser(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -522,6 +609,7 @@ namespace Fabric.New.Api.Operations {
 		
 		private IWeaverVarAlias<Vertex> vVertexAlias;
 		private CreateFabVertex vCreateObj;
+		private Vertex vDomObj;
 		private FabVertex vResult;
 
 
@@ -536,18 +624,23 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public FabVertex GetFabVertexResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			CreateFabVertex input;
-			Vertex dom = ConvertInput(pJson, ApiToDomain.FromCreateFabVertex, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabVertex, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<Vertex> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.FromVertex(dom);
+			vResult = DomainToApi.FromVertex(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

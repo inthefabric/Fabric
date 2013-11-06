@@ -101,12 +101,12 @@ namespace Fabric.New.Infrastructure.Weaver {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddEdge<TEdge>(IWeaverVarAlias pFromVar, IWeaverVarAlias pToVar)
+		public void AddEdge<TEdge>(IWeaverVarAlias pFromVar, TEdge pEdge, IWeaverVarAlias pToVar)
 																	where TEdge : IWeaverEdge, new() {
 			VerifyVar(pFromVar);
 			VerifyVar(pToVar);
 
-			IWeaverQuery q = Weave.Inst.TitanGraph().AddEdgeVci(pFromVar, new TEdge(), pToVar);
+			IWeaverQuery q = Weave.Inst.Graph.AddEdge(pFromVar, pEdge, pToVar);
 			Transaction.AddQuery(q);
 			Scripts.Add(q);
 		}

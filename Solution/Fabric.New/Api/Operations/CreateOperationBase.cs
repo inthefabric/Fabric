@@ -60,7 +60,7 @@ namespace Fabric.New.Api.Operations {
 
 			IWeaverVarAlias<TTo> toVertexVar;
 			TxBuild.GetVertex(pToVertexId, out toVertexVar);
-			TxBuild.AddEdge<TEdge>(pFromVar, toVertexVar);
+			TxBuild.AddEdge(pFromVar, new TEdge(), toVertexVar);
 
 			return toVertexVar;
 		}
@@ -80,12 +80,12 @@ namespace Fabric.New.Api.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void AddReverseEdge<TFrom, TEdge, TTo>(
-										IWeaverVarAlias<TFrom> pFromVar, IWeaverVarAlias<TTo> pToVar)
+							IWeaverVarAlias<TFrom> pFromVar, TEdge pEdge, IWeaverVarAlias<TTo> pToVar)
 														where TFrom : IVertex, new()
 														where TTo : IVertex, new()
 														where TEdge : IWeaverEdge<TFrom, TTo>, new() {
 			if ( pFromVar != null ) {
-				TxBuild.AddEdge<TEdge>(pFromVar, pToVar);
+				TxBuild.AddEdge(pFromVar, pEdge, pToVar);
 			}
 		}
 

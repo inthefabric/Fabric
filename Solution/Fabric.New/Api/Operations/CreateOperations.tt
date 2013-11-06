@@ -36,6 +36,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		
 		private IWeaverVarAlias<<#= v.Names.Domain #>> vVertexAlias;
 		private <#= createObjName #> vCreateObj;
+		private <#= v.Names.Domain #> vDomObj;
 		private <#= v.Names.Api #> vResult;
 
 
@@ -50,18 +51,23 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public <#= v.Names.Api #> Get<#= v.Names.Api #>Result() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(string pJson) {
 			<#= createObjName #> input;
-			<#= v.Names.Domain #> dom = ConvertInput(pJson, ApiToDomain.From<#= createObjName #>, out input);
+			vDomObj = ConvertInput(pJson, ApiToDomain.From<#= createObjName #>, out input);
 			vCreateObj = input;
 		
 			IWeaverVarAlias<<#= v.Names.Domain #>> domVar;
 			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(dom, out domVar);
+			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			vResult = DomainToApi.From<#= v.Names.Domain #>(dom);
+			vResult = DomainToApi.From<#= v.Names.Domain #>(vDomObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -93,8 +99,22 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		}
 #>
 
-			AddReverseEdge<<#= tv.Names.Domain #>, <#= opp.GetClassNameDom() #>, <#= fv.Names.Domain #>>(<#= e.NameDb #>Alias, vVertexAlias);
-			//TODO: add <#= SchemaUtil.GetEdgeProperties(opp).Count #> edge prop(s)
+			var <#= opp.NameDb #>Edge = new <#= opp.GetClassNameDom() #>();
+<#
+		IList<EdgeProperty> edgeProps = SchemaUtil.GetEdgeProperties(opp);
+
+		foreach ( EdgeProperty ep in edgeProps ) {
+			IEdgeSchema edgeToProp = ep.GetEdgeToDomainProp();
+			DomainProperty dp = ep.GetDomainProp();
+			string fromVar = (edgeToProp == null ?
+				"vDomObj."+dp.Name : "vCreateObj."+edgeToProp.GetPropNameApi());
+#>
+			<#= opp.NameDb #>Edge.<#= ep.Name #> = <#= fromVar #>;
+<#
+		}
+#>
+
+			AddReverseEdge(<#= e.NameDb #>Alias, <#= opp.NameDb #>Edge, vVertexAlias);
 <#
 	} //end edges loop
 #>

@@ -92,7 +92,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			Note = new DomainProperty<string>("Note", "f.no");
 
 			DescriptorType = new DomainProperty<byte>("DescriptorType", "f.det");
-			DescriptorType.IsNullable = true;
 
 			DirectorType = new DomainProperty<byte>("DirectorType", "f.dit");
 			DirectorType.IsNullable = true;

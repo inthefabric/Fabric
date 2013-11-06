@@ -181,7 +181,7 @@ namespace Fabric.New.Domain {
 		public virtual string Note { get; set; }
 		
 		[WeaverTitanProperty("f.det", TitanIndex=false, TitanElasticIndex=false)]
-		public virtual byte? DescriptorType { get; set; }
+		public virtual byte DescriptorType { get; set; }
 		
 		[WeaverTitanProperty("f.dit", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? DirectorType { get; set; }
@@ -278,7 +278,7 @@ namespace Fabric.New.Domain {
 			AssertionType = TryGetByte(pData, "f.at");
 			IsDefining = TryGetBool(pData, "f.de");
 			Note = TryGetString(pData, "f.no");
-			DescriptorType = TryGetNullableByte(pData, "f.det");
+			DescriptorType = TryGetByte(pData, "f.det");
 			DirectorType = TryGetNullableByte(pData, "f.dit");
 			DirectorPrimaryAction = TryGetNullableByte(pData, "f.dip");
 			DirectorRelatedAction = TryGetNullableByte(pData, "f.dir");

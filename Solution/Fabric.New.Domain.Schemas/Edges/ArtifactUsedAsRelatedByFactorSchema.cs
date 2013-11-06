@@ -19,7 +19,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			CreateFromOtherDirection = typeof(FactorUsesRelatedArtifactSchema);
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
-			DescriptorType = Prop("DesdcriptorType", "dt", (x => x.DescriptorType));
+			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType));
 			PrimaryArtifactId = PropFromEdge<FactorUsesPrimaryArtifactSchema>("PrimaryArtifactId","pa");
 		}
 
