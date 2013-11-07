@@ -53,6 +53,7 @@
     <Compile Include="Api\ApiRequest.cs" />
     <Compile Include="Api\ApiResponse.cs" />
     <Compile Include="Api\Executors\BasicExecutor.cs" />
+    <Compile Include="Api\ApiEntry.cs" />
     <Compile Include="Api\Executors\CreateExecutor.cs" />
     <Compile Include="Api\Executors\IExecutor.cs" />
     <Compile Include="Api\Executors\FabResponseExecutor.cs" />
@@ -64,6 +65,8 @@
       <DependentUpon>CreateExecutors.tt</DependentUpon>
     </Compile>
     <Compile Include="Api\Executors\Executor.cs" />
+    <Compile Include="Api\ApiModule.cs" />
+    <Compile Include="Api\BaseModule.cs" />
     <Compile Include="Api\Objects\FabTraversalResponse.cs" />
     <Compile Include="Api\Objects\FabError.cs" />
     <Compile Include="Api\Objects\FabResponse.cs" />
@@ -110,7 +113,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Domain\Schemas\VerifyDbNames.cs">
+    <Compile Include="Domain\VerifyDbNames.cs">
       <DependentUpon>VerifyDbNames.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,7 +150,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainVertices.cs</LastGenOutput>
     </None>
-    <None Include="Domain\Schemas\VerifyDbNames.tt">
+    <None Include="Domain\VerifyDbNames.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VerifyDbNames.cs</LastGenOutput>
     </None>
@@ -156,9 +159,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\Modules\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -17,6 +17,8 @@ namespace Fabric.New.Api.Executors {
 		protected override IList<TObj> GetResponse() {
 			string json = ApiReq.GetFormValue("data");
 
+			//TODO: CreateExecutor: throw fault on missing data
+
 			var o = new TOper();
 			o.Create(ApiReq.ApiCtx, json);
 
@@ -24,6 +26,7 @@ namespace Fabric.New.Api.Executors {
 			list.Add((TObj)o.GetResult());
 			return list;
 		}
+
 	}
 
 }

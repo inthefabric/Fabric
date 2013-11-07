@@ -10,36 +10,39 @@ namespace Fabric.New.Api.Executors {
 	/*================================================================================================*/
 	public static class CreateExecutors {
 
-
+		public static readonly ApiEntry[] ApiEntries = new [] {
+			ApiEntry.Post("/Mod/Classes", CreateClass, typeof(FabResponse<FabClass>)),
+			ApiEntry.Post("/Mod/Factors", CreateFactor, typeof(FabResponse<FabFactor>)),
+			ApiEntry.Post("/Mod/Instances", CreateInstance, typeof(FabResponse<FabInstance>)),
+			ApiEntry.Post("/Mod/Members", CreateMember, typeof(FabResponse<FabMember>)),
+			ApiEntry.Post("/Mod/Urls", CreateUrl, typeof(FabResponse<FabUrl>)),
+		};
+		
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IApiResponse CreateClass(IApiRequest pApiReq) {
-			var ce = new CreateExecutor<FabClass, CreateClassOperation>(pApiReq);
-			return ce.Execute();
+		private static IApiResponse CreateClass(IApiRequest pApiReq) {
+			return new CreateExecutor<FabClass, CreateClassOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IApiResponse CreateFactor(IApiRequest pApiReq) {
-			var ce = new CreateExecutor<FabFactor, CreateFactorOperation>(pApiReq);
-			return ce.Execute();
+		private static IApiResponse CreateFactor(IApiRequest pApiReq) {
+			return new CreateExecutor<FabFactor, CreateFactorOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IApiResponse CreateInstance(IApiRequest pApiReq) {
-			var ce = new CreateExecutor<FabInstance, CreateInstanceOperation>(pApiReq);
-			return ce.Execute();
+		private static IApiResponse CreateInstance(IApiRequest pApiReq) {
+			return new CreateExecutor<FabInstance, CreateInstanceOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IApiResponse CreateMember(IApiRequest pApiReq) {
-			var ce = new CreateExecutor<FabMember, CreateMemberOperation>(pApiReq);
-			return ce.Execute();
+		private static IApiResponse CreateMember(IApiRequest pApiReq) {
+			return new CreateExecutor<FabMember, CreateMemberOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IApiResponse CreateUrl(IApiRequest pApiReq) {
-			var ce = new CreateExecutor<FabUrl, CreateUrlOperation>(pApiReq);
-			return ce.Execute();
+		private static IApiResponse CreateUrl(IApiRequest pApiReq) {
+			return new CreateExecutor<FabUrl, CreateUrlOperation>(pApiReq).Execute();
 		}
 
 	}

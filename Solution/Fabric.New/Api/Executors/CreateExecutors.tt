@@ -16,22 +16,33 @@ namespace Fabric.New.Api.Executors {
 	/*================================================================================================*/
 	public static class CreateExecutors {
 
+		public static readonly ApiEntry[] ApiEntries = new [] {
+<#
+IList<IVertexSchema> allVerts = SchemaUtil.GetVertexSchemas();
+var verts = new List<IVertexSchema>();
 
+foreach ( IVertexSchema v in allVerts ) {
+	if ( v.GetAccess == Access.All ) {
+		verts.Add(v);
+	}
+}
+
+foreach ( IVertexSchema v in verts ) {
+#>
+			ApiEntry.Post("/Mod/<#= v.Names.DomainPlural #>", Create<#= v.Names.Domain #>, typeof(FabResponse<<#= v.Names.Api#>>)),
+<#
+} //end vertex loop
+#>
+		};
+		
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
-IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
-
-foreach ( IVertexSchema v in vertexSchemas ) {
-	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, true);
-
-	if ( v.GetAccess != Access.All ) {
-		continue;
-	}
+foreach ( IVertexSchema v in verts ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		public static IApiResponse Create<#= v.Names.Domain #>(IApiRequest pApiReq) {
-			var ce = new CreateExecutor<<#= v.Names.Api #>, Create<#= v.Names.Domain #>Operation>(pApiReq);
-			return ce.Execute();
+		private static IApiResponse Create<#= v.Names.Domain #>(IApiRequest pApiReq) {
+			return new CreateExecutor<<#= v.Names.Api #>, Create<#= v.Names.Domain #>Operation>(pApiReq).Execute();
 		}
 
 <#
