@@ -1,7 +1,4 @@
-﻿using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Data;
-
-namespace Fabric.Api.Dto {
+﻿namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabError : FabObject {
@@ -12,12 +9,12 @@ namespace Fabric.Api.Dto {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override void Fill(IDataDto pDto) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static FabError ForInternalServerError() {
 			var e = new FabError();
 			e.Code = (int)FabFault.Code.InternalError;
@@ -26,15 +23,14 @@ namespace Fabric.Api.Dto {
 			return e;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static FabError ForFault(FabFault pFault) {
 			var e = new FabError();
 			e.Code = (int)pFault.ErrCode;
 			e.Name = pFault.ErrCode+"";
 			e.Message = pFault.Message;
 			return e;
-		}
-
+		}*/
 
 	}
 

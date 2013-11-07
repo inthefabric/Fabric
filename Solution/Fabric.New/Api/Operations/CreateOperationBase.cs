@@ -10,26 +10,24 @@ using Weaver.Core.Query;
 namespace Fabric.New.Api.Operations {
 
 	/*================================================================================================*/
-	public abstract class CreateOperationBase {
+	public abstract class CreateOperationBase : ICreateOperation {
 
-		public object ApiCtx { get; private set; }
+		protected object ApiCtx { get; set; }
 		protected TxBuilder TxBuild { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected CreateOperationBase(object pApiCtx) {
-			ApiCtx = pApiCtx;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public abstract void Create(string pJson);
+		public abstract void Create(object pApiCtx, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void CreateEdges<T>(T pCreateObj) where T : CreateFabObject {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) where T : IWeaverElement {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public abstract FabObject GetResult();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

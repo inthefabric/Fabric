@@ -73,8 +73,6 @@
     <Compile Include="Traversal\FabRoot.cs" />
     <Compile Include="Traversal\FabStepLink.cs" />
     <Compile Include="DtoPropAttribute.cs" />
-    <Compile Include="FabError.cs" />
-    <Compile Include="FabResponse.cs" />
     <Compile Include="Traversal\IFabVertex.cs" />
     <Compile Include="Traversal\FabVertex.cs" />
     <Compile Include="Oauth\FabOauthAccess.cs" />

@@ -22,9 +22,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateAppOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<App>)pAlias;
@@ -36,7 +33,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabApp input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabApp, out input);
 			vCreateObj = input;
@@ -69,9 +73,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateArtifactOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Artifact>)pAlias;
@@ -83,7 +84,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabArtifact input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabArtifact, out input);
 			vCreateObj = input;
@@ -128,9 +136,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateClassOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Class>)pAlias;
@@ -142,7 +147,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabClass input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabClass, out input);
 			vCreateObj = input;
@@ -175,9 +187,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateEmailOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Email>)pAlias;
@@ -189,7 +198,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabEmail input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabEmail, out input);
 			vCreateObj = input;
@@ -232,9 +248,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateFactorOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Factor>)pAlias;
@@ -246,7 +259,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabFactor input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabFactor, out input);
 			vCreateObj = input;
@@ -343,9 +363,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateInstanceOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Instance>)pAlias;
@@ -357,7 +374,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabInstance input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabInstance, out input);
 			vCreateObj = input;
@@ -390,9 +414,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateMemberOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Member>)pAlias;
@@ -404,7 +425,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabMember input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabMember, out input);
 			vCreateObj = input;
@@ -463,9 +491,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateOauthAccessOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<OauthAccess>)pAlias;
@@ -477,7 +502,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabOauthAccess input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabOauthAccess, out input);
 			vCreateObj = input;
@@ -521,9 +553,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateUrlOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Url>)pAlias;
@@ -535,7 +564,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabUrl input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabUrl, out input);
 			vCreateObj = input;
@@ -568,9 +604,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateUserOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<User>)pAlias;
@@ -582,7 +615,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabUser input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabUser, out input);
 			vCreateObj = input;
@@ -615,9 +655,6 @@ namespace Fabric.New.Api.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateVertexOperation(object pApiCtx) : base(pApiCtx) {}
-		
-		/*--------------------------------------------------------------------------------------------*/
 		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
 			base.SetVertexAlias(pAlias);
 			vVertexAlias = (IWeaverVarAlias<Vertex>)pAlias;
@@ -629,7 +666,14 @@ namespace Fabric.New.Api.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(string pJson) {
+		public override FabObject GetResult() {
+			return vResult;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
+			
 			CreateFabVertex input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabVertex, out input);
 			vCreateObj = input;

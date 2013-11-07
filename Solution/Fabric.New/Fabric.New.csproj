@@ -50,11 +50,24 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Api\CreateController.cs">
+    <Compile Include="Api\ApiRequest.cs" />
+    <Compile Include="Api\ApiResponse.cs" />
+    <Compile Include="Api\Executors\BasicExecutor.cs" />
+    <Compile Include="Api\Executors\CreateExecutor.cs" />
+    <Compile Include="Api\Executors\IExecutor.cs" />
+    <Compile Include="Api\Executors\FabResponseExecutor.cs" />
+    <Compile Include="Api\IApiResponse.cs" />
+    <Compile Include="Api\IApiRequest.cs" />
+    <Compile Include="Api\Executors\CreateExecutors.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CreateController.tt</DependentUpon>
+      <DependentUpon>CreateExecutors.tt</DependentUpon>
     </Compile>
+    <Compile Include="Api\Executors\Executor.cs" />
+    <Compile Include="Api\Objects\FabTraversalResponse.cs" />
+    <Compile Include="Api\Objects\FabError.cs" />
+    <Compile Include="Api\Objects\FabResponse.cs" />
+    <Compile Include="Api\Operations\ICreateOperation.cs" />
     <Compile Include="Api\Operations\CreateOperations.cs">
       <DependentUpon>CreateOperations.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -106,9 +119,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Api\CreateController.tt">
+    <None Include="Api\Executors\CreateExecutors.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CreateController.cs</LastGenOutput>
+      <LastGenOutput>CreateExecutors.cs</LastGenOutput>
     </None>
     <None Include="Api\Operations\CreateOperations.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -143,7 +156,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Api\Modules\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
