@@ -7,7 +7,7 @@ using ServiceStack.Text;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations {
+namespace Fabric.New.Api.Operations.Create {
 
 	/*================================================================================================*/
 	public abstract class CreateOperationBase : ICreateOperation {

@@ -84,9 +84,9 @@
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
       <Name>Fabric.New.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.New.Operations\Fabric.New.Operations.csproj">
+    <ProjectReference Include="..\Fabric.New.Api.Operations\Fabric.New.Api.Operations.csproj">
       <Project>{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}</Project>
-      <Name>Fabric.New.Operations</Name>
+      <Name>Fabric.New.Api.Operations</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

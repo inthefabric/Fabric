@@ -1,6 +1,6 @@
 ﻿using Fabric.New.Api.Objects;
 
-namespace Fabric.New.Operations {
+namespace Fabric.New.Api.Operations.Create {
 
 	/*================================================================================================*/
 	public interface ICreateOperation {
