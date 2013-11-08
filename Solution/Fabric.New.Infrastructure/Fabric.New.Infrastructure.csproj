@@ -31,9 +31,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GoogleAnalyticsTracker">
+      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.7.11\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\Packages\log4net.2.0.2\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="metrics">
+      <HintPath>..\..\Packages\Metrics.1.0.8\lib\net40\metrics.dll</HintPath>
+    </Reference>
+    <Reference Include="RexConnectClient.Core">
+      <HintPath>..\..\Packages\RexConnectClient.0.5.0.1\lib\RexConnectClient.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\Metrics.1.0.8\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Exec.RexConnect">
+      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.4\lib\Weaver.Exec.RexConnect.dll</HintPath>
     </Reference>
     <Reference Include="Weaver.Titan">
       <HintPath>..\..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll</HintPath>
@@ -46,6 +66,26 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Broadcast\AnalyticsManager.cs" />
+    <Compile Include="Broadcast\GraphiteTcp.cs" />
+    <Compile Include="Broadcast\IAnalyticsManager.cs" />
+    <Compile Include="Broadcast\IMetricsManager.cs" />
+    <Compile Include="Broadcast\MetricsManager.cs" />
+    <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="Cache\ICacheManager.cs" />
+    <Compile Include="Cache\IMemCache.cs" />
+    <Compile Include="Cache\MemCache.cs" />
+    <Compile Include="Data\IDataContext.cs" />
+    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="Data\DataAccessException.cs" />
+    <Compile Include="Data\DataAccessFull.cs" />
+    <Compile Include="Data\DataDto.cs" />
+    <Compile Include="Data\DataResult.cs" />
+    <Compile Include="Data\IDataAccess.cs" />
+    <Compile Include="Data\IDataDto.cs" />
+    <Compile Include="Data\IDataResult.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sharpflake.cs" />
     <Compile Include="Weaver\TxBuilder.cs" />

@@ -3,12 +3,11 @@
 namespace Fabric.New.Domain {
 
 	/*================================================================================================*/
-	public interface IVertex : IElement, IWeaverVertex {
+	public interface IEdge : IElement, IWeaverEdge {
 
-		long VertexId { get; set; }
-		long Timestamp { get; set; }
-		byte VertexType { get; set; }
-
+		string InVertexId { get; set; }
+		string OutVertexId { get; set; }
+		
 	}
 
 }

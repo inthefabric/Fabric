@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Fabric.New.Domain;
 using Weaver.Core;
+using Weaver.Core.Graph;
 using Weaver.Titan.Elements;
 
 namespace Fabric.New.Infrastructure.Weaver {
@@ -39,11 +40,11 @@ namespace Fabric.New.Infrastructure.Weaver {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		public static T ExactIndex<T>(this IWeaverAllVertices pAllVert, T pVertex) 
 																			where T : IVertex, new() {
 			return pAllVert.ExactIndex<T>((x => x.VertexId), pVertex.VertexId);
-		}*/
+		}
 
 	}
 

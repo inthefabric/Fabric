@@ -65,8 +65,6 @@
     </Compile>
     <Compile Include="VertexEnums.cs" />
     <Compile Include="Edge.cs" />
-    <Compile Include="IEdge.cs" />
-    <Compile Include="IElementWithId.cs" />
     <Compile Include="DomainClasses.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

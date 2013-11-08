@@ -75,19 +75,17 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Api\ApiContext.cs" />
     <Compile Include="Api\ApiFunc.cs" />
     <Compile Include="Api\ApiEnums.cs" />
-    <Compile Include="Api\IAnalyticsManager.cs" />
-    <Compile Include="Api\IMetricsManager.cs" />
-    <Compile Include="Data\ApiContextDataExt.cs" />
-    <Compile Include="Data\IDataAccess.cs" />
-    <Compile Include="Data\DataAccessFull.cs" />
-    <Compile Include="Data\IDataResult.cs" />
-    <Compile Include="Data\IDataDto.cs" />
-    <Compile Include="Data\DataResult.cs" />
-    <Compile Include="Data\DataAccess.cs" />
-    <Compile Include="Data\DataDto.cs" />
+    <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentOutOfRangeFault.cs" />
+    <Compile Include="Api\Faults\FabArgumentValueFault.cs" />
+    <Compile Include="Api\Faults\FabDuplicateFault.cs" />
+    <Compile Include="Api\Faults\FabFault.cs" />
+    <Compile Include="Api\Faults\FabMembershipFault.cs" />
+    <Compile Include="Api\Faults\FabNotFoundFault.cs" />
+    <Compile Include="Api\Faults\FabPreventedFault.cs" />
     <Compile Include="Weaver\DbNames.cs">
       <DependentUpon>DbNames.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -95,18 +93,8 @@
     </Compile>
     <Compile Include="Api\EncryptUtil.cs" />
     <Compile Include="Api\AuthUtil.cs" />
-    <Compile Include="Api\ICacheManager.cs" />
-    <Compile Include="Api\IMemCache.cs" />
     <Compile Include="Api\ServiceOpAttribute.cs" />
     <Compile Include="Api\ServiceOpParamAttribute.cs" />
-    <Compile Include="Api\IApiContext.cs" />
-    <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentOutOfRangeFault.cs" />
-    <Compile Include="Api\Faults\FabDuplicateFault.cs" />
-    <Compile Include="Api\Faults\FabFault.cs" />
-    <Compile Include="Api\Faults\FabMembershipFault.cs" />
-    <Compile Include="Api\Faults\FabNotFoundFault.cs" />
     <Compile Include="Api\IApiFunc.cs" />
     <Compile Include="Domain\Types\IBaseType.cs" />
     <Compile Include="Domain\Types\VectorUnitPrefix.cs" />
@@ -133,7 +121,6 @@
     <Compile Include="Domain\Types\StaticTypes.cs" />
     <Compile Include="Domain\Types\VectorType.cs" />
     <Compile Include="FabricUtil.cs" />
-    <Compile Include="Log.cs" />
     <Compile Include="Traversal\FuncAttribute.cs" />
     <Compile Include="Traversal\FuncParamAttribute.cs" />
     <Compile Include="Traversal\IStepLink.cs" />
@@ -145,9 +132,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Weaver\DomainBuilder.cs" />
-    <Compile Include="Api\Faults\FabPreventedFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentValueFault.cs" />
-    <Compile Include="Data\DataAccessException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Domain\DomainValidators.tt">
@@ -176,6 +160,9 @@
       <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
       <Name>Fabric.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
