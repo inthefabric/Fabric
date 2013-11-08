@@ -8,8 +8,8 @@
     <ProjectGuid>{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Api.Operations</RootNamespace>
-    <AssemblyName>Fabric.New.Api.Operations</AssemblyName>
+    <RootNamespace>Fabric.New.Operations</RootNamespace>
+    <AssemblyName>Fabric.New.Operations</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,17 +49,17 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Create\CreateOperationBase.cs" />
-    <Compile Include="Create\CreateOperations.cs">
+    <Compile Include="CreateOperationBase.cs" />
+    <Compile Include="CreateOperations.cs">
       <DependentUpon>CreateOperations.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Create\ICreateOperation.cs" />
+    <Compile Include="ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Create\CreateOperations.tt">
+    <None Include="CreateOperations.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CreateOperations.cs</LastGenOutput>
     </None>
