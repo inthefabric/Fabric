@@ -8,7 +8,7 @@ using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Weaver;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Api.Operations {
+namespace Fabric.New.Operations {
 			
 
 	/*================================================================================================*/

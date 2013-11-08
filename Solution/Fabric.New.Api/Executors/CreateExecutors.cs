@@ -3,7 +3,7 @@
 // Changes made to this source file will be overwritten
 
 using Fabric.New.Api.Objects;
-using Fabric.New.Api.Operations;
+using Fabric.New.Operations;
 
 namespace Fabric.New.Api.Executors {
 
