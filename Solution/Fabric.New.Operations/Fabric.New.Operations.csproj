@@ -49,17 +49,17 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="CreateOperationBase.cs" />
-    <Compile Include="CreateOperations.cs">
+    <Compile Include="Create\CreateOperationBase.cs" />
+    <Compile Include="Create\CreateOperations.cs">
       <DependentUpon>CreateOperations.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ICreateOperation.cs" />
+    <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CreateOperations.tt">
+    <None Include="Create\CreateOperations.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CreateOperations.cs</LastGenOutput>
     </None>
