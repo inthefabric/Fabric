@@ -4,7 +4,6 @@ using Fabric.New.Domain;
 using Weaver.Core.Elements;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
-using Weaver.Titan;
 
 namespace Fabric.New.Infrastructure.Weaver {
 

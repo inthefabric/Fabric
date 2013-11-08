@@ -1,4 +1,4 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("Fabric.New")]
+[assembly: AssemblyTitle("Fabric.New.Domain")]
 [assembly: AssemblyDescription("")]
