@@ -92,6 +92,12 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			return NameApi+(pPlural ? np.ApiPlural : np.Api).Substring(3)+"Id";
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetPropNameLink() {
+			NameProvider np = GetToVertex().Names;
+			return NameApi+(GetIsMultiple() ? np.ApiPlural : np.Api).Substring(3);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

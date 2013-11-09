@@ -65,13 +65,24 @@
     </Compile>
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Traversal\ITravPathStep.cs" />
-    <Compile Include="Traversal\TravPathStep.cs" />
-    <Compile Include="Traversal\TravOperations.cs">
-      <DependentUpon>TravOperations.tt</DependentUpon>
+    <Compile Include="Traversal\Funcs\ITravFunc.cs" />
+    <Compile Include="Traversal\Funcs\TravFuncs.cs">
+      <DependentUpon>TravFuncs.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Traversal\Funcs\TravFunc.cs" />
+    <Compile Include="Traversal\Funcs\VertexBaseFuncs.cs" />
+    <Compile Include="Traversal\Links\VertexBaseLinks.cs" />
+    <Compile Include="Traversal\Links\ITravLink.cs" />
+    <Compile Include="Traversal\Links\TravLink.cs" />
+    <Compile Include="Traversal\Links\TravLinks.cs">
+      <DependentUpon>TravLinks.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Traversal\ITravPathStep.cs" />
+    <Compile Include="Traversal\TravPathStep.cs" />
     <Compile Include="Traversal\TravOperation.cs" />
     <Compile Include="Traversal\ITravOperation.cs" />
   </ItemGroup>
@@ -81,9 +92,13 @@
       <LastGenOutput>CreateOperations.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Traversal\TravOperations.tt">
+    <None Include="Traversal\Funcs\TravFuncs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TravOperations.cs</LastGenOutput>
+      <LastGenOutput>TravFuncs.cs</LastGenOutput>
+    </None>
+    <None Include="Traversal\Links\TravLinks.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TravLinks.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
