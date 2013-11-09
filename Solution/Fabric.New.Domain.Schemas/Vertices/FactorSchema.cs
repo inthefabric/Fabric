@@ -144,7 +144,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			FabAssertionType = new ApiProperty<byte>("AssertionType");
 			FabAssertionType.SetOpenUnmodAccess();
-			FabAssertionType.FromEnum = "FactorAssertionType";
+			FabAssertionType.FromEnum = "FactorAssertion";
 
 			FabIsDefining = new ApiProperty<bool>("IsDefining");
 			FabIsDefining.SetOpenUnmodAccess();
@@ -158,27 +158,27 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabDescriptorType = new ApiProperty<byte>("Type");
 			FabDescriptorType.SetOpenUnmodAccess();
 			FabDescriptorType.SubObjectOf = "FabDescriptor";
-			FabDescriptorType.FromEnum = "FactorDescriptorType";
+			FabDescriptorType.FromEnum = "DescriptorType";
 
 			FabDirectorType = new ApiProperty<byte>("Type");
 			FabDirectorType.SetOpenUnmodAccess();
 			FabDirectorType.SubObjectOf = "FabDirector";
-			FabDirectorType.FromEnum = "FactorDirectorType";
+			FabDirectorType.FromEnum = "DirectorType";
 
 			FabDirectorPrimaryAction = new ApiProperty<byte>("PrimaryAction");
 			FabDirectorPrimaryAction.SetOpenUnmodAccess();
 			FabDirectorPrimaryAction.SubObjectOf = "FabDirector";
-			FabDirectorPrimaryAction.FromEnum = "FactorDirectorAction";
+			FabDirectorPrimaryAction.FromEnum = "DirectorAction";
 
 			FabDirectorRelatedAction = new ApiProperty<byte>("RelatedAction");
 			FabDirectorRelatedAction.SetOpenUnmodAccess();
 			FabDirectorRelatedAction.SubObjectOf = "FabDirector";
-			FabDirectorRelatedAction.FromEnum = "FactorDirectorAction";
+			FabDirectorRelatedAction.FromEnum = "DirectorAction";
 
 			FabEventorType = new ApiProperty<byte>("Type");
 			FabEventorType.SetOpenUnmodAccess();
 			FabEventorType.SubObjectOf = "FabEventor";
-			FabEventorType.FromEnum = "FactorEventorType";
+			FabEventorType.FromEnum = "EventorType";
 
 			FabEventorYear = new ApiProperty<long>("Year");
 			FabEventorYear.SetOpenUnmodAccess();
@@ -218,7 +218,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabIdentorType = new ApiProperty<byte>("Type");
 			FabIdentorType.SetOpenUnmodAccess();
 			FabIdentorType.SubObjectOf = "FabIdentor";
-			FabIdentorType.FromEnum = "FactorIdentorType";
+			FabIdentorType.FromEnum = "IdentorType";
 
 			FabIdentorValue = new ApiProperty<string>("Value");
 			FabIdentorValue.SetOpenUnmodAccess();
@@ -230,7 +230,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabLocatorType = new ApiProperty<byte>("Type");
 			FabLocatorType.SetOpenUnmodAccess();
 			FabLocatorType.SubObjectOf = "FabLocator";
-			FabLocatorType.FromEnum = "FactorLocatorType";
+			FabLocatorType.FromEnum = "LocatorType";
 
 			FabLocatorValueX = new ApiProperty<double>("ValueX");
 			FabLocatorValueX.SetOpenUnmodAccess();
@@ -250,17 +250,17 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabVectorType = new ApiProperty<byte>("Type");
 			FabVectorType.SetOpenUnmodAccess();
 			FabVectorType.SubObjectOf = "FabVector";
-			FabVectorType.FromEnum = "FactorVectorType";
+			FabVectorType.FromEnum = "VectorType";
 
 			FabVectorUnit = new ApiProperty<byte>("Unit");
 			FabVectorUnit.SetOpenUnmodAccess();
 			FabVectorUnit.SubObjectOf = "FabVector";
-			FabVectorUnit.FromEnum = "FactorVectorUnit";
+			FabVectorUnit.FromEnum = "VectorUnit";
 
 			FabVectorUnitPrefix = new ApiProperty<byte>("UnitPrefix");
 			FabVectorUnitPrefix.SetOpenUnmodAccess();
 			FabVectorUnitPrefix.SubObjectOf = "FabVector";
-			FabVectorUnitPrefix.FromEnum = "FactorVectorUnitPrefix";
+			FabVectorUnitPrefix.FromEnum = "VectorUnitPrefix";
 
 			FabVectorValue = new ApiProperty<long>("Value");
 			FabVectorValue.SetOpenUnmodAccess();

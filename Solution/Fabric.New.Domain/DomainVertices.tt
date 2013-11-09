@@ -15,6 +15,7 @@
 using System.Collections.Generic;
 using Weaver.Core.Elements;
 using Weaver.Titan.Elements;
+using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Domain {
 <#
@@ -49,7 +50,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= v.Names.Domain #>() {
-			VertexType = (byte)VertexDomainType.<#= v.Names.Domain #>;
+			VertexType = (byte)VertexDomainType.Id.<#= v.Names.Domain #>;
 		}
 <#
 	foreach ( IEdgeSchema es in edges ) {

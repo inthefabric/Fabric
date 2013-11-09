@@ -14,6 +14,7 @@
 
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Api.Objects {
 <#
@@ -207,7 +208,7 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 
 		if ( ap.FromEnum != null ) {
 #>
-			ValidEnum<<#= ap.FromEnum #>>("<#= displayName #>", <#= ap.Name #>);
+			ValidEnum<<#= ap.FromEnum #>.Id>("<#= displayName #>", <#= ap.Name #>);
 <#+
 		}
 			

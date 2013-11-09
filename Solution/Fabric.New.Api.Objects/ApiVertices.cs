@@ -4,6 +4,7 @@
 
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Api.Objects {
 		
@@ -568,7 +569,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate AssertionType
-			ValidEnum<FactorAssertionType>("AssertionType", AssertionType);
+			ValidEnum<FactorAssertion.Id>("AssertionType", AssertionType);
 
 			//Validate IsDefining
 
@@ -607,7 +608,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate Type
-			ValidEnum<FactorDescriptorType>("Descriptor.Type", Type);
+			ValidEnum<DescriptorType.Id>("Descriptor.Type", Type);
 
 			//Validate edges
 			ValidVertexId("Descriptor.RefinesPrimaryWithArtifactId", RefinesPrimaryWithArtifactId);
@@ -637,13 +638,13 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate Type
-			ValidEnum<FactorDirectorType>("Director.Type", Type);
+			ValidEnum<DirectorType.Id>("Director.Type", Type);
 
 			//Validate PrimaryAction
-			ValidEnum<FactorDirectorAction>("Director.PrimaryAction", PrimaryAction);
+			ValidEnum<DirectorAction.Id>("Director.PrimaryAction", PrimaryAction);
 
 			//Validate RelatedAction
-			ValidEnum<FactorDirectorAction>("Director.RelatedAction", RelatedAction);
+			ValidEnum<DirectorAction.Id>("Director.RelatedAction", RelatedAction);
 
 			//Validate edges
 		}
@@ -682,7 +683,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate Type
-			ValidEnum<FactorEventorType>("Eventor.Type", Type);
+			ValidEnum<EventorType.Id>("Eventor.Type", Type);
 
 			//Validate Year
 			ApiVerticesCustom.ValidateFactorEventorYear(this, "Eventor.Year", Year);
@@ -724,7 +725,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate Type
-			ValidEnum<FactorIdentorType>("Identor.Type", Type);
+			ValidEnum<IdentorType.Id>("Identor.Type", Type);
 
 			//Validate Value
 			LenMin("Identor.Value", Value, 1);
@@ -758,7 +759,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate Type
-			ValidEnum<FactorLocatorType>("Locator.Type", Type);
+			ValidEnum<LocatorType.Id>("Locator.Type", Type);
 
 			//Validate ValueX
 			ApiVerticesCustom.ValidateFactorLocatorValueX(this, "Locator.ValueX", ValueX);
@@ -800,13 +801,13 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate Type
-			ValidEnum<FactorVectorType>("Vector.Type", Type);
+			ValidEnum<VectorType.Id>("Vector.Type", Type);
 
 			//Validate Unit
-			ValidEnum<FactorVectorUnit>("Vector.Unit", Unit);
+			ValidEnum<VectorUnit.Id>("Vector.Unit", Unit);
 
 			//Validate UnitPrefix
-			ValidEnum<FactorVectorUnitPrefix>("Vector.UnitPrefix", UnitPrefix);
+			ValidEnum<VectorUnitPrefix.Id>("Vector.UnitPrefix", UnitPrefix);
 
 			//Validate Value
 			ApiVerticesCustom.ValidateFactorVectorValue(this, "Vector.Value", Value);
@@ -889,7 +890,7 @@ namespace Fabric.New.Api.Objects {
 			base.Validate();
 
 			//Validate Type
-			ValidEnum<MemberType>("Type", Type);
+			ValidEnum<MemberType.Id>("Type", Type);
 
 			//Validate OauthScopeAllow
 

@@ -32,8 +32,9 @@ foreach ( IEnumSchema e in enums ) {
 
 	foreach ( IEnumItemSchema item in e.Items ) {
 		++i;
+		bool showEq = (item.Id == i && i != 1);
 #>
-			<#= item.EnumId #><#= (item.Id == i ? ", // " : " = ")+item.Id+(item.Id == i ? "" : ",") #>
+			<#= item.EnumId #><#= (showEq ? ", // " : " = ")+item.Id+(showEq ? "" : ",") #>
 <#
 	} // end item loop
 #>

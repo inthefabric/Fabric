@@ -11,7 +11,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class DescriptorType {
 
 		public enum Id {
-			IsRelatedTo, // 1
+			IsRelatedTo = 1,
 			IsA, // 2
 			IsAnInstanceOf, // 3
 			HasA, // 4
@@ -206,7 +206,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class DirectorAction {
 
 		public enum Id {
-			Read, // 1
+			Read = 1,
 			Listen, // 2
 			View, // 3
 			Consume, // 4
@@ -352,7 +352,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class DirectorType {
 
 		public enum Id {
-			Hyperlink, // 1
+			Hyperlink = 1,
 			DefinedPath, // 2
 			SuggestedPath, // 3
 			AvoidPath, // 4
@@ -414,7 +414,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class EventorType {
 
 		public enum Id {
-			Start, // 1
+			Start = 1,
 			End, // 2
 			Pause, // 3
 			Unpause, // 4
@@ -490,7 +490,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class FactorAssertion {
 
 		public enum Id {
-			Undefined, // 1
+			Undefined = 1,
 			Fact, // 2
 			Opinion, // 3
 			Guess, // 4
@@ -545,7 +545,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class IdentorType {
 
 		public enum Id {
-			Text, // 1
+			Text = 1,
 			Key, // 2
 		}
 
@@ -586,7 +586,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class LocatorType {
 
 		public enum Id {
-			EarthCoordinate, // 1
+			EarthCoordinate = 1,
 			MoonCoordinate, // 2
 			MarsCoordinate, // 3
 			RelativePosition1D, // 4
@@ -697,7 +697,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class MemberType {
 
 		public enum Id {
-			None, // 1
+			None = 1,
 			Request, // 2
 			Invite, // 3
 			Member, // 4
@@ -780,7 +780,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class VectorRangeLevel {
 
 		public enum Id {
-			Zero0, // 1
+			Zero0 = 1,
 			Zero05, // 2
 			Zero1, // 3
 			Min0, // 4
@@ -1008,7 +1008,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class VectorRange {
 
 		public enum Id {
-			FullNum, // 1
+			FullNum = 1,
 			PosNum, // 2
 			NegNum, // 3
 			FullAgree, // 4
@@ -1128,7 +1128,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class VectorType {
 
 		public enum Id {
-			FullLong, // 1
+			FullLong = 1,
 			PosLong, // 2
 			NegLong, // 3
 			FullPerc, // 4
@@ -1258,7 +1258,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class VectorUnitDerived {
 
 		public enum Id {
-			HertzSec, // 1
+			HertzSec = 1,
 			NewtonGram, // 2
 			NewtonMetre, // 3
 			NewtonSec, // 4
@@ -1586,7 +1586,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class VectorUnitPrefix {
 
 		public enum Id {
-			Base, // 1
+			Base = 1,
 			Kilo, // 2
 			Mega, // 3
 			Giga, // 4
@@ -1766,7 +1766,7 @@ namespace Fabric.New.Domain.Enums {
 	public static class VectorUnit {
 
 		public enum Id {
-			None, // 1
+			None = 1,
 			Unit, // 2
 			Metre, // 3
 			Gram, // 4
