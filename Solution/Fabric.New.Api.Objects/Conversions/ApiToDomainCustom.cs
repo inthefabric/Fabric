@@ -1,4 +1,6 @@
-﻿using Fabric.New.Domain;
+﻿using System.Security.Cryptography;
+using System.Text;
+using Fabric.New.Domain;
 
 namespace Fabric.New.Api.Objects.Conversions {
 
@@ -53,6 +55,21 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabUserCustom(User pDomain, CreateFabUser pApi) {
 			//TODO: FromCreateFabUserCustom
+			pDomain.Password = HashPassword(pApi.Password);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static string HashPassword(string pPassword) {
+			//var hash = new SHA512Managed(); //64 byte hash
+			var hash = new MD5CryptoServiceProvider(); //16 byte hash
+			byte[] bytes = hash.ComputeHash(Encoding.Unicode.GetBytes(pPassword));
+			var sb = new StringBuilder();
+
+			for ( int i = 0 ; i < 16 ; i++ ) {
+				sb.Append(bytes[i].ToString("x2"));
+			}
+
+			return sb.ToString();
 		}
 
 

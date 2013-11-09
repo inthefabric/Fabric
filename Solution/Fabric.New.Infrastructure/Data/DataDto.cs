@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Faults;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 
@@ -45,7 +46,6 @@ namespace Fabric.New.Infrastructure.Data {
 				return;
 			}
 
-			//TODO: 
 			/*if ( Properties.ContainsKey(PropDbName.Vertex_FabType) ) {
 				byte ft = byte.Parse(Properties[PropDbName.Vertex_FabType]);
 				Class = VertexFabTypeUtil.ValueMap[ft]+"";
@@ -70,7 +70,7 @@ namespace Fabric.New.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public static T ToElement<T>(IDataDto pDto) where T : IElement, new() {
 			if ( pDto.Id == null ) {
-				//TODO: throw new FabArgumentNullFault("DataDto.Id was null.");
+				new FabArgumentNullFault("DataDto.Id was null.");
 			}
 
 			string idProp = null; //TODO: PropDbName.TypeIdMap[typeof(T)];

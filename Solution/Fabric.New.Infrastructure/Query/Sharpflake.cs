@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Fabric.New.Domain;
 
-namespace Fabric.New.Infrastructure {
+namespace Fabric.New.Infrastructure.Query {
 
 	//idea from: https://github.com/twitter/snowflake
 

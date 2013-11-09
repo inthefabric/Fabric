@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Weaver;
+using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations {

@@ -5,7 +5,7 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Weaver;
+using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {

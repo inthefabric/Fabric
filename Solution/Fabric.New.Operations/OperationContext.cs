@@ -5,6 +5,7 @@ using Fabric.New.Infrastructure;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Cache;
 using Fabric.New.Infrastructure.Data;
+using Fabric.New.Infrastructure.Query;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 

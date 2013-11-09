@@ -6,7 +6,7 @@ using Weaver.Core;
 using Weaver.Core.Graph;
 using Weaver.Titan.Elements;
 
-namespace Fabric.New.Infrastructure.Weaver {
+namespace Fabric.New.Infrastructure.Query {
 
 	/*================================================================================================*/
 	public static class Weave {

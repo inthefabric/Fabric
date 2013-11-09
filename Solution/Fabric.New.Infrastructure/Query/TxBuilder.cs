@@ -5,7 +5,7 @@ using Weaver.Core.Elements;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Infrastructure.Weaver {
+namespace Fabric.New.Infrastructure.Query {
 
 	/*================================================================================================*/
 	public class TxBuilder {

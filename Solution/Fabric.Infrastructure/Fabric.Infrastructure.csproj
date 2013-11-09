@@ -75,23 +75,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentOutOfRangeFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentValueFault.cs" />
-    <Compile Include="Api\Faults\FabDuplicateFault.cs" />
-    <Compile Include="Api\Faults\FabFault.cs" />
-    <Compile Include="Api\Faults\FabMembershipFault.cs" />
-    <Compile Include="Api\Faults\FabNotFoundFault.cs" />
-    <Compile Include="Api\Faults\FabPreventedFault.cs" />
     <Compile Include="Weaver\DbNames.cs">
       <DependentUpon>DbNames.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Api\EncryptUtil.cs" />
-    <Compile Include="Api\AuthUtil.cs" />
-    <Compile Include="FabricUtil.cs" />
     <Compile Include="Traversal\FuncAttribute.cs" />
     <Compile Include="Traversal\FuncParamAttribute.cs" />
     <Compile Include="Traversal\IStepLink.cs" />

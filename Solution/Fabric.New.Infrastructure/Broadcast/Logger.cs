@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using log4net;
 using log4net.Config;
 
-namespace Fabric.New.Infrastructure {
+namespace Fabric.New.Infrastructure.Broadcast {
 	
 	/*================================================================================================*/
 	[ExcludeFromCodeCoverage]

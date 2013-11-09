@@ -2,7 +2,7 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure;
-using Fabric.New.Infrastructure.Weaver;
+using Fabric.New.Infrastructure.Query;
 using ServiceStack.Text;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
