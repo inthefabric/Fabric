@@ -75,8 +75,6 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Api\ApiFunc.cs" />
-    <Compile Include="Api\ApiEnums.cs" />
     <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
     <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
     <Compile Include="Api\Faults\FabArgumentOutOfRangeFault.cs" />
@@ -93,15 +91,6 @@
     </Compile>
     <Compile Include="Api\EncryptUtil.cs" />
     <Compile Include="Api\AuthUtil.cs" />
-    <Compile Include="Api\ServiceOpAttribute.cs" />
-    <Compile Include="Api\ServiceOpParamAttribute.cs" />
-    <Compile Include="Api\IApiFunc.cs" />
-    <Compile Include="Domain\DomainValidator.cs" />
-    <Compile Include="Domain\DomainValidators.cs">
-      <DependentUpon>DomainValidators.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="FabricUtil.cs" />
     <Compile Include="Traversal\FuncAttribute.cs" />
     <Compile Include="Traversal\FuncParamAttribute.cs" />
@@ -116,10 +105,6 @@
     <Compile Include="Weaver\DomainBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Domain\DomainValidators.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainValidators.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
     <None Include="Weaver\DbNames.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
