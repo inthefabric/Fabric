@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Fabric.New.Operations;
 
 namespace Fabric.New.Api {
 
 	/*================================================================================================*/
 	public class ApiRequest : IApiRequest {
 
-		public object ApiCtx { get; private set; }
+		public IOperationContext OpCtx { get; private set; }
 		public string Method { get; private set; }
 		public string Path { get; private set; }
 		public string IpAddress { get; private set; }
@@ -15,8 +16,8 @@ namespace Fabric.New.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiRequest(object pApiCtx, object pNancyReq) {
-			ApiCtx = pApiCtx;
+		public ApiRequest(IOperationContext pOpCtx, object pNancyReq) {
+			OpCtx = pOpCtx;
 			vNancyReq = pNancyReq;
 
 			//Method = vNancyReq.Method;

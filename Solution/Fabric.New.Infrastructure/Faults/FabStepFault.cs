@@ -1,12 +1,10 @@
 ﻿using System;
-using Fabric.Infrastructure.Api.Faults;
 
-namespace Fabric.Api.Traversal.Steps {
+namespace Fabric.New.Infrastructure.Faults {
 	
 	/*================================================================================================*/
 	public class FabStepFault : FabFault {
 
-		public IStep Step { get; private set; }
 		public int StepIndex { get; private set; }
 		public int ParamIndex { get; private set; }
 		public string StepText { get; private set; }
@@ -15,22 +13,13 @@ namespace Fabric.Api.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabStepFault(Code pErrCode, IStep pStep, string pMessage, int pParamIndex=-1,
+		public FabStepFault(Code pErrCode, int pStepIndex, string pRawText, string pMessage, 
+											int pParamIndex=-1, string pParamRawText=null,
 											Exception pInner=null) : base(pErrCode, pMessage, pInner) {
-			Step = pStep;
-
-			StepIndex = Step.GetPathIndex();
+			StepIndex = pStepIndex;
+			StepText = pRawText;
 			ParamIndex = pParamIndex;
-			StepText = Step.Data.RawString;
-
-			try {
-				if ( ParamIndex != -1 ) {
-					ParamText = Step.Data.Params[ParamIndex];
-				}
-			}
-			catch ( Exception ) {
-				ParamText = null;
-			}
+			ParamText = pParamRawText;
 
 			string msg = "\nStep "+StepIndex+": '"+StepText+"'"+
 				(ParamIndex == -1 ? "" : "\nParam "+ParamIndex+": '"+ParamText+"'");

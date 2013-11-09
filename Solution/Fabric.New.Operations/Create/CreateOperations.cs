@@ -38,8 +38,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabApp input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabApp, out input);
@@ -89,8 +89,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabArtifact input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabArtifact, out input);
@@ -152,8 +152,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabClass input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabClass, out input);
@@ -203,8 +203,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabEmail input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabEmail, out input);
@@ -264,8 +264,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabFactor input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabFactor, out input);
@@ -379,8 +379,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabInstance input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabInstance, out input);
@@ -430,8 +430,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabMember input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabMember, out input);
@@ -507,8 +507,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabOauthAccess input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabOauthAccess, out input);
@@ -569,8 +569,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabUrl input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabUrl, out input);
@@ -620,8 +620,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabUser input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabUser, out input);
@@ -671,8 +671,8 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(object pApiCtx, string pJson) {
-			ApiCtx = pApiCtx;
+		public override void Create(IOperationContext pOpCtx, string pJson) {
+			OpCtx = pOpCtx;
 			
 			CreateFabVertex input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.FromCreateFabVertex, out input);

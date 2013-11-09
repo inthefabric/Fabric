@@ -95,6 +95,7 @@
     <Compile Include="Faults\FabNotFoundFault.cs" />
     <Compile Include="Faults\FabPreventedFault.cs" />
     <Compile Include="Broadcast\Logger.cs" />
+    <Compile Include="Faults\FabStepFault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Sharpflake.cs" />
     <Compile Include="Query\TxBuilder.cs" />

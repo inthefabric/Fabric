@@ -65,6 +65,15 @@
     </Compile>
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Traversal\ITravPathStep.cs" />
+    <Compile Include="Traversal\TravPathStep.cs" />
+    <Compile Include="Traversal\TravOperations.cs">
+      <DependentUpon>TravOperations.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Traversal\TravOperation.cs" />
+    <Compile Include="Traversal\ITravOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Create\CreateOperations.tt">
@@ -72,6 +81,10 @@
       <LastGenOutput>CreateOperations.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Traversal\TravOperations.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TravOperations.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.New.Api.Objects\Fabric.New.Api.Objects.csproj">

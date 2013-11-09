@@ -1,7 +1,6 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure;
 using Fabric.New.Infrastructure.Query;
 using ServiceStack.Text;
 using Weaver.Core.Elements;
@@ -12,13 +11,13 @@ namespace Fabric.New.Operations.Create {
 	/*================================================================================================*/
 	public abstract class CreateOperationBase : ICreateOperation {
 
-		protected object ApiCtx { get; set; }
+		protected object OpCtx { get; set; }
 		protected TxBuilder TxBuild { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract void Create(object pApiCtx, string pJson);
+		public abstract void Create(IOperationContext pOpCtx, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void CreateEdges<T>(T pCreateObj) where T : CreateFabObject {}

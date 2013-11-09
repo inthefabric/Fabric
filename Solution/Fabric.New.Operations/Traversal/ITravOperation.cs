@@ -1,14 +1,14 @@
 ﻿using Fabric.New.Api.Objects;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
-	public interface ICreateOperation {
+	public interface ITravOperation {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Create(IOperationContext pOpCtx, string pJson);
+		void Perform(IOperationContext pOpCtx, string pPath);
 
 		/*--------------------------------------------------------------------------------------------*/
 		FabObject GetResult();

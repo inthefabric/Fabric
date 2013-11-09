@@ -94,7 +94,6 @@
     <Compile Include="Steps\IFinalStep.cs" />
     <Compile Include="Steps\Functions\Func.cs" />
     <Compile Include="Steps\Functions\LimitFunc.cs" />
-    <Compile Include="Steps\FabStepFault.cs" />
     <Compile Include="Steps\Functions\BackFunc.cs" />
     <Compile Include="Steps\Vertices\BaseClassVertexSteps.cs">
       <AutoGen>True</AutoGen>

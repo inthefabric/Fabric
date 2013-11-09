@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Fabric.New.Operations;
 
 namespace Fabric.New.Api {
 
 	/*================================================================================================*/
 	public interface IApiRequest {
 
-		object ApiCtx { get; }
+		IOperationContext OpCtx { get; }
 		string Method { get; }
 		string Path { get; }
 		string IpAddress { get; }

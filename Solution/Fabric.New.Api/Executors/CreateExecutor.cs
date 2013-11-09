@@ -20,7 +20,7 @@ namespace Fabric.New.Api.Executors {
 			//TODO: CreateExecutor: throw fault on missing data
 
 			var o = new TOper();
-			o.Create(ApiReq.ApiCtx, json);
+			o.Create(ApiReq.OpCtx, json);
 
 			var list = new List<TObj>();
 			list.Add((TObj)o.GetResult());

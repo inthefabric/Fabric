@@ -15,7 +15,7 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Query;
+using Fabric.New.Infrastructure.Weaver;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {
@@ -58,8 +58,8 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			OpCtx = pOpCtx;
+		public override void Create(object pApiCtx, string pJson) {
+			ApiCtx = pApiCtx;
 			
 			<#= createObjName #> input;
 			vDomObj = ConvertInput(pJson, ApiToDomain.From<#= createObjName #>, out input);

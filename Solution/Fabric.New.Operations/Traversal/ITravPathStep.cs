@@ -1,17 +1,22 @@
-﻿using Fabric.New.Api.Objects;
-
-namespace Fabric.New.Operations.Create {
+﻿namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
-	public interface ICreateOperation {
+	public interface ITravPathStep {
 
+		int StepIndex { get; }
+		string RawText { get; }
+		string Command { get; }
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Create(IOperationContext pOpCtx, string pJson);
+		T ParamAt<T>(int pIndex);
 
 		/*--------------------------------------------------------------------------------------------*/
-		FabObject GetResult();
+		int GetParamCount();
+
+		/*--------------------------------------------------------------------------------------------*/
+		void VerifyParamCount(int pMinCount, int pMaxCount=-1);
 
 	}
 
