@@ -201,10 +201,6 @@
       <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
       <Name>Fabric.Domain.Meta</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>

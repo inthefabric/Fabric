@@ -46,9 +46,14 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetDataTypeName() {
-			string end = (IsNullable ? "?" : "");
+			return GetDataTypeName(DataType, IsNullable);
+		}
 
-			switch ( DataType.Name ) {
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetDataTypeName(Type pType, bool pNullable=false) {
+			string end = (pNullable ? "?" : "");
+
+			switch ( pType.Name ) {
 				case "String":
 					return "string";
 
@@ -71,7 +76,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 					return "double"+end;
 
 				default:
-					return DataType.Name;
+					return pType.Name;
 			}
 		}
 

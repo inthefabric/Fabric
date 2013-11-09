@@ -1,7 +1,7 @@
-﻿namespace Fabric.Infrastructure.Domain.Types {
+﻿namespace Fabric.New.Domain.Schemas.Enums {
 
 	/*================================================================================================*/
-	public interface IBaseType {
+	public interface IEnumItemSchema {
 
 		byte Id { get; }
 		string EnumId { get; }

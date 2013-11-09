@@ -1,0 +1,121 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Enums" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System.Collections.Generic;
+
+namespace Fabric.New.Domain.Enums {
+<#
+IList<IEnumSchema> enums = SchemaUtil.GetEnumSchemas();
+
+foreach ( IEnumSchema e in enums ) {
+	IList<PropertyInfo> props = SchemaUtil.GetEnumItemProperties(e);
+#>
+
+
+	/*================================================================================================*/
+	public static class <#= e.Name #> {
+
+		public enum Id {
+<#
+	int i = 0;
+
+	foreach ( IEnumItemSchema item in e.Items ) {
+		++i;
+#>
+			<#= item.EnumId #><#= (item.Id == i ? ", // " : " = ")+item.Id+(item.Id == i ? "" : ",") #>
+<#
+	} // end item loop
+#>
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public class Item : IEnumItem {
+
+<#
+	foreach ( PropertyInfo pi in props ) {
+		string enumRef = SchemaUtil.GetEnumItemPropertyRef(pi);
+		string type = DomainProperty.GetDataTypeName(pi.PropertyType);
+
+		if ( enumRef != null ) {
+			if ( enumRef.Contains("[]") ) {
+				type = enumRef.Replace("[]", ".Id[]");
+			}
+			else {
+				type = enumRef+".Id";
+			}
+		}
+#>
+			public <#= type #> <#= pi.Name #> { get; set; }
+<#
+	} // end property loop
+#>
+
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+<#
+	foreach ( IEnumItemSchema item in e.Items ) {
+#>
+			{Id.<#= item.EnumId #>, new Item {
+<#
+		foreach ( PropertyInfo pi in props ) {
+			object obj = pi.GetValue(item, null);
+			string val = obj+"";
+			string enumRef = SchemaUtil.GetEnumItemPropertyRef(pi);
+			string cast = "";
+
+			if ( enumRef != null ) {
+				val = enumRef+".Id."+val;
+
+				var list = (obj as IList<string>);
+
+				if ( list != null ) {
+					val = "new[] { ";
+					string prefix = enumRef.Replace("[]", "")+".Id.";
+
+					foreach ( string enumId in list ) {
+						val += "\r\n\t\t\t\t\t"+prefix+enumId+", ";
+					}
+
+					val += "\r\n\t\t\t\t}";
+				}
+			}
+			else if ( pi.PropertyType == typeof(string) ) {
+				val = "\""+val+"\"";
+			}
+			else if ( pi.PropertyType == typeof(float) ) {
+				val = val+"f";
+			}
+#>
+				<#= pi.Name #> = <#= cast #><#= val #>,
+<#
+		} // end property loop
+#>
+			}},
+<#
+	} //end item loop
+#>
+
+		};
+
+		
+	}
+<#
+} // end edges loop
+#>
+
+}

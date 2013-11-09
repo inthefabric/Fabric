@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Fabric.New.Domain.Schemas.Edges;
+using Fabric.New.Domain.Schemas.Enums;
 using Fabric.New.Domain.Schemas.Vertices;
 
 namespace Fabric.New.Domain.Schemas.Utils {
@@ -210,6 +211,55 @@ namespace Fabric.New.Domain.Schemas.Utils {
 				.Where(x => x.PropertyType.IsSubclassOf(ept))
 				.Select(x => (EdgeProperty)x.GetValue(pEdge, null))
 				.ToList();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<Type> GetEnumTypes() {
+			Type et = typeof(EnumSchema);
+
+			return et.Assembly
+				.GetTypes()
+				.Where(x => x.IsSubclassOf(et))
+				.OrderBy(x => x.Name)
+				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<IEnumSchema> GetEnumSchemas() {
+			return GetEnumTypes()
+				.Select(GetEnum)
+				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static T GetEnum<T>() where T : IEnumSchema {
+			return (T)GetEnum(typeof(T));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IEnumSchema GetEnum(Type pEnumType) {
+			return (IEnumSchema)Activator.CreateInstance(pEnumType);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static IList<PropertyInfo> GetEnumItemProperties(IEnumSchema pEdge) {
+			return pEdge
+				.Items[0]
+				.GetType()
+				.GetProperties()
+				//.Where(x => x.DeclaringType != typeof(EnumItemSchema))
+				.ToList();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetEnumItemPropertyRef(PropertyInfo pProp) {
+			object er = pProp
+				.GetCustomAttributes(typeof(EnumRefAttribute), false)
+				.FirstOrDefault();
+
+			return (er == null ? null : ((EnumRefAttribute)er).EnumType);
 		}
 
 	}

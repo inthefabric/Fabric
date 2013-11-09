@@ -96,30 +96,12 @@
     <Compile Include="Api\ServiceOpAttribute.cs" />
     <Compile Include="Api\ServiceOpParamAttribute.cs" />
     <Compile Include="Api\IApiFunc.cs" />
-    <Compile Include="Domain\Types\IBaseType.cs" />
-    <Compile Include="Domain\Types\VectorUnitPrefix.cs" />
-    <Compile Include="Domain\Types\VectorUnitDerived.cs" />
-    <Compile Include="Domain\Types\VectorUnit.cs" />
-    <Compile Include="Domain\Types\VectorRangeLevel.cs" />
-    <Compile Include="Domain\Types\VectorRange.cs" />
-    <Compile Include="Domain\Types\EventorType.cs" />
-    <Compile Include="Domain\Types\DirectorAction.cs" />
-    <Compile Include="Domain\Types\DirectorType.cs" />
-    <Compile Include="Domain\Types\DescriptorType.cs" />
-    <Compile Include="Domain\Types\FactorAssertion.cs" />
-    <Compile Include="Domain\Types\IdentorType.cs" />
-    <Compile Include="Domain\Types\LocatorType.cs" />
-    <Compile Include="Domain\Types\MemberType.cs" />
-    <Compile Include="Domain\FabricIdEnums.cs" />
     <Compile Include="Domain\DomainValidator.cs" />
     <Compile Include="Domain\DomainValidators.cs">
       <DependentUpon>DomainValidators.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Domain\Types\BaseType.cs" />
-    <Compile Include="Domain\Types\StaticTypes.cs" />
-    <Compile Include="Domain\Types\VectorType.cs" />
     <Compile Include="FabricUtil.cs" />
     <Compile Include="Traversal\FuncAttribute.cs" />
     <Compile Include="Traversal\FuncParamAttribute.cs" />
@@ -156,14 +138,8 @@
       <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
       <Name>Fabric.Domain.Meta</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

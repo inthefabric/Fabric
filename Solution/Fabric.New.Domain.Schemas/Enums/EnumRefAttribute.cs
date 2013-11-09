@@ -1,13 +1,19 @@
-﻿namespace Fabric.Infrastructure.Domain.Types {
+﻿using System;
+
+namespace Fabric.New.Domain.Schemas.Enums {
 
 	/*================================================================================================*/
-	public class MemberType : BaseType<MemberTypeId> {
+	[AttributeUsage(AttributeTargets.Property)]
+	public class EnumRefAttribute : Attribute {
+
+		public string EnumType { get; private set; } 
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MemberType(MemberTypeId pEnumId, string pName, string pDesc) :
-																		base(pEnumId, pName, pDesc) {}
+		public EnumRefAttribute(string pEnumType) {
+			EnumType = pEnumType;
+		}
 
 	}
 

@@ -62,6 +62,33 @@
     <Compile Include="Edges\MemberCreatesArtifactSchema.cs" />
     <Compile Include="Edges\EdgeSchema.cs" />
     <Compile Include="Edges\MemberCreatesFactorSchema.cs" />
+    <Compile Include="Enums\EnumRefAttribute.cs" />
+    <Compile Include="Enums\VectorUnitDerivedSchema.cs" />
+    <Compile Include="Enums\VectorTypeSchema.cs" />
+    <Compile Include="Enums\VectorUnitPrefixSchema.cs" />
+    <Compile Include="Enums\VectorRangeLevelSchema.cs" />
+    <Compile Include="Enums\VectorRangeSchema.cs" />
+    <Compile Include="Enums\LocatorTypeSchema.cs" />
+    <Compile Include="Enums\VectorUnitSchema.cs" />
+    <Compile Include="Enums\IdentorTypeSchema.cs" />
+    <Compile Include="Enums\FactorAssertionSchema.cs" />
+    <Compile Include="Enums\EventorTypeSchema.cs" />
+    <Compile Include="Enums\DirectorActionSchema.cs" />
+    <Compile Include="Enums\DirectorTypeSchema.cs" />
+    <Compile Include="Enums\DescriptorTypeSchema.cs" />
+    <Compile Include="Enums\MemberTypeSchema.cs" />
+    <Compile Include="Enums\EnumItemSchema.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\EnumSchema.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\IEnumItemSchema.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\IEnumSchema.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Access.cs" />
     <Compile Include="Utils\ApiProperty.cs" />

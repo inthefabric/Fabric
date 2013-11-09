@@ -46,6 +46,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Enums\DomainEnums.cs">
+      <DependentUpon>DomainEnums.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="DomainEdges.cs">
       <DependentUpon>DomainEdges.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -57,6 +62,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="EdgeBase.cs" />
+    <Compile Include="Enums\IEnumItem.cs" />
     <Compile Include="FabEnums.cs" />
     <Compile Include="IEdge.cs" />
     <Compile Include="IElement.cs" />
@@ -70,6 +76,10 @@
     <Compile Include="VertexBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Enums\DomainEnums.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DomainEnums.cs</LastGenOutput>
+    </None>
     <None Include="DomainEdges.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainEdges.cs</LastGenOutput>

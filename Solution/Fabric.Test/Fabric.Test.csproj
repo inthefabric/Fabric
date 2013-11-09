@@ -222,10 +222,6 @@
       <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
       <Name>Fabric.Api.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>

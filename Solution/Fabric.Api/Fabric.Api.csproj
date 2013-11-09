@@ -203,21 +203,9 @@
       <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
       <Name>Fabric.Domain.Meta</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Infrastructure.Analytics\Fabric.Infrastructure.Analytics.csproj">
-      <Project>{8E09D9D5-148A-4699-A31B-372BD01E6C0A}</Project>
-      <Name>Fabric.Infrastructure.Analytics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Infrastructure.Caching\Fabric.Infrastructure.Caching.csproj">
-      <Project>{3CBD5259-8540-4DAD-845A-40C761C66CB2}</Project>
-      <Name>Fabric.Infrastructure.Caching</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
       <Name>Fabric.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Db.Data\Fabric.Db.Data.csproj">
       <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
