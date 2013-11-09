@@ -1,0 +1,58 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+namespace Fabric.New.Domain.Names {
+
+	/*================================================================================================*/
+	public static partial class DbName {
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static class Edge {
+		
+<#
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
+
+foreach ( IEdgeSchema e in edges ) {
+#>
+			public const string <#= e.GetClassNameDom() #>Name = "<#= e.NameDb #>";
+<#
+} //end Edge loop
+
+foreach ( IEdgeSchema e in edges ) {
+	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+
+	if ( props.Count == 0 ) {
+		continue;
+	}
+#>
+
+			/*----------------------------------------------------------------------------------------*/
+			public static class <#= e.GetClassNameDom() #> {
+
+<#
+	foreach ( EdgeProperty p in props ) {
+#>
+				public const string <#= p.Name #> = "<#= p.DbName #>";
+<#
+	} // end property loop
+#>
+
+			}
+<#
+} // end edge loop
+#>
+
+		}
+
+	}
+
+}

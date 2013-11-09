@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
+using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Faults;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
+using ServiceStack.Text;
 
 namespace Fabric.New.Infrastructure.Data {
 	
@@ -46,13 +49,14 @@ namespace Fabric.New.Infrastructure.Data {
 				return;
 			}
 
-			/*if ( Properties.ContainsKey(PropDbName.Vertex_FabType) ) {
-				byte ft = byte.Parse(Properties[PropDbName.Vertex_FabType]);
-				Class = VertexFabTypeUtil.ValueMap[ft]+"";
+			if ( Properties.ContainsKey(DbName.Vert.Vertex.VertexType) ) {
+				byte ft = byte.Parse(Properties[DbName.Vert.Vertex.VertexType]);
+				Class = Enum.ToObject(typeof(VertexDomainType), ft)+"";
 				return;
 			}
 			
-			throw new Exception("Unspecified vertex class: Id="+pGraphElement.Id);*/
+			throw new Exception("Unspecified vertex class: Id="+pGraphElement.Id+
+				", Props="+JsonSerializer.SerializeToString(pGraphElement.Properties));
 		}
 
 
@@ -71,13 +75,6 @@ namespace Fabric.New.Infrastructure.Data {
 		public static T ToElement<T>(IDataDto pDto) where T : IElement, new() {
 			if ( pDto.Id == null ) {
 				new FabArgumentNullFault("DataDto.Id was null.");
-			}
-
-			string idProp = null; //TODO: PropDbName.TypeIdMap[typeof(T)];
-
-			if ( !pDto.Properties.ContainsKey(idProp) ) {
-				throw new Exception("Incorrect conversion from DataDto class '"+
-					pDto.Class+"' to type '"+typeof(T).Name+"'.");
 			}
 
 			T result = new T();

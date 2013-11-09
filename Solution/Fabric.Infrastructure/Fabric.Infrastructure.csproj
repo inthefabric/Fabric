@@ -75,11 +75,6 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Weaver\DbNames.cs">
-      <DependentUpon>DbNames.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Traversal\FuncAttribute.cs" />
     <Compile Include="Traversal\FuncParamAttribute.cs" />
     <Compile Include="Traversal\IStepLink.cs" />
@@ -94,10 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Weaver\DbNames.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbNames.cs</LastGenOutput>
-    </None>
     <None Include="Weaver\DomainBuilders.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DomainBuilders.cs</LastGenOutput>
