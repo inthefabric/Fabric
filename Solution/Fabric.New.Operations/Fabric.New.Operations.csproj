@@ -65,6 +65,8 @@
     </Compile>
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Traversal\ITravPath.cs" />
+    <Compile Include="Traversal\TravPath.cs" />
     <Compile Include="Traversal\Funcs\ITravFunc.cs" />
     <Compile Include="Traversal\Funcs\TravFuncs.cs">
       <DependentUpon>TravFuncs.tt</DependentUpon>
@@ -82,6 +84,13 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Traversal\ITravPathStep.cs" />
+    <Compile Include="Traversal\Steps\ITravStep.cs" />
+    <Compile Include="Traversal\Steps\TravStepLinks.cs">
+      <DependentUpon>TravStepLinks.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Traversal\Steps\TravStep.cs" />
     <Compile Include="Traversal\TravPathStep.cs" />
     <Compile Include="Traversal\TravOperation.cs" />
     <Compile Include="Traversal\ITravOperation.cs" />
@@ -99,6 +108,10 @@
     <None Include="Traversal\Links\TravLinks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TravLinks.cs</LastGenOutput>
+    </None>
+    <None Include="Traversal\Steps\TravStepLinks.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TravStepLinks.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
