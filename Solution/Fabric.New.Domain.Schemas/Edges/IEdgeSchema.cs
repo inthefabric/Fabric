@@ -41,7 +41,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		string GetClassNameDom();
 
 		/*--------------------------------------------------------------------------------------------*/
-		string GetClassNameApi();
+		string GetClassNameApi(bool pWithId=true);
 
 		/*--------------------------------------------------------------------------------------------*/
 		string GetPropNameDom(bool pPlural=false);

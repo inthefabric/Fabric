@@ -53,6 +53,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 
 	/*================================================================================================*/
 	public class <#= apiName #> : <#= baseName #> {
+
 <#+
 	foreach ( ApiProperty ap in props ) {
 		OutputVertexProp(ap, pCreateMode);
@@ -75,7 +76,6 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	foreach ( string sub in subMap.Keys ) {
 		//bool isSubNul = v.IsSubObjectNullable(sub);;
 #>
-
 		public <#= apiNamePrefix+sub #> <#= sub.Substring(3) #> { get; set; }
 <#+	
 	} // end subMap loop
@@ -96,6 +96,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 
 	/*================================================================================================*/
 	public class <#= apiNamePrefix+sub #> : <#= objectName #> {
+
 <#+
 	props = subMap[sub];
 	edges = subPropMap[sub];
@@ -131,14 +132,6 @@ public void OutputVertexProp(IEdgeSchema pEdge, bool pCreateMode) {
 
 
 public void OutputVertexProp(string pType, string pName, string pCreateAccess) {
-#>
-		
-<#+
-	if ( pCreateAccess != null ) {
-#>
-		//[Access(<#= pCreateAccess #>)]
-<#+
-	}
 #>
 		public virtual <#= pType #> <#= pName #> { get; set; }
 <#+

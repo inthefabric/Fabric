@@ -76,8 +76,14 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetClassNameApi() {
-			return GetFromVertex().Names.Api+GetPropNameApi();
+		public string GetClassNameApi(bool pWithId=true) {
+			string name = GetFromVertex().Names.Api+GetPropNameApi();
+
+			if ( !pWithId ) {
+				name = name.Substring(0, name.Length-2);
+			}
+
+			return name;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

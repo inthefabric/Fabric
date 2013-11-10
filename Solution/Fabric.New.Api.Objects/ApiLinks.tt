@@ -1,0 +1,38 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+namespace Fabric.New.Api.Objects {
+<#
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
+
+foreach ( IEdgeSchema e in edges ) {
+	string name = e.GetClassNameApi(false);
+	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+
+	if ( props.Count == 0 ) {
+		continue;
+	}
+#>
+
+	/*================================================================================================*/
+	public class <#= name #> : FabLink<<#= e.GetFromVertex().Names.Api #>, <#= e.GetToVertex().Names.Api #>> {
+<#
+	foreach ( EdgeProperty p in props ) {
+#>
+		//<#= p.Name #>
+<#
+	} //end props loop
+#>
+	}
+<#
+} //end edge loop
+#>
+
+}
