@@ -6,8 +6,8 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class MemberCreatesArtifactSchema : EdgeSchema<MemberSchema, ArtifactSchema> {
 
-		public EdgeProperty<ArtifactSchema, long> Timestamp { get; private set; }
-		public EdgeProperty<ArtifactSchema, byte> VertexType { get; private set; }
+		public EdgeProperty<ArtifactSchema, long, float> Timestamp { get; private set; }
+		public EdgeProperty<ArtifactSchema, byte, byte> VertexType { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,8 +16,11 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			SetNames("Creates", "c");
 			CreateFromOtherDirection = typeof(ArtifactCreatedByMemberSchema);
 
-			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
-			VertexType = Prop("VertexType", "vt", (x => x.VertexType));
+			////
+
+			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
+
+			VertexType = Prop("VertexType", "vt", (x => x.VertexType), (x => x.FabVertexType));
 		}
 
 	}

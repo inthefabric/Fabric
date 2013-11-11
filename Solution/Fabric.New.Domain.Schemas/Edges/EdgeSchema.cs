@@ -21,7 +21,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public EdgeQuantity Quantity { get; private set; }
 
 		public DomainProperty<long> ToVertexId { get; private set; }
-		public Access CreateToVertexId { get; protected set; }
+		public ApiProperty<long> FabToVertexId { get; private set; }
 		public string SubObjectOf { get; protected set; }
 		public Type CreateFromOtherDirection { get; protected set; }
 
@@ -34,7 +34,12 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			Quantity = pQuantity;
 
 			ToVertexId = new DomainProperty<long>("VertexId", "N/A");
-			CreateToVertexId = Access.Internal;
+			ToVertexId.IsUnique = true;
+
+			FabToVertexId = new ApiProperty<long>("VertexId");
+			FabToVertexId.IsUnique = true;
+			FabToVertexId.CreateAccess = Access.Internal;
+			FabToVertexId.TraversalHas = Matching.Exact;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -148,15 +153,18 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		protected EdgeSchema(EdgeQuantity pQuantity) : base(typeof(TFrom), typeof(TTo), pQuantity) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected EdgeProperty<TTo, TDataType> Prop<TDataType>(string pName, string pDbName, 
-													Func<TTo, DomainProperty<TDataType>> pDomPropFunc) {
-			return new EdgeProperty<TTo, TDataType>(pName, NameDb+"."+pDbName, pDomPropFunc);
+		protected EdgeProperty<TTo, TDataType, TApiDataType> Prop<TDataType, TApiDataType>(
+						string pName, string pDbName, Func<TTo, DomainProperty<TDataType>> pDomPropFunc,
+						Func<TTo, ApiProperty<TApiDataType>> pApiPropFunc) {
+			return new EdgeProperty<TTo, TDataType, TApiDataType>(
+				pName, NameDb+"."+pDbName, pDomPropFunc, pApiPropFunc);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected EdgeProperty<TTo, TEdge, long> PropFromEdge<TEdge>(string pName, string pDbName)
+		protected EdgeProperty<TTo, TEdge, long, long> PropFromEdge<TEdge>(string pName, string pDbName)
 																			where TEdge : EdgeSchema {
-			return new EdgeProperty<TTo, TEdge, long>(pName, NameDb+"."+pDbName, (x => x.ToVertexId));
+			return new EdgeProperty<TTo, TEdge, long, long>(
+				pName, NameDb+"."+pDbName, (x => x.ToVertexId), (x => x.FabToVertexId));
 		}
 
 	}

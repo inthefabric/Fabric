@@ -15,7 +15,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		EdgeSchema.EdgeQuantity Quantity { get; }
 
 		DomainProperty<long> ToVertexId { get; }
-		Access CreateToVertexId { get; }
+		ApiProperty<long> FabToVertexId { get; }
 		string SubObjectOf { get; }
 		Type CreateFromOtherDirection { get; }
 

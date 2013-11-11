@@ -23,28 +23,36 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		public static IList<ITravStep> LinkList = new List<ITravStep> {
 <#
 IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
+IList<IEdgeSchema> allEdges = SchemaUtil.GetEdgeSchemas();
+var edges = new List<IEdgeSchema>();
 
-foreach ( IVertexSchema v in verts ) {
-	if ( v.GetAccess != Access.All ) {
-		//continue;
+foreach ( IEdgeSchema e in allEdges ) {
+	IVertexSchema fv = e.GetFromVertex();
+	IVertexSchema tv = e.GetToVertex();
+
+	if ( fv.GetAccess != Access.All || tv.GetAccess != Access.All ) {
+		continue;
 	}
 
-	IList<IEdgeSchema> vertEdges = SchemaUtil.GetEdgeSchemasForVertex(v, false);
+	edges.Add(e);
+}
 
-	foreach ( IEdgeSchema e in vertEdges ) {
-		string link = e.GetPropNameLink();
-		string name = v.Names.Domain+link+"Step";
-		string fromType = e.GetFromVertex().Names.Api;
-		string toType = e.GetToVertex().Names.Api;
+foreach ( IEdgeSchema e in edges ) {
+	IVertexSchema fv = e.GetFromVertex();
+	IVertexSchema tv = e.GetToVertex();
 
-		if ( SchemaUtil.GetEdgeProperties(e).Count > 0 ) {
-			toType = e.GetClassNameApi(false);
-		}
+	string link = e.GetPropNameLink();
+	string name = fv.Names.Domain+link+"Step";
+	string fromType = fv.Names.Api;
+	string toType = tv.Names.Api;
+
+	if ( SchemaUtil.GetEdgeProperties(e).Count > 0 ) {
+		toType = e.GetClassNameApi(false);
+	}
 #>
 			new TravStepLink<<#= fromType #>, <#= toType #>>("<#= link #>", "<#= e.NameDb #>"),
 <#
-	} // end edge loop
-} // end vertex loop
+} // end edge loop
 #>
 		};
 
@@ -59,18 +67,18 @@ foreach ( IVertexSchema v in verts ) {
 		}
 
 		PropertyMapping pm = propMaps[ap];
-		string type = ap.GetDataTypeName().Replace("?", "");
+		string apiType = ap.GetDataTypeName().Replace("?", "");
 		string name = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3))+ap.Name;
 		string exact = (ap.IsTraversalHasExact()+"").ToLower();
 
 		if ( ap.TraversalHas == Matching.Custom ) {
 #>
-			TravStepsCustom.Has<#= v.Names.Domain+name #><<#= v.Names.Api #>, <#= type #>>("<#= name #>", "<#= pm.Domain.DbName #>"),
+			TravStepsCustom.Has<#= v.Names.Domain+name #><<#= v.Names.Api #>, <#= apiType #>>("<#= name #>", "<#= pm.Domain.DbName #>"),
 <#
 			continue;
 		}
 #>
-			new TravStepHas<<#= v.Names.Api #>, <#= type #>>("<#= name #>", "<#= pm.Domain.DbName #>", <#= exact #>),
+			new TravStepHas<<#= v.Names.Api #>, <#= apiType #>>("<#= name #>", "<#= pm.Domain.DbName #>", <#= exact #>),
 <#
 	} // end property loop
 } // end vertex loop
@@ -79,19 +87,21 @@ foreach ( IVertexSchema v in verts ) {
 
 		public static IList<ITravStep> LinkHasList = new List<ITravStep> {
 <#
-IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
-
 foreach ( IEdgeSchema e in edges ) {
-	if ( e.GetFromVertex().GetAccess != Access.All || e.GetToVertex().GetAccess != Access.All ) {
-		continue;
-	}
-
 	string edgeName = e.GetClassNameApi(false);
 	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
 
 	foreach ( EdgeProperty p in props ) {
-		string type = p.GetDataTypeName();
-		string exact = "false";
+		string type = p.GetApiDataTypeName();
+		ApiProperty ap = p.GetApiProp();
+		string exact = (ap.IsTraversalHasExact()+"").ToLower();
+		
+		if ( ap.TraversalHas == Matching.Custom ) {
+#>
+			TravStepsCustom.Has<#= edgeName.Substring(3)+p.Name #><<#= edgeName #>, <#= type #>>("<#= p.Name #>", "<#= p.DbName #>"),
+<#
+			continue;
+		}
 #>
 			new TravStepHas<<#= edgeName #>, <#= type #>>("<#= p.Name #>", "<#= p.DbName #>", <#= exact #>),
 <#

@@ -11,7 +11,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorDescriptorRefinesTypeWithArtifactSchema() : base(EdgeQuantity.ZeroOrOne) {
 			SetNames("DescriptorRefinesTypeWith", "rt", "RefinesTypeWith");
-			CreateToVertexId = Access.All;
+			FabToVertexId.CreateAccess = Access.All;
 			SubObjectOf = "FabDescriptor";
 		}
 

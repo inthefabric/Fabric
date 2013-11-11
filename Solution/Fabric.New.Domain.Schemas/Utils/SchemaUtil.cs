@@ -160,8 +160,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 			return GetEdgeSchemas()
 				.Where(x => x.FromVertexType == vt)
-				.Where(x => (!pCreateMode || 
-					(x.CreateToVertexId != Access.None && x.CreateFromOtherDirection == null)))
+				.Where(x => (!pCreateMode || (x.FabToVertexId.CreateAccess != Access.None && 
+					x.CreateFromOtherDirection == null)))
 				.ToList();
 		}
 
@@ -172,7 +172,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 			return GetEdgeSchemas()
 				.Where(x => x.ToVertexType == vt)
-				.Where(x => (x.CreateToVertexId != Access.None && x.CreateFromOtherDirection == et))
+				.Where(x => (x.FabToVertexId.CreateAccess != Access.None && 
+					x.CreateFromOtherDirection == et))
 				.Take(1)
 				.SingleOrDefault();
 		}

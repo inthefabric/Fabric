@@ -6,9 +6,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class AppDefinesMemberSchema : EdgeSchema<AppSchema, MemberSchema> {
 
-		public EdgeProperty<MemberSchema, long> Timestamp { get; private set; }
-		public EdgeProperty<MemberSchema, byte> MemberType { get; private set; }
-		public EdgeProperty<MemberSchema, MemberDefinedByUserSchema, long> UserId { get; private set; }
+		public EdgeProperty<MemberSchema, long, float> Timestamp { get; private set; }
+		public EdgeProperty<MemberSchema, byte, byte> MemberType { get; private set; }
+		public EdgeProperty<MemberSchema, MemberDefinedByUserSchema, long, long> 
+			UserId { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,8 +18,12 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			SetNames("Defines", "d");
 			CreateFromOtherDirection = typeof(MemberDefinedByAppSchema);
 
-			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
-			MemberType = Prop("MemberType", "mt", (x => x.MemberType));
+			////
+
+			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
+
+			MemberType = Prop("MemberType", "mt", (x => x.MemberType), (x => x.FabMemberType));
+
 			UserId = PropFromEdge<MemberDefinedByUserSchema>("UserId", "ui");
 		}
 

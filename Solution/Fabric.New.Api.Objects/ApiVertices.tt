@@ -127,7 +127,7 @@ public void OutputVertexProp(ApiProperty pProp, bool pCreateMode) {
 
 public void OutputVertexProp(IEdgeSchema pEdge, bool pCreateMode) {
 	OutputVertexProp("long"+(pEdge.GetIsOptional() ? "?" : ""), pEdge.GetPropNameApi(),
-			(pCreateMode ? pEdge.CreateToVertexId+"" : null));
+			(pCreateMode ? pEdge.FabToVertexId.CreateAccess+"" : null));
 }
 
 

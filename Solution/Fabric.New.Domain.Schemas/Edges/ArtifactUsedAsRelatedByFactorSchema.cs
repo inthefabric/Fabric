@@ -6,10 +6,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class ArtifactUsedAsRelatedByFactor : EdgeSchema<ArtifactSchema, FactorSchema> {
 
-		public EdgeProperty<FactorSchema, long> Timestamp { get; private set; }
-		public EdgeProperty<FactorSchema, byte> DescriptorType { get; private set; }
-		public EdgeProperty<FactorSchema, FactorUsesPrimaryArtifactSchema, long> PrimaryArtifactId
-			{ get; private set; }
+		public EdgeProperty<FactorSchema, long, float> Timestamp { get; private set; }
+		public EdgeProperty<FactorSchema, byte, byte> DescriptorType { get; private set; }
+		public EdgeProperty<FactorSchema, FactorUsesPrimaryArtifactSchema, long, long>
+			PrimaryArtifactId { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,8 +18,13 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			SetNames("UsedAsRelatedBy", "rb");
 			CreateFromOtherDirection = typeof(FactorUsesRelatedArtifactSchema);
 
-			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp));
-			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType));
+			////
+
+			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
+
+			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType),
+				(x => x.FabDescriptorType));
+
 			PrimaryArtifactId = PropFromEdge<FactorUsesPrimaryArtifactSchema>("PrimaryArtifactId","pa");
 		}
 

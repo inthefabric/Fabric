@@ -40,6 +40,44 @@
 			return null;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static ITravStep HasAppDefinesMemberTimestamp<TFrom, TType>(
+																		string pProp, string pPropDb) {
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static ITravStep HasArtifactUsedAsPrimaryByFactorTimestamp<TFrom, TType>(
+																		string pProp, string pPropDb) {
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static ITravStep HasArtifactUsedAsRelatedByFactorTimestamp<TFrom, TType>(
+																		string pProp, string pPropDb) {
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static ITravStep HasMemberCreatesArtifactTimestamp<TFrom, TType>(
+																		string pProp, string pPropDb) {
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static ITravStep HasMemberCreatesFactorTimestamp<TFrom, TType>(
+																		string pProp, string pPropDb) {
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static ITravStep HasUserDefinesMemberTimestamp<TFrom, TType>(
+																		string pProp, string pPropDb) {
+			return null;
+		}
+
 	}
 
 }

@@ -11,7 +11,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public FactorUsesRelatedArtifactSchema() : base(EdgeQuantity.One) {
 			SetNames("UsesRelated", "r");
-			CreateToVertexId = Access.All;
+			FabToVertexId.CreateAccess = Access.All;
 		}
 
 	}
