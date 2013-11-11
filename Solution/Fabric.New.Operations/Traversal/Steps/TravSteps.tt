@@ -130,6 +130,33 @@ foreach ( IVertexSchema v in verts ) {
 #>
 		};
 
+		public static IList<ITravStep> RootEntryList = new List<ITravStep> {
+<#
+foreach ( IVertexSchema v in verts ) {
+	if ( v.GetAccess != Access.All ) {
+		continue;
+	}
+
+	IDictionary<ApiProperty, PropertyMapping> propMaps = SchemaUtil.GetVertexApiPropertyMaps(v);
+
+	foreach ( ApiProperty ap in propMaps.Keys ) {
+		if ( ap.GetAccess != Access.All ) {
+			continue;
+		}
+
+		PropertyMapping pm = propMaps[ap];
+			
+		if ( !pm.Domain.IsIndexed && !pm.Domain.IsElastic ) {
+			continue;
+		}
+#>
+			// FabTrav<#= v.Names.Domain #>Root.<#= ap.Name #> [<#= pm.Domain.IsIndexed #>, <#= pm.Domain.IsElastic #>]
+<#
+	} // end property loop
+} // end vertex loop
+#>
+		};
+
 	}
 
 }

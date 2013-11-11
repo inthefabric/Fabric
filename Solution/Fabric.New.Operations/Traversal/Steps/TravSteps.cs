@@ -96,6 +96,19 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepTo<FabVertex, FabUser>("User", VertexDomainType.Id.User),
 		};
 
+		public static IList<ITravStep> RootEntryList = new List<ITravStep> {
+			// FabTravAppRoot.Name [False, True]
+			// FabTravClassRoot.Name [False, True]
+			// FabTravClassRoot.Disamb [False, True]
+			// FabTravInstanceRoot.Name [False, True]
+			// FabTravInstanceRoot.Disamb [False, True]
+			// FabTravUrlRoot.Name [False, True]
+			// FabTravUrlRoot.FullPath [True, False]
+			// FabTravUserRoot.Name [False, True]
+			// FabTravVertexRoot.Id [True, False]
+			// FabTravVertexRoot.Timestamp [False, True]
+		};
+
 	}
 
 }
