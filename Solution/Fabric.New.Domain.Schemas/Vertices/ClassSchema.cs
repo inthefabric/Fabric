@@ -24,6 +24,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public ClassSchema() {
 			Names = new NameProvider("Class", "Classes", "c");
 			GetAccess = Access.All;
+			CreateAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
 
 			////
@@ -52,6 +53,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabName.LenMin = 1;
 			FabName.LenMax = 128;
 			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
+			FabName.TraversalHas = Matching.None;
 
 			FabDisamb = new ApiProperty<string>("Disamb");
 			FabDisamb.SetOpenAccess();
@@ -59,12 +61,14 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabDisamb.LenMin = 1;
 			FabDisamb.LenMax = 128;
 			FabDisamb.ValidRegex = ApiProperty.ValidTitleRegex;
+			FabDisamb.TraversalHas = Matching.None;
 
 			FabNote = new ApiProperty<string>("Note");
 			FabNote.SetOpenAccess();
 			FabNote.IsNullable = true;
 			FabNote.LenMin = 1;
 			FabNote.LenMax = 256;
+			FabNote.TraversalHas = Matching.None;
 
 			////
 

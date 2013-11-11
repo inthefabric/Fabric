@@ -236,8 +236,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 		public static void FromVertex(FabVertex pApi, Vertex pDomain) {
 			FromObject(pApi, pDomain);
 			pApi.Id = pDomain.VertexId;
-			//Custom: Set Api.IdStr = Domain.Id.ToString().
-			//pApi.IdStr <== pDomain.VertexId  (requires custom)
 			//Custom: Convert Domain.Timestamp to Unix-based seconds.
 			//pApi.Timestamp <== pDomain.Timestamp  (requires custom)
 			pApi.VertexType = pDomain.VertexType;

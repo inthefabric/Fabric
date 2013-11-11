@@ -26,6 +26,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public OauthAccessSchema() {
 			Names = new NameProvider("OauthAccess", "OauthAccesses", "oa");
 			GetAccess = Access.Internal;
+			CreateAccess = Access.Internal;
 			DeleteAccess = Access.Internal;
 
 			////

@@ -20,6 +20,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public UrlSchema() {
 			Names = new NameProvider("Url", "Urls", "r");
 			GetAccess = Access.All;
+			CreateAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
 
 			////
@@ -41,6 +42,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabName.LenMin = 1;
 			FabName.LenMax = 128;
 			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
+			FabName.TraversalHas = Matching.None;
 
 			FabFullPath = new ApiProperty<string>("FullPath");
 			FabFullPath.SetOpenAccess();
@@ -48,6 +50,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabFullPath.ToLowerCase = true;
 			FabFullPath.LenMin = 1;
 			FabFullPath.LenMax = 2048;
+			FabFullPath.TraversalHas = Matching.None;
 
 			////
 

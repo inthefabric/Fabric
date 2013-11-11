@@ -39,6 +39,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public string FromEnum { get; internal set; }
 		public string SubObjectOf { get; internal set; }
 		public bool CustomValidation { get; internal set; }
+		public Matching TraversalEntry { get; internal set; }
+		public Matching TraversalHas { get; internal set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +51,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 			CreateAccess = Access.Internal;
 			ModifyAccess = Access.Internal;
 			DataType = pDataType;
+			TraversalEntry = Matching.Implicit;
+			TraversalHas = Matching.Implicit;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -94,6 +98,19 @@ namespace Fabric.New.Domain.Schemas.Utils {
 				default:
 					return null;
 			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public bool IsTraversalHasExact() {
+			if ( TraversalHas == Matching.Exact ) {
+				return true;
+			}
+
+			if ( TraversalHas != Matching.Implicit ) {
+				return false;
+			}
+
+			return (FromEnum != null || DataType == typeof(string) || DataType == typeof(bool));
 		}
 
 	}

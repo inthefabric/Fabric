@@ -22,7 +22,7 @@ IList<IVertexSchema> allVerts = SchemaUtil.GetVertexSchemas();
 var verts = new List<IVertexSchema>();
 
 foreach ( IVertexSchema v in allVerts ) {
-	if ( v.GetAccess == Access.All ) {
+	if ( v.CreateAccess == Access.All ) {
 		verts.Add(v);
 	}
 }

@@ -23,7 +23,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public AppSchema() {
 			Names = new NameProvider("App", "Apps", "p");
-			GetAccess = Access.Internal;
+			GetAccess = Access.All;
+			CreateAccess = Access.Internal;
 			DeleteAccess = Access.Internal;
 
 			////
@@ -49,7 +50,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabName.LenMin = 3;
 			FabName.LenMax = 64;
 			FabName.ValidRegex = ApiProperty.ValidTitleRegex;
-
+			FabName.TraversalHas = Matching.None;
+			
 			FabSecret = new ApiProperty<string>("Secret");
 			FabSecret.LenMin = 32;
 			FabSecret.LenMax = 32;

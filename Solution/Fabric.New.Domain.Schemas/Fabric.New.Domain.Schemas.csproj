@@ -92,6 +92,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Access.cs" />
     <Compile Include="Utils\ApiProperty.cs" />
+    <Compile Include="Utils\Matching.cs" />
     <Compile Include="Utils\EdgeProperty.cs" />
     <Compile Include="Utils\DomainProperty.cs" />
     <Compile Include="Utils\NameProvider.cs" />

@@ -7,6 +7,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 		NameProvider Names { get; }
 		Access GetAccess { get; }
+		Access CreateAccess { get; }
 		Access DeleteAccess { get; }
 
 

@@ -1,4 +1,7 @@
-﻿namespace Fabric.New.Operations.Traversal {
+﻿using System;
+using Fabric.New.Infrastructure.Faults;
+
+namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
 	public interface ITravPathStep {
@@ -17,6 +20,12 @@
 
 		/*--------------------------------------------------------------------------------------------*/
 		void VerifyParamCount(int pMinCount, int pMaxCount=-1);
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		FabStepFault NewStepFault(
+			FabFault.Code pCode, string pMsg, int pParamI=-1, Exception pInner=null);
 
 	}
 

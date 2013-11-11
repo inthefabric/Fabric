@@ -94,7 +94,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private FabStepFault NewStepFault(FabFault.Code pCode, string pMsg,
+		public FabStepFault NewStepFault(FabFault.Code pCode, string pMsg,
 															int pParamI=-1, Exception pInner=null) {
 			string paramRaw = null;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Fabric.New.Operations.Traversal.Steps {
+﻿namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public class TravStepLink<TFrom, TTo> : TravStep<TFrom, TTo> {
@@ -12,24 +10,6 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public TravStepLink(string pCommand, string pEdgeDbName) : base(pCommand, 0) {
 			vEdgeDbName = pEdgeDbName;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override bool AcceptsPath(ITravPath pPath) {
-			if ( !pPath.CurrentType.IsAssignableFrom(FromType) ) {
-				return false;
-			}
-
-			IList<ITravPathStep> steps = pPath.GetSteps(1);
-
-			if ( steps != null ) {
-				ITravPathStep s = steps[0];
-				return (s.Command == Command);
-			}
-
-			return false;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

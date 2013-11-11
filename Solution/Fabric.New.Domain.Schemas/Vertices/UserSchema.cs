@@ -20,7 +20,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		public UserSchema() {
 			Names = new NameProvider("User", "Users", "u");
-			GetAccess = Access.Internal;
+			GetAccess = Access.All;
+			CreateAccess = Access.Internal;
 			DeleteAccess = Access.Internal;
 
 			////
@@ -44,6 +45,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabName.LenMin = 3;
 			FabName.LenMax = 64;
 			FabName.ValidRegex = ApiProperty.ValidUserRegex;
+			FabName.TraversalHas = Matching.None;
 
 			FabPassword = new ApiProperty<string>("Password");
 			FabPassword.LenMin = 8;

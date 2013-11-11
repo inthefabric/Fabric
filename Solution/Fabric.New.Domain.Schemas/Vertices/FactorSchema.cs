@@ -81,6 +81,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public FactorSchema() {
 			Names = new NameProvider("Factor", "Factors", "f");
 			GetAccess = Access.All;
+			CreateAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
 
 			////
@@ -154,6 +155,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabNote.IsNullable = true;
 			FabNote.LenMin = 1;
 			FabNote.LenMax = 256;
+			FabNote.TraversalHas = Matching.None;
 
 			FabDescriptorType = new ApiProperty<byte>("Type");
 			FabDescriptorType.SetOpenUnmodAccess();
@@ -184,36 +186,42 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabEventorYear.SetOpenUnmodAccess();
 			FabEventorYear.SubObjectOf = "FabEventor";
 			FabEventorYear.CustomValidation = true;
+			FabEventorYear.TraversalHas = Matching.Custom;
 
 			FabEventorMonth = new ApiProperty<byte>("Month");
 			FabEventorMonth.SetOpenUnmodAccess();
 			FabEventorMonth.SubObjectOf = "FabEventor";
 			FabEventorMonth.IsNullable = true;
 			FabEventorMonth.CustomValidation = true;
+			FabEventorMonth.TraversalHas = Matching.Custom;
 
 			FabEventorDay = new ApiProperty<byte>("Day");
 			FabEventorDay.SetOpenUnmodAccess();
 			FabEventorDay.SubObjectOf = "FabEventor";
 			FabEventorDay.IsNullable = true;
 			FabEventorDay.CustomValidation = true;
+			FabEventorDay.TraversalHas = Matching.Custom;
 
 			FabEventorHour = new ApiProperty<byte>("Hour");
 			FabEventorHour.SetOpenUnmodAccess();
 			FabEventorHour.SubObjectOf = "FabEventor";
 			FabEventorHour.IsNullable = true;
 			FabEventorHour.CustomValidation = true;
+			FabEventorHour.TraversalHas = Matching.Custom;
 
 			FabEventorMinute = new ApiProperty<byte>("Minute");
 			FabEventorMinute.SetOpenUnmodAccess();
 			FabEventorMinute.SubObjectOf = "FabEventor";
 			FabEventorMinute.IsNullable = true;
 			FabEventorMinute.CustomValidation = true;
+			FabEventorMinute.TraversalHas = Matching.Custom;
 
 			FabEventorSecond = new ApiProperty<byte>("Second");
 			FabEventorSecond.SetOpenUnmodAccess();
 			FabEventorSecond.SubObjectOf = "FabEventor";
 			FabEventorSecond.IsNullable = true;
 			FabEventorSecond.CustomValidation = true;
+			FabEventorSecond.TraversalHas = Matching.Custom;
 
 			FabIdentorType = new ApiProperty<byte>("Type");
 			FabIdentorType.SetOpenUnmodAccess();

@@ -29,6 +29,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public MemberSchema() {
 			Names = new NameProvider("Member", "Members", "m");
 			GetAccess = Access.All;
+			CreateAccess = Access.All;
 			DeleteAccess = Access.CreatorApp;
 
 			////
