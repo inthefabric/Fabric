@@ -1,7 +1,7 @@
 ﻿namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
-	public abstract class FabLink {
+	public abstract class FabLink : FabElement {
 
 		public string FromType { get; set; }
 		public string ToType { get; set; }

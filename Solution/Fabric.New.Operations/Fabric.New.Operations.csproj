@@ -66,6 +66,7 @@
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Traversal\ITravPath.cs" />
+    <Compile Include="Traversal\Steps\TravStepTo.cs" />
     <Compile Include="Traversal\Steps\TravStepsCustom.cs" />
     <Compile Include="Traversal\Steps\GremlinUtil.cs" />
     <Compile Include="Traversal\Steps\TravStepHas.cs" />

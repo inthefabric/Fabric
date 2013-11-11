@@ -14,6 +14,7 @@
 
 using System.Collections.Generic;
 using Fabric.New.Api.Objects;
+using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
@@ -107,6 +108,25 @@ foreach ( IEdgeSchema e in edges ) {
 <#
 	} // end property loop
 } // end edge loop
+#>
+		};
+
+		public static IList<ITravStep> ToTypeList = new List<ITravStep> {
+<#
+foreach ( IVertexSchema v in verts ) {
+	if ( v.GetAccess != Access.All ) {
+		continue;
+	}
+
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+
+	while ( vp != null ) {
+#>
+			new TravStepTo<<#= vp.Names.Api #>, <#= v.Names.Api #>>("<#= v.Names.Domain #>", VertexDomainType.Id.<#= v.Names.Domain #>),
+<#
+		vp = SchemaUtil.GetVertexParent(vp);
+	} //end parent loop
+} // end vertex loop
 #>
 		};
 

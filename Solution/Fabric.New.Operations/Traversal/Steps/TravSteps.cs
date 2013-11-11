@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using Fabric.New.Api.Objects;
+using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
@@ -77,6 +78,22 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			TravStepsCustom.HasUserDefinesMemberTimestamp<FabUserDefinesMember, float>("Timestamp", "udm.ts"),
 			new TravStepHas<FabUserDefinesMember, byte>("MemberType", "udm.mt", true),
 			new TravStepHas<FabUserDefinesMember, long>("AppId", "udm.pi", true),
+		};
+
+		public static IList<ITravStep> ToTypeList = new List<ITravStep> {
+			new TravStepTo<FabArtifact, FabApp>("App", VertexDomainType.Id.App),
+			new TravStepTo<FabVertex, FabApp>("App", VertexDomainType.Id.App),
+			new TravStepTo<FabVertex, FabArtifact>("Artifact", VertexDomainType.Id.Artifact),
+			new TravStepTo<FabArtifact, FabClass>("Class", VertexDomainType.Id.Class),
+			new TravStepTo<FabVertex, FabClass>("Class", VertexDomainType.Id.Class),
+			new TravStepTo<FabVertex, FabFactor>("Factor", VertexDomainType.Id.Factor),
+			new TravStepTo<FabArtifact, FabInstance>("Instance", VertexDomainType.Id.Instance),
+			new TravStepTo<FabVertex, FabInstance>("Instance", VertexDomainType.Id.Instance),
+			new TravStepTo<FabVertex, FabMember>("Member", VertexDomainType.Id.Member),
+			new TravStepTo<FabArtifact, FabUrl>("Url", VertexDomainType.Id.Url),
+			new TravStepTo<FabVertex, FabUrl>("Url", VertexDomainType.Id.Url),
+			new TravStepTo<FabArtifact, FabUser>("User", VertexDomainType.Id.User),
+			new TravStepTo<FabVertex, FabUser>("User", VertexDomainType.Id.User),
 		};
 
 	}

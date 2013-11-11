@@ -66,6 +66,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="FabElement.cs" />
     <Compile Include="FabLink.cs" />
     <Compile Include="CreateFabObject.cs" />
     <Compile Include="FabError.cs" />

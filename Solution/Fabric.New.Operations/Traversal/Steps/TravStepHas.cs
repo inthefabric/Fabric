@@ -33,6 +33,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 				}
 			}
 
+			op = GremlinUtil.GetStandardCompareOperation(op);
 			string propParam = pPath.AddParam(vPropDbName);
 			string valParam = pPath.AddParam(val);
 
