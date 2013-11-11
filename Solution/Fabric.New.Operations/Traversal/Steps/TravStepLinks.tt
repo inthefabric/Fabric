@@ -12,9 +12,15 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 
 namespace Fabric.New.Operations.Traversal.Steps {
+
+	/*================================================================================================*/
+	public static class TravStepLinks {
+
+		public static IList<ITravStep> Links = new List<ITravStep> {
 <#
 IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
 
@@ -25,29 +31,25 @@ foreach ( IVertexSchema v in verts ) {
 
 	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, false);
 
-	foreach ( IEdgeSchema es in edges ) {
-		string link = es.GetPropNameLink();
+	foreach ( IEdgeSchema e in edges ) {
+		string link = e.GetPropNameLink();
 		string name = v.Names.Domain+link+"Step";
-		string fromType = es.GetFromVertex().Names.Api;
-		string toType = es.GetToVertex().Names.Api;
+		string fromType = e.GetFromVertex().Names.Api;
+		string toType = e.GetToVertex().Names.Api;
+
+		IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+
+		if ( props.Count > 0 ) {
+			toType = e.GetClassNameApi(false);
+		}
 #>
-
-
-	/*================================================================================================*/
-	public class <#= name #> : TravStep<<#= fromType #>, <#= toType #>> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public <#= name #>() : base("<#= link #>", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
+			new TravStepLink<<#= fromType #>, <#= toType #>>("<#= link #>", "<#= e.NameDb #>"),
 <#
 	} // end edge loop
 } // end vertex loop
 #>
+		};
+
+	}
 
 }

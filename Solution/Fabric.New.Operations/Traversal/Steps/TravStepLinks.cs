@@ -2,287 +2,36 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
-
 	/*================================================================================================*/
-	public class AppDefinesMembersStep : TravStep<FabApp, FabMember> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public AppDefinesMembersStep() : base("DefinesMembers", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class ArtifactCreatedByMemberStep : TravStep<FabArtifact, FabMember> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactCreatedByMemberStep() : base("CreatedByMember", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class ArtifactUsedAsPrimaryByFactorsStep : TravStep<FabArtifact, FabFactor> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactUsedAsPrimaryByFactorsStep() : base("UsedAsPrimaryByFactors", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class ArtifactUsedAsRelatedByFactorsStep : TravStep<FabArtifact, FabFactor> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactUsedAsRelatedByFactorsStep() : base("UsedAsRelatedByFactors", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class ArtifactUsesEmailsStep : TravStep<FabArtifact, FabEmail> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public ArtifactUsesEmailsStep() : base("UsesEmails", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class EmailUsedByArtifactStep : TravStep<FabEmail, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public EmailUsedByArtifactStep() : base("UsedByArtifact", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FactorCreatedByMemberStep : TravStep<FabFactor, FabMember> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorCreatedByMemberStep() : base("CreatedByMember", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FactorRefinesPrimaryWithArtifactStep : TravStep<FabFactor, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorRefinesPrimaryWithArtifactStep() : base("RefinesPrimaryWithArtifact", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FactorRefinesRelatedWithArtifactStep : TravStep<FabFactor, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorRefinesRelatedWithArtifactStep() : base("RefinesRelatedWithArtifact", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FactorRefinesTypeWithArtifactStep : TravStep<FabFactor, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorRefinesTypeWithArtifactStep() : base("RefinesTypeWithArtifact", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FactorUsesPrimaryArtifactStep : TravStep<FabFactor, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorUsesPrimaryArtifactStep() : base("UsesPrimaryArtifact", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FactorUsesRelatedArtifactStep : TravStep<FabFactor, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorUsesRelatedArtifactStep() : base("UsesRelatedArtifact", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class FactorUsesAxisArtifactStep : TravStep<FabFactor, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FactorUsesAxisArtifactStep() : base("UsesAxisArtifact", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class MemberAuthenticatedByOauthAccessesStep : TravStep<FabMember, FabOauthAccess> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberAuthenticatedByOauthAccessesStep() : base("AuthenticatedByOauthAccesses", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class MemberCreatesArtifactsStep : TravStep<FabMember, FabArtifact> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberCreatesArtifactsStep() : base("CreatesArtifacts", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class MemberCreatesFactorsStep : TravStep<FabMember, FabFactor> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberCreatesFactorsStep() : base("CreatesFactors", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class MemberDefinedByAppStep : TravStep<FabMember, FabApp> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberDefinedByAppStep() : base("DefinedByApp", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class MemberDefinedByUserStep : TravStep<FabMember, FabUser> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public MemberDefinedByUserStep() : base("DefinedByUser", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class OauthAccessAuthenticatesMemberStep : TravStep<FabOauthAccess, FabMember> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessAuthenticatesMemberStep() : base("AuthenticatesMember", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
-
-	}
-
-
-	/*================================================================================================*/
-	public class UserDefinesMembersStep : TravStep<FabUser, FabMember> {
-	
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public UserDefinesMembersStep() : base("DefinesMembers", 0) {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {}
+	public static class TravStepLinks {
+
+		public static IList<ITravStep> Links = new List<ITravStep> {
+			new TravStepLink<FabApp, FabAppDefinesMember>("DefinesMembers", "pdm"),
+			new TravStepLink<FabArtifact, FabMember>("CreatedByMember", "acbm"),
+			new TravStepLink<FabArtifact, FabArtifactUsedAsPrimaryByFactor>("UsedAsPrimaryByFactors", "apbf"),
+			new TravStepLink<FabArtifact, FabArtifactUsedAsRelatedByFactor>("UsedAsRelatedByFactors", "arbf"),
+			new TravStepLink<FabArtifact, FabEmail>("UsesEmails", "aue"),
+			new TravStepLink<FabEmail, FabArtifact>("UsedByArtifact", "eba"),
+			new TravStepLink<FabFactor, FabMember>("CreatedByMember", "fcbm"),
+			new TravStepLink<FabFactor, FabArtifact>("RefinesPrimaryWithArtifact", "frpa"),
+			new TravStepLink<FabFactor, FabArtifact>("RefinesRelatedWithArtifact", "frra"),
+			new TravStepLink<FabFactor, FabArtifact>("RefinesTypeWithArtifact", "frta"),
+			new TravStepLink<FabFactor, FabArtifact>("UsesPrimaryArtifact", "fpa"),
+			new TravStepLink<FabFactor, FabArtifact>("UsesRelatedArtifact", "fra"),
+			new TravStepLink<FabFactor, FabArtifact>("UsesAxisArtifact", "faa"),
+			new TravStepLink<FabMember, FabMemberAuthenticatedByOauthAccess>("AuthenticatedByOauthAccesses", "maboa"),
+			new TravStepLink<FabMember, FabMemberCreatesArtifact>("CreatesArtifacts", "mca"),
+			new TravStepLink<FabMember, FabMemberCreatesFactor>("CreatesFactors", "mcf"),
+			new TravStepLink<FabMember, FabApp>("DefinedByApp", "mdbp"),
+			new TravStepLink<FabMember, FabUser>("DefinedByUser", "mdbu"),
+			new TravStepLink<FabOauthAccess, FabMember>("AuthenticatesMember", "oaam"),
+			new TravStepLink<FabUser, FabUserDefinesMember>("DefinesMembers", "udm"),
+		};
 
 	}
 

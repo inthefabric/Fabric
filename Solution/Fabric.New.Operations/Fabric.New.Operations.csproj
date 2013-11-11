@@ -66,6 +66,7 @@
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Traversal\ITravPath.cs" />
+    <Compile Include="Traversal\Steps\TravStepLink.cs" />
     <Compile Include="Traversal\TravPath.cs" />
     <Compile Include="Traversal\Funcs\ITravFunc.cs" />
     <Compile Include="Traversal\Funcs\TravFuncs.cs">

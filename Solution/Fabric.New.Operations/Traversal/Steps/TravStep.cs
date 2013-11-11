@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
@@ -22,26 +21,10 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual bool AcceptsPath(ITravPath pPath) {
-			if ( !pPath.CurrentType.IsAssignableFrom(FromType) ) {
-				return false;
-			}
-
-			IList<ITravPathStep> steps = pPath.GetSteps(1);
-
-			if ( steps != null ) {
-				ITravPathStep s = steps[0];
-				return (s.Command == Command);
-			}
-
-			return false;
-		}
+		public abstract bool AcceptsPath(ITravPath pPath);
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void ConsumePath(ITravPath pPath) {
-			IList<ITravPathStep> steps = pPath.ConsumeSteps(1, ToType);
-			pPath.AddScript("("+Command+")"); //TODO: implement AddScript functionality
-		}
+		public abstract void ConsumePath(ITravPath pPath);
 
 	}
 
