@@ -4,7 +4,7 @@ using Fabric.New.Infrastructure.Faults;
 namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
-	public interface ITravPathStep {
+	public interface ITravPathItem {
 
 		int StepIndex { get; }
 		string RawText { get; }

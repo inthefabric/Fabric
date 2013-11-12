@@ -8,17 +8,14 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepLink(string pCommand, string pEdgeDbName) : base(pCommand, 0) {
+		public TravStepLink(string pCommand, string pEdgeDbName) : base(pCommand) {
 			vEdgeDbName = pEdgeDbName;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath) {
-			ITravPathStep step = pPath.ConsumeSteps(1, ToType)[0];
-			step.VerifyParamCount(Params);
-
-			string edgeParam = pPath.AddParam(vEdgeDbName);
-			pPath.AddScript(".outE("+edgeParam+")");
+			ConsumeFirstPathItem(pPath);
+			pPath.AddScript(".outE("+pPath.AddParam(vEdgeDbName)+")");
 		}
 
 	}

@@ -18,16 +18,16 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		ITravPathStep GetNextStep();
+		ITravPathItem GetNextStep();
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<ITravPathStep> GetSteps(int pSteps);
+		IList<ITravPathItem> GetSteps(int pSteps);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		bool IsAcceptableType(Type pType);
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<ITravPathStep> ConsumeSteps(int pSteps, Type pCurrentType);
+		IList<ITravPathItem> ConsumeSteps(int pSteps, Type pCurrentType);
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////

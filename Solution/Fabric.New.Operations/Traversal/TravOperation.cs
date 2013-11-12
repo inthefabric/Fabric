@@ -22,7 +22,7 @@ namespace Fabric.New.Operations.Traversal {
 			OpCtx = pOpCtx;
 			Path = new TravPath(pPath, OpCtx.MemberId);
 
-			ITravPathStep tps = Path.GetNextStep();
+			ITravPathItem tps = Path.GetNextStep();
 
 			while ( tps != null ) {
 				if ( !AllStepsMap.ContainsKey(tps.Command) ) {

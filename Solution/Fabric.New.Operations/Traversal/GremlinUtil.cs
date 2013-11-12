@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
 	public static class GremlinUtil {
@@ -20,6 +20,18 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static IList<string> GetOperationCodes() {
+			return new List<string> {
+				GreaterThan,
+				GreaterThanOrEqual,
+				LessThan,
+				LessThanOrEqual,
+				Equal,
+				NotEqual,
+			};
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public static string GetStandardCompareOperation(string pCode) {
 			return "Tokens.T."+pCode;
 		}
@@ -36,7 +48,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static bool IsValidContainsOperation(string pCode) {
 			return ElasticComp.ContainsKey(pCode);
 		}

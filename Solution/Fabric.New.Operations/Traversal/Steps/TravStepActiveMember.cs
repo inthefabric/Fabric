@@ -10,17 +10,18 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepActiveMember() : base("Active", 0) {}
+		public TravStepActiveMember() : base("Active") {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath) {
-			ITravPathStep step = pPath.ConsumeSteps(1, ToType)[0];
-			step.VerifyParamCount(Params);
+			ConsumeFirstPathItem(pPath);
 
-			string propParam = pPath.AddParam(DbName.Vert.Vertex.VertexId);
-			string idParam = pPath.AddParam(pPath.MemberId);
-
-			pPath.AddScript(".has("+propParam+", "+idParam+")");
+			pPath.AddScript(
+				".has("+
+					pPath.AddParam(DbName.Vert.Vertex.VertexId)+", "+
+					pPath.AddParam(pPath.MemberId)+
+				")"
+			);
 		}
 
 	}

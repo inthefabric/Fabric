@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
 	public abstract class TravStep : ITravStep {
 
 		public string Command { get; private set; }
-		public int Params { get; private set; }
+		public IList<TravStepParam> Params { get; private set; }
 		public Type FromType { get; private set; }
 		public Type ToType { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected TravStep(string pCommand, int pParams, Type pFromType=null, Type pToType=null) {
+		protected TravStep(string pCommand, Type pFromType, Type pToType) {
 			Command = pCommand.ToLower();
+			Params = new List<TravStepParam>();
 			FromType = pFromType;
 			ToType = pToType;
-			Params = pParams;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -27,10 +27,10 @@ namespace Fabric.New.Operations.Traversal.Steps {
 				return false;
 			}
 
-			IList<ITravPathStep> steps = pPath.GetSteps(1);
+			IList<ITravPathItem> steps = pPath.GetSteps(1);
 
 			if ( steps != null ) {
-				ITravPathStep s = steps[0];
+				ITravPathItem s = steps[0];
 				return (s.Command == Command);
 			}
 
@@ -39,6 +39,15 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract void ConsumePath(ITravPath pPath);
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected ITravPathItem ConsumeFirstPathItem(ITravPath pPath) {
+			ITravPathItem item = pPath.ConsumeSteps(1, ToType)[0];
+			item.VerifyParamCount(Params.Count);
+			return item;
+		}
 
 	}
 
@@ -49,8 +58,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected TravStep(string pCommand, int pParams) : 
-												base(pCommand, pParams, typeof(TFrom), typeof(TTo)) {}
+		protected TravStep(string pCommand) : base(pCommand, typeof(TFrom), typeof(TTo)) {}
 
 	}
 

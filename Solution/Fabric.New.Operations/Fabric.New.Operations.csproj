@@ -65,6 +65,8 @@
     </Compile>
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Traversal\ITravStepParam.cs" />
+    <Compile Include="Traversal\TravStepParam.cs" />
     <Compile Include="Traversal\ITravPath.cs" />
     <Compile Include="Traversal\Steps\TravStepActiveMember.cs" />
     <Compile Include="Traversal\Steps\TravStepTake.cs" />
@@ -72,19 +74,19 @@
     <Compile Include="Traversal\Steps\TravStepEntryContains.cs" />
     <Compile Include="Traversal\Steps\TravStepTo.cs" />
     <Compile Include="Traversal\Steps\TravStepsCustom.cs" />
-    <Compile Include="Traversal\Steps\GremlinUtil.cs" />
+    <Compile Include="Traversal\GremlinUtil.cs" />
     <Compile Include="Traversal\Steps\TravStepHas.cs" />
     <Compile Include="Traversal\Steps\TravStepLink.cs" />
     <Compile Include="Traversal\TravPath.cs" />
-    <Compile Include="Traversal\ITravPathStep.cs" />
-    <Compile Include="Traversal\Steps\ITravStep.cs" />
+    <Compile Include="Traversal\ITravPathItem.cs" />
+    <Compile Include="Traversal\ITravStep.cs" />
     <Compile Include="Traversal\Steps\TravSteps.cs">
       <DependentUpon>TravSteps.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Traversal\Steps\TravStep.cs" />
-    <Compile Include="Traversal\TravPathStep.cs" />
+    <Compile Include="Traversal\TravStep.cs" />
+    <Compile Include="Traversal\TravPathItem.cs" />
     <Compile Include="Traversal\TravOperation.cs" />
     <Compile Include="Traversal\ITravOperation.cs" />
   </ItemGroup>

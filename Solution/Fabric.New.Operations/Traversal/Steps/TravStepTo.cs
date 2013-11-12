@@ -13,20 +13,21 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepTo(string pNameDom, VertexDomainType.Id pType) : base("To"+pNameDom, 0) {
+		public TravStepTo(string pNameDom, VertexDomainType.Id pType) : base("To"+pNameDom) {
 			vType = pType;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath) {
-			ITravPathStep step = pPath.ConsumeSteps(1, ToType)[0];
-			step.VerifyParamCount(Params);
+			ConsumeFirstPathItem(pPath);
 
-			string op = GremlinUtil.GetStandardCompareOperation(GremlinUtil.Equal);
-			string propParam = pPath.AddParam(DbName.Vert.Vertex.VertexType);
-			string typeParam = pPath.AddParam(vType);
-
-			pPath.AddScript(".has("+propParam+", "+op+", "+typeParam+")");
+			pPath.AddScript(
+				".has("+
+					pPath.AddParam(DbName.Vert.Vertex.VertexType)+", "+
+					GremlinUtil.GetStandardCompareOperation(GremlinUtil.Equal)+", "+
+					pPath.AddParam(vType)+
+				")"
+			);
 		}
 
 	}

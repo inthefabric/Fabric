@@ -1,29 +1,66 @@
-﻿namespace Fabric.New.Operations.Traversal.Steps {
+﻿using Fabric.New.Infrastructure.Faults;
+
+namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
-	public class TravStepEntryContains<TFrom, TTo> : TravStep<TFrom, TTo> {
+	public class TravStepEntry<TFrom, TVal, TTo> : TravStep<TFrom, TTo> {
 
 		private readonly string vPropDbName;
+		private readonly bool vExact;
+		private readonly bool vToLower;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepEntryContains(string pName, string pPropDbName) : base(pName, 1) {
+		public TravStepEntry(string pName, string pPropDbName, bool pExact, bool pToLower) :base(pName){
 			vPropDbName = pPropDbName;
+			vExact = pExact;
+			vToLower = pToLower;
+			int pi = 0;
+
+			if ( !vExact ) {
+				var op = new TravStepParam(pi++, "Operation", typeof(string));
+				op.AcceptedStrings = GremlinUtil.GetOperationCodes();
+				Params.Add(op);
+			}
+
+			Params.Add(new TravStepParam(pi, "Value", typeof(TVal)));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath) {
-			ITravPathStep step = pPath.ConsumeSteps(1, ToType)[0];
-			step.VerifyParamCount(Params);
+			ITravPathItem item = ConsumeFirstPathItem(pPath);
+			string op = GremlinUtil.Equal;
+			int pi = 0;
 
-			string val = step.ParamAt<string>(0);
-			string op = GremlinUtil.GetElasticContainsOperation();
+			if ( !vExact ) {
+				op = item.ParamAt<string>(pi);
 
-			string propParam = pPath.AddParam(vPropDbName);
-			string valParam = pPath.AddParam(val);
+				if ( !Params[pi].AcceptedStrings.Contains(op) ) {
+					throw item.NewStepFault(FabFault.Code.IncorrectParamValue,
+						"Invalid "+Params[pi].Name+" value.", pi);
+				}
 
-			pPath.AddScript(".has("+propParam+", "+op+", "+valParam+")");
+				pi++;
+			}
+
+			TVal val = item.ParamAt<TVal>(pi);
+
+			if ( vToLower ) {
+				var valStr = (val as string);
+
+				if ( valStr != null ) {
+					val = (TVal)(object)valStr.ToLower();
+				}
+			}
+
+			pPath.AddScript(
+				".has("+
+					pPath.AddParam(vPropDbName)+", "+
+					GremlinUtil.GetStandardCompareOperation(op)+", "+
+					pPath.AddParam(val)+
+				")"
+			);
 		}
 
 	}

@@ -11,7 +11,7 @@ namespace Fabric.New.Operations.Traversal {
 		public long MemberId { get; private set; }
 
 		private readonly string vRawText;
-		private readonly List<ITravPathStep> vSteps;
+		private readonly List<ITravPathItem> vSteps;
 		private readonly IWeaverQuery vQuery;
 		private string vScript;
 
@@ -22,15 +22,15 @@ namespace Fabric.New.Operations.Traversal {
 			MemberId = pMemberId;
 
 			vRawText = pRawText;
-			vSteps = new List<ITravPathStep>();
+			vSteps = new List<ITravPathItem>();
 			vQuery = new WeaverQuery();
-			vScript = "";
+			vScript = "g.V";
 
 			string p = vRawText.Replace("%20", " ").TrimEnd(new[] { '/' });
 			string[] parts = (p.Length > 0 ? p.Split('/') : new string[0]);
 
 			for ( int i = 0 ; i < parts.Length ; i++ ) {
-				vSteps.Add(new TravPathStep(i, parts[i]));
+				vSteps.Add(new TravPathItem(i, parts[i]));
 			}
 		}
 
@@ -43,12 +43,12 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ITravPathStep GetNextStep() {
+		public ITravPathItem GetNextStep() {
 			return (vSteps.Count < 1 ? null : vSteps[0]);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<ITravPathStep> GetSteps(int pSteps) {
+		public IList<ITravPathItem> GetSteps(int pSteps) {
 			return (vSteps.Count < pSteps ? null : vSteps.GetRange(0, pSteps));
 		}
 		
@@ -59,13 +59,13 @@ namespace Fabric.New.Operations.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<ITravPathStep> ConsumeSteps(int pSteps, Type pNewType) {
+		public IList<ITravPathItem> ConsumeSteps(int pSteps, Type pNewType) {
 			//set CurrentType if CurrentType is *not* a subclass of pNewType
 			if ( !pNewType.IsAssignableFrom(CurrentType) ) {
 				CurrentType = pNewType;
 			}
 
-			List<ITravPathStep> list = vSteps.GetRange(0, pSteps);
+			List<ITravPathItem> list = vSteps.GetRange(0, pSteps);
 			vSteps.RemoveRange(0, pSteps);
 			return list;
 		}

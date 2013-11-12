@@ -11,33 +11,46 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepHas(string pName, string pPropDbName, bool pExact) : 
-																		base(pName, (pExact ? 1 : 2)) {
+		public TravStepHas(string pName, string pPropDbName, bool pExact) : base(pName) {
 			vExact = pExact;
 			vPropDbName = pPropDbName;
+			int pi = 0;
+
+			if ( !vExact ) {
+				var op = new TravStepParam(pi++, "Operation", typeof(string));
+				op.AcceptedStrings = GremlinUtil.GetOperationCodes();
+				Params.Add(op);
+			}
+
+			Params.Add(new TravStepParam(pi, "Value", typeof(TVal)));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath) {
-			ITravPathStep step = pPath.ConsumeSteps(1, ToType)[0];
-			step.VerifyParamCount(Params);
-
-			TVal val = step.ParamAt<TVal>(0);
+			ITravPathItem item = ConsumeFirstPathItem(pPath);
 			string op = GremlinUtil.Equal;
+			int pi = 0;
 
 			if ( !vExact ) {
-				op = step.ParamAt<string>(1);
+				op = item.ParamAt<string>(pi);
 
-				if ( !GremlinUtil.IsValidContainsOperation(op) ) {
-					throw step.NewStepFault(FabFault.Code.IncorrectParamValue, "Invalid operator.", 1);
+				if ( !Params[pi].AcceptedStrings.Contains(op) ) {
+					throw item.NewStepFault(FabFault.Code.IncorrectParamValue,
+						"Invalid "+Params[pi].Name+" value.", pi);
 				}
+
+				pi++;
 			}
 
-			op = GremlinUtil.GetStandardCompareOperation(op);
-			string propParam = pPath.AddParam(vPropDbName);
-			string valParam = pPath.AddParam(val);
+			TVal val = item.ParamAt<TVal>(pi);
 
-			pPath.AddScript(".has("+propParam+", "+op+", "+valParam+")");
+			pPath.AddScript(
+				".has("+
+					pPath.AddParam(vPropDbName)+", "+
+					GremlinUtil.GetStandardCompareOperation(op)+", "+
+					pPath.AddParam(val)+
+				")"
+			);
 		}
 
 	}

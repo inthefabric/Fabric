@@ -5,7 +5,7 @@ using Fabric.New.Infrastructure.Faults;
 namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
-	public class TravPathStep : ITravPathStep {
+	public class TravPathItem : ITravPathItem {
 
 		public int StepIndex { get; private set; }
 		public string RawText { get; private set; }
@@ -16,7 +16,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravPathStep(int pStepIndex, string pRawText) {
+		public TravPathItem(int pStepIndex, string pRawText) {
 			StepIndex = pStepIndex;
 			RawText = pRawText;
 			Command = RawText+"";
