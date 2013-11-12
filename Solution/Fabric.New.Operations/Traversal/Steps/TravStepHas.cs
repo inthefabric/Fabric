@@ -1,9 +1,10 @@
-﻿using Fabric.New.Infrastructure.Faults;
+﻿using Fabric.New.Api.Objects;
+using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
-	public class TravStepHas<TFrom, TVal> : TravStep<TFrom, TFrom> {
+	public class TravStepHas<TFrom, TVal> : TravStep<TFrom, TFrom> where TFrom : FabElement {
 
 		private readonly bool vExact;
 		private readonly string vPropDbName;

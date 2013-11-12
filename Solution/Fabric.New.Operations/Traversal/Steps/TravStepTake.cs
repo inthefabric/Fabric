@@ -5,7 +5,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public class TravStepTake<TFrom, TTo> : TravStep<TFrom, TTo> 
-														where TFrom : FabElement where TTo : FabVertex {
+													where TFrom : FabElement where TTo : FabElement {
 
 		private readonly bool vInVertex;
 

@@ -7,7 +7,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 	public static class TravStepsCustom { //TODO: TravStepsCustom functions
 
 		public static readonly IList<ITravStep> FuncList = new List<ITravStep> {
-			new TravStepTake<FabVertex, FabVertex>("Take", false),
+			new TravStepTake<FabElement, FabElement>("Take", false),
 			new TravStepActiveMember(),
 		};
 

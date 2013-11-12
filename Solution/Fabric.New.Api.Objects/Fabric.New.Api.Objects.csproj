@@ -67,12 +67,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="FabElement.cs" />
-    <Compile Include="FabLink.cs" />
-    <Compile Include="CreateFabObject.cs" />
+    <Compile Include="Traversal\FabLink.cs" />
+    <Compile Include="CreateFabElement.cs" />
     <Compile Include="FabError.cs" />
     <Compile Include="FabObject.cs" />
     <Compile Include="FabResponse.cs" />
-    <Compile Include="FabTraversalResponse.cs" />
+    <Compile Include="Traversal\FabTraversalResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Traversal\FabTravRoot.cs" />
     <Compile Include="Traversal\FabTravRoots.cs">

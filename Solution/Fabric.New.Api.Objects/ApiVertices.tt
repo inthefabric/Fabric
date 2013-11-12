@@ -37,7 +37,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 
 	string apiNamePrefix = (pCreateMode ? "Create" : "");
 	string apiName = apiNamePrefix+v.Names.Api;
-	string objectName = apiNamePrefix+"FabObject";
+	string objectName = apiNamePrefix+"FabElement";
 	string baseName = (vp == null ? objectName : apiNamePrefix+vp.Names.Api);
 
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, pCreateMode);

@@ -133,7 +133,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabDescriptor : FabObject {
+	public class FabDescriptor : FabElement {
 
 		public virtual byte Type { get; set; }
 
@@ -141,7 +141,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabDirector : FabObject {
+	public class FabDirector : FabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual byte PrimaryAction { get; set; }
@@ -151,7 +151,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabEventor : FabObject {
+	public class FabEventor : FabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual long Year { get; set; }
@@ -165,7 +165,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabIdentor : FabObject {
+	public class FabIdentor : FabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual string Value { get; set; }
@@ -174,7 +174,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabLocator : FabObject {
+	public class FabLocator : FabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual double ValueX { get; set; }
@@ -185,7 +185,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabVector : FabObject {
+	public class FabVector : FabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual byte Unit { get; set; }
@@ -317,7 +317,7 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
-	public class FabVertex : FabObject {
+	public class FabVertex : FabElement {
 
 		public virtual long Id { get; set; }
 		public virtual float Timestamp { get; set; }
@@ -509,7 +509,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabDescriptor : CreateFabObject {
+	public class CreateFabDescriptor : CreateFabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual long? RefinesPrimaryWithArtifactId { get; set; }
@@ -535,7 +535,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabDirector : CreateFabObject {
+	public class CreateFabDirector : CreateFabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual byte PrimaryAction { get; set; }
@@ -563,7 +563,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabEventor : CreateFabObject {
+	public class CreateFabEventor : CreateFabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual long Year { get; set; }
@@ -607,7 +607,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabIdentor : CreateFabObject {
+	public class CreateFabIdentor : CreateFabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual string Value { get; set; }
@@ -632,7 +632,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabLocator : CreateFabObject {
+	public class CreateFabLocator : CreateFabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual double ValueX { get; set; }
@@ -664,7 +664,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabVector : CreateFabObject {
+	public class CreateFabVector : CreateFabElement {
 
 		public virtual byte Type { get; set; }
 		public virtual byte Unit { get; set; }
@@ -874,7 +874,7 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
-	public class CreateFabVertex : CreateFabObject {
+	public class CreateFabVertex : CreateFabElement {
 
 
 

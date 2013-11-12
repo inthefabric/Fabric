@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Api.Objects {
+﻿namespace Fabric.New.Api.Objects.Traversal {
 
 	/*================================================================================================*/
 	public abstract class FabLink : FabElement {
@@ -10,7 +10,7 @@
 
 
 	/*================================================================================================*/
-	public abstract class FabLink<TFrom, TTo> : FabLink where TFrom : FabObject where TTo : FabObject {
+	public abstract class FabLink<TFrom, TTo> : FabLink where TFrom : FabVertex where TTo : FabVertex {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

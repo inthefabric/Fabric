@@ -21,7 +21,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromObject(FabObject pApi, Vertex pDomain) {
+		private static void FromElement(FabElement pApi, Vertex pDomain) {
 			//do nothing...
 		}
 <#
@@ -29,7 +29,7 @@ IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 
 foreach ( IVertexSchema v in vertexSchemas ) { 
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
-	string baseName = (vp == null ? "FabObject" : vp.Names.Api);
+	string baseName = (vp == null ? "FabElement" : vp.Names.Api);
 
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, false);
 	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);

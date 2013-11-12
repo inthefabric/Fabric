@@ -12,7 +12,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromCreateFabObject(Vertex pDomain, CreateFabObject pApi) {
+		private static void FromCreateFabElement(Vertex pDomain, CreateFabElement pApi) {
 			//do nothing...
 		}
 
@@ -228,7 +228,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabVertex(Vertex pDomain, CreateFabVertex pApi) {
-			FromCreateFabObject(pDomain, pApi);
+			FromCreateFabElement(pDomain, pApi);
 		}
 
 	}

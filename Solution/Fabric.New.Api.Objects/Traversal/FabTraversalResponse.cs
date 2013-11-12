@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Api.Objects {
+﻿namespace Fabric.New.Api.Objects.Traversal {
 
 	/*================================================================================================*/
 	public class FabTraversalResponse<T> : FabResponse<T> where T : FabObject {

@@ -2,6 +2,8 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using Fabric.New.Api.Objects.Traversal;
+
 namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/

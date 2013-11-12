@@ -12,7 +12,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FromObject(FabObject pApi, Vertex pDomain) {
+		private static void FromElement(FabElement pApi, Vertex pDomain) {
 			//do nothing...
 		}
 
@@ -234,7 +234,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromVertex(FabVertex pApi, Vertex pDomain) {
-			FromObject(pApi, pDomain);
+			FromElement(pApi, pDomain);
 			pApi.Id = pDomain.VertexId;
 			//Custom: Convert Domain.Timestamp to Unix-based seconds.
 			//pApi.Timestamp <== pDomain.Timestamp  (requires custom)

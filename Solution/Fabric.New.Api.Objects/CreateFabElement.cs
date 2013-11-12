@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
-	public abstract class CreateFabObject {
+	public abstract class CreateFabElement : FabObject {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

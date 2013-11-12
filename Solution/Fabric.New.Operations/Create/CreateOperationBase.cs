@@ -20,7 +20,7 @@ namespace Fabric.New.Operations.Create {
 		public abstract void Create(IOperationContext pOpCtx, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void CreateEdges<T>(T pCreateObj) where T : CreateFabObject {}
+		protected virtual void CreateEdges<T>(T pCreateObj) where T : CreateFabElement {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) where T : IWeaverElement {}
@@ -32,7 +32,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected TDom ConvertInput<TCre, TDom>(string pJson, Func<TCre, TDom> pConvert, 
-									out TCre pInput) where TCre : CreateFabObject where TDom : IVertex {
+									out TCre pInput) where TCre : CreateFabElement where TDom : IVertex {
 			pInput = JsonSerializer.DeserializeFromString<TCre>(pJson);
 			pInput.Validate();
 

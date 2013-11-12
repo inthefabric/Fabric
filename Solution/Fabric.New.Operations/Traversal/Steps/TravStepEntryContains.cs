@@ -1,7 +1,11 @@
-﻿namespace Fabric.New.Operations.Traversal.Steps {
+﻿using Fabric.New.Api.Objects;
+using Fabric.New.Api.Objects.Traversal;
+
+namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
-	public class TravStepEntryContains<TFrom, TTo> : TravStep<TFrom, TTo> {
+	public class TravStepEntryContains<TFrom, TTo> : TravStep<TFrom, TTo>
+													where TFrom : FabTravRoot where TTo : FabVertex {
 
 		private readonly string vPropDbName;
 
