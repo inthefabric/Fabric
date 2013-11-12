@@ -14,6 +14,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public bool ToLowerCase { get; internal set; }
 		public bool IsIndexed { get; internal set; }
 		public bool IsElastic { get; internal set; }
+		public DomainProperty ExactIndexVia { get; internal set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

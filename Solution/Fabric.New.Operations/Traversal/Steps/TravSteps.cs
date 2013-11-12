@@ -98,14 +98,16 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		};
 
 		public static readonly IList<ITravStep> EntryList = new List<ITravStep> {
-			new TravStepEntryContains<FabTravAppRoot, FabApp>("Name", "p.na"),
-			new TravStepEntryContains<FabTravClassRoot, FabClass>("Name", "c.na"),
-			new TravStepEntryContains<FabTravClassRoot, FabClass>("Disamb", "c.di"),
-			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("Name", "i.na"),
-			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("Disamb", "i.di"),
-			new TravStepEntryContains<FabTravUrlRoot, FabUrl>("Name", "r.na"),
+			new TravStepEntryContains<FabTravAppRoot, FabApp>("NameContains", "p.na"),
+			new TravStepEntry<FabTravAppRoot, string, FabApp>("Name", "p.nk", true, true),
+			new TravStepEntryContains<FabTravClassRoot, FabClass>("NameContains", "c.na"),
+			new TravStepEntryContains<FabTravClassRoot, FabClass>("DisambContains", "c.di"),
+			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("NameContains", "i.na"),
+			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("DisambContains", "i.di"),
+			new TravStepEntryContains<FabTravUrlRoot, FabUrl>("NameContains", "r.na"),
 			new TravStepEntry<FabTravUrlRoot, string, FabUrl>("FullPath", "r.fp", false, true),
-			new TravStepEntryContains<FabTravUserRoot, FabUser>("Name", "u.na"),
+			new TravStepEntryContains<FabTravUserRoot, FabUser>("NameContains", "u.na"),
+			new TravStepEntry<FabTravUserRoot, string, FabUser>("Name", "u.nk", true, true),
 			new TravStepEntry<FabTravVertexRoot, long, FabVertex>("Id", "v.id", false, false),
 			new TravStepEntry<FabTravVertexRoot, float, FabVertex>("Timestamp", "v.ts", true, false),
 		};

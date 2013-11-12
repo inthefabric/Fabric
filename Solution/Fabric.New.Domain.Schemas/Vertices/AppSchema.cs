@@ -37,6 +37,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			NameKey.IsUnique = true;
 			NameKey.ToLowerCase = true;
 			NameKey.IsIndexed = true;
+			Name.ExactIndexVia = NameKey;
 
 			Secret = new DomainProperty<string>("Secret", "p.se");
 

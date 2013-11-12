@@ -150,7 +150,7 @@ foreach ( IVertexSchema v in verts ) {
 		if ( pm.Domain.IsElastic ) {
 			if ( ap.DataType == typeof(string) ) {
 #>
-			new TravStepEntryContains<FabTrav<#= v.Names.Domain #>Root, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
+			new TravStepEntryContains<FabTrav<#= v.Names.Domain #>Root, <#= v.Names.Api #>>("<#= ap.Name #>Contains", "<#= pm.Domain.DbName #>"),
 <#
 			}
 			else {
@@ -166,6 +166,15 @@ foreach ( IVertexSchema v in verts ) {
 			new TravStepEntry<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= pm.Domain.DbName #>", false, <#= toLower #>),
 <#
 		} //end IsIndexed condition
+
+		if ( pm.Domain.ExactIndexVia != null ) {
+			DomainProperty eiv = pm.Domain.ExactIndexVia;
+			string toLower = (eiv.ToLowerCase+"").ToLower();
+#>
+			new TravStepEntry<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= eiv.DbName #>", true, <#= toLower #>),
+<#
+		} //end IsElastic condition
+
 
 	} // end property loop
 } // end vertex loop

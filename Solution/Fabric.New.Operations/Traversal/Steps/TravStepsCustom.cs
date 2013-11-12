@@ -1,19 +1,7 @@
-﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Domain.Names;
-
-namespace Fabric.New.Operations.Traversal.Steps {
+﻿namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public static class TravStepsCustom { //TODO: TravStepsCustom functions
-
-		public static readonly IList<ITravStep> EntryList = new List<ITravStep> {
-			new TravStepEntry<FabTravAppRoot, string, FabApp>(
-				"Name", DbName.Vert.App.NameKey, true, true),
-			new TravStepEntry<FabTravUserRoot, string, FabUser>(
-				"Name", DbName.Vert.User.NameKey, true, true),
-		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

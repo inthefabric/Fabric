@@ -74,6 +74,12 @@
     <Compile Include="FabResponse.cs" />
     <Compile Include="FabTraversalResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Traversal\FabTravRoot.cs" />
+    <Compile Include="Traversal\FabTravRoots.cs">
+      <DependentUpon>FabTravRoots.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ApiVertices.tt">
@@ -93,6 +99,10 @@
       <LastGenOutput>ApiLinks.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Traversal\FabTravRoots.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FabTravRoots.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

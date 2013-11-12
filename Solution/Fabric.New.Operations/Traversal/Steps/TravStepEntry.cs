@@ -8,7 +8,7 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepEntryContains(string pName, string pPropDbName) : base(pName+"Contains", 1) {
+		public TravStepEntryContains(string pName, string pPropDbName) : base(pName, 1) {
 			vPropDbName = pPropDbName;
 		}
 
