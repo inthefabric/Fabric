@@ -15,7 +15,7 @@ namespace Fabric.New.Operations.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public void Perform(IOperationContext pOpCtx, string pPath) {
 			OpCtx = pOpCtx;
-			Path = new TravPath(pPath);
+			Path = new TravPath(pPath, OpCtx.MemberId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

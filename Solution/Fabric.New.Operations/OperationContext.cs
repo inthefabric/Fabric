@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Cache;
 using Fabric.New.Infrastructure.Data;
@@ -20,6 +19,7 @@ namespace Fabric.New.Operations {
 		public int RexConnPort { get; private set; }
 
 		public Guid ContextId { get; private set; }
+		public long MemberId { get; private set; }
 		//public long UserId { get; private set; }
 		//public long AppId { get; private set; }
 		public IAnalyticsManager Analytics { get; private set; }
@@ -45,6 +45,7 @@ namespace Fabric.New.Operations {
 			Cache = pCache;
 
 			ContextId = Guid.NewGuid();
+			MemberId = -1;
 			//UserId = -1;
 			//AppId = -1;
 			Analytics = pAnalyticsProvider(ContextId);

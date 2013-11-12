@@ -13,6 +13,7 @@ namespace Fabric.New.Operations {
 		int RexConnPort { get; }
 
 		Guid ContextId { get; }
+		long MemberId { get; }
 		//long UserId { get; }
 		//long AppId { get; }
 		IAnalyticsManager Analytics { get; }

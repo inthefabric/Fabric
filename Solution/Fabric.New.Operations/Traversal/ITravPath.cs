@@ -8,6 +8,7 @@ namespace Fabric.New.Operations.Traversal {
 	public interface ITravPath {
 
 		Type CurrentType { get; }
+		long MemberId { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

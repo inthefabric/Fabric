@@ -8,6 +8,7 @@ namespace Fabric.New.Operations.Traversal {
 	public class TravPath : ITravPath {
 
 		public Type CurrentType { get; private set; }
+		public long MemberId { get; private set; }
 
 		private readonly string vRawText;
 		private readonly List<ITravPathStep> vSteps;
@@ -17,7 +18,9 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravPath(string pRawText) {
+		public TravPath(string pRawText, long pMemberId=-1) {
+			MemberId = pMemberId;
+
 			vRawText = pRawText;
 			vSteps = new List<ITravPathStep>();
 			vQuery = new WeaverQuery();
