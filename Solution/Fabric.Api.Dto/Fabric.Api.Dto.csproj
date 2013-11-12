@@ -47,9 +47,6 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Batch\FabBatchNewFactor.cs" />
-    <Compile Include="FabHome.cs" />
-    <Compile Include="FabServiceOperation.cs" />
-    <Compile Include="FabService.cs" />
     <Compile Include="Meta\FabSpecEnum.cs" />
     <Compile Include="Meta\FabMetaTime.cs" />
     <Compile Include="Meta\FabMetaVersion.cs" />

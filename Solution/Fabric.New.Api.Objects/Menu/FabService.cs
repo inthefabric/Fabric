@@ -1,19 +1,20 @@
-﻿using Fabric.Infrastructure.Data;
+﻿using System.Collections.Generic;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.New.Api.Objects.Menu {
 
 	/*================================================================================================*/
-	public class FabServiceOperation : FabObject {
+	public class FabService : FabObject {
 
 		public string Name { get; set; }
 		public string Uri { get; set; }
-		public string Method { get; set; }
-		public string ReturnType { get; set; }
+		public IList<FabServiceOperation> Operations { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
+		public FabService() {
+			Operations = new List<FabServiceOperation>();
+		}
 
 	}
 

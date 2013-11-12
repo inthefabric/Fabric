@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
-using Fabric.Infrastructure.Data;
+using Fabric.New.Api.Objects;
 
-namespace Fabric.Api.Dto {
+namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public class FabService : FabObject {
+	public class MenuExecutor<TObj> : FabResponseExecutor<TObj> where TObj : FabObject, new() {
 
-		public string Name { get; set; }
-		public string Uri { get; set; }
-		public IList<FabServiceOperation> Operations { get; set; }
+		private readonly TObj vObj;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabService() {
-			Operations = new List<FabServiceOperation>();
+		public MenuExecutor(IApiRequest pApiReq, TObj pObject) : base(pApiReq) {
+			vObj = pObject;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
+		protected override IList<TObj> GetResponse() {
+			return new List<TObj> { vObj };
+		}
 
 	}
 

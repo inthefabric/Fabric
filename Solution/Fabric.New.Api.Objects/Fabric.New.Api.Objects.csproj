@@ -67,6 +67,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="FabElement.cs" />
+    <Compile Include="Menu\FabHome.cs" />
+    <Compile Include="Menu\FabService.cs" />
+    <Compile Include="Menu\FabServiceOperation.cs" />
     <Compile Include="Traversal\FabLink.cs" />
     <Compile Include="CreateFabElement.cs" />
     <Compile Include="FabError.cs" />

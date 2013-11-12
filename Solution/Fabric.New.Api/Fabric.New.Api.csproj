@@ -6,31 +6,57 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E9910A54-A1FB-48BF-AA18-36DB80495AFA}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fabric.New.Api</RootNamespace>
     <AssemblyName>Fabric.New.Api</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <ExcludeApp_Data>true</ExcludeApp_Data>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;LIVE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
+    <DebugSymbols>True</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LIVE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Nancy">
+      <HintPath>..\..\Packages\Nancy.0.21.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Aspnet">
+      <HintPath>..\..\Packages\Nancy.Hosting.Aspnet.0.21.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Serialization.ServiceStack">
+      <HintPath>..\..\Packages\Nancy.Serialization.ServiceStack.0.21.1\lib\net40\Nancy.Serialization.ServiceStack.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
@@ -52,6 +78,8 @@
     <Compile Include="ApiResponse.cs" />
     <Compile Include="BaseModule.cs" />
     <Compile Include="Executors\BasicExecutor.cs" />
+    <Compile Include="Executors\MenuExecutors.cs" />
+    <Compile Include="Executors\MenuExecutor.cs" />
     <Compile Include="Executors\CreateExecutor.cs" />
     <Compile Include="Executors\CreateExecutors.cs">
       <DependentUpon>CreateExecutors.tt</DependentUpon>
@@ -66,6 +94,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\Global\GlobalAppSettings.config">
+      <Link>GlobalAppSettings.config</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Executors\CreateExecutors.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CreateExecutors.cs</LastGenOutput>
@@ -84,12 +117,42 @@
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
       <Name>Fabric.New.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.New.Infrastructure\Fabric.New.Infrastructure.csproj">
+      <Project>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</Project>
+      <Name>Fabric.New.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.New.Operations\Fabric.New.Operations.csproj">
       <Project>{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}</Project>
       <Name>Fabric.New.Operations</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>9000</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="True" VerifyCodeBehindEvents="True">
+        <XspParameters Port="9000" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
