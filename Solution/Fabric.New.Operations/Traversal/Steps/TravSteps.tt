@@ -112,6 +112,22 @@ foreach ( IEdgeSchema e in edges ) {
 #>
 		};
 
+		public static readonly IList<ITravStep> LinkTakeList = new List<ITravStep> {
+<#
+foreach ( IEdgeSchema e in edges ) {
+	if ( SchemaUtil.GetEdgeProperties(e).Count == 0 ) {
+		continue;
+	}
+
+	string edgeName = e.GetClassNameApi(false);
+	IVertexSchema tv = e.GetToVertex();
+#>
+			new TravStepTake<<#= edgeName #>, <#= tv.Names.Api #>>("Take<#= tv.Names.DomainPlural #>", true),
+<#
+} // end edge loop
+#>
+		};
+
 		public static readonly IList<ITravStep> ToTypeList = new List<ITravStep> {
 <#
 foreach ( IVertexSchema v in verts ) {

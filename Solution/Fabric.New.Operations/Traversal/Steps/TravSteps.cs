@@ -81,6 +81,15 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepHas<FabUserDefinesMember, long>("HasAppId", "udm.pi", true),
 		};
 
+		public static readonly IList<ITravStep> LinkTakeList = new List<ITravStep> {
+			new TravStepTake<FabAppDefinesMember, FabMember>("TakeMembers", true),
+			new TravStepTake<FabArtifactUsedAsPrimaryByFactor, FabFactor>("TakeFactors", true),
+			new TravStepTake<FabArtifactUsedAsRelatedByFactor, FabFactor>("TakeFactors", true),
+			new TravStepTake<FabMemberCreatesArtifact, FabArtifact>("TakeArtifacts", true),
+			new TravStepTake<FabMemberCreatesFactor, FabFactor>("TakeFactors", true),
+			new TravStepTake<FabUserDefinesMember, FabMember>("TakeMembers", true),
+		};
+
 		public static readonly IList<ITravStep> ToTypeList = new List<ITravStep> {
 			new TravStepTo<FabArtifact, FabApp>("App", VertexDomainType.Id.App),
 			new TravStepTo<FabVertex, FabApp>("App", VertexDomainType.Id.App),

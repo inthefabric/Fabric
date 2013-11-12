@@ -6,7 +6,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public class TravStepTo<TFrom, TTo> : TravStep<TFrom, TTo>
-														where TFrom : FabObject where TTo : FabObject {
+														where TFrom : FabVertex where TTo : FabVertex {
 
 		private readonly VertexDomainType.Id vType;
 

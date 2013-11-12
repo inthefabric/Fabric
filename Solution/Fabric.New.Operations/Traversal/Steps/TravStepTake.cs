@@ -1,14 +1,20 @@
-﻿using Fabric.New.Infrastructure.Faults;
+﻿using Fabric.New.Api.Objects;
+using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
-	public class TravStepTake<TFrom> : TravStep<TFrom, TFrom> {
+	public class TravStepTake<TFrom, TTo> : TravStep<TFrom, TTo> 
+														where TFrom : FabElement where TTo : FabVertex {
+
+		private readonly bool vInVertex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepTake() : base("Take") {
+		public TravStepTake(string pName, bool pInVertex) : base(pName) {
+			vInVertex = pInVertex;
+
 			var p = new TravStepParam(0, "Count", typeof(int));
 			p.Min = 1;
 			p.Max = 100;
@@ -26,7 +32,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 					p.Name+" cannot be less than "+p.Min+" or greater than "+p.Max+".", 0);
 			}
 
-			pPath.AddScript("["+count+"]");
+			pPath.AddScript("["+count+"]"+(vInVertex ? ".inV" : ""));
 		}
 
 	}
