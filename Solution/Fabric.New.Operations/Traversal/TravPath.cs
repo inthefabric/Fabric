@@ -43,6 +43,11 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public ITravPathStep GetNextStep() {
+			return (vSteps.Count < 1 ? null : vSteps[0]);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public IList<ITravPathStep> GetSteps(int pSteps) {
 			return (vSteps.Count < pSteps ? null : vSteps.GetRange(0, pSteps));
 		}
