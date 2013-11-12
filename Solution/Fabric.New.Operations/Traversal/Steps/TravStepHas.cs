@@ -11,8 +11,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepHas(string pProperty, string pPropDbName, bool pExact) : 
-															base("Has"+pProperty, (pExact ? 1 : 2)) {
+		public TravStepHas(string pName, string pPropDbName, bool pExact) : 
+																		base(pName, (pExact ? 1 : 2)) {
 			vExact = pExact;
 			vPropDbName = pPropDbName;
 		}
