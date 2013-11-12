@@ -121,6 +121,18 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepEntry<FabTravVertexRoot, float, FabVertex>("HasTimestamp", "v.ts", true, false),
 		};
 
+		public static readonly IList<ITravStep> RootList = new List<ITravStep> {
+			new TravStepRoot<FabTravAppRoot>("Apps"),
+			new TravStepRoot<FabTravArtifactRoot>("Artifacts"),
+			new TravStepRoot<FabTravClassRoot>("Classes"),
+			new TravStepRoot<FabTravFactorRoot>("Factors"),
+			new TravStepRoot<FabTravInstanceRoot>("Instances"),
+			new TravStepRoot<FabTravMemberRoot>("Members"),
+			new TravStepRoot<FabTravUrlRoot>("Urls"),
+			new TravStepRoot<FabTravUserRoot>("Users"),
+			new TravStepRoot<FabTravVertexRoot>("Vertices"),
+		};
+
 	}
 
 }

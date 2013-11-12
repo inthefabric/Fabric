@@ -197,6 +197,19 @@ foreach ( IVertexSchema v in verts ) {
 #>
 		};
 
+		public static readonly IList<ITravStep> RootList = new List<ITravStep> {
+<#
+foreach ( IVertexSchema v in verts ) {
+	if ( v.GetAccess != Access.All ) {
+		continue;
+	}
+#>
+			new TravStepRoot<FabTrav<#= v.Names.Domain #>Root>("<#= v.Names.DomainPlural #>"),
+<#
+} // end vertex loop
+#>
+		};
+
 	}
 
 }

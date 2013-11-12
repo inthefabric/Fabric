@@ -55,6 +55,7 @@ namespace Fabric.New.Operations.Traversal {
 			list.AddRange(TravSteps.LinkHasList);
 			list.AddRange(TravSteps.LinkList);
 			list.AddRange(TravSteps.LinkTakeList);
+			list.AddRange(TravSteps.RootList);
 			list.AddRange(TravSteps.ToTypeList);
 			list.AddRange(TravSteps.VertexHasList);
 			list.AddRange(TravStepsCustom.FuncList);
