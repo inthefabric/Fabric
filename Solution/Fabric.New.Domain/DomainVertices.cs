@@ -3,9 +3,9 @@
 // Changes made to this source file will be overwritten
 
 using System.Collections.Generic;
+using Fabric.New.Domain.Enums;
 using Weaver.Core.Elements;
 using Weaver.Titan.Elements;
-using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Domain {
 

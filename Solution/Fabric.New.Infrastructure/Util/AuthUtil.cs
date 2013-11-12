@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Fabric.Infrastructure.Api {
+namespace Fabric.New.Infrastructure.Util {
 
 	/*================================================================================================*/
 	public static class AuthUtil {
