@@ -14,6 +14,7 @@
 
 using System.Collections.Generic;
 using Fabric.New.Api.Objects;
+using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Operations.Traversal.Steps {
@@ -21,7 +22,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 	/*================================================================================================*/
 	public static class TravSteps {
 
-		public static IList<ITravStep> LinkList = new List<ITravStep> {
+		public static readonly IList<ITravStep> LinkList = new List<ITravStep> {
 <#
 IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
 IList<IEdgeSchema> allEdges = SchemaUtil.GetEdgeSchemas();
@@ -57,7 +58,7 @@ foreach ( IEdgeSchema e in edges ) {
 #>
 		};
 
-		public static IList<ITravStep> VertexHasList = new List<ITravStep> {
+		public static readonly IList<ITravStep> VertexHasList = new List<ITravStep> {
 <#
 foreach ( IVertexSchema v in verts ) {
 	IDictionary<ApiProperty, PropertyMapping> propMaps = SchemaUtil.GetVertexApiPropertyMaps(v);
@@ -86,7 +87,7 @@ foreach ( IVertexSchema v in verts ) {
 #>
 		};
 
-		public static IList<ITravStep> LinkHasList = new List<ITravStep> {
+		public static readonly IList<ITravStep> LinkHasList = new List<ITravStep> {
 <#
 foreach ( IEdgeSchema e in edges ) {
 	string edgeName = e.GetClassNameApi(false);
@@ -111,7 +112,7 @@ foreach ( IEdgeSchema e in edges ) {
 #>
 		};
 
-		public static IList<ITravStep> ToTypeList = new List<ITravStep> {
+		public static readonly IList<ITravStep> ToTypeList = new List<ITravStep> {
 <#
 foreach ( IVertexSchema v in verts ) {
 	if ( v.GetAccess != Access.All ) {
@@ -130,13 +131,13 @@ foreach ( IVertexSchema v in verts ) {
 #>
 		};
 
-		public static IList<ITravStep> RootEntryList = new List<ITravStep> {
+		public static readonly IList<ITravStep> EntryList = new List<ITravStep> {
 <#
 foreach ( IVertexSchema v in verts ) {
 	if ( v.GetAccess != Access.All ) {
 		continue;
 	}
-
+	
 	IDictionary<ApiProperty, PropertyMapping> propMaps = SchemaUtil.GetVertexApiPropertyMaps(v);
 
 	foreach ( ApiProperty ap in propMaps.Keys ) {
@@ -146,12 +147,26 @@ foreach ( IVertexSchema v in verts ) {
 
 		PropertyMapping pm = propMaps[ap];
 			
-		if ( !pm.Domain.IsIndexed && !pm.Domain.IsElastic ) {
-			continue;
-		}
+		if ( pm.Domain.IsElastic ) {
+			if ( ap.DataType == typeof(string) ) {
 #>
-			// FabTrav<#= v.Names.Domain #>Root.<#= ap.Name #> [<#= pm.Domain.IsIndexed #>, <#= pm.Domain.IsElastic #>]
+			new TravStepEntryContains<FabTrav<#= v.Names.Domain #>Root, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
 <#
+			}
+			else {
+#>
+			new TravStepEntry<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= pm.Domain.DbName #>", true, false),
+<#
+			} //end DataType conditions
+		} //end IsElastic condition
+
+		if ( pm.Domain.IsIndexed ) {
+			string toLower = (ap.ToLowerCase+"").ToLower();
+#>
+			new TravStepEntry<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= pm.Domain.DbName #>", false, <#= toLower #>),
+<#
+		} //end IsIndexed condition
+
 	} // end property loop
 } // end vertex loop
 #>

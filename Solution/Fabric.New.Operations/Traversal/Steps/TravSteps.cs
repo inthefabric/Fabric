@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using Fabric.New.Api.Objects;
+using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Operations.Traversal.Steps {
@@ -11,7 +12,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 	/*================================================================================================*/
 	public static class TravSteps {
 
-		public static IList<ITravStep> LinkList = new List<ITravStep> {
+		public static readonly IList<ITravStep> LinkList = new List<ITravStep> {
 			new TravStepLink<FabApp, FabAppDefinesMember>("DefinesMembers", "pdm"),
 			new TravStepLink<FabArtifact, FabMember>("CreatedByMember", "acbm"),
 			new TravStepLink<FabArtifact, FabArtifactUsedAsPrimaryByFactor>("UsedAsPrimaryByFactors", "apbf"),
@@ -30,7 +31,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepLink<FabUser, FabUserDefinesMember>("DefinesMembers", "udm"),
 		};
 
-		public static IList<ITravStep> VertexHasList = new List<ITravStep> {
+		public static readonly IList<ITravStep> VertexHasList = new List<ITravStep> {
 			new TravStepHas<FabFactor, byte>("AssertionType", "f.at", true),
 			new TravStepHas<FabFactor, bool>("IsDefining", "f.de", true),
 			new TravStepHas<FabFactor, byte>("DescriptorType", "f.det", true),
@@ -59,7 +60,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			TravStepsCustom.HasVertexTimestamp<FabVertex, float>("Timestamp", "v.ts"),
 		};
 
-		public static IList<ITravStep> LinkHasList = new List<ITravStep> {
+		public static readonly IList<ITravStep> LinkHasList = new List<ITravStep> {
 			TravStepsCustom.HasAppDefinesMemberTimestamp<FabAppDefinesMember, float>("Timestamp", "pdm.ts"),
 			new TravStepHas<FabAppDefinesMember, byte>("MemberType", "pdm.mt", true),
 			new TravStepHas<FabAppDefinesMember, long>("UserId", "pdm.ui", true),
@@ -80,7 +81,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepHas<FabUserDefinesMember, long>("AppId", "udm.pi", true),
 		};
 
-		public static IList<ITravStep> ToTypeList = new List<ITravStep> {
+		public static readonly IList<ITravStep> ToTypeList = new List<ITravStep> {
 			new TravStepTo<FabArtifact, FabApp>("App", VertexDomainType.Id.App),
 			new TravStepTo<FabVertex, FabApp>("App", VertexDomainType.Id.App),
 			new TravStepTo<FabVertex, FabArtifact>("Artifact", VertexDomainType.Id.Artifact),
@@ -96,17 +97,17 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepTo<FabVertex, FabUser>("User", VertexDomainType.Id.User),
 		};
 
-		public static IList<ITravStep> RootEntryList = new List<ITravStep> {
-			// FabTravAppRoot.Name [False, True]
-			// FabTravClassRoot.Name [False, True]
-			// FabTravClassRoot.Disamb [False, True]
-			// FabTravInstanceRoot.Name [False, True]
-			// FabTravInstanceRoot.Disamb [False, True]
-			// FabTravUrlRoot.Name [False, True]
-			// FabTravUrlRoot.FullPath [True, False]
-			// FabTravUserRoot.Name [False, True]
-			// FabTravVertexRoot.Id [True, False]
-			// FabTravVertexRoot.Timestamp [False, True]
+		public static readonly IList<ITravStep> EntryList = new List<ITravStep> {
+			new TravStepEntryContains<FabTravAppRoot, FabApp>("Name", "p.na"),
+			new TravStepEntryContains<FabTravClassRoot, FabClass>("Name", "c.na"),
+			new TravStepEntryContains<FabTravClassRoot, FabClass>("Disamb", "c.di"),
+			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("Name", "i.na"),
+			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("Disamb", "i.di"),
+			new TravStepEntryContains<FabTravUrlRoot, FabUrl>("Name", "r.na"),
+			new TravStepEntry<FabTravUrlRoot, string, FabUrl>("FullPath", "r.fp", false, true),
+			new TravStepEntryContains<FabTravUserRoot, FabUser>("Name", "u.na"),
+			new TravStepEntry<FabTravVertexRoot, long, FabVertex>("Id", "v.id", false, false),
+			new TravStepEntry<FabTravVertexRoot, float, FabVertex>("Timestamp", "v.ts", true, false),
 		};
 
 	}
