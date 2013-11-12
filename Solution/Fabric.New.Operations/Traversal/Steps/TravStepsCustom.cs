@@ -9,6 +9,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		public static readonly IList<ITravStep> FuncList = new List<ITravStep> {
 			new TravStepTake<FabElement, FabElement>("Take", false),
 			new TravStepActiveMember(),
+			new TravStepAs(),
+			new TravStepBack(),
 		};
 
 

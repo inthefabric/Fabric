@@ -41,7 +41,7 @@ namespace Fabric.New.Operations.Traversal {
 			string raw = RawText.Substring(pParamI);
 
 			if ( raw.Length < 2 || raw.Substring(raw.Length-1) != ")" ) {
-				throw NewStepFault(FabFault.Code.InvalidStep, "Invalid parameter format.");
+				throw NewStepFault(FabFault.Code.InvalidParamSyntax, "Invalid parameter format.");
 			}
 
 			raw = raw.Substring(1, raw.Length-2);
@@ -49,7 +49,7 @@ namespace Fabric.New.Operations.Traversal {
 
 			for ( int i = 0 ; i < vParams.Length ; i++ ) {
 				if ( vParams[i].Length == 0 ) {
-					throw NewStepFault(FabFault.Code.IncorrectParamValue, "Parameter is empty.", i);
+					throw NewStepFault(FabFault.Code.InvalidParamSyntax, "Parameter is empty.", i);
 				}
 			}
 		}

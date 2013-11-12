@@ -7,7 +7,7 @@ namespace Fabric.New.Operations.Traversal {
 	public interface ITravStep {
 
 		string Command { get; }
-		IList<TravStepParam> Params { get; }
+		IList<ITravStepParam> Params { get; }
 		Type FromType { get; }
 		Type ToType { get; }
 

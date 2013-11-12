@@ -11,7 +11,6 @@ namespace Fabric.New.Operations.Traversal {
 		public Type DataType { get; private set; }
 		public int? Min { get; internal set; }
 		public int? Max { get; internal set; }
-		public int? LenMin { get; internal set; }
 		public int? LenMax { get; internal set; }
 		public string ValidRegex { get; internal set; }
 		public IList<string> AcceptedStrings { get; internal set; }

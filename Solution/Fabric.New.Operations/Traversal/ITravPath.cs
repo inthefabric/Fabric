@@ -7,7 +7,6 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public interface ITravPath {
 
-		Type CurrentType { get; }
 		long MemberId { get; }
 
 
@@ -21,13 +20,13 @@ namespace Fabric.New.Operations.Traversal {
 		ITravPathItem GetNextStep();
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<ITravPathItem> GetSteps(int pSteps);
+		IList<ITravPathItem> GetSteps(int pCount);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		bool IsAcceptableType(Type pType);
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<ITravPathItem> ConsumeSteps(int pSteps, Type pCurrentType);
+		IList<ITravPathItem> ConsumeSteps(int pCount, Type pCurrentType);
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +36,20 @@ namespace Fabric.New.Operations.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		string AddParam(object pObject);
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		void AddAlias(string pAlias);
+		
+		/*--------------------------------------------------------------------------------------------*/
+		void AddBackToAlias(string pAlias);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool HasAlias(string pAlias);
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool AllowBackToAlias(string pAlias, out string pConflictingAlias);
+		
 	}
 
 }

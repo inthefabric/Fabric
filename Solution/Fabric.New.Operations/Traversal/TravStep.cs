@@ -7,16 +7,17 @@ namespace Fabric.New.Operations.Traversal {
 	public abstract class TravStep : ITravStep {
 
 		public string Command { get; private set; }
-		public IList<TravStepParam> Params { get; private set; }
+		public IList<ITravStepParam> Params { get; private set; }
 		public Type FromType { get; private set; }
 		public Type ToType { get; private set; }
+		public bool ToAliasType { get; protected set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected TravStep(string pCommand, Type pFromType, Type pToType) {
 			Command = pCommand.ToLower();
-			Params = new List<TravStepParam>();
+			Params = new List<ITravStepParam>();
 			FromType = pFromType;
 			ToType = pToType;
 		}
