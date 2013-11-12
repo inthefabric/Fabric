@@ -23,7 +23,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual bool AcceptsPath(ITravPath pPath) {
-			if ( !pPath.CurrentType.IsAssignableFrom(FromType) ) {
+			if ( !pPath.IsAcceptableType(FromType) ) {
 				return false;
 			}
 

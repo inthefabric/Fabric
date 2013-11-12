@@ -43,10 +43,19 @@ namespace Fabric.New.Operations.Traversal {
 		public IList<ITravPathStep> GetSteps(int pSteps) {
 			return (vSteps.Count < pSteps ? null : vSteps.GetRange(0, pSteps));
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public bool IsAcceptableType(Type pType) {
+			//acceptable if the types are the same, or if pType is a subclass of CurrentType
+			return (CurrentType == pType || CurrentType.IsAssignableFrom(pType));
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<ITravPathStep> ConsumeSteps(int pSteps, Type pCurrentType) {
-			CurrentType = pCurrentType;
+		public IList<ITravPathStep> ConsumeSteps(int pSteps, Type pNewType) {
+			//set CurrentType if CurrentType is *not* a subclass of pNewType
+			if ( !pNewType.IsAssignableFrom(CurrentType) ) {
+				CurrentType = pNewType;
+			}
 
 			List<ITravPathStep> list = vSteps.GetRange(0, pSteps);
 			vSteps.RemoveRange(0, pSteps);

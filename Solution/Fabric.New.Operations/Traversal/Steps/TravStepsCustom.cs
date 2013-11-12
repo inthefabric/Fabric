@@ -1,7 +1,14 @@
-﻿namespace Fabric.New.Operations.Traversal.Steps {
+﻿using System.Collections.Generic;
+using Fabric.New.Api.Objects;
+
+namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public static class TravStepsCustom { //TODO: TravStepsCustom functions
+
+		public static readonly IList<ITravStep> FuncList = new List<ITravStep> {
+			new TravStepTake<FabVertex>(),
+		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
