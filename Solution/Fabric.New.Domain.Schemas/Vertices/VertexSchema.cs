@@ -9,17 +9,18 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public Access GetAccess { get; protected set; }
 		public Access CreateAccess { get; protected set; }
 		public Access DeleteAccess { get; protected set; }
+		public bool IsAbstract { get; protected set; }
 
 		public DomainProperty<long> VertexId { get; private set; }
 		public DomainProperty<long> Timestamp { get; private set; }
 		public DomainProperty<byte> VertexType { get; private set; }
 
 		public ApiProperty<long> FabId { get; private set; }
-		public ApiProperty<float> FabTimestamp { get; private set; }
+		public ApiProperty<long> FabTimestamp { get; private set; }
 		public ApiProperty<byte> FabVertexType { get; private set; }
 
 		public PropertyMapping<long, long> FabIdMap { get; private set; }
-		public PropertyMapping<long, float> FabTimestampMap { get; private set; }
+		public PropertyMapping<long, long> FabTimestampMap { get; private set; }
 		public PropertyMapping<byte, byte> FabVertexTypeMap { get; private set; }
 
 
@@ -30,6 +31,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			GetAccess = Access.All;
 			CreateAccess = Access.None;
 			DeleteAccess = Access.None;
+			IsAbstract = true;
 
 			////
 
@@ -51,7 +53,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabId.IsUnique = true;
 			FabId.TraversalHas = Matching.Exact;
 
-			FabTimestamp = new ApiProperty<float>("Timestamp");
+			FabTimestamp = new ApiProperty<long>("Timestamp");
 			FabTimestamp.GetAccess = Access.All;
 			FabTimestamp.CreateAccess = Access.None;
 			FabTimestamp.ModifyAccess = Access.None;
@@ -67,7 +69,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			FabIdMap = new PropertyMapping<long, long>(VertexId, FabId);
 
-			FabTimestampMap = new PropertyMapping<long, float>(Timestamp, FabTimestamp, true);
+			FabTimestampMap = new PropertyMapping<long, long>(Timestamp, FabTimestamp, true);
 			FabTimestampMap.ApiToDomainNote = "Convert Api.Timestamp from Unix-based seconds.";
 			FabTimestampMap.DomainToApiNote = "Convert Domain.Timestamp to Unix-based seconds.";
 

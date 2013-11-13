@@ -6,7 +6,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class AppDefinesMemberSchema : EdgeSchema<AppSchema, MemberSchema> {
 
-		public EdgeProperty<MemberSchema, long, float> Timestamp { get; private set; }
+		public EdgeProperty<MemberSchema, long, long> Timestamp { get; private set; }
 		public EdgeProperty<MemberSchema, byte, byte> MemberType { get; private set; }
 		public EdgeProperty<MemberSchema, MemberDefinedByUserSchema, long, long> 
 			UserId { get; private set; }

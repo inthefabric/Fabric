@@ -6,7 +6,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class MemberAuthenticatedByOauthAccess : EdgeSchema<MemberSchema, OauthAccessSchema> {
 
-		public EdgeProperty<OauthAccessSchema, long, float> Timestamp { get; private set; }
+		public EdgeProperty<OauthAccessSchema, long, long> Timestamp { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

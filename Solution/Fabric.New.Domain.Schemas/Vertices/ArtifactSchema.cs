@@ -13,6 +13,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			GetAccess = Access.All;
 			CreateAccess = Access.None;
 			DeleteAccess = Access.None;
+			IsAbstract = true;
 		}
 
 	}

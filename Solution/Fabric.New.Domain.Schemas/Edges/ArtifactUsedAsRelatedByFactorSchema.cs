@@ -6,7 +6,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class ArtifactUsedAsRelatedByFactor : EdgeSchema<ArtifactSchema, FactorSchema> {
 
-		public EdgeProperty<FactorSchema, long, float> Timestamp { get; private set; }
+		public EdgeProperty<FactorSchema, long, long> Timestamp { get; private set; }
 		public EdgeProperty<FactorSchema, byte, byte> DescriptorType { get; private set; }
 		public EdgeProperty<FactorSchema, FactorUsesPrimaryArtifactSchema, long, long>
 			PrimaryArtifactId { get; private set; }

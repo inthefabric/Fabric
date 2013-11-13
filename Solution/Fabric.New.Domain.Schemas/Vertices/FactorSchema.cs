@@ -83,6 +83,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			GetAccess = Access.All;
 			CreateAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
+			IsAbstract = false;
 
 			////
 

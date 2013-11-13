@@ -6,7 +6,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 	/*================================================================================================*/
 	public class MemberCreatesArtifactSchema : EdgeSchema<MemberSchema, ArtifactSchema> {
 
-		public EdgeProperty<ArtifactSchema, long, float> Timestamp { get; private set; }
+		public EdgeProperty<ArtifactSchema, long, long> Timestamp { get; private set; }
 		public EdgeProperty<ArtifactSchema, byte, byte> VertexType { get; private set; }
 
 

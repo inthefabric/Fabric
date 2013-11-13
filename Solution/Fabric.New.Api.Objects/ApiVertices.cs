@@ -320,7 +320,7 @@ namespace Fabric.New.Api.Objects {
 	public class FabVertex : FabElement {
 
 		public virtual long Id { get; set; }
-		public virtual float Timestamp { get; set; }
+		public virtual long Timestamp { get; set; }
 		public virtual byte VertexType { get; set; }
 
 

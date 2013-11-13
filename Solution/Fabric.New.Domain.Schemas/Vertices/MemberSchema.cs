@@ -31,6 +31,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			GetAccess = Access.All;
 			CreateAccess = Access.All;
 			DeleteAccess = Access.CreatorApp;
+			IsAbstract = false;
 
 			////
 

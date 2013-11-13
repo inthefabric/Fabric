@@ -28,6 +28,16 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, true);
 	string createObjName = "Create"+v.Names.Api;
+
+	if ( v.IsAbstract ) {
+#>
+
+
+	/*================================================================================================*/
+	public abstract class Create<#= v.Names.Domain #>Operation : <#= baseName #> {}
+<#
+		continue;
+	} //end "IsAbstract" condition
 #>
 			
 
@@ -70,6 +80,8 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 			TxBuild.AddVertex(vDomObj, out domVar);
 			SetVertexAlias(domVar);
 			CreateEdges(input);
+
+			//TODO: execute Create<#= v.Names.Domain #> tx
 
 			vResult = DomainToApi.From<#= v.Names.Domain #>(vDomObj);
 		}

@@ -57,26 +57,26 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepHas<FabFactor, long>("HasVectorValue", "f.vev", false),
 			new TravStepHas<FabMember, byte>("HasType", "m.at", true),
 			new TravStepHas<FabVertex, long>("HasId", "v.id", true),
-			TravStepsCustom.HasVertexTimestamp<FabVertex, float>("HasTimestamp", "v.ts"),
+			TravStepsCustom.HasVertexTimestamp<FabVertex, long>("HasTimestamp", "v.ts"),
 		};
 
 		public static readonly IList<ITravStep> LinkHasList = new List<ITravStep> {
-			TravStepsCustom.HasAppDefinesMemberTimestamp<FabAppDefinesMember, float>("HasTimestamp", "pdm.ts"),
+			TravStepsCustom.HasAppDefinesMemberTimestamp<FabAppDefinesMember, long>("HasTimestamp", "pdm.ts"),
 			new TravStepHas<FabAppDefinesMember, byte>("HasMemberType", "pdm.mt", true),
 			new TravStepHas<FabAppDefinesMember, long>("HasUserId", "pdm.ui", true),
-			TravStepsCustom.HasArtifactUsedAsPrimaryByFactorTimestamp<FabArtifactUsedAsPrimaryByFactor, float>("HasTimestamp", "apbf.ts"),
+			TravStepsCustom.HasArtifactUsedAsPrimaryByFactorTimestamp<FabArtifactUsedAsPrimaryByFactor, long>("HasTimestamp", "apbf.ts"),
 			new TravStepHas<FabArtifactUsedAsPrimaryByFactor, byte>("HasDescriptorType", "apbf.dt", true),
 			new TravStepHas<FabArtifactUsedAsPrimaryByFactor, long>("HasRelatedArtifactId", "apbf.ra", true),
-			TravStepsCustom.HasArtifactUsedAsRelatedByFactorTimestamp<FabArtifactUsedAsRelatedByFactor, float>("HasTimestamp", "arbf.ts"),
+			TravStepsCustom.HasArtifactUsedAsRelatedByFactorTimestamp<FabArtifactUsedAsRelatedByFactor, long>("HasTimestamp", "arbf.ts"),
 			new TravStepHas<FabArtifactUsedAsRelatedByFactor, byte>("HasDescriptorType", "arbf.dt", true),
 			new TravStepHas<FabArtifactUsedAsRelatedByFactor, long>("HasPrimaryArtifactId", "arbf.pa", true),
-			TravStepsCustom.HasMemberCreatesArtifactTimestamp<FabMemberCreatesArtifact, float>("HasTimestamp", "mca.ts"),
+			TravStepsCustom.HasMemberCreatesArtifactTimestamp<FabMemberCreatesArtifact, long>("HasTimestamp", "mca.ts"),
 			new TravStepHas<FabMemberCreatesArtifact, byte>("HasVertexType", "mca.vt", false),
-			TravStepsCustom.HasMemberCreatesFactorTimestamp<FabMemberCreatesFactor, float>("HasTimestamp", "mcf.ts"),
+			TravStepsCustom.HasMemberCreatesFactorTimestamp<FabMemberCreatesFactor, long>("HasTimestamp", "mcf.ts"),
 			new TravStepHas<FabMemberCreatesFactor, byte>("HasDescriptorType", "mcf.dt", true),
 			new TravStepHas<FabMemberCreatesFactor, long>("HasPrimaryArtifactId", "mcf.pa", true),
 			new TravStepHas<FabMemberCreatesFactor, long>("HasRelatedArtifactId", "mcf.ra", true),
-			TravStepsCustom.HasUserDefinesMemberTimestamp<FabUserDefinesMember, float>("HasTimestamp", "udm.ts"),
+			TravStepsCustom.HasUserDefinesMemberTimestamp<FabUserDefinesMember, long>("HasTimestamp", "udm.ts"),
 			new TravStepHas<FabUserDefinesMember, byte>("HasMemberType", "udm.mt", true),
 			new TravStepHas<FabUserDefinesMember, long>("HasAppId", "udm.pi", true),
 		};
@@ -118,7 +118,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepEntryContains<FabTravUserRoot, FabUser>("NameContains", "u.na"),
 			new TravStepEntry<FabTravUserRoot, string, FabUser>("HasName", "u.nk", true, true),
 			new TravStepEntry<FabTravVertexRoot, long, FabVertex>("HasId", "v.id", false, false),
-			new TravStepEntry<FabTravVertexRoot, float, FabVertex>("HasTimestamp", "v.ts", true, false),
+			new TravStepEntry<FabTravVertexRoot, long, FabVertex>("HasTimestamp", "v.ts", true, false),
 		};
 
 		public static readonly IList<ITravStep> RootList = new List<ITravStep> {
