@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 
 namespace Fabric.New.Api.Executors {
@@ -24,7 +25,7 @@ namespace Fabric.New.Api.Executors {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void OnUnhandledException(IApiResponse pResp, Exception pEx) {
 			var fr = new FabResponse();
-			fr.Error = new FabError(); //FabError.ForInternalServerError();
+			fr.Error = FabError.ForInternalServerError();
 			fr.TotalMs = pResp.GetTimerMilliseconds();
 
 			pResp.SetJsonWith(fr);

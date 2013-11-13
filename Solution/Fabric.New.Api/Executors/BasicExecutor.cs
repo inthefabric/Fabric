@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using Fabric.New.Api.Interfaces;
 
 namespace Fabric.New.Api.Executors {
 

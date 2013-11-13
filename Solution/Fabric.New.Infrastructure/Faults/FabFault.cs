@@ -6,6 +6,8 @@ namespace Fabric.New.Infrastructure.Faults {
 	public abstract class FabFault : Exception {
 
 		public enum Code {
+			RequestNotFound = 404,
+
 			InternalError = 1001,
 			ActionNotPermitted = 1002,
 			MemberNotFound = 1003,
@@ -22,9 +24,6 @@ namespace Fabric.New.Infrastructure.Faults {
 			IncorrectParamType = 2003,
 			InvalidParamSyntax = 2004,
 			InvalidStep = 2204,
-			
-			FactorAlreadyCompleted = 3001,
-			FactorElementConflict = 3002
 		}
 
 		public Code ErrCode { get; private set; }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
+using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Api.Executors {
 
@@ -30,7 +32,10 @@ namespace Fabric.New.Api.Executors {
 				resp.SetJsonWith(fr);
 			}
 			catch ( Exception e ) {
-				FabError err = OnException(e);
+				HttpStatusCode stat;
+				FabError err = OnException(e, out stat);
+				
+				resp.Status = stat;
 				resp.StopTimer();
 
 				if ( err == null ) {
@@ -54,8 +59,14 @@ namespace Fabric.New.Api.Executors {
 		protected abstract IList<T> GetResponse();
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual FabError OnException(Exception pEx) {
-			return null;
+		protected virtual FabError OnException(Exception pEx, out HttpStatusCode pStatus) {
+			if ( pEx is FabFault ) {
+				pStatus = HttpStatusCode.BadRequest;
+				return FabError.ForFault(pEx as FabFault);
+			}
+
+			pStatus = HttpStatusCode.InternalServerError;
+			return FabError.ForInternalServerError();
 		}
 
 	}

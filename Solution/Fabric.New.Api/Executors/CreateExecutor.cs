@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Operations.Create;
 

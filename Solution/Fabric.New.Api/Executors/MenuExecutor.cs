@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 
 namespace Fabric.New.Api.Executors {

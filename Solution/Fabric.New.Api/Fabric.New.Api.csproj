@@ -72,10 +72,10 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="ApiEntry.cs" />
+    <Compile Include="Interfaces\ApiEntry.cs" />
     <Compile Include="ApiModule.cs" />
-    <Compile Include="ApiRequest.cs" />
-    <Compile Include="ApiResponse.cs" />
+    <Compile Include="Interfaces\ApiRequest.cs" />
+    <Compile Include="Interfaces\ApiResponse.cs" />
     <Compile Include="BaseModule.cs" />
     <Compile Include="Executors\BasicExecutor.cs" />
     <Compile Include="Executors\MenuExecutors.cs" />
@@ -89,8 +89,9 @@
     <Compile Include="Executors\Executor.cs" />
     <Compile Include="Executors\FabResponseExecutor.cs" />
     <Compile Include="Executors\IExecutor.cs" />
-    <Compile Include="IApiRequest.cs" />
-    <Compile Include="IApiResponse.cs" />
+    <Compile Include="Handlers\Status404.cs" />
+    <Compile Include="Interfaces\IApiRequest.cs" />
+    <Compile Include="Interfaces\IApiResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.New.Operations;
 
-namespace Fabric.New.Api {
+namespace Fabric.New.Api.Interfaces {
 
 	/*================================================================================================*/
 	public class ApiRequest : IApiRequest {

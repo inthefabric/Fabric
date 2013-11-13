@@ -1,57 +1,36 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net;
-using ServiceStack.Text;
 
-namespace Fabric.New.Api {
+namespace Fabric.New.Api.Interfaces {
 
 	/*================================================================================================*/
-	public class ApiResponse : IApiResponse {
+	public interface IApiResponse {
 
-		public HttpStatusCode Status { get; set; }
-		public string Json { get; set; }
-		public bool IsError { get; set; }
-		public Exception Unhandled { get; set; }
-
-		private readonly Stopwatch vTimer;
+		HttpStatusCode Status { get; set; }
+		string Json { get; set; }
+		bool IsError { get; set; }
+		Exception Unhandled { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiResponse() {
-			vTimer = new Stopwatch();
-		}
+		void StartTimer();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void StartTimer() {
-			vTimer.Start();
-		}
+		void StopTimer();
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void StopTimer() {
-			vTimer.Stop();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public double GetTimerMilliseconds() {
-			return vTimer.Elapsed.TotalMilliseconds;
-		}
+		double GetTimerMilliseconds();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetJsonWith<T>(T pObject) {
-			Json = JsonSerializer.SerializeToString(pObject);
-		}
+		void SetJsonWith<T>(T pObject);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void LogResponse(IApiRequest pApiReq) {
-			//do google analytics action
-			//do graphite action
-			//do log action
-		}
+		void LogResponse(IApiRequest pApiReq);
 
 	}
 

@@ -1,4 +1,5 @@
-﻿using Fabric.New.Api.Objects;
+﻿using Fabric.New.Api.Interfaces;
+using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Menu;
 
 namespace Fabric.New.Api.Executors {

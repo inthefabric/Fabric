@@ -1,36 +1,31 @@
-﻿using System;
-using System.Net;
+﻿using System.Collections.Generic;
+using Fabric.New.Operations;
 
-namespace Fabric.New.Api {
+namespace Fabric.New.Api.Interfaces {
 
 	/*================================================================================================*/
-	public interface IApiResponse {
+	public interface IApiRequest {
 
-		HttpStatusCode Status { get; set; }
-		string Json { get; set; }
-		bool IsError { get; set; }
-		Exception Unhandled { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		void StartTimer();
-
-		/*--------------------------------------------------------------------------------------------*/
-		void StopTimer();
-
-		/*--------------------------------------------------------------------------------------------*/
-		double GetTimerMilliseconds();
+		IOperationContext OpCtx { get; }
+		string Method { get; }
+		string Path { get; }
+		string IpAddress { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void SetJsonWith<T>(T pObject);
+		string GetQueryValue(string pName);
+
+		/*--------------------------------------------------------------------------------------------*/
+		string GetFormValue(string pName);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void LogResponse(IApiRequest pApiReq);
+		IEnumerable<string> GetHeader(string pName);
+
+		/*--------------------------------------------------------------------------------------------*/
+		string GetBearerToken();
 
 	}
 

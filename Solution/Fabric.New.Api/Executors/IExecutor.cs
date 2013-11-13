@@ -1,4 +1,6 @@
-﻿namespace Fabric.New.Api.Executors {
+﻿using Fabric.New.Api.Interfaces;
+
+namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
 	public interface IExecutor {
