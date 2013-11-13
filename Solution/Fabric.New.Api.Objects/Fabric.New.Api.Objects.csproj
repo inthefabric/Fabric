@@ -88,12 +88,14 @@
     <Compile Include="Oauth\FabOauthError.cs" />
     <Compile Include="Oauth\FabOauthLogin.cs" />
     <Compile Include="Oauth\FabOauthLogout.cs" />
+    <Compile Include="Traversal\FabTravVertexRoot.cs" />
+    <Compile Include="Traversal\FabTravStep.cs" />
     <Compile Include="Traversal\FabLink.cs" />
     <Compile Include="CreateFabElement.cs" />
     <Compile Include="FabError.cs" />
     <Compile Include="FabObject.cs" />
     <Compile Include="FabResponse.cs" />
-    <Compile Include="Traversal\FabTraversalResponse.cs" />
+    <Compile Include="Traversal\FabTravResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Traversal\FabTravRoot.cs" />
     <Compile Include="Traversal\FabTravRoots.cs">

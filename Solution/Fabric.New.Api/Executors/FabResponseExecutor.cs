@@ -25,7 +25,7 @@ namespace Fabric.New.Api.Executors {
 				IList<T> list = GetResponse();
 				resp.StopTimer();
 
-				var fr = new FabResponse<T>(list);
+				var fr = NewFabResponse();
 				fr.Data = list;
 				fr.TotalMs = resp.GetTimerMilliseconds();
 				
@@ -55,6 +55,11 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract IList<T> GetResponse();
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual FabResponse<T> NewFabResponse() {
+			return new FabResponse<T>();
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual FabError OnException(Exception pEx) {

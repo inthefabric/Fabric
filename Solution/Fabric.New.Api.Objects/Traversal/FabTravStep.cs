@@ -1,6 +1,12 @@
 ﻿namespace Fabric.New.Api.Objects.Traversal {
 
 	/*================================================================================================*/
-	public abstract class FabTravRoot : FabObject {}
+	public class FabTravStep : FabObject {
+
+		public string Name { get; set; }
+		public string Uri { get; set; }
+		public string Returns { get; set; }
+	
+	}
 
 }

@@ -40,8 +40,9 @@ namespace Fabric.New.Api.Interfaces {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetJsonWith<T>(T pObject) {
-			Json = JsonSerializer.SerializeToString(pObject);
+		public void SetJsonWith(object pObject) {
+			Json = (pObject == null ? "" : pObject.ToJson());
+			//JsonSerializer.SerializeToString(pObject);
 		}
 
 

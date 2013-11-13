@@ -37,7 +37,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 				if ( !Params[pi].AcceptedStrings.Contains(op) ) {
 					throw item.NewStepFault(FabFault.Code.IncorrectParamValue,
-						"Invalid "+Params[pi].Name+" value.", pi);
+						"Invalid "+Params[pi].Name+" value. Accepted values: "+
+						string.Join(", ", Params[pi].AcceptedStrings)+".", pi);
 				}
 
 				pi++;

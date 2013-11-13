@@ -15,6 +15,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public TravStepTo(string pNameDom, VertexDomainType.Id pType) : base("To"+pNameDom) {
 			vType = pType;
+			FromExactType = true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

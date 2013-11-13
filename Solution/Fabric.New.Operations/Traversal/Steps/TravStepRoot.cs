@@ -3,7 +3,7 @@
 namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
-	public class TravStepRoot<TTo> : TravStep<FabTravRoot, TTo> where TTo : FabTravRoot {
+	public class TravStepRoot<TTo> : TravStep<FabTravRoot, TTo> where TTo : FabTravTypedRoot {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,10 @@ namespace Fabric.New.Operations.Traversal {
 		IList<ITravPathItem> GetSteps(int pCount);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		bool IsAcceptableType(Type pType);
+		Type GetCurrentType();
+
+		/*--------------------------------------------------------------------------------------------*/
+		bool IsAcceptableType(Type pType, bool pRequiresExact);
 
 		/*--------------------------------------------------------------------------------------------*/
 		IList<ITravPathItem> ConsumeSteps(int pCount, Type pCurrentType);

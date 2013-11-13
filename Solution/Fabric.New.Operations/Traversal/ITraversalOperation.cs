@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fabric.New.Api.Objects;
+using Fabric.New.Api.Objects.Traversal;
 
 namespace Fabric.New.Operations.Traversal {
 
@@ -13,6 +14,9 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		IList<FabObject> GetResult();
+
+		/*--------------------------------------------------------------------------------------------*/
+		IList<FabTravStep> GetResultSteps();
 
 	}
 

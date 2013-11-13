@@ -6,7 +6,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public class TravStepEntry<TFrom, TVal, TTo> : TravStep<TFrom, TTo>
-													where TFrom : FabTravRoot where TTo : FabVertex {
+												where TFrom : FabTravTypedRoot where TTo : FabVertex {
 
 		private readonly string vPropDbName;
 		private readonly bool vExact;
@@ -41,7 +41,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 				if ( !Params[pi].AcceptedStrings.Contains(op) ) {
 					throw item.NewStepFault(FabFault.Code.IncorrectParamValue,
-						"Invalid "+Params[pi].Name+" value.", pi);
+						"Invalid "+Params[pi].Name+" value. Accepted values: "+
+						string.Join(", ", Params[pi].AcceptedStrings)+".", pi);
 				}
 
 				pi++;
@@ -60,7 +61,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			pPath.AddScript(
 				".has("+
 					pPath.AddParam(vPropDbName)+", "+
-					GremlinUtil.GetStandardCompareOperation(op)+", "+
+					GremlinUtil.GetElasticCompareOperation(op)+", "+
 					pPath.AddParam(val)+
 				")"
 			);

@@ -17,10 +17,13 @@ foreach ( IVertexSchema v in verts ) {
 	if ( v.GetAccess != Access.All ) {
 		continue;
 	}
+	
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = "FabTrav"+(vp == null ? "Typed" : vp.Names.Domain)+"Root";
 #>
 
 	/*================================================================================================*/
-	public class FabTrav<#= v.Names.Domain #>Root : FabTravRoot<<#= v.Names.Api #>> {}
+	public class FabTrav<#= v.Names.Domain #>Root : <#= baseName #> {}
 <#
 } // end vertex loop
 #>

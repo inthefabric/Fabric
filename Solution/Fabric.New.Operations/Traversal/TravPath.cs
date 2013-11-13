@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Infrastructure.Broadcast;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Traversal {
@@ -8,7 +9,7 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TravPath : ITravPath {
 
-		//private static readonly Logger Log = Logger.Build<TravPath>();
+		private static readonly Logger Log = Logger.Build<TravPath>();
 
 		public long MemberId { get; private set; }
 
@@ -65,11 +66,19 @@ namespace Fabric.New.Operations.Traversal {
 		public IList<ITravPathItem> GetSteps(int pCount) {
 			return (vItems.Count < vCurrIndex+pCount ? null : vItems.GetRange(vCurrIndex, pCount));
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Type GetCurrentType() {
+			return vCurrType;
+		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public bool IsAcceptableType(Type pType) {
-			//acceptable if the types are the same, or if pType is a subclass of vCurrType
-			return (vCurrType == pType || vCurrType.IsAssignableFrom(pType));
+		public bool IsAcceptableType(Type pType, bool pRequiresExact) {
+			if ( pRequiresExact ) {
+				return (vCurrType == pType);
+			}
+
+			return IsSameTypeOrSubclass(pType, vCurrType);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -88,10 +97,17 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void UpdateCurrentType(Type pNewType) {
-			//set vCurrType if vCurrType is *not* a subclass of pNewType
-			if ( !pNewType.IsAssignableFrom(vCurrType) ) {
+			Log.Debug("Update? "+vCurrType.Name+" --> "+pNewType.Name+" == "+
+				(!IsSameTypeOrSubclass(pNewType, vCurrType)));
+
+			if ( !IsSameTypeOrSubclass(pNewType, vCurrType) ) {
 				vCurrType = pNewType;
 			}
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static bool IsSameTypeOrSubclass(Type pBaseType, Type pSubType) {
+			return (pBaseType == pSubType || pBaseType.IsAssignableFrom(pSubType));
 		}
 
 

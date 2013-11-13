@@ -5,17 +5,20 @@ namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
 	public abstract class TravStep : ITravStep {
-
+		
+		public string Name { get; private set; }
 		public string Command { get; private set; }
 		public IList<ITravStepParam> Params { get; private set; }
 		public Type FromType { get; private set; }
 		public Type ToType { get; private set; }
 		public bool ToAliasType { get; protected set; }
+		public bool FromExactType { get; protected set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected TravStep(string pCommand, Type pFromType, Type pToType) {
+			Name = pCommand;
 			Command = pCommand.ToLower();
 			Params = new List<ITravStepParam>();
 			FromType = pFromType;
@@ -24,7 +27,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual bool AcceptsPath(ITravPath pPath) {
-			if ( !pPath.IsAcceptableType(FromType) ) {
+			if ( !pPath.IsAcceptableType(FromType, FromExactType) ) {
 				return false;
 			}
 
