@@ -1,4 +1,6 @@
-﻿using Fabric.New.Api.Interfaces;
+﻿using System;
+using Fabric.New.Api.Executors;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Menu;
 using Fabric.New.Api.Objects.Meta;
@@ -11,9 +13,9 @@ namespace Fabric.New.Api {
 	public static class ApiMenu {
 
 		public readonly static FabService Meta = BuildMetaMenu();
-		public readonly static FabService Modify = BuildModMenu();
+		public readonly static FabService Mod = BuildModMenu();
 		public readonly static FabService Oauth = BuildOauthMenu();
-		public readonly static FabService Traversal = BuildTravMenu();
+		public readonly static FabService Trav = BuildTravMenu();
 		public readonly static FabHome Home = BuildHomeMenu();
 
 
@@ -42,8 +44,7 @@ namespace Fabric.New.Api {
 			s.Name = "Meta";
 			s.Uri = "/Meta";
 
-			var op = NewOperation<FabSpec>("Specification");
-			op.Uri = "/Spec";
+			var op = NewOperation<FabSpec>("Spec");
 			s.Operations.Add(op);
 
 			op = NewOperation<FabMetaVersion>("Version");
@@ -60,6 +61,13 @@ namespace Fabric.New.Api {
 			var s = new FabService();
 			s.Name = "Modify";
 			s.Uri = "/Mod";
+
+			foreach ( ApiEntry e in CreateExecutors.ApiEntries ) {
+				string name = e.Path.Replace(s.Uri+"/", "");
+				var op = NewOperation(name, e.ResponseType.GetGenericArguments()[0], e.RequestMethod);
+				s.Operations.Add(op);
+			}
+
 			return s;
 		}
 
@@ -98,6 +106,17 @@ namespace Fabric.New.Api {
 			var s = new FabService();
 			s.Name = "Traversal";
 			s.Uri = "/Trav";
+
+			foreach ( ApiEntry e in TraversalExecutors.ApiEntries ) {
+				if ( e.Path.IndexOf("*") != -1 ) {
+					continue;
+				}
+
+				string name = e.Path.Replace(s.Uri+"/", "");
+				var op = NewOperation(name, e.ResponseType.GetGenericArguments()[0], e.RequestMethod);
+				s.Operations.Add(op);
+			}
+
 			return s;
 		}
 
@@ -106,11 +125,17 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabServiceOperation NewOperation<T>(string pName,
 									ApiEntry.Method pMethod=ApiEntry.Method.Get) where T : FabObject {
+			return NewOperation(pName, typeof(T), pMethod);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabServiceOperation NewOperation(string pName, Type pRespType,
+														ApiEntry.Method pMethod=ApiEntry.Method.Get) {
 			var op = new FabServiceOperation();
 			op.Name = pName;
 			op.Uri = "/"+pName.Replace(" ", "");
 			op.Method = (pMethod+"").ToUpper();
-			op.ReturnType = typeof(T).Name;
+			op.ReturnType = pRespType.Name;
 			return op;
 		}
 

@@ -1,9 +1,10 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System.Collections.Generic;
+using Fabric.New.Api.Objects;
 
 namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
-	public interface ITravOperation {
+	public interface ITraversalOperation {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -11,7 +12,7 @@ namespace Fabric.New.Operations.Traversal {
 		void Perform(IOperationContext pOpCtx, string pPath);
 
 		/*--------------------------------------------------------------------------------------------*/
-		FabObject GetResult();
+		IList<FabObject> GetResult();
 
 	}
 

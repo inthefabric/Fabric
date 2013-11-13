@@ -10,27 +10,28 @@
 
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
-using Fabric.New.Operations.Create;
+using Fabric.New.Api.Objects.Traversal;
 
 namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public static class CreateExecutors {
+	public static class TraversalExecutors {
 
 		public static readonly ApiEntry[] ApiEntries = new [] {
+			ApiEntry.Get("/Trav/{*}", TravResp, typeof(FabResponse<FabObject>)),
 <#
 IList<IVertexSchema> allVerts = SchemaUtil.GetVertexSchemas();
 var verts = new List<IVertexSchema>();
 
 foreach ( IVertexSchema v in allVerts ) {
-	if ( v.CreateAccess == Access.All ) {
+	if ( v.GetAccess == Access.All ) {
 		verts.Add(v);
 	}
 }
 
 foreach ( IVertexSchema v in verts ) {
 #>
-			ApiEntry.Post("/Mod/<#= v.Names.DomainPlural #>", Create<#= v.Names.Domain #>, typeof(FabResponse<<#= v.Names.Api#>>)),
+			ApiEntry.Get("/Trav/<#= v.Names.DomainPlural #>", TravResp, typeof(FabResponse<FabTrav<#= v.Names.Domain #>Root>)),
 <#
 } //end vertex loop
 #>
@@ -38,17 +39,11 @@ foreach ( IVertexSchema v in verts ) {
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-<#
-foreach ( IVertexSchema v in verts ) {
-#>
 		/*--------------------------------------------------------------------------------------------*/
-		private static IApiResponse Create<#= v.Names.Domain #>(IApiRequest pApiReq) {
-			return new CreateExecutor<<#= v.Names.Api #>, Create<#= v.Names.Domain #>Operation>(pApiReq).Execute();
+		private static IApiResponse TravResp(IApiRequest pApiReq) {
+			return new TraversalExecutor(pApiReq).Execute();
 		}
-
-<#
-} //end vertex loop
-#>
+		
 	}
 
 }

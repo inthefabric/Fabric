@@ -6,7 +6,7 @@ namespace Fabric.New.Infrastructure.Faults {
 	public abstract class FabFault : Exception {
 
 		public enum Code {
-			RequestNotFound = 404,
+			HttpError = 1,
 
 			InternalError = 1001,
 			ActionNotPermitted = 1002,

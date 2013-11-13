@@ -73,6 +73,12 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Executors\TraversalExecutor.cs" />
+    <Compile Include="Executors\TraversalExecutors.cs">
+      <DependentUpon>TraversalExecutors.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Interfaces\ApiEntry.cs" />
     <Compile Include="ApiModule.cs" />
     <Compile Include="Interfaces\ApiRequest.cs" />
@@ -90,7 +96,7 @@
     <Compile Include="Executors\Executor.cs" />
     <Compile Include="Executors\FabResponseExecutor.cs" />
     <Compile Include="Executors\IExecutor.cs" />
-    <Compile Include="Handlers\Status404.cs" />
+    <Compile Include="Handlers\StatusHandler.cs" />
     <Compile Include="Interfaces\IApiRequest.cs" />
     <Compile Include="Interfaces\IApiResponse.cs" />
     <Compile Include="ApiMenu.cs" />
@@ -105,6 +111,10 @@
     <None Include="Executors\CreateExecutors.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CreateExecutors.cs</LastGenOutput>
+    </None>
+    <None Include="Executors\TraversalExecutors.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TraversalExecutors.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <Content Include="web.config" />

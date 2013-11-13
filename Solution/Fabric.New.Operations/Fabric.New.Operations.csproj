@@ -90,8 +90,8 @@
     </Compile>
     <Compile Include="Traversal\TravStep.cs" />
     <Compile Include="Traversal\TravPathItem.cs" />
-    <Compile Include="Traversal\TravOperation.cs" />
-    <Compile Include="Traversal\ITravOperation.cs" />
+    <Compile Include="Traversal\TraversalOperation.cs" />
+    <Compile Include="Traversal\ITraversalOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Create\CreateOperations.tt">

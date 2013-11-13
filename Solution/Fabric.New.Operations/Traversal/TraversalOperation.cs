@@ -7,7 +7,7 @@ using Fabric.New.Operations.Traversal.Steps;
 namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
-	public class TravOperation : ITravOperation {
+	public class TraversalOperation : ITraversalOperation {
 
 		private static readonly IList<ITravStep> AllSteps = BuildAllSteps();
 		private static readonly IDictionary<string, ITravStep> AllStepsMap = BuildAllStepsMap();
@@ -42,8 +42,10 @@ namespace Fabric.New.Operations.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FabObject GetResult() {
-			return null;
+		public IList<FabObject> GetResult() {
+			var list = new List<FabObject>();
+			list.Add(new FabApp());
+			return list;
 		}
 
 

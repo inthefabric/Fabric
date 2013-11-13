@@ -11,6 +11,7 @@ namespace Fabric.New.Api {
 		public ApiModule() {
 			SetupFromApiEntries(MenuExecutors.ApiEntries);
 			SetupFromApiEntries(CreateExecutors.ApiEntries);
+			SetupFromApiEntries(TraversalExecutors.ApiEntries);
 		}
 
 	}

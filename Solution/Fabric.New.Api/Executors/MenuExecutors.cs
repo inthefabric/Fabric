@@ -10,9 +10,9 @@ namespace Fabric.New.Api.Executors {
 		public static readonly ApiEntry[] ApiEntries = new[] {
 			ApiEntry.Get(ApiMenu.Home.Uri, GetHome, typeof(FabResponse<FabHome>)),
 			ApiEntry.Get(ApiMenu.Meta.Uri, GetMeta, typeof(FabResponse<FabService>)),
-			ApiEntry.Get(ApiMenu.Modify.Uri, GetMod, typeof(FabResponse<FabService>)),
+			ApiEntry.Get(ApiMenu.Mod.Uri, GetMod, typeof(FabResponse<FabService>)),
 			ApiEntry.Get(ApiMenu.Oauth.Uri, GetOauth, typeof(FabResponse<FabService>)),
-			ApiEntry.Get(ApiMenu.Traversal.Uri, GetTrav, typeof(FabResponse<FabService>)),
+			ApiEntry.Get(ApiMenu.Trav.Uri, GetTrav, typeof(FabResponse<FabService>)),
 		};
 
 
@@ -29,7 +29,7 @@ namespace Fabric.New.Api.Executors {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetMod(IApiRequest pApiReq) {
-			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Modify).Execute();
+			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Mod).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -39,7 +39,7 @@ namespace Fabric.New.Api.Executors {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetTrav(IApiRequest pApiReq) {
-			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Traversal).Execute();
+			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Trav).Execute();
 		}
 
 	}
