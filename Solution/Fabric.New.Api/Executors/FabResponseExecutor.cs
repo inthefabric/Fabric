@@ -32,10 +32,7 @@ namespace Fabric.New.Api.Executors {
 				resp.SetJsonWith(fr);
 			}
 			catch ( Exception e ) {
-				HttpStatusCode stat;
-				FabError err = OnException(e, out stat);
-				
-				resp.Status = stat;
+				FabError err = OnException(e);
 				resp.StopTimer();
 
 				if ( err == null ) {
@@ -46,6 +43,7 @@ namespace Fabric.New.Api.Executors {
 					fr.TotalMs = resp.GetTimerMilliseconds();
 					fr.Error = err;
 					resp.SetJsonWith(fr);
+					resp.Status = HttpStatusCode.BadRequest;
 				}
 			}
 
@@ -59,14 +57,8 @@ namespace Fabric.New.Api.Executors {
 		protected abstract IList<T> GetResponse();
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual FabError OnException(Exception pEx, out HttpStatusCode pStatus) {
-			if ( pEx is FabFault ) {
-				pStatus = HttpStatusCode.BadRequest;
-				return FabError.ForFault(pEx as FabFault);
-			}
-
-			pStatus = HttpStatusCode.InternalServerError;
-			return FabError.ForInternalServerError();
+		protected virtual FabError OnException(Exception pEx) {
+			return (pEx is FabFault ? FabError.ForFault(pEx as FabFault) : null);
 		}
 
 	}

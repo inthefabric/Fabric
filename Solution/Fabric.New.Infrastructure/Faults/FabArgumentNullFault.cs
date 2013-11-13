@@ -10,7 +10,7 @@
 		/*--------------------------------------------------------------------------------------------*/
 		public FabArgumentNullFault(string pArgName) : base(Code.ArgumentNullFault, "") {
 			ArgName = pArgName;
-			AppendMessage("Value "+ArgName+" cannot be null.");
+			AppendMessage("The "+ArgName+" argument cannot be null.");
 		}
 		
 	}

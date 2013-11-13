@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Api.Executors {
@@ -16,9 +17,11 @@ namespace Fabric.New.Api.Executors {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override IList<TObj> GetResponse() {
-			string json = ApiReq.GetFormValue("data");
+			string json = ApiReq.GetFormValue("Data");
 
-			//TODO: CreateExecutor: throw fault on missing data
+			if ( json == null ) {
+				throw new FabArgumentNullFault("Data");
+			}
 
 			var o = new TOper();
 			o.Create(ApiReq.OpCtx, json);

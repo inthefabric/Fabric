@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Steps;
@@ -9,8 +8,9 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TraversalOperation : ITraversalOperation {
 
+		//private static readonly Logger Log = Logger.Build<TraversalOperation>();
 		private static readonly IList<ITravStep> AllSteps = BuildAllSteps();
-		private static readonly IDictionary<string, ITravStep> AllStepsMap = BuildAllStepsMap();
+		private static readonly IDictionary<string, IList<ITravStep>> AllStepsMap = BuildAllStepsMap();
 
 		protected IOperationContext OpCtx { get; set; }
 		protected ITravPath Path { get; set; }
@@ -30,9 +30,16 @@ namespace Fabric.New.Operations.Traversal {
 						"Step '"+tps.Command+"' is not valid.");
 				}
 
-				ITravStep step = AllStepsMap[tps.Command];
+				IList<ITravStep> steps = AllStepsMap[tps.Command];
+				ITravStep step = null;
 
-				if ( !step.AcceptsPath(Path) ) {
+				foreach ( ITravStep s in steps ) {
+					if ( s.AcceptsPath(Path) ) {
+						step = s;
+					}
+				}
+
+				if ( step == null ) {
 					throw tps.NewStepFault(FabFault.Code.InternalError, "Step could not be processed.");
 				}
 
@@ -65,10 +72,25 @@ namespace Fabric.New.Operations.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static IDictionary<string, ITravStep> BuildAllStepsMap() {
-			return AllSteps.ToDictionary(ts => ts.Command);
-		}
+		private static IDictionary<string, IList<ITravStep>> BuildAllStepsMap() {
+			var map = new Dictionary<string, IList<ITravStep>>();
 
+			foreach ( ITravStep step in AllSteps ) {
+				if ( step == null ) {
+					continue;
+				}
+
+				string key = step.Command;
+
+				if ( !map.ContainsKey(key) ) {
+					map.Add(key, new List<ITravStep>());
+				}
+
+				map[key].Add(step);
+			}
+
+			return map;
+		}
 	}
 
 }

@@ -10,6 +10,7 @@ using Fabric.New.Operations;
 using Nancy;
 using Nancy.Responses;
 using Nancy.Serializers.Json.ServiceStack;
+using ServiceStack.Text;
 
 namespace Fabric.New.Api {
 
@@ -77,7 +78,7 @@ namespace Fabric.New.Api {
 		private IApiRequest NewReq() {
 			int i = (NodeIndex++)%NodeCount;
 			var oc = new OperationContext(NodeIpList[i], RexConnPort, Cache, Metrics, AnalyticsProv);
-			return new ApiRequest(oc, Context);
+			return new ApiRequest(oc, Context.Request);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -138,6 +139,8 @@ namespace Fabric.New.Api {
 
 			Cache = new CacheManager(Metrics);
 			AnalyticsProv = (g => new AnalyticsManager(g));
+
+			JsConfig.ExcludeTypeInfo = true;
 		}
 
 	}

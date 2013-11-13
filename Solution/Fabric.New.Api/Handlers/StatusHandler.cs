@@ -23,7 +23,7 @@ namespace Fabric.New.Api.Handlers {
 			err.Code = (int)FabFault.Code.HttpError;
 			err.Name = FabFault.Code.HttpError+"";
 			err.Message = pContext.Response.StatusCode+" ("+(int)pContext.Response.StatusCode+") "+
-				"for API request: "+pContext.Request.Path;
+				"for API request: "+pContext.Request.Method+" "+pContext.Request.Path;
 
 			var fr = new FabResponse();
 			fr.Error = err;

@@ -23,8 +23,8 @@ namespace Fabric.New.Api.Executors {
 			ApiEntry.Get("/Trav/Users", TravResp, typeof(FabResponse<FabTravUserRoot>)),
 			ApiEntry.Get("/Trav/Vertices", TravResp, typeof(FabResponse<FabTravVertexRoot>)),
 		};
-		
-		
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse TravResp(IApiRequest pApiReq) {

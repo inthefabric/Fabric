@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fabric.New.Operations;
+using Nancy;
 
 namespace Fabric.New.Api.Interfaces {
 
@@ -11,40 +12,37 @@ namespace Fabric.New.Api.Interfaces {
 		public string Path { get; private set; }
 		public string IpAddress { get; private set; }
 
-		private readonly object vNancyReq;
+		private readonly Request vNancyReq;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiRequest(IOperationContext pOpCtx, object pNancyReq) {
+		public ApiRequest(IOperationContext pOpCtx, Request pNancyReq) {
 			OpCtx = pOpCtx;
 			vNancyReq = pNancyReq;
 
-			//Method = vNancyReq.Method;
-			//Path = vNancyReq.Path;
-			//IpAddress = vNancyReq.UserHostAddress;
+			Method = vNancyReq.Method;
+			Path = vNancyReq.Path;
+			IpAddress = vNancyReq.UserHostAddress;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetQueryValue(string pName) {
-			//return vNancyReq.Form[pName];
-			return null;
+			return vNancyReq.Query[pName];
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetFormValue(string pName) {
-			//return vNancyReq.Form[pName];
-			return null;
+			return vNancyReq.Form[pName];
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public IEnumerable<string> GetHeader(string pName) {
-			//return vNancyReq.Headers[pName];
-			return null;
+			return vNancyReq.Headers[pName];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -8,6 +8,8 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TravPath : ITravPath {
 
+		//private static readonly Logger Log = Logger.Build<TravPath>();
+
 		public long MemberId { get; private set; }
 
 		private readonly string vRawText;
