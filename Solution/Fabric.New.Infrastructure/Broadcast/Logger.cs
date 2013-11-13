@@ -9,7 +9,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 	
 	/*================================================================================================*/
 	[ExcludeFromCodeCoverage]
-	public abstract class Logger {
+	public class Logger {
 
 		private enum Level {
 			Info,
@@ -19,7 +19,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 			Fatal,
 		};
 
-		private static bool Configured = false;
+		private static bool Configured = ConfigureOnce();
 		private static IDictionary<Level, Action<ILog, string, Exception>> LevelMap;
 
 		private readonly ILog vLog;
@@ -28,10 +28,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void ConfigureOnce() {
-			if ( Configured ) { return; }
-			Configured = true;
-
+		private static bool ConfigureOnce() {
 			XmlConfigurator.Configure();
 
 			LevelMap = new Dictionary<Level, Action<ILog, string, Exception>>();
@@ -40,14 +37,21 @@ namespace Fabric.New.Infrastructure.Broadcast {
 			LevelMap.Add(Level.Warn, (l, t, e) => l.Warn(t, e));
 			LevelMap.Add(Level.Error, (l,t,e) => l.Error(t,e));
 			LevelMap.Add(Level.Fatal, (l,t,e) => l.Fatal(t,e));
+
+			return true;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected Logger(Type pType) {
+		private Logger(Type pType) {
 			vLog = LogManager.GetLogger(pType);
 			vClassName = pType.Name;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static Logger Build<T>() {
+			return new Logger(typeof(T));
 		}
 
 
@@ -149,6 +153,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 		private void Output(Level pLevel, string pText, Exception pEx=null,
 															string pSessId=null, string pMode=null) {
 			pText = Prefix("Info", pSessId, pMode)+pText;
+			LevelMap[pLevel](vLog, pText, pEx);
 			ConsoleOut(pText);
 		}
 		
@@ -156,23 +161,6 @@ namespace Fabric.New.Infrastructure.Broadcast {
 		private void ConsoleOut(string pText, Exception pException=null) {
 			Trace.WriteLine(pText);
 			if ( pException != null ) { Trace.WriteLine(pException); }
-		}
-
-	}
-
-
-	/*================================================================================================*/
-	[ExcludeFromCodeCoverage]
-	public class Logger<T> : Logger {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected Logger() : base(typeof(T)) { }
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static Logger<T> Build() {
-			return new Logger<T>();
 		}
 
 	}

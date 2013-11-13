@@ -13,7 +13,7 @@ namespace Fabric.New.Operations {
 	/*================================================================================================*/
 	public class OperationContext : IOperationContext {
 
-		private static readonly Logger Log = Logger<OperationContext>.Build();
+		private static readonly Logger Log = Logger.Build<OperationContext>();
 
 		public string RexConnUrl { get; private set; }
 		public int RexConnPort { get; private set; }

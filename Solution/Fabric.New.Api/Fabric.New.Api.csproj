@@ -61,6 +61,7 @@
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
     </Reference>
@@ -105,6 +106,7 @@
       <LastGenOutput>CreateExecutors.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

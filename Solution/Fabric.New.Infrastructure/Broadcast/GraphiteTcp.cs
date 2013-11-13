@@ -13,7 +13,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 	/*================================================================================================*/
 	public class GraphiteTcp : IDisposable {
 
-		private static readonly Logger Log = Logger<GraphiteTcp>.Build();
+		private static readonly Logger Log = Logger.Build<GraphiteTcp>();
 
 		private readonly string vPrefix;
 		private readonly string vHost;
