@@ -1,6 +1,4 @@
-﻿using Fabric.Infrastructure.Data;
-
-namespace Fabric.Api.Dto.Meta {
+﻿namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabSpecTravLink : FabObject {
@@ -14,11 +12,6 @@ namespace Fabric.Api.Dto.Meta {
 		public string Relation { get; set; }
 		public string To { get; set; }
 		public string ToConn { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 	}
 

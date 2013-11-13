@@ -1,6 +1,4 @@
-﻿using Fabric.Infrastructure.Data;
-
-namespace Fabric.Api.Dto.Meta {
+﻿namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabMetaVersion : FabObject {
@@ -32,11 +30,6 @@ namespace Fabric.Api.Dto.Meta {
 			Month = pMonth;
 			Day = pDay;
 		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 	}
 

@@ -1,24 +1,18 @@
 using System.Runtime.Serialization;
-using Fabric.Infrastructure.Data;
 
-namespace Fabric.Api.Dto.Oauth {
+namespace Fabric.New.Api.Objects.Oauth {
 
 	/*================================================================================================*/
 	[DataContract]
 	public class FabOauthError : FabObject {
 
 		[DataMember(Name="error")]
-		[DtoProp("error")]
+		//TODO: [DtoProp("error")]
 		public string Error { get; set; }
 
 		[DataMember(Name="error_description")]
-		[DtoProp("error_description")]
+		//TODO: [DtoProp("error_description")]
 		public string ErrorDesc { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

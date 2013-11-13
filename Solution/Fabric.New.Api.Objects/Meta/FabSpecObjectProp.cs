@@ -1,6 +1,4 @@
-﻿using Fabric.Infrastructure.Data;
-
-namespace Fabric.Api.Dto.Meta {
+﻿namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabSpecObjectProp : FabSpecValue {
@@ -12,11 +10,6 @@ namespace Fabric.Api.Dto.Meta {
 		public bool? IsPrimaryKey { get; set; }
 		public bool? IsTimestamp { get; set; }
 		public bool? IsUnique { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 	}
 

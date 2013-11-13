@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Fabric.Infrastructure.Data;
 
-namespace Fabric.Api.Dto.Meta {
+namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabSpecService : FabObject {
@@ -13,11 +12,6 @@ namespace Fabric.Api.Dto.Meta {
 		public string ResponseWrapper { get; set; }
 		public List<FabSpecTravFunc> TraversalFunctions { get; set; }
 		public List<FabSpecServiceOperation> Operations { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 	}
 

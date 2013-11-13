@@ -33,8 +33,8 @@ namespace Fabric.New.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public int GetTimerMilliseconds() {
-			return (int)vTimer.Elapsed.TotalMilliseconds;
+		public double GetTimerMilliseconds() {
+			return vTimer.Elapsed.TotalMilliseconds;
 		}
 
 

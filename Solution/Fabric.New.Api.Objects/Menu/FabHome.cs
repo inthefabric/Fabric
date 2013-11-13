@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Fabric.New.Api.Objects.Meta;
+using Fabric.New.Api.Objects.Oauth;
 
 namespace Fabric.New.Api.Objects.Menu {
 
@@ -6,6 +8,8 @@ namespace Fabric.New.Api.Objects.Menu {
 	public class FabHome : FabObject {
 
 		public const string Get = "GET";
+
+		public const string HomeUri = "/";
 
 		public const string OauthUri = "/Oauth";
 		public const string OauthAccessTokenUri = "/AccessToken";
@@ -25,10 +29,11 @@ namespace Fabric.New.Api.Objects.Menu {
 		public const string MetaVersionUri = "/Version";
 		public const string MetaTimeUri = "/Time";
 
-		public readonly static FabService MetaService = new FabService();
-		public readonly static FabService ModService = new FabService();
-		public readonly static FabService OauthService = new FabService();
-		public readonly static FabService TravService = new FabService();
+		public readonly static FabService MetaService = BuildMetaService();
+		public readonly static FabService ModService = BuildModService();
+		public readonly static FabService OauthService = BuildOauthService();
+		public readonly static FabService TravService = BuildTravService();
+		public readonly static FabHome Home = new FabHome();
 
 		public string Name { get; private set; }
 		public IList<FabService> Services { get; private set; }
@@ -36,28 +41,26 @@ namespace Fabric.New.Api.Objects.Menu {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabHome() {
+		private FabHome() {
 			Name = "Fabric API";
 
-			//TODO: finish service definitions
-			BuildMetaService();
-			BuildModService();
-			BuildOauthService();
-			BuildTravService();
-
 			Services = new List<FabService> {
-				MetaService,
-				ModService,
-				OauthService,
-				TravService,
+				BuildMetaService(),
+				BuildModService(),
+				BuildOauthService(),
+				BuildTravService(),
 			};
+
+			foreach ( FabService s in Services ) {
+				s.Operations = null;
+			}
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void BuildMetaService() {
-			var s = MetaService;
+		private static FabService BuildMetaService() {
+			var s = new FabService();
 			s.Name = "Meta";
 			s.Uri = MetaUri;
 
@@ -65,34 +68,37 @@ namespace Fabric.New.Api.Objects.Menu {
 			op.Name = "GetSpecification";
 			op.Uri = MetaSpecUri;
 			op.Method = Get;
-			//op.ReturnType = typeof(FabSpec).Name;
+			op.ReturnType = typeof(FabSpec).Name;
 			s.Operations.Add(op);
 
 			op = new FabServiceOperation();
 			op.Name = "GetVersion";
 			op.Uri = MetaVersionUri;
 			op.Method = Get;
-			//op.ReturnType = typeof(FabMetaVersion).Name;
+			op.ReturnType = typeof(FabMetaVersion).Name;
 			s.Operations.Add(op);
 
 			op = new FabServiceOperation();
 			op.Name = "GetTime";
 			op.Uri = MetaTimeUri;
 			op.Method = Get;
-			//op.ReturnType = typeof(FabMetaTime).Name;
+			op.ReturnType = typeof(FabMetaTime).Name;
 			s.Operations.Add(op);
+
+			return s;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void BuildModService() {
-			var s = ModService;
+		private static FabService BuildModService() {
+			var s = new FabService();
 			s.Name = "Modify";
 			s.Uri = ModUri;
+			return s;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static void BuildOauthService() {
-			var s = OauthService;
+		private static FabService BuildOauthService() {
+			var s = new FabService();
 			s.Name = "Oauth";
 			s.Uri = OauthUri;
 
@@ -135,22 +141,25 @@ namespace Fabric.New.Api.Objects.Menu {
 			op.Name = "Login";
 			op.Uri = OauthLoginUri;
 			op.Method = Get;
-			//op.ReturnType = typeof(FabOauthLogin).Name;
+			op.ReturnType = typeof(FabOauthLogin).Name;
 			s.Operations.Add(op);
 
 			op = new FabServiceOperation();
 			op.Name = "Logout";
 			op.Uri = OauthLogoutUri;
 			op.Method = Get;
-			//op.ReturnType = typeof(FabOauthLogout).Name;
+			op.ReturnType = typeof(FabOauthLogout).Name;
 			s.Operations.Add(op);
+
+			return s;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void BuildTravService() {
-			var s = TravService;
+		private static FabService BuildTravService() {
+			var s = new FabService();
 			s.Name = "Traversal";
 			s.Uri = TravUri;
+			return s;
 		}
 
 	}

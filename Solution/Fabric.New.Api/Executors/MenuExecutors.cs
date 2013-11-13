@@ -7,18 +7,18 @@ namespace Fabric.New.Api.Executors {
 	public static class MenuExecutors {
 
 		public static readonly ApiEntry[] ApiEntries = new[] {
-			ApiEntry.Get("/", GetHome, typeof(FabResponse<FabHome>)),
-			ApiEntry.Get("/Meta", GetMeta, typeof(FabResponse<FabService>)),
-			ApiEntry.Get("/Mod", GetMod, typeof(FabResponse<FabService>)),
-			ApiEntry.Get("/Oauth", GetOauth, typeof(FabResponse<FabService>)),
-			ApiEntry.Get("/Trav", GetTrav, typeof(FabResponse<FabService>)),
+			ApiEntry.Get(FabHome.HomeUri, GetHome, typeof(FabResponse<FabHome>)),
+			ApiEntry.Get(FabHome.MetaUri, GetMeta, typeof(FabResponse<FabService>)),
+			ApiEntry.Get(FabHome.ModUri, GetMod, typeof(FabResponse<FabService>)),
+			ApiEntry.Get(FabHome.OauthUri, GetOauth, typeof(FabResponse<FabService>)),
+			ApiEntry.Get(FabHome.TravUri, GetTrav, typeof(FabResponse<FabService>)),
 		};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetHome(IApiRequest pApiReq) {
-			return new MenuExecutor<FabHome>(pApiReq, new FabHome()).Execute();
+			return new MenuExecutor<FabHome>(pApiReq, FabHome.Home).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

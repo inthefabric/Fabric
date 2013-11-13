@@ -1,6 +1,4 @@
-﻿using Fabric.Infrastructure.Data;
-
-namespace Fabric.Api.Dto.Meta {
+﻿namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabSpecValue : FabObject {
@@ -16,11 +14,6 @@ namespace Fabric.Api.Dto.Meta {
 		public long? Min { get; set; }
 		public long? Max { get; set; }
 		public string ValidRegex { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 	}
 

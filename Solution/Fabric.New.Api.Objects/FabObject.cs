@@ -5,14 +5,17 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public abstract class FabObject {
 
-		public string ObjectType { get; set; }
+		public string Obj { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void Fill(Vertex pVertex) {
-			ObjectType = GetType().Name;
+		protected FabObject() {
+			Obj = GetType().Name;
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void Fill(Vertex pVertex) {}
 
 	}
 

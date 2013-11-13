@@ -4,7 +4,7 @@ using Fabric.New.Api.Objects;
 namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public class MenuExecutor<TObj> : FabResponseExecutor<TObj> where TObj : FabObject, new() {
+	public class MenuExecutor<TObj> : FabResponseExecutor<TObj> where TObj : FabObject {
 
 		private readonly TObj vObj;
 

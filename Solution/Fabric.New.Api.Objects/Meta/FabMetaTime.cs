@@ -1,7 +1,6 @@
 ﻿using System;
-using Fabric.Infrastructure.Data;
 
-namespace Fabric.Api.Dto.Meta {
+namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabMetaTime : FabObject {
@@ -37,11 +36,6 @@ namespace Fabric.Api.Dto.Meta {
 			Ticks = d.Ticks;
 			Unix = (long)(DateTime.UtcNow-UnixEpoch).TotalMilliseconds;
 		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 	}
 

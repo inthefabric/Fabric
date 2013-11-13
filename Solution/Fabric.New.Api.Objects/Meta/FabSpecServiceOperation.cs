@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Fabric.Infrastructure.Data;
 
-namespace Fabric.Api.Dto.Meta {
+namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabSpecServiceOperation : FabObject {
@@ -15,11 +14,6 @@ namespace Fabric.Api.Dto.Meta {
 		public string RequiredAuth { get; set; }
 		public string AuthMemberOwns { get; set; }
 		public List<FabSpecServiceOperationParam> Parameters { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(IDataDto pDto) {}
 
 	}
 

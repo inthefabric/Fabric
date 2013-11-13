@@ -5,7 +5,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabResponse {
 
-		public int TotalMs { get; set; }
+		public double TotalMs { get; set; }
 		public FabError Error { get; set; }
 
 	}
