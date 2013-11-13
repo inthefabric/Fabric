@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Api.Objects {
 
@@ -16,28 +17,28 @@ namespace Fabric.New.Api.Objects {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void NotNull(string pName, string pValue) {
 			if ( pValue == null ) {
-				throw new Exception("Property '"+pName+"' cannot be null.");
+				throw new FabPropertyNullFault(pName);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void LenMin(string pName, string pValue, int pLenMin) {
 			if ( pValue != null && pValue.Length < pLenMin ) {
-				throw new Exception(PropStr(pName, pValue)+"cannot less than "+pLenMin+" characters.");
+				throw new FabPropertyLengthFault(pName, pValue, true, pLenMin);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void LenMax(string pName, string pValue, int pLenMax) {
 			if ( pValue != null && pValue.Length > pLenMax ) {
-				throw new Exception(PropStr(pName, pValue)+"cannot more than "+pLenMax+" characters.");
+				throw new FabPropertyLengthFault(pName, pValue, false, pLenMax);
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void ValidRegex(string pName, string pValue, string pPattern) {
-			if ( !Regex.IsMatch(pValue, pPattern) ) {
-				throw new Exception(PropStr(pName, pValue)+"is invalid. "+
+			if ( pValue != null && !Regex.IsMatch(pValue, pPattern) ) {
+				throw new FabPropertyValueFault(pName, pValue, "is invalid. "+
 					"It must match this regular expression: "+pPattern);
 			}
 		}
@@ -45,22 +46,16 @@ namespace Fabric.New.Api.Objects {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void ValidEnum<T>(string pName, byte pValue) {
 			if ( !Enum.IsDefined(typeof(T), pValue) ) {
-				throw new Exception(PropStr(pName, pValue)+"is not a valid "+typeof(T).Name+" value.");
+				throw new FabPropertyOutOfRangeFault(pName, pValue,
+					"is not a valid "+typeof(T).Name+" value.");
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void ValidVertexId(string pName, long? pValue) {
 			if ( pValue != null && pValue <= 0 ) {
-				throw new Exception(PropStr(pName, pValue)+"cannot be less than 1.");
+				throw new FabPropertyOutOfRangeFault(pName, (long)pValue, "cannot be less than 1.");
 			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private string PropStr(string pName, object pValue) {
-			return "Property '"+pName+"' (with value '"+pValue+"') ";
 		}
 
 	}

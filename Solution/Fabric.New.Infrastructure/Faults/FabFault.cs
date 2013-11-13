@@ -13,17 +13,18 @@ namespace Fabric.New.Infrastructure.Faults {
 			MemberNotFound = 1003,
 			UniqueConstraintViolation = 1004,
 			ObjectNotFound = 1005,
-			
-			ArgumentNullFault = 1205,
-			ArgumentLengthFault = 1206,
-			ArgumentOutOfRange = 1207,
-			ArgumentInvalidValue = 1208,
-			
-			IncorrectParamCount = 2001,
-			IncorrectParamValue = 2002,
-			IncorrectParamType = 2003,
-			InvalidParamSyntax = 2004,
-			InvalidStep = 2204,
+			ArgumentMissingFault = 1006,
+
+			InvalidStep = 2001,
+			IncorrectParamCount = 2002,
+			IncorrectParamValue = 2003,
+			IncorrectParamType = 2004,
+			InvalidParamSyntax = 2005,
+
+			PropertyNullFault = 3001,
+			PropertyLengthFault = 3002,
+			PropertyOutOfRange = 3003,
+			PropertyInvalidValue = 3004,
 		}
 
 		public Code ErrCode { get; private set; }

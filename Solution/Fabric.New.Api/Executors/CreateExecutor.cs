@@ -20,7 +20,7 @@ namespace Fabric.New.Api.Executors {
 			string json = ApiReq.GetFormValue("Data");
 
 			if ( json == null ) {
-				throw new FabArgumentNullFault("Data");
+				throw new FabArgumentMissingFault("Data");
 			}
 
 			var o = new TOper();

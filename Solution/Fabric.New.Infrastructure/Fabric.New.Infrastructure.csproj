@@ -85,10 +85,11 @@
     <Compile Include="Data\IDataAccess.cs" />
     <Compile Include="Data\IDataDto.cs" />
     <Compile Include="Data\IDataResult.cs" />
-    <Compile Include="Faults\FabArgumentLengthFault.cs" />
-    <Compile Include="Faults\FabArgumentNullFault.cs" />
-    <Compile Include="Faults\FabArgumentOutOfRangeFault.cs" />
-    <Compile Include="Faults\FabArgumentValueFault.cs" />
+    <Compile Include="Faults\FabArgumentMissingFault.cs" />
+    <Compile Include="Faults\FabPropertyLengthFault.cs" />
+    <Compile Include="Faults\FabPropertyNullFault.cs" />
+    <Compile Include="Faults\FabPropertyOutOfRangeFault.cs" />
+    <Compile Include="Faults\FabPropertyValueFault.cs" />
     <Compile Include="Faults\FabDuplicateFault.cs" />
     <Compile Include="Faults\FabFault.cs" />
     <Compile Include="Faults\FabMembershipFault.cs" />

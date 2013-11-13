@@ -74,7 +74,7 @@ namespace Fabric.New.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public static T ToElement<T>(IDataDto pDto) where T : IElement, new() {
 			if ( pDto.Id == null ) {
-				new FabArgumentNullFault("DataDto.Id was null.");
+				new FabPropertyNullFault("DataDto.Id was null.");
 			}
 
 			T result = new T();
