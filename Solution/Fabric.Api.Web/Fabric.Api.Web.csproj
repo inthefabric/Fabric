@@ -60,12 +60,6 @@
     <Compile Include="RemoveOauthDomain.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
-      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
-      <Name>Fabric.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Weaver.Core, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -70,12 +70,6 @@
     <Compile Include="BatchCreateClass.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
-      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
-      <Name>Fabric.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="RexConnectClient.Core, Version=0.5.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Packages\RexConnectClient.0.5.0.1\lib\RexConnectClient.Core.dll</HintPath>

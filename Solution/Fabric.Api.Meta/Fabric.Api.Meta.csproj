@@ -189,10 +189,6 @@
       <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
       <Name>Fabric.Api.Oauth</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
-      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
-      <Name>Fabric.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
