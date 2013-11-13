@@ -81,9 +81,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute Create<#= v.Names.Domain #> tx
-
-			vResult = DomainToApi.From<#= v.Names.Domain #>(vDomObj);
+			vResult = DomainToApi.From<#= v.Names.Domain #>(ExecuteTx<<#= v.Names.Domain #>>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

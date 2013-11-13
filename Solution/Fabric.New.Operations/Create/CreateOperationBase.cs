@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using ServiceStack.Text;
 using Weaver.Core.Elements;
@@ -11,8 +12,10 @@ namespace Fabric.New.Operations.Create {
 	/*================================================================================================*/
 	public abstract class CreateOperationBase : ICreateOperation {
 
-		protected object OpCtx { get; set; }
+		protected IOperationContext OpCtx { get; set; }
 		protected TxBuilder TxBuild { get; set; }
+
+		private IWeaverVarAlias vVertexAlias;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,10 +26,21 @@ namespace Fabric.New.Operations.Create {
 		protected virtual void CreateEdges<T>(T pCreateObj) where T : CreateFabElement {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) where T : IWeaverElement {}
+		protected virtual void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) where T : IWeaverElement {
+			vVertexAlias = pAlias;
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract FabObject GetResult();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected T ExecuteTx<T>() where T : Vertex, IElement, new() {
+			IWeaverTransaction tx = TxBuild.Finish(vVertexAlias);
+			IDataResult data = OpCtx.NewData().AddQueries(tx).Execute(GetType().Name);
+			return data.ToElementAt<T>(0, 0);
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

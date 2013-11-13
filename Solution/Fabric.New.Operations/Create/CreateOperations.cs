@@ -51,9 +51,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateApp tx
-
-			vResult = DomainToApi.FromApp(vDomObj);
+			vResult = DomainToApi.FromApp(ExecuteTx<App>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -108,9 +106,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateClass tx
-
-			vResult = DomainToApi.FromClass(vDomObj);
+			vResult = DomainToApi.FromClass(ExecuteTx<Class>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -161,9 +157,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateEmail tx
-
-			vResult = DomainToApi.FromEmail(vDomObj);
+			vResult = DomainToApi.FromEmail(ExecuteTx<Email>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -224,9 +218,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateFactor tx
-
-			vResult = DomainToApi.FromFactor(vDomObj);
+			vResult = DomainToApi.FromFactor(ExecuteTx<Factor>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -341,9 +333,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateInstance tx
-
-			vResult = DomainToApi.FromInstance(vDomObj);
+			vResult = DomainToApi.FromInstance(ExecuteTx<Instance>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -394,9 +384,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateMember tx
-
-			vResult = DomainToApi.FromMember(vDomObj);
+			vResult = DomainToApi.FromMember(ExecuteTx<Member>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -473,9 +461,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateOauthAccess tx
-
-			vResult = DomainToApi.FromOauthAccess(vDomObj);
+			vResult = DomainToApi.FromOauthAccess(ExecuteTx<OauthAccess>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -537,9 +523,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateUrl tx
-
-			vResult = DomainToApi.FromUrl(vDomObj);
+			vResult = DomainToApi.FromUrl(ExecuteTx<Url>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -590,9 +574,7 @@ namespace Fabric.New.Operations.Create {
 			SetVertexAlias(domVar);
 			CreateEdges(input);
 
-			//TODO: execute CreateUser tx
-
-			vResult = DomainToApi.FromUser(vDomObj);
+			vResult = DomainToApi.FromUser(ExecuteTx<User>()); //vDomObj
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
