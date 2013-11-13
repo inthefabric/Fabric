@@ -93,6 +93,7 @@
     <Compile Include="Handlers\Status404.cs" />
     <Compile Include="Interfaces\IApiRequest.cs" />
     <Compile Include="Interfaces\IApiResponse.cs" />
+    <Compile Include="ApiMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
