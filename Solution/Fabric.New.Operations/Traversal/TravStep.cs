@@ -42,13 +42,13 @@ namespace Fabric.New.Operations.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract void ConsumePath(ITravPath pPath);
+		public abstract void ConsumePath(ITravPath pPath, Type pToType);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected ITravPathItem ConsumeFirstPathItem(ITravPath pPath) {
-			ITravPathItem item = pPath.ConsumeSteps(1, ToType)[0];
+		protected ITravPathItem ConsumeFirstPathItem(ITravPath pPath, Type pToType) {
+			ITravPathItem item = pPath.ConsumeSteps(1, pToType)[0];
 			item.VerifyParamCount(Params.Count);
 			return item;
 		}

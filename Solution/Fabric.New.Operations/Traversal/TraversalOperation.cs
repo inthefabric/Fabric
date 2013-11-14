@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Steps;
 
@@ -12,10 +11,9 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TraversalOperation : ITraversalOperation {
 
-		private static readonly Logger Log = Logger.Build<TraversalOperation>();
+		//private static readonly Logger Log = Logger.Build<TraversalOperation>();
 
 		private static readonly IList<ITravStep> StepList = BuildStepList();
-		private static readonly IDictionary<string, IList<ITravStep>> StepMap = BuildStepMap();
 		private static readonly IDictionary<Type, IList<TravRule>> RulesMap = BuildRulesMap();
 
 		protected IOperationContext OpCtx { get; set; }
@@ -31,26 +29,22 @@ namespace Fabric.New.Operations.Traversal {
 			ITravPathItem tps = Path.GetNextStep();
 
 			while ( tps != null ) {
-				if ( !StepMap.ContainsKey(tps.Command) ) {
-					throw tps.NewStepFault(FabFault.Code.InvalidStep,
-						"Step '"+tps.Command+"' is not valid.");
-				}
+				IList<TravRule> rules = RulesMap[Path.GetCurrentType()];
+				TravRule rule = null;
 
-				IList<ITravStep> steps = StepMap[tps.Command];
-				ITravStep step = null;
-
-				foreach ( ITravStep s in steps ) {
-					if ( s.AcceptsPath(Path) ) {
-						step = s;
+				foreach ( TravRule r in rules ) {
+					if ( r.Step.AcceptsPath(Path) ) {
+						rule = r;
 						break;
 					}
 				}
 
-				if ( step == null ) {
-					throw tps.NewStepFault(FabFault.Code.InternalError, "Step could not be processed.");
+				if ( rule == null ) {
+					throw tps.NewStepFault(FabFault.Code.InvalidStep,
+						"Step '"+tps.Command+"' is not valid.");
 				}
 
-				step.ConsumePath(Path);
+				rule.Step.ConsumePath(Path, rule.ToType);
 				tps = Path.GetNextStep();
 			}
 		}
@@ -67,7 +61,6 @@ namespace Fabric.New.Operations.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<FabTravStep> GetResultSteps() {
 			Type t = Path.GetCurrentType();
-			Log.Debug("GetResultSteps: "+t.Name);
 
 			if ( !RulesMap.ContainsKey(t) ) {
 				return new List<FabTravStep>();
@@ -93,72 +86,65 @@ namespace Fabric.New.Operations.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static IDictionary<string, IList<ITravStep>> BuildStepMap() {
-			var map = new Dictionary<string, IList<ITravStep>>();
+		private static IDictionary<Type, IList<TravRule>> BuildRulesMap() {
+			var map = new Dictionary<Type, IList<TravRule>>();
+			Type ot = typeof(FabObject);
+			Type[] types = ot.Assembly.GetTypes();
 
-			foreach ( ITravStep step in StepList ) {
-				if ( step == null ) {
+			foreach ( Type ft in types ) {
+				if ( !ot.IsAssignableFrom(ft) ) {
 					continue;
 				}
 
-				string key = step.Command;
+				map.Add(ft, new List<TravRule>());
 
-				if ( !map.ContainsKey(key) ) {
-					map.Add(key, new List<ITravStep>());
+				foreach ( ITravStep step in StepList ) {
+					if ( !IsAcceptableStepForType(step, ft) ) {
+						continue;
+					}
+
+					Type tt = GetStepToType(step, ft);
+					map[ft].Add(new TravRule(step, ft, tt));
 				}
-
-				map[key].Add(step);
 			}
 
 			return map;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static IDictionary<Type, IList<TravRule>> BuildRulesMap() {
-			var map = new Dictionary<Type, IList<TravRule>>();
-			Type fabObjType = typeof(FabObject);
-			Type[] types = fabObjType.Assembly.GetTypes();
-
-			foreach ( Type t in types ) {
-				if ( !fabObjType.IsAssignableFrom(t) ) {
-					continue;
-				}
-
-				var list = new List<TravRule>();
-				map.Add(t, list);
-				//Log.Debug("****");
-				//Log.Debug(t.Name);
-
-				foreach ( ITravStep step in StepList ) {
-					if ( step == null || !TravPath.IsSameTypeOrSubclass(step.FromType, t) ) {
-						continue;
-					}
-
-					if ( step.FromExactType && t != step.FromType ) {
-						continue;
-					}
-
-					Type toType = step.ToType;
-
-					if ( TravPath.IsSameTypeOrSubclass(toType, t) ) {
-						toType = t;
-					}
-
-					if ( TravPath.IsSameTypeOrSubclass(typeof(FabTravTypedRoot), t) ) {
-						Type baseType = FabTravTypedRoot.BaseTypeMap[t];
-						
-						if ( TravPath.IsSameTypeOrSubclass(toType, baseType) ) {
-							toType = baseType;
-						}
-					}
-
-					var tr = new TravRule(step, t, toType);
-					//Log.Debug(" -- "+t.Name+" ... "+step.Name+" ... "+toType.Name);
-					list.Add(tr);
-				}
+		private static bool IsAcceptableStepForType(ITravStep pStep, Type pFromType) {
+			if ( pStep == null ) {
+				return false;
 			}
 
-			return map;
+			if ( !TravPath.IsSameTypeOrSubclass(pStep.FromType, pFromType) ) {
+				return false;
+			}
+
+			if ( pStep.FromExactType && pFromType != pStep.FromType ) {
+				return false;
+			}
+
+			return true;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static Type GetStepToType(ITravStep pStep, Type pFromType) {
+			Type tt = pStep.ToType;
+
+			if ( TravPath.IsSameTypeOrSubclass(typeof(FabTravTypedRoot), pFromType) ) {
+				Type baseType = FabTravTypedRoot.BaseTypeMap[pFromType];
+
+				if ( TravPath.IsSameTypeOrSubclass(tt, baseType) ) {
+					return baseType;
+				}
+			}
+			
+			if ( TravPath.IsSameTypeOrSubclass(tt, pFromType) ) {
+				return pFromType;
+			}
+
+			return tt;
 		}
 
 	}

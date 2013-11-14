@@ -20,7 +20,7 @@ namespace Fabric.New.Operations.Traversal {
 		bool AcceptsPath(ITravPath pPath);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void ConsumePath(ITravPath pPath);
+		void ConsumePath(ITravPath pPath, Type pToType);
 
 	}
 

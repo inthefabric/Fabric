@@ -1,4 +1,5 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System;
+using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
 
 namespace Fabric.New.Operations.Traversal.Steps {
@@ -18,8 +19,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {
-			ITravPathItem item = ConsumeFirstPathItem(pPath);
+		public override void ConsumePath(ITravPath pPath, Type pToType) {
+			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
 			string val = item.ParamAt<string>(0);
 
 			pPath.AddScript(

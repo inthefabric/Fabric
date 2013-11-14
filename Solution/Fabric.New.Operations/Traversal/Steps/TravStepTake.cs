@@ -1,4 +1,5 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System;
+using Fabric.New.Api.Objects;
 using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Operations.Traversal.Steps {
@@ -22,8 +23,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {
-			ITravPathItem item = ConsumeFirstPathItem(pPath);
+		public override void ConsumePath(ITravPath pPath, Type pToType) {
+			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
 			int count = item.ParamAt<int>(0);
 			ITravStepParam p = Params[0];
 			

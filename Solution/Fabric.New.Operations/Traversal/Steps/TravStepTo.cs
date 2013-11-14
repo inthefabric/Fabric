@@ -1,4 +1,5 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System;
+using Fabric.New.Api.Objects;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Domain.Names;
 
@@ -19,8 +20,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {
-			ConsumeFirstPathItem(pPath);
+		public override void ConsumePath(ITravPath pPath, Type pToType) {
+			ConsumeFirstPathItem(pPath, pToType);
 
 			pPath.AddScript(
 				".has("+

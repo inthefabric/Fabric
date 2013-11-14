@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Broadcast;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Traversal {
@@ -9,7 +8,7 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TravPath : ITravPath {
 
-		private static readonly Logger Log = Logger.Build<TravPath>();
+		//private static readonly Logger Log = Logger.Build<TravPath>();
 
 		public long MemberId { get; private set; }
 

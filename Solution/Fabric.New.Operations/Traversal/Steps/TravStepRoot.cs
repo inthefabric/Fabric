@@ -1,4 +1,5 @@
-﻿using Fabric.New.Api.Objects.Traversal;
+﻿using System;
+using Fabric.New.Api.Objects.Traversal;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
@@ -11,8 +12,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		public TravStepRoot(string pCommand) : base(pCommand) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath) {
-			ConsumeFirstPathItem(pPath);
+		public override void ConsumePath(ITravPath pPath, Type pToType) {
+			ConsumeFirstPathItem(pPath, pToType);
 		}
 
 	}
