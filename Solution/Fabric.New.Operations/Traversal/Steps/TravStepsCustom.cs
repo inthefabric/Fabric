@@ -17,74 +17,74 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasFactorEventorYear<TFrom, TType>(string pName, string pPropDb) {
+		public static ITravStep FactorWhereEventorYear<TFrom, TType>(string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasFactorEventorMonth<TFrom, TType>(string pName, string pPropDb) {
+		public static ITravStep FactorWhereEventorMonth<TFrom, TType>(string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasFactorEventorDay<TFrom, TType>(string pName, string pPropDb) {
+		public static ITravStep FactorWhereEventorDay<TFrom, TType>(string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasFactorEventorHour<TFrom, TType>(string pName, string pPropDb) {
+		public static ITravStep FactorWhereEventorHour<TFrom, TType>(string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasFactorEventorMinute<TFrom, TType>(string pName, string pPropDb) {
+		public static ITravStep FactorWhereEventorMinute<TFrom, TType>(string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasFactorEventorSecond<TFrom, TType>(string pName, string pPropDb) {
+		public static ITravStep FactorWhereEventorSecond<TFrom, TType>(string pName, string pPropDb) {
 			return null;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasVertexTimestamp<TFrom, TType>(string pName, string pPropDb) {
+		public static ITravStep VertexWhereTimestamp<TFrom, TType>(string pName, string pPropDb) {
 			return null;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasAppDefinesMemberTimestamp<TFrom, TType>(
+		public static ITravStep AppDefinesMemberWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasArtifactUsedAsPrimaryByFactorTimestamp<TFrom, TType>(
+		public static ITravStep ArtifactUsedAsPrimaryByFactorWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasArtifactUsedAsRelatedByFactorTimestamp<TFrom, TType>(
+		public static ITravStep ArtifactUsedAsRelatedByFactorWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasMemberCreatesArtifactTimestamp<TFrom, TType>(
+		public static ITravStep MemberCreatesArtifactWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasMemberCreatesFactorTimestamp<TFrom, TType>(
+		public static ITravStep MemberCreatesFactorWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
 			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static ITravStep HasUserDefinesMemberTimestamp<TFrom, TType>(
+		public static ITravStep UserDefinesMemberWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
 			return null;
 		}
