@@ -9,18 +9,24 @@ namespace Fabric.New.Operations.Traversal.Steps {
 														where TFrom : FabVertex where TTo : FabElement {
 
 		private readonly string vEdgeDbName;
+		private readonly bool vInVertex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepLink(string pCmd, string pEdgeDbName) : base(pCmd) {
+		public TravStepLink(string pCmd, string pEdgeDbName, bool pInVertex) : base(pCmd) {
 			vEdgeDbName = pEdgeDbName;
+			vInVertex = pInVertex;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath, Type pToType) {
 			ConsumeFirstPathItem(pPath, pToType);
-			pPath.AddScript(".outE("+pPath.AddParam(vEdgeDbName)+")");
+
+			pPath.AddScript(
+				".outE("+pPath.AddParam(vEdgeDbName)+")"+
+				(vInVertex ? ".inV" : "")
+			);
 		}
 
 	}

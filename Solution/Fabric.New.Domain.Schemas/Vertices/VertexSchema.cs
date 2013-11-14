@@ -63,7 +63,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabVertexType.GetAccess = Access.All;
 			FabVertexType.CreateAccess = Access.None;
 			FabVertexType.ModifyAccess = Access.None;
-			FabVertexType.TraversalHas = Matching.None;
+			FabVertexType.TraversalHas = Matching.Exact;
+			FabVertexType.FromEnum = "VertexType";
 
 			////
 

@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Operations.Traversal.Routing;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
@@ -47,12 +48,14 @@ foreach ( IEdgeSchema e in edges ) {
 	string name = fv.Names.Domain+link+"Step";
 	string fromType = fv.Names.Api;
 	string toType = tv.Names.Api;
+	string inVert = "true";
 
 	if ( SchemaUtil.GetEdgeProperties(e).Count > 0 ) {
 		toType = e.GetClassNameApi(false);
+		inVert = "false";
 	}
 #>
-			new TravStepLink<<#= fromType #>, <#= toType #>>("<#= link #>", "<#= e.NameDb #>"),
+			new TravStepLink<<#= fromType #>, <#= toType #>>("<#= link #>", "<#= e.NameDb #>", <#= inVert #>),
 <#
 } // end edge loop
 #>
@@ -139,7 +142,7 @@ foreach ( IVertexSchema v in verts ) {
 
 	while ( vp != null ) {
 #>
-			new TravStepTo<<#= vp.Names.Api #>, <#= v.Names.Api #>>("To<#= v.Names.Domain #>", VertexDomainType.Id.<#= v.Names.Domain #>),
+			new TravStepTo<<#= vp.Names.Api #>, <#= v.Names.Api #>>("To<#= v.Names.Domain #>", VertexType.Id.<#= v.Names.Domain #>),
 <#
 		vp = SchemaUtil.GetVertexParent(vp);
 	} //end parent loop

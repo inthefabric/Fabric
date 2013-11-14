@@ -11,12 +11,12 @@ namespace Fabric.New.Operations.Traversal.Steps {
 	public class TravStepTo<TFrom, TTo> : TravStep<TFrom, TTo>
 														where TFrom : FabVertex where TTo : FabVertex {
 
-		private readonly VertexDomainType.Id vType;
+		private readonly VertexType.Id vType;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepTo(string pCmd, VertexDomainType.Id pType) : base(pCmd) {
+		public TravStepTo(string pCmd, VertexType.Id pType) : base(pCmd) {
 			vType = pType;
 			FromExactType = true;
 		}

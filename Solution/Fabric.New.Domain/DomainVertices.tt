@@ -50,7 +50,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= v.Names.Domain #>() {
-			VertexType = (byte)VertexDomainType.Id.<#= v.Names.Domain #>;
+			VertexType = (byte)Enums.VertexType.Id.<#= v.Names.Domain #>;
 		}
 <#
 	foreach ( IEdgeSchema es in edges ) {

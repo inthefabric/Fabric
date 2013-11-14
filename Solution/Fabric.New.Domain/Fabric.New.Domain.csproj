@@ -63,7 +63,7 @@
     </Compile>
     <Compile Include="EdgeBase.cs" />
     <Compile Include="Enums\IEnumItem.cs" />
-    <Compile Include="Enums\VertexDomainType.cs" />
+    <Compile Include="Enums\VertexType.cs" />
     <Compile Include="IEdge.cs" />
     <Compile Include="IElement.cs" />
     <Compile Include="IVertex.cs" />

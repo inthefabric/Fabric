@@ -34,7 +34,10 @@ namespace Fabric.New.Operations.Traversal.Steps {
 					p.Name+" cannot be less than "+p.Min+" or greater than "+p.Max+".", 0);
 			}
 
-			pPath.AddScript("["+count+"]"+(vInVertex ? ".inV" : ""));
+			pPath.AddScript(
+				"["+count+"]"+
+				(vInVertex ? ".inV" : "")
+			);
 		}
 
 	}

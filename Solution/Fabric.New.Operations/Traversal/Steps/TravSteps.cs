@@ -14,22 +14,22 @@ namespace Fabric.New.Operations.Traversal.Steps {
 	public static class TravSteps {
 
 		public static readonly IList<ITravStep> LinkList = new List<ITravStep> {
-			new TravStepLink<FabApp, FabAppDefinesMember>("DefinesMembers", "pdm"),
-			new TravStepLink<FabArtifact, FabMember>("CreatedByMember", "acbm"),
-			new TravStepLink<FabArtifact, FabArtifactUsedAsPrimaryByFactor>("UsedAsPrimaryByFactors", "apbf"),
-			new TravStepLink<FabArtifact, FabArtifactUsedAsRelatedByFactor>("UsedAsRelatedByFactors", "arbf"),
-			new TravStepLink<FabFactor, FabMember>("CreatedByMember", "fcbm"),
-			new TravStepLink<FabFactor, FabArtifact>("RefinesPrimaryWithArtifact", "frpa"),
-			new TravStepLink<FabFactor, FabArtifact>("RefinesRelatedWithArtifact", "frra"),
-			new TravStepLink<FabFactor, FabArtifact>("RefinesTypeWithArtifact", "frta"),
-			new TravStepLink<FabFactor, FabArtifact>("UsesPrimaryArtifact", "fpa"),
-			new TravStepLink<FabFactor, FabArtifact>("UsesRelatedArtifact", "fra"),
-			new TravStepLink<FabFactor, FabArtifact>("UsesAxisArtifact", "faa"),
-			new TravStepLink<FabMember, FabMemberCreatesArtifact>("CreatesArtifacts", "mca"),
-			new TravStepLink<FabMember, FabMemberCreatesFactor>("CreatesFactors", "mcf"),
-			new TravStepLink<FabMember, FabApp>("DefinedByApp", "mdbp"),
-			new TravStepLink<FabMember, FabUser>("DefinedByUser", "mdbu"),
-			new TravStepLink<FabUser, FabUserDefinesMember>("DefinesMembers", "udm"),
+			new TravStepLink<FabApp, FabAppDefinesMember>("DefinesMembers", "pdm", false),
+			new TravStepLink<FabArtifact, FabMember>("CreatedByMember", "acbm", true),
+			new TravStepLink<FabArtifact, FabArtifactUsedAsPrimaryByFactor>("UsedAsPrimaryByFactors", "apbf", false),
+			new TravStepLink<FabArtifact, FabArtifactUsedAsRelatedByFactor>("UsedAsRelatedByFactors", "arbf", false),
+			new TravStepLink<FabFactor, FabMember>("CreatedByMember", "fcbm", true),
+			new TravStepLink<FabFactor, FabArtifact>("RefinesPrimaryWithArtifact", "frpa", true),
+			new TravStepLink<FabFactor, FabArtifact>("RefinesRelatedWithArtifact", "frra", true),
+			new TravStepLink<FabFactor, FabArtifact>("RefinesTypeWithArtifact", "frta", true),
+			new TravStepLink<FabFactor, FabArtifact>("UsesPrimaryArtifact", "fpa", true),
+			new TravStepLink<FabFactor, FabArtifact>("UsesRelatedArtifact", "fra", true),
+			new TravStepLink<FabFactor, FabArtifact>("UsesAxisArtifact", "faa", true),
+			new TravStepLink<FabMember, FabMemberCreatesArtifact>("CreatesArtifacts", "mca", false),
+			new TravStepLink<FabMember, FabMemberCreatesFactor>("CreatesFactors", "mcf", false),
+			new TravStepLink<FabMember, FabApp>("DefinedByApp", "mdbp", true),
+			new TravStepLink<FabMember, FabUser>("DefinedByUser", "mdbu", true),
+			new TravStepLink<FabUser, FabUserDefinesMember>("DefinesMembers", "udm", false),
 		};
 
 		public static readonly IList<ITravStep> VertexHasList = new List<ITravStep> {
@@ -59,6 +59,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepHas<FabMember, byte>("HasType", "m.at", true),
 			new TravStepHas<FabVertex, long>("HasId", "v.id", true),
 			TravStepsCustom.HasVertexTimestamp<FabVertex, long>("HasTimestamp", "v.ts"),
+			new TravStepHas<FabVertex, byte>("HasVertexType", "v.t", true),
 		};
 
 		public static readonly IList<ITravStep> LinkHasList = new List<ITravStep> {
@@ -72,7 +73,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepHas<FabArtifactUsedAsRelatedByFactor, byte>("HasDescriptorType", "arbf.dt", true),
 			new TravStepHas<FabArtifactUsedAsRelatedByFactor, long>("HasPrimaryArtifactId", "arbf.pa", true),
 			TravStepsCustom.HasMemberCreatesArtifactTimestamp<FabMemberCreatesArtifact, long>("HasTimestamp", "mca.ts"),
-			new TravStepHas<FabMemberCreatesArtifact, byte>("HasVertexType", "mca.vt", false),
+			new TravStepHas<FabMemberCreatesArtifact, byte>("HasVertexType", "mca.vt", true),
 			TravStepsCustom.HasMemberCreatesFactorTimestamp<FabMemberCreatesFactor, long>("HasTimestamp", "mcf.ts"),
 			new TravStepHas<FabMemberCreatesFactor, byte>("HasDescriptorType", "mcf.dt", true),
 			new TravStepHas<FabMemberCreatesFactor, long>("HasPrimaryArtifactId", "mcf.pa", true),
@@ -92,19 +93,19 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		};
 
 		public static readonly IList<ITravStep> ToTypeList = new List<ITravStep> {
-			new TravStepTo<FabArtifact, FabApp>("ToApp", VertexDomainType.Id.App),
-			new TravStepTo<FabVertex, FabApp>("ToApp", VertexDomainType.Id.App),
-			new TravStepTo<FabVertex, FabArtifact>("ToArtifact", VertexDomainType.Id.Artifact),
-			new TravStepTo<FabArtifact, FabClass>("ToClass", VertexDomainType.Id.Class),
-			new TravStepTo<FabVertex, FabClass>("ToClass", VertexDomainType.Id.Class),
-			new TravStepTo<FabVertex, FabFactor>("ToFactor", VertexDomainType.Id.Factor),
-			new TravStepTo<FabArtifact, FabInstance>("ToInstance", VertexDomainType.Id.Instance),
-			new TravStepTo<FabVertex, FabInstance>("ToInstance", VertexDomainType.Id.Instance),
-			new TravStepTo<FabVertex, FabMember>("ToMember", VertexDomainType.Id.Member),
-			new TravStepTo<FabArtifact, FabUrl>("ToUrl", VertexDomainType.Id.Url),
-			new TravStepTo<FabVertex, FabUrl>("ToUrl", VertexDomainType.Id.Url),
-			new TravStepTo<FabArtifact, FabUser>("ToUser", VertexDomainType.Id.User),
-			new TravStepTo<FabVertex, FabUser>("ToUser", VertexDomainType.Id.User),
+			new TravStepTo<FabArtifact, FabApp>("ToApp", VertexType.Id.App),
+			new TravStepTo<FabVertex, FabApp>("ToApp", VertexType.Id.App),
+			new TravStepTo<FabVertex, FabArtifact>("ToArtifact", VertexType.Id.Artifact),
+			new TravStepTo<FabArtifact, FabClass>("ToClass", VertexType.Id.Class),
+			new TravStepTo<FabVertex, FabClass>("ToClass", VertexType.Id.Class),
+			new TravStepTo<FabVertex, FabFactor>("ToFactor", VertexType.Id.Factor),
+			new TravStepTo<FabArtifact, FabInstance>("ToInstance", VertexType.Id.Instance),
+			new TravStepTo<FabVertex, FabInstance>("ToInstance", VertexType.Id.Instance),
+			new TravStepTo<FabVertex, FabMember>("ToMember", VertexType.Id.Member),
+			new TravStepTo<FabArtifact, FabUrl>("ToUrl", VertexType.Id.Url),
+			new TravStepTo<FabVertex, FabUrl>("ToUrl", VertexType.Id.Url),
+			new TravStepTo<FabArtifact, FabUser>("ToUser", VertexType.Id.User),
+			new TravStepTo<FabVertex, FabUser>("ToUser", VertexType.Id.User),
 		};
 
 		public static readonly IList<ITravStep> EntryList = new List<ITravStep> {

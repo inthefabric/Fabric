@@ -1,7 +1,7 @@
 ﻿namespace Fabric.New.Domain.Enums {
 
 	/*================================================================================================*/
-	public static class VertexDomainType {
+	public static class VertexType {
 
 		public enum Id : byte {
 			Vertex = 0,
