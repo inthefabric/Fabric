@@ -6,23 +6,25 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public abstract class TravStep : ITravStep {
 		
-		public string Name { get; private set; }
 		public string Command { get; private set; }
-		public IList<ITravStepParam> Params { get; private set; }
+		public string CommandLow { get; private set; }
 		public Type FromType { get; private set; }
 		public Type ToType { get; private set; }
 		public bool ToAliasType { get; protected set; }
 		public bool FromExactType { get; protected set; }
 
+		protected IList<ITravStepParam> Params { get; private set; }
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected TravStep(string pCommand, Type pFromType, Type pToType) {
-			Name = pCommand;
-			Command = pCommand.ToLower();
-			Params = new List<ITravStepParam>();
+		protected TravStep(string pCmd, Type pFromType, Type pToType) {
+			Command = pCmd;
+			CommandLow = pCmd.ToLower();
 			FromType = pFromType;
 			ToType = pToType;
+
+			Params = new List<ITravStepParam>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -35,7 +37,7 @@ namespace Fabric.New.Operations.Traversal {
 
 			if ( steps != null ) {
 				ITravPathItem s = steps[0];
-				return (s.Command == Command);
+				return (s.Command == CommandLow);
 			}
 
 			return false;
@@ -62,7 +64,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected TravStep(string pCommand) : base(pCommand, typeof(TFrom), typeof(TTo)) {}
+		protected TravStep(string pCmd) : base(pCmd, typeof(TFrom), typeof(TTo)) {}
 
 	}
 

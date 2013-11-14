@@ -5,7 +5,7 @@
 
 		public string Name { get; set; }
 		public string Uri { get; set; }
-		public string Returns { get; set; }
+		public string Return { get; set; }
 	
 	}
 

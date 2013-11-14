@@ -12,7 +12,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepLink(string pCommand, string pEdgeDbName) : base(pCommand) {
+		public TravStepLink(string pCmd, string pEdgeDbName) : base(pCmd) {
 			vEdgeDbName = pEdgeDbName;
 		}
 

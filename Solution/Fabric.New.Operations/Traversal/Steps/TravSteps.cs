@@ -91,19 +91,19 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		};
 
 		public static readonly IList<ITravStep> ToTypeList = new List<ITravStep> {
-			new TravStepTo<FabArtifact, FabApp>("App", VertexDomainType.Id.App),
-			new TravStepTo<FabVertex, FabApp>("App", VertexDomainType.Id.App),
-			new TravStepTo<FabVertex, FabArtifact>("Artifact", VertexDomainType.Id.Artifact),
-			new TravStepTo<FabArtifact, FabClass>("Class", VertexDomainType.Id.Class),
-			new TravStepTo<FabVertex, FabClass>("Class", VertexDomainType.Id.Class),
-			new TravStepTo<FabVertex, FabFactor>("Factor", VertexDomainType.Id.Factor),
-			new TravStepTo<FabArtifact, FabInstance>("Instance", VertexDomainType.Id.Instance),
-			new TravStepTo<FabVertex, FabInstance>("Instance", VertexDomainType.Id.Instance),
-			new TravStepTo<FabVertex, FabMember>("Member", VertexDomainType.Id.Member),
-			new TravStepTo<FabArtifact, FabUrl>("Url", VertexDomainType.Id.Url),
-			new TravStepTo<FabVertex, FabUrl>("Url", VertexDomainType.Id.Url),
-			new TravStepTo<FabArtifact, FabUser>("User", VertexDomainType.Id.User),
-			new TravStepTo<FabVertex, FabUser>("User", VertexDomainType.Id.User),
+			new TravStepTo<FabArtifact, FabApp>("ToApp", VertexDomainType.Id.App),
+			new TravStepTo<FabVertex, FabApp>("ToApp", VertexDomainType.Id.App),
+			new TravStepTo<FabVertex, FabArtifact>("ToArtifact", VertexDomainType.Id.Artifact),
+			new TravStepTo<FabArtifact, FabClass>("ToClass", VertexDomainType.Id.Class),
+			new TravStepTo<FabVertex, FabClass>("ToClass", VertexDomainType.Id.Class),
+			new TravStepTo<FabVertex, FabFactor>("ToFactor", VertexDomainType.Id.Factor),
+			new TravStepTo<FabArtifact, FabInstance>("ToInstance", VertexDomainType.Id.Instance),
+			new TravStepTo<FabVertex, FabInstance>("ToInstance", VertexDomainType.Id.Instance),
+			new TravStepTo<FabVertex, FabMember>("ToMember", VertexDomainType.Id.Member),
+			new TravStepTo<FabArtifact, FabUrl>("ToUrl", VertexDomainType.Id.Url),
+			new TravStepTo<FabVertex, FabUrl>("ToUrl", VertexDomainType.Id.Url),
+			new TravStepTo<FabArtifact, FabUser>("ToUser", VertexDomainType.Id.User),
+			new TravStepTo<FabVertex, FabUser>("ToUser", VertexDomainType.Id.User),
 		};
 
 		public static readonly IList<ITravStep> EntryList = new List<ITravStep> {

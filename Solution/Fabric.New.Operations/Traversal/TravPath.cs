@@ -34,11 +34,12 @@ namespace Fabric.New.Operations.Traversal {
 			vQuery = new WeaverQuery();
 			vAliases = new Dictionary<string, int>();
 			vBacks = new Dictionary<string, int>();
-			vTypes = new List<Type>();
 
 			vCurrIndex = 0;
 			vCurrType = typeof(FabTravRoot);
 			vScript = "g.V";
+
+			vTypes = new List<Type> { vCurrType };
 
 			string p = vRawText.Replace("%20", " ").TrimEnd(new[] { '/' });
 			string[] parts = (p.Length > 0 ? p.Split('/') : new string[0]);
@@ -127,6 +128,7 @@ namespace Fabric.New.Operations.Traversal {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddBackToAlias(string pAlias) {
+			//TODO: support duplicate Back alias usage
 			vBacks.Add(pAlias, vCurrIndex);
 
 			int aliasI = vAliases[pAlias];

@@ -13,7 +13,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepEntryContains(string pName, string pPropDbName) : base(pName) {
+		public TravStepEntryContains(string pCmd, string pPropDbName) : base(pCmd) {
 			vPropDbName = pPropDbName;
 			Params.Add(new TravStepParam(0, "Tokens", typeof(string)));
 		}

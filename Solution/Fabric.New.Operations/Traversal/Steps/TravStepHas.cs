@@ -13,7 +13,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepHas(string pName, string pPropDbName, bool pExact) : base(pName) {
+		public TravStepHas(string pCmd, string pPropDbName, bool pExact) : base(pCmd) {
 			vExact = pExact;
 			vPropDbName = pPropDbName;
 			int pi = 0;

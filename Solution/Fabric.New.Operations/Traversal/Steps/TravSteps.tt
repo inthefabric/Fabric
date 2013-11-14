@@ -139,7 +139,7 @@ foreach ( IVertexSchema v in verts ) {
 
 	while ( vp != null ) {
 #>
-			new TravStepTo<<#= vp.Names.Api #>, <#= v.Names.Api #>>("<#= v.Names.Domain #>", VertexDomainType.Id.<#= v.Names.Domain #>),
+			new TravStepTo<<#= vp.Names.Api #>, <#= v.Names.Api #>>("To<#= v.Names.Domain #>", VertexDomainType.Id.<#= v.Names.Domain #>),
 <#
 		vp = SchemaUtil.GetVertexParent(vp);
 	} //end parent loop

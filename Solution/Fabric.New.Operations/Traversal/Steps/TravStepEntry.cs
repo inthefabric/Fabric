@@ -16,7 +16,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepEntry(string pName, string pPropDbName, bool pExact, bool pToLower) :base(pName){
+		public TravStepEntry(string pCmd, string pPropDbName, bool pExact, bool pToLower) : base(pCmd) {
 			vPropDbName = pPropDbName;
 			vExact = pExact;
 			vToLower = pToLower;

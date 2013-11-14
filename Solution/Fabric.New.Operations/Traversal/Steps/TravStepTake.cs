@@ -13,7 +13,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepTake(string pName, bool pInVertex) : base(pName) {
+		public TravStepTake(string pCmd, bool pInVertex) : base(pCmd) {
 			vInVertex = pInVertex;
 
 			var p = new TravStepParam(0, "Count", typeof(int));

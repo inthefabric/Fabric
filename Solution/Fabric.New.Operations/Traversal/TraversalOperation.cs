@@ -16,24 +16,24 @@ namespace Fabric.New.Operations.Traversal {
 		private static readonly IList<ITravStep> StepList = BuildStepList();
 		private static readonly IDictionary<Type, IList<TravRule>> RulesMap = BuildRulesMap();
 
-		protected IOperationContext OpCtx { get; set; }
-		protected ITravPath Path { get; set; }
+		private IOperationContext vOpCtx;
+		private ITravPath vPath;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void Perform(IOperationContext pOpCtx, string pPath) {
-			OpCtx = pOpCtx;
-			Path = new TravPath(pPath, OpCtx.MemberId);
+			vOpCtx = pOpCtx;
+			vPath = new TravPath(pPath, vOpCtx.MemberId);
 
-			ITravPathItem tps = Path.GetNextStep();
+			ITravPathItem tps = vPath.GetNextStep();
 
 			while ( tps != null ) {
-				IList<TravRule> rules = RulesMap[Path.GetCurrentType()];
+				IList<TravRule> rules = RulesMap[vPath.GetCurrentType()];
 				TravRule rule = null;
 
 				foreach ( TravRule r in rules ) {
-					if ( r.Step.AcceptsPath(Path) ) {
+					if ( r.Step.AcceptsPath(vPath) ) {
 						rule = r;
 						break;
 					}
@@ -44,14 +44,14 @@ namespace Fabric.New.Operations.Traversal {
 						"Step '"+tps.Command+"' is not valid.");
 				}
 
-				rule.Step.ConsumePath(Path, rule.ToType);
-				tps = Path.GetNextStep();
+				rule.Step.ConsumePath(vPath, rule.ToType);
+				tps = vPath.GetNextStep();
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<FabObject> GetResult() {
-			Type t = Path.GetCurrentType();
+			Type t = vPath.GetCurrentType();
 			
 			var list = new List<FabObject>();
 			list.Add((FabObject)Activator.CreateInstance(t, false));
@@ -60,7 +60,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<FabTravStep> GetResultSteps() {
-			Type t = Path.GetCurrentType();
+			Type t = vPath.GetCurrentType();
 
 			if ( !RulesMap.ContainsKey(t) ) {
 				return new List<FabTravStep>();
@@ -130,6 +130,10 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static Type GetStepToType(ITravStep pStep, Type pFromType) {
+			if ( pStep.ToAliasType ) {
+				return null;
+			}
+
 			Type tt = pStep.ToType;
 
 			if ( TravPath.IsSameTypeOrSubclass(typeof(FabTravTypedRoot), pFromType) ) {

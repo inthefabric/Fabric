@@ -16,8 +16,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath, Type pToType) {
-			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
+		public override void ConsumePath(ITravPath pPath, Type pIgnoredToType) {
+			ITravPathItem item = ConsumeFirstPathItem(pPath, ToType);
 			string alias = item.ParamAt<string>(0);
 			ITravStepParam p = Params[0];
 			string conflictAlias;
@@ -29,7 +29,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 					p.Name+" '"+alias+"' could not be found.", 0);
 			}
 
-			if ( pPath.AllowBackToAlias(alias, out conflictAlias) ) {
+			if ( !pPath.AllowBackToAlias(alias, out conflictAlias) ) {
 				throw item.NewStepFault(FabFault.Code.IncorrectParamValue, "Cannot traverse back to "+
 					"the As("+alias+") step; it exists within the As("+conflictAlias+") and "+
 					"Back("+conflictAlias+") traversal path.", 0);

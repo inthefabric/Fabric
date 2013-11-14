@@ -22,9 +22,9 @@ namespace Fabric.New.Operations.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabTravStep ToFabTravStep() {
 			var s = new FabTravStep();
-			s.Name = Step.Name;
+			s.Name = Step.Command;
 			s.Uri = "/"+Step.Command;
-			s.Returns = ToType.Name;
+			s.Return = (ToType == null ? null : ToType.Name);
 			return s;
 		}
 
