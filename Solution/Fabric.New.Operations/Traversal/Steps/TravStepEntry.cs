@@ -2,6 +2,8 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Operations.Traversal.Routing;
+using Fabric.New.Operations.Traversal.Util;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 

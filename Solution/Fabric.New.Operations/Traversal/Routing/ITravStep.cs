@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.New.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public interface ITravStep {

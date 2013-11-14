@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Operations.Traversal.Routing;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 

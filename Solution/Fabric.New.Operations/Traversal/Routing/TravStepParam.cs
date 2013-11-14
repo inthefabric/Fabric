@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.New.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public class TravStepParam : ITravStepParam {

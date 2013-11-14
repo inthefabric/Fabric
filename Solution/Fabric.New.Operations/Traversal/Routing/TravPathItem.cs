@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Fabric.New.Infrastructure.Faults;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.New.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public class TravPathItem : ITravPathItem {

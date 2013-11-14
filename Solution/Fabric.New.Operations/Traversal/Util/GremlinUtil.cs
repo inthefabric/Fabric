@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.New.Operations.Traversal.Util {
 
 	/*================================================================================================*/
 	public static class GremlinUtil {

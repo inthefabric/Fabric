@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fabric.New.Api.Objects.Traversal;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.New.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public class TravPath : ITravPath {

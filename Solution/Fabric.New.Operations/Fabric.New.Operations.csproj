@@ -65,32 +65,33 @@
     </Compile>
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Traversal\TravRule.cs" />
-    <Compile Include="Traversal\ITravStepParam.cs" />
+    <Compile Include="Traversal\Util\TraversalUtil.cs" />
+    <Compile Include="Traversal\Routing\TravRule.cs" />
+    <Compile Include="Traversal\Routing\ITravStepParam.cs" />
     <Compile Include="Traversal\Steps\TravStepBack.cs" />
     <Compile Include="Traversal\Steps\TravStepAs.cs" />
     <Compile Include="Traversal\Steps\TravStepRoot.cs" />
-    <Compile Include="Traversal\TravStepParam.cs" />
-    <Compile Include="Traversal\ITravPath.cs" />
+    <Compile Include="Traversal\Routing\TravStepParam.cs" />
+    <Compile Include="Traversal\Routing\ITravPath.cs" />
     <Compile Include="Traversal\Steps\TravStepActiveMember.cs" />
     <Compile Include="Traversal\Steps\TravStepTake.cs" />
     <Compile Include="Traversal\Steps\TravStepEntry.cs" />
     <Compile Include="Traversal\Steps\TravStepEntryContains.cs" />
     <Compile Include="Traversal\Steps\TravStepTo.cs" />
     <Compile Include="Traversal\Steps\TravStepsCustom.cs" />
-    <Compile Include="Traversal\GremlinUtil.cs" />
+    <Compile Include="Traversal\Util\GremlinUtil.cs" />
     <Compile Include="Traversal\Steps\TravStepHas.cs" />
     <Compile Include="Traversal\Steps\TravStepLink.cs" />
-    <Compile Include="Traversal\TravPath.cs" />
-    <Compile Include="Traversal\ITravPathItem.cs" />
-    <Compile Include="Traversal\ITravStep.cs" />
+    <Compile Include="Traversal\Routing\TravPath.cs" />
+    <Compile Include="Traversal\Routing\ITravPathItem.cs" />
+    <Compile Include="Traversal\Routing\ITravStep.cs" />
     <Compile Include="Traversal\Steps\TravSteps.cs">
       <DependentUpon>TravSteps.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Traversal\TravStep.cs" />
-    <Compile Include="Traversal\TravPathItem.cs" />
+    <Compile Include="Traversal\Routing\TravStep.cs" />
+    <Compile Include="Traversal\Routing\TravPathItem.cs" />
     <Compile Include="Traversal\TraversalOperation.cs" />
     <Compile Include="Traversal\ITraversalOperation.cs" />
   </ItemGroup>

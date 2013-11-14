@@ -1,7 +1,7 @@
 ﻿using System;
 using Fabric.New.Api.Objects.Traversal;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.New.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public class TravRule {
@@ -20,11 +20,11 @@ namespace Fabric.New.Operations.Traversal {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public FabTravStep ToFabTravStep() {
+		public static FabTravStep ToFabTravStep(TravRule pRule) {
 			var s = new FabTravStep();
-			s.Name = Step.Command;
-			s.Uri = "/"+Step.Command;
-			s.Return = (ToType == null ? null : ToType.Name);
+			s.Name = pRule.Step.Command;
+			s.Uri = "/"+pRule.Step.Command;
+			s.Return = (pRule.ToType == null ? null : pRule.ToType.Name);
 			return s;
 		}
 

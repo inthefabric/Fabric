@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Operations.Traversal.Routing;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
