@@ -15,7 +15,6 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {
@@ -25,8 +24,6 @@ IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 foreach ( IVertexSchema v in vertexSchemas ) {
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	string baseName = (vp == null ? "CreateOperationBase" : "Create"+vp.Names.Domain+"Operation");
-
-	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, true);
 	string createObjName = "Create"+v.Names.Api;
 
 	if ( v.IsAbstract ) {
@@ -34,7 +31,15 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 
 	/*================================================================================================*/
-	public abstract class Create<#= v.Names.Domain #>Operation : <#= baseName #> {}
+	public abstract class Create<#= v.Names.Domain #>Operation : <#= baseName #> {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	OutputCreateEdges(v, vp);
+#>
+
+	}
 <#
 		continue;
 	} //end "IsAbstract" condition
@@ -44,50 +49,56 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	/*================================================================================================*/
 	public class Create<#= v.Names.Domain #>Operation : <#= baseName #> {
 		
-		private IWeaverVarAlias<<#= v.Names.Domain #>> vVertexAlias;
-		private <#= createObjName #> vCreateObj;
-		private <#= v.Names.Domain #> vDomObj;
-		private <#= v.Names.Api #> vResult;
+		private IWeaverVarAlias<<#= v.Names.Domain #>> vAlias;
+		private <#= v.Names.Domain #> vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) {
-			base.SetVertexAlias(pAlias);
-			vVertexAlias = (IWeaverVarAlias<<#= v.Names.Domain #>>)pAlias;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public <#= v.Names.Api #> Get<#= v.Names.Api #>Result() {
-			return vResult;
+			//return DomainToApi.From<#= v.Names.Domain #>(ExecuteTx<<#= v.Names.Domain #>>(vAlias));
+			return DomainToApi.From<#= v.Names.Domain #>(vDom);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
-			return vResult;
+			return Get<#= v.Names.Api #>Result();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
-			OpCtx = pOpCtx;
-			
-			<#= createObjName #> input;
-			vDomObj = ConvertInput(pJson, ApiToDomain.From<#= createObjName #>, out input);
-			vCreateObj = input;
-		
-			IWeaverVarAlias<<#= v.Names.Domain #>> domVar;
-			TxBuild = new TxBuilder();
-			TxBuild.AddVertex(vDomObj, out domVar);
-			SetVertexAlias(domVar);
-			CreateEdges(input);
-
-			vResult = DomainToApi.From<#= v.Names.Domain #>(ExecuteTx<<#= v.Names.Domain #>>()); //vDomObj
+			<#= createObjName #> c;
+			<#= v.Names.Domain #> d;
+			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.From<#= createObjName #>, out c, out d);
+			Create<#= v.Names.Domain #>Edges(c, d, vAlias);
+			vDom = d; //for testing
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void CreateEdges<T>(T pCreateObj) {
-			base.CreateEdges(pCreateObj);
 <#
+	OutputCreateEdges(v, vp);
+#>
+
+	}
+<#
+} // end verts loop
+#>
+
+}
+<#+
+private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
+	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(pVertex, true);
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		<#= pVertex.IsAbstract ? "protected" : "private" #> void Create<#= pVertex.Names.Domain #>Edges(Create<#= pVertex.Names.Api #> pCre, <#= pVertex.Names.Domain #> pDom,
+															IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
+<#+
+	if ( pParent != null ) {
+#>
+			var va = new WeaverVarAlias<<#= pParent.Names.Domain #>>(pAlias.Name);
+			Create<#= pParent.Names.Domain #>Edges(pCre, pDom, va);
+<#+
+	} //end parent condition
+
 	foreach ( IEdgeSchema e in edges ) {
 		IVertexSchema fv = SchemaUtil.GetVertex(e.FromVertexType);
 		IVertexSchema tv = SchemaUtil.GetVertex(e.ToVertexType);
@@ -100,13 +111,13 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 
 			////
-
+			
 			IWeaverVarAlias<<#= tv.Names.Domain #>> <#= e.NameDb #>Alias =
 				AddEdge<<#= fv.Names.Domain #>, <#= e.GetClassNameDom() #>, <#= tv.Names.Domain #>>(
-					vVertexAlias, vCreateObj.<#= idProp #>);
-<#
+					pAlias, pCre.<#= idProp #>);
+<#+
 
-		IEdgeSchema opp = SchemaUtil.GetReverseEdgeSchema(v, e);
+		IEdgeSchema opp = SchemaUtil.GetReverseEdgeSchema(pVertex, e);
 
 		if ( opp == null ) {
 			continue;
@@ -114,29 +125,25 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 
 			var <#= opp.NameDb #>Edge = new <#= opp.GetClassNameDom() #>();
-<#
+<#+
 		IList<EdgeProperty> edgeProps = SchemaUtil.GetEdgeProperties(opp);
 
 		foreach ( EdgeProperty ep in edgeProps ) {
 			IEdgeSchema edgeToProp = ep.GetEdgeToDomainProp();
 			DomainProperty dp = ep.GetDomainProp();
 			string fromVar = (edgeToProp == null ?
-				"vDomObj."+dp.Name : "vCreateObj."+edgeToProp.GetPropNameApi());
+				"pDom."+dp.Name : "pCre."+edgeToProp.GetPropNameApi());
 #>
 			<#= opp.NameDb #>Edge.<#= ep.Name #> = <#= fromVar #>;
-<#
+<#+
 		}
 #>
 
-			AddReverseEdge(<#= e.NameDb #>Alias, <#= opp.NameDb #>Edge, vVertexAlias);
-<#
+			AddReverseEdge(<#= e.NameDb #>Alias, <#= opp.NameDb #>Edge, pAlias);
+<#+
 	} //end edges loop
 #>
 		}
-
-	}
-<#
-} // end verts loop
+<#+
+} //end function
 #>
-
-}

@@ -2,6 +2,7 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Data;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using ServiceStack.Text;
 using Weaver.Core.Elements;
@@ -15,20 +16,10 @@ namespace Fabric.New.Operations.Create {
 		protected IOperationContext OpCtx { get; set; }
 		protected TxBuilder TxBuild { get; set; }
 
-		private IWeaverVarAlias vVertexAlias;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract void Create(IOperationContext pOpCtx, string pJson);
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void CreateEdges<T>(T pCreateObj) where T : CreateFabElement {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void SetVertexAlias<T>(IWeaverVarAlias<T> pAlias) where T : IWeaverElement {
-			vVertexAlias = pAlias;
-		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract FabObject GetResult();
@@ -36,8 +27,27 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected T ExecuteTx<T>() where T : Vertex, IElement, new() {
-			IWeaverTransaction tx = TxBuild.Finish(vVertexAlias);
+		protected IWeaverVarAlias<TDom> CreateInit<TCre, TDom>(IOperationContext pOpCtx, string pJson,
+												Func<TCre, TDom> pConvert, out TCre pCre, out TDom pDom)
+												where TCre : CreateFabObject where TDom : IVertex {
+			OpCtx = pOpCtx;
+			TxBuild = new TxBuilder();
+
+			pCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
+			pCre.Validate();
+
+			pDom = pConvert(pCre);
+			pDom.VertexId = Sharpflake.GetId<Vertex>();
+			pDom.Timestamp = DateTime.UtcNow.Ticks;
+
+			IWeaverVarAlias<TDom> va;
+			TxBuild.AddVertex(pDom, out va);
+			return va;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected T ExecuteTx<T>(IWeaverVarAlias<T> pVertexAlias) where T : Vertex, IElement, new() {
+			IWeaverTransaction tx = TxBuild.Finish(pVertexAlias);
 			IDataResult data = OpCtx.NewData().AddQueries(tx).Execute(GetType().Name);
 			return data.ToElementAt<T>(0, 0);
 		}
@@ -45,34 +55,25 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected TDom ConvertInput<TCre, TDom>(string pJson, Func<TCre, TDom> pConvert, 
-									out TCre pInput) where TCre : CreateFabElement where TDom : IVertex {
-			pInput = JsonSerializer.DeserializeFromString<TCre>(pJson);
-			pInput.Validate();
+		private void VerifyVertex<T>(long pVertexId) where T : class, IVertex, new() {
+			T vert = OpCtx.GetVertexById<T>(pVertexId);
 
-			TDom dom = pConvert(pInput);
-			dom.VertexId = Sharpflake.GetId<Vertex>();
-			dom.Timestamp = DateTime.UtcNow.Ticks;
-			return dom;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected void VerifyVertex<T>(long pVertexId) where T : IVertex {
-			//TODO: CreateOperationsUtil.VerifyVertex()
+			if ( vert == null ) {
+				throw new FabNotFoundFault(typeof(T), "Id="+pVertexId);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(
 													IWeaverVarAlias<TFrom> pFromVar, long pToVertexId)
 													where TFrom : IVertex, new()
-													where TTo : IVertex, new()
+													where TTo : class, IVertex, new()
 													where TEdge : IWeaverEdge<TFrom, TTo>, new() {
 			VerifyVertex<TTo>(pToVertexId);
 
 			IWeaverVarAlias<TTo> toVertexVar;
 			TxBuild.GetVertex(pToVertexId, out toVertexVar);
 			TxBuild.AddEdge(pFromVar, new TEdge(), toVertexVar);
-
 			return toVertexVar;
 		}
 		
@@ -80,7 +81,7 @@ namespace Fabric.New.Operations.Create {
 		protected IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(
 													IWeaverVarAlias<TFrom> pFromVar, long? pToVertexId)
 													where TFrom : IVertex, new()
-													where TTo : IVertex, new()
+													where TTo : class, IVertex, new()
 													where TEdge : IWeaverEdge<TFrom, TTo>, new() {
 			if ( pToVertexId == null ) {
 				return null;
