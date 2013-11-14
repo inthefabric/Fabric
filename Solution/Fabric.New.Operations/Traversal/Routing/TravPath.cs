@@ -10,7 +10,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 
 		//private static readonly Logger Log = Logger.Build<TravPath>();
 
-		public long MemberId { get; private set; }
+		public long? MemberId { get; private set; }
 
 		private readonly string vRawText;
 		private readonly List<ITravPathItem> vItems;
@@ -26,7 +26,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravPath(string pRawText, long pMemberId=-1) {
+		public TravPath(string pRawText, long? pMemberId=null) {
 			vRawText = pRawText;
 			MemberId = pMemberId;
 

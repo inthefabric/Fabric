@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Routing;
@@ -23,7 +24,8 @@ namespace Fabric.New.Operations.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		public void Perform(IOperationContext pOpCtx, string pPath) {
 			vOpCtx = pOpCtx;
-			vPath = new TravPath(pPath, vOpCtx.MemberId);
+
+			vPath = new TravPath(pPath, vOpCtx.Access.ActiveMemberId);
 
 			ITravPathItem tps = vPath.GetNextStep();
 

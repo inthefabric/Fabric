@@ -92,7 +92,7 @@
     <Compile Include="Faults\FabPropertyValueFault.cs" />
     <Compile Include="Faults\FabDuplicateFault.cs" />
     <Compile Include="Faults\FabFault.cs" />
-    <Compile Include="Faults\FabMembershipFault.cs" />
+    <Compile Include="Faults\FabOauthFault.cs" />
     <Compile Include="Faults\FabNotFoundFault.cs" />
     <Compile Include="Faults\FabPreventedFault.cs" />
     <Compile Include="Broadcast\Logger.cs" />

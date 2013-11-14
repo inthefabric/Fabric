@@ -10,7 +10,7 @@ namespace Fabric.New.Infrastructure.Faults {
 
 			InternalError = 1001,
 			ActionNotPermitted = 1002,
-			MemberNotFound = 1003,
+			OauthTokenFailure = 1003,
 			UniqueConstraintViolation = 1004,
 			ObjectNotFound = 1005,
 			ArgumentMissingFault = 1006,

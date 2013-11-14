@@ -19,9 +19,7 @@ namespace Fabric.New.Operations {
 		public int RexConnPort { get; private set; }
 
 		public Guid ContextId { get; private set; }
-		public long MemberId { get; private set; }
-		//public long UserId { get; private set; }
-		//public long AppId { get; private set; }
+		public IOperationAccess Access { get; private set; }
 		public IAnalyticsManager Analytics { get; private set; }
 		public IMetricsManager Metrics { get; private set; }
 		public ICacheManager Cache { get; private set; }
@@ -45,20 +43,10 @@ namespace Fabric.New.Operations {
 			Cache = pCache;
 
 			ContextId = Guid.NewGuid();
-			MemberId = -1;
-			//UserId = -1;
-			//AppId = -1;
+			Access = new OperationAccess(() => NewData(), () => UtcNow.Ticks);
 			Analytics = pAnalyticsProvider(ContextId);
 			DbQueryExecutionCount = 0;
 			DbQueryMillis = 0;
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public void SetAppUserId(long? pAppId, long? pUserId) {
-			if ( AppId != -1 ) { throw new Exception("UserId and AppId are already set."); }
-			AppId = (pAppId ?? 0);
-			UserId = (pUserId ?? 0);
-			//Analytics.SetAppUserId(AppId, UserId);
 		}
 
 

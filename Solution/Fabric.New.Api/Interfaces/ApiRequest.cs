@@ -24,6 +24,8 @@ namespace Fabric.New.Api.Interfaces {
 			Method = vNancyReq.Method;
 			Path = vNancyReq.Path;
 			IpAddress = vNancyReq.UserHostAddress;
+
+			OpCtx.Access.SetOauthToken(GetBearerToken());
 		}
 
 
@@ -41,12 +43,12 @@ namespace Fabric.New.Api.Interfaces {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public IEnumerable<string> GetHeader(string pName) {
+		private IEnumerable<string> GetHeader(string pName) {
 			return vNancyReq.Headers[pName];
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetBearerToken() {
+		private string GetBearerToken() {
 			IEnumerable<string> authList = GetHeader("Authorization");
 			string token = null;
 

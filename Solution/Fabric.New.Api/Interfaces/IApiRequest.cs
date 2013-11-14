@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Fabric.New.Operations;
+﻿using Fabric.New.Operations;
 
 namespace Fabric.New.Api.Interfaces {
 
@@ -18,14 +17,6 @@ namespace Fabric.New.Api.Interfaces {
 
 		/*--------------------------------------------------------------------------------------------*/
 		string GetFormValue(string pName);
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		IEnumerable<string> GetHeader(string pName);
-
-		/*--------------------------------------------------------------------------------------------*/
-		string GetBearerToken();
 
 	}
 

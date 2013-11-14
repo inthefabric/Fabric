@@ -13,20 +13,13 @@ namespace Fabric.New.Operations {
 		int RexConnPort { get; }
 
 		Guid ContextId { get; }
-		long MemberId { get; }
-		//long UserId { get; }
-		//long AppId { get; }
+		IOperationAccess Access { get; }
 		IAnalyticsManager Analytics { get; }
 		IMetricsManager Metrics { get; }
 		ICacheManager Cache { get; }
 
 		int DbQueryExecutionCount { get; }
 		int DbQueryMillis { get; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		//void SetAppUserId(long? pAppId, long? pUserId);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

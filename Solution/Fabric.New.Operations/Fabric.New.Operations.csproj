@@ -54,6 +54,8 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="IOperationAccess.cs" />
+    <Compile Include="OperationAccess.cs" />
     <Compile Include="OperationContextDataExt.cs" />
     <Compile Include="IOperationContext.cs" />
     <Compile Include="OperationContext.cs" />

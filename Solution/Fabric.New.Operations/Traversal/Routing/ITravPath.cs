@@ -7,7 +7,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 	/*================================================================================================*/
 	public interface ITravPath {
 
-		long MemberId { get; }
+		long? MemberId { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
