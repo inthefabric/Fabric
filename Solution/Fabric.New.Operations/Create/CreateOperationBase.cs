@@ -55,10 +55,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyVertex<T>(long pVertexId) where T : class, IVertex, new() {
-			T vert = OpCtx.GetVertexById<T>(pVertexId);
+		private void VerifyVertex<T>(long pVertexId) where T : Vertex, new() {
+			Vertex v = OpCtx.GetVertexById<Vertex>(pVertexId);
 
-			if ( vert == null ) {
+			if ( v == null ) {
 				throw new FabNotFoundFault(typeof(T), "Id="+pVertexId);
 			}
 		}
@@ -67,7 +67,7 @@ namespace Fabric.New.Operations.Create {
 		protected IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(
 													IWeaverVarAlias<TFrom> pFromVar, long pToVertexId)
 													where TFrom : IVertex, new()
-													where TTo : class, IVertex, new()
+													where TTo : Vertex, new()
 													where TEdge : IWeaverEdge<TFrom, TTo>, new() {
 			VerifyVertex<TTo>(pToVertexId);
 
@@ -81,7 +81,7 @@ namespace Fabric.New.Operations.Create {
 		protected IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(
 													IWeaverVarAlias<TFrom> pFromVar, long? pToVertexId)
 													where TFrom : IVertex, new()
-													where TTo : class, IVertex, new()
+													where TTo : Vertex, new()
 													where TEdge : IWeaverEdge<TFrom, TTo>, new() {
 			if ( pToVertexId == null ) {
 				return null;

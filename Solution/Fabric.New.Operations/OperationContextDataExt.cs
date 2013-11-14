@@ -33,7 +33,7 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static T GetVertexById<T>(this IOperationContext pApiCtx, long pVertexId)
-																	where T : class, IVertex, new() {
+																	where T : Vertex, new() {
 			T item = pApiCtx.Cache.Memory.FindVertex<T>(pVertexId);
 
 			if ( item != null ) {

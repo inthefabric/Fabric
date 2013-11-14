@@ -42,7 +42,7 @@ namespace Fabric.New.Infrastructure.Query {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static T ExactIndex<T>(this IWeaverAllVertices pAllVert, T pVertex) 
-																			where T : IVertex, new() {
+																			where T : Vertex, new() {
 			return pAllVert.ExactIndex<T>((x => x.VertexId), pVertex.VertexId);
 		}
 

@@ -13,7 +13,7 @@ namespace Fabric.New.Infrastructure.Query {
 		public IWeaverTransaction Transaction { get; private set; }
 		public IList<IWeaverScript> Scripts { get; private set; }
 
-		private readonly HashSet<IWeaverVarAlias> vVarHash;
+		private readonly HashSet<string> vVarHash;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,7 @@ namespace Fabric.New.Infrastructure.Query {
 		public TxBuilder() {
 			Transaction = new WeaverTransaction();
 			Scripts = new List<IWeaverScript>();
-			vVarHash = new HashSet<IWeaverVarAlias>();
+			vVarHash = new HashSet<string>();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -41,12 +41,12 @@ namespace Fabric.New.Infrastructure.Query {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void RegisterVarWithTxBuilder(IWeaverVarAlias pVar) {
-			vVarHash.Add(pVar);
+			vVarHash.Add(pVar.Name);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyVar(IWeaverVarAlias pVar) {
-			if ( pVar == null || !vVarHash.Contains(pVar) ) {
+			if ( pVar == null || !vVarHash.Contains(pVar.Name) ) {
 				throw new Exception("No matching IWeaverVarAlias found with name '"+
 					(pVar == null ? "<NULL>" : pVar.Name)+"'.");
 			}
@@ -61,7 +61,7 @@ namespace Fabric.New.Infrastructure.Query {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void GetVertex<T>(long pVertexId, out IWeaverVarAlias<T> pVertexVar) 
-																			where T : IVertex, new() {
+																			where T : Vertex, new() {
 			IWeaverQuery q = Weave.Inst.Graph.V
 				.ExactIndex<T>((x => x.VertexId), pVertexId).Next()
 				.ToQuery();
@@ -69,11 +69,11 @@ namespace Fabric.New.Infrastructure.Query {
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
 			Transaction.AddQuery(q);
 			Scripts.Add(q);
-			vVarHash.Add(pVertexVar);
+			RegisterVarWithTxBuilder(pVertexVar);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void GetVertex<T>(T pVertex, out IWeaverVarAlias<T> pVertexVar) where T : IVertex, new(){
+		public void GetVertex<T>(T pVertex, out IWeaverVarAlias<T> pVertexVar) where T : Vertex, new(){
 			GetVertex(pVertex.VertexId, out pVertexVar);
 		}
 
@@ -85,7 +85,7 @@ namespace Fabric.New.Infrastructure.Query {
 			q = WeaverQuery.StoreResultAsVar(varName, q, out pVertexVar);
 			Transaction.AddQuery(q);
 			Scripts.Add(q);
-			vVarHash.Add(pVertexVar);
+			RegisterVarWithTxBuilder(pVertexVar);
 		}
 
 
@@ -96,7 +96,7 @@ namespace Fabric.New.Infrastructure.Query {
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewVertexVar);
 			Transaction.AddQuery(q);
 			Scripts.Add(q);
-			vVarHash.Add(pNewVertexVar);
+			RegisterVarWithTxBuilder(pNewVertexVar);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

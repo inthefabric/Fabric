@@ -14,14 +14,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateAppOperation : CreateArtifactOperation {
 		
 		private IWeaverVarAlias<App> vAlias;
-		private App vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabApp GetFabAppResult() {
-			//return DomainToApi.FromApp(ExecuteTx<App>(vAlias));
-			return DomainToApi.FromApp(vDom);
+			return DomainToApi.FromApp(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -35,7 +33,6 @@ namespace Fabric.New.Operations.Create {
 			App d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabApp, out c, out d);
 			CreateAppEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -79,14 +76,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateClassOperation : CreateArtifactOperation {
 		
 		private IWeaverVarAlias<Class> vAlias;
-		private Class vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabClass GetFabClassResult() {
-			//return DomainToApi.FromClass(ExecuteTx<Class>(vAlias));
-			return DomainToApi.FromClass(vDom);
+			return DomainToApi.FromClass(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -100,7 +95,6 @@ namespace Fabric.New.Operations.Create {
 			Class d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabClass, out c, out d);
 			CreateClassEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -117,14 +111,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateEmailOperation : CreateVertexOperation {
 		
 		private IWeaverVarAlias<Email> vAlias;
-		private Email vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabEmail GetFabEmailResult() {
-			//return DomainToApi.FromEmail(ExecuteTx<Email>(vAlias));
-			return DomainToApi.FromEmail(vDom);
+			return DomainToApi.FromEmail(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -138,7 +130,6 @@ namespace Fabric.New.Operations.Create {
 			Email d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabEmail, out c, out d);
 			CreateEmailEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -165,14 +156,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateFactorOperation : CreateVertexOperation {
 		
 		private IWeaverVarAlias<Factor> vAlias;
-		private Factor vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabFactor GetFabFactorResult() {
-			//return DomainToApi.FromFactor(ExecuteTx<Factor>(vAlias));
-			return DomainToApi.FromFactor(vDom);
+			return DomainToApi.FromFactor(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -186,7 +175,6 @@ namespace Fabric.New.Operations.Create {
 			Factor d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabFactor, out c, out d);
 			CreateFactorEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -267,14 +255,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateInstanceOperation : CreateArtifactOperation {
 		
 		private IWeaverVarAlias<Instance> vAlias;
-		private Instance vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabInstance GetFabInstanceResult() {
-			//return DomainToApi.FromInstance(ExecuteTx<Instance>(vAlias));
-			return DomainToApi.FromInstance(vDom);
+			return DomainToApi.FromInstance(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -288,7 +274,6 @@ namespace Fabric.New.Operations.Create {
 			Instance d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabInstance, out c, out d);
 			CreateInstanceEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -305,14 +290,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateMemberOperation : CreateVertexOperation {
 		
 		private IWeaverVarAlias<Member> vAlias;
-		private Member vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabMember GetFabMemberResult() {
-			//return DomainToApi.FromMember(ExecuteTx<Member>(vAlias));
-			return DomainToApi.FromMember(vDom);
+			return DomainToApi.FromMember(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -326,7 +309,6 @@ namespace Fabric.New.Operations.Create {
 			Member d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabMember, out c, out d);
 			CreateMemberEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -369,14 +351,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateOauthAccessOperation : CreateVertexOperation {
 		
 		private IWeaverVarAlias<OauthAccess> vAlias;
-		private OauthAccess vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess GetFabOauthAccessResult() {
-			//return DomainToApi.FromOauthAccess(ExecuteTx<OauthAccess>(vAlias));
-			return DomainToApi.FromOauthAccess(vDom);
+			return DomainToApi.FromOauthAccess(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -390,7 +370,6 @@ namespace Fabric.New.Operations.Create {
 			OauthAccess d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabOauthAccess, out c, out d);
 			CreateOauthAccessEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -418,14 +397,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateUrlOperation : CreateArtifactOperation {
 		
 		private IWeaverVarAlias<Url> vAlias;
-		private Url vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabUrl GetFabUrlResult() {
-			//return DomainToApi.FromUrl(ExecuteTx<Url>(vAlias));
-			return DomainToApi.FromUrl(vDom);
+			return DomainToApi.FromUrl(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -439,7 +416,6 @@ namespace Fabric.New.Operations.Create {
 			Url d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabUrl, out c, out d);
 			CreateUrlEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -456,14 +432,12 @@ namespace Fabric.New.Operations.Create {
 	public class CreateUserOperation : CreateArtifactOperation {
 		
 		private IWeaverVarAlias<User> vAlias;
-		private User vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabUser GetFabUserResult() {
-			//return DomainToApi.FromUser(ExecuteTx<User>(vAlias));
-			return DomainToApi.FromUser(vDom);
+			return DomainToApi.FromUser(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -477,7 +451,6 @@ namespace Fabric.New.Operations.Create {
 			User d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabUser, out c, out d);
 			CreateUserEdges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

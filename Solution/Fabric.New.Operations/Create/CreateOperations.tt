@@ -50,14 +50,12 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	public class Create<#= v.Names.Domain #>Operation : <#= baseName #> {
 		
 		private IWeaverVarAlias<<#= v.Names.Domain #>> vAlias;
-		private <#= v.Names.Domain #> vDom;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public <#= v.Names.Api #> Get<#= v.Names.Api #>Result() {
-			//return DomainToApi.From<#= v.Names.Domain #>(ExecuteTx<<#= v.Names.Domain #>>(vAlias));
-			return DomainToApi.From<#= v.Names.Domain #>(vDom);
+			return DomainToApi.From<#= v.Names.Domain #>(ExecuteTx(vAlias));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -71,7 +69,6 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 			<#= v.Names.Domain #> d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.From<#= createObjName #>, out c, out d);
 			Create<#= v.Names.Domain #>Edges(c, d, vAlias);
-			vDom = d; //for testing
 		}
 
 <#

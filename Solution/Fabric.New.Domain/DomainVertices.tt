@@ -24,6 +24,7 @@ IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 foreach ( IVertexSchema v in vertexSchemas ) {
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	string baseName = (vp == null ? "VertexBase" : vp.Names.Domain);
+	string inter = (vp == null ? ", I"+v.Names.Domain : "");
 
 	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
 	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, false);
@@ -32,16 +33,15 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 	/*================================================================================================*/
 	[WeaverTitanVertex]
-	public class <#= v.Names.Domain #> : <#= baseName #> {
+	public class <#= v.Names.Domain #> : <#= baseName #><#= inter #> {
 
 <#
 	foreach ( DomainProperty dp in props ) {
 		string isInd = (dp.IsIndexed+"").ToLower();
 		string isEla = (dp.IsElastic+"").ToLower();
-		string virt = (vp == null ? "override" : "virtual");
 #>
 		[WeaverTitanProperty("<#= dp.DbName #>", TitanIndex=<#= isInd #>, TitanElasticIndex=<#= isEla #>)]
-		public <#= virt #> <#= dp.GetDataTypeName() #> <#= dp.Name #> { get; set; }
+		public virtual <#= dp.GetDataTypeName() #> <#= dp.Name #> { get; set; }
 		
 <#
 	} // end property loop
