@@ -2,33 +2,135 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
+using System.Collections.Generic;
+
 namespace Fabric.New.Api.Objects.Traversal {
 
-	/*================================================================================================*/
-	public class FabTravAppRoot : FabTravArtifactRoot {}
 
 	/*================================================================================================*/
-	public class FabTravArtifactRoot : FabTravVertexRoot {}
+	public abstract partial class FabTravTypedRoot {
+
+		public static IDictionary<Type, Type> BaseTypeMap = new Dictionary<Type, Type> {
+			{ typeof(FabTravAppRoot), typeof(FabApp) },
+			{ typeof(FabTravArtifactRoot), typeof(FabArtifact) },
+			{ typeof(FabTravClassRoot), typeof(FabClass) },
+			{ typeof(FabTravFactorRoot), typeof(FabFactor) },
+			{ typeof(FabTravInstanceRoot), typeof(FabInstance) },
+			{ typeof(FabTravMemberRoot), typeof(FabMember) },
+			{ typeof(FabTravUrlRoot), typeof(FabUrl) },
+			{ typeof(FabTravUserRoot), typeof(FabUser) },
+			{ typeof(FabTravVertexRoot), typeof(FabVertex) },
+		};
+	
+	}
 
 	/*================================================================================================*/
-	public class FabTravClassRoot : FabTravArtifactRoot {}
+	public class FabTravAppRoot : FabTravArtifactRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabApp);
+		}
+
+	}
 
 	/*================================================================================================*/
-	public class FabTravFactorRoot : FabTravVertexRoot {}
+	public class FabTravArtifactRoot : FabTravVertexRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabArtifact);
+		}
+
+	}
 
 	/*================================================================================================*/
-	public class FabTravInstanceRoot : FabTravArtifactRoot {}
+	public class FabTravClassRoot : FabTravArtifactRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabClass);
+		}
+
+	}
 
 	/*================================================================================================*/
-	public class FabTravMemberRoot : FabTravVertexRoot {}
+	public class FabTravFactorRoot : FabTravVertexRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabFactor);
+		}
+
+	}
 
 	/*================================================================================================*/
-	public class FabTravUrlRoot : FabTravArtifactRoot {}
+	public class FabTravInstanceRoot : FabTravArtifactRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabInstance);
+		}
+
+	}
 
 	/*================================================================================================*/
-	public class FabTravUserRoot : FabTravArtifactRoot {}
+	public class FabTravMemberRoot : FabTravVertexRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabMember);
+		}
+
+	}
 
 	/*================================================================================================*/
-	public class FabTravVertexRoot : FabTravTypedRoot {}
+	public class FabTravUrlRoot : FabTravArtifactRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabUrl);
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class FabTravUserRoot : FabTravArtifactRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabUser);
+		}
+
+	}
+
+	/*================================================================================================*/
+	public class FabTravVertexRoot : FabTravTypedRoot {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(FabVertex);
+		}
+
+	}
 
 }

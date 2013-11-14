@@ -39,6 +39,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	string apiName = apiNamePrefix+v.Names.Api;
 	string objectName = apiNamePrefix+"FabElement";
 	string baseName = (vp == null ? objectName : apiNamePrefix+vp.Names.Api);
+	string subBaseName = apiNamePrefix+"FabObject";
 
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, pCreateMode);
 	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, true);
@@ -74,7 +75,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	}
 	
 	foreach ( string sub in subMap.Keys ) {
-		//bool isSubNul = v.IsSubObjectNullable(sub);;
+		//bool isSubNul = v.IsSubObjectNullable(sub);
 #>
 		public <#= apiNamePrefix+sub #> <#= sub.Substring(3) #> { get; set; }
 <#+	
@@ -95,7 +96,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 
 
 	/*================================================================================================*/
-	public class <#= apiNamePrefix+sub #> : <#= objectName #> {
+	public class <#= apiNamePrefix+sub #> : <#= subBaseName #> {
 
 <#+
 	props = subMap[sub];

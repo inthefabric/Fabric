@@ -97,9 +97,6 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void UpdateCurrentType(Type pNewType) {
-			Log.Debug("Update? "+vCurrType.Name+" --> "+pNewType.Name+" == "+
-				(!IsSameTypeOrSubclass(pNewType, vCurrType)));
-
 			if ( !IsSameTypeOrSubclass(pNewType, vCurrType) ) {
 				vCurrType = pNewType;
 			}

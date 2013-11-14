@@ -67,6 +67,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="CreateFabObject.cs" />
     <Compile Include="FabElement.cs" />
     <Compile Include="Menu\FabHome.cs" />
     <Compile Include="Menu\FabService.cs" />
@@ -88,7 +89,7 @@
     <Compile Include="Oauth\FabOauthError.cs" />
     <Compile Include="Oauth\FabOauthLogin.cs" />
     <Compile Include="Oauth\FabOauthLogout.cs" />
-    <Compile Include="Traversal\FabTravVertexRoot.cs" />
+    <Compile Include="Traversal\FabTravTypedRoot.cs" />
     <Compile Include="Traversal\FabTravStep.cs" />
     <Compile Include="Traversal\FabLink.cs" />
     <Compile Include="CreateFabElement.cs" />

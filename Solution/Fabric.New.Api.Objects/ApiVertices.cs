@@ -133,7 +133,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabDescriptor : FabElement {
+	public class FabDescriptor : FabObject {
 
 		public virtual byte Type { get; set; }
 
@@ -141,7 +141,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabDirector : FabElement {
+	public class FabDirector : FabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual byte PrimaryAction { get; set; }
@@ -151,7 +151,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabEventor : FabElement {
+	public class FabEventor : FabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual long Year { get; set; }
@@ -165,7 +165,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabIdentor : FabElement {
+	public class FabIdentor : FabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual string Value { get; set; }
@@ -174,7 +174,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabLocator : FabElement {
+	public class FabLocator : FabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual double ValueX { get; set; }
@@ -185,7 +185,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class FabVector : FabElement {
+	public class FabVector : FabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual byte Unit { get; set; }
@@ -509,7 +509,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabDescriptor : CreateFabElement {
+	public class CreateFabDescriptor : CreateFabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual long? RefinesPrimaryWithArtifactId { get; set; }
@@ -535,7 +535,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabDirector : CreateFabElement {
+	public class CreateFabDirector : CreateFabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual byte PrimaryAction { get; set; }
@@ -563,7 +563,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabEventor : CreateFabElement {
+	public class CreateFabEventor : CreateFabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual long Year { get; set; }
@@ -607,7 +607,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabIdentor : CreateFabElement {
+	public class CreateFabIdentor : CreateFabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual string Value { get; set; }
@@ -632,7 +632,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabLocator : CreateFabElement {
+	public class CreateFabLocator : CreateFabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual double ValueX { get; set; }
@@ -664,7 +664,7 @@ namespace Fabric.New.Api.Objects {
 
 
 	/*================================================================================================*/
-	public class CreateFabVector : CreateFabElement {
+	public class CreateFabVector : CreateFabObject {
 
 		public virtual byte Type { get; set; }
 		public virtual byte Unit { get; set; }

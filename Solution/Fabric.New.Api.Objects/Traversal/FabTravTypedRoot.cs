@@ -3,19 +3,13 @@
 namespace Fabric.New.Api.Objects.Traversal {
 
 	/*================================================================================================*/
-	public abstract class FabLink : FabElement {
-
-		public string FromType { get; set; }
-		public string ToType { get; set; }
+	public abstract partial class FabTravTypedRoot : FabObject {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabLink(Type pFromType, Type pToType) {
-			FromType = pFromType.Name;
-			ToType = pFromType.Name;
-		}
-
+		public abstract Type GetBaseType();
+	
 	}
 
 }

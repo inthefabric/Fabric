@@ -24,7 +24,8 @@ foreach ( IEdgeSchema e in edges ) {
 #>
 
 	/*================================================================================================*/
-	public class <#= name #> : FabLink<<#= e.GetFromVertex().Names.Api #>, <#= e.GetToVertex().Names.Api #>> {
+	public class <#= name #> : FabLink {
+
 <#
 	foreach ( EdgeProperty p in props ) {
 #>
@@ -32,6 +33,12 @@ foreach ( IEdgeSchema e in edges ) {
 <#
 	} //end props loop
 #>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= name #>() : base(typeof(<#= e.GetFromVertex().Names.Api #>), typeof(<#= e.GetToVertex().Names.Api #>)) {}
+
 	}
 <#
 } //end edge loop

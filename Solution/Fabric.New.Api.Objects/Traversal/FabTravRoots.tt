@@ -1,5 +1,4 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="System.Core" #>
 <#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
@@ -9,10 +8,32 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
+using System.Collections.Generic;
+
 namespace Fabric.New.Api.Objects.Traversal {
+
+
+	/*================================================================================================*/
+	public abstract partial class FabTravTypedRoot {
+
+		public static IDictionary<Type, Type> BaseTypeMap = new Dictionary<Type, Type> {
 <#
 IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
 
+foreach ( IVertexSchema v in verts ) {
+	if ( v.GetAccess != Access.All ) {
+		continue;
+	}
+#>
+			{ typeof(FabTrav<#= v.Names.Domain #>Root), typeof(<#= v.Names.Api #>) },
+<#
+} // end vertex loop
+#>
+		};
+	
+	}
+<#
 foreach ( IVertexSchema v in verts ) {
 	if ( v.GetAccess != Access.All ) {
 		continue;
@@ -23,7 +44,16 @@ foreach ( IVertexSchema v in verts ) {
 #>
 
 	/*================================================================================================*/
-	public class FabTrav<#= v.Names.Domain #>Root : <#= baseName #> {}
+	public class FabTrav<#= v.Names.Domain #>Root : <#= baseName #> {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override Type GetBaseType() {
+			return typeof(<#= v.Names.Api #>);
+		}
+
+	}
 <#
 } // end vertex loop
 #>
