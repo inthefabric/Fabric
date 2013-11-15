@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain;
 
 namespace Fabric.New.Api.Objects.Conversions {
@@ -11,9 +12,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 		internal const int SecPerDay = SecPerHour*(24+1);
 		internal const int SecPerMonth = SecPerDay*(31+1);
 		internal const int SecPerYear = SecPerMonth*(12+1); //38,698,400 sec; +/- 238 billion years
-
-		private static readonly DateTime UnixEpoch = 
-			new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +89,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromVertexCustom(FabVertex pApi, Vertex pDomain) {
-			pApi.Timestamp = (long)(new DateTime(pDomain.Timestamp)-UnixEpoch).TotalMilliseconds;
+			pApi.Timestamp = FabMetaTime.GetTimestamp(pDomain.Timestamp);
 		}
 
 	}

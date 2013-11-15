@@ -16,6 +16,11 @@ namespace Fabric.New.Api {
 		public readonly static FabService Mod = BuildModMenu();
 		public readonly static FabService Oauth = BuildOauthMenu();
 		public readonly static FabService Trav = BuildTravMenu();
+
+		public static FabServiceOperation MetaSpec;
+		public static FabServiceOperation MetaVersion;
+		public static FabServiceOperation MetaTime;
+
 		public readonly static FabHome Home = BuildHomeMenu();
 
 
@@ -44,14 +49,15 @@ namespace Fabric.New.Api {
 			s.Name = "Meta";
 			s.Uri = "/Meta";
 
-			var op = NewOperation<FabSpec>("Spec");
-			s.Operations.Add(op);
+			if ( MetaSpec == null ) {
+				MetaSpec = NewOperation<FabSpec>("Spec");
+				MetaVersion = NewOperation<FabMetaVersion>("Version");
+				MetaTime = NewOperation<FabMetaTime>("Time");
+			}
 
-			op = NewOperation<FabMetaVersion>("Version");
-			s.Operations.Add(op);
-
-			op = NewOperation<FabMetaTime>("Time");
-			s.Operations.Add(op);
+			s.Operations.Add(MetaSpec);
+			s.Operations.Add(MetaVersion);
+			s.Operations.Add(MetaTime);
 
 			return s;
 		}

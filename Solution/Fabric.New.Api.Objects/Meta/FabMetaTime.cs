@@ -15,16 +15,14 @@ namespace Fabric.New.Api.Objects.Meta {
 		public int Minute { get; private set; }
 		public int Second { get; private set; }
 		public double Millisecond { get; private set; }
-
-		public long Ticks { get; private set; }
-		public long Unix { get; private set; }
+		public long Timestamp { get; private set; }
+		public string Timezone { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabMetaTime() {
 			var d = DateTime.UtcNow;
-			
 			Year = d.Year;
 			Month = d.Month;
 			Day = d.Day;
@@ -32,9 +30,13 @@ namespace Fabric.New.Api.Objects.Meta {
 			Minute = d.Minute;
 			Second = d.Second;
 			Millisecond = d.Millisecond + (d.Ticks % 10000)/10000.0;
+			Timestamp = GetTimestamp(d.Ticks);
+			Timezone = "UTC";
+		}
 
-			Ticks = d.Ticks;
-			Unix = (long)(DateTime.UtcNow-UnixEpoch).TotalMilliseconds;
+		/*--------------------------------------------------------------------------------------------*/
+		public static long GetTimestamp(long pUtcNowTicks) {
+			return (long)(new DateTime(pUtcNowTicks)-UnixEpoch).TotalMilliseconds;
 		}
 
 	}

@@ -10,6 +10,7 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public ApiModule() {
 			SetupFromApiEntries(MenuExecutors.ApiEntries);
+			SetupFromApiEntries(MetaExecutors.ApiEntries);
 			SetupFromApiEntries(CreateExecutors.ApiEntries);
 			SetupFromApiEntries(TraversalExecutors.ApiEntries);
 		}

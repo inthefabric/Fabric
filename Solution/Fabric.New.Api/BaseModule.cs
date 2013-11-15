@@ -22,7 +22,7 @@ namespace Fabric.New.Api {
 		private readonly IDictionary<ApiEntry.Method, RouteBuilder> vMethodMap;
 
 		private static string ConfPrefix;
-		protected static FabMetaVersion Version;
+		public static FabMetaVersion Version;
 		private static MetricsManager Metrics;
 		private static CacheManager Cache;
 		private static Func<Guid, IAnalyticsManager> AnalyticsProv;
