@@ -1,9 +1,6 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="System.Core" #>
 <#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
-<#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.Linq" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
@@ -14,7 +11,6 @@
 
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Api.Objects {
 <#
@@ -43,12 +39,11 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 
 	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, pCreateMode);
 	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, true);
-	var keepEdges = new List<IEdgeSchema>();
 	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
-	var subPropMap = new Dictionary<string, IList<IEdgeSchema>>();
+	var subEdgeMap = new Dictionary<string, IList<IEdgeSchema>>();
 
 	foreach ( string key in subMap.Keys ) {
-		subPropMap.Add(key, new List<IEdgeSchema>());
+		subEdgeMap.Add(key, new List<IEdgeSchema>());
 	}
 #>		
 
@@ -66,11 +61,10 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 		}
 
 		if ( es.SubObjectOf != null ) {
-			subPropMap[es.SubObjectOf].Add(es);
+			subEdgeMap[es.SubObjectOf].Add(es);
 			continue;
 		}
 
-		keepEdges.Add(es);
 		OutputVertexProp(es, pCreateMode);
 	}
 	
@@ -82,7 +76,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	} // end subMap loop
 
 	if ( pCreateMode ) {
-		OutputVertexValidate(v, props, keepEdges);
+		OutputVertexValidate(v.Names.Api);
 	}
 	else {
 		OutputVertexFill(v);
@@ -100,7 +94,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 
 <#+
 	props = subMap[sub];
-	edges = subPropMap[sub];
+	edges = subEdgeMap[sub];
 
 	foreach ( ApiProperty ap in props ) {
 		OutputVertexProp(ap, pCreateMode);
@@ -111,7 +105,7 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	}
 			
 	if ( pCreateMode ) {
-		OutputVertexValidate(v, props, edges);
+		OutputVertexValidate(sub);
 	}
 #>
 
@@ -159,74 +153,14 @@ public void OutputVertexFill(IVertexSchema pVertex) {
 }
 
 
-public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProps, IList<IEdgeSchema> pEdges) {
+public void OutputVertexValidate(string pApiName) {
 #>
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-<#+
-		
-	foreach ( ApiProperty ap in pProps ) {
-		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
-#>
-
-			//Validate <#= ap.Name #>
-<#+
-		if ( !ap.IsNullable && ap.DataType == typeof(string) ) {
-#>
-			NotNull("<#= displayName #>", <#= ap.Name #>);
-<#+
-		}
-
-		if ( ap.LenMin != null ) {
-#>
-			LenMin("<#= displayName #>", <#= ap.Name #>, <#= ap.LenMin #>);
-<#+
-		}
-
-		if ( ap.LenMax != null ) {
-#>
-			LenMax("<#= displayName #>", <#= ap.Name #>, <#= ap.LenMax #>);
-<#+
-		}
-
-		if ( ap.ValidRegex != null ) {
-#>
-			ValidRegex("<#= displayName #>", <#= ap.Name #>,
-				@"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
-<#+
-		}
-
-		if ( ap.FromEnum != null ) {
-#>
-			ValidEnum<<#= ap.FromEnum #>.Id>("<#= displayName #>", <#= ap.Name #>);
-<#+
-		}
-			
-		if ( ap.CustomValidation ) {
-			string funcName = pVertex.Names.Domain+
-				(ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3))+ap.Name;
-#>
-			ApiVerticesCustom.Validate<#= funcName #>(this, "<#= displayName #>", <#= ap.Name #>);
-<#+
-		}
-
-	} //end property loop
-#>
-
-			//Validate edges
-<#+
-	foreach ( IEdgeSchema es in pEdges ) {
-		string displayName = (es.SubObjectOf == null ? "" :	es.SubObjectOf.Substring(3)+".")+
-			es.GetPropNameApi();
-#>
-			ValidVertexId("<#= displayName #>", <#= es.GetPropNameApi() #>);
-<#+
-	}
-#>
+			new Create<#= pApiName #>Validator(this).Validate();
 		}
 <#+
 }

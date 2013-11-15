@@ -49,13 +49,19 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ApiVerticesCustom.cs" />
     <Compile Include="Conversions\ApiToDomain.cs">
       <DependentUpon>ApiToDomain.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Conversions\ApiToDomainCustom.cs" />
+    <Compile Include="Conversions\ApiValidators.cs">
+      <DependentUpon>ApiValidators.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Conversions\CreateFabObjectValidator.cs" />
+    <Compile Include="Conversions\CreateFabElementValidator.cs" />
     <Compile Include="Conversions\DomainToApi.cs">
       <DependentUpon>DomainToApi.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -67,6 +73,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Conversions\ApiValidatorsCustom.cs" />
     <Compile Include="CreateFabObject.cs" />
     <Compile Include="FabElement.cs" />
     <Compile Include="Menu\FabHome.cs" />
@@ -113,6 +120,10 @@
     <None Include="Conversions\ApiToDomain.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiToDomain.cs</LastGenOutput>
+    </None>
+    <None Include="Conversions\ApiValidators.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiValidators.cs</LastGenOutput>
     </None>
     <None Include="Conversions\DomainToApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

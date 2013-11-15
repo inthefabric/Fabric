@@ -1,11 +1,12 @@
-﻿namespace Fabric.New.Api.Objects {
+﻿namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
-	public abstract class CreateFabObject : FabObject {
-		
+	public abstract class CreateFabElementValidator : CreateFabObjectValidator {
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void Validate() {}
+		protected CreateFabElementValidator(CreateFabElement pCreateObj) : base(pCreateObj) {}
 
 	}
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
@@ -11,8 +12,6 @@ namespace Fabric.New.Operations {
 
 	/*================================================================================================*/
 	public class OperationAccess : IOperationAccess {
-
-		//private static readonly Logger Log = Logger.Build<OperationAccess>();
 
 		public Member ActiveMember { get; private set; }
 
@@ -56,6 +55,13 @@ namespace Fabric.New.Operations {
 
 			if ( ActiveMember == null ) {
 				throw new FabOauthFault();
+			}
+
+			switch ( (MemberType.Id)ActiveMember.MemberType ) {
+				case MemberType.Id.None:
+				case MemberType.Id.Invite:
+				case MemberType.Id.Request:
+					throw new FabOauthFault();
 			}
 		}
 

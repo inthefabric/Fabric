@@ -4,7 +4,6 @@
 
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Api.Objects {
 		
@@ -351,27 +350,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Name
-			NotNull("Name", Name);
-			LenMin("Name", Name, 3);
-			LenMax("Name", Name, 64);
-			ValidRegex("Name", Name,
-				@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-
-			//Validate Secret
-			NotNull("Secret", Secret);
-			LenMin("Secret", Secret, 32);
-			LenMax("Secret", Secret, 32);
-			ValidRegex("Secret", Secret,
-				@"^[a-zA-Z0-9]*$");
-
-			//Validate OauthDomains
-			NotNull("OauthDomains", OauthDomains);
-			ApiVerticesCustom.ValidateAppOauthDomains(this, "OauthDomains", OauthDomains);
-
-			//Validate edges
+			new CreateFabAppValidator(this).Validate();
 		}
 
 	}
@@ -386,10 +365,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate edges
-			ValidVertexId("CreatedByMemberId", CreatedByMemberId);
+			new CreateFabArtifactValidator(this).Validate();
 		}
 
 	}
@@ -406,26 +382,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Name
-			NotNull("Name", Name);
-			LenMin("Name", Name, 1);
-			LenMax("Name", Name, 128);
-			ValidRegex("Name", Name,
-				@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-
-			//Validate Disamb
-			LenMin("Disamb", Disamb, 1);
-			LenMax("Disamb", Disamb, 128);
-			ValidRegex("Disamb", Disamb,
-				@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-
-			//Validate Note
-			LenMin("Note", Note, 1);
-			LenMax("Note", Note, 256);
-
-			//Validate edges
+			new CreateFabClassValidator(this).Validate();
 		}
 
 	}
@@ -443,26 +400,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Secret
-			NotNull("Secret", Secret);
-			LenMin("Secret", Secret, 1);
-			LenMax("Secret", Secret, 256);
-			ValidRegex("Secret", Secret,
-				@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
-
-			//Validate Code
-			NotNull("Code", Code);
-			LenMin("Code", Code, 32);
-			LenMax("Code", Code, 32);
-			ValidRegex("Code", Code,
-				@"^[a-zA-Z0-9]*$");
-
-			//Validate Verified
-
-			//Validate edges
-			ValidVertexId("UsedByArtifactId", UsedByArtifactId);
+			new CreateFabEmailValidator(this).Validate();
 		}
 
 	}
@@ -488,21 +426,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate AssertionType
-			ValidEnum<FactorAssertion.Id>("AssertionType", AssertionType);
-
-			//Validate IsDefining
-
-			//Validate Note
-			LenMin("Note", Note, 1);
-			LenMax("Note", Note, 256);
-
-			//Validate edges
-			ValidVertexId("CreatedByMemberId", CreatedByMemberId);
-			ValidVertexId("UsesPrimaryArtifactId", UsesPrimaryArtifactId);
-			ValidVertexId("UsesRelatedArtifactId", UsesRelatedArtifactId);
+			new CreateFabFactorValidator(this).Validate();
 		}
 
 	}
@@ -520,15 +444,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Type
-			ValidEnum<DescriptorType.Id>("Descriptor.Type", Type);
-
-			//Validate edges
-			ValidVertexId("Descriptor.RefinesPrimaryWithArtifactId", RefinesPrimaryWithArtifactId);
-			ValidVertexId("Descriptor.RefinesRelatedWithArtifactId", RefinesRelatedWithArtifactId);
-			ValidVertexId("Descriptor.RefinesTypeWithArtifactId", RefinesTypeWithArtifactId);
+			new CreateFabDescriptorValidator(this).Validate();
 		}
 
 	}
@@ -545,18 +461,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Type
-			ValidEnum<DirectorType.Id>("Director.Type", Type);
-
-			//Validate PrimaryAction
-			ValidEnum<DirectorAction.Id>("Director.PrimaryAction", PrimaryAction);
-
-			//Validate RelatedAction
-			ValidEnum<DirectorAction.Id>("Director.RelatedAction", RelatedAction);
-
-			//Validate edges
+			new CreateFabDirectorValidator(this).Validate();
 		}
 
 	}
@@ -577,30 +482,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Type
-			ValidEnum<EventorType.Id>("Eventor.Type", Type);
-
-			//Validate Year
-			ApiVerticesCustom.ValidateFactorEventorYear(this, "Eventor.Year", Year);
-
-			//Validate Month
-			ApiVerticesCustom.ValidateFactorEventorMonth(this, "Eventor.Month", Month);
-
-			//Validate Day
-			ApiVerticesCustom.ValidateFactorEventorDay(this, "Eventor.Day", Day);
-
-			//Validate Hour
-			ApiVerticesCustom.ValidateFactorEventorHour(this, "Eventor.Hour", Hour);
-
-			//Validate Minute
-			ApiVerticesCustom.ValidateFactorEventorMinute(this, "Eventor.Minute", Minute);
-
-			//Validate Second
-			ApiVerticesCustom.ValidateFactorEventorSecond(this, "Eventor.Second", Second);
-
-			//Validate edges
+			new CreateFabEventorValidator(this).Validate();
 		}
 
 	}
@@ -616,16 +498,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Type
-			ValidEnum<IdentorType.Id>("Identor.Type", Type);
-
-			//Validate Value
-			LenMin("Identor.Value", Value, 1);
-			LenMax("Identor.Value", Value, 256);
-
-			//Validate edges
+			new CreateFabIdentorValidator(this).Validate();
 		}
 
 	}
@@ -643,21 +516,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Type
-			ValidEnum<LocatorType.Id>("Locator.Type", Type);
-
-			//Validate ValueX
-			ApiVerticesCustom.ValidateFactorLocatorValueX(this, "Locator.ValueX", ValueX);
-
-			//Validate ValueY
-			ApiVerticesCustom.ValidateFactorLocatorValueY(this, "Locator.ValueY", ValueY);
-
-			//Validate ValueZ
-			ApiVerticesCustom.ValidateFactorLocatorValueZ(this, "Locator.ValueZ", ValueZ);
-
-			//Validate edges
+			new CreateFabLocatorValidator(this).Validate();
 		}
 
 	}
@@ -676,22 +535,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Type
-			ValidEnum<VectorType.Id>("Vector.Type", Type);
-
-			//Validate Unit
-			ValidEnum<VectorUnit.Id>("Vector.Unit", Unit);
-
-			//Validate UnitPrefix
-			ValidEnum<VectorUnitPrefix.Id>("Vector.UnitPrefix", UnitPrefix);
-
-			//Validate Value
-			ApiVerticesCustom.ValidateFactorVectorValue(this, "Vector.Value", Value);
-
-			//Validate edges
-			ValidVertexId("Vector.UsesAxisArtifactId", UsesAxisArtifactId);
+			new CreateFabVectorValidator(this).Validate();
 		}
 
 	}
@@ -708,25 +552,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Name
-			LenMin("Name", Name, 1);
-			LenMax("Name", Name, 128);
-			ValidRegex("Name", Name,
-				@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-
-			//Validate Disamb
-			LenMin("Disamb", Disamb, 1);
-			LenMax("Disamb", Disamb, 128);
-			ValidRegex("Disamb", Disamb,
-				@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-
-			//Validate Note
-			LenMin("Note", Note, 1);
-			LenMax("Note", Note, 256);
-
-			//Validate edges
+			new CreateFabInstanceValidator(this).Validate();
 		}
 
 	}
@@ -747,28 +573,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Type
-			ValidEnum<MemberType.Id>("Type", Type);
-
-			//Validate OauthScopeAllow
-
-			//Validate OauthGrantRedirectUri
-			LenMin("OauthGrantRedirectUri", OauthGrantRedirectUri, 1);
-			LenMax("OauthGrantRedirectUri", OauthGrantRedirectUri, 1024);
-
-			//Validate OauthGrantCode
-			LenMin("OauthGrantCode", OauthGrantCode, 32);
-			LenMax("OauthGrantCode", OauthGrantCode, 32);
-			ValidRegex("OauthGrantCode", OauthGrantCode,
-				@"^[a-zA-Z0-9]*$");
-
-			//Validate OauthGrantExpires
-
-			//Validate edges
-			ValidVertexId("DefinedByAppId", DefinedByAppId);
-			ValidVertexId("DefinedByUserId", DefinedByUserId);
+			new CreateFabMemberValidator(this).Validate();
 		}
 
 	}
@@ -787,26 +592,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Token
-			LenMin("Token", Token, 32);
-			LenMax("Token", Token, 32);
-			ValidRegex("Token", Token,
-				@"^[a-zA-Z0-9]*$");
-
-			//Validate Refresh
-			LenMin("Refresh", Refresh, 32);
-			LenMax("Refresh", Refresh, 32);
-			ValidRegex("Refresh", Refresh,
-				@"^[a-zA-Z0-9]*$");
-
-			//Validate Expires
-
-			//Validate IsClientOnly
-
-			//Validate edges
-			ValidVertexId("AuthenticatesMemberId", AuthenticatesMemberId);
+			new CreateFabOauthAccessValidator(this).Validate();
 		}
 
 	}
@@ -822,20 +608,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Name
-			LenMin("Name", Name, 1);
-			LenMax("Name", Name, 128);
-			ValidRegex("Name", Name,
-				@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$");
-
-			//Validate FullPath
-			NotNull("FullPath", FullPath);
-			LenMin("FullPath", FullPath, 1);
-			LenMax("FullPath", FullPath, 2048);
-
-			//Validate edges
+			new CreateFabUrlValidator(this).Validate();
 		}
 
 	}
@@ -851,23 +624,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate Name
-			NotNull("Name", Name);
-			LenMin("Name", Name, 3);
-			LenMax("Name", Name, 64);
-			ValidRegex("Name", Name,
-				@"^[a-zA-Z0-9_]*$");
-
-			//Validate Password
-			NotNull("Password", Password);
-			LenMin("Password", Password, 8);
-			LenMax("Password", Password, 128);
-			ValidRegex("Password", Password,
-				@"^[a-zA-Z0-9]*$");
-
-			//Validate edges
+			new CreateFabUserValidator(this).Validate();
 		}
 
 	}
@@ -881,9 +638,7 @@ namespace Fabric.New.Api.Objects {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
-			base.Validate();
-
-			//Validate edges
+			new CreateFabVertexValidator(this).Validate();
 		}
 
 	}

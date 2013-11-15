@@ -20,6 +20,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromAppCustom(FabApp pApi, App pDomain) {
 			//TODO: FromAppCustom
+			throw new NotImplementedException();
 		}
 
 
@@ -83,6 +84,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromUserCustom(FabUser pApi, User pDomain) {
 			//TODO: FromUserCustom
+			throw new NotImplementedException();
 		}
 
 

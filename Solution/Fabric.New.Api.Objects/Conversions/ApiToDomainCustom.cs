@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 using Fabric.New.Domain;
 
@@ -12,6 +13,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabAppCustom(App pDomain, CreateFabApp pApi) {
 			//TODO: FromCreateFabAppCustom
+			throw new NotImplementedException();
 		}
 
 
@@ -56,6 +58,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static void FromCreateFabUserCustom(User pDomain, CreateFabUser pApi) {
 			//TODO: FromCreateFabUserCustom
 			pDomain.Password = HashPassword(pApi.Password);
+			throw new NotImplementedException();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
