@@ -120,21 +120,6 @@
   <data name="App_Name" xml:space="preserve">
     <value>A unique title or identifier.</value>
   </data>
-  <data name="Artifact_IsPrivate" xml:space="preserve">
-    <value>Specifies the accessibility level. When true, access is limited to the creating User.</value>
-  </data>
-  <data name="Artifact_Name" xml:space="preserve">
-    <value>A decriptive (but non-unique) title, based on the name of the corresponding item.</value>
-  </data>
-  <data name="CrowdianTypeAssign_Weight" xml:space="preserve">
-    <value>A value (between 0.0 and 1.0) which represents relative impact on Crowd-based data analysis. The default value is 0.5.</value>
-  </data>
-  <data name="Crowd_IsInviteOnly" xml:space="preserve">
-    <value>Specifies the membership requirement. Refer to an invite-only !Crowd as 'restricted'. Otherwise, refer to it as 'open'.</value>
-  </data>
-  <data name="Crowd_IsPrivate" xml:space="preserve">
-    <value>Specifies the level of accessibility. A private !Crowd is called a 'Circle'.</value>
-  </data>
   <data name="Error_Message" xml:space="preserve">
     <value>A sentence or paragraph providing details about the error.</value>
   </data>
@@ -146,15 +131,6 @@
   </data>
   <data name="Fault_Message" xml:space="preserve">
     <value>Information about the details and/or causes of the Fault.</value>
-  </data>
-  <data name="Key_Id" xml:space="preserve">
-    <value>Identifies a particular object.</value>
-  </data>
-  <data name="Key_Uri" xml:space="preserve">
-    <value>The API path to get information about this Key's object.</value>
-  </data>
-  <data name="Label_Name" xml:space="preserve">
-    <value>A unique title or identifier.</value>
   </data>
   <data name="User_Name" xml:space="preserve">
     <value>A unique username.</value>
@@ -186,76 +162,25 @@
   <data name="Vector_Value" xml:space="preserve">
     <value>An integral value which is to be plotted along the specified axis. This value must account for the choice of prefix. After being multiplied by the prefix magnitude, the value must fall within the bounds specified by VectorType. Before prefix multiplication, this value must be between –9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.</value>
   </data>
-  <data name="Factor_Completed" xml:space="preserve">
-    <value>The date/time of completion. This value is null if the !Factor is not complete.</value>
-  </data>
   <data name="Factor_IsDefining" xml:space="preserve">
     <value>Specifies whether this !Factor helps to directly and uniquely define the primary Artifact.</value>
-  </data>
-  <data name="Factor_IsPublic" xml:space="preserve">
-    <value>Specifies the level of access.</value>
   </data>
   <data name="Factor_Note" xml:space="preserve">
     <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
   </data>
-  <data name="VertexForAction_Note" xml:space="preserve">
-    <value>A brief note describing this action.</value>
-  </data>
-  <data name="VertexForAction_Performed" xml:space="preserve">
-    <value>The date/time this action was performed.</value>
-  </data>
-  <data name="Object_FabType" xml:space="preserve">
+  <data name="Object_Obj" xml:space="preserve">
     <value>The data type of this object.</value>
   </data>
-  <data name="Vertex_Uri" xml:space="preserve">
-    <value>Append this value to the current URI to filter down to this specific Vertex in current traversal path.</value>
-  </data>
-  <data name="Object_TypeId" xml:space="preserve">
-    <value>Uniquely identifies this object amongst all other objects of this type.</value>
-  </data>
-  <data name="Response_Links" xml:space="preserve">
-    <value>The traversal links available for the current vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
-  </data>
-  <data name="Response_BaseUri" xml:space="preserve">
-    <value>The base URI for the Fabric API.</value>
-  </data>
-  <data name="Response_Count" xml:space="preserve">
-    <value>The number of results in the returned Data list.</value>
+  <data name="Vertex_Id" xml:space="preserve">
+    <value>A unique identifier for this !Vertex.</value>
   </data>
   <data name="Response_Data" xml:space="preserve">
     <value>Contains the result of the request as a list of zero or more Objects.</value>
   </data>
-  <data name="Response_DataLen" xml:space="preserve">
-    <value>The number of characters in the JSON representation of the Data list.</value>
-  </data>
-  <data name="Response_DbMs" xml:space="preserve">
-    <value>The time (in milliseconds) that it took the database server(s) to complete all data requests.</value>
-  </data>
-  <data name="Response_HasMore" xml:space="preserve">
-    <value>Indicates whether there are more vertices available beyond the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
-  </data>
-  <data name="Response_RequestUri" xml:space="preserve">
-    <value>The URI of the current request.</value>
-  </data>
-  <data name="Response_StartIndex" xml:space="preserve">
-    <value>The starting index of the returned vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
-  </data>
-  <data name="Response_Timestamp" xml:space="preserve">
-    <value>The date/time of the current request.</value>
-  </data>
   <data name="Response_TotalMs" xml:space="preserve">
     <value>The time (in milliseconds) that it took the server(s) to complete this request.</value>
   </data>
-  <data name="Artifact_Created" xml:space="preserve">
-    <value>The date/time of creation.</value>
-  </data>
-  <data name="Crowd_Description" xml:space="preserve">
-    <value>A brief summary of purpose, usage, and/or guidelines.</value>
-  </data>
-  <data name="Crowd_Name" xml:space="preserve">
-    <value>A descriptive name or title.</value>
-  </data>
-  <data name="Factor_Created" xml:space="preserve">
+  <data name="Vertex_Timestamp" xml:space="preserve">
     <value>The date/time of creation.</value>
   </data>
   <data name="Class_Name" xml:space="preserve">
@@ -264,14 +189,8 @@
   <data name="Url_Name" xml:space="preserve">
     <value>A descriptive name or title.</value>
   </data>
-  <data name="Response_HttpStatus" xml:space="preserve">
-    <value>The HTTP status returned by this request.</value>
-  </data>
   <data name="Response_Error" xml:space="preserve">
     <value>If an error occurred, this contains information about the problem. Typically, the Data value is null when an Error value is present.</value>
-  </data>
-  <data name="Response_Functions" xml:space="preserve">
-    <value>The traversal functions available for the current vertex list. This property is only used for [[Traversal Service|Serv|Traversal]] requests.</value>
   </data>
   <data name="OauthAccess_AccessToken" xml:space="preserve">
     <value>A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
@@ -309,12 +228,6 @@
   <data name="OauthLogout_Success" xml:space="preserve">
     <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
   </data>
-  <data name="Response_AppId" xml:space="preserve">
-    <value>If an authenticated Member made this request, this identifies the App associated with that Member.</value>
-  </data>
-  <data name="Response_UserId" xml:space="preserve">
-    <value>If an authenticated Member made this request, this identifies the User associated with that Member.</value>
-  </data>
   <data name="Instance_Disamb" xml:space="preserve">
     <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
   </data>
@@ -323,18 +236,6 @@
   </data>
   <data name="Instance_Note" xml:space="preserve">
     <value>A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.</value>
-  </data>
-  <data name="StepLink_Class" xml:space="preserve">
-    <value>The Vertex type returned by the opposite end of this link.</value>
-  </data>
-  <data name="StepLink_IsOut" xml:space="preserve">
-    <value>Indicates whether this link is outgoing (starting from the current Vertex) or incoming (starting from another Vertex).</value>
-  </data>
-  <data name="StepLink_Edge" xml:space="preserve">
-    <value>The relation type of this link.</value>
-  </data>
-  <data name="StepLink_Uri" xml:space="preserve">
-    <value>Append this value to the current URI to add this link to the traversal path.</value>
   </data>
   <data name="Home_Services" xml:space="preserve">
     <value>The complete list of services.</value>
@@ -345,7 +246,7 @@
   <data name="ServiceOperation_Name" xml:space="preserve">
     <value>A descriptive name for this operation.</value>
   </data>
-  <data name="ServiceOperation_ReturnType" xml:space="preserve">
+  <data name="ServiceOperation_Return" xml:space="preserve">
     <value>The type of Object returned by this operation.</value>
   </data>
   <data name="ServiceOperation_Uri" xml:space="preserve">
@@ -378,11 +279,8 @@
   <data name="MetaTime_Second" xml:space="preserve">
     <value>The current second.</value>
   </data>
-  <data name="MetaTime_Ticks" xml:space="preserve">
-    <value>The current number of Ticks since January 1, 0001.  A Tick is one ten-millionth of a second; there are 10,000 Ticks per millisecond.</value>
-  </data>
-  <data name="MetaTime_Unix" xml:space="preserve">
-    <value>A Unix timestamp value, derived from the Ticks value.</value>
+  <data name="MetaTime_Timestamp" xml:space="preserve">
+    <value>A Unix timestamp value (in milliseconds).</value>
   </data>
   <data name="MetaTime_Year" xml:space="preserve">
     <value>The current year.</value>
@@ -411,133 +309,19 @@
   <data name="MetaVersion_Year" xml:space="preserve">
     <value>The year that this build was released.</value>
   </data>
-  <data name="BatchNewClass_Disamb" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewClass_Name" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewClass_Note" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorDescriptor_PrimaryArtifactRefineId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorDescriptor_RelatedArtifactRefineId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorDescriptor_TypeId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorDescriptor_TypeRefineId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorDirector_PrimaryActionId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorDirector_RelatedActionId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorDirector_TypeId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorEventor_Year" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorEventor_TypeId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorIdentor_TypeId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorIdentor_Value" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorLocator_TypeId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorLocator_ValueX" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorLocator_ValueY" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorLocator_ValueZ" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorVector_AxisArtifactId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorVector_TypeId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorVector_UnitId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorVector_UnitPrefixId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorVector_Value" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_Descriptor" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_Director" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_Eventor" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_FactorAssertionId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_Identor" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_IsDefining" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_Locator" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_Note" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_PrimaryArtifactId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_RelatedArtifactId" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactor_Vector" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewObject_BatchId" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="BatchResult_BatchId" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="BatchResult_Error" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="BatchResult_ResultId" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="Descriptor_TypeId" xml:space="preserve">
+  <data name="Descriptor_Type" xml:space="preserve">
     <value>Specifies the type of relationship or connection.</value>
   </data>
-  <data name="Director_PrimaryActionId" xml:space="preserve">
+  <data name="Director_PrimaryAction" xml:space="preserve">
     <value>Specifies the action to be performed on the Factor's primary Artifact.</value>
   </data>
-  <data name="Director_RelatedActionId" xml:space="preserve">
+  <data name="Director_RelatedAction" xml:space="preserve">
     <value>Specifies the action to be performed on the Factor's related Artifact.</value>
   </data>
-  <data name="Director_TypeId" xml:space="preserve">
+  <data name="Director_Type" xml:space="preserve">
     <value>Specifies the type and reason for the pathway.</value>
   </data>
-  <data name="Eventor_TypeId" xml:space="preserve">
+  <data name="Eventor_Type" xml:space="preserve">
     <value>Specifies the significance of this point in time.</value>
   </data>
   <data name="Factor_Descriptor" xml:space="preserve">
@@ -549,7 +333,7 @@
   <data name="Factor_Eventor" xml:space="preserve">
     <value>This element applies the concept of time.</value>
   </data>
-  <data name="Factor_FactorAssertionId" xml:space="preserve">
+  <data name="Factor_FactorAssertion" xml:space="preserve">
     <value>Specifies the type of information and/or level of confidence.</value>
   </data>
   <data name="Factor_Identor" xml:space="preserve">
@@ -561,38 +345,20 @@
   <data name="Factor_Vector" xml:space="preserve">
     <value>This element applies a numeric axis and value.</value>
   </data>
-  <data name="Identor_TypeId" xml:space="preserve">
+  <data name="Identor_Type" xml:space="preserve">
     <value>Specifies the value's purpose or intent.</value>
   </data>
-  <data name="Locator_TypeId" xml:space="preserve">
+  <data name="Locator_Type" xml:space="preserve">
     <value>Specifies the spatial context of the coordinate.</value>
   </data>
-  <data name="MemberTypeAssign_MemberTypeId" xml:space="preserve">
-    <value>Specifies the Member's state and/or access privileges.</value>
-  </data>
-  <data name="Vector_TypeId" xml:space="preserve">
+  <data name="Vector_Type" xml:space="preserve">
     <value>Specifies its value's boundaries and context.</value>
   </data>
-  <data name="Vector_UnitId" xml:space="preserve">
+  <data name="Vector_Unit" xml:space="preserve">
     <value>Specifies its value's unit of measurement.</value>
   </data>
-  <data name="Vector_UnitPrefixId" xml:space="preserve">
+  <data name="Vector_UnitPrefix" xml:space="preserve">
     <value>Specifies its value's order of magnitude.</value>
-  </data>
-  <data name="BatchNewFactorEventor_Day" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorEventor_Hour" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorEventor_Minute" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorEventor_Month" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BatchNewFactorEventor_Second" xml:space="preserve">
-    <value />
   </data>
   <data name="Eventor_Day" xml:space="preserve">
     <value>Specifies the day value.</value>
@@ -608,5 +374,38 @@
   </data>
   <data name="Eventor_Second" xml:space="preserve">
     <value>Specifies the second value (UTC).</value>
+  </data>
+  <data name="Factor_AssertionType" xml:space="preserve">
+    <value>Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.</value>
+  </data>
+  <data name="Home_Name" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Home_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Link_FromType" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Link_ToType" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Member_Type" xml:space="preserve">
+    <value>Specifies the Member's state and/or access privileges.</value>
+  </data>
+  <data name="MetaTime_Timezone" xml:space="preserve">
+    <value>The timezone used by the time metrics.</value>
+  </data>
+  <data name="TravStep_Name" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="TravStep_Return" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="TravStep_Uri" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Vertex_VertexType" xml:space="preserve">
+    <value>TODO</value>
   </data>
 </root>

@@ -141,7 +141,7 @@ namespace Fabric.New.Api {
 			op.Name = pName;
 			op.Uri = "/"+pName.Replace(" ", "");
 			op.Method = (pMethod+"").ToUpper();
-			op.ReturnType = pRespType.Name;
+			op.Return = pRespType.Name;
 			return op;
 		}
 

@@ -74,6 +74,15 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string AppDefinesMember {
+            get {
+                return ResourceManager.GetString("AppDefinesMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An object which is able to (via Factor connections) accumulate meaning, context, user sentiment, and relationships.  !Artifacts and Factors are the central components of the Fabric architecture.
         ///
         ///There are no restrictions on what an !Artifact can represent.  Fabric encourages the generous use of Factors to identify and describe each new !Artifact. Ideally, the Factor connections will distinguish an !Artifact from all others..
@@ -85,92 +94,20 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides input data for batch Class creation. See the Class and [[AddClass operation|Oper|Modify.AddClass]] documentation for details and parameter restrictions..
+        ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string BatchNewClass {
+        internal static string ArtifactUsedAsPrimaryByFactor {
             get {
-                return ResourceManager.GetString("BatchNewClass", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides input data for batch Factor creation. See the Factor and [[AddFactor operation|Oper|Modify.AddFactor]] documentation for details and parameter restrictions..
-        /// </summary>
-        internal static string BatchNewFactor {
-            get {
-                return ResourceManager.GetString("BatchNewFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides Descriptor input data for batch Factor creation. See the Descriptor and [[AttachDescriptor operation|Oper|Modify.AttachDescriptorToFactor]] documentation for details and parameter restrictions..
-        /// </summary>
-        internal static string BatchNewFactorDescriptor {
-            get {
-                return ResourceManager.GetString("BatchNewFactorDescriptor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides Director input data for batch Factor creation. See the Director and [[AttachDirector  operation|Oper|Modify.AttachDirectorToFactor]] documentation for details and parameter restrictions..
-        /// </summary>
-        internal static string BatchNewFactorDirector {
-            get {
-                return ResourceManager.GetString("BatchNewFactorDirector", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides Eventor input data for batch Factor creation. See the Eventor and [[AttachEventor operation|Oper|Modify.AttachEventorToFactor]] documentation for details and parameter restrictions..
-        /// </summary>
-        internal static string BatchNewFactorEventor {
-            get {
-                return ResourceManager.GetString("BatchNewFactorEventor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides Identor input data for batch Factor creation. See the Identor and [[AttachIdentor operation|Oper|Modify.AttachIdentorToFactor]] documentation for details and parameter restrictions..
-        /// </summary>
-        internal static string BatchNewFactorIdentor {
-            get {
-                return ResourceManager.GetString("BatchNewFactorIdentor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides Locator input data for batch Factor creation. See the Locator and [[AttachLocator operation|Oper|Modify.AttachLocatorToFactor]] documentation for details and parameter restrictions..
-        /// </summary>
-        internal static string BatchNewFactorLocator {
-            get {
-                return ResourceManager.GetString("BatchNewFactorLocator", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provides Vector input data for batch Factor creation. See the Vector and [[AttachVector operation|Oper|Modify.AttachVectorToFactor]] documentation for details and parameter restrictions..
-        /// </summary>
-        internal static string BatchNewFactorVector {
-            get {
-                return ResourceManager.GetString("BatchNewFactorVector", resourceCulture);
+                return ResourceManager.GetString("ArtifactUsedAsPrimaryByFactor", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string BatchNewObject {
+        internal static string ArtifactUsedAsRelatedByFactor {
             get {
-                return ResourceManager.GetString("BatchNewObject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string BatchResult {
-            get {
-                return ResourceManager.GetString("BatchResult", resourceCulture);
+                return ResourceManager.GetString("ArtifactUsedAsRelatedByFactor", resourceCulture);
             }
         }
         
@@ -183,35 +120,6 @@ namespace Fabric.New.Api.Lang {
         internal static string Class {
             get {
                 return ResourceManager.GetString("Class", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A group or collection of Users. The members of a !Crowd are called Crowdians.
-        ///
-        ///A !Crowd can be public or private. A public !Crowd and its Crowdians are accessible to all Apps and Users. A private !Crowd (also called a &apos;Circle&apos;) is only accessible to the User who created it.
-        ///
-        ///A public !Crowd can be open or restricted. An open !Crowd does not require an invitation to join.  A restricted !Crowd requires an invitation.
-        ///
-        ///!Crowds are useful on many levels, as they:
-        ///- allow like-minded Users to connect and  [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Crowd {
-            get {
-                return ResourceManager.GetString("Crowd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A User who is a member of a particular Crowd. The Crowd administrator(s) can grant various access privileges to a !Crowdian by adjusting its CrowdianType.
-        ///
-        ///If desired, the Crowd administrator(s) can also apply a weighting value to each !Crowdian. When performing data analysis on a Crowd, this value allows each !Crowdian to have a different level of impact on the results. A high weighting value equates to high Crowdian imact.
-        ///
-        ///There are various restrictions (based on Crowd properties) for !Crowdian creat [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Crowdian {
-            get {
-                return ResourceManager.GetString("Crowdian", resourceCulture);
             }
         }
         
@@ -240,11 +148,11 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor. Example actions include: Read, Learn, Obtain, etc..
+        ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string DirectorAction {
+        internal static string Element {
             get {
-                return ResourceManager.GetString("DirectorAction", resourceCulture);
+                return ResourceManager.GetString("Element", resourceCulture);
             }
         }
         
@@ -280,15 +188,6 @@ namespace Fabric.New.Api.Lang {
         internal static string Factor {
             get {
                 return ResourceManager.GetString("Factor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc..
-        /// </summary>
-        internal static string FactorAssertion {
-            get {
-                return ResourceManager.GetString("FactorAssertion", resourceCulture);
             }
         }
         
@@ -336,13 +235,11 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A word, phrase, code, or other text-based value.
-        ///
-        ///!Labels are less formal (and less effective) than a Class or Instance, and should only be used in certain circumstances.  For example, some value or code (like &apos;A-1234&apos; or &apos;study for science test&apos;) might have a useful purpose for a particular User..
+        ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string Label {
+        internal static string Link {
             get {
-                return ResourceManager.GetString("Label", resourceCulture);
+                return ResourceManager.GetString("Link", resourceCulture);
             }
         }
         
@@ -372,11 +269,29 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An assignment of a [[MemberType|Enum|MemberType]] to a target Member. This action is performed by some Member, which is usually (but not always) different from the target Member. Each Member maintains one active MemberTypeAssign and a list of historical MemberTypeAssigns..
+        ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string MemberTypeAssign {
+        internal static string MemberAuthenticatedByOauthAccess {
             get {
-                return ResourceManager.GetString("MemberTypeAssign", resourceCulture);
+                return ResourceManager.GetString("MemberAuthenticatedByOauthAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string MemberCreatesArtifact {
+            get {
+                return ResourceManager.GetString("MemberCreatesArtifact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string MemberCreatesFactor {
+            get {
+                return ResourceManager.GetString("MemberCreatesFactor", resourceCulture);
             }
         }
         
@@ -455,15 +370,6 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects..
-        /// </summary>
-        internal static string Root {
-            get {
-                return ResourceManager.GetString("Root", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A collection of ServiceOperations which all share a similar purpose..
         /// </summary>
         internal static string Service {
@@ -482,11 +388,119 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contains all the relevant information about a Vertex&apos;s traversal link..
+        ///   Looks up a localized string similar to TODO.
         /// </summary>
-        internal static string StepLink {
+        internal static string TravAppRoot {
             get {
-                return ResourceManager.GetString("StepLink", resourceCulture);
+                return ResourceManager.GetString("TravAppRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravArtifactRoot {
+            get {
+                return ResourceManager.GetString("TravArtifactRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravClassRoot {
+            get {
+                return ResourceManager.GetString("TravClassRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TraversalResponse {
+            get {
+                return ResourceManager.GetString("TraversalResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravFactorRoot {
+            get {
+                return ResourceManager.GetString("TravFactorRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravInstanceRoot {
+            get {
+                return ResourceManager.GetString("TravInstanceRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravMemberRoot {
+            get {
+                return ResourceManager.GetString("TravMemberRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects..
+        /// </summary>
+        internal static string TravRoot {
+            get {
+                return ResourceManager.GetString("TravRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravStep {
+            get {
+                return ResourceManager.GetString("TravStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravTypedRoot {
+            get {
+                return ResourceManager.GetString("TravTypedRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravUrlRoot {
+            get {
+                return ResourceManager.GetString("TravUrlRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravUserRoot {
+            get {
+                return ResourceManager.GetString("TravUserRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string TravVertexRoot {
+            get {
+                return ResourceManager.GetString("TravVertexRoot", resourceCulture);
             }
         }
         
@@ -517,6 +531,15 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string UserDefinesMember {
+            get {
+                return ResourceManager.GetString("UserDefinesMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Factor Element that applies a meaningful numeric axis and value to a particular Factor.
         ///
         ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &quot;axis&quot;. This axis depends entiedgey upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &quot;Height&quot; or &quot;Shutter Speed&quot;. A !Vector that provides an opinion might use an Artifact like &quot;Quality&quot; or &quot;Excitement&quot;. While the choice of an axis Artififact is not restricted, it can be beneficial to use Art [rest of string was truncated]&quot;;.
@@ -533,15 +556,6 @@ namespace Fabric.New.Api.Lang {
         internal static string Vertex {
             get {
                 return ResourceManager.GetString("Vertex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The base class for various &quot;actions&quot; that can occur..
-        /// </summary>
-        internal static string VertexForAction {
-            get {
-                return ResourceManager.GetString("VertexForAction", resourceCulture);
             }
         }
     }

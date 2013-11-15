@@ -42,8 +42,28 @@ namespace Fabric.New.Api {
 				return TypeName(pType.GetElementType())+"[]";
 			}
 
+			if ( pType.IsGenericType ) {
+				Type gt = pType.GetGenericTypeDefinition();
+
+				if ( gt == typeof(List<>) || gt == typeof(IList<>) ) {
+					return TypeName(pType.GetGenericArguments()[0])+"[]";
+				}
+
+				if ( gt == typeof(Nullable<>) ) {
+					return TypeName(pType.GetGenericArguments()[0])+"?";
+				}
+
+				if ( gt == typeof(Dictionary<,>) ) {
+					return "object";
+				}
+			}
+
 			if ( pType == typeof(string) ) {
 				return "string";
+			}
+
+			if ( pType == typeof(bool) ) {
+				return "bool";
 			}
 
 			if ( pType == typeof(byte) ) {
@@ -74,6 +94,10 @@ namespace Fabric.New.Api {
 				if ( a != -1 && b != -1 ) {
 					return full.Substring(a, b-a);
 				}
+			}
+
+			if ( pType.Name.IndexOf("Fab") == 0 || pType.Name.IndexOf("CreateFab") == 0 ) {
+				return pType.Name;
 			}
 
 			return "MISSING:"+pType.FullName;

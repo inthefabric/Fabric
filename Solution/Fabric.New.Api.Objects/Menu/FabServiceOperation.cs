@@ -6,7 +6,7 @@
 		public string Name { get; set; }
 		public string Uri { get; set; }
 		public string Method { get; set; }
-		public string ReturnType { get; set; }
+		public string Return { get; set; }
 
 	}
 

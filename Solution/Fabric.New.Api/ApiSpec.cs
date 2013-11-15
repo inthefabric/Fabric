@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Fabric.New.Api.Lang;
+using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain.Enums;
 
@@ -18,20 +19,79 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabSpec BuildSpec() {
 			var s = new FabSpec();
-			s.Enums = BuildSpecEnums();
+			s.Objects = BuildObjects();
+			//s.Enums = BuildEnums();
 			return s;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static List<FabSpecEnum> BuildSpecEnums() {
+		private static List<FabSpecObject> BuildObjects() {
+			var objs = new List<FabSpecObject>();
+			var types = typeof(FabObject).Assembly.GetTypes();
+
+			foreach ( Type t in types ) {
+				if ( typeof(FabObject).IsAssignableFrom(t) ) {
+					objs.Add(BuildObject(t));
+				}
+			}
+
+			return objs;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabSpecObject BuildObject(Type pType) {
+			var o = new FabSpecObject();
+			o.Name = pType.Name;
+			o.Extends = pType.BaseType.Name;
+
+			if ( o.Name.IndexOf("CreateFab") == 0 ) {
+				o.Description = "Contains the data needed to create a new "+o.Name;
+			}
+			else if ( o.Name.IndexOf("FabSpec") == 0 ) {
+				o.Description = null;
+			}
+			else {
+				o.Description = ApiLang.Text<DtoText>(o.Name.Substring(3)); //remove "Fab"
+			}
+
+			o.Properties = BuildObjectProps(o.Name, pType, (o.Description == null));
+			return o;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static List<FabSpecObjectProp> BuildObjectProps(
+														string pObjName, Type pType, bool pSkipText) {
+			var objProps = new List<FabSpecObjectProp>();
+
+			PropertyInfo[] props = pType.GetProperties(
+				BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+
+			foreach ( PropertyInfo pi in props ) {
+				var p = new FabSpecObjectProp();
+				p.Name = pi.Name;
+				p.Type = ApiLang.TypeName(pi.PropertyType);
+				objProps.Add(p);
+
+				if ( !pSkipText && pObjName.IndexOf("CreateFab") != 0 ) {
+					p.Description = ApiLang.Text<DtoPropText>(pObjName.Substring(3)+"_"+p.Name);
+				}
+			}
+
+			return objProps;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static List<FabSpecEnum> BuildEnums() {
 			var enums = new List<FabSpecEnum>();
 			var types = typeof(VertexType).Assembly.GetTypes();
 
 			foreach ( Type t in types ) {
 				if ( typeof(EnumObject).IsAssignableFrom(t) ) {
-					enums.Add(BuildSpecEnum(t));
+					enums.Add(BuildEnum(t));
 				}
 			}
 
@@ -39,21 +99,21 @@ namespace Fabric.New.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static FabSpecEnum BuildSpecEnum(Type pType) {
+		private static FabSpecEnum BuildEnum(Type pType) {
 			EnumObject obj = (EnumObject)Activator.CreateInstance(pType);
 			IList<EnumItem> items = (obj.ToList() ?? new List<EnumItem>());
 
 			var e = new FabSpecEnum();
 			e.Name = pType.Name;
 			e.Description = ApiLang.Text<EnumText>(e.Name);
-			e.Properties = BuildSpecEnumProps(e, items.FirstOrDefault());
+			e.Properties = BuildEnumProps(e.Name, items.FirstOrDefault());
 
 			if ( pType != typeof(EnumObject) ) {
 				e.Extends = pType.BaseType.Name;
 				e.Items = new List<Dictionary<string, object>>();
 
 				foreach ( EnumItem item in items ) {
-					e.Items.Add(BuildSpecEnumItem(item));
+					e.Items.Add(BuildEnumItem(item));
 				}
 			}
 
@@ -61,7 +121,7 @@ namespace Fabric.New.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static List<FabSpecObjectProp> BuildSpecEnumProps(FabSpecEnum pEnum, EnumItem pItem) {
+		private static List<FabSpecObjectProp> BuildEnumProps(string pEnumName, EnumItem pItem) {
 			var enumProps = new List<FabSpecObjectProp>();
 
 			if ( pItem == null ) {
@@ -74,7 +134,7 @@ namespace Fabric.New.Api {
 			foreach ( PropertyInfo pi in props ) {
 				var p = new FabSpecObjectProp();
 				p.Name = pi.Name;
-				p.Description = ApiLang.Text<EnumPropText>(pEnum.Name+"_"+p.Name);
+				p.Description = ApiLang.Text<EnumPropText>(pEnumName+"_"+p.Name);
 				p.Type = ApiLang.TypeName(pi.PropertyType);
 				enumProps.Add(p);
 			}
@@ -83,7 +143,7 @@ namespace Fabric.New.Api {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Dictionary<string, object> BuildSpecEnumItem(EnumItem pItem) {
+		private static Dictionary<string, object> BuildEnumItem(EnumItem pItem) {
 			PropertyInfo[] props = pItem.GetType().GetProperties();
 			var map = new Dictionary<string, object>();
 
