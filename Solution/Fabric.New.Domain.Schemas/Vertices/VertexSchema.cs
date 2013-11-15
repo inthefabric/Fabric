@@ -10,6 +10,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public Access CreateAccess { get; protected set; }
 		public Access DeleteAccess { get; protected set; }
 		public bool IsAbstract { get; protected set; }
+		public bool CustomCreate { get; protected set; }
 
 		public DomainProperty<long> VertexId { get; private set; }
 		public DomainProperty<long> Timestamp { get; private set; }

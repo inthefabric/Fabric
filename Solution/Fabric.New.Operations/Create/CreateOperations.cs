@@ -5,6 +5,8 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {
@@ -33,6 +35,22 @@ namespace Fabric.New.Operations.Create {
 			App d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabApp, out c, out d);
 			CreateAppEdges(c, d, vAlias);
+
+			// Enforce unique NameKey
+			
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.NameKey, d.NameKey)
+				.ToQuery();
+
+			App dup = pOpCtx
+				.NewData()
+				.AddQuery(q)
+				.Execute("UniqueNameKey")
+				.ToElementAt<App>(0, 0);
+
+			if ( dup != null ) {
+				throw new FabDuplicateFault(typeof(App), "Name", dup.Name);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -95,6 +113,7 @@ namespace Fabric.New.Operations.Create {
 			Class d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabClass, out c, out d);
 			CreateClassEdges(c, d, vAlias);
+			CreateOperationsCustom.CreateClass(pOpCtx, TxBuild, c, d);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -175,6 +194,7 @@ namespace Fabric.New.Operations.Create {
 			Factor d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabFactor, out c, out d);
 			CreateFactorEdges(c, d, vAlias);
+			CreateOperationsCustom.CreateFactor(pOpCtx, TxBuild, c, d);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -274,6 +294,7 @@ namespace Fabric.New.Operations.Create {
 			Instance d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabInstance, out c, out d);
 			CreateInstanceEdges(c, d, vAlias);
+			CreateOperationsCustom.CreateInstance(pOpCtx, TxBuild, c, d);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -416,6 +437,22 @@ namespace Fabric.New.Operations.Create {
 			Url d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabUrl, out c, out d);
 			CreateUrlEdges(c, d, vAlias);
+
+			// Enforce unique FullPath
+			
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Url>(x => x.FullPath, d.FullPath)
+				.ToQuery();
+
+			Url dup = pOpCtx
+				.NewData()
+				.AddQuery(q)
+				.Execute("UniqueFullPath")
+				.ToElementAt<Url>(0, 0);
+
+			if ( dup != null ) {
+				throw new FabDuplicateFault(typeof(Url), "FullPath", dup.FullPath);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -451,6 +488,22 @@ namespace Fabric.New.Operations.Create {
 			User d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabUser, out c, out d);
 			CreateUserEdges(c, d, vAlias);
+
+			// Enforce unique NameKey
+			
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.NameKey, d.NameKey)
+				.ToQuery();
+
+			User dup = pOpCtx
+				.NewData()
+				.AddQuery(q)
+				.Execute("UniqueNameKey")
+				.ToElementAt<User>(0, 0);
+
+			if ( dup != null ) {
+				throw new FabDuplicateFault(typeof(User), "Name", dup.Name);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

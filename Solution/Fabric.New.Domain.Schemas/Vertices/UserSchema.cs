@@ -32,7 +32,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			Name.IsElastic = true;
 
 			NameKey = new DomainProperty<string>("NameKey", "u.nk");
-			NameKey.IsUnique = true;
+			NameKey.EnforceUnique = true;
 			NameKey.ToLowerCase = true;
 			NameKey.IsIndexed = true;
 			Name.ExactIndexVia = NameKey;

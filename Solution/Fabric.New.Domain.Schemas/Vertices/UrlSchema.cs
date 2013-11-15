@@ -31,7 +31,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			Name.IsElastic = true;
 
 			FullPath = new DomainProperty<string>("FullPath", "r.fp");
-			FullPath.IsUnique = true;
+			FullPath.EnforceUnique = true;
 			FullPath.ToLowerCase = true;
 			FullPath.IsIndexed = true;
 

@@ -27,15 +27,14 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			CreateAccess = Access.All;
 			DeleteAccess = Access.CreatorUserAndApp;
 			IsAbstract = false;
+			CustomCreate = true;
 
 			////
 
 			Name = new DomainProperty<string>("Name", "c.na");
-			Name.IsUnique = true;
 			Name.IsElastic = true;
 
 			NameKey = new DomainProperty<string>("NameKey", "c.nk");
-			NameKey.IsUnique = true;
 			NameKey.ToLowerCase = true;
 			NameKey.IsIndexed = true;
 
@@ -50,7 +49,6 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			FabName = new ApiProperty<string>("Name");
 			FabName.SetOpenAccess();
-			FabName.IsUnique = true;
 			FabName.LenMin = 1;
 			FabName.LenMax = 128;
 			FabName.ValidRegex = ApiProperty.ValidTitleRegex;

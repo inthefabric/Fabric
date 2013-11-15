@@ -10,6 +10,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		Access CreateAccess { get; }
 		Access DeleteAccess { get; }
 		bool IsAbstract { get; }
+		bool CustomCreate { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

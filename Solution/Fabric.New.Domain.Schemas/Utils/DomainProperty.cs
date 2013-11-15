@@ -10,6 +10,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public string DbName { get; private set; }
 
 		public bool IsUnique { get; internal set; }
+		public bool EnforceUnique { get; internal set; }
 		public bool IsNullable { get; internal set; }
 		public bool ToLowerCase { get; internal set; }
 		public bool IsIndexed { get; internal set; }

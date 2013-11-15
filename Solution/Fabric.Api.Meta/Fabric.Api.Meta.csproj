@@ -181,10 +181,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
-      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
-      <Name>Fabric.Api.Modify</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
       <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
       <Name>Fabric.Api.Oauth</Name>
