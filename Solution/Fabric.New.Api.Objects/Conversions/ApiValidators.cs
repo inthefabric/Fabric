@@ -147,18 +147,18 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
-			Secret(vCreateObj.Secret);
+			Address(vCreateObj.Address);
 			Code(vCreateObj.Code);
 			Verified(vCreateObj.Verified);
 			ValidateEdges();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void Secret(string pValue) {
-			NotNull("Secret", pValue);
-			LenMin("Secret", pValue, 1);
-			LenMax("Secret", pValue, 256);
-			ValidRegex("Secret", pValue, @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
+		public static void Address(string pValue) {
+			NotNull("Address", pValue);
+			LenMin("Address", pValue, 1);
+			LenMax("Address", pValue, 256);
+			ValidRegex("Address", pValue, @"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -20,9 +20,15 @@ namespace Fabric.New.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabSpec BuildSpec() {
+			FabMetaVersion v = BaseModule.Version;
+
 			var s = new FabSpec();
+			s.BuildVersion = v.Version;
+			s.BuildYear = v.Year;
+			s.BuildMonth = v.Month;
+			s.BuildDay = v.Day;
 			s.Objects = BuildObjects();
-			//s.Enums = BuildEnums();
+			s.Enums = BuildEnums();
 			return s;
 		}
 
@@ -91,13 +97,46 @@ namespace Fabric.New.Api {
 		private static FabSpecObjectProp BuildObjectProp(
 												string pObjName, PropertyInfo pProp, bool pSkipText) {
 			DataMemberAttribute dataMem = GetAttribute<DataMemberAttribute>(pProp);
-
+			
 			var p = new FabSpecObjectProp();
 			p.Name = (dataMem == null ? pProp.Name : dataMem.Name);
 			p.Type = ApiLang.TypeName(pProp.PropertyType);
 
 			if ( !pSkipText && pObjName.IndexOf("CreateFab") != 0 ) {
 				p.Description = ApiLang.Text<DtoPropText>(pObjName.Substring(3)+"_"+pProp.Name);
+			}
+
+			////
+			
+			SpecLenAttribute specLen = GetAttribute<SpecLenAttribute>(pProp);
+			SpecRegexAttribute specReg = GetAttribute<SpecRegexAttribute>(pProp);
+			SpecUniqueAttribute specUni = GetAttribute<SpecUniqueAttribute>(pProp);
+			SpecToLowerCaseAttribute specLow = GetAttribute<SpecToLowerCaseAttribute>(pProp);
+			SpecFromEnumAttribute specEnum = GetAttribute<SpecFromEnumAttribute>(pProp);
+
+			if ( HasAttribute<SpecOptionalAttribute>(pProp) ) {
+				p.IsOptional = true;
+			}
+
+			if ( specLen != null ) {
+				p.LenMin = specLen.Min;
+				p.LenMax = specLen.Max;
+			}
+
+			if ( specReg != null ) {
+				p.ValidRegex = specReg.Pattern;
+			}
+
+			if ( specUni != null ) {
+				p.IsUnique = true;
+			}
+
+			if ( specLow != null ) {
+				p.ToLowerCase = true;
+			}
+
+			if ( specEnum != null ) {
+				p.Enum = specEnum.Name;
 			}
 
 			return p;

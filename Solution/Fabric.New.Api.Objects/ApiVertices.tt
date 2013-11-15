@@ -148,6 +148,18 @@ public void OutputVertexProp(ApiProperty pProp, bool pCreateMode) {
 		OutputSpecAttribute(2, "Regex", "@\""+patt+"\"");
 	}
 
+	if ( pProp.IsUnique ) {
+		OutputSpecAttribute(2, "Unique");
+	}
+		
+	if ( pProp.ToLowerCase ) {
+		OutputSpecAttribute(2, "ToLowerCase");
+	}
+		
+	if ( pProp.FromEnum != null ) {
+		OutputSpecAttribute(2, "FromEnum", "\""+pProp.FromEnum+"\"");
+	}
+
 	OutputVertexProp(pProp.GetDataTypeName(), pProp.Name, (pCreateMode ? pProp.CreateAccess+"" : null));
 }
 

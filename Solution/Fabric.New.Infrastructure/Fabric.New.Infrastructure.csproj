@@ -101,6 +101,9 @@
     <Compile Include="Query\Sharpflake.cs" />
     <Compile Include="Query\TxBuilder.cs" />
     <Compile Include="Query\Weave.cs" />
+    <Compile Include="Spec\SpecFromEnumAttribute.cs" />
+    <Compile Include="Spec\SpecToLowerCaseAttribute.cs" />
+    <Compile Include="Spec\SpecUniqueAttribute.cs" />
     <Compile Include="Spec\SpecRegexAttribute.cs" />
     <Compile Include="Spec\SpecInternalAttribute.cs" />
     <Compile Include="Spec\SpecOptionalAttribute.cs" />

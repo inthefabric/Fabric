@@ -78,7 +78,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromEmail(FabEmail pApi, Email pDomain) {
 			FromVertex(pApi, pDomain);
-			pApi.Secret = pDomain.Address;
+			pApi.Address = pDomain.Address;
 			pApi.Code = pDomain.Code;
 			pApi.Verified = pDomain.Verified;
 		}

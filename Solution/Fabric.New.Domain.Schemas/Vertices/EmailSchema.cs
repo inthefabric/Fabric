@@ -39,7 +39,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabAddress = new ApiProperty<string>("Secret");
+			FabAddress = new ApiProperty<string>("Address");
 			FabAddress.LenMin = 1;
 			FabAddress.LenMax = 256;
 			FabAddress.ToLowerCase = true;

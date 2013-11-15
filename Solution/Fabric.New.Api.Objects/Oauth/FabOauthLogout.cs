@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+using Fabric.New.Infrastructure.Spec;
 
 namespace Fabric.New.Api.Objects.Oauth {
 
@@ -10,6 +11,8 @@ namespace Fabric.New.Api.Objects.Oauth {
 		public int Success { get; set; }
 
 		[DataMember(Name="access_token")]
+		[SpecUnique]
+		[SpecLen(32, 32)]
 		public string AccessToken { get; set; }
 
 	}
