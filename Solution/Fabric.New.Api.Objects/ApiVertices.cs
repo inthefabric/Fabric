@@ -4,15 +4,24 @@
 
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Spec;
 
 namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
 	public class FabApp : FabArtifact {
-
+		
+		[SpecLen(3, 64)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecInternal]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Secret { get; set; }
+		
+		[SpecInternal]
 		public virtual string OauthDomains { get; set; }
 
 
@@ -36,7 +45,6 @@ namespace Fabric.New.Api.Objects {
 	public class FabArtifact : FabVertex {
 
 
-
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(Vertex pVertex) {
@@ -55,9 +63,18 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabClass : FabArtifact {
-
+		
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Disamb { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Note { get; set; }
 
 
@@ -78,10 +95,20 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class FabEmail : FabVertex {
-
+		
+		[SpecInternal]
+		[SpecLen(1, 256)]
+		[SpecRegex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
 		public virtual string Secret { get; set; }
+		
+		[SpecInternal]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Code { get; set; }
+		
+		[SpecInternal]
 		public virtual bool Verified { get; set; }
 
 
@@ -103,9 +130,13 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabFactor : FabVertex {
-
+		
 		public virtual byte AssertionType { get; set; }
+		
 		public virtual bool IsDefining { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Note { get; set; }
 		public FabDescriptor Descriptor { get; set; }
 		public FabDirector Director { get; set; }
@@ -134,6 +165,7 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabDescriptor : FabObject {
 
+		
 		public virtual byte Type { get; set; }
 
 	}
@@ -142,8 +174,11 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabDirector : FabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual byte PrimaryAction { get; set; }
+		
 		public virtual byte RelatedAction { get; set; }
 
 	}
@@ -152,12 +187,24 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabEventor : FabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual long Year { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Month { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Day { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Hour { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Minute { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Second { get; set; }
 
 	}
@@ -166,7 +213,11 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabIdentor : FabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Value { get; set; }
 
 	}
@@ -175,9 +226,13 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabLocator : FabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual double ValueX { get; set; }
+		
 		public virtual double ValueY { get; set; }
+		
 		public virtual double ValueZ { get; set; }
 
 	}
@@ -186,9 +241,13 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class FabVector : FabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual byte Unit { get; set; }
+		
 		public virtual byte UnitPrefix { get; set; }
+		
 		public virtual long Value { get; set; }
 
 	}
@@ -196,9 +255,19 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabInstance : FabArtifact {
-
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Disamb { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Note { get; set; }
 
 
@@ -220,11 +289,26 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabMember : FabVertex {
-
+		
 		public virtual byte Type { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
 		public virtual bool? OauthScopeAllow { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(1, 1024)]
 		public virtual string OauthGrantRedirectUri { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string OauthGrantCode { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
 		public virtual long? OauthGrantExpires { get; set; }
 
 
@@ -245,11 +329,25 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class FabOauthAccess : FabVertex {
-
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Token { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Refresh { get; set; }
+		
+		[SpecInternal]
 		public virtual long Expires { get; set; }
+		
+		[SpecInternal]
 		public virtual bool IsClientOnly { get; set; }
 
 
@@ -271,8 +369,13 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabUrl : FabArtifact {
-
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecLen(1, 2048)]
 		public virtual string FullPath { get; set; }
 
 
@@ -294,8 +397,14 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabUser : FabArtifact {
-
+		
+		[SpecLen(3, 64)]
+		[SpecRegex(@"^[a-zA-Z0-9_]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecInternal]
+		[SpecLen(8, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Password { get; set; }
 
 
@@ -317,9 +426,11 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabVertex : FabElement {
-
+		
 		public virtual long Id { get; set; }
+		
 		public virtual long Timestamp { get; set; }
+		
 		public virtual byte VertexType { get; set; }
 
 
@@ -340,10 +451,20 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class CreateFabApp : CreateFabArtifact {
-
+		
+		[SpecInternal]
+		[SpecLen(3, 64)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecInternal]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Secret { get; set; }
+		
+		[SpecInternal]
 		public virtual string OauthDomains { get; set; }
 
 
@@ -357,8 +478,9 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class CreateFabArtifact : CreateFabVertex {
-
+		
 		public virtual long CreatedByMemberId { get; set; }
 
 
@@ -373,9 +495,18 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabClass : CreateFabArtifact {
-
+		
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Disamb { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Note { get; set; }
 
 
@@ -389,11 +520,22 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class CreateFabEmail : CreateFabVertex {
-
+		
+		[SpecInternal]
+		[SpecLen(1, 256)]
+		[SpecRegex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
 		public virtual string Secret { get; set; }
+		
+		[SpecInternal]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Code { get; set; }
+		
+		[SpecInternal]
 		public virtual bool Verified { get; set; }
+		
 		public virtual long UsedByArtifactId { get; set; }
 
 
@@ -408,12 +550,19 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabFactor : CreateFabVertex {
-
+		
 		public virtual byte AssertionType { get; set; }
+		
 		public virtual bool IsDefining { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Note { get; set; }
+		
 		public virtual long CreatedByMemberId { get; set; }
+		
 		public virtual long UsesPrimaryArtifactId { get; set; }
+		
 		public virtual long UsesRelatedArtifactId { get; set; }
 		public CreateFabDescriptor Descriptor { get; set; }
 		public CreateFabDirector Director { get; set; }
@@ -435,9 +584,16 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabDescriptor : CreateFabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
+		[SpecOptional]
 		public virtual long? RefinesPrimaryWithArtifactId { get; set; }
+		
+		[SpecOptional]
 		public virtual long? RefinesRelatedWithArtifactId { get; set; }
+		
+		[SpecOptional]
 		public virtual long? RefinesTypeWithArtifactId { get; set; }
 
 
@@ -453,8 +609,11 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabDirector : CreateFabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual byte PrimaryAction { get; set; }
+		
 		public virtual byte RelatedAction { get; set; }
 
 
@@ -470,12 +629,24 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabEventor : CreateFabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual long Year { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Month { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Day { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Hour { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Minute { get; set; }
+		
+		[SpecOptional]
 		public virtual byte? Second { get; set; }
 
 
@@ -491,7 +662,11 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabIdentor : CreateFabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Value { get; set; }
 
 
@@ -507,9 +682,13 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabLocator : CreateFabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual double ValueX { get; set; }
+		
 		public virtual double ValueY { get; set; }
+		
 		public virtual double ValueZ { get; set; }
 
 
@@ -525,10 +704,16 @@ namespace Fabric.New.Api.Objects {
 	/*================================================================================================*/
 	public class CreateFabVector : CreateFabObject {
 
+		
 		public virtual byte Type { get; set; }
+		
 		public virtual byte Unit { get; set; }
+		
 		public virtual byte UnitPrefix { get; set; }
+		
 		public virtual long Value { get; set; }
+		
+		[SpecOptional]
 		public virtual long? UsesAxisArtifactId { get; set; }
 
 
@@ -543,9 +728,19 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabInstance : CreateFabArtifact {
-
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Disamb { get; set; }
+		
+		[SpecOptional]
+		[SpecLen(1, 256)]
 		public virtual string Note { get; set; }
 
 
@@ -560,13 +755,30 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabMember : CreateFabVertex {
-
+		
 		public virtual byte Type { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
 		public virtual bool? OauthScopeAllow { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(1, 1024)]
 		public virtual string OauthGrantRedirectUri { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string OauthGrantCode { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
 		public virtual long? OauthGrantExpires { get; set; }
+		
 		public virtual long DefinedByAppId { get; set; }
+		
 		public virtual long DefinedByUserId { get; set; }
 
 
@@ -580,12 +792,27 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class CreateFabOauthAccess : CreateFabVertex {
-
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Token { get; set; }
+		
+		[SpecInternal]
+		[SpecOptional]
+		[SpecLen(32, 32)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Refresh { get; set; }
+		
+		[SpecInternal]
 		public virtual long Expires { get; set; }
+		
+		[SpecInternal]
 		public virtual bool IsClientOnly { get; set; }
+		
 		public virtual long AuthenticatesMemberId { get; set; }
 
 
@@ -600,8 +827,13 @@ namespace Fabric.New.Api.Objects {
 
 	/*================================================================================================*/
 	public class CreateFabUrl : CreateFabArtifact {
-
+		
+		[SpecOptional]
+		[SpecLen(1, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecLen(1, 2048)]
 		public virtual string FullPath { get; set; }
 
 
@@ -615,9 +847,17 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class CreateFabUser : CreateFabArtifact {
-
+		
+		[SpecInternal]
+		[SpecLen(3, 64)]
+		[SpecRegex(@"^[a-zA-Z0-9_]*$")]
 		public virtual string Name { get; set; }
+		
+		[SpecInternal]
+		[SpecLen(8, 128)]
+		[SpecRegex(@"^[a-zA-Z0-9]*$")]
 		public virtual string Password { get; set; }
 
 
@@ -631,8 +871,8 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
+	[SpecInternal]
 	public class CreateFabVertex : CreateFabElement {
-
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

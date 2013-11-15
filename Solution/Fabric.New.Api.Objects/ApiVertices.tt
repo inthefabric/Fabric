@@ -11,6 +11,7 @@
 
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Spec;
 
 namespace Fabric.New.Api.Objects {
 <#
@@ -48,8 +49,12 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 #>		
 
 	/*================================================================================================*/
+<#+
+	if ( v.IsSpecInternal(pCreateMode ? v.CreateAccess : v.GetAccess) ) {
+		OutputSpecAttribute(1, "Internal");
+	}
+#>
 	public class <#= apiName #> : <#= baseName #> {
-
 <#+
 	foreach ( ApiProperty ap in props ) {
 		OutputVertexProp(ap, pCreateMode);
@@ -115,13 +120,49 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 }
 
 
+public void OutputSpecAttribute(int pTabs, string pName, string pParams=null) {
+#>
+<#= new string('\t', pTabs) #>[Spec<#= pName #><#= pParams == null ? "" : "("+pParams+")" #>]
+<#+
+}
+
+
 public void OutputVertexProp(ApiProperty pProp, bool pCreateMode) {
+#>
+		
+<#+
+	if ( pProp.IsSpecInternal(pCreateMode ? pProp.CreateAccess : pProp.GetAccess) ) {
+		OutputSpecAttribute(2, "Internal");
+	}
+
+	if ( pProp.IsNullable ) {
+		OutputSpecAttribute(2, "Optional");
+	}
+
+	if ( pProp.LenMin != null || pProp.LenMax != null ) {
+		OutputSpecAttribute(2, "Len", pProp.LenMin+", "+pProp.LenMax);
+	}
+
+	if ( pProp.ValidRegex != null ) {
+		string patt = pProp.ValidRegex.Replace("\"", "\"\"");
+		OutputSpecAttribute(2, "Regex", "@\""+patt+"\"");
+	}
+
 	OutputVertexProp(pProp.GetDataTypeName(), pProp.Name, (pCreateMode ? pProp.CreateAccess+"" : null));
 }
 
 
 public void OutputVertexProp(IEdgeSchema pEdge, bool pCreateMode) {
-	OutputVertexProp("long"+(pEdge.GetIsOptional() ? "?" : ""), pEdge.GetPropNameApi(),
+#>
+		
+<#+
+	bool opt = pEdge.GetIsOptional();
+
+	if ( opt ) {
+		OutputSpecAttribute(2, "Optional");
+	}
+
+	OutputVertexProp("long"+(opt ? "?" : ""), pEdge.GetPropNameApi(),
 			(pCreateMode ? pEdge.FabToVertexId.CreateAccess+"" : null));
 }
 

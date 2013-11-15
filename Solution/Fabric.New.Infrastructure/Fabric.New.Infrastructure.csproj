@@ -101,6 +101,10 @@
     <Compile Include="Query\Sharpflake.cs" />
     <Compile Include="Query\TxBuilder.cs" />
     <Compile Include="Query\Weave.cs" />
+    <Compile Include="Spec\SpecRegexAttribute.cs" />
+    <Compile Include="Spec\SpecInternalAttribute.cs" />
+    <Compile Include="Spec\SpecOptionalAttribute.cs" />
+    <Compile Include="Spec\SpecLenAttribute.cs" />
     <Compile Include="Util\AuthUtil.cs" />
     <Compile Include="Util\EncryptUtil.cs" />
   </ItemGroup>

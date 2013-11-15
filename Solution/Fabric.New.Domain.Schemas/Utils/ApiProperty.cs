@@ -113,6 +113,11 @@ namespace Fabric.New.Domain.Schemas.Utils {
 			return (FromEnum != null || DataType == typeof(string) || DataType == typeof(bool));
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public bool IsSpecInternal(Access pLevel) {
+			return (pLevel == Access.None || pLevel == Access.Internal);
+		}
+
 	}
 
 	/*================================================================================================*/

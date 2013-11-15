@@ -17,6 +17,9 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		/*--------------------------------------------------------------------------------------------*/
 		bool IsSubObjectNullable(string pName);
 
+		/*--------------------------------------------------------------------------------------------*/
+		bool IsSpecInternal(Access pLevel);
+
 	}
 
 }

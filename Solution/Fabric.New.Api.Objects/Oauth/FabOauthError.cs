@@ -7,11 +7,9 @@ namespace Fabric.New.Api.Objects.Oauth {
 	public class FabOauthError : FabObject {
 
 		[DataMember(Name="error")]
-		//TODO: [DtoProp("error")]
 		public string Error { get; set; }
 
 		[DataMember(Name="error_description")]
-		//TODO: [DtoProp("error_description")]
 		public string ErrorDesc { get; set; }
 
 

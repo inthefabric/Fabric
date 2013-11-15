@@ -83,6 +83,11 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			return false;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public bool IsSpecInternal(Access pLevel) {
+			return (pLevel == Access.None || pLevel == Access.Internal);
+		}
+
 	}
 
 }

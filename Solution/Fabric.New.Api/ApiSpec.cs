@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using Fabric.New.Api.Lang;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Infrastructure.Spec;
 
 namespace Fabric.New.Api {
 
@@ -32,9 +34,15 @@ namespace Fabric.New.Api {
 			var types = typeof(FabObject).Assembly.GetTypes();
 
 			foreach ( Type t in types ) {
-				if ( typeof(FabObject).IsAssignableFrom(t) ) {
-					objs.Add(BuildObject(t));
+				if ( !typeof(FabObject).IsAssignableFrom(t) ) {
+					continue;
 				}
+
+				if ( HasAttribute<SpecInternalAttribute>(t) ) {
+					continue;
+				}
+
+				objs.Add(BuildObject(t));
 			}
 
 			return objs;
@@ -69,17 +77,30 @@ namespace Fabric.New.Api {
 				BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
 
 			foreach ( PropertyInfo pi in props ) {
-				var p = new FabSpecObjectProp();
-				p.Name = pi.Name;
-				p.Type = ApiLang.TypeName(pi.PropertyType);
-				objProps.Add(p);
-
-				if ( !pSkipText && pObjName.IndexOf("CreateFab") != 0 ) {
-					p.Description = ApiLang.Text<DtoPropText>(pObjName.Substring(3)+"_"+p.Name);
+				if ( HasAttribute<SpecInternalAttribute>(pi) ) {
+					continue;
 				}
+
+				objProps.Add(BuildObjectProp(pObjName, pi, pSkipText));
 			}
 
 			return objProps;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabSpecObjectProp BuildObjectProp(
+												string pObjName, PropertyInfo pProp, bool pSkipText) {
+			DataMemberAttribute dataMem = GetAttribute<DataMemberAttribute>(pProp);
+
+			var p = new FabSpecObjectProp();
+			p.Name = (dataMem == null ? pProp.Name : dataMem.Name);
+			p.Type = ApiLang.TypeName(pProp.PropertyType);
+
+			if ( !pSkipText && pObjName.IndexOf("CreateFab") != 0 ) {
+				p.Description = ApiLang.Text<DtoPropText>(pObjName.Substring(3)+"_"+pProp.Name);
+			}
+
+			return p;
 		}
 
 
@@ -158,6 +179,19 @@ namespace Fabric.New.Api {
 			}
 
 			return map;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool HasAttribute<T>(MemberInfo pType) where T : Attribute {
+			return (GetAttribute<T>(pType) != null);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static T GetAttribute<T>(MemberInfo pType) where T : Attribute {
+			object[] atts = pType.GetCustomAttributes(typeof(T), true);
+			return (atts.Length == 0 ? default(T) : (T)atts[0]);
 		}
 
 	}

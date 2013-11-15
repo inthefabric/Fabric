@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+using Fabric.New.Infrastructure.Spec;
 
 namespace Fabric.New.Api.Objects.Oauth {
 
@@ -7,43 +8,39 @@ namespace Fabric.New.Api.Objects.Oauth {
 	public class FabOauthLogin : FabObject {
 
 		[DataMember(Name="code")]
-		//TODO: [DtoProp("code")]
 		public string Code { get; set; }
 
 		[DataMember(Name="state")]
-		//TODO: [DtoProp("state")]
 		public string State { get; set; }
 
 		[DataMember(Name="error")]
-		//TODO: [DtoProp("error")]
 		public string Error { get; set; }
 
 		[DataMember(Name="error_description")]
-		//TODO: [DtoProp("error_description")]
 		public string ErrorDesc { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public bool ShowLoginPage { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public long AppId { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public string AppName { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public long LoggedUserId { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public string LoggedUserName { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public string LoginErrorText { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public string ScopeRedirect { get; set; }
 
-		//TODO: [DtoProp(IsInternal=true)]
+		[SpecInternal]
 		public string ScopeCode { get; set; }
 
 	}
