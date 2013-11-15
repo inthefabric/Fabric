@@ -1,0 +1,3450 @@
+﻿{
+      "BuildVersion": "0.2.4.37fd2cd",
+      "BuildYear": 2013,
+      "BuildMonth": 9,
+      "BuildDay": 18,
+      "Objects": [
+        {
+          "Name": "CreateFabDescriptor",
+          "Extends": "CreateFabObject",
+          "Description": "Contains the data needed to create a new CreateFabDescriptor",
+          "Properties": [
+            {
+              "Enum": "DescriptorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "RefinesPrimaryWithArtifactId",
+              "Type": "long?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "RefinesRelatedWithArtifactId",
+              "Type": "long?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "RefinesTypeWithArtifactId",
+              "Type": "long?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabDirector",
+          "Extends": "CreateFabObject",
+          "Description": "Contains the data needed to create a new CreateFabDirector",
+          "Properties": [
+            {
+              "Enum": "DirectorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "DirectorAction",
+              "Name": "PrimaryAction",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "DirectorAction",
+              "Name": "RelatedAction",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabElement",
+          "Extends": "CreateFabObject",
+          "Description": "Contains the data needed to create a new CreateFabElement",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabEventor",
+          "Extends": "CreateFabObject",
+          "Description": "Contains the data needed to create a new CreateFabEventor",
+          "Properties": [
+            {
+              "Enum": "EventorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Year",
+              "Type": "long",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Month",
+              "Type": "byte?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Day",
+              "Type": "byte?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Hour",
+              "Type": "byte?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Minute",
+              "Type": "byte?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Second",
+              "Type": "byte?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabIdentor",
+          "Extends": "CreateFabObject",
+          "Description": "Contains the data needed to create a new CreateFabIdentor",
+          "Properties": [
+            {
+              "Enum": "IdentorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Value",
+              "Type": "string",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabLocator",
+          "Extends": "CreateFabObject",
+          "Description": "Contains the data needed to create a new CreateFabLocator",
+          "Properties": [
+            {
+              "Enum": "LocatorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ValueX",
+              "Type": "double",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ValueY",
+              "Type": "double",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ValueZ",
+              "Type": "double",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabObject",
+          "Extends": "FabObject",
+          "Description": "Contains the data needed to create a new CreateFabObject",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabVector",
+          "Extends": "CreateFabObject",
+          "Description": "Contains the data needed to create a new CreateFabVector",
+          "Properties": [
+            {
+              "Enum": "VectorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "VectorUnit",
+              "Name": "Unit",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "VectorUnitPrefix",
+              "Name": "UnitPrefix",
+              "Type": "byte",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Value",
+              "Type": "long",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "UsesAxisArtifactId",
+              "Type": "long?",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabApp",
+          "Extends": "FabArtifact",
+          "Description": "A registered project, application, or business that has direct access to the Fabric API.\r\n\r\nAn !App's primary purpose is to facilitate User interaction with Fabric. To accomplish this, an !App typically creates an interface for its Users. This interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. \r\n\r\nWhen a User becomes a Member of an !App, they are granting that !App permission to perform various actions on their behalf (via the !App's interface). It is vital for an !App to provide each User with a positive experience and do nothing to violate the User's trust.\r\n\r\nEvery !App has a special 'Data Provider' Member, which is typically controlled by that !App's administrator. The 'Data Provider' allows the !App to interact with Fabric as itself (rather than on behalf of a particular User).\r\n\r\nEvery item added to Fabric is associated with (via Member) a User and and an !App. Thus, Fabric can determine which !App is responsible for any particular item, enforce applicable access rights, analyze the data for a particular !App or Member, etc.",
+          "Properties": [
+            {
+              "IsUnique": true,
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A unique title or identifier.",
+              "LenMax": 64,
+              "LenMin": 3,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabAppDefinesMember",
+          "Extends": "FabLink",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabArtifact",
+          "Extends": "FabVertex",
+          "Description": "An object which is able to (via Factor connections) accumulate meaning, context, user sentiment, and relationships.  !Artifacts and Factors are the central components of the Fabric architecture.\r\n\r\nThere are no restrictions on what an !Artifact can represent.  Fabric encourages the generous use of Factors to identify and describe each new !Artifact. Ideally, the Factor connections will distinguish an !Artifact from all others.",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabArtifactUsedAsPrimaryByFactor",
+          "Extends": "FabLink",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabArtifactUsedAsRelatedByFactor",
+          "Extends": "FabLink",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabClass",
+          "Extends": "FabArtifact",
+          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.\r\n\r\nA !Class represents a particular group, type, set, or category of items. Each !Class must uniquely identifiable (via name and disambiguation) amonst all other !Classes.\r\n[(EX|Ellie's Class Example|Ellie is building an App for dog lovers, but there are not yet animal-related !Classes for Ellie to use. She first creates broad !Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').\r\n\r\nShe then creates narrower !Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A !Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' !Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A descriptive name or title.",
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Disamb",
+              "Type": "string",
+              "Description": "A secondary label or identifier, used to resolve unique-name conflicts.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Note",
+              "Type": "string",
+              "Description": "A summary of the !Class's intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabDescriptor",
+          "Extends": "FabObject",
+          "Description": "A Factor Element that describes and refines the relationship between the Factor's two Artifacts. !Descriptors are the only required Factor Element.\r\n\r\nFirst, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A \"is a\" B, or C \"sounds like\" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's direction.\r\n[(EX|Relationship Example|_Objective:_\r\nDescribe that a circle is a shape. \r\n\r\n_Method:_\r\n- The Factor uses 'Circle' as the primary Artifact and 'Shape' as the related Artifact.\r\n- The !Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]].\r\n\r\n_Factor Phrase:_\r\nCircle ... Is A ... Shape.)]\r\n\r\n!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any Artifact, a !Descriptor may refine the [[DescriptorType|Enum|DescriptorType]], the Factor's primary Artifact, and/or the Factor's related Artifact. Note: while these Artifact links are discussed here in the context of a !Descriptor, the actual traversal links exist with the Factor.\r\n[(EX|Refinement Example|_Objective:_\r\nDescribe that car A and car B have headlights with a similar shape.\r\n\r\n_Method:_\r\n- The Factor uses 'Car A' as the primary Artifact and 'Car B' as the related Artifact.\r\n- The !Descriptor uses the 'Is Similar To' [[DescriptorType|Enum|DescriptorType]], uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the [[DescriptorType|Enum|DescriptorType]].\r\n\r\n_Factor Phrase:_\r\nCar A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]",
+          "Properties": [
+            {
+              "Enum": "DescriptorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "Specifies the type of relationship or connection.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabDirector",
+          "Extends": "FabObject",
+          "Description": "A Factor Element that creates a directional, action-based flow between the Factor's two Artifacts.\r\n\r\nThe nature of a !Director's pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.\r\n\r\nA !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.\r\n[(EX|Defined Pathway Example|_Objective:_\r\nDirect along the defined pathway of listening to a particular album's third and fourth songs (song C and D) in order.\r\n\r\n_Method:_\r\n- The Factor uses 'Song C' as the primary Artifact and 'Song D' as the related Artifact.\r\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\r\n- The !Director uses the 'Defined Path' [[DirectorType|Enum|DirectorType]] and the 'Listen' [[DirectorAction|Enum|DirectorAction]] for each Artifact.\r\n\r\n_Factor Phrase:_\r\nSong C ... Is Related To ... Song D. (The) Listen (action on) ... Song C ...  (leads to the) Listen (action on) ... Song D ... (via) Defined Path.)] [(EX|Suggested Pathway Example|_Objective:_\r\nDirect along a suggested pathway of listening to song A and then learning about that song's vocalist, singer B.\r\n\r\n_Method:_\r\n- The Factor uses 'Song A' as the primary Artifact and 'Singer B' as the related Artifact.\r\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\r\n- The !Director uses the 'Suggested Path' [[DirectorType|Enum|DirectorType]], the 'Listen' primary [[DirectorAction|Enum|DirectorAction]], and the 'Learn' related [[DirectorAction|Enum|DirectorAction]].\r\n\r\n_Factor Phrase:_\r\nSong A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]",
+          "Properties": [
+            {
+              "Enum": "DirectorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "Specifies the type and reason for the pathway.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "DirectorAction",
+              "Name": "PrimaryAction",
+              "Type": "byte",
+              "Description": "Specifies the action to be performed on the Factor's primary Artifact.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "DirectorAction",
+              "Name": "RelatedAction",
+              "Type": "byte",
+              "Description": "Specifies the action to be performed on the Factor's related Artifact.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabElement",
+          "Extends": "FabObject",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabError",
+          "Extends": "FabObject",
+          "Description": "When a fault or error occurs, a !FabError is included in the response data. The information it provides should help determine what caused the issue for the given request.",
+          "Properties": [
+            {
+              "Name": "Code",
+              "Type": "int",
+              "Description": "A numeric value which identifies the specific error type.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A descriptive name that is associated with the error code.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Message",
+              "Type": "string",
+              "Description": "A sentence or paragraph providing details about the error.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabEventor",
+          "Extends": "FabObject",
+          "Description": "A Factor Element that applies the concept of time to a particular Factor.\r\n\r\nAn !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.\r\n\r\nEach !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level of precision ranging from one second to one year.\r\n[(EX|Started Example|_Objective:_\r\nSpecify that Albert Einstein was born (i.e. started his life) on March 14, 1879.\r\n\r\n_Method:_\r\n- The Factor uses 'Albert Einstein' as the primary Artifact and 'Life' as the related Artifact.\r\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nAlbert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... 1879 ... 3 ... 14.)] [(EX|Expected Example|_Objective:_\r\nSpecify that person A plans to attend college B in the year 2024.\r\n\r\n_Method:_\r\n- The Factor uses 'Person A' as the primary Artifact and 'College B' as the related Artifact.\r\n- The Descriptor uses the 'Participates In' [[DescriptorType|Enum|DescriptorType]] and the 'Attend' Artifact to refine it.\r\n- The !Eventor uses '2024' as its Year value and the 'Is Expected' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nPerson A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]\r\n\r\n_Note: every Factor recieves a timestamp upon creation. This timestamp is not related to the !Eventor._",
+          "Properties": [
+            {
+              "Enum": "EventorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "Specifies the significance of this point in time.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Year",
+              "Type": "long",
+              "Description": "Specifies the year value.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Month",
+              "Type": "byte?",
+              "Description": "Specifies the month value.",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Day",
+              "Type": "byte?",
+              "Description": "Specifies the day value.",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Hour",
+              "Type": "byte?",
+              "Description": "Specifies the hour value (UTC).",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Minute",
+              "Type": "byte?",
+              "Description": "Specifies the minute value (UTC).",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Second",
+              "Type": "byte?",
+              "Description": "Specifies the second value (UTC).",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabFactor",
+          "Extends": "FabVertex",
+          "Description": "Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.\r\n\r\nA !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor Elements. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.\r\n\r\nThere are six !Factor Elements: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.\r\n\r\nJust as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A [[FactorAssertion|Enum|FactorAssertion]] allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.",
+          "Properties": [
+            {
+              "Enum": "FactorAssertion",
+              "Name": "AssertionType",
+              "Type": "byte",
+              "Description": "Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "IsDefining",
+              "Type": "bool",
+              "Description": "Specifies whether this !Factor helps to directly and uniquely define the primary Artifact.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Note",
+              "Type": "string",
+              "Description": "A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Descriptor",
+              "Type": "FabDescriptor",
+              "Description": "This element defines the relationship between the primary and related Artifact.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Director",
+              "Type": "FabDirector",
+              "Description": "This element creates a directional pathway between the primary and related Artifacts.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Eventor",
+              "Type": "FabEventor",
+              "Description": "This element applies the concept of time.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Identor",
+              "Type": "FabIdentor",
+              "Description": "This element applies a name or identifier.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Locator",
+              "Type": "FabLocator",
+              "Description": "This element provides a geographical or relative position.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Vector",
+              "Type": "FabVector",
+              "Description": "This element applies a numeric axis and value.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabHome",
+          "Extends": "FabObject",
+          "Description": "The complete collection of Fabric API services.",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Uri",
+              "Type": "string",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Services",
+              "Type": "FabService[]",
+              "Description": "The complete list of services.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabIdentor",
+          "Extends": "FabObject",
+          "Description": "A Factor Element that applies a name or identifier to a particular Factor.\r\n\r\nAn !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.\r\n\r\nThe [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A \"Text\" [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A \"Key\" [[IdentorType|Enum|IdentorType]] is typically meant to associate a Factor with some external system (like a Product ID from an online store) or to provide an App with a \"reverse lookup\" for their own internal IDs.\r\n[(EX|Alternate Name Example|_Objective:_\r\nIdentify that Grand Valley State University is also known as (has the alternate name of) 'Grand Valley'.\r\n\r\n_Method:_\r\n- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Name' as the related Artifact.\r\n- The Descriptor uses the 'Has A' DescriptorType, and an 'Alternative' Artifact to refine the Factor's related Artifact.\r\n- The !Identor uses 'Grand Valley' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGrand Valley State University ... Has A ... Name (more specifically, an) Alternative, ... (identified by the) Text ... 'Grand Valley'.)] [(EX|Abbreviation Example|_Objective:_\r\nIdentify that Grand Valley State University is also known as (has the abbreviation of) 'GVSU'.\r\n\r\n_Method:_\r\n- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Abbreviation' as the related Artifact.\r\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Identor uses 'GVSU' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGrand Valley State University ... Has A(n) ... Abbreviation, ... (identified by the) Text ... 'GVSU'.)] [(EX|Identifier Example|_Objective:_\r\nIdentify that game A is accessible in store B via its ID, which is '123a-45678'.\r\n\r\n_Method:_\r\n- The Factor uses 'Game A' as the primary Artifact and 'Store B' as the related Artifact.\r\n- The Descriptor uses the 'Is Found In' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Identor uses '123a-45678' as its text value, and the 'Key' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGame A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]",
+          "Properties": [
+            {
+              "Enum": "IdentorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "Specifies the value's purpose or intent.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Value",
+              "Type": "string",
+              "Description": "A text-based value that can represent names, numbers, IDs, GUIDs, etc.",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabInstance",
+          "Extends": "FabArtifact",
+          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. Classes and !Instances are closely related, and are the primary method for generating new Artifacts.\r\n\r\nAn !Instance represents a singular, unique item. It may have a specific name, however, the name is not required to be unique. Instead, the creator should apply Factors to make the Instance as specific and meaningful as possible.\r\n[(EX|Ellie's Instance Example|_Continued from Ellie's Class Example..._\r\n\r\nAfter completing her new Classes, Ellie would like to add her own dog. She creates an !Instance named 'Gulliver', and attaches several Factors to make the Instance as unique as possible. Her Factors define that Gulliver is a Lhasa Apso breed, is owned by Ellie, and was born in September 2007.)] [(EX|Zach's Instance Example|Zach built an App that allows users to rate restaurants and individual meals. He created Classes for restaurant chains and meal types. He also created !Instances for specific restaurants (with relevant relationships for each).\r\n\r\nWhen Users rate a particular meal, they also specify the restaurant, the day/time the meal was served, and the meal type. Behind the scenes, the App uses this data to construct a new !Instance and its relationships. Because Zach's !Instances are well-defined, one User could rate the same meal (at the same restaurant) every day, creating a unique and meaningful Instance each time.)]",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A descriptive name or title.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Disamb",
+              "Type": "string",
+              "Description": "A secondary label or identifier, used to resolve unique-name conflicts.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Note",
+              "Type": "string",
+              "Description": "A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabLink",
+          "Extends": "FabElement",
+          "Description": "TODO",
+          "Properties": [
+            {
+              "Name": "FromType",
+              "Type": "string",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ToType",
+              "Type": "string",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabLocator",
+          "Extends": "FabObject",
+          "Description": "A Factor Element that positions a Factor using geographic or relative coordinates.\r\n\r\nA !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.\r\n\r\nGeographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.\r\n[(EX|Geographic Example|_Objective:_\r\nSpecify that person A took photo B from a spot near the Eiffel Tower.\r\n\r\n_Method:_\r\n- The Factor uses 'Photo B' as the primary Artifact and 'Person A' as the related Artifact.\r\n- The Descriptor uses the 'Is Created By' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Earth Coordinate' [[LocatorType|Enum|LocatorType]], a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.\r\n\r\n_Factor Phrase:_\r\nPhoto B ... Is Created By ... Person A, ... (at an) Earth Coordinate (location of) ... X (longitude) = '2.292977' ... Y (latitude) = '48.858154' ... Z (elevation) = '34.24' (metres above sea level).)]\r\n\r\nRelative coordinates represent a position relative to the origin and size/bounds of the Factor's primary Artifact. There are LocatorTypes for one, two, and three-dimensional relative coordinates. For coordinates which have:\r\n- One dimension, use X for time or progress, and leave Y and Z equal to zero.\r\n- Two dimensions, use X for width, Y for height, and leave Z equal to zero.\r\n- Three dimensions, use X, Y, and Z values which correspond to the Artifact's X, Y, and Z values. If these axes are undefined, use X for width (or breadth), Y for length (or depth), and Z for height (or elevation).\r\n[(EX|Relative 1D Example|_Objective:_\r\nSpecify that book A refers to painting B on page 148 of 200 (about 74% of the book's length).\r\n\r\n_Method:_\r\n- The Factor uses 'Book A' as the primary Artifact and 'Painting B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Related 1D' [[LocatorType|Enum|LocatorType]], a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.\r\n\r\n_Factor Phrase:_\r\nBook A ... Refers To ... Painting B, ... (at a) Relative 1D (location of) ... X (position) = 0.74.)] [(EX|Relative 2D Example|_Objective:_\r\nSpecify that photo A includes person B near the top-right (25% from the top, 84% from the left) of the image.\r\n\r\n_Method:_\r\n- The Factor uses 'Photo A' as the primary Artifact and 'Person B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Relative 2D' [[LocatorType|Enum|LocatorType]], a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.\r\n\r\n_Factor Phrase:_\r\nPhoto A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]",
+          "Properties": [
+            {
+              "Enum": "LocatorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "Specifies the spatial context of the coordinate.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ValueX",
+              "Type": "double",
+              "Description": "A value representing longitude, time/progress, width, or a particular three-dimensional axis.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ValueY",
+              "Type": "double",
+              "Description": "A value representing latitude, height, or a particular three-dimensional axis.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ValueZ",
+              "Type": "double",
+              "Description": "A value representing elevation or a particular three-dimensional axis.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabMember",
+          "Extends": "FabVertex",
+          "Description": "An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different [[MemberType|Enum|MemberType]].\r\n\r\nEvery item added to Fabric is associated with a particular !Member. This enables Fabric to determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc.",
+          "Properties": [
+            {
+              "Enum": "MemberType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "Specifies the Member's state and/or access privileges.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabMemberAuthenticatedByOauthAccess",
+          "Extends": "FabLink",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabMemberCreatesArtifact",
+          "Extends": "FabLink",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabMemberCreatesFactor",
+          "Extends": "FabLink",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabMetaTime",
+          "Extends": "FabObject",
+          "Description": "Contains the current Fabric system time. Fabric uses the UTC timezone for all dates, times, and timestamps.",
+          "Properties": [
+            {
+              "Name": "Year",
+              "Type": "int",
+              "Description": "The current year.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Month",
+              "Type": "int",
+              "Description": "The current month.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Day",
+              "Type": "int",
+              "Description": "The current day of the month.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Hour",
+              "Type": "int",
+              "Description": "The current hour (using 24-hour time).",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Minute",
+              "Type": "int",
+              "Description": "The current minute.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Second",
+              "Type": "int",
+              "Description": "The current second.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Millisecond",
+              "Type": "double",
+              "Description": "The current millisecond.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Timestamp",
+              "Type": "long",
+              "Description": "A Unix timestamp value (in milliseconds).",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Timezone",
+              "Type": "string",
+              "Description": "The timezone used by the time metrics.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabMetaVersion",
+          "Extends": "FabObject",
+          "Description": "Contains the current Fabric version information. Fabric uses semantic versioning.",
+          "Properties": [
+            {
+              "Name": "Version",
+              "Type": "string",
+              "Description": "This build's full version string, in the format: \"Major.Minor.Patch.Revision\".",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Major",
+              "Type": "int",
+              "Description": "The major revision number for this build. This value is only incremented in cases where significant or important changes have occurred. These changes may introduce backwards-incompatability with previous builds.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Minor",
+              "Type": "int",
+              "Description": "The minor revision number for this build. This value is incremented in cases when substantial functionality or improvements are introduced. It may also occur when certain functionality becomes deprecated.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Patch",
+              "Type": "int",
+              "Description": "The patch revision number for this build. This value is incremented when bug fixes or other internal changes occur.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Revision",
+              "Type": "string",
+              "Description": "The revision text is derived from internal build information. It may be safely omitted from the build's version string.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Year",
+              "Type": "int",
+              "Description": "The year that this build was released.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Month",
+              "Type": "int",
+              "Description": "The month that this build was released.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Day",
+              "Type": "int",
+              "Description": "The day of the month that this build was released.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabOauthAccess",
+          "Extends": "FabObject",
+          "Description": "Provides an OAuth access token and other related information. Every Fabric API request requires an access token. To include an OAuth access token with a FabricAPI request, add an \"Authorization\" header to the HTTP request with a value of \"Bearer=[your OAuth access code here]\".",
+          "Properties": [
+            {
+              "IsUnique": true,
+              "Name": "access_token",
+              "Type": "string",
+              "Description": "A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.",
+              "LenMax": 32,
+              "LenMin": 32,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "token_type",
+              "Type": "string",
+              "Description": "For the current Fabric OAuth implementation, this value is always equal to \"bearer\".",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "IsUnique": true,
+              "Name": "refresh_token",
+              "Type": "string",
+              "Description": "A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Oper|Oauth.AccessTokenClientCredentials]].",
+              "LenMax": 32,
+              "LenMin": 32,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "expires_in",
+              "Type": "int",
+              "Description": "The number of seconds until the access token expires.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabOauthError",
+          "Extends": "FabObject",
+          "Description": "To comply with the OAuth 2.0 specification, all Fabric OAuth requests return a FabOauthError (instead of FabFault or FabError) when errors occur.",
+          "Properties": [
+            {
+              "Name": "error",
+              "Type": "string",
+              "Description": "An error code as defined by the OAuth 2.0 specification.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "error_description",
+              "Type": "string",
+              "Description": "Provides specific details about the error. A single error code may have one or more possible error descriptions.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabOauthLogin",
+          "Extends": "FabObject",
+          "Description": "This object is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.\r\n\r\nThis redirect is used in one particular scenario: the [[OAuth login process|Oper|Oauth.Login]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the 'code' and 'state' parameters. The failure redirect includes the 'error', 'error_description', and 'state' parameters.",
+          "Properties": [
+            {
+              "IsUnique": true,
+              "Name": "code",
+              "Type": "string",
+              "Description": "Use this code (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.",
+              "LenMax": 32,
+              "LenMin": 32,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "state",
+              "Type": "string",
+              "Description": "Returns the 'state' value that the App provided in the original Oauth request. For security reasons, the App should reject the response if the original and returned values are not equal.",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "error",
+              "Type": "string",
+              "Description": "An error code as defined by the OAuth 2.0 specification.",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "error_description",
+              "Type": "string",
+              "Description": "Provides specific details about the error. A single error code may have one or more possible error descriptions. For use in the redirect URI, this string uses a '+' character in place of each space character.",
+              "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabOauthLogout",
+          "Extends": "FabObject",
+          "Description": "The result of an OAuth logout.",
+          "Properties": [
+            {
+              "Name": "success",
+              "Type": "int",
+              "Description": "Describes the result of the logout attempt. Successful logout attempts return a value of 1.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "IsUnique": true,
+              "Name": "access_token",
+              "Type": "string",
+              "Description": "Identifies a particular OAuth session.",
+              "LenMax": 32,
+              "LenMin": 32,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabObject",
+          "Extends": "Object",
+          "Description": "The base class for all !Objects returned by Fabric's services.",
+          "Properties": [
+            {
+              "Name": "Obj",
+              "Type": "string",
+              "Description": "The data type of this object.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabService",
+          "Extends": "FabObject",
+          "Description": "A collection of ServiceOperations which all share a similar purpose.",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "The service name.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Uri",
+              "Type": "string",
+              "Description": "Append this path to the current URI to obtain details about this service.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Operations",
+              "Type": "FabServiceOperation[]",
+              "Description": "The complete list of operations for this service.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabServiceOperation",
+          "Extends": "FabObject",
+          "Description": "A task, query, or operation that belongs to a Service.",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A descriptive name for this operation.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Uri",
+              "Type": "string",
+              "Description": "Append this value to the current URI (and use the correct HTTP method) to invoke this operation.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Method",
+              "Type": "string",
+              "Description": "The required HTTP method.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Return",
+              "Type": "string",
+              "Description": "The type of Object returned by this operation.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpec",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "BuildVersion",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "BuildYear",
+              "Type": "int",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "BuildMonth",
+              "Type": "int",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "BuildDay",
+              "Type": "int",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Objects",
+              "Type": "FabSpecObject[]",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Services",
+              "Type": "FabSpecService[]",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Enums",
+              "Type": "FabSpecEnum[]",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecEnum",
+          "Extends": "FabSpecObject",
+          "Properties": [
+            {
+              "Name": "Items",
+              "Type": "object[]",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecObject",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Extends",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Description",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Properties",
+              "Type": "FabSpecObjectProp[]",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecObjectProp",
+          "Extends": "FabSpecValue",
+          "Properties": [
+            {
+              "Name": "Enum",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ToLowerCase",
+              "Type": "bool?",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "IsUnique",
+              "Type": "bool?",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecService",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Uri",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Summary",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Description",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Operations",
+              "Type": "FabSpecServiceOperation[]",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecServiceOperation",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Uri",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Method",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Return",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Description",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Auth",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Parameters",
+              "Type": "FabSpecServiceOperationParam[]",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecServiceOperationParam",
+          "Extends": "FabSpecValue",
+          "Properties": [
+            {
+              "Name": "ParamType",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Index",
+              "Type": "int",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecTravFunc",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Description",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Uri",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ReturnsPreviousType",
+              "Type": "bool",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ReturnsAliasType",
+              "Type": "bool",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ReturnsObjectType",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Parameters",
+              "Type": "FabSpecTravFuncParam[]",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecTravFuncParam",
+          "Extends": "FabSpecValue",
+          "Properties": [
+            {
+              "Name": "Index",
+              "Type": "int",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecTravLink",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Type",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Description",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "IsOutgoing",
+              "Type": "bool",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "From",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "FromConn",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Relation",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "To",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ToConn",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecValue",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Type",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Description",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "IsOptional",
+              "Type": "bool?",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "LenMax",
+              "Type": "int?",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "LenMin",
+              "Type": "int?",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "ValidRegex",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravAppRoot",
+          "Extends": "FabTravArtifactRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravArtifactRoot",
+          "Extends": "FabTravVertexRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravClassRoot",
+          "Extends": "FabTravArtifactRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravFactorRoot",
+          "Extends": "FabTravVertexRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravInstanceRoot",
+          "Extends": "FabTravArtifactRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravMemberRoot",
+          "Extends": "FabTravVertexRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravRoot",
+          "Extends": "FabObject",
+          "Description": "Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects.",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravStep",
+          "Extends": "FabObject",
+          "Description": "TODO",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Uri",
+              "Type": "string",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Return",
+              "Type": "string",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravTypedRoot",
+          "Extends": "FabObject",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravUrlRoot",
+          "Extends": "FabTravArtifactRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravUserRoot",
+          "Extends": "FabTravArtifactRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabTravVertexRoot",
+          "Extends": "FabTravTypedRoot",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabUrl",
+          "Extends": "FabArtifact",
+          "Description": "A hyperlink or path (uniform resource locator) to some web page, a file, or some other type of content.\r\n\r\nWhile a !Url is a type of Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Instance for both the news article and photo. With this method:\r\n- The news article and photo Instances can receive Factors independently.\r\n- The !Url should only receive Factors related to the actual web page, its design, etc.\r\n- Every !Url that displays this particular news article can refer the same news article Instance.",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A descriptive name or title.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "ToLowerCase": true,
+              "IsUnique": true,
+              "Name": "FullPath",
+              "Type": "string",
+              "Description": "A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').",
+              "LenMax": 2048,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabUser",
+          "Extends": "FabArtifact",
+          "Description": "A registered Fabric account that has indirect access (via Apps) to the Fabric API. A !User can become a Member of an App, and then use the App's interface to interact with Fabric. An App's interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. \r\n\r\n!Users control their private account data and preferences using the Fabric website.\r\n\r\nEvery item added to Fabric is associated with (via Member) a !User and and an App. Thus, Fabric can determine which !User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular !User or Member, etc.",
+          "Properties": [
+            {
+              "IsUnique": true,
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A unique username.",
+              "LenMax": 64,
+              "LenMin": 3,
+              "ValidRegex": "^[a-zA-Z0-9_]*$",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabUserDefinesMember",
+          "Extends": "FabLink",
+          "Description": "TODO",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabVector",
+          "Extends": "FabObject",
+          "Description": "A Factor Element that applies a meaningful numeric axis and value to a particular Factor.\r\n\r\nA !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its \"axis\". This axis depends entiedgey upon the !Vector's purpose. For example, a factual !Vector might use an Artifact like \"Height\" or \"Shutter Speed\". A !Vector that provides an opinion might use an Artifact like \"Quality\" or \"Excitement\". While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other Apps or Users are already using as !Vector axes. Note: while the axis Artifact link is discussed here in the context of a Vector, the actual traversal link exists with the Factor.\r\n\r\nThe [[VectorType|Enum|VectorType]] provides boundaries and context for the !Vector's value. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each [[VectorType|Enum|VectorType]] provides additional information, such as a [[VectorRange|Enum|VectorRange]], to provide further meaning for the levels within the the allowed value boundaries.\r\n\r\nA !Vector's numeric value often reflects a measurement or a has a specific unit. Furthermore, a !Vector can use [[VectorUnitPrefix|Enum|VectorUnitPrefix]] to specify an order of magnitude for the value. A !Vector's value is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.\r\n[(EX|Small Value Example|_Objective:_\r\nSpecify that image A (which is a photo) has a shutter speed of 1/250 second.\r\n\r\n_Method:_\r\n- The Factor uses 'Image A' as the primary Artifact and 'Photo' as the related Artifact.\r\n- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Shutter Speed' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '4' as the value, the 'Milli' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the 'Second' [[VectorUnit|Enum|VectorUnit]].\r\n\r\n_Factor Phrase:_\r\nImage A ... Is A ... Photo, ... (which, along the) Shutter Speed (axis) ... (with a) Positive Long (numerical range), ... (has a value) '4' ... Milli ... Second(s).)] [(EX|Large Value Example|_Objective:_\r\nSpecify that Earth and the Andromeda Galaxy are 2.5 million light years (2.2705 x 10^22 metres) apart.\r\n\r\n_Method:_\r\n- The Factor uses 'Earth' as the primary Artifact and 'Andromeda Galaxy' as the related Artifact.\r\n- The Descriptor uses the 'Is Related To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Distance' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '22,705' as the value, the 'Exa' [[VectorUnitPrefix|Enum|VectorUnitPrefix]] (represents 10^18), and the 'Metre' [[VectorUnit|Enum|VectorUnit]].\r\n\r\n_Factor Phrase:_\r\nEarth ... Is Related To ... Andromeda Galaxy, ... (which, along the) Distance (axis) ... (with a) Positive Long (numerical range), ... (has a value) '22,705' ... Exa ... Metre(s).)] [(EX|Negative Value Example|_Objective:_\r\nSpecify that article A mentions person B in a very unfair manner, about 80% of the maximum unfairness imaginable.\r\n\r\n_Method:_\r\n- The Factor uses 'Article A' as the primary Artifact and 'Person B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Fairness' Artifact as the axis, the 'Opposable Favorability' [[VectorType|Enum|VectorType]], '-80' as the value, the default 'Base' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the default 'None' [[VectorUnit|Enum|VectorUnit]]. This [[VectorType|Enum|VectorType]] has bounds of -100 to +100.\r\n\r\n_Factor Phrase:_\r\nArticle A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]",
+          "Properties": [
+            {
+              "Enum": "VectorType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "Specifies its value's boundaries and context.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "VectorUnit",
+              "Name": "Unit",
+              "Type": "byte",
+              "Description": "Specifies its value's unit of measurement.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "VectorUnitPrefix",
+              "Name": "UnitPrefix",
+              "Type": "byte",
+              "Description": "Specifies its value's order of magnitude.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Value",
+              "Type": "long",
+              "Description": "An integral value which is to be plotted along the specified axis. This value must account for the choice of prefix. After being multiplied by the prefix magnitude, the value must fall within the bounds specified by VectorType. Before prefix multiplication, this value must be between –9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabVertex",
+          "Extends": "FabElement",
+          "Description": "The base class for all vertices present in the Fabric \"graph\".  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]].",
+          "Properties": [
+            {
+              "IsUnique": true,
+              "Name": "Id",
+              "Type": "long",
+              "Description": "A unique identifier for this !Vertex.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Timestamp",
+              "Type": "long",
+              "Description": "The date/time of creation.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Enum": "VertexType",
+              "Name": "VertexType",
+              "Type": "byte",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        }
+      ],
+      "Services": [
+        {
+          "Name": "Meta",
+          "Uri": "/Meta",
+          "Summary": "Load information about the API and its services.",
+          "Description": "TODO",
+          "Operations": [
+            {
+              "Name": "Spec",
+              "Uri": "/Spec",
+              "Method": "GET",
+              "Return": "FabResponse<FabSpec>",
+              "Description": "Get the latest specifications and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Version",
+              "Uri": "/Version",
+              "Method": "GET",
+              "Return": "FabResponse<FabMetaVersion>",
+              "Description": "Get the current Fabric version.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Time",
+              "Uri": "/Time",
+              "Method": "GET",
+              "Return": "FabResponse<FabMetaTime>",
+              "Description": "Get the current Fabric server time.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            }
+          ],
+          "Obj": "FabSpecService"
+        },
+        {
+          "Name": "Modify",
+          "Uri": "/Mod",
+          "Summary": "Update the Fabric graph with new items and modifications.",
+          "Description": "TODO",
+          "Operations": [
+            {
+              "Name": "Classes",
+              "Uri": "/Classes",
+              "Method": "POST",
+              "Return": "FabResponse<FabClass>",
+              "Description": "Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric.",
+              "Auth": "Member",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Factors",
+              "Uri": "/Factors",
+              "Method": "POST",
+              "Return": "FabResponse<FabFactor>",
+              "Description": "Create a new Factor. The Factor begins in the 'incomplete' state, with no FactorElements attached.",
+              "Auth": "Member",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Instances",
+              "Uri": "/Instances",
+              "Method": "POST",
+              "Return": "FabResponse<FabInstance>",
+              "Description": "Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric.",
+              "Auth": "Member",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Members",
+              "Uri": "/Members",
+              "Method": "POST",
+              "Return": "FabResponse<FabMember>",
+              "Description": "TODO",
+              "Auth": "Member",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Urls",
+              "Uri": "/Urls",
+              "Method": "POST",
+              "Return": "FabResponse<FabUrl>",
+              "Description": "Create a new Url.",
+              "Auth": "Member",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            }
+          ],
+          "Obj": "FabSpecService"
+        },
+        {
+          "Name": "Oauth",
+          "Uri": "/Oauth",
+          "Summary": "Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.",
+          "Description": "TODO",
+          "Operations": [
+            {
+              "Name": "AccessToken",
+              "Uri": "/AccessToken",
+              "Method": "GET",
+              "Return": "???",
+              "Description": "Get an OAuth access token using one of four 'flows'.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow) for information about the available OAuth flows.\r\n\r\nAn OAuth access token must be included with every Fabric API request (with the exception of the OAuth requests).  This token is the result of a successful login, an accepted App scope, a confirmed App secret code, and a confirmed authorization code.  Thus, each token is associated with a specific App, User, and successful OAuth process.  When included with an API request, Fabric obtains the relevant App and User ID values, and generates a response accordingly.\r\n\r\nSee FabOauthAccess for information on how to include an OAuth access token with a Fabric API request.",
+              "Auth": "???",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "AccessTokenAuthCode",
+              "Uri": "/AccessTokenAuthCode",
+              "Method": "GET",
+              "Return": "???",
+              "Description": "This OAuth flow should be used immediately after obtaining an authorization code from the OAuth entry process. Fabric verifies the authorization code, determines the associated App and User IDs, and generates a new access token.\r\n\r\nSee [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.",
+              "Auth": "???",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "AccessTokenRefresh",
+              "Uri": "/AccessTokenRefresh",
+              "Method": "GET",
+              "Return": "???",
+              "Description": "This OAuth flow should be used to refresh an expired access token. If the refresh token is valid, Fabric generates new access and refresh tokens for the given OAuth session. This process also invalidates the original refresh token.\r\n\r\nApp-only access tokens (obtained with the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow) should not be refreshed; the App should simply request a new access token.\r\n\r\nSee [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.",
+              "Auth": "???",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "AccessTokenClientCredentials",
+              "Uri": "/AccessTokenClientCredentials",
+              "Method": "GET",
+              "Return": "???",
+              "Description": "This OAuth flow should be used to begin an OAuth session for your Fabric App. This flow does not require an authorization code from the typical OAuth entry process.\r\n\r\nSee [[Access Token|Oper|Oauth.AccessToken]] or general information about the OAuth process.",
+              "Auth": "???",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "AccessTokenClientDataProv",
+              "Uri": "/AccessTokenClientDataProv",
+              "Method": "GET",
+              "Return": "???",
+              "Description": "This OAuth flow should be used to begin an OAuth session for your Fabric App's Data Provider User. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric App's OAuth needs.\r\n\r\nSee [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.",
+              "Auth": "???",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Login",
+              "Uri": "/Login",
+              "Method": "GET",
+              "Return": "???",
+              "Description": "This API request is unique -- it represents the entry point for Fabric's OAuth 2.0 authentication process.  Instead of making this API request directly from a Fabric App, the App should provide a link so that its users can load this request's URL (including the required query-string parameters) in their browser.\r\n\r\nA web-based Fabric App would typically load this OAuth entry page as a browser popup window. Once the user completes the full OAuth process (or upon an error), Fabric will redirect the browser to the App's specified redirect URI.  This redirect includes query-string parameters that provide success or error information.\r\n\t\r\nFor a user, this OAuth process includes two steps: login and 'scope' acceptance.\r\n\r\nThe first step is login, where the user is prompted to enter their username and password. If a user has already logged into Fabric (i.e. has an active authentication cookie from Fabric) and the App has not requested 'switchMode', the login step is skipped.  Important note: login occurs on Fabric's server -- a Fabric App never receives or sends a Fabric user's login credentials.\r\n\r\nThe second step is 'scope' acceptance.  The page tells the user that a particular Fabric App wants to connect to their Fabric account, and briefly explains what this means to the user and the App. The user must accept or deny access.  Upon acceptance, the page redirects to the App with a 'success' message.  Upon denial, Fabric performs an error redirect.\r\n\t\r\nSimilar to the login step, if a user has already accepted 'scope' for a particular App, the second step is skipped.  Thus, in the case where a user is already authenticated with Fabric and has already allowed App access, the entire process results in a success redirect.\r\n\t\r\nSee FabOauthLogin for the query string parameters that can be included in the success and error redirects.",
+              "Auth": "???",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Logout",
+              "Uri": "/Logout",
+              "Method": "GET",
+              "Return": "???",
+              "Description": "Terminates a particular OAuth session by invalidating the session's access token. Any further OAuth requests made with this particular access token are rejected.\r\n\r\nLogging out of an OAuth session does not revoke the the App scope accepted by the User (during the first OAuth login process).  Furthermore, it does not end the User's authenticated session with Fabric.  Thus, a subsequent OAuth entry by the same user may actually require zero input from the user -- they could potentially bypass both OAuth entry steps (login and scope acceptance).  This allows a user to begin a new OAuth session seamlessly, even after logging out.",
+              "Auth": "???",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            }
+          ],
+          "Obj": "FabSpecService"
+        },
+        {
+          "Name": "Traversal",
+          "Uri": "/Trav",
+          "Summary": "Query the Fabric graph using predefined traversal steps and functions.",
+          "Description": "TODO",
+          "Operations": [
+            {
+              "Name": "Apps",
+              "Uri": "/Apps",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravAppRoot>",
+              "Description": "Begins a traversal with an App entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Artifacts",
+              "Uri": "/Artifacts",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravArtifactRoot>",
+              "Description": "Begins a traversal with an Artifact entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Classes",
+              "Uri": "/Classes",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravClassRoot>",
+              "Description": "Begins a traversal with an Class entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Factors",
+              "Uri": "/Factors",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravFactorRoot>",
+              "Description": "Begins a traversal with an Factor entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Instances",
+              "Uri": "/Instances",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravInstanceRoot>",
+              "Description": "Begins a traversal with an Instance entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Members",
+              "Uri": "/Members",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravMemberRoot>",
+              "Description": "Begins a traversal with an Member entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Urls",
+              "Uri": "/Urls",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravUrlRoot>",
+              "Description": "Begins a traversal with an Url entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Users",
+              "Uri": "/Users",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravUserRoot>",
+              "Description": "Begins a traversal with an User entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            },
+            {
+              "Name": "Vertices",
+              "Uri": "/Vertices",
+              "Method": "GET",
+              "Return": "FabResponse<FabTravVertexRoot>",
+              "Description": "Begins a traversal with an Vertex entry point.",
+              "Auth": "None",
+              "Parameters": [],
+              "Obj": "FabSpecServiceOperation"
+            }
+          ],
+          "Obj": "FabSpecService"
+        }
+      ],
+      "Enums": [
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "IsRelatedTo",
+              "Name": "Is Related To",
+              "Description": "The primary Artifact is related to the related Artifact in some way. This is the default (and least meaningful) DescriptorType."
+            },
+            {
+              "Id": 2,
+              "EnumId": "IsA",
+              "Name": "Is (A/An)",
+              "Description": "The primary Artifact is a type of, a subclass of, a subset of, a subordinate of, or in the category defined by the related Artifact."
+            },
+            {
+              "Id": 3,
+              "EnumId": "IsAnInstanceOf",
+              "Name": "Is An Instance Of",
+              "Description": "The primary Artifact is an instance, case, example, or representation of the related Artifact."
+            },
+            {
+              "Id": 4,
+              "EnumId": "HasA",
+              "Name": "Has (A/An)",
+              "Description": "The primary Artifact has, as a part, piece, feature, attribute, or component, the related Artifact."
+            },
+            {
+              "Id": 5,
+              "EnumId": "IsLike",
+              "Name": "Is Like",
+              "Description": "The primary Artifact is like or similar to the related Artifact."
+            },
+            {
+              "Id": 6,
+              "EnumId": "IsNotLike",
+              "Name": "Is Not Like",
+              "Description": "The primary Artifact is not like or not similar to the related Artifact"
+            },
+            {
+              "Id": 7,
+              "EnumId": "RefersTo",
+              "Name": "Refers To",
+              "Description": "The primary Artifact refers to, mentions, discusses, links to, or references the related Artifact."
+            },
+            {
+              "Id": 8,
+              "EnumId": "IsCreatedBy",
+              "Name": "Is Created By",
+              "Description": "The primary Artifact is created, built, designed, invented, formed, or performed by the related Artifact."
+            },
+            {
+              "Id": 9,
+              "EnumId": "IsInterestedIn",
+              "Name": "Is Interested In",
+              "Description": "The primary Artifact is interested in, fond of, attracted to, enjoys, prefers, or desires the related Artifact."
+            },
+            {
+              "Id": 10,
+              "EnumId": "Receives",
+              "Name": "Receives",
+              "Description": "The primary Artifact receives, gets, obtains, or is awarded the related Artifact."
+            },
+            {
+              "Id": 11,
+              "EnumId": "Consumes",
+              "Name": "Consumes",
+              "Description": "The primary Artifact consumes, eats, is powered by, uses up, depletes, or destroys the related Artifact."
+            },
+            {
+              "Id": 12,
+              "EnumId": "Produces",
+              "Name": "Produces",
+              "Description": "The primary Artifact produces, has a byproduct of, creates, or generates the related Artifact. This is similar to 'Is Created By', but in the opposite direction and meant to be less specific."
+            },
+            {
+              "Id": 13,
+              "EnumId": "ParticipatesIn",
+              "Name": "Participates In",
+              "Description": "The primary Artifact participates in, competes in, attends, is a member of, or is involved in the related Artifact."
+            },
+            {
+              "Id": 14,
+              "EnumId": "IsFoundIn",
+              "Name": "Is Found In",
+              "Description": "The primary Artifact is found in, located at, lives in, or is contained by the related Artifact."
+            },
+            {
+              "Id": 15,
+              "EnumId": "BelongsTo",
+              "Name": "Belongs To",
+              "Description": "The primary Artifact belongs to, is controlled by, or is owned by the related Artifact."
+            },
+            {
+              "Id": 16,
+              "EnumId": "Requires",
+              "Name": "Requires",
+              "Description": "The primary Artifact requires, implies, needs, or demands the related Artifact."
+            },
+            {
+              "Id": 17,
+              "EnumId": "InteractsWith",
+              "Name": "Interacts With",
+              "Description": "The primary Artifact interacts, associates, combines, meets, or communicates with the related Artifact."
+            },
+            {
+              "Id": 18,
+              "EnumId": "LooksLike",
+              "Name": "Looks Like",
+              "Description": "The primary Artifact looks like (has the appearance of) the related Artifact."
+            },
+            {
+              "Id": 19,
+              "EnumId": "SmellsLike",
+              "Name": "Smells Like",
+              "Description": "The primary Artifact smells like (has the odor, aroma, or fragrance of) the related Artifact."
+            },
+            {
+              "Id": 20,
+              "EnumId": "TastesLike",
+              "Name": "Tastes Like",
+              "Description": "The primary Artifact tastes like (has the flavor of) the related Artifact."
+            },
+            {
+              "Id": 21,
+              "EnumId": "SoundsLike",
+              "Name": "Sounds Like",
+              "Description": "The primary Artifact sounds like (has the aural characteristics of) the related Artifact."
+            },
+            {
+              "Id": 22,
+              "EnumId": "FeelsLike",
+              "Name": "Feels Like",
+              "Description": "The primary Artifact feels like (has the tactile characteristics of) the related Artifact."
+            },
+            {
+              "Id": 23,
+              "EnumId": "EmotesLike",
+              "Name": "Emotes Like",
+              "Description": "The primary Artifact emotes like (causes the emotion of) the related Artifact."
+            },
+            {
+              "Id": 24,
+              "EnumId": "Uses",
+              "Name": "Uses",
+              "Description": "The primary Artifact uses, utilizes, controls, employs, or manipulates the related Artifact."
+            }
+          ],
+          "Name": "DescriptorType",
+          "Extends": "EnumObject",
+          "Description": "Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "Read",
+              "Name": "Read",
+              "Description": "Read the specified Artifact."
+            },
+            {
+              "Id": 2,
+              "EnumId": "Listen",
+              "Name": "Listen",
+              "Description": "Listen to the specified Artifact."
+            },
+            {
+              "Id": 3,
+              "EnumId": "View",
+              "Name": "View",
+              "Description": "View (or watch, observe) the specified Artifact."
+            },
+            {
+              "Id": 4,
+              "EnumId": "Consume",
+              "Name": "Consume",
+              "Description": "Consume (or use, eat, drink, taste, smell) the specified Artifact."
+            },
+            {
+              "Id": 5,
+              "EnumId": "Perform",
+              "Name": "Perform",
+              "Description": "Perform (or act, do, carry out, speak, sing, say, work, write) the specified Artifact."
+            },
+            {
+              "Id": 6,
+              "EnumId": "Produce",
+              "Name": "Produce",
+              "Description": "Produce (or create, build, make, invent) the specified Artifact."
+            },
+            {
+              "Id": 7,
+              "EnumId": "Destroy",
+              "Name": "Destroy",
+              "Description": "Destroy (or remove, delete, kill, erase) the specified Artifact."
+            },
+            {
+              "Id": 8,
+              "EnumId": "Modify",
+              "Name": "Modify",
+              "Description": "Modify (or change) the specified Artifact."
+            },
+            {
+              "Id": 9,
+              "EnumId": "Obtain",
+              "Name": "Obtain",
+              "Description": "Obtain (or get, purchase, acquire, steal) the specified Artifact."
+            },
+            {
+              "Id": 10,
+              "EnumId": "Locate",
+              "Name": "Locate",
+              "Description": "Locate (or find) the specified Artifact."
+            },
+            {
+              "Id": 11,
+              "EnumId": "Travel",
+              "Name": "Travel",
+              "Description": "Travel (or visit, walk, run, fly, ride, drive) the specified Artifact."
+            },
+            {
+              "Id": 12,
+              "EnumId": "Become",
+              "Name": "Become",
+              "Description": "Become the specified Artifact."
+            },
+            {
+              "Id": 13,
+              "EnumId": "Explain",
+              "Name": "Explain",
+              "Description": "Explain (or describe) the specified Artifact."
+            },
+            {
+              "Id": 14,
+              "EnumId": "Give",
+              "Name": "Give",
+              "Description": "Give the specified Artifact."
+            },
+            {
+              "Id": 15,
+              "EnumId": "Learn",
+              "Name": "Learn",
+              "Description": "Learn (or study, understand) the specified Artifact."
+            },
+            {
+              "Id": 16,
+              "EnumId": "Start",
+              "Name": "Start",
+              "Description": "Start (or begin) the specified Artifact."
+            },
+            {
+              "Id": 17,
+              "EnumId": "Stop",
+              "Name": "Stop",
+              "Description": "Stop (or end) the specified Artifact."
+            }
+          ],
+          "Name": "DirectorAction",
+          "Extends": "EnumObject",
+          "Description": "Describes an action to be taken (via Director) on one of the two Artifacts in a particular Factor.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "Hyperlink",
+              "Name": "Hyperlink",
+              "Description": "There is a hyperlink from the primary Artifact to the related Artifact."
+            },
+            {
+              "Id": 2,
+              "EnumId": "DefinedPath",
+              "Name": "Defined Path",
+              "Description": "There is an expected, pre-defined path from the primary Artifact to the related Artifact."
+            },
+            {
+              "Id": 3,
+              "EnumId": "SuggestedPath",
+              "Name": "Suggested Path",
+              "Description": "There is a suggested, recommented path from the primary Artifact to the related Artifact."
+            },
+            {
+              "Id": 4,
+              "EnumId": "AvoidPath",
+              "Name": "Avoid Path",
+              "Description": "There is an unsuitable, non-recommented path from the primary Artifact to the related Artifact."
+            },
+            {
+              "Id": 5,
+              "EnumId": "Causality",
+              "Name": "Causality",
+              "Description": "The primary Artifact causes an effect/action to occur upon the related Artifact."
+            }
+          ],
+          "Name": "DirectorType",
+          "Extends": "EnumObject",
+          "Description": "Provides meaning (via Director) to the directional connection between the two Artifacts in a particular Factor.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Name": "EnumObject",
+          "Description": "The base class for all Fabric enumerations.",
+          "Properties": [
+            {
+              "Name": "Id",
+              "Type": "byte",
+              "Description": "The numeric identifier for this enumeration item.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "EnumId",
+              "Type": "string",
+              "Description": "A unique string (with no spaces) that can be used by Fabric clients when creating an enumeration.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "A descriptive name or title.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Description",
+              "Type": "string",
+              "Description": "A summary of this object's intended meaning or purpose.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "Start",
+              "Name": "Start",
+              "Description": "This Factor starts, begins, or commences on the specified date."
+            },
+            {
+              "Id": 2,
+              "EnumId": "End",
+              "Name": "End",
+              "Description": "This Factor ends, stops, or terminates on the specified date."
+            },
+            {
+              "Id": 3,
+              "EnumId": "Pause",
+              "Name": "Pause",
+              "Description": "This Factor pauses, suspendeds, or waits on the specified date."
+            },
+            {
+              "Id": 4,
+              "EnumId": "Unpause",
+              "Name": "Unpause",
+              "Description": "This Factor unpauses or resumes on the specified date."
+            },
+            {
+              "Id": 5,
+              "EnumId": "Continue",
+              "Name": "Continue",
+              "Description": "This Factor continues in its current state on the specified date."
+            },
+            {
+              "Id": 6,
+              "EnumId": "Occur",
+              "Name": "Occur",
+              "Description": "This Factor occurrs or happens on the specified date."
+            },
+            {
+              "Id": 7,
+              "EnumId": "Expected",
+              "Name": "Expected",
+              "Description": "This Factor is/was expected, anticipated, or due on the specified date."
+            }
+          ],
+          "Name": "EventorType",
+          "Extends": "EnumObject",
+          "Description": "Provides temporal significance (via Eventor) for a particular Factor.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "Undefined",
+              "Name": "Undefined",
+              "Description": "The Factor's assertion type is not known or not defined."
+            },
+            {
+              "Id": 2,
+              "EnumId": "Fact",
+              "Name": "Fact",
+              "Description": "The Factor represents a factual statement."
+            },
+            {
+              "Id": 3,
+              "EnumId": "Opinion",
+              "Name": "Opinion",
+              "Description": "The Factor represents an opinion."
+            },
+            {
+              "Id": 4,
+              "EnumId": "Guess",
+              "Name": "Guess",
+              "Description": "The Factor represents a guess."
+            }
+          ],
+          "Name": "FactorAssertion",
+          "Extends": "EnumObject",
+          "Description": "Describes the type of information (and/or level of confidence) provided by a particular Factor.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "Text",
+              "Name": "Text",
+              "Description": "A value (a string, typically a name)."
+            },
+            {
+              "Id": 2,
+              "EnumId": "Key",
+              "Name": "Key",
+              "Description": "A value (numeric or otherwise) representing a unique key or ID."
+            }
+          ],
+          "Name": "IdentorType",
+          "Extends": "EnumObject",
+          "Description": "Provides a hint about the text (via Identor) that identifies a particular Factor.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "MinX": -180,
+              "MaxX": 180,
+              "MinY": -90,
+              "MaxY": 90,
+              "MinZ": -1.79769313486231e+308,
+              "MaxZ": 1.79769313486231e+308,
+              "Id": 1,
+              "EnumId": "EarthCoordinate",
+              "Name": "Earth Coordinate",
+              "Description": "A coordinate position on Earth.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres)."
+            },
+            {
+              "MinX": -180,
+              "MaxX": 180,
+              "MinY": -90,
+              "MaxY": 90,
+              "MinZ": -1.79769313486231e+308,
+              "MaxZ": 1.79769313486231e+308,
+              "Id": 2,
+              "EnumId": "MoonCoordinate",
+              "Name": "Moon Coordinate",
+              "Description": "A coordinate position on Earth's Moon.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres)."
+            },
+            {
+              "MinX": -180,
+              "MaxX": 180,
+              "MinY": -90,
+              "MaxY": 90,
+              "MinZ": -1.79769313486231e+308,
+              "MaxZ": 1.79769313486231e+308,
+              "Id": 3,
+              "EnumId": "MarsCoordinate",
+              "Name": "Mars Coordinate",
+              "Description": "A coordinate position on Mars.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres)."
+            },
+            {
+              "MinX": -1.79769313486231e+308,
+              "MaxX": 1.79769313486231e+308,
+              "MinY": 0,
+              "MaxY": 0,
+              "MinZ": 0,
+              "MaxZ": 0,
+              "Id": 4,
+              "EnumId": "RelativePosition1D",
+              "Name": "Relative Position 1D",
+              "Description": "A one-dimensional position, using X=Time. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension."
+            },
+            {
+              "MinX": -1.79769313486231e+308,
+              "MaxX": 1.79769313486231e+308,
+              "MinY": -1.79769313486231e+308,
+              "MaxY": 1.79769313486231e+308,
+              "MinZ": 0,
+              "MaxZ": 0,
+              "Id": 5,
+              "EnumId": "RelativePosition2D",
+              "Name": "Relative Position 2D",
+              "Description": "A two-dimensional position, using X=Width and Y=Height. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension."
+            },
+            {
+              "MinX": -1.79769313486231e+308,
+              "MaxX": 1.79769313486231e+308,
+              "MinY": -1.79769313486231e+308,
+              "MaxY": 1.79769313486231e+308,
+              "MinZ": -1.79769313486231e+308,
+              "MaxZ": 1.79769313486231e+308,
+              "Id": 6,
+              "EnumId": "RelativePosition3D",
+              "Name": "Relative Position 3D",
+              "Description": "A three-dimensional position, using X, Y, and Z axes. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension."
+            }
+          ],
+          "Name": "LocatorType",
+          "Extends": "EnumObject",
+          "Description": "Provides spatial context and boundaries (via Locator) for a particular Factor.",
+          "Properties": [
+            {
+              "Name": "MinX",
+              "Type": "double",
+              "Description": "The minimum Locator X-coordinate value.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "MaxX",
+              "Type": "double",
+              "Description": "The maximum Locator X-coordinate value.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "MinY",
+              "Type": "double",
+              "Description": "The minimum Locator Y-coordinate value.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "MaxY",
+              "Type": "double",
+              "Description": "The maximum Locator Y-coordinate value.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "MinZ",
+              "Type": "double",
+              "Description": "The minimum Locator Z-coordinate value.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "MaxZ",
+              "Type": "double",
+              "Description": "The maximum Locator Z-coordinate value.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "None",
+              "Name": "None",
+              "Description": "The User is not associated with this App."
+            },
+            {
+              "Id": 2,
+              "EnumId": "Request",
+              "Name": "Request",
+              "Description": "The user would like to become a member of this App."
+            },
+            {
+              "Id": 3,
+              "EnumId": "Invite",
+              "Name": "Invite",
+              "Description": "The User has been invited to become a member of this App."
+            },
+            {
+              "Id": 4,
+              "EnumId": "Member",
+              "Name": "Member",
+              "Description": "The User is a member of this App."
+            },
+            {
+              "Id": 5,
+              "EnumId": "Staff",
+              "Name": "Staff",
+              "Description": "The User is a staff member of this App."
+            },
+            {
+              "Id": 6,
+              "EnumId": "Admin",
+              "Name": "Admin",
+              "Description": "The User is an administrator of this App."
+            },
+            {
+              "Id": 7,
+              "EnumId": "Owner",
+              "Name": "Owner",
+              "Description": "The User owns this App."
+            },
+            {
+              "Id": 8,
+              "EnumId": "DataProv",
+              "Name": "Data Provider",
+              "Description": "The User has a special membership that allows it to interact with Fabric on behalf of the App."
+            }
+          ],
+          "Name": "MemberType",
+          "Extends": "EnumObject",
+          "Description": "Describes the level of access and control given to a particular Member.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Levels": [
+                "Min0",
+                "Zero05",
+                "Max1"
+              ],
+              "Id": 1,
+              "EnumId": "FullNum",
+              "Name": "Full Numeric"
+            },
+            {
+              "Levels": [
+                "Zero0",
+                "Max1"
+              ],
+              "Id": 2,
+              "EnumId": "PosNum",
+              "Name": "Positive Numeric"
+            },
+            {
+              "Levels": [
+                "Min0",
+                "Zero1"
+              ],
+              "Id": 3,
+              "EnumId": "NegNum",
+              "Name": "Negative Numeric"
+            },
+            {
+              "Levels": [
+                "CompDisagree",
+                "MostDisagree",
+                "SomeDisagree",
+                "NoOpinion05",
+                "SomeAgree",
+                "MostAgree",
+                "CompAgree"
+              ],
+              "Id": 4,
+              "EnumId": "FullAgree",
+              "Name": "Full Agreement"
+            },
+            {
+              "Levels": [
+                "NoOpinion0",
+                "SomeAgreePos",
+                "MostAgreePos",
+                "CompAgreePos"
+              ],
+              "Id": 5,
+              "EnumId": "PosAgree",
+              "Name": "Positive Agreement"
+            },
+            {
+              "Levels": [
+                "CompUnfavor",
+                "MostUnfavor",
+                "SomeUnfavor",
+                "NoOpinion05",
+                "SomeFavor",
+                "MostFavor",
+                "CompFavor"
+              ],
+              "Id": 6,
+              "EnumId": "FullFavor",
+              "Name": "Full Favorability"
+            },
+            {
+              "Levels": [
+                "NoOpinion0",
+                "SomeFavorPos",
+                "MostFavorPos",
+                "CompFavorPos"
+              ],
+              "Id": 7,
+              "EnumId": "PosFavor",
+              "Name": "Positive Favorability"
+            }
+          ],
+          "Name": "VectorRange",
+          "Extends": "EnumObject",
+          "Description": "Provides meaning (using relatively-positioned points/labels) across the numerical range of a particular VectorType.",
+          "Properties": [
+            {
+              "Name": "Levels",
+              "Type": "VectorRangeLevel[]",
+              "Description": "The set of points/labels that describe a numerical range.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Position": 0,
+              "Id": 1,
+              "EnumId": "Zero0",
+              "Name": "Zero"
+            },
+            {
+              "Position": 0.5,
+              "Id": 2,
+              "EnumId": "Zero05",
+              "Name": "Zero"
+            },
+            {
+              "Position": 1,
+              "Id": 3,
+              "EnumId": "Zero1",
+              "Name": "Zero"
+            },
+            {
+              "Position": 0,
+              "Id": 4,
+              "EnumId": "Min0",
+              "Name": "Minimum"
+            },
+            {
+              "Position": 1,
+              "Id": 5,
+              "EnumId": "Max1",
+              "Name": "Maximum"
+            },
+            {
+              "Position": 0,
+              "Id": 6,
+              "EnumId": "CompDisagree",
+              "Name": "Completely Disagree"
+            },
+            {
+              "Position": 0.1666667,
+              "Id": 7,
+              "EnumId": "MostDisagree",
+              "Name": "Mostly Disagree"
+            },
+            {
+              "Position": 0.3333333,
+              "Id": 8,
+              "EnumId": "SomeDisagree",
+              "Name": "Somewhat Disagree"
+            },
+            {
+              "Position": 0.5,
+              "Id": 9,
+              "EnumId": "NoOpinion05",
+              "Name": "No Opinion"
+            },
+            {
+              "Position": 0.6666667,
+              "Id": 10,
+              "EnumId": "SomeAgree",
+              "Name": "Somewhat Agree"
+            },
+            {
+              "Position": 0.8333333,
+              "Id": 11,
+              "EnumId": "MostAgree",
+              "Name": "Mostly Agree"
+            },
+            {
+              "Position": 1,
+              "Id": 12,
+              "EnumId": "CompAgree",
+              "Name": "Completely Agree"
+            },
+            {
+              "Position": 0,
+              "Id": 13,
+              "EnumId": "NoOpinion0",
+              "Name": "No Opinion"
+            },
+            {
+              "Position": 0.3333333,
+              "Id": 14,
+              "EnumId": "SomeAgreePos",
+              "Name": "Somewhat Agree"
+            },
+            {
+              "Position": 0.6666667,
+              "Id": 15,
+              "EnumId": "MostAgreePos",
+              "Name": "Mostly Agree"
+            },
+            {
+              "Position": 1,
+              "Id": 16,
+              "EnumId": "CompAgreePos",
+              "Name": "Completely Agree"
+            },
+            {
+              "Position": 0,
+              "Id": 17,
+              "EnumId": "CompUnfavor",
+              "Name": "Completely Unfavorable"
+            },
+            {
+              "Position": 0.1666667,
+              "Id": 18,
+              "EnumId": "MostUnfavor",
+              "Name": "Mostly Unfavorable"
+            },
+            {
+              "Position": 0.3333333,
+              "Id": 19,
+              "EnumId": "SomeUnfavor",
+              "Name": "Somewhat Unfavorable"
+            },
+            {
+              "Position": 0.6666667,
+              "Id": 20,
+              "EnumId": "SomeFavor",
+              "Name": "Somewhat Favorable"
+            },
+            {
+              "Position": 0.8333333,
+              "Id": 21,
+              "EnumId": "MostFavor",
+              "Name": "Mostly Favorable"
+            },
+            {
+              "Position": 1,
+              "Id": 22,
+              "EnumId": "CompFavor",
+              "Name": "Completely Favorable"
+            },
+            {
+              "Position": 0.3333333,
+              "Id": 23,
+              "EnumId": "SomeFavorPos",
+              "Name": "Somewhat Favorable"
+            },
+            {
+              "Position": 0.6666667,
+              "Id": 24,
+              "EnumId": "MostFavorPos",
+              "Name": "Mostly Favorable"
+            },
+            {
+              "Position": 1,
+              "Id": 25,
+              "EnumId": "CompFavorPos",
+              "Name": "Completely Favorable"
+            }
+          ],
+          "Name": "VectorRangeLevel",
+          "Extends": "EnumObject",
+          "Description": "A relatively-positioned point which provides meaning to a numerical range.",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Type": "float",
+              "Description": "A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "VectorRange": "FullNum",
+              "Min": -9223372036854776000,
+              "Max": 9223372036854776000,
+              "Id": 1,
+              "EnumId": "FullLong",
+              "Name": "Full Bounds"
+            },
+            {
+              "VectorRange": "PosNum",
+              "Min": 0,
+              "Max": 9223372036854776000,
+              "Id": 2,
+              "EnumId": "PosLong",
+              "Name": "Positive Bounds"
+            },
+            {
+              "VectorRange": "NegNum",
+              "Min": -9223372036854776000,
+              "Max": 0,
+              "Id": 3,
+              "EnumId": "NegLong",
+              "Name": "Negative Bounds"
+            },
+            {
+              "VectorRange": "FullNum",
+              "Min": -9223372036854776000,
+              "Max": 9223372036854776000,
+              "Id": 4,
+              "EnumId": "FullPerc",
+              "Name": "Full Percentage"
+            },
+            {
+              "VectorRange": "PosNum",
+              "Min": 0,
+              "Max": 100,
+              "Id": 5,
+              "EnumId": "StdPerc",
+              "Name": "Standard Percentage"
+            },
+            {
+              "VectorRange": "FullNum",
+              "Min": -100,
+              "Max": 100,
+              "Id": 6,
+              "EnumId": "OppPerc",
+              "Name": "Opposable Percentage"
+            },
+            {
+              "VectorRange": "PosAgree",
+              "Min": 0,
+              "Max": 100,
+              "Id": 7,
+              "EnumId": "StdAgree",
+              "Name": "Standard Agreement"
+            },
+            {
+              "VectorRange": "FullAgree",
+              "Min": -100,
+              "Max": 100,
+              "Id": 8,
+              "EnumId": "OppAgree",
+              "Name": "Opposable Agreement"
+            },
+            {
+              "VectorRange": "PosFavor",
+              "Min": 0,
+              "Max": 100,
+              "Id": 9,
+              "EnumId": "StdFavor",
+              "Name": "Standard Favorability"
+            },
+            {
+              "VectorRange": "FullFavor",
+              "Min": -100,
+              "Max": 100,
+              "Id": 10,
+              "EnumId": "OppFavor",
+              "Name": "Opposable Favorability"
+            }
+          ],
+          "Name": "VectorType",
+          "Extends": "EnumObject",
+          "Description": "Provides meaning and boundaries (via Vector) for a numeric value given to a particular Factor.",
+          "Properties": [
+            {
+              "Name": "VectorRange",
+              "Type": "VectorRange",
+              "Description": "Specifies a meaningful points/labels mapped to the numerical range.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Min",
+              "Type": "long",
+              "Description": "The minimum Vector value allowed.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Max",
+              "Type": "long",
+              "Description": "The maximum Vector value allowed.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "None",
+              "Name": "None"
+            },
+            {
+              "Id": 2,
+              "EnumId": "Unit",
+              "Name": "Unit"
+            },
+            {
+              "Id": 3,
+              "EnumId": "Metre",
+              "Name": "Metre",
+              "Description": "m"
+            },
+            {
+              "Id": 4,
+              "EnumId": "Gram",
+              "Name": "Gram",
+              "Description": "g"
+            },
+            {
+              "Id": 5,
+              "EnumId": "Second",
+              "Name": "Second",
+              "Description": "s"
+            },
+            {
+              "Id": 6,
+              "EnumId": "Ampere",
+              "Name": "Ampere",
+              "Description": "A"
+            },
+            {
+              "Id": 7,
+              "EnumId": "Celsius",
+              "Name": "Celsius",
+              "Description": "C"
+            },
+            {
+              "Id": 8,
+              "EnumId": "Candela",
+              "Name": "Candela",
+              "Description": "cd"
+            },
+            {
+              "Id": 9,
+              "EnumId": "Mole",
+              "Name": "Mole",
+              "Description": "mol"
+            },
+            {
+              "Id": 10,
+              "EnumId": "Bit",
+              "Name": "Bit",
+              "Description": "b"
+            },
+            {
+              "Id": 11,
+              "EnumId": "Byte",
+              "Name": "Byte",
+              "Description": "B"
+            },
+            {
+              "Id": 12,
+              "EnumId": "Hertz",
+              "Name": "Hertz",
+              "Description": "Hz"
+            },
+            {
+              "Id": 13,
+              "EnumId": "Radian",
+              "Name": "Radian",
+              "Description": "rad"
+            },
+            {
+              "Id": 14,
+              "EnumId": "Newton",
+              "Name": "Newton",
+              "Description": "N"
+            },
+            {
+              "Id": 15,
+              "EnumId": "Pascal",
+              "Name": "Pascal",
+              "Description": "Pa"
+            },
+            {
+              "Id": 16,
+              "EnumId": "Joule",
+              "Name": "Joule",
+              "Description": "J"
+            },
+            {
+              "Id": 17,
+              "EnumId": "Watt",
+              "Name": "Watt",
+              "Description": "W"
+            },
+            {
+              "Id": 18,
+              "EnumId": "Volt",
+              "Name": "Volt",
+              "Description": "V"
+            },
+            {
+              "Id": 19,
+              "EnumId": "Ohm",
+              "Name": "Ohm",
+              "Description": "Ω"
+            },
+            {
+              "Id": 20,
+              "EnumId": "Area",
+              "Name": "Area",
+              "Description": "m^2"
+            },
+            {
+              "Id": 21,
+              "EnumId": "Volume",
+              "Name": "Volume",
+              "Description": "m^3"
+            },
+            {
+              "Id": 22,
+              "EnumId": "Speed",
+              "Name": "Speed",
+              "Description": "m/s"
+            },
+            {
+              "Id": 23,
+              "EnumId": "Acceleration",
+              "Name": "Acceleration",
+              "Description": "m^3/s"
+            },
+            {
+              "Id": 24,
+              "EnumId": "Point",
+              "Name": "Point",
+              "Description": "pt"
+            },
+            {
+              "Id": 25,
+              "EnumId": "Item",
+              "Name": "Item",
+              "Description": "item"
+            },
+            {
+              "Id": 26,
+              "EnumId": "Person",
+              "Name": "Person",
+              "Description": "person"
+            },
+            {
+              "Id": 27,
+              "EnumId": "Percent",
+              "Name": "Percent",
+              "Description": "%"
+            },
+            {
+              "Id": 28,
+              "EnumId": "Index",
+              "Name": "Index",
+              "Description": "index"
+            },
+            {
+              "Id": 29,
+              "EnumId": "Pixel",
+              "Name": "Pixel",
+              "Description": "pixel"
+            }
+          ],
+          "Name": "VectorUnit",
+          "Extends": "EnumObject",
+          "Description": "Provides a unit of measurement for the numeric value of a particular Vector.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "DefinesVectorUnit": "Hertz",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -1,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 1,
+              "EnumId": "HertzSec"
+            },
+            {
+              "DefinesVectorUnit": "Newton",
+              "RaisesVectorUnit": "Gram",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Kilo",
+              "Id": 2,
+              "EnumId": "NewtonGram"
+            },
+            {
+              "DefinesVectorUnit": "Newton",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 3,
+              "EnumId": "NewtonMetre"
+            },
+            {
+              "DefinesVectorUnit": "Newton",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 4,
+              "EnumId": "NewtonSec"
+            },
+            {
+              "DefinesVectorUnit": "Pascal",
+              "RaisesVectorUnit": "Gram",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Kilo",
+              "Id": 5,
+              "EnumId": "PascalGram"
+            },
+            {
+              "DefinesVectorUnit": "Pascal",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": -1,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 6,
+              "EnumId": "PascalMetre"
+            },
+            {
+              "DefinesVectorUnit": "Pascal",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 7,
+              "EnumId": "PascalSec"
+            },
+            {
+              "DefinesVectorUnit": "Joule",
+              "RaisesVectorUnit": "Gram",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Kilo",
+              "Id": 8,
+              "EnumId": "JouleGram"
+            },
+            {
+              "DefinesVectorUnit": "Joule",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 9,
+              "EnumId": "JouleMetre"
+            },
+            {
+              "DefinesVectorUnit": "Joule",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 10,
+              "EnumId": "JouleSec"
+            },
+            {
+              "DefinesVectorUnit": "Watt",
+              "RaisesVectorUnit": "Gram",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Kilo",
+              "Id": 11,
+              "EnumId": "WattGram"
+            },
+            {
+              "DefinesVectorUnit": "Watt",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 12,
+              "EnumId": "WattMetre"
+            },
+            {
+              "DefinesVectorUnit": "Watt",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -3,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 13,
+              "EnumId": "WattSec"
+            },
+            {
+              "DefinesVectorUnit": "Volt",
+              "RaisesVectorUnit": "Gram",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Kilo",
+              "Id": 14,
+              "EnumId": "VoltGram"
+            },
+            {
+              "DefinesVectorUnit": "Volt",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 15,
+              "EnumId": "VoltMetre"
+            },
+            {
+              "DefinesVectorUnit": "Volt",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -3,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 16,
+              "EnumId": "VoltSec"
+            },
+            {
+              "DefinesVectorUnit": "Volt",
+              "RaisesVectorUnit": "Ampere",
+              "WithExponent": -1,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 17,
+              "EnumId": "VoltAmp"
+            },
+            {
+              "DefinesVectorUnit": "Ohm",
+              "RaisesVectorUnit": "Gram",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Kilo",
+              "Id": 18,
+              "EnumId": "OhmGram"
+            },
+            {
+              "DefinesVectorUnit": "Ohm",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 19,
+              "EnumId": "OhmMetre"
+            },
+            {
+              "DefinesVectorUnit": "Ohm",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -3,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 20,
+              "EnumId": "OhmSec"
+            },
+            {
+              "DefinesVectorUnit": "Ohm",
+              "RaisesVectorUnit": "Ampere",
+              "WithExponent": -2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 21,
+              "EnumId": "OhmAmp"
+            },
+            {
+              "DefinesVectorUnit": "Area",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 22,
+              "EnumId": "AreaMetre"
+            },
+            {
+              "DefinesVectorUnit": "Volume",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 3,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 23,
+              "EnumId": "VolumeMetre"
+            },
+            {
+              "DefinesVectorUnit": "Speed",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 24,
+              "EnumId": "SpeedMetre"
+            },
+            {
+              "DefinesVectorUnit": "Speed",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -1,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 25,
+              "EnumId": "SpeedSec"
+            },
+            {
+              "DefinesVectorUnit": "Acceleration",
+              "RaisesVectorUnit": "Metre",
+              "WithExponent": 1,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 26,
+              "EnumId": "AccelMetre"
+            },
+            {
+              "DefinesVectorUnit": "Acceleration",
+              "RaisesVectorUnit": "Second",
+              "WithExponent": -2,
+              "RaisesVectorUnitPrefix": "Base",
+              "Id": 27,
+              "EnumId": "AccelSec"
+            }
+          ],
+          "Name": "VectorUnitDerived",
+          "Extends": "EnumObject",
+          "Description": "Provides conversion formulas from the [[\"derived\" unit|Enum|VectorUnit]] to one or more [[\"raises\" units|Enum|VectorUnit]]. Each \"raises\" unit receives a [[unit prefix|Enum|VectorUnitPrefix]] and an exponent value.\r\n\r\n[(EX|Watt Example|_Description_\r\nThe Watt unit conversion is defined with three seperate VectorUnitDerived items:\r\n- WattGram\r\n- WattMetre\r\n- WattSec\r\n\r\n_Equation_\r\nThose three items represent the Watt conversion equation:\r\n1 Watt = 1 (Kg)*(m^2)/(s^3))]",
+          "Properties": [
+            {
+              "Name": "DefinesVectorUnit",
+              "Type": "VectorUnit",
+              "Description": "One or more VectorUnitDerived items are used to represent a conversion into this particular [[unit|Enum|VectorUnit]].",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "RaisesVectorUnit",
+              "Type": "VectorUnit",
+              "Description": "The [[unit|Enum|VectorUnit]] for this particular item.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "WithExponent",
+              "Type": "int",
+              "Description": "The exponent that affects the \"raises\" unit.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "RaisesVectorUnitPrefix",
+              "Type": "VectorUnitPrefix",
+              "Description": "The [[unit prefix|Enum|VectorUnitPrefix]] that affects the \"raises\" unit.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Amount": 1,
+              "Id": 1,
+              "EnumId": "Base",
+              "Name": "Base"
+            },
+            {
+              "Amount": 1000,
+              "Id": 2,
+              "EnumId": "Kilo",
+              "Name": "Kilo",
+              "Description": "k"
+            },
+            {
+              "Amount": 1000000,
+              "Id": 3,
+              "EnumId": "Mega",
+              "Name": "Mega",
+              "Description": "M"
+            },
+            {
+              "Amount": 1000000000,
+              "Id": 4,
+              "EnumId": "Giga",
+              "Name": "Giga",
+              "Description": "G"
+            },
+            {
+              "Amount": 1000000000000,
+              "Id": 5,
+              "EnumId": "Tera",
+              "Name": "Tera",
+              "Description": "T"
+            },
+            {
+              "Amount": 1000000000000000,
+              "Id": 6,
+              "EnumId": "Peta",
+              "Name": "Peta",
+              "Description": "P"
+            },
+            {
+              "Amount": 1000000000000000000,
+              "Id": 7,
+              "EnumId": "Exa",
+              "Name": "Exa",
+              "Description": "E"
+            },
+            {
+              "Amount": 0.001,
+              "Id": 8,
+              "EnumId": "Milli",
+              "Name": "Milli",
+              "Description": "m"
+            },
+            {
+              "Amount": 0.000001,
+              "Id": 9,
+              "EnumId": "Micro",
+              "Name": "Micro",
+              "Description": "μ"
+            },
+            {
+              "Amount": 1e-9,
+              "Id": 10,
+              "EnumId": "Nano",
+              "Name": "Nano",
+              "Description": "n"
+            },
+            {
+              "Amount": 1e-12,
+              "Id": 11,
+              "EnumId": "Pico",
+              "Name": "Pico",
+              "Description": "p"
+            },
+            {
+              "Amount": 1e-15,
+              "Id": 12,
+              "EnumId": "Femto",
+              "Name": "Femto",
+              "Description": "f"
+            },
+            {
+              "Amount": 1e-18,
+              "Id": 13,
+              "EnumId": "Atto",
+              "Name": "Atto",
+              "Description": "a"
+            },
+            {
+              "Amount": 1024,
+              "Id": 14,
+              "EnumId": "Kibi",
+              "Name": "Kibi",
+              "Description": "Ki"
+            },
+            {
+              "Amount": 1048576,
+              "Id": 15,
+              "EnumId": "Mebi",
+              "Name": "Mebi",
+              "Description": "Mi"
+            },
+            {
+              "Amount": 1073741824,
+              "Id": 16,
+              "EnumId": "Gibi",
+              "Name": "Gibi",
+              "Description": "Gi"
+            },
+            {
+              "Amount": 1099511627776,
+              "Id": 17,
+              "EnumId": "Tebi",
+              "Name": "Tebi",
+              "Description": "Ti"
+            },
+            {
+              "Amount": 1125899906842620,
+              "Id": 18,
+              "EnumId": "Pebi",
+              "Name": "Pebi",
+              "Description": "Pi"
+            },
+            {
+              "Amount": 1152921504606850000,
+              "Id": 19,
+              "EnumId": "Exbi",
+              "Name": "Exbi",
+              "Description": "Ei"
+            }
+          ],
+          "Name": "VectorUnitPrefix",
+          "Extends": "EnumObject",
+          "Description": "Provides a level of magnitude for the numeric value of a particular Vector.",
+          "Properties": [
+            {
+              "Name": "Amount",
+              "Type": "double",
+              "Description": "The difference in magnitude (a multipler) relative to the base unit.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecEnum"
+        },
+        {
+          "Items": [
+            {
+              "Id": 1,
+              "EnumId": "Vertex",
+              "Name": "Vertex"
+            },
+            {
+              "Id": 2,
+              "EnumId": "App",
+              "Name": "App"
+            },
+            {
+              "Id": 3,
+              "EnumId": "Class",
+              "Name": "Class"
+            },
+            {
+              "Id": 4,
+              "EnumId": "Instance",
+              "Name": "Instance"
+            },
+            {
+              "Id": 5,
+              "EnumId": "Url",
+              "Name": "Url"
+            },
+            {
+              "Id": 6,
+              "EnumId": "User",
+              "Name": "User"
+            },
+            {
+              "Id": 7,
+              "EnumId": "Member",
+              "Name": "Member"
+            },
+            {
+              "Id": 8,
+              "EnumId": "Artifact",
+              "Name": "Artifact"
+            },
+            {
+              "Id": 9,
+              "EnumId": "Factor",
+              "Name": "Factor"
+            },
+            {
+              "Id": 10,
+              "EnumId": "Email",
+              "Name": "Email"
+            },
+            {
+              "Id": 11,
+              "EnumId": "OauthAccess",
+              "Name": "OauthAccess"
+            }
+          ],
+          "Name": "VertexType",
+          "Extends": "EnumObject",
+          "Description": "Provides the specific type of a particular Vertex.",
+          "Properties": [],
+          "Obj": "FabSpecEnum"
+        }
+      ],
+      "Obj": "FabSpec"
+    }

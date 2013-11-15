@@ -117,87 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Meta_GetSpecification" xml:space="preserve">
-    <value>Get the latest specifications and documentation for all Fabric API services.</value>
+  <data name="Meta_Spec_GET" xml:space="preserve">
+    <value>Get the latest specifications and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now.</value>
   </data>
-  <data name="Meta_GetTime" xml:space="preserve">
+  <data name="Meta_Time_GET" xml:space="preserve">
     <value>Get the current Fabric server time.</value>
   </data>
-  <data name="Meta_GetVersion" xml:space="preserve">
+  <data name="Meta_Version_GET" xml:space="preserve">
     <value>Get the current Fabric version.</value>
   </data>
-  <data name="Modify_AddClass" xml:space="preserve">
+  <data name="Modify_Classes_POST" xml:space="preserve">
     <value>Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric.</value>
   </data>
-  <data name="Modify_AddClasses" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="Modify_AddFactor" xml:space="preserve">
+  <data name="Modify_Factors_POST" xml:space="preserve">
     <value>Create a new Factor. The Factor begins in the 'incomplete' state, with no FactorElements attached.</value>
   </data>
-  <data name="Modify_AddFactors" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="Modify_AddInstance" xml:space="preserve">
+  <data name="Modify_Instances_POST" xml:space="preserve">
     <value>Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric.</value>
   </data>
-  <data name="Modify_AddUrl" xml:space="preserve">
+  <data name="Modify_Members_POST" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="Modify_Urls_POST" xml:space="preserve">
     <value>Create a new Url.</value>
   </data>
-  <data name="Modify_AttachDescriptorToFactor" xml:space="preserve">
-    <value>Create a new Descriptor and attach it to the specified Factor.</value>
-  </data>
-  <data name="Modify_AttachDirectorToFactor" xml:space="preserve">
-    <value>Create a new Director and attach it to the specified Factor.</value>
-  </data>
-  <data name="Modify_AttachEventorToFactor" xml:space="preserve">
-    <value>Create a new Eventor and attach it to the specified Factor.</value>
-  </data>
-  <data name="Modify_AttachIdentorToFactor" xml:space="preserve">
-    <value>Create a new Identor and attach it to the specified Factor.</value>
-  </data>
-  <data name="Modify_AttachLocatorToFactor" xml:space="preserve">
-    <value>Create a new Locator and attach it to the specified Factor.</value>
-  </data>
-  <data name="Modify_AttachVectorToFactor" xml:space="preserve">
-    <value>Create a new Vector and attach it to the specified Factor.</value>
-  </data>
-  <data name="Modify_CompleteFactor" xml:space="preserve">
-    <value>Move a Factor from the 'incomplete' state to the 'complete' state.  A Factor must have a Descriptor before it can be completed. Once a Factor is completed, it can only be deleted -- no further modifications are permitted.</value>
-  </data>
-  <data name="Modify_DeleteFactor" xml:space="preserve">
-    <value>Delete a Factor.</value>
-  </data>
-  <data name="Oauth_AccessToken" xml:space="preserve">
-    <value>Get an OAuth access token using one of four 'flows'.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow) for information about the available OAuth flows.
-
-An OAuth access token must be included with every Fabric API request (with the exception of the OAuth requests).  This token is the result of a successful login, an accepted App scope, a confirmed App secret code, and a confirmed authorization code.  Thus, each token is associated with a specific App, User, and successful OAuth process.  When included with an API request, Fabric obtains the relevant App and User ID values, and generates a response accordingly.
-
-See FabOauthAccess for information on how to include an OAuth access token with a Fabric API request.</value>
-  </data>
-  <data name="Oauth_AccessTokenAuthCode" xml:space="preserve">
+  <data name="Oauth_AccessTokenAuthCode_GET" xml:space="preserve">
     <value>This OAuth flow should be used immediately after obtaining an authorization code from the OAuth entry process. Fabric verifies the authorization code, determines the associated App and User IDs, and generates a new access token.
 
 See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.</value>
   </data>
-  <data name="Oauth_AccessTokenClientCredentials" xml:space="preserve">
+  <data name="Oauth_AccessTokenClientCredentials_GET" xml:space="preserve">
     <value>This OAuth flow should be used to begin an OAuth session for your Fabric App. This flow does not require an authorization code from the typical OAuth entry process.
 
 See [[Access Token|Oper|Oauth.AccessToken]] or general information about the OAuth process.</value>
   </data>
-  <data name="Oauth_AccessTokenClientDataProv" xml:space="preserve">
+  <data name="Oauth_AccessTokenClientDataProv_GET" xml:space="preserve">
     <value>This OAuth flow should be used to begin an OAuth session for your Fabric App's Data Provider User. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric App's OAuth needs.
 
 See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.</value>
   </data>
-  <data name="Oauth_AccessTokenRefresh" xml:space="preserve">
+  <data name="Oauth_AccessTokenRefresh_GET" xml:space="preserve">
     <value>This OAuth flow should be used to refresh an expired access token. If the refresh token is valid, Fabric generates new access and refresh tokens for the given OAuth session. This process also invalidates the original refresh token.
 
 App-only access tokens (obtained with the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow) should not be refreshed; the App should simply request a new access token.
 
 See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.</value>
   </data>
-  <data name="Oauth_Login" xml:space="preserve">
+  <data name="Oauth_AccessToken_GET" xml:space="preserve">
+    <value>Get an OAuth access token using one of four 'flows'.  Fabric offers separate requests for these access token flows, but also provides this generic request for compatibility with the OAuth 2.0 specification.  See the other access token flows (such as the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow) for information about the available OAuth flows.
+
+An OAuth access token must be included with every Fabric API request (with the exception of the OAuth requests).  This token is the result of a successful login, an accepted App scope, a confirmed App secret code, and a confirmed authorization code.  Thus, each token is associated with a specific App, User, and successful OAuth process.  When included with an API request, Fabric obtains the relevant App and User ID values, and generates a response accordingly.
+
+See FabOauthAccess for information on how to include an OAuth access token with a Fabric API request.</value>
+  </data>
+  <data name="Oauth_Login_GET" xml:space="preserve">
     <value>This API request is unique -- it represents the entry point for Fabric's OAuth 2.0 authentication process.  Instead of making this API request directly from a Fabric App, the App should provide a link so that its users can load this request's URL (including the required query-string parameters) in their browser.
 
 A web-based Fabric App would typically load this OAuth entry page as a browser popup window. Once the user completes the full OAuth process (or upon an error), Fabric will redirect the browser to the App's specified redirect URI.  This redirect includes query-string parameters that provide success or error information.
@@ -212,24 +185,36 @@ Similar to the login step, if a user has already accepted 'scope' for a particul
 	
 See FabOauthLogin for the query string parameters that can be included in the success and error redirects.</value>
   </data>
-  <data name="Oauth_Logout" xml:space="preserve">
+  <data name="Oauth_Logout_GET" xml:space="preserve">
     <value>Terminates a particular OAuth session by invalidating the session's access token. Any further OAuth requests made with this particular access token are rejected.
 
 Logging out of an OAuth session does not revoke the the App scope accepted by the User (during the first OAuth login process).  Furthermore, it does not end the User's authenticated session with Fabric.  Thus, a subsequent OAuth entry by the same user may actually require zero input from the user -- they could potentially bypass both OAuth entry steps (login and scope acceptance).  This allows a user to begin a new OAuth session seamlessly, even after logging out.</value>
   </data>
-  <data name="Spec_Document" xml:space="preserve">
-    <value>The latest specification and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now.</value>
+  <data name="Traversal_Apps_GET" xml:space="preserve">
+    <value>Begins a traversal with an App entry point.</value>
   </data>
-  <data name="Traversal_GetActiveApp" xml:space="preserve">
-    <value>Get the App that is associated with the currently authenticated Member.</value>
+  <data name="Traversal_Artifacts_GET" xml:space="preserve">
+    <value>Begins a traversal with an Artifact entry point.</value>
   </data>
-  <data name="Traversal_GetActiveMember" xml:space="preserve">
-    <value>Get the the currently authenticated Member.</value>
+  <data name="Traversal_Classes_GET" xml:space="preserve">
+    <value>Begins a traversal with an Class entry point.</value>
   </data>
-  <data name="Traversal_GetActiveUser" xml:space="preserve">
-    <value>Get the User that is associated with the currently authenticated Member.</value>
+  <data name="Traversal_Factors_GET" xml:space="preserve">
+    <value>Begins a traversal with an Factor entry point.</value>
   </data>
-  <data name="Traversal_GetRoot" xml:space="preserve">
-    <value>The starting point for all traversal queries. Use traversal links and traversal functions to navigate through Fabric's objects. These links and functions are capable of performing both simple and highly complex queries.</value>
+  <data name="Traversal_Instances_GET" xml:space="preserve">
+    <value>Begins a traversal with an Instance entry point.</value>
+  </data>
+  <data name="Traversal_Members_GET" xml:space="preserve">
+    <value>Begins a traversal with an Member entry point.</value>
+  </data>
+  <data name="Traversal_Urls_GET" xml:space="preserve">
+    <value>Begins a traversal with an Url entry point.</value>
+  </data>
+  <data name="Traversal_Users_GET" xml:space="preserve">
+    <value>Begins a traversal with an User entry point.</value>
+  </data>
+  <data name="Traversal_Vertices_GET" xml:space="preserve">
+    <value>Begins a traversal with an Vertex entry point.</value>
   </data>
 </root>

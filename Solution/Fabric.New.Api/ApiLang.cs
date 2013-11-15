@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Resources;
 using System.Text.RegularExpressions;
 using Fabric.New.Api.Lang;
+using Fabric.New.Api.Objects;
 
 namespace Fabric.New.Api {
 
@@ -44,17 +45,22 @@ namespace Fabric.New.Api {
 
 			if ( pType.IsGenericType ) {
 				Type gt = pType.GetGenericTypeDefinition();
+				Type arg = pType.GetGenericArguments()[0];
 
 				if ( gt == typeof(List<>) || gt == typeof(IList<>) ) {
-					return TypeName(pType.GetGenericArguments()[0])+"[]";
+					return TypeName(arg)+"[]";
 				}
 
 				if ( gt == typeof(Nullable<>) ) {
-					return TypeName(pType.GetGenericArguments()[0])+"?";
+					return TypeName(arg)+"?";
 				}
 
 				if ( gt == typeof(Dictionary<,>) ) {
 					return "object";
+				}
+
+				if ( gt == typeof(FabResponse<>) ) {
+					return typeof(FabResponse).Name+"<"+TypeName(arg)+">";
 				}
 			}
 

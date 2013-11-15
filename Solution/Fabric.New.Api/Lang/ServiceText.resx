@@ -117,40 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Meta" xml:space="preserve">
-    <value>Meta</value>
-  </data>
-  <data name="MetaAbstract" xml:space="preserve">
-    <value>Load information about the API and its services.</value>
-  </data>
   <data name="MetaDesc" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="Modify" xml:space="preserve">
-    <value>Modification</value>
-  </data>
-  <data name="ModifyAbstract" xml:space="preserve">
-    <value>Update the Fabric graph with new items and modifications.</value>
+  <data name="MetaSumm" xml:space="preserve">
+    <value>Load information about the API and its services.</value>
   </data>
   <data name="ModifyDesc" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="Oauth" xml:space="preserve">
-    <value>OAuth</value>
-  </data>
-  <data name="OauthAbstract" xml:space="preserve">
-    <value>Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.</value>
+  <data name="ModifySumm" xml:space="preserve">
+    <value>Update the Fabric graph with new items and modifications.</value>
   </data>
   <data name="OauthDesc" xml:space="preserve">
     <value>TODO</value>
   </data>
-  <data name="Traversal" xml:space="preserve">
-    <value>Traversal</value>
-  </data>
-  <data name="TraversalAbstract" xml:space="preserve">
-    <value>Query the Fabric graph using predefined traversal steps and functions.</value>
+  <data name="OauthSumm" xml:space="preserve">
+    <value>Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.</value>
   </data>
   <data name="TraversalDesc" xml:space="preserve">
     <value>TODO</value>
+  </data>
+  <data name="TraversalSumm" xml:space="preserve">
+    <value>Query the Fabric graph using predefined traversal steps and functions.</value>
   </data>
 </root>

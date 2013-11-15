@@ -330,6 +330,7 @@ namespace Fabric.New.Operations.Create {
 			Member d;
 			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabMember, out c, out d);
 			CreateMemberEdges(c, d, vAlias);
+			CreateOperationsCustom.CreateMember(pOpCtx, TxBuild, c, d);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

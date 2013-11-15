@@ -19,6 +19,7 @@ namespace Fabric.New.Api {
 
 		private static readonly Logger Log = Logger.Build<BaseModule>();
 
+		private readonly IList<ApiEntry> vApiEntries;
 		private readonly IDictionary<ApiEntry.Method, RouteBuilder> vMethodMap;
 
 		private static string ConfPrefix;
@@ -39,6 +40,8 @@ namespace Fabric.New.Api {
 		protected BaseModule() {
 			OnError.AddItemToStartOfPipeline(HandleError);
 
+			vApiEntries = new List<ApiEntry>();
+
 			vMethodMap = new Dictionary<ApiEntry.Method, RouteBuilder>();
 			vMethodMap.Add(ApiEntry.Method.Get, Get);
 			vMethodMap.Add(ApiEntry.Method.Post, Post);
@@ -55,12 +58,18 @@ namespace Fabric.New.Api {
 			}
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<ApiEntry> GetApiEntries() {
+			return vApiEntries;
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected void SetupFromApiEntries(IEnumerable<ApiEntry> pEntries) {
 			foreach ( ApiEntry e in pEntries ) {
 				ApiEntry ee = e;
+				vApiEntries.Add(ee);
 				vMethodMap[e.RequestMethod][e.Path] = (p => GetResponse(ee));
 			}
 		}

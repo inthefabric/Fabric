@@ -1,4 +1,5 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System;
+using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Faults;
@@ -65,6 +66,13 @@ namespace Fabric.New.Operations.Create {
 				throw new FabPropertyValueFault("Name", null,
 					"Cannot be null when Disamb is specified.");
 			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void CreateMember(IOperationContext pOpCtx, TxBuilder pTxBuild,
+																CreateFabMember pApi, Member pDom) {
+			//TODO: verify member doesn't already exist
+			throw new NotImplementedException();
 		}
 
 	}

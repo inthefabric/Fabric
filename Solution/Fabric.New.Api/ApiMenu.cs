@@ -50,9 +50,9 @@ namespace Fabric.New.Api {
 			s.Uri = "/Meta";
 
 			if ( MetaSpec == null ) {
-				MetaSpec = NewOperation<FabSpec>("Spec");
-				MetaVersion = NewOperation<FabMetaVersion>("Version");
-				MetaTime = NewOperation<FabMetaTime>("Time");
+				MetaSpec = NewOperation<FabResponse<FabSpec>>("Spec");
+				MetaVersion = NewOperation<FabResponse<FabMetaVersion>>("Version");
+				MetaTime = NewOperation<FabResponse<FabMetaTime>>("Time");
 			}
 
 			s.Operations.Add(MetaSpec);
@@ -70,7 +70,7 @@ namespace Fabric.New.Api {
 
 			foreach ( ApiEntry e in CreateExecutors.ApiEntries ) {
 				string name = e.Path.Replace(s.Uri+"/", "");
-				var op = NewOperation(name, e.ResponseType.GetGenericArguments()[0], e.RequestMethod);
+				var op = NewOperation(name, e.ResponseType, e.RequestMethod);
 				s.Operations.Add(op);
 			}
 
@@ -119,7 +119,7 @@ namespace Fabric.New.Api {
 				}
 
 				string name = e.Path.Replace(s.Uri+"/", "");
-				var op = NewOperation(name, e.ResponseType.GetGenericArguments()[0], e.RequestMethod);
+				var op = NewOperation(name, e.ResponseType, e.RequestMethod);
 				s.Operations.Add(op);
 			}
 
@@ -130,7 +130,7 @@ namespace Fabric.New.Api {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabServiceOperation NewOperation<T>(string pName,
-									ApiEntry.Method pMethod=ApiEntry.Method.Get) where T : FabObject {
+														ApiEntry.Method pMethod=ApiEntry.Method.Get) {
 			return NewOperation(pName, typeof(T), pMethod);
 		}
 
@@ -141,7 +141,7 @@ namespace Fabric.New.Api {
 			op.Name = pName;
 			op.Uri = "/"+pName.Replace(" ", "");
 			op.Method = (pMethod+"").ToUpper();
-			op.Return = pRespType.Name;
+			op.Return = ApiLang.TypeName(pRespType);
 			return op;
 		}
 

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Lang;
 using Fabric.New.Api.Objects;
+using Fabric.New.Api.Objects.Menu;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Spec;
@@ -15,7 +17,7 @@ namespace Fabric.New.Api {
 	public static class ApiSpec {
 
 		public readonly static FabSpec Spec = BuildSpec();
-		
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -27,17 +29,72 @@ namespace Fabric.New.Api {
 			s.BuildYear = v.Year;
 			s.BuildMonth = v.Month;
 			s.BuildDay = v.Day;
+			s.Services = BuildServices();
 			s.Objects = BuildObjects();
 			s.Enums = BuildEnums();
+
+			//TODO: service operation params
+			//TODO: traversal steps (with objects, separate, or both?)
+
 			return s;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		private static List<FabSpecService> BuildServices() {
+			IList<ApiEntry> entries = new ApiModule().GetApiEntries();
+			IDictionary<string, ApiEntry> entryMap = entries.ToDictionary(x => x.Path, x => x);
+			Func<string, ApiEntry> getEntry = (x => (entryMap.ContainsKey(x) ? entryMap[x] : null));
+
+			var services = new List<FabSpecService>();
+			services.Add(BuildService(ApiMenu.Meta, getEntry));
+			services.Add(BuildService(ApiMenu.Mod, getEntry));
+			services.Add(BuildService(ApiMenu.Oauth, getEntry));
+			services.Add(BuildService(ApiMenu.Trav, getEntry));
+			return services;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabSpecService BuildService(FabService pSvc, Func<string, ApiEntry> pGetEntry) {
+			ApiEntry ae = pGetEntry(pSvc.Uri);
+
+			var s = new FabSpecService();
+			s.Name = pSvc.Name;
+			s.Uri = pSvc.Uri;
+			s.Summary = ApiLang.Text<ServiceText>(s.Name+"Summ");
+			s.Description = ApiLang.Text<ServiceText>(s.Name+"Desc");
+			s.Operations = new List<FabSpecServiceOperation>();
+
+			foreach ( FabServiceOperation svcOp in pSvc.Operations ) {
+				s.Operations.Add(BuildServiceOp(s.Name, svcOp, (x => pGetEntry(s.Uri+x))));
+			}
+
+			return s;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabSpecServiceOperation BuildServiceOp(string pSvcName,
+										FabServiceOperation pSvcOp, Func<string, ApiEntry> pGetEntry) {
+			ApiEntry ae = pGetEntry(pSvcOp.Uri);
+
+			var so = new FabSpecServiceOperation();
+			so.Name = pSvcOp.Name;
+			so.Uri = pSvcOp.Uri;
+			so.Method = pSvcOp.Method;
+			so.Return = (ae == null ? "???" : ApiLang.TypeName(ae.ResponseType));
+			so.Description = ApiLang.Text<ServiceOpText>(pSvcName+"_"+so.Name+"_"+so.Method);
+			so.Auth = (ae == null ? "???" : (ae.MemberAuth ? "Member" : "None"));
+			so.Parameters = new List<FabSpecServiceOperationParam>();
+			return so;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		private static List<FabSpecObject> BuildObjects() {
-			var objs = new List<FabSpecObject>();
-			var types = typeof(FabObject).Assembly.GetTypes();
+			var objects = new List<FabSpecObject>();
+			var types = typeof(FabObject).Assembly.GetTypes().OrderBy(x => x.Name);
 
 			foreach ( Type t in types ) {
 				if ( !typeof(FabObject).IsAssignableFrom(t) ) {
@@ -48,10 +105,10 @@ namespace Fabric.New.Api {
 					continue;
 				}
 
-				objs.Add(BuildObject(t));
+				objects.Add(BuildObject(t));
 			}
 
-			return objs;
+			return objects;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -147,7 +204,7 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static List<FabSpecEnum> BuildEnums() {
 			var enums = new List<FabSpecEnum>();
-			var types = typeof(VertexType).Assembly.GetTypes();
+			var types = typeof(VertexType).Assembly.GetTypes().OrderBy(x => x.Name);
 
 			foreach ( Type t in types ) {
 				if ( typeof(EnumObject).IsAssignableFrom(t) ) {

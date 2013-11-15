@@ -33,13 +33,13 @@ namespace Fabric.New.Api.Interfaces {
 		/*--------------------------------------------------------------------------------------------*/
 		public static ApiEntry Get(string pPath, Func<IApiRequest, IApiResponse> pFunc,
 															Type pRespType, bool pMemberAuth=false) {
-			return new ApiEntry(Method.Get, pPath, pFunc, pRespType);
+			return new ApiEntry(Method.Get, pPath, pFunc, pRespType, pMemberAuth);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static ApiEntry Post(string pPath, Func<IApiRequest, IApiResponse> pFunc,
 															Type pRespType, bool pMemberAuth=true) {
-			return new ApiEntry(Method.Post, pPath, pFunc, pRespType);
+			return new ApiEntry(Method.Post, pPath, pFunc, pRespType, pMemberAuth);
 		}
 
 	}

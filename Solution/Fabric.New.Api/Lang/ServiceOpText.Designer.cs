@@ -61,155 +61,74 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get the latest specifications and documentation for all Fabric API services..
+        ///   Looks up a localized string similar to Get the latest specifications and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now..
         /// </summary>
-        internal static string Meta_GetSpecification {
+        internal static string Meta_Spec_GET {
             get {
-                return ResourceManager.GetString("Meta_GetSpecification", resourceCulture);
+                return ResourceManager.GetString("Meta_Spec_GET", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Get the current Fabric server time..
         /// </summary>
-        internal static string Meta_GetTime {
+        internal static string Meta_Time_GET {
             get {
-                return ResourceManager.GetString("Meta_GetTime", resourceCulture);
+                return ResourceManager.GetString("Meta_Time_GET", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Get the current Fabric version..
         /// </summary>
-        internal static string Meta_GetVersion {
+        internal static string Meta_Version_GET {
             get {
-                return ResourceManager.GetString("Meta_GetVersion", resourceCulture);
+                return ResourceManager.GetString("Meta_Version_GET", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric..
         /// </summary>
-        internal static string Modify_AddClass {
+        internal static string Modify_Classes_POST {
             get {
-                return ResourceManager.GetString("Modify_AddClass", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Modify_AddClasses {
-            get {
-                return ResourceManager.GetString("Modify_AddClasses", resourceCulture);
+                return ResourceManager.GetString("Modify_Classes_POST", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Create a new Factor. The Factor begins in the &apos;incomplete&apos; state, with no FactorElements attached..
         /// </summary>
-        internal static string Modify_AddFactor {
+        internal static string Modify_Factors_POST {
             get {
-                return ResourceManager.GetString("Modify_AddFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string Modify_AddFactors {
-            get {
-                return ResourceManager.GetString("Modify_AddFactors", resourceCulture);
+                return ResourceManager.GetString("Modify_Factors_POST", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric..
         /// </summary>
-        internal static string Modify_AddInstance {
+        internal static string Modify_Instances_POST {
             get {
-                return ResourceManager.GetString("Modify_AddInstance", resourceCulture);
+                return ResourceManager.GetString("Modify_Instances_POST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string Modify_Members_POST {
+            get {
+                return ResourceManager.GetString("Modify_Members_POST", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Create a new Url..
         /// </summary>
-        internal static string Modify_AddUrl {
+        internal static string Modify_Urls_POST {
             get {
-                return ResourceManager.GetString("Modify_AddUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new Descriptor and attach it to the specified Factor..
-        /// </summary>
-        internal static string Modify_AttachDescriptorToFactor {
-            get {
-                return ResourceManager.GetString("Modify_AttachDescriptorToFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new Director and attach it to the specified Factor..
-        /// </summary>
-        internal static string Modify_AttachDirectorToFactor {
-            get {
-                return ResourceManager.GetString("Modify_AttachDirectorToFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new Eventor and attach it to the specified Factor..
-        /// </summary>
-        internal static string Modify_AttachEventorToFactor {
-            get {
-                return ResourceManager.GetString("Modify_AttachEventorToFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new Identor and attach it to the specified Factor..
-        /// </summary>
-        internal static string Modify_AttachIdentorToFactor {
-            get {
-                return ResourceManager.GetString("Modify_AttachIdentorToFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new Locator and attach it to the specified Factor..
-        /// </summary>
-        internal static string Modify_AttachLocatorToFactor {
-            get {
-                return ResourceManager.GetString("Modify_AttachLocatorToFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new Vector and attach it to the specified Factor..
-        /// </summary>
-        internal static string Modify_AttachVectorToFactor {
-            get {
-                return ResourceManager.GetString("Modify_AttachVectorToFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Move a Factor from the &apos;incomplete&apos; state to the &apos;complete&apos; state.  A Factor must have a Descriptor before it can be completed. Once a Factor is completed, it can only be deleted -- no further modifications are permitted..
-        /// </summary>
-        internal static string Modify_CompleteFactor {
-            get {
-                return ResourceManager.GetString("Modify_CompleteFactor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete a Factor..
-        /// </summary>
-        internal static string Modify_DeleteFactor {
-            get {
-                return ResourceManager.GetString("Modify_DeleteFactor", resourceCulture);
+                return ResourceManager.GetString("Modify_Urls_POST", resourceCulture);
             }
         }
         
@@ -218,9 +137,9 @@ namespace Fabric.New.Api.Lang {
         ///
         ///An OAuth access token must be included with every Fabric API request (with the exception of the OAuth requests).  This token is the res [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Oauth_AccessToken {
+        internal static string Oauth_AccessToken_GET {
             get {
-                return ResourceManager.GetString("Oauth_AccessToken", resourceCulture);
+                return ResourceManager.GetString("Oauth_AccessToken_GET", resourceCulture);
             }
         }
         
@@ -229,9 +148,9 @@ namespace Fabric.New.Api.Lang {
         ///
         ///See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process..
         /// </summary>
-        internal static string Oauth_AccessTokenAuthCode {
+        internal static string Oauth_AccessTokenAuthCode_GET {
             get {
-                return ResourceManager.GetString("Oauth_AccessTokenAuthCode", resourceCulture);
+                return ResourceManager.GetString("Oauth_AccessTokenAuthCode_GET", resourceCulture);
             }
         }
         
@@ -240,9 +159,9 @@ namespace Fabric.New.Api.Lang {
         ///
         ///See [[Access Token|Oper|Oauth.AccessToken]] or general information about the OAuth process..
         /// </summary>
-        internal static string Oauth_AccessTokenClientCredentials {
+        internal static string Oauth_AccessTokenClientCredentials_GET {
             get {
-                return ResourceManager.GetString("Oauth_AccessTokenClientCredentials", resourceCulture);
+                return ResourceManager.GetString("Oauth_AccessTokenClientCredentials_GET", resourceCulture);
             }
         }
         
@@ -251,9 +170,9 @@ namespace Fabric.New.Api.Lang {
         ///
         ///See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process..
         /// </summary>
-        internal static string Oauth_AccessTokenClientDataProv {
+        internal static string Oauth_AccessTokenClientDataProv_GET {
             get {
-                return ResourceManager.GetString("Oauth_AccessTokenClientDataProv", resourceCulture);
+                return ResourceManager.GetString("Oauth_AccessTokenClientDataProv_GET", resourceCulture);
             }
         }
         
@@ -264,9 +183,9 @@ namespace Fabric.New.Api.Lang {
         ///
         ///See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth pr [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Oauth_AccessTokenRefresh {
+        internal static string Oauth_AccessTokenRefresh_GET {
             get {
-                return ResourceManager.GetString("Oauth_AccessTokenRefresh", resourceCulture);
+                return ResourceManager.GetString("Oauth_AccessTokenRefresh_GET", resourceCulture);
             }
         }
         
@@ -275,9 +194,9 @@ namespace Fabric.New.Api.Lang {
         ///
         ///A web-based Fabric App would typically load this OAuth entry page as a browser popup window. Once the user completes the full OAuth process (or upon an error), Fabric will redirect the browser to [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Oauth_Login {
+        internal static string Oauth_Login_GET {
             get {
-                return ResourceManager.GetString("Oauth_Login", resourceCulture);
+                return ResourceManager.GetString("Oauth_Login_GET", resourceCulture);
             }
         }
         
@@ -286,54 +205,90 @@ namespace Fabric.New.Api.Lang {
         ///
         ///Logging out of an OAuth session does not revoke the the App scope accepted by the User (during the first OAuth login process).  Furthermore, it does not end the User&apos;s authenticated session with Fabric.  Thus, a subsequent OAuth entry by the same user may actually require zero input from the user -- they could potentially bypass both OAuth entry [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Oauth_Logout {
+        internal static string Oauth_Logout_GET {
             get {
-                return ResourceManager.GetString("Oauth_Logout", resourceCulture);
+                return ResourceManager.GetString("Oauth_Logout_GET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The latest specification and documentation for all Fabric API services. This is useful for building Fabric API clients and reference documentation sites like the one you are viewing right now..
+        ///   Looks up a localized string similar to Begins a traversal with an App entry point..
         /// </summary>
-        internal static string Spec_Document {
+        internal static string Traversal_Apps_GET {
             get {
-                return ResourceManager.GetString("Spec_Document", resourceCulture);
+                return ResourceManager.GetString("Traversal_Apps_GET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get the App that is associated with the currently authenticated Member..
+        ///   Looks up a localized string similar to Begins a traversal with an Artifact entry point..
         /// </summary>
-        internal static string Traversal_GetActiveApp {
+        internal static string Traversal_Artifacts_GET {
             get {
-                return ResourceManager.GetString("Traversal_GetActiveApp", resourceCulture);
+                return ResourceManager.GetString("Traversal_Artifacts_GET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get the the currently authenticated Member..
+        ///   Looks up a localized string similar to Begins a traversal with an Class entry point..
         /// </summary>
-        internal static string Traversal_GetActiveMember {
+        internal static string Traversal_Classes_GET {
             get {
-                return ResourceManager.GetString("Traversal_GetActiveMember", resourceCulture);
+                return ResourceManager.GetString("Traversal_Classes_GET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get the User that is associated with the currently authenticated Member..
+        ///   Looks up a localized string similar to Begins a traversal with an Factor entry point..
         /// </summary>
-        internal static string Traversal_GetActiveUser {
+        internal static string Traversal_Factors_GET {
             get {
-                return ResourceManager.GetString("Traversal_GetActiveUser", resourceCulture);
+                return ResourceManager.GetString("Traversal_Factors_GET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The starting point for all traversal queries. Use traversal links and traversal functions to navigate through Fabric&apos;s objects. These links and functions are capable of performing both simple and highly complex queries..
+        ///   Looks up a localized string similar to Begins a traversal with an Instance entry point..
         /// </summary>
-        internal static string Traversal_GetRoot {
+        internal static string Traversal_Instances_GET {
             get {
-                return ResourceManager.GetString("Traversal_GetRoot", resourceCulture);
+                return ResourceManager.GetString("Traversal_Instances_GET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begins a traversal with an Member entry point..
+        /// </summary>
+        internal static string Traversal_Members_GET {
+            get {
+                return ResourceManager.GetString("Traversal_Members_GET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begins a traversal with an Url entry point..
+        /// </summary>
+        internal static string Traversal_Urls_GET {
+            get {
+                return ResourceManager.GetString("Traversal_Urls_GET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begins a traversal with an User entry point..
+        /// </summary>
+        internal static string Traversal_Users_GET {
+            get {
+                return ResourceManager.GetString("Traversal_Users_GET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begins a traversal with an Vertex entry point..
+        /// </summary>
+        internal static string Traversal_Vertices_GET {
+            get {
+                return ResourceManager.GetString("Traversal_Vertices_GET", resourceCulture);
             }
         }
     }
