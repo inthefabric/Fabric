@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fabric.Api.Meta.Lang {
+namespace Fabric.New.Api.Lang {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fabric.Api.Meta.Lang {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.Api.Meta.Lang.FuncParamText", typeof(FuncParamText).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.New.Api.Lang.FuncParamText", typeof(FuncParamText).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

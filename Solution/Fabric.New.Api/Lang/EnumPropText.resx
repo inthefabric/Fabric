@@ -120,7 +120,7 @@
   <data name="VectorRangeLevel_Position" xml:space="preserve">
     <value>A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.</value>
   </data>
-  <data name="VectorRange_VectorRangeLevelIds" xml:space="preserve">
+  <data name="VectorRange_Levels" xml:space="preserve">
     <value>The set of points/labels that describe a numerical range.</value>
   </data>
   <data name="VectorType_Max" xml:space="preserve">
@@ -138,10 +138,10 @@
   <data name="VectorUnit_Symbol" xml:space="preserve">
     <value>A unique symbol or abbreviation.</value>
   </data>
-  <data name="BaseEnum_Description" xml:space="preserve">
+  <data name="EnumObject_Description" xml:space="preserve">
     <value>A summary of this object's intended meaning or purpose.</value>
   </data>
-  <data name="BaseEnum_Name" xml:space="preserve">
+  <data name="EnumObject_Name" xml:space="preserve">
     <value>A descriptive name or title.</value>
   </data>
   <data name="LocatorType_MaxX" xml:space="preserve">
@@ -165,22 +165,22 @@
   <data name="VectorUnitDerived_WithExponent" xml:space="preserve">
     <value>The exponent that affects the "raises" unit.</value>
   </data>
-  <data name="VectorType_VectorRangeId" xml:space="preserve">
+  <data name="VectorType_VectorRange" xml:space="preserve">
     <value>Specifies a meaningful points/labels mapped to the numerical range.</value>
   </data>
-  <data name="VectorUnitDerived_DefinesVectorUnitId" xml:space="preserve">
+  <data name="VectorUnitDerived_DefinesVectorUnit" xml:space="preserve">
     <value>One or more VectorUnitDerived items are used to represent a conversion into this particular [[unit|Enum|VectorUnit]].</value>
   </data>
-  <data name="VectorUnitDerived_RaisesVectorUnitId" xml:space="preserve">
+  <data name="VectorUnitDerived_RaisesVectorUnit" xml:space="preserve">
     <value>The [[unit|Enum|VectorUnit]] for this particular item.</value>
   </data>
-  <data name="VectorUnitDerived_RaisesVectorUnitPrefixId" xml:space="preserve">
+  <data name="VectorUnitDerived_RaisesVectorUnitPrefix" xml:space="preserve">
     <value>The [[unit prefix|Enum|VectorUnitPrefix]] that affects the "raises" unit.</value>
   </data>
-  <data name="BaseEnum_EnumId" xml:space="preserve">
+  <data name="EnumObject_EnumId" xml:space="preserve">
     <value>A unique string (with no spaces) that can be used by Fabric clients when creating an enumeration.</value>
   </data>
-  <data name="BaseEnum_Id" xml:space="preserve">
+  <data name="EnumObject_Id" xml:space="preserve">
     <value>The numeric identifier for this enumeration item.</value>
   </data>
 </root>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fabric.Api.Meta.Lang {
+namespace Fabric.New.Api.Lang {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fabric.Api.Meta.Lang {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.Api.Meta.Lang.EnumText", typeof(EnumText).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.New.Api.Lang.EnumText", typeof(EnumText).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,33 +57,6 @@ namespace Fabric.Api.Meta.Lang {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Describes the object type associated with a particular Artifact..
-        /// </summary>
-        internal static string ArtifactType {
-            get {
-                return ResourceManager.GetString("ArtifactType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The base class for all Fabric enumerations..
-        /// </summary>
-        internal static string BaseEnum {
-            get {
-                return ResourceManager.GetString("BaseEnum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Describes the level of access and control given to a particular Crowdian..
-        /// </summary>
-        internal static string CrowdianType {
-            get {
-                return ResourceManager.GetString("CrowdianType", resourceCulture);
             }
         }
         
@@ -111,6 +84,15 @@ namespace Fabric.Api.Meta.Lang {
         internal static string DirectorType {
             get {
                 return ResourceManager.GetString("DirectorType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The base class for all Fabric enumerations..
+        /// </summary>
+        internal static string EnumObject {
+            get {
+                return ResourceManager.GetString("EnumObject", resourceCulture);
             }
         }
         
@@ -220,6 +202,15 @@ namespace Fabric.Api.Meta.Lang {
         internal static string VectorUnitPrefix {
             get {
                 return ResourceManager.GetString("VectorUnitPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides the specific type of a particular Vertex..
+        /// </summary>
+        internal static string VertexType {
+            get {
+                return ResourceManager.GetString("VertexType", resourceCulture);
             }
         }
     }

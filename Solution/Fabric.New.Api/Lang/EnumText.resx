@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ArtifactType" xml:space="preserve">
-    <value>Describes the object type associated with a particular Artifact.</value>
-  </data>
-  <data name="CrowdianType" xml:space="preserve">
-    <value>Describes the level of access and control given to a particular Crowdian.</value>
-  </data>
   <data name="DescriptorType" xml:space="preserve">
     <value>Provides meaning (via Descriptor) to the relationship between the two Artifacts in a particular Factor.</value>
   </data>
@@ -175,7 +169,10 @@ _Equation_
 Those three items represent the Watt conversion equation:
 1 Watt = 1 (Kg)*(m^2)/(s^3))]</value>
   </data>
-  <data name="BaseEnum" xml:space="preserve">
+  <data name="EnumObject" xml:space="preserve">
     <value>The base class for all Fabric enumerations.</value>
+  </data>
+  <data name="VertexType" xml:space="preserve">
+    <value>Provides the specific type of a particular Vertex.</value>
   </data>
 </root>

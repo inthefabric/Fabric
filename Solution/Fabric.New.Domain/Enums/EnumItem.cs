@@ -1,7 +1,7 @@
 ﻿namespace Fabric.New.Domain.Enums {
 
 	/*================================================================================================*/
-	public abstract class EnumItem {
+	public class EnumItem {
 
 		public byte Id { get; set; }
 		public string EnumId { get; set; }

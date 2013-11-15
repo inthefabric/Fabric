@@ -75,6 +75,7 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="ApiSpec.cs" />
+    <Compile Include="ApiLang.cs" />
     <Compile Include="Executors\MetaExecutor.cs" />
     <Compile Include="Executors\MetaExecutors.cs" />
     <Compile Include="Executors\TraversalExecutor.cs" />
@@ -104,6 +105,56 @@
     <Compile Include="Interfaces\IApiRequest.cs" />
     <Compile Include="Interfaces\IApiResponse.cs" />
     <Compile Include="ApiMenu.cs" />
+    <Compile Include="Lang\DtoLinkText.Designer.cs">
+      <DependentUpon>DtoLinkText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\DtoPropText.Designer.cs">
+      <DependentUpon>DtoPropText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\DtoText.Designer.cs">
+      <DependentUpon>DtoText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\EnumPropText.Designer.cs">
+      <DependentUpon>EnumPropText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\EnumText.Designer.cs">
+      <DependentUpon>EnumText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\FuncParamText.Designer.cs">
+      <DependentUpon>FuncParamText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\FuncText.Designer.cs">
+      <DependentUpon>FuncText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\ServiceOpParamText.Designer.cs">
+      <DependentUpon>ServiceOpParamText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\ServiceOpText.Designer.cs">
+      <DependentUpon>ServiceOpText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Lang\ServiceText.Designer.cs">
+      <DependentUpon>ServiceText.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +194,58 @@
       <Project>{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}</Project>
       <Name>Fabric.New.Operations</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lang\DtoLinkText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DtoLinkText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\DtoPropText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DtoPropText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\DtoText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DtoText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\EnumPropText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumPropText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\EnumText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\FuncParamText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncParamText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\FuncText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ServiceOpParamText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceOpParamText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ServiceOpText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceOpText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ServiceText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
