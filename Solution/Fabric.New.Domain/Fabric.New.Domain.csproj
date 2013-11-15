@@ -46,6 +46,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Enums\EnumObject.cs" />
     <Compile Include="Enums\DomainEnums.cs">
       <DependentUpon>DomainEnums.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -62,8 +63,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="EdgeBase.cs" />
-    <Compile Include="Enums\IEnumItem.cs" />
-    <Compile Include="Enums\VertexType.cs" />
+    <Compile Include="Enums\EnumItem.cs" />
     <Compile Include="IEdge.cs" />
     <Compile Include="IElement.cs" />
     <Compile Include="IVertex.cs" />

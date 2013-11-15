@@ -19,7 +19,7 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetSpec(IApiRequest pApiReq) {
-			return new MetaExecutor<FabSpec>(pApiReq, new FabSpec()).Execute();
+			return new MetaExecutor<FabSpec>(pApiReq, ApiSpec.Spec).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

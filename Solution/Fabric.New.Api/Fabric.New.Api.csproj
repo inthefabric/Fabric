@@ -74,6 +74,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="ApiSpec.cs" />
     <Compile Include="Executors\MetaExecutor.cs" />
     <Compile Include="Executors\MetaExecutors.cs" />
     <Compile Include="Executors\TraversalExecutor.cs" />

@@ -133,7 +133,7 @@ namespace Fabric.New.Api {
 									ApiEntry.Method pMethod=ApiEntry.Method.Get) where T : FabObject {
 			return NewOperation(pName, typeof(T), pMethod);
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabServiceOperation NewOperation(string pName, Type pRespType,
 														ApiEntry.Method pMethod=ApiEntry.Method.Get) {

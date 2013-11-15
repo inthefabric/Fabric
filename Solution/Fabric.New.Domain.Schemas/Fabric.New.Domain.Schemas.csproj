@@ -62,6 +62,7 @@
     <Compile Include="Edges\MemberCreatesArtifactSchema.cs" />
     <Compile Include="Edges\EdgeSchema.cs" />
     <Compile Include="Edges\MemberCreatesFactorSchema.cs" />
+    <Compile Include="Enums\VertexTypeSchema.cs" />
     <Compile Include="Enums\EnumRefAttribute.cs" />
     <Compile Include="Enums\VectorUnitDerivedSchema.cs" />
     <Compile Include="Enums\VectorTypeSchema.cs" />

@@ -3,12 +3,13 @@
 // Changes made to this source file will be overwritten
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fabric.New.Domain.Enums {
 
 
 	/*================================================================================================*/
-	public static class DescriptorType {
+	public class DescriptorType : EnumObject {
 
 		public enum Id {
 			IsRelatedTo = 1,
@@ -40,17 +41,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.IsRelatedTo, new Item {
 				Id = 1,
 				EnumId = "IsRelatedTo",
@@ -198,12 +195,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class DirectorAction {
+	public class DirectorAction : EnumObject {
 
 		public enum Id {
 			Read = 1,
@@ -228,17 +231,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.Read, new Item {
 				Id = 1,
 				EnumId = "Read",
@@ -344,12 +343,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class DirectorType {
+	public class DirectorType : EnumObject {
 
 		public enum Id {
 			Hyperlink = 1,
@@ -362,17 +367,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.Hyperlink, new Item {
 				Id = 1,
 				EnumId = "Hyperlink",
@@ -406,12 +407,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class EventorType {
+	public class EventorType : EnumObject {
 
 		public enum Id {
 			Start = 1,
@@ -426,17 +433,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.Start, new Item {
 				Id = 1,
 				EnumId = "Start",
@@ -482,12 +485,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class FactorAssertion {
+	public class FactorAssertion : EnumObject {
 
 		public enum Id {
 			Undefined = 1,
@@ -499,17 +508,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.Undefined, new Item {
 				Id = 1,
 				EnumId = "Undefined",
@@ -537,12 +542,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class IdentorType {
+	public class IdentorType : EnumObject {
 
 		public enum Id {
 			Text = 1,
@@ -552,17 +563,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.Text, new Item {
 				Id = 1,
 				EnumId = "Text",
@@ -578,12 +585,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class LocatorType {
+	public class LocatorType : EnumObject {
 
 		public enum Id {
 			EarthCoordinate = 1,
@@ -597,7 +610,7 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
 			public double MinX { get; set; }
 			public double MaxX { get; set; }
@@ -605,15 +618,11 @@ namespace Fabric.New.Domain.Enums {
 			public double MaxY { get; set; }
 			public double MinZ { get; set; }
 			public double MaxZ { get; set; }
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.EarthCoordinate, new Item {
 				MinX = -180,
 				MaxX = 180,
@@ -689,12 +698,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class MemberType {
+	public class MemberType : EnumObject {
 
 		public enum Id {
 			None = 1,
@@ -710,17 +725,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.None, new Item {
 				Id = 1,
 				EnumId = "None",
@@ -772,12 +783,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class VectorRangeLevel {
+	public class VectorRangeLevel : EnumObject {
 
 		public enum Id {
 			Zero0 = 1,
@@ -810,18 +827,14 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
 			public float Position { get; set; }
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.Zero0, new Item {
 				Position = 0f,
 				Id = 1,
@@ -1000,12 +1013,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class VectorRange {
+	public class VectorRange : EnumObject {
 
 		public enum Id {
 			FullNum = 1,
@@ -1020,18 +1039,14 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
 			public VectorRangeLevel.Id[] Levels { get; set; }
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.FullNum, new Item {
 				Levels = new[] { 
 					VectorRangeLevel.Id.Min0, 
@@ -1120,12 +1135,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class VectorType {
+	public class VectorType : EnumObject {
 
 		public enum Id {
 			FullLong = 1,
@@ -1143,20 +1164,16 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
 			public VectorRange.Id VectorRange { get; set; }
 			public long Min { get; set; }
 			public long Max { get; set; }
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.FullLong, new Item {
 				VectorRange = VectorRange.Id.FullNum,
 				Min = -9223372036854775808,
@@ -1250,12 +1267,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class VectorUnitDerived {
+	public class VectorUnitDerived : EnumObject {
 
 		public enum Id {
 			HertzSec = 1,
@@ -1290,21 +1313,17 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
 			public VectorUnit.Id DefinesVectorUnit { get; set; }
 			public VectorUnit.Id RaisesVectorUnit { get; set; }
 			public int WithExponent { get; set; }
 			public VectorUnitPrefix.Id RaisesVectorUnitPrefix { get; set; }
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.HertzSec, new Item {
 				DefinesVectorUnit = VectorUnit.Id.Hertz,
 				RaisesVectorUnit = VectorUnit.Id.Second,
@@ -1578,12 +1597,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class VectorUnitPrefix {
+	public class VectorUnitPrefix : EnumObject {
 
 		public enum Id {
 			Base = 1,
@@ -1610,18 +1635,14 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
 			public double Amount { get; set; }
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.Base, new Item {
 				Amount = 1,
 				Id = 1,
@@ -1758,12 +1779,18 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 
 
 	/*================================================================================================*/
-	public static class VectorUnit {
+	public class VectorUnit : EnumObject {
 
 		public enum Id {
 			None = 1,
@@ -1800,17 +1827,13 @@ namespace Fabric.New.Domain.Enums {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
-			public byte Id { get; set; }
-			public string EnumId { get; set; }
-			public string Name { get; set; }
-			public string Description { get; set; }
 
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 			{Id.None, new Item {
 				Id = 1,
 				EnumId = "None",
@@ -1988,6 +2011,118 @@ namespace Fabric.New.Domain.Enums {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
+		
+	}
+
+
+	/*================================================================================================*/
+	public class VertexType : EnumObject {
+
+		public enum Id {
+			Vertex = 1,
+			App, // 2
+			Class, // 3
+			Instance, // 4
+			Url, // 5
+			User, // 6
+			Member, // 7
+			Artifact, // 8
+			Factor, // 9
+			Email, // 10
+			OauthAccess, // 11
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public class Item : EnumItem {
+
+
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+			{Id.Vertex, new Item {
+				Id = 1,
+				EnumId = "Vertex",
+				Name = "Vertex",
+				Description = "",
+			}},
+			{Id.App, new Item {
+				Id = 2,
+				EnumId = "App",
+				Name = "App",
+				Description = "",
+			}},
+			{Id.Class, new Item {
+				Id = 3,
+				EnumId = "Class",
+				Name = "Class",
+				Description = "",
+			}},
+			{Id.Instance, new Item {
+				Id = 4,
+				EnumId = "Instance",
+				Name = "Instance",
+				Description = "",
+			}},
+			{Id.Url, new Item {
+				Id = 5,
+				EnumId = "Url",
+				Name = "Url",
+				Description = "",
+			}},
+			{Id.User, new Item {
+				Id = 6,
+				EnumId = "User",
+				Name = "User",
+				Description = "",
+			}},
+			{Id.Member, new Item {
+				Id = 7,
+				EnumId = "Member",
+				Name = "Member",
+				Description = "",
+			}},
+			{Id.Artifact, new Item {
+				Id = 8,
+				EnumId = "Artifact",
+				Name = "Artifact",
+				Description = "",
+			}},
+			{Id.Factor, new Item {
+				Id = 9,
+				EnumId = "Factor",
+				Name = "Factor",
+				Description = "",
+			}},
+			{Id.Email, new Item {
+				Id = 10,
+				EnumId = "Email",
+				Name = "Email",
+				Description = "",
+			}},
+			{Id.OauthAccess, new Item {
+				Id = 11,
+				EnumId = "OauthAccess",
+				Name = "OauthAccess",
+				Description = "",
+			}},
+
+		};
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 

@@ -13,6 +13,7 @@
 // Changes made to this source file will be overwritten
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fabric.New.Domain.Enums {
 <#
@@ -24,7 +25,7 @@ foreach ( IEnumSchema e in enums ) {
 
 
 	/*================================================================================================*/
-	public static class <#= e.Name #> {
+	public class <#= e.Name #> : EnumObject {
 
 		public enum Id {
 <#
@@ -43,12 +44,16 @@ foreach ( IEnumSchema e in enums ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public class Item : IEnumItem {
+		public class Item : EnumItem {
 
 <#
 	foreach ( PropertyInfo pi in props ) {
 		string enumRef = SchemaUtil.GetEnumItemPropertyRef(pi);
 		string type = DomainProperty.GetDataTypeName(pi.PropertyType);
+
+		if ( pi.DeclaringType == typeof(EnumItemSchema) ) {
+			continue;
+		}
 
 		if ( enumRef != null ) {
 			if ( enumRef.Contains("[]") ) {
@@ -67,7 +72,7 @@ foreach ( IEnumSchema e in enums ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
+		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
 <#
 	foreach ( IEnumItemSchema item in e.Items ) {
 #>
@@ -113,6 +118,12 @@ foreach ( IEnumSchema e in enums ) {
 
 		};
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override IList<EnumItem> ToList() {
+			return Map.Values.Cast<EnumItem>().ToList();
+		}
 		
 	}
 <#
