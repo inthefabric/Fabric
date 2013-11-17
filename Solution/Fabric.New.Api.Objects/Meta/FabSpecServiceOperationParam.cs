@@ -3,7 +3,6 @@
 	/*================================================================================================*/
 	public class FabSpecServiceOperationParam : FabSpecValue {
 
-		public string ParamType { get; set; }
 		public int Index { get; set; }
 
 	}

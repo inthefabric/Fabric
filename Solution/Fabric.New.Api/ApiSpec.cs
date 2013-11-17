@@ -86,6 +86,18 @@ namespace Fabric.New.Api {
 			so.Description = ApiLang.Text<ServiceOpText>(pSvcName+"_"+so.Name+"_"+so.Method);
 			so.Auth = (ae == null ? "???" : (ae.MemberAuth ? "Member" : "None"));
 			so.Parameters = new List<FabSpecServiceOperationParam>();
+
+			for ( int i = 0 ; ae != null && i < ae.Params.Count ; i++ ) {
+				ApiEntryParam aep = ae.Params[i];
+
+				var sop = new FabSpecServiceOperationParam();
+				sop.Index = i;
+				sop.Name = aep.Name;
+				sop.Type = ApiLang.TypeName(aep.ParamType);
+				sop.Description = ApiLang.Text<ServiceOpParamText>(pSvcName+"_"+so.Name+"_"+sop.Name);
+				so.Parameters.Add(sop);
+			}
+
 			return so;
 		}
 

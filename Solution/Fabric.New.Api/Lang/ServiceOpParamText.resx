@@ -309,4 +309,19 @@
   <data name="Modify_AttachEventorToFactor_Year" xml:space="preserve">
     <value>The year value for the new Eventor.</value>
   </data>
+  <data name="Modify_Classes_Data" xml:space="preserve">
+    <value>The data (in JSON format) for the new Class.</value>
+  </data>
+  <data name="Modify_Factors_Data" xml:space="preserve">
+    <value>The data (in JSON format) for the new Factor.</value>
+  </data>
+  <data name="Modify_Instances_Data" xml:space="preserve">
+    <value>The data (in JSON format) for the new Instance.</value>
+  </data>
+  <data name="Modify_Members_Data" xml:space="preserve">
+    <value>The data (in JSON format) for the new Member.</value>
+  </data>
+  <data name="Modify_Urls_Data" xml:space="preserve">
+    <value>The data (in JSON format) for the new Url.</value>
+  </data>
 </root>

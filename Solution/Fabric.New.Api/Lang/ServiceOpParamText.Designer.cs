@@ -475,6 +475,15 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The data (in JSON format) for the new Class..
+        /// </summary>
+        internal static string Modify_Classes_Data {
+            get {
+                return ResourceManager.GetString("Modify_Classes_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identifies the incomplete Factor to be completed..
         /// </summary>
         internal static string Modify_CompleteFactor_FactorId {
@@ -507,6 +516,42 @@ namespace Fabric.New.Api.Lang {
         internal static string Modify_DeleteFactor_IsDeleted {
             get {
                 return ResourceManager.GetString("Modify_DeleteFactor_IsDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data (in JSON format) for the new Factor..
+        /// </summary>
+        internal static string Modify_Factors_Data {
+            get {
+                return ResourceManager.GetString("Modify_Factors_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data (in JSON format) for the new Instance..
+        /// </summary>
+        internal static string Modify_Instances_Data {
+            get {
+                return ResourceManager.GetString("Modify_Instances_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data (in JSON format) for the new Member..
+        /// </summary>
+        internal static string Modify_Members_Data {
+            get {
+                return ResourceManager.GetString("Modify_Members_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data (in JSON format) for the new Url..
+        /// </summary>
+        internal static string Modify_Urls_Data {
+            get {
+                return ResourceManager.GetString("Modify_Urls_Data", resourceCulture);
             }
         }
         

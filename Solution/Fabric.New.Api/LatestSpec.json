@@ -1161,11 +1161,6 @@
           "Extends": "FabSpecValue",
           "Properties": [
             {
-              "Name": "ParamType",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
               "Name": "Index",
               "Type": "int",
               "Obj": "FabSpecObjectProp"
@@ -1594,7 +1589,15 @@
               "Return": "FabResponse<FabClass>",
               "Description": "Create a new Class. Attach Factors to this Class immediately after creation to give it meaning and relevance within Fabric.",
               "Auth": "Member",
-              "Parameters": [],
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Data",
+                  "Type": "CreateFabClass",
+                  "Description": "The data (in JSON format) for the new Class.",
+                  "Obj": "FabSpecServiceOperationParam"
+                }
+              ],
               "Obj": "FabSpecServiceOperation"
             },
             {
@@ -1604,7 +1607,15 @@
               "Return": "FabResponse<FabFactor>",
               "Description": "Create a new Factor. The Factor begins in the 'incomplete' state, with no FactorElements attached.",
               "Auth": "Member",
-              "Parameters": [],
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Data",
+                  "Type": "CreateFabFactor",
+                  "Description": "The data (in JSON format) for the new Factor.",
+                  "Obj": "FabSpecServiceOperationParam"
+                }
+              ],
               "Obj": "FabSpecServiceOperation"
             },
             {
@@ -1614,7 +1625,15 @@
               "Return": "FabResponse<FabInstance>",
               "Description": "Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric.",
               "Auth": "Member",
-              "Parameters": [],
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Data",
+                  "Type": "CreateFabInstance",
+                  "Description": "The data (in JSON format) for the new Instance.",
+                  "Obj": "FabSpecServiceOperationParam"
+                }
+              ],
               "Obj": "FabSpecServiceOperation"
             },
             {
@@ -1624,7 +1643,15 @@
               "Return": "FabResponse<FabMember>",
               "Description": "TODO",
               "Auth": "Member",
-              "Parameters": [],
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Data",
+                  "Type": "CreateFabMember",
+                  "Description": "The data (in JSON format) for the new Member.",
+                  "Obj": "FabSpecServiceOperationParam"
+                }
+              ],
               "Obj": "FabSpecServiceOperation"
             },
             {
@@ -1634,7 +1661,15 @@
               "Return": "FabResponse<FabUrl>",
               "Description": "Create a new Url.",
               "Auth": "Member",
-              "Parameters": [],
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Data",
+                  "Type": "CreateFabUrl",
+                  "Description": "The data (in JSON format) for the new Url.",
+                  "Obj": "FabSpecServiceOperationParam"
+                }
+              ],
               "Obj": "FabSpecServiceOperation"
             }
           ],

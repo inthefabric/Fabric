@@ -8,6 +8,7 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System.Collections.Generic;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Operations.Create;
@@ -16,8 +17,6 @@ namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
 	public static class CreateExecutors {
-
-		public static readonly ApiEntry[] ApiEntries = new [] {
 <#
 IList<IVertexSchema> allVerts = SchemaUtil.GetVertexSchemas();
 var verts = new List<IVertexSchema>();
@@ -30,7 +29,19 @@ foreach ( IVertexSchema v in allVerts ) {
 
 foreach ( IVertexSchema v in verts ) {
 #>
-			ApiEntry.Post("/Mod/<#= v.Names.DomainPlural #>", Create<#= v.Names.Domain #>, typeof(FabResponse<<#= v.Names.Api#>>)),
+
+		private static readonly IList<ApiEntryParam> <#= v.Names.Domain #>Params = new List<ApiEntryParam> {
+			new ApiEntryParam("Data", typeof(Create<#= v.Names.Api #>))
+		};
+<#
+} //end vertex loop
+#>
+
+		public static readonly ApiEntry[] ApiEntries = new [] {
+<#
+foreach ( IVertexSchema v in verts ) {
+#>
+			ApiEntry.Post("/Mod/<#= v.Names.DomainPlural #>", Create<#= v.Names.Domain #>, typeof(FabResponse<<#= v.Names.Api#>>), <#= v.Names.Domain #>Params),
 <#
 } //end vertex loop
 #>
