@@ -10,6 +10,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		/*--------------------------------------------------------------------------------------------*/
 		public ArtifactCreatedByMemberSchema() : base(EdgeQuantity.One) {
 			SetNames("CreatedBy", "cb");
+			CreateInternal = true;
 		}
 
 	}

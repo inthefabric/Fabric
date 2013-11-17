@@ -97,6 +97,429 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name..
+        /// </summary>
+        internal static string CreateClass_Disamb {
+            get {
+                return ResourceManager.GetString("CreateClass_Disamb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the new Class. It must be unique on its own, or be unique in combination with the disambiguation text..
+        /// </summary>
+        internal static string CreateClass_Name {
+            get {
+                return ResourceManager.GetString("CreateClass_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A brief description of the new Class. It can be useful for helping others understand the creator&apos;s intended purpose or meaning..
+        /// </summary>
+        internal static string CreateClass_Note {
+            get {
+                return ResourceManager.GetString("CreateClass_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Artifact that refines the Factor&apos;s primary Artifact..
+        /// </summary>
+        internal static string CreateDescriptor_RefinesPrimaryWithArtifactId {
+            get {
+                return ResourceManager.GetString("CreateDescriptor_RefinesPrimaryWithArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Artifact that refines the Factor&apos;s related Artifact..
+        /// </summary>
+        internal static string CreateDescriptor_RefinesRelatedWithArtifactId {
+            get {
+                return ResourceManager.GetString("CreateDescriptor_RefinesRelatedWithArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the Artifact that refines the new Descriptor&apos;s DescriptorType..
+        /// </summary>
+        internal static string CreateDescriptor_RefinesTypeWithArtifactId {
+            get {
+                return ResourceManager.GetString("CreateDescriptor_RefinesTypeWithArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the DescriptorType for the new Descriptor..
+        /// </summary>
+        internal static string CreateDescriptor_Type {
+            get {
+                return ResourceManager.GetString("CreateDescriptor_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the DirectorAction associated with the Factor&apos;s primary Artifact..
+        /// </summary>
+        internal static string CreateDirector_PrimaryAction {
+            get {
+                return ResourceManager.GetString("CreateDirector_PrimaryAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the DirectorAction associated with the Factor&apos;s related Artifact..
+        /// </summary>
+        internal static string CreateDirector_RelatedAction {
+            get {
+                return ResourceManager.GetString("CreateDirector_RelatedAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the DirectorType for the new Director..
+        /// </summary>
+        internal static string CreateDirector_Type {
+            get {
+                return ResourceManager.GetString("CreateDirector_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The day value for the new Eventor..
+        /// </summary>
+        internal static string CreateEventor_Day {
+            get {
+                return ResourceManager.GetString("CreateEventor_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The hour value for the new Eventor..
+        /// </summary>
+        internal static string CreateEventor_Hour {
+            get {
+                return ResourceManager.GetString("CreateEventor_Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minute value for the new Eventor..
+        /// </summary>
+        internal static string CreateEventor_Minute {
+            get {
+                return ResourceManager.GetString("CreateEventor_Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The month value for the new Eventor..
+        /// </summary>
+        internal static string CreateEventor_Month {
+            get {
+                return ResourceManager.GetString("CreateEventor_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The second value for the new Eventor..
+        /// </summary>
+        internal static string CreateEventor_Second {
+            get {
+                return ResourceManager.GetString("CreateEventor_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the EventorType for the new Eventor..
+        /// </summary>
+        internal static string CreateEventor_Type {
+            get {
+                return ResourceManager.GetString("CreateEventor_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The year value for the new Eventor..
+        /// </summary>
+        internal static string CreateEventor_Year {
+            get {
+                return ResourceManager.GetString("CreateEventor_Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the FactorAssertion for the new Factor. In cases where the assertion type is unclear or not known, please use the &apos;Undefined&apos; FactorAssertion..
+        /// </summary>
+        internal static string CreateFactor_AssertionType {
+            get {
+                return ResourceManager.GetString("CreateFactor_AssertionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateFactor_Descriptor {
+            get {
+                return ResourceManager.GetString("CreateFactor_Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateFactor_Director {
+            get {
+                return ResourceManager.GetString("CreateFactor_Director", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateFactor_Eventor {
+            get {
+                return ResourceManager.GetString("CreateFactor_Eventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateFactor_Identor {
+            get {
+                return ResourceManager.GetString("CreateFactor_Identor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The IsDefining value for the new Factor..
+        /// </summary>
+        internal static string CreateFactor_IsDefining {
+            get {
+                return ResourceManager.GetString("CreateFactor_IsDefining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateFactor_Locator {
+            get {
+                return ResourceManager.GetString("CreateFactor_Locator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new Factor. A descriptive note can help others understand the creator&apos;s intended purpose or meaning for the Factor..
+        /// </summary>
+        internal static string CreateFactor_Note {
+            get {
+                return ResourceManager.GetString("CreateFactor_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the primary Artifact for the new Factor..
+        /// </summary>
+        internal static string CreateFactor_UsesPrimaryArtifactId {
+            get {
+                return ResourceManager.GetString("CreateFactor_UsesPrimaryArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the related Artifact for the new Factor. The related Artifact cannot be the same as the primary Artifact..
+        /// </summary>
+        internal static string CreateFactor_UsesRelatedArtifactId {
+            get {
+                return ResourceManager.GetString("CreateFactor_UsesRelatedArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateFactor_Vector {
+            get {
+                return ResourceManager.GetString("CreateFactor_Vector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the IdentorType for the new Identor..
+        /// </summary>
+        internal static string CreateIdentor_Type {
+            get {
+                return ResourceManager.GetString("CreateIdentor_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The text-based value for the new Identor..
+        /// </summary>
+        internal static string CreateIdentor_Value {
+            get {
+                return ResourceManager.GetString("CreateIdentor_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The disambiguation text for the new Instance. When provided, the disambiguation text permits the use of a non-unique name..
+        /// </summary>
+        internal static string CreateInstance_Disamb {
+            get {
+                return ResourceManager.GetString("CreateInstance_Disamb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the new Instance. It does not need to be unique..
+        /// </summary>
+        internal static string CreateInstance_Name {
+            get {
+                return ResourceManager.GetString("CreateInstance_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A brief description of the new Instance.  It can be useful for helping others understand the creator&apos;s intended purpose or meaning..
+        /// </summary>
+        internal static string CreateInstance_Note {
+            get {
+                return ResourceManager.GetString("CreateInstance_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the LocatorType for the new Locator..
+        /// </summary>
+        internal static string CreateLocator_Type {
+            get {
+                return ResourceManager.GetString("CreateLocator_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The X value for the new Locator..
+        /// </summary>
+        internal static string CreateLocator_ValueX {
+            get {
+                return ResourceManager.GetString("CreateLocator_ValueX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Y value for the new Locator..
+        /// </summary>
+        internal static string CreateLocator_ValueY {
+            get {
+                return ResourceManager.GetString("CreateLocator_ValueY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Z value for the new Locator..
+        /// </summary>
+        internal static string CreateLocator_ValueZ {
+            get {
+                return ResourceManager.GetString("CreateLocator_ValueZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateMember_DefinedByAppId {
+            get {
+                return ResourceManager.GetString("CreateMember_DefinedByAppId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateMember_DefinedByUserId {
+            get {
+                return ResourceManager.GetString("CreateMember_DefinedByUserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string CreateMember_Type {
+            get {
+                return ResourceManager.GetString("CreateMember_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The complete absolute URL for new Url object. It must include the URL&apos;s protocol (such as &apos;http://&apos;)..
+        /// </summary>
+        internal static string CreateUrl_FullPath {
+            get {
+                return ResourceManager.GetString("CreateUrl_FullPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the new Url..
+        /// </summary>
+        internal static string CreateUrl_Name {
+            get {
+                return ResourceManager.GetString("CreateUrl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the VectorType for the new Vector..
+        /// </summary>
+        internal static string CreateVector_Type {
+            get {
+                return ResourceManager.GetString("CreateVector_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the VectorUnit for the new Vector..
+        /// </summary>
+        internal static string CreateVector_Unit {
+            get {
+                return ResourceManager.GetString("CreateVector_Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifies the VectorUnitPrefix for the new Vector..
+        /// </summary>
+        internal static string CreateVector_UnitPrefix {
+            get {
+                return ResourceManager.GetString("CreateVector_UnitPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Artifact which provides meaning for the new Vector..
+        /// </summary>
+        internal static string CreateVector_UsesAxisArtifactId {
+            get {
+                return ResourceManager.GetString("CreateVector_UsesAxisArtifactId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value for the new Vector. This value must be within the range specified by the VectorType. Decimal values are not supported; if additional precision is required, use a VectorUnitPrefix such as Milli or Micro..
+        /// </summary>
+        internal static string CreateVector_Value {
+            get {
+                return ResourceManager.GetString("CreateVector_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specifies the type of relationship or connection..
         /// </summary>
         internal static string Descriptor_Type {

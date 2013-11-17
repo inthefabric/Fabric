@@ -504,6 +504,7 @@ namespace Fabric.New.Api.Objects {
 	[SpecInternal]
 	public class CreateFabArtifact : CreateFabVertex {
 		
+		[SpecInternal]
 		public virtual long CreatedByMemberId { get; set; }
 
 
@@ -584,6 +585,7 @@ namespace Fabric.New.Api.Objects {
 		[SpecLen(1, 256)]
 		public virtual string Note { get; set; }
 		
+		[SpecInternal]
 		public virtual long CreatedByMemberId { get; set; }
 		
 		public virtual long UsesPrimaryArtifactId { get; set; }

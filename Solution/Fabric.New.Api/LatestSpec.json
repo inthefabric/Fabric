@@ -1,9 +1,45 @@
-﻿{
+﻿ {
       "BuildVersion": "0.2.4.37fd2cd",
       "BuildYear": 2013,
       "BuildMonth": 9,
       "BuildDay": 18,
       "Objects": [
+        {
+          "Name": "CreateFabClass",
+          "Extends": "CreateFabArtifact",
+          "Description": "Contains the data needed to create a new CreateFabClass",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "The name of the new Class. It must be unique on its own, or be unique in combination with the disambiguation text.",
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Disamb",
+              "Type": "string",
+              "Description": "The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Note",
+              "Type": "string",
+              "Description": "A brief description of the new Class. It can be useful for helping others understand the creator's intended purpose or meaning.",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
         {
           "Name": "CreateFabDescriptor",
           "Extends": "CreateFabObject",
@@ -13,23 +49,27 @@
               "Enum": "DescriptorType",
               "Name": "Type",
               "Type": "byte",
+              "Description": "Identifies the DescriptorType for the new Descriptor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "RefinesPrimaryWithArtifactId",
               "Type": "long?",
+              "Description": "Identifies the Artifact that refines the Factor's primary Artifact.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "RefinesRelatedWithArtifactId",
               "Type": "long?",
+              "Description": "Identifies the Artifact that refines the Factor's related Artifact.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "RefinesTypeWithArtifactId",
               "Type": "long?",
+              "Description": "Identifies the Artifact that refines the new Descriptor's DescriptorType.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             }
@@ -45,18 +85,21 @@
               "Enum": "DirectorType",
               "Name": "Type",
               "Type": "byte",
+              "Description": "Identifies the DirectorType for the new Director.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "DirectorAction",
               "Name": "PrimaryAction",
               "Type": "byte",
+              "Description": "Identifies the DirectorAction associated with the Factor's primary Artifact.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "DirectorAction",
               "Name": "RelatedAction",
               "Type": "byte",
+              "Description": "Identifies the DirectorAction associated with the Factor's related Artifact.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -78,41 +121,126 @@
               "Enum": "EventorType",
               "Name": "Type",
               "Type": "byte",
+              "Description": "Identifies the EventorType for the new Eventor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Year",
               "Type": "long",
+              "Description": "The year value for the new Eventor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Month",
               "Type": "byte?",
+              "Description": "The month value for the new Eventor.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Day",
               "Type": "byte?",
+              "Description": "The day value for the new Eventor.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Hour",
               "Type": "byte?",
+              "Description": "The hour value for the new Eventor.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Minute",
               "Type": "byte?",
+              "Description": "The minute value for the new Eventor.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Second",
               "Type": "byte?",
+              "Description": "The second value for the new Eventor.",
               "IsOptional": true,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabFactor",
+          "Extends": "CreateFabVertex",
+          "Description": "Contains the data needed to create a new CreateFabFactor",
+          "Properties": [
+            {
+              "Enum": "FactorAssertion",
+              "Name": "AssertionType",
+              "Type": "byte",
+              "Description": "Identifies the FactorAssertion for the new Factor. In cases where the assertion type is unclear or not known, please use the 'Undefined' FactorAssertion.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "IsDefining",
+              "Type": "bool",
+              "Description": "The IsDefining value for the new Factor.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Note",
+              "Type": "string",
+              "Description": "A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new Factor. A descriptive note can help others understand the creator's intended purpose or meaning for the Factor.",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "UsesPrimaryArtifactId",
+              "Type": "long",
+              "Description": "Identifies the primary Artifact for the new Factor.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "UsesRelatedArtifactId",
+              "Type": "long",
+              "Description": "Identifies the related Artifact for the new Factor. The related Artifact cannot be the same as the primary Artifact.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Descriptor",
+              "Type": "CreateFabDescriptor",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Director",
+              "Type": "CreateFabDirector",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Eventor",
+              "Type": "CreateFabEventor",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Identor",
+              "Type": "CreateFabIdentor",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Locator",
+              "Type": "CreateFabLocator",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Vector",
+              "Type": "CreateFabVector",
+              "Description": "TODO",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -127,11 +255,50 @@
               "Enum": "IdentorType",
               "Name": "Type",
               "Type": "byte",
+              "Description": "Identifies the IdentorType for the new Identor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Value",
               "Type": "string",
+              "Description": "The text-based value for the new Identor.",
+              "IsOptional": true,
+              "LenMax": 256,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabInstance",
+          "Extends": "CreateFabArtifact",
+          "Description": "Contains the data needed to create a new CreateFabInstance",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "The name of the new Instance. It does not need to be unique.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Disamb",
+              "Type": "string",
+              "Description": "The disambiguation text for the new Instance. When provided, the disambiguation text permits the use of a non-unique name.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Note",
+              "Type": "string",
+              "Description": "A brief description of the new Instance.  It can be useful for helping others understand the creator's intended purpose or meaning.",
               "IsOptional": true,
               "LenMax": 256,
               "LenMin": 1,
@@ -149,21 +316,52 @@
               "Enum": "LocatorType",
               "Name": "Type",
               "Type": "byte",
+              "Description": "Identifies the LocatorType for the new Locator.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "ValueX",
               "Type": "double",
+              "Description": "The X value for the new Locator.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "ValueY",
               "Type": "double",
+              "Description": "The Y value for the new Locator.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "ValueZ",
               "Type": "double",
+              "Description": "The Z value for the new Locator.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabMember",
+          "Extends": "CreateFabVertex",
+          "Description": "Contains the data needed to create a new CreateFabMember",
+          "Properties": [
+            {
+              "Enum": "MemberType",
+              "Name": "Type",
+              "Type": "byte",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "DefinedByAppId",
+              "Type": "long",
+              "Description": "TODO",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "DefinedByUserId",
+              "Type": "long",
+              "Description": "TODO",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -177,6 +375,34 @@
           "Obj": "FabSpecObject"
         },
         {
+          "Name": "CreateFabUrl",
+          "Extends": "CreateFabArtifact",
+          "Description": "Contains the data needed to create a new CreateFabUrl",
+          "Properties": [
+            {
+              "Name": "Name",
+              "Type": "string",
+              "Description": "The name of the new Url.",
+              "IsOptional": true,
+              "LenMax": 128,
+              "LenMin": 1,
+              "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "ToLowerCase": true,
+              "IsUnique": true,
+              "Name": "FullPath",
+              "Type": "string",
+              "Description": "The complete absolute URL for new Url object. It must include the URL's protocol (such as 'http://').",
+              "LenMax": 2048,
+              "LenMin": 1,
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
           "Name": "CreateFabVector",
           "Extends": "CreateFabObject",
           "Description": "Contains the data needed to create a new CreateFabVector",
@@ -185,28 +411,33 @@
               "Enum": "VectorType",
               "Name": "Type",
               "Type": "byte",
+              "Description": "Identifies the VectorType for the new Vector.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "VectorUnit",
               "Name": "Unit",
               "Type": "byte",
+              "Description": "Identifies the VectorUnit for the new Vector.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "VectorUnitPrefix",
               "Name": "UnitPrefix",
               "Type": "byte",
+              "Description": "Identifies the VectorUnitPrefix for the new Vector.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Value",
               "Type": "long",
+              "Description": "The value for the new Vector. This value must be within the range specified by the VectorType. Decimal values are not supported; if additional precision is required, use a VectorUnitPrefix such as Milli or Micro.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "UsesAxisArtifactId",
               "Type": "long?",
+              "Description": "The Artifact which provides meaning for the new Vector.",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             }

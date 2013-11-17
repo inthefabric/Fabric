@@ -33,7 +33,6 @@ namespace Fabric.New.Api {
 			s.Objects = BuildObjects();
 			s.Enums = BuildEnums();
 
-			//TODO: service operation params
 			//TODO: traversal steps (with objects, separate, or both?)
 
 			return s;
@@ -113,7 +112,7 @@ namespace Fabric.New.Api {
 					continue;
 				}
 
-				if ( HasAttribute<SpecInternalAttribute>(t) ) {
+				if ( HasAttribute<SpecInternalAttribute>(t, false) ) {
 					continue;
 				}
 
@@ -171,8 +170,14 @@ namespace Fabric.New.Api {
 			p.Name = (dataMem == null ? pProp.Name : dataMem.Name);
 			p.Type = ApiLang.TypeName(pProp.PropertyType);
 
-			if ( !pSkipText && pObjName.IndexOf("CreateFab") != 0 ) {
-				p.Description = ApiLang.Text<DtoPropText>(pObjName.Substring(3)+"_"+pProp.Name);
+			if ( !pSkipText ) {
+				string key = pObjName.Substring(3)+"_"+pProp.Name;
+				
+				if ( pObjName.IndexOf("CreateFab") == 0 ) {
+					key = pObjName.Replace("CreateFab", "Create")+"_"+pProp.Name;
+				}
+
+				p.Description = ApiLang.Text<DtoPropText>(key);
 			}
 
 			////
@@ -292,13 +297,13 @@ namespace Fabric.New.Api {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static bool HasAttribute<T>(MemberInfo pType) where T : Attribute {
-			return (GetAttribute<T>(pType) != null);
+		private static bool HasAttribute<T>(MemberInfo pType, bool pInherit=true) where T : Attribute {
+			return (GetAttribute<T>(pType, pInherit) != null);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static T GetAttribute<T>(MemberInfo pType) where T : Attribute {
-			object[] atts = pType.GetCustomAttributes(typeof(T), true);
+		private static T GetAttribute<T>(MemberInfo pType, bool pInherit=true) where T : Attribute {
+			object[] atts = pType.GetCustomAttributes(typeof(T), pInherit);
 			return (atts.Length == 0 ? default(T) : (T)atts[0]);
 		}
 

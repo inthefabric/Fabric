@@ -24,6 +24,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public ApiProperty<long> FabToVertexId { get; private set; }
 		public string SubObjectOf { get; protected set; }
 		public Type CreateFromOtherDirection { get; protected set; }
+		public bool CreateInternal { get; protected set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

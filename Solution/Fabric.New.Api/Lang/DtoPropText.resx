@@ -408,4 +408,145 @@
   <data name="Vertex_VertexType" xml:space="preserve">
     <value>TODO</value>
   </data>
+  <data name="CreateClass_Disamb" xml:space="preserve">
+    <value>The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.</value>
+  </data>
+  <data name="CreateClass_Name" xml:space="preserve">
+    <value>The name of the new Class. It must be unique on its own, or be unique in combination with the disambiguation text.</value>
+  </data>
+  <data name="CreateClass_Note" xml:space="preserve">
+    <value>A brief description of the new Class. It can be useful for helping others understand the creator's intended purpose or meaning.</value>
+  </data>
+  <data name="CreateFactor_AssertionType" xml:space="preserve">
+    <value>Identifies the FactorAssertion for the new Factor. In cases where the assertion type is unclear or not known, please use the 'Undefined' FactorAssertion.</value>
+  </data>
+  <data name="CreateFactor_IsDefining" xml:space="preserve">
+    <value>The IsDefining value for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_Note" xml:space="preserve">
+    <value>A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new Factor. A descriptive note can help others understand the creator's intended purpose or meaning for the Factor.</value>
+  </data>
+  <data name="CreateFactor_UsesPrimaryArtifactId" xml:space="preserve">
+    <value>Identifies the primary Artifact for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_UsesRelatedArtifactId" xml:space="preserve">
+    <value>Identifies the related Artifact for the new Factor. The related Artifact cannot be the same as the primary Artifact.</value>
+  </data>
+  <data name="CreateInstance_Disamb" xml:space="preserve">
+    <value>The disambiguation text for the new Instance. When provided, the disambiguation text permits the use of a non-unique name.</value>
+  </data>
+  <data name="CreateInstance_Name" xml:space="preserve">
+    <value>The name of the new Instance. It does not need to be unique.</value>
+  </data>
+  <data name="CreateInstance_Note" xml:space="preserve">
+    <value>A brief description of the new Instance.  It can be useful for helping others understand the creator's intended purpose or meaning.</value>
+  </data>
+  <data name="CreateUrl_Name" xml:space="preserve">
+    <value>The name of the new Url.</value>
+  </data>
+  <data name="CreateUrl_FullPath" xml:space="preserve">
+    <value>The complete absolute URL for new Url object. It must include the URL's protocol (such as 'http://').</value>
+  </data>
+  <data name="CreateDescriptor_Type" xml:space="preserve">
+    <value>Identifies the DescriptorType for the new Descriptor.</value>
+  </data>
+  <data name="CreateDescriptor_RefinesTypeWithArtifactId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the new Descriptor's DescriptorType.</value>
+  </data>
+  <data name="CreateDescriptor_RefinesPrimaryWithArtifactId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the Factor's primary Artifact.</value>
+  </data>
+  <data name="CreateDescriptor_RefinesRelatedWithArtifactId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the Factor's related Artifact.</value>
+  </data>
+  <data name="CreateDirector_Type" xml:space="preserve">
+    <value>Identifies the DirectorType for the new Director.</value>
+  </data>
+  <data name="CreateDirector_PrimaryAction" xml:space="preserve">
+    <value>Identifies the DirectorAction associated with the Factor's primary Artifact.</value>
+  </data>
+  <data name="CreateDirector_RelatedAction" xml:space="preserve">
+    <value>Identifies the DirectorAction associated with the Factor's related Artifact.</value>
+  </data>
+  <data name="CreateEventor_Day" xml:space="preserve">
+    <value>The day value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Type" xml:space="preserve">
+    <value>Identifies the EventorType for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Hour" xml:space="preserve">
+    <value>The hour value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Minute" xml:space="preserve">
+    <value>The minute value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Month" xml:space="preserve">
+    <value>The month value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Second" xml:space="preserve">
+    <value>The second value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Year" xml:space="preserve">
+    <value>The year value for the new Eventor.</value>
+  </data>
+  <data name="CreateIdentor_Type" xml:space="preserve">
+    <value>Identifies the IdentorType for the new Identor.</value>
+  </data>
+  <data name="CreateIdentor_Value" xml:space="preserve">
+    <value>The text-based value for the new Identor.</value>
+  </data>
+  <data name="CreateLocator_Type" xml:space="preserve">
+    <value>Identifies the LocatorType for the new Locator.</value>
+  </data>
+  <data name="CreateLocator_ValueX" xml:space="preserve">
+    <value>The X value for the new Locator.</value>
+  </data>
+  <data name="CreateLocator_ValueY" xml:space="preserve">
+    <value>The Y value for the new Locator.</value>
+  </data>
+  <data name="CreateLocator_ValueZ" xml:space="preserve">
+    <value>The Z value for the new Locator.</value>
+  </data>
+  <data name="CreateVector_UsesAxisArtifactId" xml:space="preserve">
+    <value>The Artifact which provides meaning for the new Vector.</value>
+  </data>
+  <data name="CreateVector_Value" xml:space="preserve">
+    <value>The value for the new Vector. This value must be within the range specified by the VectorType. Decimal values are not supported; if additional precision is required, use a VectorUnitPrefix such as Milli or Micro.</value>
+  </data>
+  <data name="CreateVector_Type" xml:space="preserve">
+    <value>Identifies the VectorType for the new Vector.</value>
+  </data>
+  <data name="CreateVector_Unit" xml:space="preserve">
+    <value>Identifies the VectorUnit for the new Vector.</value>
+  </data>
+  <data name="CreateVector_UnitPrefix" xml:space="preserve">
+    <value>Identifies the VectorUnitPrefix for the new Vector.</value>
+  </data>
+  <data name="CreateFactor_Descriptor" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateFactor_Director" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateFactor_Eventor" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateFactor_Identor" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateFactor_Locator" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateFactor_Vector" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateMember_DefinedByAppId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateMember_DefinedByUserId" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="CreateMember_Type" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>
