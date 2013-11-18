@@ -74,7 +74,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Connects an App to all of its Members..
         /// </summary>
         internal static string AppDefinesMember {
             get {
@@ -94,7 +94,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Connects an Artifact to all of the Factors using it as the primary Artifact..
         /// </summary>
         internal static string ArtifactUsedAsPrimaryByFactor {
             get {
@@ -103,7 +103,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Connects an Artifact to all of the Factors using it as the related Artifact..
         /// </summary>
         internal static string ArtifactUsedAsRelatedByFactor {
             get {
@@ -124,9 +124,9 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that describes and refines the relationship between the Factor&apos;s two Artifacts. !Descriptors are the only required Factor Element.
+        ///   Looks up a localized string similar to A Factor component that describes and refines the relationship between the Factor&apos;s two Artifacts. !Descriptors are the only required Factor component.
         ///
-        ///First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A &quot;is a&quot; B, or C &quot;sounds like&quot; D. Since this relationship is directional (flowing _from_ the Factor&apos;s primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship&apos;s direction [rest of string was truncated]&quot;;.
+        ///First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A &quot;is a&quot; B, or C &quot;sounds like&quot; D. Since this relationship is directional (flowing _from_ the Factor&apos;s primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship&apos;s direc [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Descriptor {
             get {
@@ -135,11 +135,11 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that creates a directional, action-based flow between the Factor&apos;s two Artifacts.
+        ///   Looks up a localized string similar to A Factor component that creates a directional, action-based flow between the Factor&apos;s two Artifacts.
         ///
         ///The nature of a !Director&apos;s pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
         ///
-        ///A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on the primary Artifa [rest of string was truncated]&quot;;.
+        ///A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on the primary Arti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Director {
             get {
@@ -148,7 +148,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to An item (Vertex or Link) in Fabric&apos;s graph structure..
         /// </summary>
         internal static string Element {
             get {
@@ -166,11 +166,11 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that applies the concept of time to a particular Factor.
+        ///   Looks up a localized string similar to A Factor component that applies the concept of time to a particular Factor.
         ///
         ///An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
         ///
-        ///Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time [rest of string was truncated]&quot;;.
+        ///Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in ti [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Eventor {
             get {
@@ -181,9 +181,9 @@ namespace Fabric.New.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
         ///
-        ///A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor Elements. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
+        ///A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
         ///
-        ///There are six !Factor Elements: Descriptor, Director, Event [rest of string was truncated]&quot;;.
+        ///There are six !Factor components: Descriptor, Director, E [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Factor {
             get {
@@ -210,11 +210,11 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that applies a name or identifier to a particular Factor.
+        ///   Looks up a localized string similar to A Factor component that applies a name or identifier to a particular Factor.
         ///
         ///An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
         ///
-        ///The [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A &quot;Text&quot; [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organiza [rest of string was truncated]&quot;;.
+        ///The [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A &quot;Text&quot; [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Identor {
             get {
@@ -235,7 +235,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to A connection between one Vertex and another..
         /// </summary>
         internal static string Link {
             get {
@@ -244,12 +244,12 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that positions a Factor using geographic or relative coordinates.
+        ///   Looks up a localized string similar to A Factor component that positions a Factor using geographic or relative coordinates.
         ///
         ///A !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.
         ///
         ///Geographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.
-        ///[(EX [rest of string was truncated]&quot;;.
+        ///[( [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Locator {
             get {
@@ -269,16 +269,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
-        /// </summary>
-        internal static string MemberAuthenticatedByOauthAccess {
-            get {
-                return ResourceManager.GetString("MemberAuthenticatedByOauthAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Connects a Member to all the Artifacts it has created..
         /// </summary>
         internal static string MemberCreatesArtifact {
             get {
@@ -287,7 +278,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Connects a Member to all the Factors it has created..
         /// </summary>
         internal static string MemberCreatesFactor {
             get {
@@ -361,7 +352,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The response wrapper for all API requests. It contains a data payload, error information, and/or other metadata..
+        ///   Looks up a localized string similar to The response wrapper for most API requests. It contains a data payload, error information, and/or other metadata..
         /// </summary>
         internal static string Response {
             get {
@@ -388,7 +379,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides an App traversal entry point..
         /// </summary>
         internal static string TravAppRoot {
             get {
@@ -397,7 +388,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides an Artifact traversal entry point..
         /// </summary>
         internal static string TravArtifactRoot {
             get {
@@ -406,7 +397,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides a Class traversal entry point..
         /// </summary>
         internal static string TravClassRoot {
             get {
@@ -415,7 +406,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The response wrapper for traversal API requests..
         /// </summary>
         internal static string TraversalResponse {
             get {
@@ -424,7 +415,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides a Factor traversal entry point..
         /// </summary>
         internal static string TravFactorRoot {
             get {
@@ -433,7 +424,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides an Instance traversal entry point..
         /// </summary>
         internal static string TravInstanceRoot {
             get {
@@ -442,7 +433,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides a Member traversal entry point..
         /// </summary>
         internal static string TravMemberRoot {
             get {
@@ -460,7 +451,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides information about an available traversal step..
         /// </summary>
         internal static string TravStep {
             get {
@@ -469,7 +460,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The base class for all traversal entry points..
         /// </summary>
         internal static string TravTypedRoot {
             get {
@@ -478,7 +469,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides a Url traversal entry point..
         /// </summary>
         internal static string TravUrlRoot {
             get {
@@ -487,7 +478,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides a User traversal entry point..
         /// </summary>
         internal static string TravUserRoot {
             get {
@@ -496,7 +487,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides a Vertex traversal entry point..
         /// </summary>
         internal static string TravVertexRoot {
             get {
@@ -531,7 +522,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Connects a User to all of its Members..
         /// </summary>
         internal static string UserDefinesMember {
             get {
@@ -540,9 +531,9 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Factor Element that applies a meaningful numeric axis and value to a particular Factor.
+        ///   Looks up a localized string similar to A Factor component that applies a meaningful numeric axis and value to a particular Factor.
         ///
-        ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &quot;axis&quot;. This axis depends entiedgey upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &quot;Height&quot; or &quot;Shutter Speed&quot;. A !Vector that provides an opinion might use an Artifact like &quot;Quality&quot; or &quot;Excitement&quot;. While the choice of an axis Artififact is not restricted, it can be beneficial to use Art [rest of string was truncated]&quot;;.
+        ///A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its &quot;axis&quot;. This axis depends entiedgey upon the !Vector&apos;s purpose. For example, a factual !Vector might use an Artifact like &quot;Height&quot; or &quot;Shutter Speed&quot;. A !Vector that provides an opinion might use an Artifact like &quot;Quality&quot; or &quot;Excitement&quot;. While the choice of an axis Artififact is not restricted, it can be beneficial to use A [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Vector {
             get {

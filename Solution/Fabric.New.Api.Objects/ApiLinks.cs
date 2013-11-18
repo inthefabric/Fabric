@@ -49,18 +49,6 @@ namespace Fabric.New.Api.Objects {
 	}
 
 	/*================================================================================================*/
-	public class FabMemberAuthenticatedByOauthAccess : FabLink {
-
-		//Timestamp
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public FabMemberAuthenticatedByOauthAccess() : base(typeof(FabMember), typeof(FabOauthAccess)) {}
-
-	}
-
-	/*================================================================================================*/
 	public class FabMemberCreatesArtifact : FabLink {
 
 		//Timestamp

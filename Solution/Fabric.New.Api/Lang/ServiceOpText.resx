@@ -136,7 +136,7 @@
     <value>Create a new Instance. Attach Factors to this Instance immediately after creation to give it meaning and relevance within Fabric.</value>
   </data>
   <data name="Modify_Members_POST" xml:space="preserve">
-    <value>TODO</value>
+    <value>Create a new Member.</value>
   </data>
   <data name="Modify_Urls_POST" xml:space="preserve">
     <value>Create a new Url.</value>

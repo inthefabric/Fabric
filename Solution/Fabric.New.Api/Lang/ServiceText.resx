@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MetaDesc" xml:space="preserve">
-    <value>TODO</value>
+    <value>Load information about the API and its services.</value>
   </data>
   <data name="MetaSumm" xml:space="preserve">
     <value>Load information about the API and its services.</value>
   </data>
   <data name="ModifyDesc" xml:space="preserve">
-    <value>TODO</value>
+    <value>Update the Fabric graph with new items and modifications.</value>
   </data>
   <data name="ModifySumm" xml:space="preserve">
     <value>Update the Fabric graph with new items and modifications.</value>
   </data>
   <data name="OauthDesc" xml:space="preserve">
-    <value>TODO</value>
+    <value>Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.</value>
   </data>
   <data name="OauthSumm" xml:space="preserve">
     <value>Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.</value>
   </data>
   <data name="TraversalDesc" xml:space="preserve">
-    <value>TODO</value>
+    <value>Query the Fabric graph using predefined traversal steps and functions.</value>
   </data>
   <data name="TraversalSumm" xml:space="preserve">
     <value>Query the Fabric graph using predefined traversal steps and functions.</value>

@@ -210,37 +210,37 @@
             {
               "Name": "Descriptor",
               "Type": "CreateFabDescriptor",
-              "Description": "TODO",
+              "Description": "Provides Descriptor data for the new Factor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Director",
               "Type": "CreateFabDirector",
-              "Description": "TODO",
+              "Description": "Provides Director data for the new Factor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Eventor",
               "Type": "CreateFabEventor",
-              "Description": "TODO",
+              "Description": "Provides Eventor data for the new Factor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Identor",
               "Type": "CreateFabIdentor",
-              "Description": "TODO",
+              "Description": "Provides Identor data for the new Factor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Locator",
               "Type": "CreateFabLocator",
-              "Description": "TODO",
+              "Description": "Provides Locator data for the new Factor.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Vector",
               "Type": "CreateFabVector",
-              "Description": "TODO",
+              "Description": "Provides Vector data for the new Factor.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -349,19 +349,19 @@
               "Enum": "MemberType",
               "Name": "Type",
               "Type": "byte",
-              "Description": "TODO",
+              "Description": "Identifies the MemberType for the new Member.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "DefinedByAppId",
               "Type": "long",
-              "Description": "TODO",
+              "Description": "Identifies the App that defines the new Member.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "DefinedByUserId",
               "Type": "long",
-              "Description": "TODO",
+              "Description": "Identifies the User that defines the new Member.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -465,7 +465,7 @@
         {
           "Name": "FabAppDefinesMember",
           "Extends": "FabLink",
-          "Description": "TODO",
+          "Description": "Connects an App to all of its Members.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
@@ -479,14 +479,14 @@
         {
           "Name": "FabArtifactUsedAsPrimaryByFactor",
           "Extends": "FabLink",
-          "Description": "TODO",
+          "Description": "Connects an Artifact to all of the Factors using it as the primary Artifact.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabArtifactUsedAsRelatedByFactor",
           "Extends": "FabLink",
-          "Description": "TODO",
+          "Description": "Connects an Artifact to all of the Factors using it as the related Artifact.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
@@ -529,7 +529,7 @@
         {
           "Name": "FabDescriptor",
           "Extends": "FabObject",
-          "Description": "A Factor Element that describes and refines the relationship between the Factor's two Artifacts. !Descriptors are the only required Factor Element.\r\n\r\nFirst, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A \"is a\" B, or C \"sounds like\" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's direction.\r\n[(EX|Relationship Example|_Objective:_\r\nDescribe that a circle is a shape. \r\n\r\n_Method:_\r\n- The Factor uses 'Circle' as the primary Artifact and 'Shape' as the related Artifact.\r\n- The !Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]].\r\n\r\n_Factor Phrase:_\r\nCircle ... Is A ... Shape.)]\r\n\r\n!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any Artifact, a !Descriptor may refine the [[DescriptorType|Enum|DescriptorType]], the Factor's primary Artifact, and/or the Factor's related Artifact. Note: while these Artifact links are discussed here in the context of a !Descriptor, the actual traversal links exist with the Factor.\r\n[(EX|Refinement Example|_Objective:_\r\nDescribe that car A and car B have headlights with a similar shape.\r\n\r\n_Method:_\r\n- The Factor uses 'Car A' as the primary Artifact and 'Car B' as the related Artifact.\r\n- The !Descriptor uses the 'Is Similar To' [[DescriptorType|Enum|DescriptorType]], uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the [[DescriptorType|Enum|DescriptorType]].\r\n\r\n_Factor Phrase:_\r\nCar A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]",
+          "Description": "A Factor component that describes and refines the relationship between the Factor's two Artifacts. !Descriptors are the only required Factor component.\r\n\r\nFirst, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A \"is a\" B, or C \"sounds like\" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's direction.\r\n[(EX|Relationship Example|_Objective:_\r\nDescribe that a circle is a shape. \r\n\r\n_Method:_\r\n- The Factor uses 'Circle' as the primary Artifact and 'Shape' as the related Artifact.\r\n- The !Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]].\r\n\r\n_Factor Phrase:_\r\nCircle ... Is A ... Shape.)]\r\n\r\n!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any Artifact, a !Descriptor may refine the [[DescriptorType|Enum|DescriptorType]], the Factor's primary Artifact, and/or the Factor's related Artifact. Note: while these Artifact links are discussed here in the context of a !Descriptor, the actual traversal links exist with the Factor.\r\n[(EX|Refinement Example|_Objective:_\r\nDescribe that car A and car B have headlights with a similar shape.\r\n\r\n_Method:_\r\n- The Factor uses 'Car A' as the primary Artifact and 'Car B' as the related Artifact.\r\n- The !Descriptor uses the 'Is Similar To' [[DescriptorType|Enum|DescriptorType]], uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the [[DescriptorType|Enum|DescriptorType]].\r\n\r\n_Factor Phrase:_\r\nCar A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]",
           "Properties": [
             {
               "Enum": "DescriptorType",
@@ -544,7 +544,7 @@
         {
           "Name": "FabDirector",
           "Extends": "FabObject",
-          "Description": "A Factor Element that creates a directional, action-based flow between the Factor's two Artifacts.\r\n\r\nThe nature of a !Director's pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.\r\n\r\nA !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.\r\n[(EX|Defined Pathway Example|_Objective:_\r\nDirect along the defined pathway of listening to a particular album's third and fourth songs (song C and D) in order.\r\n\r\n_Method:_\r\n- The Factor uses 'Song C' as the primary Artifact and 'Song D' as the related Artifact.\r\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\r\n- The !Director uses the 'Defined Path' [[DirectorType|Enum|DirectorType]] and the 'Listen' [[DirectorAction|Enum|DirectorAction]] for each Artifact.\r\n\r\n_Factor Phrase:_\r\nSong C ... Is Related To ... Song D. (The) Listen (action on) ... Song C ...  (leads to the) Listen (action on) ... Song D ... (via) Defined Path.)] [(EX|Suggested Pathway Example|_Objective:_\r\nDirect along a suggested pathway of listening to song A and then learning about that song's vocalist, singer B.\r\n\r\n_Method:_\r\n- The Factor uses 'Song A' as the primary Artifact and 'Singer B' as the related Artifact.\r\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\r\n- The !Director uses the 'Suggested Path' [[DirectorType|Enum|DirectorType]], the 'Listen' primary [[DirectorAction|Enum|DirectorAction]], and the 'Learn' related [[DirectorAction|Enum|DirectorAction]].\r\n\r\n_Factor Phrase:_\r\nSong A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]",
+          "Description": "A Factor component that creates a directional, action-based flow between the Factor's two Artifacts.\r\n\r\nThe nature of a !Director's pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.\r\n\r\nA !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.\r\n[(EX|Defined Pathway Example|_Objective:_\r\nDirect along the defined pathway of listening to a particular album's third and fourth songs (song C and D) in order.\r\n\r\n_Method:_\r\n- The Factor uses 'Song C' as the primary Artifact and 'Song D' as the related Artifact.\r\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\r\n- The !Director uses the 'Defined Path' [[DirectorType|Enum|DirectorType]] and the 'Listen' [[DirectorAction|Enum|DirectorAction]] for each Artifact.\r\n\r\n_Factor Phrase:_\r\nSong C ... Is Related To ... Song D. (The) Listen (action on) ... Song C ...  (leads to the) Listen (action on) ... Song D ... (via) Defined Path.)] [(EX|Suggested Pathway Example|_Objective:_\r\nDirect along a suggested pathway of listening to song A and then learning about that song's vocalist, singer B.\r\n\r\n_Method:_\r\n- The Factor uses 'Song A' as the primary Artifact and 'Singer B' as the related Artifact.\r\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\r\n- The !Director uses the 'Suggested Path' [[DirectorType|Enum|DirectorType]], the 'Listen' primary [[DirectorAction|Enum|DirectorAction]], and the 'Learn' related [[DirectorAction|Enum|DirectorAction]].\r\n\r\n_Factor Phrase:_\r\nSong A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]",
           "Properties": [
             {
               "Enum": "DirectorType",
@@ -573,7 +573,7 @@
         {
           "Name": "FabElement",
           "Extends": "FabObject",
-          "Description": "TODO",
+          "Description": "An item (Vertex or Link) in Fabric's graph structure.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
@@ -606,7 +606,7 @@
         {
           "Name": "FabEventor",
           "Extends": "FabObject",
-          "Description": "A Factor Element that applies the concept of time to a particular Factor.\r\n\r\nAn !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.\r\n\r\nEach !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level of precision ranging from one second to one year.\r\n[(EX|Started Example|_Objective:_\r\nSpecify that Albert Einstein was born (i.e. started his life) on March 14, 1879.\r\n\r\n_Method:_\r\n- The Factor uses 'Albert Einstein' as the primary Artifact and 'Life' as the related Artifact.\r\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nAlbert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... 1879 ... 3 ... 14.)] [(EX|Expected Example|_Objective:_\r\nSpecify that person A plans to attend college B in the year 2024.\r\n\r\n_Method:_\r\n- The Factor uses 'Person A' as the primary Artifact and 'College B' as the related Artifact.\r\n- The Descriptor uses the 'Participates In' [[DescriptorType|Enum|DescriptorType]] and the 'Attend' Artifact to refine it.\r\n- The !Eventor uses '2024' as its Year value and the 'Is Expected' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nPerson A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]\r\n\r\n_Note: every Factor recieves a timestamp upon creation. This timestamp is not related to the !Eventor._",
+          "Description": "A Factor component that applies the concept of time to a particular Factor.\r\n\r\nAn !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.\r\n\r\nEach !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level of precision ranging from one second to one year.\r\n[(EX|Started Example|_Objective:_\r\nSpecify that Albert Einstein was born (i.e. started his life) on March 14, 1879.\r\n\r\n_Method:_\r\n- The Factor uses 'Albert Einstein' as the primary Artifact and 'Life' as the related Artifact.\r\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nAlbert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... 1879 ... 3 ... 14.)] [(EX|Expected Example|_Objective:_\r\nSpecify that person A plans to attend college B in the year 2024.\r\n\r\n_Method:_\r\n- The Factor uses 'Person A' as the primary Artifact and 'College B' as the related Artifact.\r\n- The Descriptor uses the 'Participates In' [[DescriptorType|Enum|DescriptorType]] and the 'Attend' Artifact to refine it.\r\n- The !Eventor uses '2024' as its Year value and the 'Is Expected' [[EventorType|Enum|EventorType]].\r\n\r\n_Factor Phrase:_\r\nPerson A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]\r\n\r\n_Note: every Factor recieves a timestamp upon creation. This timestamp is not related to the !Eventor._",
           "Properties": [
             {
               "Enum": "EventorType",
@@ -662,7 +662,7 @@
         {
           "Name": "FabFactor",
           "Extends": "FabVertex",
-          "Description": "Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.\r\n\r\nA !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor Elements. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.\r\n\r\nThere are six !Factor Elements: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.\r\n\r\nJust as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A [[FactorAssertion|Enum|FactorAssertion]] allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.",
+          "Description": "Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.\r\n\r\nA !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.\r\n\r\nThere are six !Factor components: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.\r\n\r\nJust as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A [[FactorAssertion|Enum|FactorAssertion]] allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.",
           "Properties": [
             {
               "Enum": "FactorAssertion",
@@ -680,7 +680,7 @@
             {
               "Name": "Note",
               "Type": "string",
-              "Description": "A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.",
+              "Description": "A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's components inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.",
               "IsOptional": true,
               "LenMin": 1,
               "LenMax": 256,
@@ -689,37 +689,37 @@
             {
               "Name": "Descriptor",
               "Type": "FabDescriptor",
-              "Description": "This element defines the relationship between the primary and related Artifact.",
+              "Description": "This component defines the relationship between the primary and related Artifact.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Director",
               "Type": "FabDirector",
-              "Description": "This element creates a directional pathway between the primary and related Artifacts.",
+              "Description": "This component creates a directional pathway between the primary and related Artifacts.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Eventor",
               "Type": "FabEventor",
-              "Description": "This element applies the concept of time.",
+              "Description": "This component applies the concept of time.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Identor",
               "Type": "FabIdentor",
-              "Description": "This element applies a name or identifier.",
+              "Description": "This component applies a name or identifier.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Locator",
               "Type": "FabLocator",
-              "Description": "This element provides a geographical or relative position.",
+              "Description": "This component provides a geographical or relative position.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Vector",
               "Type": "FabVector",
-              "Description": "This element applies a numeric axis and value.",
+              "Description": "This component applies a numeric axis and value.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -733,13 +733,13 @@
             {
               "Name": "Name",
               "Type": "string",
-              "Description": "TODO",
+              "Description": "The name of this API.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Uri",
               "Type": "string",
-              "Description": "TODO",
+              "Description": "The relative URI for this API level.",
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -754,7 +754,7 @@
         {
           "Name": "FabIdentor",
           "Extends": "FabObject",
-          "Description": "A Factor Element that applies a name or identifier to a particular Factor.\r\n\r\nAn !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.\r\n\r\nThe [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A \"Text\" [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A \"Key\" [[IdentorType|Enum|IdentorType]] is typically meant to associate a Factor with some external system (like a Product ID from an online store) or to provide an App with a \"reverse lookup\" for their own internal IDs.\r\n[(EX|Alternate Name Example|_Objective:_\r\nIdentify that Grand Valley State University is also known as (has the alternate name of) 'Grand Valley'.\r\n\r\n_Method:_\r\n- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Name' as the related Artifact.\r\n- The Descriptor uses the 'Has A' DescriptorType, and an 'Alternative' Artifact to refine the Factor's related Artifact.\r\n- The !Identor uses 'Grand Valley' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGrand Valley State University ... Has A ... Name (more specifically, an) Alternative, ... (identified by the) Text ... 'Grand Valley'.)] [(EX|Abbreviation Example|_Objective:_\r\nIdentify that Grand Valley State University is also known as (has the abbreviation of) 'GVSU'.\r\n\r\n_Method:_\r\n- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Abbreviation' as the related Artifact.\r\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Identor uses 'GVSU' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGrand Valley State University ... Has A(n) ... Abbreviation, ... (identified by the) Text ... 'GVSU'.)] [(EX|Identifier Example|_Objective:_\r\nIdentify that game A is accessible in store B via its ID, which is '123a-45678'.\r\n\r\n_Method:_\r\n- The Factor uses 'Game A' as the primary Artifact and 'Store B' as the related Artifact.\r\n- The Descriptor uses the 'Is Found In' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Identor uses '123a-45678' as its text value, and the 'Key' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGame A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]",
+          "Description": "A Factor component that applies a name or identifier to a particular Factor.\r\n\r\nAn !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.\r\n\r\nThe [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A \"Text\" [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A \"Key\" [[IdentorType|Enum|IdentorType]] is typically meant to associate a Factor with some external system (like a Product ID from an online store) or to provide an App with a \"reverse lookup\" for their own internal IDs.\r\n[(EX|Alternate Name Example|_Objective:_\r\nIdentify that Grand Valley State University is also known as (has the alternate name of) 'Grand Valley'.\r\n\r\n_Method:_\r\n- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Name' as the related Artifact.\r\n- The Descriptor uses the 'Has A' DescriptorType, and an 'Alternative' Artifact to refine the Factor's related Artifact.\r\n- The !Identor uses 'Grand Valley' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGrand Valley State University ... Has A ... Name (more specifically, an) Alternative, ... (identified by the) Text ... 'Grand Valley'.)] [(EX|Abbreviation Example|_Objective:_\r\nIdentify that Grand Valley State University is also known as (has the abbreviation of) 'GVSU'.\r\n\r\n_Method:_\r\n- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Abbreviation' as the related Artifact.\r\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Identor uses 'GVSU' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGrand Valley State University ... Has A(n) ... Abbreviation, ... (identified by the) Text ... 'GVSU'.)] [(EX|Identifier Example|_Objective:_\r\nIdentify that game A is accessible in store B via its ID, which is '123a-45678'.\r\n\r\n_Method:_\r\n- The Factor uses 'Game A' as the primary Artifact and 'Store B' as the related Artifact.\r\n- The Descriptor uses the 'Is Found In' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Identor uses '123a-45678' as its text value, and the 'Key' [[IdentorType|Enum|IdentorType]].\r\n\r\n_Factor Phrase:_\r\nGame A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]",
           "Properties": [
             {
               "Enum": "IdentorType",
@@ -815,18 +815,18 @@
         {
           "Name": "FabLink",
           "Extends": "FabElement",
-          "Description": "TODO",
+          "Description": "A connection between one Vertex and another.",
           "Properties": [
             {
               "Name": "FromType",
               "Type": "string",
-              "Description": "TODO",
+              "Description": "The Vertex type at the \"outgoing\" end of this !Link.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "ToType",
               "Type": "string",
-              "Description": "TODO",
+              "Description": "The Vertex type at the \"incoming\" end of this !Link.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -835,7 +835,7 @@
         {
           "Name": "FabLocator",
           "Extends": "FabObject",
-          "Description": "A Factor Element that positions a Factor using geographic or relative coordinates.\r\n\r\nA !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.\r\n\r\nGeographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.\r\n[(EX|Geographic Example|_Objective:_\r\nSpecify that person A took photo B from a spot near the Eiffel Tower.\r\n\r\n_Method:_\r\n- The Factor uses 'Photo B' as the primary Artifact and 'Person A' as the related Artifact.\r\n- The Descriptor uses the 'Is Created By' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Earth Coordinate' [[LocatorType|Enum|LocatorType]], a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.\r\n\r\n_Factor Phrase:_\r\nPhoto B ... Is Created By ... Person A, ... (at an) Earth Coordinate (location of) ... X (longitude) = '2.292977' ... Y (latitude) = '48.858154' ... Z (elevation) = '34.24' (metres above sea level).)]\r\n\r\nRelative coordinates represent a position relative to the origin and size/bounds of the Factor's primary Artifact. There are LocatorTypes for one, two, and three-dimensional relative coordinates. For coordinates which have:\r\n- One dimension, use X for time or progress, and leave Y and Z equal to zero.\r\n- Two dimensions, use X for width, Y for height, and leave Z equal to zero.\r\n- Three dimensions, use X, Y, and Z values which correspond to the Artifact's X, Y, and Z values. If these axes are undefined, use X for width (or breadth), Y for length (or depth), and Z for height (or elevation).\r\n[(EX|Relative 1D Example|_Objective:_\r\nSpecify that book A refers to painting B on page 148 of 200 (about 74% of the book's length).\r\n\r\n_Method:_\r\n- The Factor uses 'Book A' as the primary Artifact and 'Painting B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Related 1D' [[LocatorType|Enum|LocatorType]], a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.\r\n\r\n_Factor Phrase:_\r\nBook A ... Refers To ... Painting B, ... (at a) Relative 1D (location of) ... X (position) = 0.74.)] [(EX|Relative 2D Example|_Objective:_\r\nSpecify that photo A includes person B near the top-right (25% from the top, 84% from the left) of the image.\r\n\r\n_Method:_\r\n- The Factor uses 'Photo A' as the primary Artifact and 'Person B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Relative 2D' [[LocatorType|Enum|LocatorType]], a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.\r\n\r\n_Factor Phrase:_\r\nPhoto A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]",
+          "Description": "A Factor component that positions a Factor using geographic or relative coordinates.\r\n\r\nA !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.\r\n\r\nGeographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.\r\n[(EX|Geographic Example|_Objective:_\r\nSpecify that person A took photo B from a spot near the Eiffel Tower.\r\n\r\n_Method:_\r\n- The Factor uses 'Photo B' as the primary Artifact and 'Person A' as the related Artifact.\r\n- The Descriptor uses the 'Is Created By' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Earth Coordinate' [[LocatorType|Enum|LocatorType]], a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.\r\n\r\n_Factor Phrase:_\r\nPhoto B ... Is Created By ... Person A, ... (at an) Earth Coordinate (location of) ... X (longitude) = '2.292977' ... Y (latitude) = '48.858154' ... Z (elevation) = '34.24' (metres above sea level).)]\r\n\r\nRelative coordinates represent a position relative to the origin and size/bounds of the Factor's primary Artifact. There are LocatorTypes for one, two, and three-dimensional relative coordinates. For coordinates which have:\r\n- One dimension, use X for time or progress, and leave Y and Z equal to zero.\r\n- Two dimensions, use X for width, Y for height, and leave Z equal to zero.\r\n- Three dimensions, use X, Y, and Z values which correspond to the Artifact's X, Y, and Z values. If these axes are undefined, use X for width (or breadth), Y for length (or depth), and Z for height (or elevation).\r\n[(EX|Relative 1D Example|_Objective:_\r\nSpecify that book A refers to painting B on page 148 of 200 (about 74% of the book's length).\r\n\r\n_Method:_\r\n- The Factor uses 'Book A' as the primary Artifact and 'Painting B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Related 1D' [[LocatorType|Enum|LocatorType]], a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.\r\n\r\n_Factor Phrase:_\r\nBook A ... Refers To ... Painting B, ... (at a) Relative 1D (location of) ... X (position) = 0.74.)] [(EX|Relative 2D Example|_Objective:_\r\nSpecify that photo A includes person B near the top-right (25% from the top, 84% from the left) of the image.\r\n\r\n_Method:_\r\n- The Factor uses 'Photo A' as the primary Artifact and 'Person B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Locator uses the 'Relative 2D' [[LocatorType|Enum|LocatorType]], a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.\r\n\r\n_Factor Phrase:_\r\nPhoto A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]",
           "Properties": [
             {
               "Enum": "LocatorType",
@@ -881,23 +881,16 @@
           "Obj": "FabSpecObject"
         },
         {
-          "Name": "FabMemberAuthenticatedByOauthAccess",
-          "Extends": "FabLink",
-          "Description": "TODO",
-          "Properties": [],
-          "Obj": "FabSpecObject"
-        },
-        {
           "Name": "FabMemberCreatesArtifact",
           "Extends": "FabLink",
-          "Description": "TODO",
+          "Description": "Connects a Member to all the Artifacts it has created.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabMemberCreatesFactor",
           "Extends": "FabLink",
-          "Description": "TODO",
+          "Description": "Connects a Member to all the Factors it has created.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
@@ -1528,42 +1521,42 @@
         {
           "Name": "FabTravAppRoot",
           "Extends": "FabTravArtifactRoot",
-          "Description": "TODO",
+          "Description": "Provides an App traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravArtifactRoot",
           "Extends": "FabTravVertexRoot",
-          "Description": "TODO",
+          "Description": "Provides an Artifact traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravClassRoot",
           "Extends": "FabTravArtifactRoot",
-          "Description": "TODO",
+          "Description": "Provides a Class traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravFactorRoot",
           "Extends": "FabTravVertexRoot",
-          "Description": "TODO",
+          "Description": "Provides a Factor traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravInstanceRoot",
           "Extends": "FabTravArtifactRoot",
-          "Description": "TODO",
+          "Description": "Provides an Instance traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravMemberRoot",
           "Extends": "FabTravVertexRoot",
-          "Description": "TODO",
+          "Description": "Provides a Member traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
@@ -1577,24 +1570,24 @@
         {
           "Name": "FabTravStep",
           "Extends": "FabObject",
-          "Description": "TODO",
+          "Description": "Provides information about an available traversal step.",
           "Properties": [
             {
               "Name": "Name",
               "Type": "string",
-              "Description": "TODO",
+              "Description": "The name of this traversal step.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Uri",
               "Type": "string",
-              "Description": "TODO",
+              "Description": "The URI to append in order to execute this traversal step.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Return",
               "Type": "string",
-              "Description": "TODO",
+              "Description": "The return type.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1603,28 +1596,28 @@
         {
           "Name": "FabTravTypedRoot",
           "Extends": "FabObject",
-          "Description": "TODO",
+          "Description": "The base class for all traversal entry points.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravUrlRoot",
           "Extends": "FabTravArtifactRoot",
-          "Description": "TODO",
+          "Description": "Provides a Url traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravUserRoot",
           "Extends": "FabTravArtifactRoot",
-          "Description": "TODO",
+          "Description": "Provides a User traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabTravVertexRoot",
           "Extends": "FabTravTypedRoot",
-          "Description": "TODO",
+          "Description": "Provides a Vertex traversal entry point.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
@@ -1677,14 +1670,14 @@
         {
           "Name": "FabUserDefinesMember",
           "Extends": "FabLink",
-          "Description": "TODO",
+          "Description": "Connects a User to all of its Members.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
         {
           "Name": "FabVector",
           "Extends": "FabObject",
-          "Description": "A Factor Element that applies a meaningful numeric axis and value to a particular Factor.\r\n\r\nA !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its \"axis\". This axis depends entiedgey upon the !Vector's purpose. For example, a factual !Vector might use an Artifact like \"Height\" or \"Shutter Speed\". A !Vector that provides an opinion might use an Artifact like \"Quality\" or \"Excitement\". While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other Apps or Users are already using as !Vector axes. Note: while the axis Artifact link is discussed here in the context of a Vector, the actual traversal link exists with the Factor.\r\n\r\nThe [[VectorType|Enum|VectorType]] provides boundaries and context for the !Vector's value. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each [[VectorType|Enum|VectorType]] provides additional information, such as a [[VectorRange|Enum|VectorRange]], to provide further meaning for the levels within the the allowed value boundaries.\r\n\r\nA !Vector's numeric value often reflects a measurement or a has a specific unit. Furthermore, a !Vector can use [[VectorUnitPrefix|Enum|VectorUnitPrefix]] to specify an order of magnitude for the value. A !Vector's value is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.\r\n[(EX|Small Value Example|_Objective:_\r\nSpecify that image A (which is a photo) has a shutter speed of 1/250 second.\r\n\r\n_Method:_\r\n- The Factor uses 'Image A' as the primary Artifact and 'Photo' as the related Artifact.\r\n- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Shutter Speed' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '4' as the value, the 'Milli' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the 'Second' [[VectorUnit|Enum|VectorUnit]].\r\n\r\n_Factor Phrase:_\r\nImage A ... Is A ... Photo, ... (which, along the) Shutter Speed (axis) ... (with a) Positive Long (numerical range), ... (has a value) '4' ... Milli ... Second(s).)] [(EX|Large Value Example|_Objective:_\r\nSpecify that Earth and the Andromeda Galaxy are 2.5 million light years (2.2705 x 10^22 metres) apart.\r\n\r\n_Method:_\r\n- The Factor uses 'Earth' as the primary Artifact and 'Andromeda Galaxy' as the related Artifact.\r\n- The Descriptor uses the 'Is Related To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Distance' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '22,705' as the value, the 'Exa' [[VectorUnitPrefix|Enum|VectorUnitPrefix]] (represents 10^18), and the 'Metre' [[VectorUnit|Enum|VectorUnit]].\r\n\r\n_Factor Phrase:_\r\nEarth ... Is Related To ... Andromeda Galaxy, ... (which, along the) Distance (axis) ... (with a) Positive Long (numerical range), ... (has a value) '22,705' ... Exa ... Metre(s).)] [(EX|Negative Value Example|_Objective:_\r\nSpecify that article A mentions person B in a very unfair manner, about 80% of the maximum unfairness imaginable.\r\n\r\n_Method:_\r\n- The Factor uses 'Article A' as the primary Artifact and 'Person B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Fairness' Artifact as the axis, the 'Opposable Favorability' [[VectorType|Enum|VectorType]], '-80' as the value, the default 'Base' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the default 'None' [[VectorUnit|Enum|VectorUnit]]. This [[VectorType|Enum|VectorType]] has bounds of -100 to +100.\r\n\r\n_Factor Phrase:_\r\nArticle A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]",
+          "Description": "A Factor component that applies a meaningful numeric axis and value to a particular Factor.\r\n\r\nA !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its \"axis\". This axis depends entiedgey upon the !Vector's purpose. For example, a factual !Vector might use an Artifact like \"Height\" or \"Shutter Speed\". A !Vector that provides an opinion might use an Artifact like \"Quality\" or \"Excitement\". While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other Apps or Users are already using as !Vector axes. Note: while the axis Artifact link is discussed here in the context of a Vector, the actual traversal link exists with the Factor.\r\n\r\nThe [[VectorType|Enum|VectorType]] provides boundaries and context for the !Vector's value. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each [[VectorType|Enum|VectorType]] provides additional information, such as a [[VectorRange|Enum|VectorRange]], to provide further meaning for the levels within the the allowed value boundaries.\r\n\r\nA !Vector's numeric value often reflects a measurement or a has a specific unit. Furthermore, a !Vector can use [[VectorUnitPrefix|Enum|VectorUnitPrefix]] to specify an order of magnitude for the value. A !Vector's value is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.\r\n[(EX|Small Value Example|_Objective:_\r\nSpecify that image A (which is a photo) has a shutter speed of 1/250 second.\r\n\r\n_Method:_\r\n- The Factor uses 'Image A' as the primary Artifact and 'Photo' as the related Artifact.\r\n- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Shutter Speed' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '4' as the value, the 'Milli' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the 'Second' [[VectorUnit|Enum|VectorUnit]].\r\n\r\n_Factor Phrase:_\r\nImage A ... Is A ... Photo, ... (which, along the) Shutter Speed (axis) ... (with a) Positive Long (numerical range), ... (has a value) '4' ... Milli ... Second(s).)] [(EX|Large Value Example|_Objective:_\r\nSpecify that Earth and the Andromeda Galaxy are 2.5 million light years (2.2705 x 10^22 metres) apart.\r\n\r\n_Method:_\r\n- The Factor uses 'Earth' as the primary Artifact and 'Andromeda Galaxy' as the related Artifact.\r\n- The Descriptor uses the 'Is Related To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Distance' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '22,705' as the value, the 'Exa' [[VectorUnitPrefix|Enum|VectorUnitPrefix]] (represents 10^18), and the 'Metre' [[VectorUnit|Enum|VectorUnit]].\r\n\r\n_Factor Phrase:_\r\nEarth ... Is Related To ... Andromeda Galaxy, ... (which, along the) Distance (axis) ... (with a) Positive Long (numerical range), ... (has a value) '22,705' ... Exa ... Metre(s).)] [(EX|Negative Value Example|_Objective:_\r\nSpecify that article A mentions person B in a very unfair manner, about 80% of the maximum unfairness imaginable.\r\n\r\n_Method:_\r\n- The Factor uses 'Article A' as the primary Artifact and 'Person B' as the related Artifact.\r\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \r\n- The !Vector uses the 'Fairness' Artifact as the axis, the 'Opposable Favorability' [[VectorType|Enum|VectorType]], '-80' as the value, the default 'Base' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the default 'None' [[VectorUnit|Enum|VectorUnit]]. This [[VectorType|Enum|VectorType]] has bounds of -100 to +100.\r\n\r\n_Factor Phrase:_\r\nArticle A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]",
           "Properties": [
             {
               "Enum": "VectorType",
@@ -1738,7 +1731,7 @@
               "Enum": "VertexType",
               "Name": "VertexType",
               "Type": "byte",
-              "Description": "TODO",
+              "Description": "Specifies the Vertex type.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1750,7 +1743,7 @@
           "Name": "Meta",
           "Uri": "/Meta",
           "Summary": "Load information about the API and its services.",
-          "Description": "TODO",
+          "Description": "Load information about the API and its services.",
           "Operations": [
             {
               "Name": "Spec",
@@ -1789,7 +1782,7 @@
           "Name": "Modify",
           "Uri": "/Mod",
           "Summary": "Update the Fabric graph with new items and modifications.",
-          "Description": "TODO",
+          "Description": "Update the Fabric graph with new items and modifications.",
           "Operations": [
             {
               "Name": "Classes",
@@ -1850,7 +1843,7 @@
               "Uri": "/Members",
               "Method": "POST",
               "Return": "FabResponse<FabMember>",
-              "Description": "TODO",
+              "Description": "Create a new Member.",
               "Auth": "Member",
               "Parameters": [
                 {
@@ -1888,7 +1881,7 @@
           "Name": "Oauth",
           "Uri": "/Oauth",
           "Summary": "Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.",
-          "Description": "TODO",
+          "Description": "Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification.",
           "Operations": [
             {
               "Name": "AccessToken",
@@ -1967,7 +1960,7 @@
           "Name": "Traversal",
           "Uri": "/Trav",
           "Summary": "Query the Fabric graph using predefined traversal steps and functions.",
-          "Description": "TODO",
+          "Description": "Query the Fabric graph using predefined traversal steps and functions.",
           "Operations": [
             {
               "Name": "Apps",
@@ -2130,13 +2123,6 @@
                   "Uri": "/Take",
                   "Entry": "FabArtifactUsedAsRelatedByFactor",
                   "Return": "FabArtifactUsedAsRelatedByFactor",
-                  "Obj": "FabSpecServiceStepRule"
-                },
-                {
-                  "Name": "Take",
-                  "Uri": "/Take",
-                  "Entry": "FabMemberAuthenticatedByOauthAccess",
-                  "Return": "FabMemberAuthenticatedByOauthAccess",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
@@ -2314,13 +2300,6 @@
                 {
                   "Name": "As",
                   "Uri": "/As",
-                  "Entry": "FabMemberAuthenticatedByOauthAccess",
-                  "Return": "FabMemberAuthenticatedByOauthAccess",
-                  "Obj": "FabSpecServiceStepRule"
-                },
-                {
-                  "Name": "As",
-                  "Uri": "/As",
                   "Entry": "FabMemberCreatesArtifact",
                   "Return": "FabMemberCreatesArtifact",
                   "Obj": "FabSpecServiceStepRule"
@@ -2466,13 +2445,6 @@
                   "Name": "Back",
                   "Uri": "/Back",
                   "Entry": "FabArtifactUsedAsRelatedByFactor",
-                  "ReturnsAliasType": true,
-                  "Obj": "FabSpecServiceStepRule"
-                },
-                {
-                  "Name": "Back",
-                  "Uri": "/Back",
-                  "Entry": "FabMemberAuthenticatedByOauthAccess",
                   "ReturnsAliasType": true,
                   "Obj": "FabSpecServiceStepRule"
                 },

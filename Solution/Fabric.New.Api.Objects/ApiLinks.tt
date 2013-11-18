@@ -3,6 +3,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
 <#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
 <#@ output extension=".cs" #>
 
 // GENERATED CODE
@@ -21,6 +22,13 @@ foreach ( IEdgeSchema e in edges ) {
 	if ( props.Count == 0 ) {
 		continue;
 	}
+
+	IVertexSchema fv = e.GetFromVertex();
+	IVertexSchema tv = e.GetToVertex();
+
+	if ( fv.IsSpecInternal(fv.GetAccess) || tv.IsSpecInternal(tv.GetAccess) ) {
+		continue;
+	}
 #>
 
 	/*================================================================================================*/
@@ -37,7 +45,7 @@ foreach ( IEdgeSchema e in edges ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= name #>() : base(typeof(<#= e.GetFromVertex().Names.Api #>), typeof(<#= e.GetToVertex().Names.Api #>)) {}
+		public <#= name #>() : base(typeof(<#= fv.Names.Api #>), typeof(<#= tv.Names.Api #>)) {}
 
 	}
 <#

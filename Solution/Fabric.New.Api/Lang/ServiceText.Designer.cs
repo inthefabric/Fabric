@@ -61,7 +61,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Load information about the API and its services..
         /// </summary>
         internal static string MetaDesc {
             get {
@@ -79,7 +79,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Update the Fabric graph with new items and modifications..
         /// </summary>
         internal static string ModifyDesc {
             get {
@@ -97,7 +97,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Authenticate Apps and/or Users using various flows based on the Oauth 2.0 specification..
         /// </summary>
         internal static string OauthDesc {
             get {
@@ -115,7 +115,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Query the Fabric graph using predefined traversal steps and functions..
         /// </summary>
         internal static string TraversalDesc {
             get {

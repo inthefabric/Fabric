@@ -168,7 +168,7 @@ While a !Url is a type of Artifact, it should be used with certain constraints. 
 - Every !Url that displays this particular news article can refer the same news article Instance.</value>
   </data>
   <data name="Descriptor" xml:space="preserve">
-    <value>A Factor Element that describes and refines the relationship between the Factor's two Artifacts. !Descriptors are the only required Factor Element.
+    <value>A Factor component that describes and refines the relationship between the Factor's two Artifacts. !Descriptors are the only required Factor component.
 
 First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A "is a" B, or C "sounds like" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's direction.
 [(EX|Relationship Example|_Objective:_
@@ -193,7 +193,7 @@ _Factor Phrase:_
 Car A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]</value>
   </data>
   <data name="Director" xml:space="preserve">
-    <value>A Factor Element that creates a directional, action-based flow between the Factor's two Artifacts.
+    <value>A Factor component that creates a directional, action-based flow between the Factor's two Artifacts.
 
 The nature of a !Director's pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
 
@@ -219,7 +219,7 @@ _Factor Phrase:_
 Song A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]</value>
   </data>
   <data name="Eventor" xml:space="preserve">
-    <value>A Factor Element that applies the concept of time to a particular Factor.
+    <value>A Factor component that applies the concept of time to a particular Factor.
 
 An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
 
@@ -249,14 +249,14 @@ _Note: every Factor recieves a timestamp upon creation. This timestamp is not re
   <data name="Factor" xml:space="preserve">
     <value>Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
 
-A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor Elements. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
+A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
 
-There are six !Factor Elements: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.
+There are six !Factor components: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.
 
 Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A [[FactorAssertion|Enum|FactorAssertion]] allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.</value>
   </data>
   <data name="Identor" xml:space="preserve">
-    <value>A Factor Element that applies a name or identifier to a particular Factor.
+    <value>A Factor component that applies a name or identifier to a particular Factor.
 
 An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
 
@@ -291,7 +291,7 @@ _Factor Phrase:_
 Game A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]</value>
   </data>
   <data name="Locator" xml:space="preserve">
-    <value>A Factor Element that positions a Factor using geographic or relative coordinates.
+    <value>A Factor component that positions a Factor using geographic or relative coordinates.
 
 A !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.
 
@@ -332,7 +332,7 @@ _Factor Phrase:_
 Photo A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]</value>
   </data>
   <data name="Vector" xml:space="preserve">
-    <value>A Factor Element that applies a meaningful numeric axis and value to a particular Factor.
+    <value>A Factor component that applies a meaningful numeric axis and value to a particular Factor.
 
 A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its "axis". This axis depends entiedgey upon the !Vector's purpose. For example, a factual !Vector might use an Artifact like "Height" or "Shutter Speed". A !Vector that provides an opinion might use an Artifact like "Quality" or "Excitement". While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other Apps or Users are already using as !Vector axes. Note: while the axis Artifact link is discussed here in the context of a Vector, the actual traversal link exists with the Factor.
 
@@ -369,7 +369,7 @@ _Factor Phrase:_
 Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]</value>
   </data>
   <data name="Response" xml:space="preserve">
-    <value>The response wrapper for all API requests. It contains a data payload, error information, and/or other metadata.</value>
+    <value>The response wrapper for most API requests. It contains a data payload, error information, and/or other metadata.</value>
   </data>
   <data name="Vertex" xml:space="preserve">
     <value>The base class for all vertices present in the Fabric "graph".  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]].</value>
@@ -420,66 +420,63 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
     <value>Contains the current Fabric version information. Fabric uses semantic versioning.</value>
   </data>
   <data name="AppDefinesMember" xml:space="preserve">
-    <value>TODO</value>
+    <value>Connects an App to all of its Members.</value>
   </data>
   <data name="ArtifactUsedAsPrimaryByFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Connects an Artifact to all of the Factors using it as the primary Artifact.</value>
   </data>
   <data name="ArtifactUsedAsRelatedByFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Connects an Artifact to all of the Factors using it as the related Artifact.</value>
   </data>
   <data name="Element" xml:space="preserve">
-    <value>TODO</value>
+    <value>An item (Vertex or Link) in Fabric's graph structure.</value>
   </data>
   <data name="Link" xml:space="preserve">
-    <value>TODO</value>
-  </data>
-  <data name="MemberAuthenticatedByOauthAccess" xml:space="preserve">
-    <value>TODO</value>
+    <value>A connection between one Vertex and another.</value>
   </data>
   <data name="MemberCreatesArtifact" xml:space="preserve">
-    <value>TODO</value>
+    <value>Connects a Member to all the Artifacts it has created.</value>
   </data>
   <data name="MemberCreatesFactor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Connects a Member to all the Factors it has created.</value>
   </data>
   <data name="TravAppRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides an App traversal entry point.</value>
   </data>
   <data name="TravArtifactRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides an Artifact traversal entry point.</value>
   </data>
   <data name="TravClassRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides a Class traversal entry point.</value>
   </data>
   <data name="TraversalResponse" xml:space="preserve">
-    <value>TODO</value>
+    <value>The response wrapper for traversal API requests.</value>
   </data>
   <data name="TravFactorRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides a Factor traversal entry point.</value>
   </data>
   <data name="TravInstanceRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides an Instance traversal entry point.</value>
   </data>
   <data name="TravMemberRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides a Member traversal entry point.</value>
   </data>
   <data name="TravStep" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides information about an available traversal step.</value>
   </data>
   <data name="TravTypedRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>The base class for all traversal entry points.</value>
   </data>
   <data name="TravUrlRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides a Url traversal entry point.</value>
   </data>
   <data name="TravUserRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides a User traversal entry point.</value>
   </data>
   <data name="TravVertexRoot" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides a Vertex traversal entry point.</value>
   </data>
   <data name="UserDefinesMember" xml:space="preserve">
-    <value>TODO</value>
+    <value>Connects a User to all of its Members.</value>
   </data>
 </root>

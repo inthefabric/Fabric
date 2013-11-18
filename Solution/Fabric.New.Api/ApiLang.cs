@@ -18,16 +18,15 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static IDictionary<Type, ResourceManager> BuildResourceMap() {
 			var map = new Dictionary<Type, ResourceManager>();
-			map.Add(typeof(ServiceText), ServiceText.ResourceManager);
 			map.Add(typeof(DtoText), DtoText.ResourceManager);
 			map.Add(typeof(DtoPropText), DtoPropText.ResourceManager);
-			map.Add(typeof(DtoLinkText), DtoLinkText.ResourceManager);
-			map.Add(typeof(StepText), StepText.ResourceManager);
-			map.Add(typeof(StepParamText), StepParamText.ResourceManager);
-			map.Add(typeof(ServiceOpText), ServiceOpText.ResourceManager);
-			map.Add(typeof(ServiceOpParamText), ServiceOpParamText.ResourceManager);
 			map.Add(typeof(EnumText), EnumText.ResourceManager);
 			map.Add(typeof(EnumPropText), EnumPropText.ResourceManager);
+			map.Add(typeof(ServiceText), ServiceText.ResourceManager);
+			map.Add(typeof(ServiceOpText), ServiceOpText.ResourceManager);
+			map.Add(typeof(ServiceOpParamText), ServiceOpParamText.ResourceManager);
+			map.Add(typeof(StepText), StepText.ResourceManager);
+			map.Add(typeof(StepParamText), StepParamText.ResourceManager);
 			return map;
 		}
 

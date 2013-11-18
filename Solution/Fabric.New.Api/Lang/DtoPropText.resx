@@ -166,7 +166,7 @@
     <value>Specifies whether this !Factor helps to directly and uniquely define the primary Artifact.</value>
   </data>
   <data name="Factor_Note" xml:space="preserve">
-    <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
+    <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's components inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
   </data>
   <data name="Object_Obj" xml:space="preserve">
     <value>The data type of this object.</value>
@@ -325,25 +325,25 @@
     <value>Specifies the significance of this point in time.</value>
   </data>
   <data name="Factor_Descriptor" xml:space="preserve">
-    <value>This element defines the relationship between the primary and related Artifact.</value>
+    <value>This component defines the relationship between the primary and related Artifact.</value>
   </data>
   <data name="Factor_Director" xml:space="preserve">
-    <value>This element creates a directional pathway between the primary and related Artifacts.</value>
+    <value>This component creates a directional pathway between the primary and related Artifacts.</value>
   </data>
   <data name="Factor_Eventor" xml:space="preserve">
-    <value>This element applies the concept of time.</value>
+    <value>This component applies the concept of time.</value>
   </data>
   <data name="Factor_FactorAssertion" xml:space="preserve">
     <value>Specifies the type of information and/or level of confidence.</value>
   </data>
   <data name="Factor_Identor" xml:space="preserve">
-    <value>This element applies a name or identifier.</value>
+    <value>This component applies a name or identifier.</value>
   </data>
   <data name="Factor_Locator" xml:space="preserve">
-    <value>This element provides a geographical or relative position.</value>
+    <value>This component provides a geographical or relative position.</value>
   </data>
   <data name="Factor_Vector" xml:space="preserve">
-    <value>This element applies a numeric axis and value.</value>
+    <value>This component applies a numeric axis and value.</value>
   </data>
   <data name="Identor_Type" xml:space="preserve">
     <value>Specifies the value's purpose or intent.</value>
@@ -379,16 +379,16 @@
     <value>Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.</value>
   </data>
   <data name="Home_Name" xml:space="preserve">
-    <value>TODO</value>
+    <value>The name of this API.</value>
   </data>
   <data name="Home_Uri" xml:space="preserve">
-    <value>TODO</value>
+    <value>The relative URI for this API level.</value>
   </data>
   <data name="Link_FromType" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Vertex type at the "outgoing" end of this !Link.</value>
   </data>
   <data name="Link_ToType" xml:space="preserve">
-    <value>TODO</value>
+    <value>The Vertex type at the "incoming" end of this !Link.</value>
   </data>
   <data name="Member_Type" xml:space="preserve">
     <value>Specifies the Member's state and/or access privileges.</value>
@@ -397,16 +397,16 @@
     <value>The timezone used by the time metrics.</value>
   </data>
   <data name="TravStep_Name" xml:space="preserve">
-    <value>TODO</value>
+    <value>The name of this traversal step.</value>
   </data>
   <data name="TravStep_Return" xml:space="preserve">
-    <value>TODO</value>
+    <value>The return type.</value>
   </data>
   <data name="TravStep_Uri" xml:space="preserve">
-    <value>TODO</value>
+    <value>The URI to append in order to execute this traversal step.</value>
   </data>
   <data name="Vertex_VertexType" xml:space="preserve">
-    <value>TODO</value>
+    <value>Specifies the Vertex type.</value>
   </data>
   <data name="CreateClass_Disamb" xml:space="preserve">
     <value>The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.</value>
@@ -523,30 +523,30 @@
     <value>Identifies the VectorUnitPrefix for the new Vector.</value>
   </data>
   <data name="CreateFactor_Descriptor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides Descriptor data for the new Factor.</value>
   </data>
   <data name="CreateFactor_Director" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides Director data for the new Factor.</value>
   </data>
   <data name="CreateFactor_Eventor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides Eventor data for the new Factor.</value>
   </data>
   <data name="CreateFactor_Identor" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides Identor data for the new Factor.</value>
   </data>
   <data name="CreateFactor_Locator" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides Locator data for the new Factor.</value>
   </data>
   <data name="CreateFactor_Vector" xml:space="preserve">
-    <value>TODO</value>
+    <value>Provides Vector data for the new Factor.</value>
   </data>
   <data name="CreateMember_DefinedByAppId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Identifies the App that defines the new Member.</value>
   </data>
   <data name="CreateMember_DefinedByUserId" xml:space="preserve">
-    <value>TODO</value>
+    <value>Identifies the User that defines the new Member.</value>
   </data>
   <data name="CreateMember_Type" xml:space="preserve">
-    <value>TODO</value>
+    <value>Identifies the MemberType for the new Member.</value>
   </data>
 </root>

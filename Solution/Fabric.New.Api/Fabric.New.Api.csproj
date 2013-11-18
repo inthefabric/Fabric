@@ -108,11 +108,6 @@
     <Compile Include="Interfaces\IApiRequest.cs" />
     <Compile Include="Interfaces\IApiResponse.cs" />
     <Compile Include="ApiMenu.cs" />
-    <Compile Include="Lang\DtoLinkText.Designer.cs">
-      <DependentUpon>DtoLinkText.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Lang\DtoPropText.Designer.cs">
       <DependentUpon>DtoPropText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -199,11 +194,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Lang\DtoLinkText.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DtoLinkText.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Lang\DtoPropText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DtoPropText.Designer.cs</LastGenOutput>

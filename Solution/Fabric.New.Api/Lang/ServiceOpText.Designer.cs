@@ -115,7 +115,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Create a new Member..
         /// </summary>
         internal static string Modify_Members_POST {
             get {

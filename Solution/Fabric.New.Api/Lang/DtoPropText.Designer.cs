@@ -259,7 +259,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides Descriptor data for the new Factor..
         /// </summary>
         internal static string CreateFactor_Descriptor {
             get {
@@ -268,7 +268,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides Director data for the new Factor..
         /// </summary>
         internal static string CreateFactor_Director {
             get {
@@ -277,7 +277,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides Eventor data for the new Factor..
         /// </summary>
         internal static string CreateFactor_Eventor {
             get {
@@ -286,7 +286,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides Identor data for the new Factor..
         /// </summary>
         internal static string CreateFactor_Identor {
             get {
@@ -304,7 +304,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides Locator data for the new Factor..
         /// </summary>
         internal static string CreateFactor_Locator {
             get {
@@ -340,7 +340,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Provides Vector data for the new Factor..
         /// </summary>
         internal static string CreateFactor_Vector {
             get {
@@ -430,7 +430,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Identifies the App that defines the new Member..
         /// </summary>
         internal static string CreateMember_DefinedByAppId {
             get {
@@ -439,7 +439,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Identifies the User that defines the new Member..
         /// </summary>
         internal static string CreateMember_DefinedByUserId {
             get {
@@ -448,7 +448,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Identifies the MemberType for the new Member..
         /// </summary>
         internal static string CreateMember_Type {
             get {
@@ -655,7 +655,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This element defines the relationship between the primary and related Artifact..
+        ///   Looks up a localized string similar to This component defines the relationship between the primary and related Artifact..
         /// </summary>
         internal static string Factor_Descriptor {
             get {
@@ -664,7 +664,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This element creates a directional pathway between the primary and related Artifacts..
+        ///   Looks up a localized string similar to This component creates a directional pathway between the primary and related Artifacts..
         /// </summary>
         internal static string Factor_Director {
             get {
@@ -673,7 +673,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This element applies the concept of time..
+        ///   Looks up a localized string similar to This component applies the concept of time..
         /// </summary>
         internal static string Factor_Eventor {
             get {
@@ -691,7 +691,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This element applies a name or identifier..
+        ///   Looks up a localized string similar to This component applies a name or identifier..
         /// </summary>
         internal static string Factor_Identor {
             get {
@@ -709,7 +709,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This element provides a geographical or relative position..
+        ///   Looks up a localized string similar to This component provides a geographical or relative position..
         /// </summary>
         internal static string Factor_Locator {
             get {
@@ -718,7 +718,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A summary of the !Factor&apos;s intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor&apos;s Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase..
+        ///   Looks up a localized string similar to A summary of the !Factor&apos;s intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor&apos;s components inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase..
         /// </summary>
         internal static string Factor_Note {
             get {
@@ -727,7 +727,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This element applies a numeric axis and value..
+        ///   Looks up a localized string similar to This component applies a numeric axis and value..
         /// </summary>
         internal static string Factor_Vector {
             get {
@@ -745,7 +745,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The name of this API..
         /// </summary>
         internal static string Home_Name {
             get {
@@ -763,7 +763,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The relative URI for this API level..
         /// </summary>
         internal static string Home_Uri {
             get {
@@ -817,7 +817,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Vertex type at the &quot;outgoing&quot; end of this !Link..
         /// </summary>
         internal static string Link_FromType {
             get {
@@ -826,7 +826,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The Vertex type at the &quot;incoming&quot; end of this !Link..
         /// </summary>
         internal static string Link_ToType {
             get {
@@ -1240,7 +1240,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The name of this traversal step..
         /// </summary>
         internal static string TravStep_Name {
             get {
@@ -1249,7 +1249,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The return type..
         /// </summary>
         internal static string TravStep_Return {
             get {
@@ -1258,7 +1258,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to The URI to append in order to execute this traversal step..
         /// </summary>
         internal static string TravStep_Uri {
             get {
@@ -1348,7 +1348,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to Specifies the Vertex type..
         /// </summary>
         internal static string Vertex_VertexType {
             get {
