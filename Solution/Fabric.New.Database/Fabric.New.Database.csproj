@@ -5,17 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{878B57C3-E251-4F77-8427-463693F033AF}</ProjectGuid>
+    <ProjectGuid>{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.Db.Data</RootNamespace>
-    <AssemblyName>Fabric.Db.Data</AssemblyName>
+    <RootNamespace>Fabric.New.Database</RootNamespace>
+    <AssemblyName>Fabric.New.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -23,34 +24,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugLive\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Weaver.Core, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Weaver.Titan, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Global\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
@@ -58,27 +37,48 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setups\SetupFactors.cs" />
-    <Compile Include="Setups\SetupIndexes.cs" />
-    <Compile Include="Setups\SetupIndexes1.cs">
+    <Compile Include="Init\DataEdge.cs" />
+    <Compile Include="Init\DataSet.cs" />
+    <Compile Include="Init\DataVertex.cs" />
+    <Compile Include="Init\Setup.cs" />
+    <Compile Include="Init\Setups\SetupArtifacts.cs" />
+    <Compile Include="Init\Setups\SetupFactors.cs" />
+    <Compile Include="Init\Setups\SetupIndexes.cs">
+      <DependentUpon>SetupIndexes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SetupIndexes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Setups\SetupOauth.cs" />
+    <Compile Include="Init\Setups\SetupOauth.cs" />
+    <Compile Include="Init\Setups\SetupObjects.cs" />
+    <Compile Include="Init\Setups\SetupUsers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\Fabric.New.Domain\Fabric.New.Domain.csproj">
+      <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
+      <Name>Fabric.New.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.New.Infrastructure\Fabric.New.Infrastructure.csproj">
+      <Project>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</Project>
+      <Name>Fabric.New.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Setups\SetupIndexes.tt">
+    <Reference Include="System" />
+    <Reference Include="Weaver.Core">
+      <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Titan">
+      <HintPath>..\..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Init\Setups\SetupIndexes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SetupIndexes1.cs</LastGenOutput>
+      <LastGenOutput>SetupIndexes.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

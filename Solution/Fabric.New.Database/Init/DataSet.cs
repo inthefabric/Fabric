@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Domain;
+using Fabric.New.Domain;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
 
-namespace Fabric.Db.Data {
+namespace Fabric.New.Database.Init {
 
 	/*================================================================================================*/
 	public class DataSet {
@@ -93,7 +93,7 @@ namespace Fabric.Db.Data {
 			if ( !IsForTesting && pIsForTesting ) { return false; }
 			DataVertex<T> n = DataVertex.Create(pDomainVertex, pIsForTesting);
 			Vertices.Add(n);
-			vVertexMap.Add(typeof(T).Name+pDomainVertex.GetTypeId(), pDomainVertex);
+			vVertexMap.Add(typeof(T).Name+pDomainVertex.VertexId, pDomainVertex);
 			vDataVertexMap.Add(pDomainVertex, n);
 			return true;
 		}

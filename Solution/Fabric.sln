@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Domain", "Fabric
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Infrastructure", "Fabric.New.Infrastructure\Fabric.New.Infrastructure.csproj", "{E9638290-CA4D-46FA-A5F7-0B712FA1C647}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Database", "Fabric.New.Database\Fabric.New.Database.csproj", "{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -212,6 +214,21 @@ Global
 		{E9638290-CA4D-46FA-A5F7-0B712FA1C647}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E9638290-CA4D-46FA-A5F7-0B712FA1C647}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E9638290-CA4D-46FA-A5F7-0B712FA1C647}.Release|x86.ActiveCfg = Release|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.DebugLive|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.DebugLive|Any CPU.Build.0 = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.DebugLive|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.DebugLive|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.DebugLive|x86.ActiveCfg = Debug|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

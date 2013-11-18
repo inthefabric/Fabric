@@ -1,6 +1,6 @@
-﻿using Fabric.Domain;
+﻿using Fabric.New.Domain;
 
-namespace Fabric.Db.Data.Setups {
+namespace Fabric.New.Database.Init.Setups {
 
 	/*================================================================================================*/
 	public static class SetupArtifacts {
@@ -111,9 +111,9 @@ namespace Fabric.Db.Data.Setups {
 				return;
 			}
 
-			pArtifact.ArtifactId = (long)pId;
-			pArtifact.Created = pSet.SetupTimestamp;
-			pSet.RegisterBaseClassVertex(pArtifact, typeof(Artifact), pArtifact.ArtifactId, pTestMode);
+			pArtifact.VertexId = (long)pId;
+			pArtifact.Timestamp = pSet.SetupTimestamp;
+			pSet.RegisterBaseClassVertex(pArtifact, typeof(Artifact), pArtifact.VertexId, pTestMode);
 
 			Member m = pSet.GetVertex<Member>((long)pCreatorId);
 			var edgeM = DataEdge.Create(m, new MemberCreatesArtifact(), pArtifact, pTestMode);

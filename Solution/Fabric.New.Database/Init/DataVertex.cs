@@ -1,9 +1,9 @@
 ﻿using System;
-using Fabric.Domain;
-using Fabric.Infrastructure.Weaver;
+using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
-namespace Fabric.Db.Data {
+namespace Fabric.New.Database.Init {
 
 	/*================================================================================================*/
 	public interface  IDataVertex {

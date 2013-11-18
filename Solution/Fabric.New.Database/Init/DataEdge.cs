@@ -1,10 +1,10 @@
 ﻿using System;
-using Fabric.Infrastructure.Weaver;
+using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
 using Weaver.Titan;
 
-namespace Fabric.Db.Data {
+namespace Fabric.New.Database.Init {
 
 	/*================================================================================================*/
 	public interface  IDataEdge {
