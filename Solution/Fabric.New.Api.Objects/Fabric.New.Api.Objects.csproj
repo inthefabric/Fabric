@@ -79,6 +79,8 @@
     <Compile Include="Menu\FabHome.cs" />
     <Compile Include="Menu\FabService.cs" />
     <Compile Include="Menu\FabServiceOperation.cs" />
+    <Compile Include="Meta\FabSpecServiceStepRule.cs" />
+    <Compile Include="Meta\FabSpecServiceStep.cs" />
     <Compile Include="Meta\FabMetaTime.cs" />
     <Compile Include="Meta\FabMetaVersion.cs" />
     <Compile Include="Meta\FabSpec.cs" />
@@ -87,10 +89,7 @@
     <Compile Include="Meta\FabSpecObjectProp.cs" />
     <Compile Include="Meta\FabSpecService.cs" />
     <Compile Include="Meta\FabSpecServiceOperation.cs" />
-    <Compile Include="Meta\FabSpecServiceOperationParam.cs" />
-    <Compile Include="Meta\FabSpecTravFunc.cs" />
-    <Compile Include="Meta\FabSpecTravFuncParam.cs" />
-    <Compile Include="Meta\FabSpecTravLink.cs" />
+    <Compile Include="Meta\FabSpecServiceParam.cs" />
     <Compile Include="Meta\FabSpecValue.cs" />
     <Compile Include="Oauth\FabOauthAccess.cs" />
     <Compile Include="Oauth\FabOauthError.cs" />

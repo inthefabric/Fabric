@@ -73,9 +73,8 @@ foreach ( IVertexSchema v in verts ) {
 
 		PropertyMapping pm = propMaps[ap];
 		string apiType = ap.GetDataTypeName().Replace("?", "");
-		string exact = (ap.IsTraversalHasExact()+"").ToLower();
-		string name = (ap.IsTraversalHasExact() ? "With" : "Where")+
-			(ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3))+ap.Name;
+		string withWhere = (ap.IsTraversalHasExact() ? "With" : "Where");
+		string name = withWhere+(ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3))+ap.Name;
 
 		if ( ap.TraversalHas == Matching.Custom ) {
 #>
@@ -84,7 +83,7 @@ foreach ( IVertexSchema v in verts ) {
 			continue;
 		}
 #>
-			new TravStepHas<<#= v.Names.Api #>, <#= apiType #>>("<#= name #>", "<#= pm.Domain.DbName #>", <#= exact #>),
+			new TravStep<#= withWhere #><<#= v.Names.Api #>, <#= apiType #>, <#= v.Names.Api #>>("<#= name #>", "<#= pm.Domain.DbName #>"),
 <#
 	} // end property loop
 } // end vertex loop
@@ -100,8 +99,8 @@ foreach ( IEdgeSchema e in edges ) {
 	foreach ( EdgeProperty p in props ) {
 		string type = p.GetApiDataTypeName();
 		ApiProperty ap = p.GetApiProp();
-		string exact = (ap.IsTraversalHasExact()+"").ToLower();
-		string name = (ap.IsTraversalHasExact() ? "With" : "Where")+p.Name;
+		string withWhere = (ap.IsTraversalHasExact() ? "With" : "Where");
+		string name = withWhere+p.Name;
 		
 		if ( ap.TraversalHas == Matching.Custom ) {
 #>
@@ -110,7 +109,7 @@ foreach ( IEdgeSchema e in edges ) {
 			continue;
 		}
 #>
-			new TravStepHas<<#= edgeName #>, <#= type #>>("<#= name #>", "<#= p.DbName #>", <#= exact #>),
+			new TravStep<#= withWhere #><<#= edgeName #>, <#= type #>, <#= edgeName #>>("<#= name #>", "<#= p.DbName #>"),
 <#
 	} // end property loop
 } // end edge loop
@@ -176,7 +175,7 @@ foreach ( IVertexSchema v in verts ) {
 			}
 			else {
 #>
-			new TravStepEntry<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("Where<#= ap.Name #>", "<#= pm.Domain.DbName #>", false, false),
+			new TravStepEntryWhere<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("Where<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
 <#
 			} //end DataType conditions
 		} //end IsElastic condition
@@ -184,7 +183,7 @@ foreach ( IVertexSchema v in verts ) {
 		if ( pm.Domain.IsIndexed ) {
 			string toLower = (ap.ToLowerCase+"").ToLower();
 #>
-			new TravStepEntry<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= ap.Name #>", "<#= pm.Domain.DbName #>", true, <#= toLower #>),
+			new TravStepEntryWith<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= ap.Name #>", "<#= pm.Domain.DbName #>", <#= toLower #>),
 <#
 		} //end IsIndexed condition
 
@@ -192,7 +191,7 @@ foreach ( IVertexSchema v in verts ) {
 			DomainProperty eiv = pm.Domain.ExactIndexVia;
 			string toLower = (eiv.ToLowerCase+"").ToLower();
 #>
-			new TravStepEntry<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= ap.Name #>", "<#= eiv.DbName #>", true, <#= toLower #>),
+			new TravStepEntryWith<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= ap.Name #>", "<#= eiv.DbName #>", <#= toLower #>),
 <#
 		} //end IsElastic condition
 

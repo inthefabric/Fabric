@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Fabric.New.Operations.Traversal.Routing {
 
@@ -9,8 +10,10 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		string CommandLow { get; }
 		Type FromType { get; }
 		Type ToType { get; }
+		Type ParamValueType { get; }
 		bool ToAliasType { get; }
 		bool FromExactType { get; }
+		IList<ITravStepParam> Params { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

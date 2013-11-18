@@ -2,11 +2,13 @@
 using System.Text.RegularExpressions;
 using Fabric.New.Api.Objects;
 using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Infrastructure.Spec;
 using Fabric.New.Operations.Traversal.Routing;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
+	[SpecStep("As")]
 	public class TravStepAs : TravStep<FabElement, FabElement> {
 
 

@@ -10,10 +10,11 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		public string CommandLow { get; private set; }
 		public Type FromType { get; private set; }
 		public Type ToType { get; private set; }
+		public Type ParamValueType { get; protected set; }
 		public bool ToAliasType { get; protected set; }
 		public bool FromExactType { get; protected set; }
 
-		protected IList<ITravStepParam> Params { get; private set; }
+		public IList<ITravStepParam> Params { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

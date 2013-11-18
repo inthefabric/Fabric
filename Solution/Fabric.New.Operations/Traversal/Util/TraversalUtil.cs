@@ -12,6 +12,7 @@ namespace Fabric.New.Operations.Traversal.Util {
 	public static class TraversalUtil {
 
 		private static readonly IList<ITravStep> StepList = BuildStepList();
+		private static readonly IList<TravRule> RulesList = BuildRulesList();
 		private static readonly IDictionary<Type, IList<TravRule>> RulesMap = BuildRulesMap();
 		private static readonly IDictionary<Type, IList<FabTravStep>> FabStepMap = BuildFabStepMap();
 
@@ -34,13 +35,18 @@ namespace Fabric.New.Operations.Traversal.Util {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static IList<TravRule> GetTravRules() {
+			return RulesList;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public static IList<TravRule> GetTravRules(Type pType) {
 			return RulesMap[pType];
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		private static IDictionary<Type, IList<TravRule>> BuildRulesMap() {
-			var map = new Dictionary<Type, IList<TravRule>>();
+		private static IList<TravRule> BuildRulesList() {
+			var list = new List<TravRule>();
 			Type ot = typeof(FabObject);
 			Type[] types = ot.Assembly.GetTypes();
 
@@ -49,16 +55,31 @@ namespace Fabric.New.Operations.Traversal.Util {
 					continue;
 				}
 
-				map.Add(ft, new List<TravRule>());
-
 				foreach ( ITravStep step in StepList ) {
 					if ( !IsAcceptableStepForType(step, ft) ) {
 						continue;
 					}
 
 					Type tt = GetStepToType(step, ft);
-					map[ft].Add(new TravRule(step, ft, tt));
+					list.Add(new TravRule(step, ft, tt));
 				}
+			}
+
+			return list;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static IDictionary<Type, IList<TravRule>> BuildRulesMap() {
+			var map = new Dictionary<Type, IList<TravRule>>();
+
+			foreach ( TravRule rule in RulesList ) {
+				Type ft = rule.FromType;
+
+				if ( !map.ContainsKey(ft) ) {
+					map.Add(ft, new List<TravRule>());
+				}
+
+				map[ft].Add(rule);
 			}
 
 			return map;

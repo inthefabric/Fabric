@@ -1,22 +1,21 @@
-﻿using System;
+﻿using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Spec;
-using Fabric.New.Operations.Traversal.Routing;
+using Fabric.New.Operations.Traversal.Util;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
-	[SpecStep("Root", IsRoot=true)]
-	public class TravStepRoot<TTo> : TravStep<FabTravRoot, TTo> where TTo : FabTravTypedRoot {
+	public class TravStepEntryWhere<TFrom, TVal, TTo> : TravStepWith<TFrom, TVal, TTo> 
+												where TFrom : FabTravTypedRoot where TTo : FabVertex {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravStepRoot(string pCmd) : base(pCmd) {}
+		public TravStepEntryWhere(string pCmd, string pPropDbName) : base(pCmd, pPropDbName) {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override void ConsumePath(ITravPath pPath, Type pToType) {
-			ConsumeFirstPathItem(pPath, pToType);
+		protected override string GetGremlinOp(string pOp) {
+			return GremlinUtil.GetElasticCompareOperation(pOp);
 		}
 
 	}

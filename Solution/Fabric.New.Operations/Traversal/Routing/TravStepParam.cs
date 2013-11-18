@@ -9,6 +9,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		public int ParamIndex { get; private set; }
 		public string Name { get; private  set; }
 		public Type DataType { get; private set; }
+		public bool IsGenericDataType { get; internal set; }
 		public int? Min { get; internal set; }
 		public int? Max { get; internal set; }
 		public int? LenMax { get; internal set; }

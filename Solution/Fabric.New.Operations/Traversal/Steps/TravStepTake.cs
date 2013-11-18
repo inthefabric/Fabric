@@ -1,11 +1,13 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Infrastructure.Spec;
 using Fabric.New.Operations.Traversal.Routing;
 
 namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
+	[SpecStep("Take")]
 	public class TravStepTake<TFrom, TTo> : TravStep<TFrom, TTo> 
 													where TFrom : FabElement where TTo : FabElement {
 
