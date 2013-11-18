@@ -123,88 +123,19 @@
   <data name="Back_Alias" xml:space="preserve">
     <value>The target named alias, which was defined by an [[As|Func|As]] function earlier in the traversal path.</value>
   </data>
-  <data name="Limit_Count" xml:space="preserve">
-    <value>The maximum number of vertices to return.</value>
+  <data name="WhereContains_Tokens" xml:space="preserve">
+    <value>The space-delimited, case-insensitive search tokens.</value>
   </data>
-  <data name="Limit_Index" xml:space="preserve">
-    <value>The starting index for the returned list of vertices.</value>
+  <data name="Where_Operation" xml:space="preserve">
+    <value>The operator that defines the type of range to use for this search. Options include: "Greater Than", "Less Than or Equal", "Not Equal", etc.</value>
   </data>
-  <data name="HasId_Id" xml:space="preserve">
-    <value>The target vertex Id.</value>
+  <data name="Where_Value" xml:space="preserve">
+    <value>The boundary value for the search range.</value>
   </data>
-  <data name="AppId_Value" xml:space="preserve">
-    <value>The ArtifactId of the target App.</value>
+  <data name="With_Value" xml:space="preserve">
+    <value>The exact value to match for this search.</value>
   </data>
-  <data name="AppNameContains_Tokens" xml:space="preserve">
-    <value>The Name search tokens.</value>
-  </data>
-  <data name="AppName_Value" xml:space="preserve">
-    <value>The Name of the target App.</value>
-  </data>
-  <data name="ArtifactCreated_Operation" xml:space="preserve">
-    <value>The operator to use for this search.</value>
-  </data>
-  <data name="ArtifactCreated_Value" xml:space="preserve">
-    <value>The date/time to use for this search.</value>
-  </data>
-  <data name="ArtifactId_Value" xml:space="preserve">
-    <value>The ArtifactId of the target Artifact.</value>
-  </data>
-  <data name="ClassDisambContains_Tokens" xml:space="preserve">
-    <value>The Disamb search tokens.</value>
-  </data>
-  <data name="ClassId_Value" xml:space="preserve">
-    <value>The ArtifactId of the target Class.</value>
-  </data>
-  <data name="ClassNameContains_Tokens" xml:space="preserve">
-    <value>The Name search tokens.</value>
-  </data>
-  <data name="ClassName_Value" xml:space="preserve">
-    <value>The Name of the target Class.</value>
-  </data>
-  <data name="FactorCreated_Operation" xml:space="preserve">
-    <value>The operator to use for this search.</value>
-  </data>
-  <data name="FactorCreated_Value" xml:space="preserve">
-    <value>The date/time to use for this search.</value>
-  </data>
-  <data name="FactorIdentorValueContains_Tokens" xml:space="preserve">
-    <value>The IdentorValue search tokens.</value>
-  </data>
-  <data name="FactorIdentorValue_Value" xml:space="preserve">
-    <value>The IdentorValue of the target Factor.</value>
-  </data>
-  <data name="FactorId_Value" xml:space="preserve">
-    <value>The FactorId of the target Factor.</value>
-  </data>
-  <data name="InstanceDisambContains_Tokens" xml:space="preserve">
-    <value>The Disamb search tokens.</value>
-  </data>
-  <data name="InstanceId_Value" xml:space="preserve">
-    <value>The ArtifactId of the target Instance.</value>
-  </data>
-  <data name="InstanceNameContains_Tokens" xml:space="preserve">
-    <value>The Name search tokens.</value>
-  </data>
-  <data name="MemberId_Value" xml:space="preserve">
-    <value>The MemberId of the target Member.</value>
-  </data>
-  <data name="MemberTypeAssignId_Value" xml:space="preserve">
-    <value>The MemberTypeAssignId of the target MemberTypeAssign.</value>
-  </data>
-  <data name="UrlFullPath_Value" xml:space="preserve">
-    <value>The FullPath of the target Url.</value>
-  </data>
-  <data name="UrlId_Value" xml:space="preserve">
-    <value>The UrlId of the target Url.</value>
-  </data>
-  <data name="UrlNameContains_Tokens" xml:space="preserve">
-    <value>The Name search tokens.</value>
-  </data>
-  <data name="UserId_Value" xml:space="preserve">
-    <value>The UserId of the target User.</value>
-  </data>
-  <data name="UserName_Value" xml:space="preserve">
-    <value>The Name of the target User.</value>
+  <data name="Take_Count" xml:space="preserve">
+    <value>The maximum number of elements to return.</value>
   </data>
 </root>

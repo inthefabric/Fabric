@@ -22,8 +22,8 @@ namespace Fabric.New.Api {
 			map.Add(typeof(DtoText), DtoText.ResourceManager);
 			map.Add(typeof(DtoPropText), DtoPropText.ResourceManager);
 			map.Add(typeof(DtoLinkText), DtoLinkText.ResourceManager);
-			map.Add(typeof(FuncText), FuncText.ResourceManager);
-			map.Add(typeof(FuncParamText), FuncParamText.ResourceManager);
+			map.Add(typeof(StepText), StepText.ResourceManager);
+			map.Add(typeof(StepParamText), StepParamText.ResourceManager);
 			map.Add(typeof(ServiceOpText), ServiceOpText.ResourceManager);
 			map.Add(typeof(ServiceOpParamText), ServiceOpParamText.ResourceManager);
 			map.Add(typeof(EnumText), EnumText.ResourceManager);

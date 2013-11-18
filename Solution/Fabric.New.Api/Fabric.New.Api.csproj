@@ -133,13 +133,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Lang\FuncParamText.Designer.cs">
-      <DependentUpon>FuncParamText.resx</DependentUpon>
+    <Compile Include="Lang\StepParamText.Designer.cs">
+      <DependentUpon>StepParamText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Lang\FuncText.Designer.cs">
-      <DependentUpon>FuncText.resx</DependentUpon>
+    <Compile Include="Lang\StepText.Designer.cs">
+      <DependentUpon>StepText.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -224,14 +224,14 @@
       <LastGenOutput>EnumText.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lang\FuncParamText.resx">
+    <EmbeddedResource Include="Lang\StepParamText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>FuncParamText.Designer.cs</LastGenOutput>
+      <LastGenOutput>StepParamText.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lang\FuncText.resx">
+    <EmbeddedResource Include="Lang\StepText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>FuncText.Designer.cs</LastGenOutput>
+      <LastGenOutput>StepText.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\ServiceOpParamText.resx">

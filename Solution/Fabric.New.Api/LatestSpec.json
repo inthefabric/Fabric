@@ -2063,13 +2063,13 @@
           "Steps": [
             {
               "Name": "Take",
-              "Description": "TODO",
+              "Description": "Restricts the number of results at the current traversal step.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Count",
                   "Type": "int",
-                  "Description": "TODO",
+                  "Description": "The maximum number of elements to return.",
                   "Min": 1,
                   "Max": 100,
                   "Obj": "FabSpecServiceParam"
@@ -2263,13 +2263,13 @@
             },
             {
               "Name": "As",
-              "Description": "TODO",
+              "Description": "Creates a named alias for the current step of the traversal path. Execution of the traversal path can return to this alias using the [[Back|Step|Back]] step.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Alias",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "A named alias, which represents a particular place in the traversal path. This value must be unique across all other aliases in the traversal path.",
                   "LenMax": 8,
                   "ValidRegex": "^[a-zA-Z]+[a-zA-Z0-9]*$",
                   "Obj": "FabSpecServiceParam"
@@ -2421,13 +2421,13 @@
             },
             {
               "Name": "Back",
-              "Description": "TODO",
+              "Description": "Returns the execution of the traversal path to a particular named alias. This alias is created using the [[As|Step|As]] step.\r\n\r\nWhen traversal execution reaches a Back step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.\r\n\r\nThe return type of the Back step is determined by the return type of the corresponding alias.\r\n[(EX|Return Type Example|_Traversal Steps_\r\nGet a list of Members:\r\n- /!Root/ContainsMemberList/As(M)\r\n\r\nGet a list of Artifacts created by those Members:\r\n- /!Root/ContainsMemberList/As(M)/CreatesArtifactList\r\n\r\nRetrace to the \"M\" alias, which returns Members:\r\n- /!Root/ContainsMemberList/As(M)/CreatesArtifactList/Back(M))]\r\n\r\nWhen execution retraces the traversal path, it does so _only_ from the vertices that are currently active at the Back step. This makes the Back step useful for complex filtering.\r\n\r\n[(EX|Retrace Example|_Objective_\r\nFind all the Members of a particular App (AppId = 123) that have created at least one Artifact.\r\n\r\n_Traversal Steps_\r\nCreate named alias \"M\" at the Member step:\r\n- /!Root/ContainsMemberList/As(M)\r\n\r\nContinue traversing to the target App:\r\n- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)\r\n\r\nRetrace to the Member list, which now contains only Members of \"Great App\":\r\n- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)\r\n\r\nContinue traversing to the Artifacts created by these Members:\r\n- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList\r\n\r\nRetrace to the Member list, which now also excludes any Members who have not created an Artifact:\r\n- /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList/Back(M))]",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Alias",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The target named alias, which was defined by an [[As|Func|As]] function earlier in the traversal path.",
                   "LenMax": 8,
                   "ValidRegex": "^[a-zA-Z]+[a-zA-Z0-9]*$",
                   "Obj": "FabSpecServiceParam"
@@ -2579,13 +2579,13 @@
             },
             {
               "Name": "With",
-              "Description": "TODO",
+              "Description": "Finds results where the target property is an exact match to the specified value.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Value",
                   "Type": "T",
-                  "Description": "TODO",
+                  "Description": "The exact value to match for this search.",
                   "Obj": "FabSpecServiceParam"
                 }
               ],
@@ -3147,7 +3147,7 @@
             },
             {
               "Name": "To",
-              "Description": "TODO",
+              "Description": "Restricts the results to include only App vertices.",
               "Parameters": [],
               "Rules": [
                 {
@@ -3246,7 +3246,7 @@
             },
             {
               "Name": "Link",
-              "Description": "TODO",
+              "Description": "Traverses along an Edge type (connection) between one Vertex and zero, one, or many others.\r\n\r\nLinks which will produce many results require further filtering (via relevant FabLink item) before arriving at the desired Vertex items. To complete this filtering, use the relevant [[Take|Step|Take]] step.",
               "Parameters": [],
               "Rules": [
                 {
@@ -3471,7 +3471,7 @@
             },
             {
               "Name": "Where",
-              "Description": "TODO",
+              "Description": "Finds results where the target property is within the specified range of values.",
               "Parameters": [
                 {
                   "Index": 0,
@@ -3485,14 +3485,14 @@
                   ],
                   "Name": "Operation",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The operator that defines the type of range to use for this search. Options include: \"Greater Than\", \"Less Than or Equal\", \"Not Equal\", etc.",
                   "Obj": "FabSpecServiceParam"
                 },
                 {
                   "Index": 1,
                   "Name": "Value",
                   "Type": "T",
-                  "Description": "TODO",
+                  "Description": "The boundary value for the search range.",
                   "Obj": "FabSpecServiceParam"
                 }
               ],
@@ -3534,13 +3534,13 @@
             },
             {
               "Name": "WhereContains",
-              "Description": "TODO",
+              "Description": "Finds results where the target property contains one or more of the specified tokens.",
               "Parameters": [
                 {
                   "Index": 0,
                   "Name": "Tokens",
                   "Type": "string",
-                  "Description": "TODO",
+                  "Description": "The space-delimited, case-insensitive search tokens.",
                   "Obj": "FabSpecServiceParam"
                 }
               ],
@@ -3599,7 +3599,7 @@
             },
             {
               "Name": "Active",
-              "Description": "TODO",
+              "Description": "Finds results based on the authenticated state of this traversal request.",
               "Parameters": [],
               "Rules": [
                 {

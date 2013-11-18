@@ -137,7 +137,7 @@ namespace Fabric.New.Api {
 																			IList<TravRule> pRules) {
 			var s = new FabSpecServiceStep();
 			s.Name = pStepAttr.Name;
-			s.Description = "TODO"; //TODO: add description
+			s.Description = ApiLang.Text<StepText>(s.Name);
 			s.Parameters = new List<FabSpecServiceParam>();
 			s.Rules = new List<FabSpecServiceStepRule>();
 
@@ -147,7 +147,7 @@ namespace Fabric.New.Api {
 				var p = new FabSpecServiceParam();
 				p.Index = tsp.ParamIndex;
 				p.Name = tsp.Name;
-				p.Description = "TODO"; //TODO: add description
+				p.Description = ApiLang.Text<StepParamText>(s.Name+"_"+p.Name);
 				p.Type = ApiLang.TypeName(tsp.DataType);
 				p.Min = tsp.Min;
 				p.Max = tsp.Max;

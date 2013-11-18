@@ -118,14 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="As" xml:space="preserve">
-    <value>Creates a named alias for the current step of the traversal path. Execution of the traversal path can return to this alias using the [[Back|Func|Back]] function.</value>
+    <value>Creates a named alias for the current step of the traversal path. Execution of the traversal path can return to this alias using the [[Back|Step|Back]] step.</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Returns the execution of the traversal path to a particular named alias. This alias is created using the [[As|Func|As]] function.
+    <value>Returns the execution of the traversal path to a particular named alias. This alias is created using the [[As|Step|As]] step.
 
-When traversal execution reaches a Back function step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.
+When traversal execution reaches a Back step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.
 
-The return type of the Back function is determined by the return type of the corresponding alias.
+The return type of the Back step is determined by the return type of the corresponding alias.
 [(EX|Return Type Example|_Traversal Steps_
 Get a list of Members:
 - /!Root/ContainsMemberList/As(M)
@@ -136,7 +136,7 @@ Get a list of Artifacts created by those Members:
 Retrace to the "M" alias, which returns Members:
 - /!Root/ContainsMemberList/As(M)/CreatesArtifactList/Back(M))]
 
-When execution retraces the traversal path, it does so _only_ from the vertices that are currently active at the Back function step. This makes the Back function useful for complex filtering.
+When execution retraces the traversal path, it does so _only_ from the vertices that are currently active at the Back step. This makes the Back step useful for complex filtering.
 
 [(EX|Retrace Example|_Objective_
 Find all the Members of a particular App (AppId = 123) that have created at least one Artifact.
@@ -157,96 +157,27 @@ Continue traversing to the Artifacts created by these Members:
 Retrace to the Member list, which now also excludes any Members who have not created an Artifact:
 - /!Root/ContainsMemberList/As(M)/InAppDefines/HasId(2)/Back(M)/CreatesArtifactList/Back(M))]</value>
   </data>
-  <data name="Limit" xml:space="preserve">
-    <value>Restricts the size and starting index of the vertex list. This is typically used as a final traversal step to achieve paging functionality. The Limit function step can be used within a traversal path to filter list results before continuing with traversal execution.</value>
+  <data name="Take" xml:space="preserve">
+    <value>Restricts the number of results at the current traversal step.</value>
   </data>
-  <data name="ToApp" xml:space="preserve">
+  <data name="To" xml:space="preserve">
     <value>Restricts the results to include only App vertices.</value>
   </data>
-  <data name="ToClass" xml:space="preserve">
-    <value>Restricts the results to include only Class vertices.</value>
+  <data name="WhereContains" xml:space="preserve">
+    <value>Finds results where the target property contains one or more of the specified tokens.</value>
   </data>
-  <data name="HasId" xml:space="preserve">
-    <value>Restricts the results to a single Id value. 
+  <data name="With" xml:space="preserve">
+    <value>Finds results where the target property is an exact match to the specified value.</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Finds results based on the authenticated state of this traversal request.</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Traverses along an Edge type (connection) between one Vertex and zero, one, or many others.
 
-Note that each vertex type has its own Id property name. For example, a Member has a MemberId and a Factor has a FactorId.</value>
+Links which will produce many results require further filtering (via relevant FabLink item) before arriving at the desired Vertex items. To complete this filtering, use the relevant [[Take|Step|Take]] step.</value>
   </data>
-  <data name="ToInstance" xml:space="preserve">
-    <value>Restricts the results to include only Instance vertices.</value>
-  </data>
-  <data name="ToUrl" xml:space="preserve">
-    <value>Restricts the results to include only Url vertices.</value>
-  </data>
-  <data name="ToUser" xml:space="preserve">
-    <value>Restricts the results to include only User vertices.</value>
-  </data>
-  <data name="AppId" xml:space="preserve">
-    <value>Obtains an App by its ArtifactId.</value>
-  </data>
-  <data name="AppName" xml:space="preserve">
-    <value>Obtains an App by its entire (case-insensitive) Name.</value>
-  </data>
-  <data name="AppNameContains" xml:space="preserve">
-    <value>Search for Apps using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
-  </data>
-  <data name="ArtifactCreated" xml:space="preserve">
-    <value>Search for Artifacts by their creation date/time.</value>
-  </data>
-  <data name="ArtifactId" xml:space="preserve">
-    <value>Obtains an Artifact by its ArtifactId.</value>
-  </data>
-  <data name="ClassDisambContains" xml:space="preserve">
-    <value>Search for Classes using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.</value>
-  </data>
-  <data name="ClassId" xml:space="preserve">
-    <value>Obtains a Class by its ArtifactId.</value>
-  </data>
-  <data name="ClassName" xml:space="preserve">
-    <value>Obtains a Class by its entire (case-insensitive) Name.</value>
-  </data>
-  <data name="ClassNameContains" xml:space="preserve">
-    <value>Search for Classes using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
-  </data>
-  <data name="FactorCreated" xml:space="preserve">
-    <value>Search for Factors by their creation date/time.</value>
-  </data>
-  <data name="FactorId" xml:space="preserve">
-    <value>Obtains an Factor by its FactorId</value>
-  </data>
-  <data name="FactorIdentorValue" xml:space="preserve">
-    <value>Obtains a Factor by its full (case-insensitive) IdentorValue.</value>
-  </data>
-  <data name="FactorIdentorValueContains" xml:space="preserve">
-    <value>Search for Factors using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the IdentorValue property.</value>
-  </data>
-  <data name="InstanceDisambContains" xml:space="preserve">
-    <value>Search for Instances using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Disamb property.</value>
-  </data>
-  <data name="InstanceId" xml:space="preserve">
-    <value>Obtains an Instance by its ArtifactId.</value>
-  </data>
-  <data name="InstanceNameContains" xml:space="preserve">
-    <value>Search for Instances using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
-  </data>
-  <data name="MemberId" xml:space="preserve">
-    <value>Obtains a Member by its MemberId.</value>
-  </data>
-  <data name="MemberTypeAssignId" xml:space="preserve">
-    <value>Obtains a MemberTypeAssign by its MemberTypeAssignId.</value>
-  </data>
-  <data name="UrlFullPath" xml:space="preserve">
-    <value>Obtains a Url by its entire (case-insensitive) FullPath.</value>
-  </data>
-  <data name="UrlId" xml:space="preserve">
-    <value>Obtains a Url by its ArtifactId.</value>
-  </data>
-  <data name="UrlNameContains" xml:space="preserve">
-    <value>Search for Urls using string-delimited, case-insensitive tokens. These tokens will be matched against the string-delimited tokens of the Name property.</value>
-  </data>
-  <data name="UserId" xml:space="preserve">
-    <value>Obtains a User by its ArtifactId.</value>
-  </data>
-  <data name="UserName" xml:space="preserve">
-    <value>Obtains a User by its entire (case-insensitive) Name.</value>
+  <data name="Where" xml:space="preserve">
+    <value>Finds results where the target property is within the specified range of values.</value>
   </data>
 </root>
