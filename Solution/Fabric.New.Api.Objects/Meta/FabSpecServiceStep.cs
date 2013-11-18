@@ -3,14 +3,12 @@
 namespace Fabric.New.Api.Objects.Meta {
 
 	/*================================================================================================*/
-	public class FabSpecService : FabObject {
-		
+	public class FabSpecServiceStep : FabObject {
+
 		public string Name { get; set; }
-		public string Uri { get; set; }
-		public string Summary { get; set; }
 		public string Description { get; set; }
-		public List<FabSpecServiceOperation> Operations { get; set; }
-		public List<FabSpecServiceStep> Steps { get; set; }
+		public List<FabSpecServiceParam> Parameters { get; set; }
+		public List<FabSpecServiceStepRule> Rules { get; set; }
 
 	}
 

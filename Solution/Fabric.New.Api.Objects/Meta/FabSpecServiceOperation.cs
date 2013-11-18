@@ -11,7 +11,7 @@ namespace Fabric.New.Api.Objects.Meta {
 		public string Return { get; set; }
 		public string Description { get; set; }
 		public string Auth { get; set; }
-		public List<FabSpecServiceOperationParam> Parameters { get; set; }
+		public List<FabSpecServiceParam> Parameters { get; set; }
 
 	}
 

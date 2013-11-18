@@ -1,4 +1,4 @@
-﻿ {
+﻿{
       "BuildVersion": "0.2.4.37fd2cd",
       "BuildYear": 2013,
       "BuildMonth": 9,
@@ -13,8 +13,8 @@
               "Name": "Name",
               "Type": "string",
               "Description": "The name of the new Class. It must be unique on its own, or be unique in combination with the disambiguation text.",
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -23,8 +23,8 @@
               "Type": "string",
               "Description": "The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -33,8 +33,8 @@
               "Type": "string",
               "Description": "A brief description of the new Class. It can be useful for helping others understand the creator's intended purpose or meaning.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -191,8 +191,8 @@
               "Type": "string",
               "Description": "A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new Factor. A descriptive note can help others understand the creator's intended purpose or meaning for the Factor.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -263,8 +263,8 @@
               "Type": "string",
               "Description": "The text-based value for the new Identor.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -280,8 +280,8 @@
               "Type": "string",
               "Description": "The name of the new Instance. It does not need to be unique.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -290,8 +290,8 @@
               "Type": "string",
               "Description": "The disambiguation text for the new Instance. When provided, the disambiguation text permits the use of a non-unique name.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -300,8 +300,8 @@
               "Type": "string",
               "Description": "A brief description of the new Instance.  It can be useful for helping others understand the creator's intended purpose or meaning.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -384,8 +384,8 @@
               "Type": "string",
               "Description": "The name of the new Url.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -395,8 +395,8 @@
               "Name": "FullPath",
               "Type": "string",
               "Description": "The complete absolute URL for new Url object. It must include the URL's protocol (such as 'http://').",
-              "LenMax": 2048,
               "LenMin": 1,
+              "LenMax": 2048,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -454,8 +454,8 @@
               "Name": "Name",
               "Type": "string",
               "Description": "A unique title or identifier.",
-              "LenMax": 64,
               "LenMin": 3,
+              "LenMax": 64,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             }
@@ -499,8 +499,8 @@
               "Name": "Name",
               "Type": "string",
               "Description": "A descriptive name or title.",
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -509,8 +509,8 @@
               "Type": "string",
               "Description": "A secondary label or identifier, used to resolve unique-name conflicts.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -519,8 +519,8 @@
               "Type": "string",
               "Description": "A summary of the !Class's intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -682,8 +682,8 @@
               "Type": "string",
               "Description": "A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's Elements inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -768,8 +768,8 @@
               "Type": "string",
               "Description": "A text-based value that can represent names, numbers, IDs, GUIDs, etc.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -785,8 +785,8 @@
               "Type": "string",
               "Description": "A descriptive name or title.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -795,8 +795,8 @@
               "Type": "string",
               "Description": "A secondary label or identifier, used to resolve unique-name conflicts.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -805,8 +805,8 @@
               "Type": "string",
               "Description": "A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.",
               "IsOptional": true,
-              "LenMax": 256,
               "LenMin": 1,
+              "LenMax": 256,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1029,8 +1029,8 @@
               "Name": "access_token",
               "Type": "string",
               "Description": "A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.",
-              "LenMax": 32,
               "LenMin": 32,
+              "LenMax": 32,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -1044,8 +1044,8 @@
               "Name": "refresh_token",
               "Type": "string",
               "Description": "A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Oper|Oauth.AccessTokenClientCredentials]].",
-              "LenMax": 32,
               "LenMin": 32,
+              "LenMax": 32,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -1087,8 +1087,8 @@
               "Name": "code",
               "Type": "string",
               "Description": "Use this code (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.",
-              "LenMax": 32,
               "LenMin": 32,
+              "LenMax": 32,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -1131,8 +1131,8 @@
               "Name": "access_token",
               "Type": "string",
               "Description": "Identifies a particular OAuth session.",
-              "LenMax": 32,
               "LenMin": 32,
+              "LenMax": 32,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1341,6 +1341,11 @@
               "Name": "Operations",
               "Type": "FabSpecServiceOperation[]",
               "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Steps",
+              "Type": "FabSpecServiceStep[]",
+              "Obj": "FabSpecObjectProp"
             }
           ],
           "Obj": "FabSpecObject"
@@ -1381,26 +1386,31 @@
             },
             {
               "Name": "Parameters",
-              "Type": "FabSpecServiceOperationParam[]",
+              "Type": "FabSpecServiceParam[]",
               "Obj": "FabSpecObjectProp"
             }
           ],
           "Obj": "FabSpecObject"
         },
         {
-          "Name": "FabSpecServiceOperationParam",
+          "Name": "FabSpecServiceParam",
           "Extends": "FabSpecValue",
           "Properties": [
             {
               "Name": "Index",
               "Type": "int",
               "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "AcceptedStrings",
+              "Type": "string[]",
+              "Obj": "FabSpecObjectProp"
             }
           ],
           "Obj": "FabSpecObject"
         },
         {
-          "Name": "FabSpecTravFunc",
+          "Name": "FabSpecServiceStep",
           "Extends": "FabObject",
           "Properties": [
             {
@@ -1410,6 +1420,28 @@
             },
             {
               "Name": "Description",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Parameters",
+              "Type": "FabSpecServiceParam[]",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Rules",
+              "Type": "FabSpecServiceStepRule[]",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "FabSpecServiceStepRule",
+          "Extends": "FabObject",
+          "Properties": [
+            {
+              "Name": "Name",
               "Type": "string",
               "Obj": "FabSpecObjectProp"
             },
@@ -1419,87 +1451,23 @@
               "Obj": "FabSpecObjectProp"
             },
             {
-              "Name": "ReturnsPreviousType",
-              "Type": "bool",
+              "Name": "T",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Entry",
+              "Type": "string",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Return",
+              "Type": "string",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "ReturnsAliasType",
-              "Type": "bool",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "ReturnsObjectType",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "Parameters",
-              "Type": "FabSpecTravFuncParam[]",
-              "Obj": "FabSpecObjectProp"
-            }
-          ],
-          "Obj": "FabSpecObject"
-        },
-        {
-          "Name": "FabSpecTravFuncParam",
-          "Extends": "FabSpecValue",
-          "Properties": [
-            {
-              "Name": "Index",
-              "Type": "int",
-              "Obj": "FabSpecObjectProp"
-            }
-          ],
-          "Obj": "FabSpecObject"
-        },
-        {
-          "Name": "FabSpecTravLink",
-          "Extends": "FabObject",
-          "Properties": [
-            {
-              "Name": "Name",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "Type",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "Description",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "IsOutgoing",
-              "Type": "bool",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "From",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "FromConn",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "Relation",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "To",
-              "Type": "string",
-              "Obj": "FabSpecObjectProp"
-            },
-            {
-              "Name": "ToConn",
-              "Type": "string",
+              "Type": "bool?",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1530,12 +1498,22 @@
               "Obj": "FabSpecObjectProp"
             },
             {
-              "Name": "LenMax",
+              "Name": "Min",
+              "Type": "int?",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Max",
               "Type": "int?",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "LenMin",
+              "Type": "int?",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "LenMax",
               "Type": "int?",
               "Obj": "FabSpecObjectProp"
             },
@@ -1660,8 +1638,8 @@
               "Type": "string",
               "Description": "A descriptive name or title.",
               "IsOptional": true,
-              "LenMax": 128,
               "LenMin": 1,
+              "LenMax": 128,
               "ValidRegex": "^[a-zA-Z0-9 \\[\\]\\+\\?\\|\\(\\)\\{\\}\\^\\*\\-\\.\\\\/!@#$%&=_,:;'\"<>~]*$",
               "Obj": "FabSpecObjectProp"
             },
@@ -1671,8 +1649,8 @@
               "Name": "FullPath",
               "Type": "string",
               "Description": "A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').",
-              "LenMax": 2048,
               "LenMin": 1,
+              "LenMax": 2048,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1688,8 +1666,8 @@
               "Name": "Name",
               "Type": "string",
               "Description": "A unique username.",
-              "LenMax": 64,
               "LenMin": 3,
+              "LenMax": 64,
               "ValidRegex": "^[a-zA-Z0-9_]*$",
               "Obj": "FabSpecObjectProp"
             }
@@ -1826,7 +1804,7 @@
                   "Name": "Data",
                   "Type": "CreateFabClass",
                   "Description": "The data (in JSON format) for the new Class.",
-                  "Obj": "FabSpecServiceOperationParam"
+                  "Obj": "FabSpecServiceParam"
                 }
               ],
               "Obj": "FabSpecServiceOperation"
@@ -1844,7 +1822,7 @@
                   "Name": "Data",
                   "Type": "CreateFabFactor",
                   "Description": "The data (in JSON format) for the new Factor.",
-                  "Obj": "FabSpecServiceOperationParam"
+                  "Obj": "FabSpecServiceParam"
                 }
               ],
               "Obj": "FabSpecServiceOperation"
@@ -1862,7 +1840,7 @@
                   "Name": "Data",
                   "Type": "CreateFabInstance",
                   "Description": "The data (in JSON format) for the new Instance.",
-                  "Obj": "FabSpecServiceOperationParam"
+                  "Obj": "FabSpecServiceParam"
                 }
               ],
               "Obj": "FabSpecServiceOperation"
@@ -1880,7 +1858,7 @@
                   "Name": "Data",
                   "Type": "CreateFabMember",
                   "Description": "The data (in JSON format) for the new Member.",
-                  "Obj": "FabSpecServiceOperationParam"
+                  "Obj": "FabSpecServiceParam"
                 }
               ],
               "Obj": "FabSpecServiceOperation"
@@ -1898,7 +1876,7 @@
                   "Name": "Data",
                   "Type": "CreateFabUrl",
                   "Description": "The data (in JSON format) for the new Url.",
-                  "Obj": "FabSpecServiceOperationParam"
+                  "Obj": "FabSpecServiceParam"
                 }
               ],
               "Obj": "FabSpecServiceOperation"
@@ -2080,6 +2058,1559 @@
               "Auth": "None",
               "Parameters": [],
               "Obj": "FabSpecServiceOperation"
+            }
+          ],
+          "Steps": [
+            {
+              "Name": "Take",
+              "Description": "TODO",
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Count",
+                  "Type": "int",
+                  "Description": "TODO",
+                  "Min": 1,
+                  "Max": 100,
+                  "Obj": "FabSpecServiceParam"
+                }
+              ],
+              "Rules": [
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabElement",
+                  "Return": "FabElement",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabLink",
+                  "Return": "FabLink",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "TakeMembers",
+                  "Uri": "/TakeMembers",
+                  "Entry": "FabAppDefinesMember",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabAppDefinesMember",
+                  "Return": "FabAppDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "TakeFactors",
+                  "Uri": "/TakeFactors",
+                  "Entry": "FabArtifactUsedAsPrimaryByFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabArtifactUsedAsPrimaryByFactor",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "TakeFactors",
+                  "Uri": "/TakeFactors",
+                  "Entry": "FabArtifactUsedAsRelatedByFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabArtifactUsedAsRelatedByFactor",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabMemberAuthenticatedByOauthAccess",
+                  "Return": "FabMemberAuthenticatedByOauthAccess",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "TakeArtifacts",
+                  "Uri": "/TakeArtifacts",
+                  "Entry": "FabMemberCreatesArtifact",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabMemberCreatesArtifact",
+                  "Return": "FabMemberCreatesArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "TakeFactors",
+                  "Uri": "/TakeFactors",
+                  "Entry": "FabMemberCreatesFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabMemberCreatesFactor",
+                  "Return": "FabMemberCreatesFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "TakeMembers",
+                  "Uri": "/TakeMembers",
+                  "Entry": "FabUserDefinesMember",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabUserDefinesMember",
+                  "Return": "FabUserDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabVertex",
+                  "Return": "FabVertex",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabArtifact",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabApp",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabClass",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabEmail",
+                  "Return": "FabEmail",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabInstance",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabMember",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabOauthAccess",
+                  "Return": "FabOauthAccess",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabUrl",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Take",
+                  "Uri": "/Take",
+                  "Entry": "FabUser",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "As",
+              "Description": "TODO",
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Alias",
+                  "Type": "string",
+                  "Description": "TODO",
+                  "LenMax": 8,
+                  "ValidRegex": "^[a-zA-Z]+[a-zA-Z0-9]*$",
+                  "Obj": "FabSpecServiceParam"
+                }
+              ],
+              "Rules": [
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabElement",
+                  "Return": "FabElement",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabLink",
+                  "Return": "FabLink",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabAppDefinesMember",
+                  "Return": "FabAppDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabArtifactUsedAsPrimaryByFactor",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabArtifactUsedAsRelatedByFactor",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabMemberAuthenticatedByOauthAccess",
+                  "Return": "FabMemberAuthenticatedByOauthAccess",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabMemberCreatesArtifact",
+                  "Return": "FabMemberCreatesArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabMemberCreatesFactor",
+                  "Return": "FabMemberCreatesFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabUserDefinesMember",
+                  "Return": "FabUserDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabVertex",
+                  "Return": "FabVertex",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabArtifact",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabApp",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabClass",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabEmail",
+                  "Return": "FabEmail",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabInstance",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabMember",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabOauthAccess",
+                  "Return": "FabOauthAccess",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabUrl",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "As",
+                  "Uri": "/As",
+                  "Entry": "FabUser",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "Back",
+              "Description": "TODO",
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Alias",
+                  "Type": "string",
+                  "Description": "TODO",
+                  "LenMax": 8,
+                  "ValidRegex": "^[a-zA-Z]+[a-zA-Z0-9]*$",
+                  "Obj": "FabSpecServiceParam"
+                }
+              ],
+              "Rules": [
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabElement",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabLink",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabAppDefinesMember",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabArtifactUsedAsPrimaryByFactor",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabArtifactUsedAsRelatedByFactor",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabMemberAuthenticatedByOauthAccess",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabMemberCreatesArtifact",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabMemberCreatesFactor",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabUserDefinesMember",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabVertex",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabArtifact",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabApp",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabClass",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabEmail",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabFactor",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabInstance",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabMember",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabOauthAccess",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabUrl",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "Back",
+                  "Uri": "/Back",
+                  "Entry": "FabUser",
+                  "ReturnsAliasType": true,
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "With",
+              "Description": "TODO",
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Value",
+                  "Type": "T",
+                  "Description": "TODO",
+                  "Obj": "FabSpecServiceParam"
+                }
+              ],
+              "Rules": [
+                {
+                  "Name": "WithMemberType",
+                  "Uri": "/WithMemberType",
+                  "T": "byte",
+                  "Entry": "FabAppDefinesMember",
+                  "Return": "FabAppDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithUserId",
+                  "Uri": "/WithUserId",
+                  "T": "long",
+                  "Entry": "FabAppDefinesMember",
+                  "Return": "FabAppDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithDescriptorType",
+                  "Uri": "/WithDescriptorType",
+                  "T": "byte",
+                  "Entry": "FabArtifactUsedAsPrimaryByFactor",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithRelatedArtifactId",
+                  "Uri": "/WithRelatedArtifactId",
+                  "T": "long",
+                  "Entry": "FabArtifactUsedAsPrimaryByFactor",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithDescriptorType",
+                  "Uri": "/WithDescriptorType",
+                  "T": "byte",
+                  "Entry": "FabArtifactUsedAsRelatedByFactor",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithPrimaryArtifactId",
+                  "Uri": "/WithPrimaryArtifactId",
+                  "T": "long",
+                  "Entry": "FabArtifactUsedAsRelatedByFactor",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabMemberCreatesArtifact",
+                  "Return": "FabMemberCreatesArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithDescriptorType",
+                  "Uri": "/WithDescriptorType",
+                  "T": "byte",
+                  "Entry": "FabMemberCreatesFactor",
+                  "Return": "FabMemberCreatesFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithPrimaryArtifactId",
+                  "Uri": "/WithPrimaryArtifactId",
+                  "T": "long",
+                  "Entry": "FabMemberCreatesFactor",
+                  "Return": "FabMemberCreatesFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithRelatedArtifactId",
+                  "Uri": "/WithRelatedArtifactId",
+                  "T": "long",
+                  "Entry": "FabMemberCreatesFactor",
+                  "Return": "FabMemberCreatesFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithMemberType",
+                  "Uri": "/WithMemberType",
+                  "T": "byte",
+                  "Entry": "FabUserDefinesMember",
+                  "Return": "FabUserDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithAppId",
+                  "Uri": "/WithAppId",
+                  "T": "long",
+                  "Entry": "FabUserDefinesMember",
+                  "Return": "FabUserDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabVertex",
+                  "Return": "FabVertex",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabVertex",
+                  "Return": "FabVertex",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabArtifact",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabArtifact",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabApp",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabApp",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabClass",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabClass",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabEmail",
+                  "Return": "FabEmail",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabEmail",
+                  "Return": "FabEmail",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithAssertionType",
+                  "Uri": "/WithAssertionType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithIsDefining",
+                  "Uri": "/WithIsDefining",
+                  "T": "bool",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithDescriptorType",
+                  "Uri": "/WithDescriptorType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithDirectorType",
+                  "Uri": "/WithDirectorType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithDirectorPrimaryAction",
+                  "Uri": "/WithDirectorPrimaryAction",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithDirectorRelatedAction",
+                  "Uri": "/WithDirectorRelatedAction",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithEventorType",
+                  "Uri": "/WithEventorType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithIdentorType",
+                  "Uri": "/WithIdentorType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithIdentorValue",
+                  "Uri": "/WithIdentorValue",
+                  "T": "string",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithLocatorType",
+                  "Uri": "/WithLocatorType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVectorType",
+                  "Uri": "/WithVectorType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVectorUnit",
+                  "Uri": "/WithVectorUnit",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVectorUnitPrefix",
+                  "Uri": "/WithVectorUnitPrefix",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabInstance",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabInstance",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithType",
+                  "Uri": "/WithType",
+                  "T": "byte",
+                  "Entry": "FabMember",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabMember",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabMember",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabOauthAccess",
+                  "Return": "FabOauthAccess",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabOauthAccess",
+                  "Return": "FabOauthAccess",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabUrl",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabUrl",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabUser",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithVertexType",
+                  "Uri": "/WithVertexType",
+                  "T": "byte",
+                  "Entry": "FabUser",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravVertexRoot",
+                  "Return": "FabVertex",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravVertexRoot",
+                  "Return": "FabVertex",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravArtifactRoot",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravArtifactRoot",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithName",
+                  "Uri": "/WithName",
+                  "T": "string",
+                  "Entry": "FabTravAppRoot",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravAppRoot",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravAppRoot",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravClassRoot",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravClassRoot",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravFactorRoot",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravFactorRoot",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravInstanceRoot",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravInstanceRoot",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravMemberRoot",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravMemberRoot",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithFullPath",
+                  "Uri": "/WithFullPath",
+                  "T": "string",
+                  "Entry": "FabTravUrlRoot",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravUrlRoot",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravUrlRoot",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithName",
+                  "Uri": "/WithName",
+                  "T": "string",
+                  "Entry": "FabTravUserRoot",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WithId",
+                  "Uri": "/WithId",
+                  "T": "long",
+                  "Entry": "FabTravUserRoot",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
+                  "T": "long",
+                  "Entry": "FabTravUserRoot",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "To",
+              "Description": "TODO",
+              "Parameters": [],
+              "Rules": [
+                {
+                  "Name": "ToApp",
+                  "Uri": "/ToApp",
+                  "Entry": "FabVertex",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToArtifact",
+                  "Uri": "/ToArtifact",
+                  "Entry": "FabVertex",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToClass",
+                  "Uri": "/ToClass",
+                  "Entry": "FabVertex",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToFactor",
+                  "Uri": "/ToFactor",
+                  "Entry": "FabVertex",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToInstance",
+                  "Uri": "/ToInstance",
+                  "Entry": "FabVertex",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToMember",
+                  "Uri": "/ToMember",
+                  "Entry": "FabVertex",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToUrl",
+                  "Uri": "/ToUrl",
+                  "Entry": "FabVertex",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToUser",
+                  "Uri": "/ToUser",
+                  "Entry": "FabVertex",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToApp",
+                  "Uri": "/ToApp",
+                  "Entry": "FabArtifact",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToClass",
+                  "Uri": "/ToClass",
+                  "Entry": "FabArtifact",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToInstance",
+                  "Uri": "/ToInstance",
+                  "Entry": "FabArtifact",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToUrl",
+                  "Uri": "/ToUrl",
+                  "Entry": "FabArtifact",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "ToUser",
+                  "Uri": "/ToUser",
+                  "Entry": "FabArtifact",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "Link",
+              "Description": "TODO",
+              "Parameters": [],
+              "Rules": [
+                {
+                  "Name": "CreatedByMember",
+                  "Uri": "/CreatedByMember",
+                  "Entry": "FabArtifact",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsPrimaryByFactors",
+                  "Uri": "/UsedAsPrimaryByFactors",
+                  "Entry": "FabArtifact",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsRelatedByFactors",
+                  "Uri": "/UsedAsRelatedByFactors",
+                  "Entry": "FabArtifact",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "DefinesMembers",
+                  "Uri": "/DefinesMembers",
+                  "Entry": "FabApp",
+                  "Return": "FabAppDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatedByMember",
+                  "Uri": "/CreatedByMember",
+                  "Entry": "FabApp",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsPrimaryByFactors",
+                  "Uri": "/UsedAsPrimaryByFactors",
+                  "Entry": "FabApp",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsRelatedByFactors",
+                  "Uri": "/UsedAsRelatedByFactors",
+                  "Entry": "FabApp",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatedByMember",
+                  "Uri": "/CreatedByMember",
+                  "Entry": "FabClass",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsPrimaryByFactors",
+                  "Uri": "/UsedAsPrimaryByFactors",
+                  "Entry": "FabClass",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsRelatedByFactors",
+                  "Uri": "/UsedAsRelatedByFactors",
+                  "Entry": "FabClass",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatedByMember",
+                  "Uri": "/CreatedByMember",
+                  "Entry": "FabFactor",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "RefinesPrimaryWithArtifact",
+                  "Uri": "/RefinesPrimaryWithArtifact",
+                  "Entry": "FabFactor",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "RefinesRelatedWithArtifact",
+                  "Uri": "/RefinesRelatedWithArtifact",
+                  "Entry": "FabFactor",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "RefinesTypeWithArtifact",
+                  "Uri": "/RefinesTypeWithArtifact",
+                  "Entry": "FabFactor",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsesPrimaryArtifact",
+                  "Uri": "/UsesPrimaryArtifact",
+                  "Entry": "FabFactor",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsesRelatedArtifact",
+                  "Uri": "/UsesRelatedArtifact",
+                  "Entry": "FabFactor",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsesAxisArtifact",
+                  "Uri": "/UsesAxisArtifact",
+                  "Entry": "FabFactor",
+                  "Return": "FabArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatedByMember",
+                  "Uri": "/CreatedByMember",
+                  "Entry": "FabInstance",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsPrimaryByFactors",
+                  "Uri": "/UsedAsPrimaryByFactors",
+                  "Entry": "FabInstance",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsRelatedByFactors",
+                  "Uri": "/UsedAsRelatedByFactors",
+                  "Entry": "FabInstance",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatesArtifacts",
+                  "Uri": "/CreatesArtifacts",
+                  "Entry": "FabMember",
+                  "Return": "FabMemberCreatesArtifact",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatesFactors",
+                  "Uri": "/CreatesFactors",
+                  "Entry": "FabMember",
+                  "Return": "FabMemberCreatesFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "DefinedByApp",
+                  "Uri": "/DefinedByApp",
+                  "Entry": "FabMember",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "DefinedByUser",
+                  "Uri": "/DefinedByUser",
+                  "Entry": "FabMember",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatedByMember",
+                  "Uri": "/CreatedByMember",
+                  "Entry": "FabUrl",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsPrimaryByFactors",
+                  "Uri": "/UsedAsPrimaryByFactors",
+                  "Entry": "FabUrl",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsRelatedByFactors",
+                  "Uri": "/UsedAsRelatedByFactors",
+                  "Entry": "FabUrl",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "CreatedByMember",
+                  "Uri": "/CreatedByMember",
+                  "Entry": "FabUser",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsPrimaryByFactors",
+                  "Uri": "/UsedAsPrimaryByFactors",
+                  "Entry": "FabUser",
+                  "Return": "FabArtifactUsedAsPrimaryByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "UsedAsRelatedByFactors",
+                  "Uri": "/UsedAsRelatedByFactors",
+                  "Entry": "FabUser",
+                  "Return": "FabArtifactUsedAsRelatedByFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "DefinesMembers",
+                  "Uri": "/DefinesMembers",
+                  "Entry": "FabUser",
+                  "Return": "FabUserDefinesMember",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "Where",
+              "Description": "TODO",
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "AcceptedStrings": [
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "eq",
+                    "neq"
+                  ],
+                  "Name": "Operation",
+                  "Type": "string",
+                  "Description": "TODO",
+                  "Obj": "FabSpecServiceParam"
+                },
+                {
+                  "Index": 1,
+                  "Name": "Value",
+                  "Type": "T",
+                  "Description": "TODO",
+                  "Obj": "FabSpecServiceParam"
+                }
+              ],
+              "Rules": [
+                {
+                  "Name": "WhereLocatorValueX",
+                  "Uri": "/WhereLocatorValueX",
+                  "T": "double",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereLocatorValueY",
+                  "Uri": "/WhereLocatorValueY",
+                  "T": "double",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereLocatorValueZ",
+                  "Uri": "/WhereLocatorValueZ",
+                  "T": "double",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereVectorValue",
+                  "Uri": "/WhereVectorValue",
+                  "T": "long",
+                  "Entry": "FabFactor",
+                  "Return": "FabFactor",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "WhereContains",
+              "Description": "TODO",
+              "Parameters": [
+                {
+                  "Index": 0,
+                  "Name": "Tokens",
+                  "Type": "string",
+                  "Description": "TODO",
+                  "Obj": "FabSpecServiceParam"
+                }
+              ],
+              "Rules": [
+                {
+                  "Name": "WhereNameContains",
+                  "Uri": "/WhereNameContains",
+                  "Entry": "FabTravAppRoot",
+                  "Return": "FabApp",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereNameContains",
+                  "Uri": "/WhereNameContains",
+                  "Entry": "FabTravClassRoot",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereDisambContains",
+                  "Uri": "/WhereDisambContains",
+                  "Entry": "FabTravClassRoot",
+                  "Return": "FabClass",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereNameContains",
+                  "Uri": "/WhereNameContains",
+                  "Entry": "FabTravInstanceRoot",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereDisambContains",
+                  "Uri": "/WhereDisambContains",
+                  "Entry": "FabTravInstanceRoot",
+                  "Return": "FabInstance",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereNameContains",
+                  "Uri": "/WhereNameContains",
+                  "Entry": "FabTravUrlRoot",
+                  "Return": "FabUrl",
+                  "Obj": "FabSpecServiceStepRule"
+                },
+                {
+                  "Name": "WhereNameContains",
+                  "Uri": "/WhereNameContains",
+                  "Entry": "FabTravUserRoot",
+                  "Return": "FabUser",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
+            },
+            {
+              "Name": "Active",
+              "Description": "TODO",
+              "Parameters": [],
+              "Rules": [
+                {
+                  "Name": "Active",
+                  "Uri": "/Active",
+                  "Entry": "FabTravMemberRoot",
+                  "Return": "FabMember",
+                  "Obj": "FabSpecServiceStepRule"
+                }
+              ],
+              "Obj": "FabSpecServiceStep"
             }
           ],
           "Obj": "FabSpecService"

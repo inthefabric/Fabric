@@ -10,6 +10,8 @@ using Fabric.New.Api.Objects.Menu;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Spec;
+using Fabric.New.Operations.Traversal.Routing;
+using Fabric.New.Operations.Traversal.Util;
 
 namespace Fabric.New.Api {
 
@@ -33,8 +35,6 @@ namespace Fabric.New.Api {
 			s.Objects = BuildObjects();
 			s.Enums = BuildEnums();
 
-			//TODO: traversal steps (with objects, separate, or both?)
-
 			return s;
 		}
 
@@ -50,7 +50,7 @@ namespace Fabric.New.Api {
 			services.Add(BuildService(ApiMenu.Meta, getEntry));
 			services.Add(BuildService(ApiMenu.Mod, getEntry));
 			services.Add(BuildService(ApiMenu.Oauth, getEntry));
-			services.Add(BuildService(ApiMenu.Trav, getEntry));
+			services.Add(BuildTraversalService(ApiMenu.Trav, getEntry));
 			return services;
 		}
 		
@@ -84,12 +84,12 @@ namespace Fabric.New.Api {
 			so.Return = (ae == null ? "???" : ApiLang.TypeName(ae.ResponseType));
 			so.Description = ApiLang.Text<ServiceOpText>(pSvcName+"_"+so.Name+"_"+so.Method);
 			so.Auth = (ae == null ? "???" : (ae.MemberAuth ? "Member" : "None"));
-			so.Parameters = new List<FabSpecServiceOperationParam>();
+			so.Parameters = new List<FabSpecServiceParam>();
 
 			for ( int i = 0 ; ae != null && i < ae.Params.Count ; i++ ) {
 				ApiEntryParam aep = ae.Params[i];
 
-				var sop = new FabSpecServiceOperationParam();
+				var sop = new FabSpecServiceParam();
 				sop.Index = i;
 				sop.Name = aep.Name;
 				sop.Type = ApiLang.TypeName(aep.ParamType);
@@ -98,6 +98,95 @@ namespace Fabric.New.Api {
 			}
 
 			return so;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabSpecService BuildTraversalService(FabService pSvc, 
+																	Func<string, ApiEntry> pGetEntry) {
+			IList<TravRule> rules = TraversalUtil.GetTravRules();
+			var map = new Dictionary<SpecStepAttribute, IList<TravRule>>();
+
+			foreach ( TravRule rule in rules ) {
+				SpecStepAttribute ssa = GetAttribute<SpecStepAttribute>(rule.Step.GetType());
+
+				if ( !map.ContainsKey(ssa) ) {
+					map.Add(ssa, new List<TravRule>());
+				}
+
+				map[ssa].Add(rule);
+			}
+
+			////
+
+			FabSpecService svc = BuildService(pSvc, pGetEntry);
+			svc.Steps = new List<FabSpecServiceStep>();
+
+			foreach ( SpecStepAttribute ssa in map.Keys ) {
+				if ( ssa.IsRoot ) {
+					continue;
+				}
+
+				svc.Steps.Add(BuildTraversalServiceStep(ssa, map[ssa]));
+			}
+
+			return svc;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabSpecServiceStep BuildTraversalServiceStep(SpecStepAttribute pStepAttr,
+																			IList<TravRule> pRules) {
+			var s = new FabSpecServiceStep();
+			s.Name = pStepAttr.Name;
+			s.Description = "TODO"; //TODO: add description
+			s.Parameters = new List<FabSpecServiceParam>();
+			s.Rules = new List<FabSpecServiceStepRule>();
+
+			ITravStep ts0 = pRules[0].Step;
+
+			foreach ( ITravStepParam tsp in ts0.Params ) {
+				var p = new FabSpecServiceParam();
+				p.Index = tsp.ParamIndex;
+				p.Name = tsp.Name;
+				p.Description = "TODO"; //TODO: add description
+				p.Type = ApiLang.TypeName(tsp.DataType);
+				p.Min = tsp.Min;
+				p.Max = tsp.Max;
+				p.LenMax = tsp.LenMax;
+				p.ValidRegex = tsp.ValidRegex;
+				s.Parameters.Add(p);
+
+				if ( tsp.IsGenericDataType ) {
+					p.Type = "T";
+				}
+
+				if ( tsp.AcceptedStrings != null ) {
+					p.AcceptedStrings = tsp.AcceptedStrings.ToArray();
+				}
+			}
+
+			foreach ( TravRule rule in pRules ) {
+				ITravStep ts = rule.Step;
+
+				var r = new FabSpecServiceStepRule();
+				r.Name = ts.Command;
+				r.Uri = "/"+ts.Command;
+				r.Entry = ApiLang.TypeName(rule.FromType);
+				s.Rules.Add(r);
+
+				if ( rule.ToType != null ) {
+					r.Return = ApiLang.TypeName(rule.ToType);
+				}
+
+				if ( ts.ToAliasType ) {
+					r.ReturnsAliasType = true;
+				}
+
+				if ( ts.ParamValueType != null ) {
+					r.T = ApiLang.TypeName(ts.ParamValueType);
+				}
+			}
+
+			return s;
 		}
 
 
