@@ -1,252 +1,182 @@
-﻿﻿// GENERATED CODE
+﻿
+// GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on 9/16/2013 2:16:03 PM
 
-using System;
-using System.Collections.Generic;
-using Fabric.Domain;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Core;
 using Weaver.Core.Query;
-using Weaver.Titan;
 
-namespace Fabric.Db.Data.Setups {
+namespace Fabric.New.Database.Init.Setups {
+
 
 	/*================================================================================================*/
-	public class SetupIndexes {
+	public partial class SetupIndexes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void SetupAll(DataSet pSet) {
-			var su = new SetupIndexes(pSet);
+		public void Create() {
+			CreateVerts();
+			CreateEdges();
 		}
-			
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private SetupIndexes(DataSet pSet) {
-			IWeaverQuery q;
-			IWeaverVarAlias gv;
-			IWeaverVarAlias pv;
-			string dbName;
+		private void CreateVerts() {
 
-			WeaverInstance wi = Weave.Inst;
-			var propMap = new Dictionary<string, IWeaverVarAlias>();
-			int groupId = 2;
+			//App
+			AddProp(Elem.Vertex, "p.na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "p.nk", "String", Index.Standard, true);
+			AddProp(Elem.Vertex, "p.se", "String", Index.None, false);
+			AddProp(Elem.Vertex, "p.od", "String", Index.None, false);
 
-			////
+			//Artifact
 
-			q = wi.TitanGraph().TypeGroupOf<Vertex>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("N", q, out gv);
-			pSet.AddIndexQuery(q);
+			//Class
+			AddProp(Elem.Vertex, "c.na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "c.nk", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "c.di", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "c.no", "String", Index.None, false);
 
-				dbName = "N_FT";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Vertex>(x => x.FabType, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//Email
+			AddProp(Elem.Vertex, "e.ad", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "e.co", "String", Index.None, false);
+			AddProp(Elem.Vertex, "e.ve", "Boolean", Index.None, false);
 
-			////
+			//Factor
+			AddProp(Elem.Vertex, "f.at", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.de", "Boolean", Index.None, false);
+			AddProp(Elem.Vertex, "f.no", "String", Index.None, false);
+			AddProp(Elem.Vertex, "f.det", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.dit", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.dip", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.dir", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.evt", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.evd", "Long", Index.None, false);
+			AddProp(Elem.Vertex, "f.idt", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.idv", "String", Index.Both, false);
+			AddProp(Elem.Vertex, "f.lot", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.lox", "Double", Index.None, false);
+			AddProp(Elem.Vertex, "f.loy", "Double", Index.None, false);
+			AddProp(Elem.Vertex, "f.loz", "Double", Index.None, false);
+			AddProp(Elem.Vertex, "f.vet", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.veu", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.vep", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f.vev", "Long", Index.None, false);
 
-			q = wi.TitanGraph().TypeGroupOf<VertexForAction>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("NA", q, out gv);
-			pSet.AddIndexQuery(q);
+			//Instance
+			AddProp(Elem.Vertex, "i.na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "i.di", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "i.no", "String", Index.None, false);
 
-				dbName = "NA_Pe";
-				q = wi.TitanGraph().MakeVertexPropertyKey<VertexForAction>(x => x.Performed, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//Member
+			AddProp(Elem.Vertex, "m.at", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "m.osa", "Boolean", Index.None, false);
+			AddProp(Elem.Vertex, "m.ogr", "String", Index.None, false);
+			AddProp(Elem.Vertex, "m.ogc", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "m.oge", "Long", Index.None, false);
 
-				dbName = "NA_No";
-				q = wi.TitanGraph().MakeVertexPropertyKey<VertexForAction>(x => x.Note, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//OauthAccess
+			AddProp(Elem.Vertex, "oa.to", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "oa.re", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "oa.ex", "Long", Index.None, false);
+			AddProp(Elem.Vertex, "oa.dp", "Boolean", Index.None, false);
 
-			////
+			//Url
+			AddProp(Elem.Vertex, "r.na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "r.fp", "String", Index.Standard, true);
 
-			q = wi.TitanGraph().TypeGroupOf<Artifact>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("A", q, out gv);
-			pSet.AddIndexQuery(q);
+			//User
+			AddProp(Elem.Vertex, "u.na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "u.nk", "String", Index.Standard, true);
+			AddProp(Elem.Vertex, "u.pa", "String", Index.None, false);
 
-				dbName = "A_AId";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Artifact>(x => x.ArtifactId, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//Vertex
+			AddProp(Elem.Vertex, "v.id", "Long", Index.Standard, false);
+			AddProp(Elem.Vertex, "v.ts", "Long", Index.Elastic, false);
+			AddProp(Elem.Vertex, "v.t", "Byte", Index.None, false);
+		}
 
-				dbName = "A_Cr";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Artifact>(x => x.Created, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+		/*--------------------------------------------------------------------------------------------*/
+		private void CreateEdges() {
 
-			////
+			//AppDefinesMember
+			AddProp(Elem.Edge, "pdm.ts", "long", Index.Standard, false);
+			AddProp(Elem.Edge, "pdm.mt", "byte", Index.Standard, false);
+			AddProp(Elem.Edge, "pdm.ui", "long", Index.Standard, false);
+			AddEdge("pdm", Cardin.OneToMany, Sort.Desc, new[] {"pdm.ts"}, new[] {"pdm.mt","pdm.ui"});
 
-			q = wi.TitanGraph().TypeGroupOf<App>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("Ap", q, out gv);
-			pSet.AddIndexQuery(q);
+			//ArtifactCreatedByMember
+			AddEdge("acbm", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-				dbName = "Ap_Na";
-				q = wi.TitanGraph().MakeVertexPropertyKey<App>(x => x.Name, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//ArtifactUsedAsPrimaryByFactor
+			AddProp(Elem.Edge, "apbf.ts", "long", Index.Standard, false);
+			AddProp(Elem.Edge, "apbf.dt", "byte", Index.Standard, false);
+			AddProp(Elem.Edge, "apbf.ra", "long", Index.Standard, false);
+			AddEdge("apbf", Cardin.OneToMany, Sort.Desc, new[] {"apbf.ts"}, new[] {"apbf.dt","apbf.ra"});
 
-				dbName = "Ap_NK";
-				q = wi.TitanGraph().MakeVertexPropertyKey<App>(x => x.NameKey, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//ArtifactUsedAsRelatedByFactor
+			AddProp(Elem.Edge, "arbf.ts", "long", Index.Standard, false);
+			AddProp(Elem.Edge, "arbf.dt", "byte", Index.Standard, false);
+			AddProp(Elem.Edge, "arbf.pa", "long", Index.Standard, false);
+			AddEdge("arbf", Cardin.OneToMany, Sort.Desc, new[] {"arbf.ts"}, new[] {"arbf.dt","arbf.pa"});
 
-				dbName = "Ap_Se";
-				q = wi.TitanGraph().MakeVertexPropertyKey<App>(x => x.Secret, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//ArtifactUsesEmail
+			AddEdge("aue", Cardin.OneToMany, Sort.None, new string[0], new string[0]);
 
-			////
+			//EmailUsedByArtifact
+			AddEdge("eba", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-			q = wi.TitanGraph().TypeGroupOf<Class>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("Cl", q, out gv);
-			pSet.AddIndexQuery(q);
+			//FactorCreatedByMember
+			AddEdge("fcbm", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-				dbName = "Cl_Na";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Class>(x => x.Name, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//FactorDescriptorRefinesPrimaryWithArtifact
+			AddEdge("frpa", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-				dbName = "Cl_NK";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Class>(x => x.NameKey, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//FactorDescriptorRefinesRelatedWithArtifact
+			AddEdge("frra", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-				dbName = "Cl_Di";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Class>(x => x.Disamb, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//FactorDescriptorRefinesTypeWithArtifact
+			AddEdge("frta", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-				dbName = "Cl_No";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Class>(x => x.Note, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//FactorUsesPrimaryArtifact
+			AddEdge("fpa", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-			////
+			//FactorUsesRelatedArtifact
+			AddEdge("fra", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-			q = wi.TitanGraph().TypeGroupOf<Email>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("E", q, out gv);
-			pSet.AddIndexQuery(q);
+			//FactorVectorUsesAxisArtifact
+			AddEdge("faa", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-				dbName = "E_Id";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Email>(x => x.EmailId, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//MemberAuthenticatedByOauthAccess
+			AddProp(Elem.Edge, "maboa.ts", "long", Index.Standard, false);
+			AddEdge("maboa", Cardin.OneToMany, Sort.Desc, new[] {"maboa.ts"}, new string[0]);
 
-				dbName = "E_Ad";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Email>(x => x.Address, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//MemberCreatesArtifact
+			AddProp(Elem.Edge, "mca.ts", "long", Index.Standard, false);
+			AddProp(Elem.Edge, "mca.vt", "byte", Index.Standard, false);
+			AddEdge("mca", Cardin.OneToMany, Sort.Desc, new[] {"mca.ts"}, new[] {"mca.vt"});
 
-				dbName = "E_Co";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Email>(x => x.Code, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//MemberCreatesFactor
+			AddProp(Elem.Edge, "mcf.ts", "long", Index.Standard, false);
+			AddProp(Elem.Edge, "mcf.dt", "byte", Index.Standard, false);
+			AddProp(Elem.Edge, "mcf.pa", "long", Index.Standard, false);
+			AddProp(Elem.Edge, "mcf.ra", "long", Index.Standard, false);
+			AddEdge("mcf", Cardin.OneToMany, Sort.Desc, new[] {"mcf.ts"}, new[] {"mcf.dt","mcf.pa","mcf.ra"});
 
-				dbName = "E_Cr";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Email>(x => x.Created, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//MemberDefinedByApp
+			AddEdge("mdbp", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-				dbName = "E_Ve";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Email>(x => x.Verified, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+			//MemberDefinedByUser
+			AddEdge("mdbu", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-			////
+			//OauthAccessAuthenticatesMember
+			AddEdge("oaam", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
 
-			q = wi.TitanGraph().TypeGroupOf<Instance>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("In", q, out gv);
-			pSet.AddIndexQuery(q);
+			//UserDefinesMember
+			AddProp(Elem.Edge, "udm.ts", "long", Index.Standard, false);
+			AddProp(Elem.Edge, "udm.mt", "byte", Index.Standard, false);
+			AddProp(Elem.Edge, "udm.pi", "long", Index.Standard, false);
+			AddEdge("udm", Cardin.OneToMany, Sort.Desc, new[] {"udm.ts"}, new[] {"udm.mt","udm.pi"});
+		}
 
-				dbName = "In_Na";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Instance>(x => x.Name, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
+	}
 
-				dbName = "In_Di";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Instance>(x => x.Disamb, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-				dbName = "In_No";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Instance>(x => x.Note, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-			////
-
-			q = wi.TitanGraph().TypeGroupOf<Member>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("M", q, out gv);
-			pSet.AddIndexQuery(q);
-
-				dbName = "M_Id";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Member>(x => x.MemberId, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-			////
-
-			q = wi.TitanGraph().TypeGroupOf<MemberTypeAssign>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("MTA", q, out gv);
-			pSet.AddIndexQuery(q);
-
-				dbName = "MTA_Id";
-				q = wi.TitanGraph().MakeVertexPropertyKey<MemberTypeAssign>(x => x.MemberTypeAssignId, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-				dbName = "MTA_Mt";
-				q = wi.TitanGraph().MakeVertexPropertyKey<MemberTypeAssign>(x => x.MemberTypeId, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-			////
-
-			q = wi.TitanGraph().TypeGroupOf<Url>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("Ur", q, out gv);
-			pSet.AddIndexQuery(q);
-
-				dbName = "Ur_Na";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Url>(x => x.Name, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-				dbName = "Ur_Pa";
-				q = wi.TitanGraph().MakeVertexPropertyKey<Url>(x => x.FullPath, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-			////
-
-			q = wi.TitanGraph().TypeGroupOf<User>(groupId++);
-...
-...
+}

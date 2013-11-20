@@ -21,6 +21,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			////
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
+			Timestamp.Sort = EdgeProperty.SortType.Desc;
 
 			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType),
 				(x => x.FabDescriptorType));

@@ -41,6 +41,7 @@
     <Compile Include="Init\DataSet.cs" />
     <Compile Include="Init\DataVertex.cs" />
     <Compile Include="Init\Setup.cs" />
+    <Compile Include="Init\Setups\SetupIndexesPartial.cs" />
     <Compile Include="Init\Setups\SetupEnums.cs" />
     <Compile Include="Init\Setups\SetupVertices.cs" />
     <Compile Include="Init\Setups\SetupFactors.cs" />

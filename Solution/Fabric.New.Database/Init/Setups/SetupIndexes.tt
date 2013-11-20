@@ -1,90 +1,109 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll" #>
-<#@ assembly name="$(SolutionDir)..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll" #>
-<#@ assembly name="$(SolutionDir)Fabric.Domain.Meta\bin\Debug\Fabric.Domain.Meta.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Fabric.Domain.Meta" #>
-<#@ import namespace="Weaver.Core.Elements" #>
-<#@ import namespace="Weaver.Core.Schema" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
 <#@ output extension=".cs" #>
+
 // GENERATED CODE
 // Changes made to this source file will be overwritten
-// Generated on <#= DateTime.Now.ToString() #>
 
-using System;
-using System.Collections.Generic;
-using Fabric.Domain;
-using Fabric.Infrastructure.Weaver;
-using Weaver.Core;
 using Weaver.Core.Query;
-using Weaver.Titan;
 
 namespace Fabric.New.Database.Init.Setups {
 
+
 	/*================================================================================================*/
-	public class SetupIndexes {
+	public partial class SetupIndexes {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void SetupAll(DataSet pSet) {
-			var su = new SetupIndexes(pSet);
+		public void Create() {
+			CreateVerts();
+			CreateEdges();
 		}
-			
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private SetupIndexes(DataSet pSet) {
-			IWeaverQuery q;
-			IWeaverVarAlias gv;
-			IWeaverVarAlias pv;
-			string dbName;
-
-			WeaverInstance wi = Weave.Inst;
-			var propMap = new Dictionary<string, IWeaverVarAlias>();
-			int groupId = 2;
-
+		private void CreateVerts() {
 <#
-IList<string> verts = SchemaHelper.GetVertices();
-IList<string> edges = SchemaHelper.GetEdges();
+IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
 
-foreach ( string name in verts ) {
-	SchemaHelperVertex hn = SchemaHelper.GetVertex(name);
-#>
-			////
-
-			q = wi.TitanGraph().TypeGroupOf<<#= name #>>(groupId++);
-			q = WeaverQuery.StoreResultAsVar("<#= hn.VertexSchema.DbName #>", q, out gv);
-			pSet.AddIndexQuery(q);
-
-<#
-	IList<SchemaHelperProp> props = hn.GetProps();
-
-	foreach ( SchemaHelperProp hp in props ) {
-#>
-				dbName = "<#= hp.PropSchema.DbName #>";
-				q = wi.TitanGraph().MakeVertexPropertyKey<<#= name #>>(x => x.<#= hp.PropSchema.Name #>, gv).ToQuery();
-				q = WeaverQuery.StoreResultAsVar(dbName, q, out pv);
-				pSet.AddIndexQuery(q);
-				propMap.Add(dbName, pv);
-
-<#
-	}
-}
-#>
-			////
-
-			Func<string, IWeaverVarAlias> f = (n => propMap[n]);
-<#
-foreach ( string name in edges ) {
-	SchemaHelperEdge hn = SchemaHelper.GetEdge(name);
+foreach ( IVertexSchema v in verts ) {
+	IList<DomainProperty> vertProps = SchemaUtil.GetVertexDomainProperties(v);
 #>
 
-			q = Weave.Inst.TitanGraph().BuildEdgeLabel<<#= hn.EdgeSchema.Name #>>(f).ToQuery();
-			pSet.AddIndexQuery(q);
+			//<#= v.Names.Domain #>
 <#
-}
+	foreach ( DomainProperty dp in vertProps ) {
+		string isUni = (dp.EnforceUnique+"").ToLower();
+		string ind = "None";
+
+		if ( dp.IsIndexed && dp.IsElastic ) {
+			ind = "Both";
+		}
+		else if ( dp.IsIndexed ) {
+			ind = "Standard";
+		}
+		else if ( dp.IsElastic ) {
+			ind = "Elastic";
+		}
+#>
+			AddProp(Elem.Vertex, "<#= dp.DbName #>", "<#= dp.GetTitanTypeName() #>", Index.<#= ind #>, <#= isUni #>);
+<#
+	} // end property loop
+} // end vertex loop
+#>
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void CreateEdges() {
+<#
+foreach ( IEdgeSchema e in edges ) {
+#>
+
+			//<#= e.GetClassNameDom() #>
+<#
+	IList<EdgeProperty> edgeProps = SchemaUtil.GetEdgeProperties(e);
+	string cardin = "OneTo"+(e.GetIsMultiple() ? "Many" : "One");
+	var sort = new List<string>();
+	var sig = new List<string>();
+	var order = "None";
+
+	//TODO: investigate signature() more closely:
+	//https://github.com/thinkaurelius/titan/wiki/Type-Definition-Overview
+	//Probably supposed to use the outgoing VERTEX properties here
+
+	foreach ( EdgeProperty ep in edgeProps ) {
+		if ( ep.Sort != EdgeProperty.SortType.None ) {
+			if ( sort.Count > 0 ) {
+				throw new Exception("Multiple sort keys are not supported.");
+			}
+
+			sort.Add(ep.DbName);
+			order = ep.Sort+"";
+		}
+		else {
+			sig.Add(ep.DbName);
+		}
+#>
+			AddProp(Elem.Edge, "<#= ep.DbName #>", "<#= ep.GetDataTypeName() #>", Index.Standard, false);
+<#
+	} // end property loop
+
+	string sortArray = (sort.Count == 0 ? "new string[0]" :
+		"new[] {"+string.Join(", ", sort.Select(x => "\""+x+"\""))+"}");
+	string sigArray = (sig.Count == 0 ? "new string[0]" :
+		"new[] {"+string.Join(",", sig.Select(x => "\""+x+"\""))+"}");
+#>
+			AddEdge("<#= e.NameDb #>", Cardin.<#= cardin #>, Sort.<#= order #>, <#= sortArray #>, <#= sigArray #>);
+<#
+} // end edge loop
 #>
 		}
 

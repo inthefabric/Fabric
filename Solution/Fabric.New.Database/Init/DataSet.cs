@@ -99,14 +99,14 @@ namespace Fabric.New.Database.Init {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public DataEdge<TFrom, TEdge, TTo> AddEdge<TFrom, TEdge, TTo>(DataEdge<TFrom, TEdge, TTo> pEdge)
+		public bool AddEdge<TFrom, TEdge, TTo>(DataEdge<TFrom, TEdge, TTo> pEdge)
 								where TFrom : IVertex where TEdge : IWeaverEdge where TTo : IVertex {
 			if ( !IsForTesting && pEdge.IsForTesting ) {
-				return pEdge;
+				return false;
 			}
 
 			Edges.Add(pEdge);
-			return pEdge;
+			return true;
 		}
 
 	}

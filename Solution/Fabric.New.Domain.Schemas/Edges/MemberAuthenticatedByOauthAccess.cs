@@ -16,6 +16,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			CreateFromOtherDirection = typeof(OauthAccessAuthenticatesMember);
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
+			Timestamp.Sort = EdgeProperty.SortType.Desc;
 		}
 
 	}

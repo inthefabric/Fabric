@@ -210,10 +210,6 @@
       <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
       <Name>Fabric.Api.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Db.Data\Fabric.Db.Data.csproj">
-      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
-      <Name>Fabric.Db.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

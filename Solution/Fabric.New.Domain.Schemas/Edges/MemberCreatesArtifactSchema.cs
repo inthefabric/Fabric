@@ -19,6 +19,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			////
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
+			Timestamp.Sort = EdgeProperty.SortType.Desc;
 
 			VertexType = Prop("VertexType", "vt", (x => x.VertexType), (x => x.FabVertexType));
 		}

@@ -7,10 +7,17 @@ namespace Fabric.New.Domain.Schemas.Utils {
 	/*================================================================================================*/
 	public abstract class EdgeProperty {
 
+		public enum SortType {
+			None,
+			Asc,
+			Desc
+		};
+
 		public string Name { get; private set; }
 		public string DbName { get; private set; }
 		public Type DataType { get; private set; }
 		public Type ApiDataType { get; private set; }
+		public SortType Sort { get; internal set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,6 +27,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 			DbName = pDbName;
 			DataType = pDataType;
 			ApiDataType = pApiDataType;
+			Sort = SortType.None;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

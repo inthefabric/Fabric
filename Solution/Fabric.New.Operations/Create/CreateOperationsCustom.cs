@@ -17,6 +17,8 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void CreateClass(IOperationContext pOpCtx, TxBuilder pTxBuild,
 																	CreateFabClass pApi, Class pDom) {
+			//TODO: perform this in the SAME TRANSACTION as the creation query
+			
 			Class c = Weave.Inst.Graph
 				.V.ExactIndex<Class>(x => x.NameKey, pDom.Name.ToLower());
 			IWeaverQuery q;

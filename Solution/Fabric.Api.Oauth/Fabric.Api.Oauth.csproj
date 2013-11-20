@@ -87,12 +87,6 @@
     <Compile Include="OauthGrantLoginEntry.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Db.Data\Fabric.Db.Data.csproj">
-      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
-      <Name>Fabric.Db.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Weaver.Core, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
