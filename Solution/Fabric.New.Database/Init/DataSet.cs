@@ -17,7 +17,7 @@ namespace Fabric.New.Database.Init {
 
 		private readonly Random vRand;
 		private DateTime vCurrDate;
-		private readonly Dictionary<string, IVertex> vVertexMap;
+		private readonly Dictionary<long, IVertex> vVertexMap;
 		private readonly Dictionary<IWeaverVertex, IDataVertex> vDataVertexMap;
 
 
@@ -32,7 +32,7 @@ namespace Fabric.New.Database.Init {
 
 			vRand = new Random(999);
 			vCurrDate = DateTime.UtcNow.AddDays(-10);
-			vVertexMap = new Dictionary<string, IVertex>();
+			vVertexMap = new Dictionary<long, IVertex>();
 			vDataVertexMap = new Dictionary<IWeaverVertex, IDataVertex>();
 		}
 
@@ -68,9 +68,9 @@ namespace Fabric.New.Database.Init {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public T GetVertex<T>(long pVertexTypeId) where T : IVertex {
+		public T GetVertex<T>(long pVertexId) where T : IVertex {
 			IVertex n;
-			vVertexMap.TryGetValue(typeof(T).Name+pVertexTypeId, out n);
+			vVertexMap.TryGetValue(pVertexId, out n);
 			return (T)n;
 		}
 		
@@ -86,32 +86,25 @@ namespace Fabric.New.Database.Init {
 			Indexes.Add(pQuery);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public bool AddVertex<T>(DataVertex<T> pVertData) where T : IVertex {
+			if ( !IsForTesting && pVertData.IsForTesting ) {
+				return false;
+			}
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public bool AddVertex<T>(T pDomainVertex, bool pIsForTesting) where T : IVertex {
-			if ( !IsForTesting && pIsForTesting ) { return false; }
-			DataVertex<T> n = DataVertex.Create(pDomainVertex, pIsForTesting);
-			Vertices.Add(n);
-			vVertexMap.Add(typeof(T).Name+pDomainVertex.VertexId, pDomainVertex);
-			vDataVertexMap.Add(pDomainVertex, n);
-			return true;
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public bool RegisterBaseClassVertex<T>(T pDomainVertex, Type pBaseClassType, long pTypeId, 
-																bool pIsForTesting) where T : IVertex {
-			if ( !IsForTesting && pIsForTesting ) { return false; }
-			vVertexMap.Add(pBaseClassType.Name+pTypeId, pDomainVertex);
+			Vertices.Add(pVertData);
+			vVertexMap.Add(pVertData.Vertex.VertexId, pVertData.Vertex);
+			vDataVertexMap.Add(pVertData.Vertex, pVertData);
 			return true;
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DataEdge<TFrom, TEdge, TTo> AddEdge<TFrom, TEdge, TTo>(DataEdge<TFrom, TEdge, TTo> pEdge)
-							where TFrom : IVertex where TEdge : IWeaverEdge where TTo : IVertex {
-			if ( !IsForTesting && pEdge.IsForTesting ) { return pEdge; }
+								where TFrom : IVertex where TEdge : IWeaverEdge where TTo : IVertex {
+			if ( !IsForTesting && pEdge.IsForTesting ) {
+				return pEdge;
+			}
+
 			Edges.Add(pEdge);
 			return pEdge;
 		}

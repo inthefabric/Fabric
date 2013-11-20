@@ -12,11 +12,11 @@ namespace Fabric.New.Database.Init {
 			var ds = new DataSet(pIsForTesting);
 			ds.ClearPreviousData();
 
-			SetupIndexes.SetupAll(ds);
-			SetupUsers.SetupAll(ds);
-			SetupOauth.SetupAll(ds);
-			SetupObjects.SetupAll(ds);
-			SetupFactors.SetupAll(ds);
+			new SetupIndexes(ds).Create();
+			new SetupUsers(ds).Create();
+			new SetupOauth(ds).Create();
+			new SetupObjects(ds).Create();
+			new SetupFactors(ds).Create();
 
 			if ( pIsForTesting ) {
 				int testId = 0;

@@ -20,7 +20,7 @@ using Weaver.Core;
 using Weaver.Core.Query;
 using Weaver.Titan;
 
-namespace Fabric.Db.Data.Setups {
+namespace Fabric.New.Database.Init.Setups {
 
 	/*================================================================================================*/
 	public class SetupIndexes {
