@@ -599,12 +599,12 @@ namespace Fabric.New.Domain.Enums {
 	public class LocatorType : EnumObject {
 
 		public enum Id {
-			EarthCoordinate = 1,
-			MoonCoordinate, // 2
-			MarsCoordinate, // 3
-			RelativePosition1D, // 4
-			RelativePosition2D, // 5
-			RelativePosition3D, // 6
+			EarthCoord = 1,
+			MoonCoord, // 2
+			MarsCoord, // 3
+			RelPos1D, // 4
+			RelPos2D, // 5
+			RelPos3D, // 6
 		}
 
 
@@ -623,7 +623,7 @@ namespace Fabric.New.Domain.Enums {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public readonly static IDictionary<Id, Item> Map = new Dictionary<Id, Item> {
-			{Id.EarthCoordinate, new Item {
+			{Id.EarthCoord, new Item {
 				MinX = -180,
 				MaxX = 180,
 				MinY = -90,
@@ -631,11 +631,11 @@ namespace Fabric.New.Domain.Enums {
 				MinZ = -1.79769313486231E+308,
 				MaxZ = 1.79769313486231E+308,
 				Id = 1,
-				EnumId = "EarthCoordinate",
+				EnumId = "EarthCoord",
 				Name = "Earth Coordinate",
 				Description = "A coordinate position on Earth.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).",
 			}},
-			{Id.MoonCoordinate, new Item {
+			{Id.MoonCoord, new Item {
 				MinX = -180,
 				MaxX = 180,
 				MinY = -90,
@@ -643,11 +643,11 @@ namespace Fabric.New.Domain.Enums {
 				MinZ = -1.79769313486231E+308,
 				MaxZ = 1.79769313486231E+308,
 				Id = 2,
-				EnumId = "MoonCoordinate",
+				EnumId = "MoonCoord",
 				Name = "Moon Coordinate",
 				Description = "A coordinate position on Earth's Moon.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).",
 			}},
-			{Id.MarsCoordinate, new Item {
+			{Id.MarsCoord, new Item {
 				MinX = -180,
 				MaxX = 180,
 				MinY = -90,
@@ -655,11 +655,11 @@ namespace Fabric.New.Domain.Enums {
 				MinZ = -1.79769313486231E+308,
 				MaxZ = 1.79769313486231E+308,
 				Id = 3,
-				EnumId = "MarsCoordinate",
+				EnumId = "MarsCoord",
 				Name = "Mars Coordinate",
 				Description = "A coordinate position on Mars.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).",
 			}},
-			{Id.RelativePosition1D, new Item {
+			{Id.RelPos1D, new Item {
 				MinX = -1.79769313486231E+308,
 				MaxX = 1.79769313486231E+308,
 				MinY = 0,
@@ -667,11 +667,11 @@ namespace Fabric.New.Domain.Enums {
 				MinZ = 0,
 				MaxZ = 0,
 				Id = 4,
-				EnumId = "RelativePosition1D",
+				EnumId = "RelPos1D",
 				Name = "Relative Position 1D",
 				Description = "A one-dimensional position, using X=Time. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension.",
 			}},
-			{Id.RelativePosition2D, new Item {
+			{Id.RelPos2D, new Item {
 				MinX = -1.79769313486231E+308,
 				MaxX = 1.79769313486231E+308,
 				MinY = -1.79769313486231E+308,
@@ -679,11 +679,11 @@ namespace Fabric.New.Domain.Enums {
 				MinZ = 0,
 				MaxZ = 0,
 				Id = 5,
-				EnumId = "RelativePosition2D",
+				EnumId = "RelPos2D",
 				Name = "Relative Position 2D",
 				Description = "A two-dimensional position, using X=Width and Y=Height. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension.",
 			}},
-			{Id.RelativePosition3D, new Item {
+			{Id.RelPos3D, new Item {
 				MinX = -1.79769313486231E+308,
 				MaxX = 1.79769313486231E+308,
 				MinY = -1.79769313486231E+308,
@@ -691,7 +691,7 @@ namespace Fabric.New.Domain.Enums {
 				MinZ = -1.79769313486231E+308,
 				MaxZ = 1.79769313486231E+308,
 				Id = 6,
-				EnumId = "RelativePosition3D",
+				EnumId = "RelPos3D",
 				Name = "Relative Position 3D",
 				Description = "A three-dimensional position, using X, Y, and Z axes. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension.",
 			}},

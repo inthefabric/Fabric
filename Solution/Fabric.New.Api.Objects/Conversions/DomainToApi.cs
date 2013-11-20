@@ -185,7 +185,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pApi.Token = pDomain.Token;
 			pApi.Refresh = pDomain.Refresh;
 			pApi.Expires = pDomain.Expires;
-			pApi.IsClientOnly = pDomain.IsClientOnly;
+			pApi.IsDataProv = pDomain.IsDataProv;
 		}
 
 

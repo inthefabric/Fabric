@@ -11,24 +11,24 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public LocatorTypeSchema() : base("LocatorType") {
-			AddCoord(1, "EarthCoordinate", "Earth Coordinate",
+			AddCoord(1, "EarthCoord", "Earth Coordinate",
 				"A coordinate position on Earth.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).");
 			
-			AddCoord(2, "MoonCoordinate", "Moon Coordinate",
+			AddCoord(2, "MoonCoord", "Moon Coordinate",
 				"A coordinate position on Earth's Moon.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).");
 
-			AddCoord(3, "MarsCoordinate", "Mars Coordinate",
+			AddCoord(3, "MarsCoord", "Mars Coordinate",
 				"A coordinate position on Mars.Coordinates use X=Longitude, Y=Latitude, and Z=Elevation (in metres).");
 			
-			AddItem(4, "RelativePosition1D", "Relative Position 1D",
+			AddItem(4, "RelPos1D", "Relative Position 1D",
 				"A one-dimensional position, using X=Time. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension.",
 				DoubleMin, DoubleMax, 0, 0, 0, 0);
 			
-			AddItem(5, "RelativePosition2D", "Relative Position 2D",
+			AddItem(5, "RelPos2D", "Relative Position 2D",
 				"A two-dimensional position, using X=Width and Y=Height. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension.",
 				DoubleMin, DoubleMax, DoubleMin, DoubleMax, 0, 0);
 			
-			AddItem(6, "RelativePosition3D", "Relative Position 3D",
+			AddItem(6, "RelPos3D", "Relative Position 3D",
 				"A three-dimensional position, using X, Y, and Z axes. A position is relative to the Artifact's dimensions. For example, X=0.25 represents a position (starting from the origin) that is 25% of the distance to the maximum X dimension.",
 				DoubleMin, DoubleMax, DoubleMin, DoubleMax, DoubleMin, DoubleMax);
 		}

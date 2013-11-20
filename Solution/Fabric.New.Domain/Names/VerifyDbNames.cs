@@ -63,7 +63,7 @@ oa (OauthAccess)
 oa.to (Token)
 oa.re (Refresh)
 oa.ex (Expires)
-oa.co (IsClientOnly)
+oa.dp (IsDataProv)
 
 r (Url)
 r.na (Name)

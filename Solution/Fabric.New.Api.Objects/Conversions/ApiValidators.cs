@@ -632,7 +632,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			Token(vCreateObj.Token);
 			Refresh(vCreateObj.Refresh);
 			Expires(vCreateObj.Expires);
-			IsClientOnly(vCreateObj.IsClientOnly);
+			IsDataProv(vCreateObj.IsDataProv);
 			ValidateEdges();
 		}
 
@@ -655,7 +655,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void IsClientOnly(bool pValue) {
+		public static void IsDataProv(bool pValue) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

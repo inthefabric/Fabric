@@ -8,17 +8,17 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 		public DomainProperty<string> Token { get; private set; }
 		public DomainProperty<string> Refresh { get; private set; }
 		public DomainProperty<long> Expires { get; private set; }
-		public DomainProperty<bool> IsClientOnly { get; private set; }
+		public DomainProperty<bool> IsDataProv { get; private set; }
 
 		public ApiProperty<string> FabToken { get; private set; }
 		public ApiProperty<string> FabRefresh { get; private set; }
 		public ApiProperty<long> FabExpires { get; private set; }
-		public ApiProperty<bool> FabIsClientOnly { get; private set; }
+		public ApiProperty<bool> FabIsDataProv { get; private set; }
 
 		public PropertyMapping<string, string> FabTokenMap { get; private set; }
 		public PropertyMapping<string, string> FabRefreshMap { get; private set; }
 		public PropertyMapping<long, long> FabExpiresMap { get; private set; }
-		public PropertyMapping<bool, bool> FabIsClientOnlyMap { get; private set; }
+		public PropertyMapping<bool, bool> FabIsDataProvMap { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			Expires = new DomainProperty<long>("Expires", "oa.ex");
 
-			IsClientOnly = new DomainProperty<bool>("IsClientOnly", "oa.co");
+			IsDataProv = new DomainProperty<bool>("IsDataProv", "oa.dp");
 
 			////
 			
@@ -64,14 +64,14 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			FabExpires = new ApiProperty<long>("Expires");
 
-			FabIsClientOnly = new ApiProperty<bool>("IsClientOnly");
+			FabIsDataProv = new ApiProperty<bool>("IsDataProv");
 
 			////
 
 			FabTokenMap = new PropertyMapping<string, string>(Token, FabToken);
 			FabRefreshMap = new PropertyMapping<string, string>(Refresh, FabRefresh);
 			FabExpiresMap = new PropertyMapping<long, long>(Expires, FabExpires);
-			FabIsClientOnlyMap = new PropertyMapping<bool, bool>(IsClientOnly, FabIsClientOnly);
+			FabIsDataProvMap = new PropertyMapping<bool, bool>(IsDataProv, FabIsDataProv);
 		}
 
 	}

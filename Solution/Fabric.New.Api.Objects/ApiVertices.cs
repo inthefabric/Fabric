@@ -365,7 +365,7 @@ namespace Fabric.New.Api.Objects {
 		public virtual long Expires { get; set; }
 		
 		[SpecInternal]
-		public virtual bool IsClientOnly { get; set; }
+		public virtual bool IsDataProv { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -852,7 +852,7 @@ namespace Fabric.New.Api.Objects {
 		public virtual long Expires { get; set; }
 		
 		[SpecInternal]
-		public virtual bool IsClientOnly { get; set; }
+		public virtual bool IsDataProv { get; set; }
 		
 		public virtual long AuthenticatesMemberId { get; set; }
 
