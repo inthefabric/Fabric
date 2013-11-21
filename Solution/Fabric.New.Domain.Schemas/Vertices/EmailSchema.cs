@@ -29,13 +29,13 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Address = new DomainProperty<string>("Address", "e.ad");
+			Address = new DomainProperty<string>("Address", "e_ad");
 			Address.ToLowerCase = true;
 			Address.IsIndexed = true;
 
-			Code = new DomainProperty<string>("Code", "e.co");
+			Code = new DomainProperty<string>("Code", "e_co");
 
-			Verified = new DomainProperty<bool>("Verified", "e.ve");
+			Verified = new DomainProperty<bool>("Verified", "e_ve");
 
 			////
 

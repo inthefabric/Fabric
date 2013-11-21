@@ -22,88 +22,88 @@ namespace Fabric.New.Database.Init.Setups {
 		private void CreateVerts() {
 
 			//App
-			AddProp(Elem.Vertex, "p.na", "String", Index.Elastic, false);
-			AddProp(Elem.Vertex, "p.nk", "String", Index.Standard, true);
-			AddProp(Elem.Vertex, "p.se", "String", Index.None, false);
-			AddProp(Elem.Vertex, "p.od", "String", Index.None, false);
+			AddProp(Elem.Vertex, "p_na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "p_nk", "String", Index.Standard, true);
+			AddProp(Elem.Vertex, "p_se", "String", Index.None, false);
+			AddProp(Elem.Vertex, "p_od", "String", Index.None, false);
 
 			//Artifact
 
 			//Class
-			AddProp(Elem.Vertex, "c.na", "String", Index.Elastic, false);
-			AddProp(Elem.Vertex, "c.nk", "String", Index.Standard, false);
-			AddProp(Elem.Vertex, "c.di", "String", Index.Elastic, false);
-			AddProp(Elem.Vertex, "c.no", "String", Index.None, false);
+			AddProp(Elem.Vertex, "c_na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "c_nk", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "c_di", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "c_no", "String", Index.None, false);
 
 			//Email
-			AddProp(Elem.Vertex, "e.ad", "String", Index.Standard, false);
-			AddProp(Elem.Vertex, "e.co", "String", Index.None, false);
-			AddProp(Elem.Vertex, "e.ve", "Boolean", Index.None, false);
+			AddProp(Elem.Vertex, "e_ad", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "e_co", "String", Index.None, false);
+			AddProp(Elem.Vertex, "e_ve", "Boolean", Index.None, false);
 
 			//Factor
-			AddProp(Elem.Vertex, "f.at", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.de", "Boolean", Index.None, false);
-			AddProp(Elem.Vertex, "f.no", "String", Index.None, false);
-			AddProp(Elem.Vertex, "f.det", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.dit", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.dip", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.dir", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.evt", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.evd", "Long", Index.None, false);
-			AddProp(Elem.Vertex, "f.idt", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.idv", "String", Index.Both, false);
-			AddProp(Elem.Vertex, "f.lot", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.lox", "Double", Index.None, false);
-			AddProp(Elem.Vertex, "f.loy", "Double", Index.None, false);
-			AddProp(Elem.Vertex, "f.loz", "Double", Index.None, false);
-			AddProp(Elem.Vertex, "f.vet", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.veu", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.vep", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "f.vev", "Long", Index.None, false);
+			AddProp(Elem.Vertex, "f_at", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_de", "Boolean", Index.None, false);
+			AddProp(Elem.Vertex, "f_no", "String", Index.None, false);
+			AddProp(Elem.Vertex, "f_det", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_dit", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_dip", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_dir", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_evt", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_evd", "Long", Index.None, false);
+			AddProp(Elem.Vertex, "f_idt", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_idv", "String", Index.Both, false);
+			AddProp(Elem.Vertex, "f_lot", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_lox", "Double", Index.None, false);
+			AddProp(Elem.Vertex, "f_loy", "Double", Index.None, false);
+			AddProp(Elem.Vertex, "f_loz", "Double", Index.None, false);
+			AddProp(Elem.Vertex, "f_vet", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_veu", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_vep", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "f_vev", "Long", Index.None, false);
 
 			//Instance
-			AddProp(Elem.Vertex, "i.na", "String", Index.Elastic, false);
-			AddProp(Elem.Vertex, "i.di", "String", Index.Elastic, false);
-			AddProp(Elem.Vertex, "i.no", "String", Index.None, false);
+			AddProp(Elem.Vertex, "i_na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "i_di", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "i_no", "String", Index.None, false);
 
 			//Member
-			AddProp(Elem.Vertex, "m.at", "Byte", Index.None, false);
-			AddProp(Elem.Vertex, "m.osa", "Boolean", Index.None, false);
-			AddProp(Elem.Vertex, "m.ogr", "String", Index.None, false);
-			AddProp(Elem.Vertex, "m.ogc", "String", Index.Standard, false);
-			AddProp(Elem.Vertex, "m.oge", "Long", Index.None, false);
+			AddProp(Elem.Vertex, "m_at", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "m_osa", "Boolean", Index.None, false);
+			AddProp(Elem.Vertex, "m_ogr", "String", Index.None, false);
+			AddProp(Elem.Vertex, "m_ogc", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "m_oge", "Long", Index.None, false);
 
 			//OauthAccess
-			AddProp(Elem.Vertex, "oa.to", "String", Index.Standard, false);
-			AddProp(Elem.Vertex, "oa.re", "String", Index.Standard, false);
-			AddProp(Elem.Vertex, "oa.ex", "Long", Index.None, false);
-			AddProp(Elem.Vertex, "oa.dp", "Boolean", Index.None, false);
+			AddProp(Elem.Vertex, "oa_to", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "oa_re", "String", Index.Standard, false);
+			AddProp(Elem.Vertex, "oa_ex", "Long", Index.None, false);
+			AddProp(Elem.Vertex, "oa_dp", "Boolean", Index.None, false);
 
 			//Url
-			AddProp(Elem.Vertex, "r.na", "String", Index.Elastic, false);
-			AddProp(Elem.Vertex, "r.fp", "String", Index.Standard, true);
+			AddProp(Elem.Vertex, "r_na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "r_fp", "String", Index.Standard, true);
 
 			//User
-			AddProp(Elem.Vertex, "u.na", "String", Index.Elastic, false);
-			AddProp(Elem.Vertex, "u.nk", "String", Index.Standard, true);
-			AddProp(Elem.Vertex, "u.pa", "String", Index.None, false);
+			AddProp(Elem.Vertex, "u_na", "String", Index.Elastic, false);
+			AddProp(Elem.Vertex, "u_nk", "String", Index.Standard, true);
+			AddProp(Elem.Vertex, "u_pa", "String", Index.None, false);
 
 			//Vertex
-			AddProp(Elem.Vertex, "v.id", "Long", Index.Standard, false);
-			AddProp(Elem.Vertex, "v.ts", "Long", Index.Elastic, false);
-			AddProp(Elem.Vertex, "v.t", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "v_id", "Long", Index.Standard, false);
+			AddProp(Elem.Vertex, "v_ts", "Long", Index.Elastic, false);
+			AddProp(Elem.Vertex, "v_t", "Byte", Index.None, false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void CreateEdges() {
 
 			//AppDefinesMember
-			AddProp(Elem.Edge, "pdm.ts", "Long", Index.None, false);
-			AddProp(Elem.Edge, "pdm.mt", "Byte", Index.None, false);
-			AddProp(Elem.Edge, "pdm.ui", "Long", Index.None, false);
+			AddProp(Elem.Edge, "pdm_ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "pdm_mt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "pdm_ui", "Long", Index.None, false);
 			AddEdge("pdm", Cardin.OneToMany, Sort.Desc,
-				new[] {"pdm.ts", "pdm.mt", "pdm.ui"},
-				new[] {"p.na","p.nk","p.se","p.od"}
+				new[] {"pdm_ts", "pdm_mt", "pdm_ui"},
+				new[] {"p_na","p_nk","p_se","p_od"}
 			);
 
 			//ArtifactCreatedByMember
@@ -113,20 +113,20 @@ namespace Fabric.New.Database.Init.Setups {
 			);
 
 			//ArtifactUsedAsPrimaryByFactor
-			AddProp(Elem.Edge, "apbf.ts", "Long", Index.None, false);
-			AddProp(Elem.Edge, "apbf.dt", "Byte", Index.None, false);
-			AddProp(Elem.Edge, "apbf.ra", "Long", Index.None, false);
+			AddProp(Elem.Edge, "apbf_ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "apbf_dt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "apbf_ra", "Long", Index.None, false);
 			AddEdge("apbf", Cardin.OneToMany, Sort.Desc,
-				new[] {"apbf.ts", "apbf.dt", "apbf.ra"},
+				new[] {"apbf_ts", "apbf_dt", "apbf_ra"},
 				new string[0]
 			);
 
 			//ArtifactUsedAsRelatedByFactor
-			AddProp(Elem.Edge, "arbf.ts", "Long", Index.None, false);
-			AddProp(Elem.Edge, "arbf.dt", "Byte", Index.None, false);
-			AddProp(Elem.Edge, "arbf.pa", "Long", Index.None, false);
+			AddProp(Elem.Edge, "arbf_ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "arbf_dt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "arbf_pa", "Long", Index.None, false);
 			AddEdge("arbf", Cardin.OneToMany, Sort.Desc,
-				new[] {"arbf.ts", "arbf.dt", "arbf.pa"},
+				new[] {"arbf_ts", "arbf_dt", "arbf_pa"},
 				new string[0]
 			);
 
@@ -139,101 +139,101 @@ namespace Fabric.New.Database.Init.Setups {
 			//EmailUsedByArtifact
 			AddEdge("eba", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"e.ad","e.co","e.ve"}
+				new[] {"e_ad","e_co","e_ve"}
 			);
 
 			//FactorCreatedByMember
 			AddEdge("fcbm", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+				new[] {"f_at","f_de","f_no","f_det","f_dit","f_dip","f_dir","f_evt","f_evd","f_idt","f_idv","f_lot","f_lox","f_loy","f_loz","f_vet","f_veu","f_vep","f_vev"}
 			);
 
 			//FactorDescriptorRefinesPrimaryWithArtifact
 			AddEdge("frpa", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+				new[] {"f_at","f_de","f_no","f_det","f_dit","f_dip","f_dir","f_evt","f_evd","f_idt","f_idv","f_lot","f_lox","f_loy","f_loz","f_vet","f_veu","f_vep","f_vev"}
 			);
 
 			//FactorDescriptorRefinesRelatedWithArtifact
 			AddEdge("frra", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+				new[] {"f_at","f_de","f_no","f_det","f_dit","f_dip","f_dir","f_evt","f_evd","f_idt","f_idv","f_lot","f_lox","f_loy","f_loz","f_vet","f_veu","f_vep","f_vev"}
 			);
 
 			//FactorDescriptorRefinesTypeWithArtifact
 			AddEdge("frta", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+				new[] {"f_at","f_de","f_no","f_det","f_dit","f_dip","f_dir","f_evt","f_evd","f_idt","f_idv","f_lot","f_lox","f_loy","f_loz","f_vet","f_veu","f_vep","f_vev"}
 			);
 
 			//FactorUsesPrimaryArtifact
 			AddEdge("fpa", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+				new[] {"f_at","f_de","f_no","f_det","f_dit","f_dip","f_dir","f_evt","f_evd","f_idt","f_idv","f_lot","f_lox","f_loy","f_loz","f_vet","f_veu","f_vep","f_vev"}
 			);
 
 			//FactorUsesRelatedArtifact
 			AddEdge("fra", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+				new[] {"f_at","f_de","f_no","f_det","f_dit","f_dip","f_dir","f_evt","f_evd","f_idt","f_idv","f_lot","f_lox","f_loy","f_loz","f_vet","f_veu","f_vep","f_vev"}
 			);
 
 			//FactorVectorUsesAxisArtifact
 			AddEdge("faa", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+				new[] {"f_at","f_de","f_no","f_det","f_dit","f_dip","f_dir","f_evt","f_evd","f_idt","f_idv","f_lot","f_lox","f_loy","f_loz","f_vet","f_veu","f_vep","f_vev"}
 			);
 
 			//MemberAuthenticatedByOauthAccess
-			AddProp(Elem.Edge, "maboa.ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "maboa_ts", "Long", Index.None, false);
 			AddEdge("maboa", Cardin.OneToMany, Sort.Desc,
-				new[] {"maboa.ts"},
-				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+				new[] {"maboa_ts"},
+				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberCreatesArtifact
-			AddProp(Elem.Edge, "mca.ts", "Long", Index.None, false);
-			AddProp(Elem.Edge, "mca.vt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "mca_ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "mca_vt", "Byte", Index.None, false);
 			AddEdge("mca", Cardin.OneToMany, Sort.Desc,
-				new[] {"mca.ts", "mca.vt"},
-				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+				new[] {"mca_ts", "mca_vt"},
+				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberCreatesFactor
-			AddProp(Elem.Edge, "mcf.ts", "Long", Index.None, false);
-			AddProp(Elem.Edge, "mcf.dt", "Byte", Index.None, false);
-			AddProp(Elem.Edge, "mcf.pa", "Long", Index.None, false);
-			AddProp(Elem.Edge, "mcf.ra", "Long", Index.None, false);
+			AddProp(Elem.Edge, "mcf_ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "mcf_dt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "mcf_pa", "Long", Index.None, false);
+			AddProp(Elem.Edge, "mcf_ra", "Long", Index.None, false);
 			AddEdge("mcf", Cardin.OneToMany, Sort.Desc,
-				new[] {"mcf.ts", "mcf.dt", "mcf.pa", "mcf.ra"},
-				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+				new[] {"mcf_ts", "mcf_dt", "mcf_pa", "mcf_ra"},
+				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberDefinedByApp
 			AddEdge("mdbp", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberDefinedByUser
 			AddEdge("mdbu", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//OauthAccessAuthenticatesMember
 			AddEdge("oaam", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"oa.to","oa.re","oa.ex","oa.dp"}
+				new[] {"oa_to","oa_re","oa_ex","oa_dp"}
 			);
 
 			//UserDefinesMember
-			AddProp(Elem.Edge, "udm.ts", "Long", Index.None, false);
-			AddProp(Elem.Edge, "udm.mt", "Byte", Index.None, false);
-			AddProp(Elem.Edge, "udm.pi", "Long", Index.None, false);
+			AddProp(Elem.Edge, "udm_ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "udm_mt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "udm_pi", "Long", Index.None, false);
 			AddEdge("udm", Cardin.OneToMany, Sort.Desc,
-				new[] {"udm.ts", "udm.mt", "udm.pi"},
-				new[] {"u.na","u.nk","u.pa"}
+				new[] {"udm_ts", "udm_mt", "udm_pi"},
+				new[] {"u_na","u_nk","u_pa"}
 			);
 		}
 

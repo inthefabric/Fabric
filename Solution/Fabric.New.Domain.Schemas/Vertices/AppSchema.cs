@@ -30,19 +30,19 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Name = new DomainProperty<string>("Name", "p.na");
+			Name = new DomainProperty<string>("Name", "p_na");
 			Name.IsUnique = true;
 			Name.IsElastic = true;
 
-			NameKey = new DomainProperty<string>("NameKey", "p.nk");
+			NameKey = new DomainProperty<string>("NameKey", "p_nk");
 			NameKey.EnforceUnique = true;
 			NameKey.ToLowerCase = true;
 			NameKey.IsIndexed = true;
 			Name.ExactIndexVia = NameKey;
 
-			Secret = new DomainProperty<string>("Secret", "p.se");
+			Secret = new DomainProperty<string>("Secret", "p_se");
 
-			OauthDomains = new DomainProperty<string>("OauthDomains", "p.od");
+			OauthDomains = new DomainProperty<string>("OauthDomains", "p_od");
 
 			////
 

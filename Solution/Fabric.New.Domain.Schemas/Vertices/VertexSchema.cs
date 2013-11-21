@@ -36,14 +36,14 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			VertexId = new DomainProperty<long>("VertexId", "v.id");
+			VertexId = new DomainProperty<long>("VertexId", "v_id");
 			VertexId.IsUnique = true;
 			VertexId.IsIndexed = true;
 
-			Timestamp = new DomainProperty<long>("Timestamp", "v.ts");
+			Timestamp = new DomainProperty<long>("Timestamp", "v_ts");
 			Timestamp.IsElastic = true;
 
-			VertexType = new DomainProperty<byte>("VertexType", "v.t");
+			VertexType = new DomainProperty<byte>("VertexType", "v_t");
 
 			////
 

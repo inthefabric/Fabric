@@ -36,21 +36,21 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			MemberType = new DomainProperty<byte>("MemberType", "m.at");
+			MemberType = new DomainProperty<byte>("MemberType", "m_at");
 
-			OauthScopeAllow = new DomainProperty<bool>("OauthScopeAllow", "m.osa");
+			OauthScopeAllow = new DomainProperty<bool>("OauthScopeAllow", "m_osa");
 			OauthScopeAllow.IsNullable = true;
 
-			OauthGrantRedirectUri = new DomainProperty<string>("OauthGrantRedirectUri", "m.ogr");
+			OauthGrantRedirectUri = new DomainProperty<string>("OauthGrantRedirectUri", "m_ogr");
 			OauthGrantRedirectUri.IsNullable = true;
 			OauthGrantRedirectUri.ToLowerCase = true;
 
-			OauthGrantCode = new DomainProperty<string>("OauthGrantCode", "m.ogc");
+			OauthGrantCode = new DomainProperty<string>("OauthGrantCode", "m_ogc");
 			OauthGrantCode.IsNullable = true;
 			OauthGrantCode.IsUnique = true;
 			OauthGrantCode.IsIndexed = true;
 
-			OauthGrantExpires = new DomainProperty<long>("OauthGrantExpires", "m.oge");
+			OauthGrantExpires = new DomainProperty<long>("OauthGrantExpires", "m_oge");
 			OauthGrantExpires.IsNullable = true;
 			
 			////

@@ -32,19 +32,19 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Token = new DomainProperty<string>("Token", "oa.to");
+			Token = new DomainProperty<string>("Token", "oa_to");
 			Token.IsUnique = true;
 			Token.IsNullable = true;
 			Token.IsIndexed = true;
 
-			Refresh = new DomainProperty<string>("Refresh", "oa.re");
+			Refresh = new DomainProperty<string>("Refresh", "oa_re");
 			Refresh.IsUnique = true;
 			Refresh.IsNullable = true;
 			Refresh.IsIndexed = true;
 
-			Expires = new DomainProperty<long>("Expires", "oa.ex");
+			Expires = new DomainProperty<long>("Expires", "oa_ex");
 
-			IsDataProv = new DomainProperty<bool>("IsDataProv", "oa.dp");
+			IsDataProv = new DomainProperty<bool>("IsDataProv", "oa_dp");
 
 			////
 			

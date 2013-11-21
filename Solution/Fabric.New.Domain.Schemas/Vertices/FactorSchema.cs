@@ -88,59 +88,59 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			AssertionType = new DomainProperty<byte>("AssertionType", "f.at");
+			AssertionType = new DomainProperty<byte>("AssertionType", "f_at");
 
-			IsDefining = new DomainProperty<bool>("IsDefining", "f.de");
+			IsDefining = new DomainProperty<bool>("IsDefining", "f_de");
 			
-			Note = new DomainProperty<string>("Note", "f.no");
+			Note = new DomainProperty<string>("Note", "f_no");
 
-			DescriptorType = new DomainProperty<byte>("DescriptorType", "f.det");
+			DescriptorType = new DomainProperty<byte>("DescriptorType", "f_det");
 
-			DirectorType = new DomainProperty<byte>("DirectorType", "f.dit");
+			DirectorType = new DomainProperty<byte>("DirectorType", "f_dit");
 			DirectorType.IsNullable = true;
 
-			DirectorPrimaryAction = new DomainProperty<byte>("DirectorPrimaryAction", "f.dip");
+			DirectorPrimaryAction = new DomainProperty<byte>("DirectorPrimaryAction", "f_dip");
 			DirectorPrimaryAction.IsNullable = true;
 
-			DirectorRelatedAction = new DomainProperty<byte>("DirectorRelatedAction", "f.dir");
+			DirectorRelatedAction = new DomainProperty<byte>("DirectorRelatedAction", "f_dir");
 			DirectorRelatedAction.IsNullable = true;
 
-			EventorType = new DomainProperty<byte>("EventorType", "f.evt");
+			EventorType = new DomainProperty<byte>("EventorType", "f_evt");
 			EventorType.IsNullable = true;
 
-			EventorDateTime = new DomainProperty<long>("EventorDateTime", "f.evd");
+			EventorDateTime = new DomainProperty<long>("EventorDateTime", "f_evd");
 			EventorDateTime.IsNullable = true;
 
-			IdentorType = new DomainProperty<byte>("IdentorType", "f.idt");
+			IdentorType = new DomainProperty<byte>("IdentorType", "f_idt");
 			IdentorType.IsNullable = true;
 
-			IdentorValue = new DomainProperty<string>("IdentorValue", "f.idv");
+			IdentorValue = new DomainProperty<string>("IdentorValue", "f_idv");
 			IdentorValue.IsNullable = true;
 			IdentorValue.IsIndexed = true;
 			IdentorValue.IsElastic = true;
 
-			LocatorType = new DomainProperty<byte>("LocatorType", "f.lot");
+			LocatorType = new DomainProperty<byte>("LocatorType", "f_lot");
 			LocatorType.IsNullable = true;
 
-			LocatorValueX = new DomainProperty<double>("LocatorValueX", "f.lox");
+			LocatorValueX = new DomainProperty<double>("LocatorValueX", "f_lox");
 			LocatorValueX.IsNullable = true;
 
-			LocatorValueY = new DomainProperty<double>("LocatorValueY", "f.loy");
+			LocatorValueY = new DomainProperty<double>("LocatorValueY", "f_loy");
 			LocatorValueY.IsNullable = true;
 
-			LocatorValueZ = new DomainProperty<double>("LocatorValueZ", "f.loz");
+			LocatorValueZ = new DomainProperty<double>("LocatorValueZ", "f_loz");
 			LocatorValueZ.IsNullable = true;
 
-			VectorType = new DomainProperty<byte>("VectorType", "f.vet");
+			VectorType = new DomainProperty<byte>("VectorType", "f_vet");
 			VectorType.IsNullable = true;
 
-			VectorUnit = new DomainProperty<byte>("VectorUnit", "f.veu");
+			VectorUnit = new DomainProperty<byte>("VectorUnit", "f_veu");
 			VectorUnit.IsNullable = true;
 
-			VectorUnitPrefix = new DomainProperty<byte>("VectorUnitPrefix", "f.vep");
+			VectorUnitPrefix = new DomainProperty<byte>("VectorUnitPrefix", "f_vep");
 			VectorUnitPrefix.IsNullable = true;
 
-			VectorValue = new DomainProperty<long>("VectorValue", "f.vev");
+			VectorValue = new DomainProperty<long>("VectorValue", "f_vev");
 			VectorValue.IsNullable = true;
 
 			////

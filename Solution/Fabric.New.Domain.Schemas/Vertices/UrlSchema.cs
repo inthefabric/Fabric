@@ -26,11 +26,11 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Name = new DomainProperty<string>("Name", "r.na");
+			Name = new DomainProperty<string>("Name", "r_na");
 			Name.IsNullable = true;
 			Name.IsElastic = true;
 
-			FullPath = new DomainProperty<string>("FullPath", "r.fp");
+			FullPath = new DomainProperty<string>("FullPath", "r_fp");
 			FullPath.EnforceUnique = true;
 			FullPath.ToLowerCase = true;
 			FullPath.IsIndexed = true;

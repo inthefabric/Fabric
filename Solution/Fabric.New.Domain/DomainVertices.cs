@@ -14,16 +14,16 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class App : Artifact {
 
-		[WeaverTitanProperty("p.na", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("p_na", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Name { get; set; }
 		
-		[WeaverTitanProperty("p.nk", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("p_nk", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string NameKey { get; set; }
 		
-		[WeaverTitanProperty("p.se", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("p_se", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Secret { get; set; }
 		
-		[WeaverTitanProperty("p.od", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("p_od", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string OauthDomains { get; set; }
 		
 		
@@ -43,10 +43,10 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Name = TryGetString(pData, "p.na");
-			NameKey = TryGetString(pData, "p.nk");
-			Secret = TryGetString(pData, "p.se");
-			OauthDomains = TryGetString(pData, "p.od");
+			Name = TryGetString(pData, "p_na");
+			NameKey = TryGetString(pData, "p_nk");
+			Secret = TryGetString(pData, "p_se");
+			OauthDomains = TryGetString(pData, "p_od");
 		}
 
 	}
@@ -97,16 +97,16 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Class : Artifact {
 
-		[WeaverTitanProperty("c.na", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("c_na", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Name { get; set; }
 		
-		[WeaverTitanProperty("c.nk", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("c_nk", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string NameKey { get; set; }
 		
-		[WeaverTitanProperty("c.di", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("c_di", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Disamb { get; set; }
 		
-		[WeaverTitanProperty("c.no", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("c_no", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Note { get; set; }
 		
 		
@@ -121,10 +121,10 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Name = TryGetString(pData, "c.na");
-			NameKey = TryGetString(pData, "c.nk");
-			Disamb = TryGetString(pData, "c.di");
-			Note = TryGetString(pData, "c.no");
+			Name = TryGetString(pData, "c_na");
+			NameKey = TryGetString(pData, "c_nk");
+			Disamb = TryGetString(pData, "c_di");
+			Note = TryGetString(pData, "c_no");
 		}
 
 	}
@@ -134,13 +134,13 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Email : Vertex {
 
-		[WeaverTitanProperty("e.ad", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("e_ad", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string Address { get; set; }
 		
-		[WeaverTitanProperty("e.co", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("e_co", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Code { get; set; }
 		
-		[WeaverTitanProperty("e.ve", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("e_ve", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual bool Verified { get; set; }
 		
 		
@@ -160,9 +160,9 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Address = TryGetString(pData, "e.ad");
-			Code = TryGetString(pData, "e.co");
-			Verified = TryGetBool(pData, "e.ve");
+			Address = TryGetString(pData, "e_ad");
+			Code = TryGetString(pData, "e_co");
+			Verified = TryGetBool(pData, "e_ve");
 		}
 
 	}
@@ -172,61 +172,61 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Factor : Vertex {
 
-		[WeaverTitanProperty("f.at", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_at", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte AssertionType { get; set; }
 		
-		[WeaverTitanProperty("f.de", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_de", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual bool IsDefining { get; set; }
 		
-		[WeaverTitanProperty("f.no", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_no", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Note { get; set; }
 		
-		[WeaverTitanProperty("f.det", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_det", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte DescriptorType { get; set; }
 		
-		[WeaverTitanProperty("f.dit", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_dit", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? DirectorType { get; set; }
 		
-		[WeaverTitanProperty("f.dip", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_dip", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? DirectorPrimaryAction { get; set; }
 		
-		[WeaverTitanProperty("f.dir", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_dir", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? DirectorRelatedAction { get; set; }
 		
-		[WeaverTitanProperty("f.evt", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_evt", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? EventorType { get; set; }
 		
-		[WeaverTitanProperty("f.evd", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_evd", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual long? EventorDateTime { get; set; }
 		
-		[WeaverTitanProperty("f.idt", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_idt", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? IdentorType { get; set; }
 		
-		[WeaverTitanProperty("f.idv", TitanIndex=true, TitanElasticIndex=true)]
+		[WeaverTitanProperty("f_idv", TitanIndex=true, TitanElasticIndex=true)]
 		public virtual string IdentorValue { get; set; }
 		
-		[WeaverTitanProperty("f.lot", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_lot", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? LocatorType { get; set; }
 		
-		[WeaverTitanProperty("f.lox", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_lox", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual double? LocatorValueX { get; set; }
 		
-		[WeaverTitanProperty("f.loy", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_loy", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual double? LocatorValueY { get; set; }
 		
-		[WeaverTitanProperty("f.loz", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_loz", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual double? LocatorValueZ { get; set; }
 		
-		[WeaverTitanProperty("f.vet", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_vet", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? VectorType { get; set; }
 		
-		[WeaverTitanProperty("f.veu", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_veu", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? VectorUnit { get; set; }
 		
-		[WeaverTitanProperty("f.vep", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_vep", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte? VectorUnitPrefix { get; set; }
 		
-		[WeaverTitanProperty("f.vev", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("f_vev", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual long? VectorValue { get; set; }
 		
 		
@@ -276,25 +276,25 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			AssertionType = TryGetByte(pData, "f.at");
-			IsDefining = TryGetBool(pData, "f.de");
-			Note = TryGetString(pData, "f.no");
-			DescriptorType = TryGetByte(pData, "f.det");
-			DirectorType = TryGetNullableByte(pData, "f.dit");
-			DirectorPrimaryAction = TryGetNullableByte(pData, "f.dip");
-			DirectorRelatedAction = TryGetNullableByte(pData, "f.dir");
-			EventorType = TryGetNullableByte(pData, "f.evt");
-			EventorDateTime = TryGetNullableLong(pData, "f.evd");
-			IdentorType = TryGetNullableByte(pData, "f.idt");
-			IdentorValue = TryGetString(pData, "f.idv");
-			LocatorType = TryGetNullableByte(pData, "f.lot");
-			LocatorValueX = TryGetNullableDouble(pData, "f.lox");
-			LocatorValueY = TryGetNullableDouble(pData, "f.loy");
-			LocatorValueZ = TryGetNullableDouble(pData, "f.loz");
-			VectorType = TryGetNullableByte(pData, "f.vet");
-			VectorUnit = TryGetNullableByte(pData, "f.veu");
-			VectorUnitPrefix = TryGetNullableByte(pData, "f.vep");
-			VectorValue = TryGetNullableLong(pData, "f.vev");
+			AssertionType = TryGetByte(pData, "f_at");
+			IsDefining = TryGetBool(pData, "f_de");
+			Note = TryGetString(pData, "f_no");
+			DescriptorType = TryGetByte(pData, "f_det");
+			DirectorType = TryGetNullableByte(pData, "f_dit");
+			DirectorPrimaryAction = TryGetNullableByte(pData, "f_dip");
+			DirectorRelatedAction = TryGetNullableByte(pData, "f_dir");
+			EventorType = TryGetNullableByte(pData, "f_evt");
+			EventorDateTime = TryGetNullableLong(pData, "f_evd");
+			IdentorType = TryGetNullableByte(pData, "f_idt");
+			IdentorValue = TryGetString(pData, "f_idv");
+			LocatorType = TryGetNullableByte(pData, "f_lot");
+			LocatorValueX = TryGetNullableDouble(pData, "f_lox");
+			LocatorValueY = TryGetNullableDouble(pData, "f_loy");
+			LocatorValueZ = TryGetNullableDouble(pData, "f_loz");
+			VectorType = TryGetNullableByte(pData, "f_vet");
+			VectorUnit = TryGetNullableByte(pData, "f_veu");
+			VectorUnitPrefix = TryGetNullableByte(pData, "f_vep");
+			VectorValue = TryGetNullableLong(pData, "f_vev");
 		}
 
 	}
@@ -304,13 +304,13 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Instance : Artifact {
 
-		[WeaverTitanProperty("i.na", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("i_na", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Name { get; set; }
 		
-		[WeaverTitanProperty("i.di", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("i_di", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Disamb { get; set; }
 		
-		[WeaverTitanProperty("i.no", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("i_no", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Note { get; set; }
 		
 		
@@ -325,9 +325,9 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Name = TryGetString(pData, "i.na");
-			Disamb = TryGetString(pData, "i.di");
-			Note = TryGetString(pData, "i.no");
+			Name = TryGetString(pData, "i_na");
+			Disamb = TryGetString(pData, "i_di");
+			Note = TryGetString(pData, "i_no");
 		}
 
 	}
@@ -337,19 +337,19 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Member : Vertex {
 
-		[WeaverTitanProperty("m.at", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("m_at", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte MemberType { get; set; }
 		
-		[WeaverTitanProperty("m.osa", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("m_osa", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual bool? OauthScopeAllow { get; set; }
 		
-		[WeaverTitanProperty("m.ogr", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("m_ogr", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string OauthGrantRedirectUri { get; set; }
 		
-		[WeaverTitanProperty("m.ogc", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("m_ogc", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string OauthGrantCode { get; set; }
 		
-		[WeaverTitanProperty("m.oge", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("m_oge", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual long? OauthGrantExpires { get; set; }
 		
 		
@@ -389,11 +389,11 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			MemberType = TryGetByte(pData, "m.at");
-			OauthScopeAllow = TryGetNullableBool(pData, "m.osa");
-			OauthGrantRedirectUri = TryGetString(pData, "m.ogr");
-			OauthGrantCode = TryGetString(pData, "m.ogc");
-			OauthGrantExpires = TryGetNullableLong(pData, "m.oge");
+			MemberType = TryGetByte(pData, "m_at");
+			OauthScopeAllow = TryGetNullableBool(pData, "m_osa");
+			OauthGrantRedirectUri = TryGetString(pData, "m_ogr");
+			OauthGrantCode = TryGetString(pData, "m_ogc");
+			OauthGrantExpires = TryGetNullableLong(pData, "m_oge");
 		}
 
 	}
@@ -403,16 +403,16 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class OauthAccess : Vertex {
 
-		[WeaverTitanProperty("oa.to", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("oa_to", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string Token { get; set; }
 		
-		[WeaverTitanProperty("oa.re", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("oa_re", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string Refresh { get; set; }
 		
-		[WeaverTitanProperty("oa.ex", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("oa_ex", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual long Expires { get; set; }
 		
-		[WeaverTitanProperty("oa.dp", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("oa_dp", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual bool IsDataProv { get; set; }
 		
 		
@@ -432,10 +432,10 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Token = TryGetString(pData, "oa.to");
-			Refresh = TryGetString(pData, "oa.re");
-			Expires = TryGetLong(pData, "oa.ex");
-			IsDataProv = TryGetBool(pData, "oa.dp");
+			Token = TryGetString(pData, "oa_to");
+			Refresh = TryGetString(pData, "oa_re");
+			Expires = TryGetLong(pData, "oa_ex");
+			IsDataProv = TryGetBool(pData, "oa_dp");
 		}
 
 	}
@@ -445,10 +445,10 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Url : Artifact {
 
-		[WeaverTitanProperty("r.na", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("r_na", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Name { get; set; }
 		
-		[WeaverTitanProperty("r.fp", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("r_fp", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string FullPath { get; set; }
 		
 		
@@ -463,8 +463,8 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Name = TryGetString(pData, "r.na");
-			FullPath = TryGetString(pData, "r.fp");
+			Name = TryGetString(pData, "r_na");
+			FullPath = TryGetString(pData, "r_fp");
 		}
 
 	}
@@ -474,13 +474,13 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class User : Artifact {
 
-		[WeaverTitanProperty("u.na", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("u_na", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual string Name { get; set; }
 		
-		[WeaverTitanProperty("u.nk", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("u_nk", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual string NameKey { get; set; }
 		
-		[WeaverTitanProperty("u.pa", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("u_pa", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual string Password { get; set; }
 		
 		
@@ -500,9 +500,9 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			Name = TryGetString(pData, "u.na");
-			NameKey = TryGetString(pData, "u.nk");
-			Password = TryGetString(pData, "u.pa");
+			Name = TryGetString(pData, "u_na");
+			NameKey = TryGetString(pData, "u_nk");
+			Password = TryGetString(pData, "u_pa");
 		}
 
 	}
@@ -512,13 +512,13 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Vertex : VertexBase, IVertex {
 
-		[WeaverTitanProperty("v.id", TitanIndex=true, TitanElasticIndex=false)]
+		[WeaverTitanProperty("v_id", TitanIndex=true, TitanElasticIndex=false)]
 		public virtual long VertexId { get; set; }
 		
-		[WeaverTitanProperty("v.ts", TitanIndex=false, TitanElasticIndex=true)]
+		[WeaverTitanProperty("v_ts", TitanIndex=false, TitanElasticIndex=true)]
 		public virtual long Timestamp { get; set; }
 		
-		[WeaverTitanProperty("v.t", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("v_t", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte VertexType { get; set; }
 		
 		
@@ -533,9 +533,9 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			VertexId = TryGetLong(pData, "v.id");
-			Timestamp = TryGetLong(pData, "v.ts");
-			VertexType = TryGetByte(pData, "v.t");
+			VertexId = TryGetLong(pData, "v_id");
+			Timestamp = TryGetLong(pData, "v_ts");
+			VertexType = TryGetByte(pData, "v_t");
 		}
 
 	}

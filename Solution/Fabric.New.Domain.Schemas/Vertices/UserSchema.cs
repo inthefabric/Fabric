@@ -27,17 +27,17 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Name = new DomainProperty<string>("Name", "u.na");
+			Name = new DomainProperty<string>("Name", "u_na");
 			Name.IsUnique = true;
 			Name.IsElastic = true;
 
-			NameKey = new DomainProperty<string>("NameKey", "u.nk");
+			NameKey = new DomainProperty<string>("NameKey", "u_nk");
 			NameKey.EnforceUnique = true;
 			NameKey.ToLowerCase = true;
 			NameKey.IsIndexed = true;
 			Name.ExactIndexVia = NameKey;
 
-			Password = new DomainProperty<string>("Password", "u.pa");
+			Password = new DomainProperty<string>("Password", "u_pa");
 
 			////
 

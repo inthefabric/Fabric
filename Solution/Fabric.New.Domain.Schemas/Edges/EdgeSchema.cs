@@ -166,14 +166,14 @@ namespace Fabric.New.Domain.Schemas.Edges {
 						string pName, string pDbName, Func<TTo, DomainProperty<TDataType>> pDomPropFunc,
 						Func<TTo, ApiProperty<TApiDataType>> pApiPropFunc) {
 			return new EdgeProperty<TTo, TDataType, TApiDataType>(
-				pName, NameDb+"."+pDbName, pDomPropFunc, pApiPropFunc);
+				pName, NameDb+"_"+pDbName, pDomPropFunc, pApiPropFunc);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected EdgeProperty<TTo, TEdge, long, long> PropFromEdge<TEdge>(string pName, string pDbName)
 																			where TEdge : EdgeSchema {
 			return new EdgeProperty<TTo, TEdge, long, long>(
-				pName, NameDb+"."+pDbName, (x => x.ToVertexId), (x => x.FabToVertexId));
+				pName, NameDb+"_"+pDbName, (x => x.ToVertexId), (x => x.FabToVertexId));
 		}
 
 	}

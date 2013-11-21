@@ -27,110 +27,110 @@ namespace Fabric.New.Domain.Names {
 			/*----------------------------------------------------------------------------------------*/
 			public static class App {
 
-				public const string Name = "p.na";
-				public const string NameKey = "p.nk";
-				public const string Secret = "p.se";
-				public const string OauthDomains = "p.od";
+				public const string Name = "p_na";
+				public const string NameKey = "p_nk";
+				public const string Secret = "p_se";
+				public const string OauthDomains = "p_od";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class Class {
 
-				public const string Name = "c.na";
-				public const string NameKey = "c.nk";
-				public const string Disamb = "c.di";
-				public const string Note = "c.no";
+				public const string Name = "c_na";
+				public const string NameKey = "c_nk";
+				public const string Disamb = "c_di";
+				public const string Note = "c_no";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class Email {
 
-				public const string Address = "e.ad";
-				public const string Code = "e.co";
-				public const string Verified = "e.ve";
+				public const string Address = "e_ad";
+				public const string Code = "e_co";
+				public const string Verified = "e_ve";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class Factor {
 
-				public const string AssertionType = "f.at";
-				public const string IsDefining = "f.de";
-				public const string Note = "f.no";
-				public const string DescriptorType = "f.det";
-				public const string DirectorType = "f.dit";
-				public const string DirectorPrimaryAction = "f.dip";
-				public const string DirectorRelatedAction = "f.dir";
-				public const string EventorType = "f.evt";
-				public const string EventorDateTime = "f.evd";
-				public const string IdentorType = "f.idt";
-				public const string IdentorValue = "f.idv";
-				public const string LocatorType = "f.lot";
-				public const string LocatorValueX = "f.lox";
-				public const string LocatorValueY = "f.loy";
-				public const string LocatorValueZ = "f.loz";
-				public const string VectorType = "f.vet";
-				public const string VectorUnit = "f.veu";
-				public const string VectorUnitPrefix = "f.vep";
-				public const string VectorValue = "f.vev";
+				public const string AssertionType = "f_at";
+				public const string IsDefining = "f_de";
+				public const string Note = "f_no";
+				public const string DescriptorType = "f_det";
+				public const string DirectorType = "f_dit";
+				public const string DirectorPrimaryAction = "f_dip";
+				public const string DirectorRelatedAction = "f_dir";
+				public const string EventorType = "f_evt";
+				public const string EventorDateTime = "f_evd";
+				public const string IdentorType = "f_idt";
+				public const string IdentorValue = "f_idv";
+				public const string LocatorType = "f_lot";
+				public const string LocatorValueX = "f_lox";
+				public const string LocatorValueY = "f_loy";
+				public const string LocatorValueZ = "f_loz";
+				public const string VectorType = "f_vet";
+				public const string VectorUnit = "f_veu";
+				public const string VectorUnitPrefix = "f_vep";
+				public const string VectorValue = "f_vev";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class Instance {
 
-				public const string Name = "i.na";
-				public const string Disamb = "i.di";
-				public const string Note = "i.no";
+				public const string Name = "i_na";
+				public const string Disamb = "i_di";
+				public const string Note = "i_no";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class Member {
 
-				public const string MemberType = "m.at";
-				public const string OauthScopeAllow = "m.osa";
-				public const string OauthGrantRedirectUri = "m.ogr";
-				public const string OauthGrantCode = "m.ogc";
-				public const string OauthGrantExpires = "m.oge";
+				public const string MemberType = "m_at";
+				public const string OauthScopeAllow = "m_osa";
+				public const string OauthGrantRedirectUri = "m_ogr";
+				public const string OauthGrantCode = "m_ogc";
+				public const string OauthGrantExpires = "m_oge";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class OauthAccess {
 
-				public const string Token = "oa.to";
-				public const string Refresh = "oa.re";
-				public const string Expires = "oa.ex";
-				public const string IsDataProv = "oa.dp";
+				public const string Token = "oa_to";
+				public const string Refresh = "oa_re";
+				public const string Expires = "oa_ex";
+				public const string IsDataProv = "oa_dp";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class Url {
 
-				public const string Name = "r.na";
-				public const string FullPath = "r.fp";
+				public const string Name = "r_na";
+				public const string FullPath = "r_fp";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class User {
 
-				public const string Name = "u.na";
-				public const string NameKey = "u.nk";
-				public const string Password = "u.pa";
+				public const string Name = "u_na";
+				public const string NameKey = "u_nk";
+				public const string Password = "u_pa";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class Vertex {
 
-				public const string VertexId = "v.id";
-				public const string Timestamp = "v.ts";
-				public const string VertexType = "v.t";
+				public const string VertexId = "v_id";
+				public const string Timestamp = "v_ts";
+				public const string VertexType = "v_t";
 
 			}
 

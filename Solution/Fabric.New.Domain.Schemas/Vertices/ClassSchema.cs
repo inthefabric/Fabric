@@ -31,18 +31,18 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Name = new DomainProperty<string>("Name", "c.na");
+			Name = new DomainProperty<string>("Name", "c_na");
 			Name.IsElastic = true;
 
-			NameKey = new DomainProperty<string>("NameKey", "c.nk");
+			NameKey = new DomainProperty<string>("NameKey", "c_nk");
 			NameKey.ToLowerCase = true;
 			NameKey.IsIndexed = true;
 
-			Disamb = new DomainProperty<string>("Disamb", "c.di");
+			Disamb = new DomainProperty<string>("Disamb", "c_di");
 			Disamb.IsNullable = true;
 			Disamb.IsElastic = true;
 
-			Note = new DomainProperty<string>("Note", "c.no");
+			Note = new DomainProperty<string>("Note", "c_no");
 			Note.IsNullable = true;
 
 			////

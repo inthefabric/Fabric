@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Weaver.Core.Query;
+﻿using Weaver.Core.Query;
 
 namespace Fabric.New.Database.Init.Setups {
 
@@ -31,19 +29,15 @@ namespace Fabric.New.Database.Init.Setups {
 			Desc
 		}
 
-		private readonly Func<string, string> vNameToVar;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SetupIndexes(DataSet pData) : base(pData) {
-			vNameToVar = (x => x.Replace('.', '_'));
-		}
+		public SetupIndexes(DataSet pData) : base(pData) {}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddProp(Elem pElem, string pName, string pType, Index pIndex, bool pUnique) {
 			IWeaverQuery q = new WeaverQuery();
-			string s = vNameToVar(pName)+" = g.makeKey('"+pName+"').dataType("+pType+".class)";
+			string s = pName+" = g.makeKey('"+pName+"').dataType("+pType+".class)";
 
 			if ( pIndex == Index.Standard || pIndex == Index.Both ) {
 				s += ".indexed("+pElem+".class)";
@@ -74,7 +68,7 @@ namespace Fabric.New.Database.Init.Setups {
 				"(TypeMaker.UniquenessConsistency.NO_LOCK)";*/
 
 			if ( pSort.Length > 0 ) {
-				s += ".sortKey("+string.Join(",", pSort.Select(vNameToVar))+")";
+				s += ".sortKey("+string.Join(",", pSort)+")";
 
 				if ( pOrder != Sort.None ) {
 					//TODO: this isn't present in Titan 0.4, but is present on 'master' branch
@@ -83,7 +77,7 @@ namespace Fabric.New.Database.Init.Setups {
 			}
 
 			if ( pSig.Length > 0 ) {
-				s += ".signature("+string.Join(",", pSig.Select(vNameToVar))+")";
+				s += ".signature("+string.Join(",", pSig)+")";
 			}
 
 			q.FinalizeQuery(s+".make()");

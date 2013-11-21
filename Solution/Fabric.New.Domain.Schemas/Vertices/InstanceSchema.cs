@@ -30,15 +30,15 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			Name = new DomainProperty<string>("Name", "i.na");
+			Name = new DomainProperty<string>("Name", "i_na");
 			Name.IsNullable = true;
 			Name.IsElastic = true;
 
-			Disamb = new DomainProperty<string>("Disamb", "i.di");
+			Disamb = new DomainProperty<string>("Disamb", "i_di");
 			Disamb.IsNullable = true;
 			Disamb.IsElastic = true;
 
-			Note = new DomainProperty<string>("Note", "i.no");
+			Note = new DomainProperty<string>("Note", "i_no");
 			Note.IsNullable = true;
 
 			////

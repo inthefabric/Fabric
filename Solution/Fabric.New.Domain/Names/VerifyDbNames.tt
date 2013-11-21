@@ -36,10 +36,10 @@ foreach ( IVertexSchema v in verts ) {
 #>
 <#= dp.DbName #> (<#= dp.Name #>)
 <#
-		int dotI = dp.DbName.IndexOf(".");
+		int dotI = dp.DbName.IndexOf("_");
 
 		if ( dotI == -1 ) {
-			throw new Exception("Property missing dot: "+dp.DbName);
+			throw new Exception("Property missing underscore: "+dp.DbName);
 		}
 
 		if ( dp.DbName.Substring(0, dotI) != v.Names.Database ) {
@@ -79,10 +79,10 @@ foreach ( IEdgeSchema e in edges ) {
 #>
 <#= ep.DbName #> (<#= e.NameDom #>.<#= ep.Name #>)
 <#
-		int dotI = ep.DbName.IndexOf(".");
+		int dotI = ep.DbName.IndexOf("_");
 
 		if ( dotI == -1 ) {
-			throw new Exception("Property missing dot: "+ep.DbName);
+			throw new Exception("Property missing underscore: "+ep.DbName);
 		}
 
 		if ( ep.DbName.Substring(0, dotI) != e.NameDb ) {

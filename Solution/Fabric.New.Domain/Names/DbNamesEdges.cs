@@ -36,61 +36,61 @@ namespace Fabric.New.Domain.Names {
 			/*----------------------------------------------------------------------------------------*/
 			public static class AppDefinesMember {
 
-				public const string Timestamp = "pdm.ts";
-				public const string MemberType = "pdm.mt";
-				public const string UserId = "pdm.ui";
+				public const string Timestamp = "pdm_ts";
+				public const string MemberType = "pdm_mt";
+				public const string UserId = "pdm_ui";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class ArtifactUsedAsPrimaryByFactor {
 
-				public const string Timestamp = "apbf.ts";
-				public const string DescriptorType = "apbf.dt";
-				public const string RelatedArtifactId = "apbf.ra";
+				public const string Timestamp = "apbf_ts";
+				public const string DescriptorType = "apbf_dt";
+				public const string RelatedArtifactId = "apbf_ra";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class ArtifactUsedAsRelatedByFactor {
 
-				public const string Timestamp = "arbf.ts";
-				public const string DescriptorType = "arbf.dt";
-				public const string PrimaryArtifactId = "arbf.pa";
+				public const string Timestamp = "arbf_ts";
+				public const string DescriptorType = "arbf_dt";
+				public const string PrimaryArtifactId = "arbf_pa";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class MemberAuthenticatedByOauthAccess {
 
-				public const string Timestamp = "maboa.ts";
+				public const string Timestamp = "maboa_ts";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class MemberCreatesArtifact {
 
-				public const string Timestamp = "mca.ts";
-				public const string VertexType = "mca.vt";
+				public const string Timestamp = "mca_ts";
+				public const string VertexType = "mca_vt";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class MemberCreatesFactor {
 
-				public const string Timestamp = "mcf.ts";
-				public const string DescriptorType = "mcf.dt";
-				public const string PrimaryArtifactId = "mcf.pa";
-				public const string RelatedArtifactId = "mcf.ra";
+				public const string Timestamp = "mcf_ts";
+				public const string DescriptorType = "mcf_dt";
+				public const string PrimaryArtifactId = "mcf_pa";
+				public const string RelatedArtifactId = "mcf_ra";
 
 			}
 
 			/*----------------------------------------------------------------------------------------*/
 			public static class UserDefinesMember {
 
-				public const string Timestamp = "udm.ts";
-				public const string MemberType = "udm.mt";
-				public const string AppId = "udm.pi";
+				public const string Timestamp = "udm_ts";
+				public const string MemberType = "udm_mt";
+				public const string AppId = "udm_pi";
 
 			}
 
