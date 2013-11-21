@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using Fabric.New.Database.Init;
+using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Util;
 using Weaver.Core.Query;
 
@@ -119,81 +119,30 @@ namespace Fabric.New.Operations.Internal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendVertexTx() {
-			int count = 0;
+			int count = vDataSet.Vertices.Count;
 
-			while ( true ) {
-				var tx = new WeaverTransaction();
-				string listScript = "";
-				int start = count;
-				int limit = 1;
-				Log.Debug("Vertex "+start+" / "+vDataSet.Vertices.Count);
+			for ( int i = 0 ; i < count ; i++ ) {
+				IDataVertex n = vDataSet.Vertices[i];
+				Log.Debug("Vertex "+i+"/"+count+": "+DataUtil.WeaverQueryToJson(n.AddQuery));
 
-				for ( int i = start ; i < vDataSet.Vertices.Count ; ++i ) {
-					if ( --limit < 0 ) {
-						break;
-					}
+				Vertex v = vOpCtx
+					.Execute(n.AddQuery, "InitDb-AddVert")
+					.ToElementAt<Vertex>(0, 0);
 
-					IDataVertex n = vDataSet.Vertices[i];
-					IWeaverVarAlias vertexVar;
-					count++;
-
-					Log.Debug(DataUtil.WeaverQueryToJson(n.AddQuery));
-					tx.AddQuery(WeaverQuery.StoreResultAsVar("vertex", n.AddQuery, out vertexVar));
-					listScript += vertexVar.Name+".id,";
-				}
-
-				var listQ = new WeaverQuery();
-				listQ.FinalizeQuery("["+listScript.Substring(0, listScript.Length-1)+"]");
-				tx.AddQuery(listQ);
-
-				tx.Finish();
-				IDataResult result = vOpCtx.Execute(tx, "InitDb-AddVert");
-
-				for ( int i = 0 ; i < result.GetCommandResultCount() ; ++i ) {
-					string idStr = result.ToStringAt(0, i);
-
-					if ( idStr == null ) {
-						throw new Exception("Vertex is null at index "+i+".");
-					}
-
-					vDataSet.Vertices[start+i].Vertex.Id = idStr;
-				}
-
-				if ( count >= vDataSet.Vertices.Count ) {
-					break;
-				}
+				n.Vertex.Id = v.Id;
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendEdgeTx() {
-			int count = 0;
+			int count = vDataSet.Edges.Count;
 
-			while ( true ) {
-				var tx = new WeaverTransaction();
-				int limit = 10;
-				Log.Debug("Edge "+count+" / "+vDataSet.Edges.Count);
-
-				for ( int i = count ; i < vDataSet.Edges.Count ; ++i ) {
-					if ( --limit < 0 ) {
-						break;
-					}
-
-					IWeaverQuery q = vDataSet.Edges[i].AddQuery;
-					Log.Debug(DataUtil.WeaverQueryToJson(q));
-					tx.AddQuery(q);
-					count++;
-				}
-
-				tx.Finish();
-				vOpCtx.Execute(tx, "InitDb-AddEdge");
-
-				if ( count >= vDataSet.Edges.Count ) {
-					break;
-				}
+			for ( int i = 0 ; i < count ; i++ ) {
+				IDataEdge t = vDataSet.Edges[i];
+				Log.Debug("Edge "+i+"/"+count+": "+DataUtil.WeaverQueryToJson(t.AddQuery));
+				vOpCtx.Execute(t.AddQuery, "InitDb-AddEdge");
 			}
 		}
-
 	}
 
 }

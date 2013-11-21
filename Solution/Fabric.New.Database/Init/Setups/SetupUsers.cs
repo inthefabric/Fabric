@@ -142,6 +142,8 @@ namespace Fabric.New.Database.Init.Setups {
 			var m = new Member();
 			m.MemberType = (byte)pMemTypeId;
 			AddVertex(m, (SetupVertexId)(long)pId);
+
+			//TODO: setup "reverse" edges for ALL types
 			AddEdge(Data.GetVertex<App>((long)pSetupAppId), new AppDefinesMember(), m);
 			AddEdge(Data.GetVertex<User>((long)pSetupUserId), new UserDefinesMember(), m);
 		}

@@ -51,7 +51,7 @@ namespace Fabric.New.Infrastructure.Data {
 
 			if ( Properties.ContainsKey(DbName.Vert.Vertex.VertexType) ) {
 				byte ft = byte.Parse(Properties[DbName.Vert.Vertex.VertexType]);
-				Class = Enum.ToObject(typeof(VertexType), ft)+"";
+				Class = Enum.ToObject(typeof(VertexType.Id), ft)+"";
 				return;
 			}
 			
