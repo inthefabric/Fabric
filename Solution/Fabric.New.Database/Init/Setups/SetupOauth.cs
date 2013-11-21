@@ -1,5 +1,6 @@
 ﻿using System;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Util;
 
 namespace Fabric.New.Database.Init.Setups {
 
@@ -106,7 +107,7 @@ namespace Fabric.New.Database.Init.Setups {
 			var oa = new OauthAccess();
 			oa.Expires = new DateTime(Data.NowTimestamp).AddMinutes(pMins).Ticks;
 			oa.Token = pToken;
-			oa.Refresh = (pRefresh ?? new Guid().ToString("N"));
+			oa.Refresh = (pRefresh ?? DataUtil.Code32);
 			oa.IsDataProv = (
 				pMemId == SetupMemberId.FabFabData ||
 				pMemId == SetupMemberId.GalGalData ||

@@ -1,17 +1,12 @@
 ﻿using System;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Util;
 
 namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class DomainToApi {
-		
-		internal const int SecPerMin = (60+1);
-		internal const int SecPerHour = SecPerMin*(60+1);
-		internal const int SecPerDay = SecPerHour*(24+1);
-		internal const int SecPerMonth = SecPerDay*(31+1);
-		internal const int SecPerYear = SecPerMonth*(12+1); //38,698,400 sec; +/- 238 billion years
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,30 +46,16 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromFactorFillEventorDateTime(FabFactor pApi, long pDateTime) {
-			long mod = pDateTime%SecPerYear;
-			long dt = mod;
+			long y;
+			byte? mo, d, h, min, s;
+			DataUtil.EventorLongToTimes(pDateTime, out y, out mo, out d, out h, out min, out s);
 
-			pApi.Eventor.Year = (pDateTime-mod)/SecPerYear;
-			pApi.Eventor.Month = EventorExtractTime(dt, SecPerMonth, 0, out dt);
-			pApi.Eventor.Day = EventorExtractTime(dt, SecPerDay, 0, out dt);
-			pApi.Eventor.Hour = EventorExtractTime(dt, SecPerHour, -1, out dt);
-			pApi.Eventor.Minute = EventorExtractTime(dt, SecPerMin, -1, out dt);
-			pApi.Eventor.Second = (dt == 0 ? null : (byte?)(dt-1));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static byte? EventorExtractTime(long pDateTime, int pSecs, int pOffset,
-																				out long pNewDateTime) {
-			long mod = pDateTime%pSecs;
-			pNewDateTime = mod;
-			long diff = (pDateTime-mod);
-
-			if ( diff == 0 ) {
-				return null;
-			}
-
-			byte val = (byte)(diff/pSecs);
-			return (byte?)(val+pOffset);
+			pApi.Eventor.Year = y;
+			pApi.Eventor.Month = mo;
+			pApi.Eventor.Day = d;
+			pApi.Eventor.Hour = h;
+			pApi.Eventor.Minute = min;
+			pApi.Eventor.Second = s;
 		}
 		
 

@@ -96,7 +96,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WebResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Internal\Status\StatusController.cs" />
     <Compile Include="MetaModule.cs" />
     <Compile Include="ModifyModule.cs" />
     <Compile Include="Services\MetaController.cs" />
@@ -119,7 +118,6 @@
     <Compile Include="Services\Views\LoginScopeView.cs" />
     <Compile Include="Services\OauthLoginController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Internal\Setups\SetupController.cs" />
     <Compile Include="Util\NancyUtil.cs" />
     <Compile Include="Util\HtmlUtil.cs" />
     <Compile Include="Common\Controller.cs" />

@@ -98,9 +98,9 @@ namespace Fabric.New.Database.Init.Setups {
 		private void CreateEdges() {
 
 			//AppDefinesMember
-			AddProp(Elem.Edge, "pdm.ts", "long", Index.None, false);
-			AddProp(Elem.Edge, "pdm.mt", "byte", Index.None, false);
-			AddProp(Elem.Edge, "pdm.ui", "long", Index.None, false);
+			AddProp(Elem.Edge, "pdm.ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "pdm.mt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "pdm.ui", "Long", Index.None, false);
 			AddEdge("pdm", Cardin.OneToMany, Sort.Desc,
 				new[] {"pdm.ts", "pdm.mt", "pdm.ui"},
 				new[] {"p.na","p.nk","p.se","p.od"}
@@ -113,18 +113,18 @@ namespace Fabric.New.Database.Init.Setups {
 			);
 
 			//ArtifactUsedAsPrimaryByFactor
-			AddProp(Elem.Edge, "apbf.ts", "long", Index.None, false);
-			AddProp(Elem.Edge, "apbf.dt", "byte", Index.None, false);
-			AddProp(Elem.Edge, "apbf.ra", "long", Index.None, false);
+			AddProp(Elem.Edge, "apbf.ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "apbf.dt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "apbf.ra", "Long", Index.None, false);
 			AddEdge("apbf", Cardin.OneToMany, Sort.Desc,
 				new[] {"apbf.ts", "apbf.dt", "apbf.ra"},
 				new string[0]
 			);
 
 			//ArtifactUsedAsRelatedByFactor
-			AddProp(Elem.Edge, "arbf.ts", "long", Index.None, false);
-			AddProp(Elem.Edge, "arbf.dt", "byte", Index.None, false);
-			AddProp(Elem.Edge, "arbf.pa", "long", Index.None, false);
+			AddProp(Elem.Edge, "arbf.ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "arbf.dt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "arbf.pa", "Long", Index.None, false);
 			AddEdge("arbf", Cardin.OneToMany, Sort.Desc,
 				new[] {"arbf.ts", "arbf.dt", "arbf.pa"},
 				new string[0]
@@ -185,25 +185,25 @@ namespace Fabric.New.Database.Init.Setups {
 			);
 
 			//MemberAuthenticatedByOauthAccess
-			AddProp(Elem.Edge, "maboa.ts", "long", Index.None, false);
+			AddProp(Elem.Edge, "maboa.ts", "Long", Index.None, false);
 			AddEdge("maboa", Cardin.OneToMany, Sort.Desc,
 				new[] {"maboa.ts"},
 				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
 			);
 
 			//MemberCreatesArtifact
-			AddProp(Elem.Edge, "mca.ts", "long", Index.None, false);
-			AddProp(Elem.Edge, "mca.vt", "byte", Index.None, false);
+			AddProp(Elem.Edge, "mca.ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "mca.vt", "Byte", Index.None, false);
 			AddEdge("mca", Cardin.OneToMany, Sort.Desc,
 				new[] {"mca.ts", "mca.vt"},
 				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
 			);
 
 			//MemberCreatesFactor
-			AddProp(Elem.Edge, "mcf.ts", "long", Index.None, false);
-			AddProp(Elem.Edge, "mcf.dt", "byte", Index.None, false);
-			AddProp(Elem.Edge, "mcf.pa", "long", Index.None, false);
-			AddProp(Elem.Edge, "mcf.ra", "long", Index.None, false);
+			AddProp(Elem.Edge, "mcf.ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "mcf.dt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "mcf.pa", "Long", Index.None, false);
+			AddProp(Elem.Edge, "mcf.ra", "Long", Index.None, false);
 			AddEdge("mcf", Cardin.OneToMany, Sort.Desc,
 				new[] {"mcf.ts", "mcf.dt", "mcf.pa", "mcf.ra"},
 				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
@@ -228,9 +228,9 @@ namespace Fabric.New.Database.Init.Setups {
 			);
 
 			//UserDefinesMember
-			AddProp(Elem.Edge, "udm.ts", "long", Index.None, false);
-			AddProp(Elem.Edge, "udm.mt", "byte", Index.None, false);
-			AddProp(Elem.Edge, "udm.pi", "long", Index.None, false);
+			AddProp(Elem.Edge, "udm.ts", "Long", Index.None, false);
+			AddProp(Elem.Edge, "udm.mt", "Byte", Index.None, false);
+			AddProp(Elem.Edge, "udm.pi", "Long", Index.None, false);
 			AddEdge("udm", Cardin.OneToMany, Sort.Desc,
 				new[] {"udm.ts", "udm.mt", "udm.pi"},
 				new[] {"u.na","u.nk","u.pa"}

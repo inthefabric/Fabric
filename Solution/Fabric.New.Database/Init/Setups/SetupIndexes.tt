@@ -76,14 +76,10 @@ foreach ( IEdgeSchema e in edges ) {
 	var sort = new List<string>();
 	var sig = new List<string>();
 
-	//TODO: investigate signature() more closely:
-	//https://github.com/thinkaurelius/titan/wiki/Type-Definition-Overview
-	//Probably supposed to use the outgoing VERTEX properties here
-
 	foreach ( EdgeProperty ep in edgeProps ) {
 		sort.Insert((int)ep.SortIndex, ep.DbName);
 #>
-			AddProp(Elem.Edge, "<#= ep.DbName #>", "<#= ep.GetDataTypeName() #>", Index.None, false);
+			AddProp(Elem.Edge, "<#= ep.DbName #>", "<#= ep.GetTitanTypeName() #>", Index.None, false);
 <#
 	} // end edge property loop
 

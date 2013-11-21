@@ -110,6 +110,7 @@
     <Compile Include="Spec\SpecOptionalAttribute.cs" />
     <Compile Include="Spec\SpecLenAttribute.cs" />
     <Compile Include="Util\AuthUtil.cs" />
+    <Compile Include="Util\DataUtil.cs" />
     <Compile Include="Util\EncryptUtil.cs" />
   </ItemGroup>
   <ItemGroup>

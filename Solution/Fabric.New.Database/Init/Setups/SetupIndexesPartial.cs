@@ -43,8 +43,7 @@ namespace Fabric.New.Database.Init.Setups {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddProp(Elem pElem, string pName, string pType, Index pIndex, bool pUnique) {
 			IWeaverQuery q = new WeaverQuery();
-			string s = "TitanKey "+vNameToVar(pName)+" = "+
-				"g.makeKey('"+pName+"').dataType("+pType+".class)";
+			string s = vNameToVar(pName)+" = g.makeKey('"+pName+"').dataType("+pType+".class)";
 
 			if ( pIndex == Index.Standard || pIndex == Index.Both ) {
 				s += ".indexed("+pElem+".class)";
@@ -69,21 +68,17 @@ namespace Fabric.New.Database.Init.Setups {
 			IWeaverQuery q = new WeaverQuery();
 			string s = "g.makeLabel('"+pLabel+"').unidirected()";
 
-			switch ( pCard ) {
-				case Cardin.OneToOne:
-					s += ".oneToOne(UniquenessConsistency.NO_LOCK)";
-					break;
-
-				case Cardin.OneToMany:
-					s += ".oneToMany(UniquenessConsistency.NO_LOCK)";
-					break;
-			}
+			//Unidirectional labels cannot be unique or static
+			/*string card = pCard+"";
+			s += "."+card.Substring(0,1).ToLower()+card.Substring(1)+
+				"(TypeMaker.UniquenessConsistency.NO_LOCK)";*/
 
 			if ( pSort.Length > 0 ) {
 				s += ".sortKey("+string.Join(",", pSort.Select(vNameToVar))+")";
 
 				if ( pOrder != Sort.None ) {
-					s += ".sortOrder(Order."+(pOrder+"").ToUpper()+")";
+					//TODO: this isn't present in Titan 0.4, but is present on 'master' branch
+					//s += ".sortOrder(Order."+(pOrder+"").ToUpper()+")";
 				}
 			}
 

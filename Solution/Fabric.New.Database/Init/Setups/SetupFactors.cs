@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Infrastructure.Util;
 
 namespace Fabric.New.Database.Init.Setups {
 
@@ -700,8 +701,7 @@ namespace Fabric.New.Database.Init.Setups {
 			var e = new Eventor();
 			e.EventorId = ++vIdCount;
 			e.Type = (byte)pTypeId;
-			//TODO: set Eventor DateTime
-			//e.DateTime = FabricUtil.EventorTimesToLong(pYear, pMonth, pDay, pHour, pMinute, pSecond);
+			e.DateTime = DataUtil.EventorTimesToLong(pYear, pMonth, pDay, pHour, pMinute, pSecond);
 			EveMap.Add(e.EventorId, e);
 		}
 

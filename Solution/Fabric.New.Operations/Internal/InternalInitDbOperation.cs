@@ -1,56 +1,94 @@
 ﻿using System;
 using System.Diagnostics;
-using Fabric.Api.Common;
-using Fabric.Db.Data;
-using Fabric.Db.Data.Setups;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Data;
-using Nancy;
+using Fabric.New.Database.Init;
+using Fabric.New.Infrastructure.Broadcast;
+using Fabric.New.Infrastructure.Data;
+using Fabric.New.Infrastructure.Util;
 using Weaver.Core.Query;
 
-namespace Fabric.Api.Internal.Setups {
+namespace Fabric.New.Operations.Internal {
 
 	/*================================================================================================*/
-	public class SetupController : Controller {
+	public class InternalInitDbOperation : IInternalOperation {
 
+		private static readonly Logger Log = Logger.Build<InternalInitDbOperation>();
+
+		private IOperationContext vOpCtx { get; set; }
 		private DataSet vDataSet;
+		private object vResult;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public SetupController(Request pRequest, IApiContext pApiCtx) : base(pRequest, pApiCtx) {}
+		public void Perform(IOperationContext pOpCtx, string pPass) {
+			vOpCtx = pOpCtx;
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected override Response BuildResponse() {
+			if ( pPass != "build-0.3.0" ) {
+				vResult = new {
+					Error = "Password required."
+				};
+
+				return;
+			}
+
+			var sw = new Stopwatch();
+			sw.Start();
+
 			try {
-				if ( NancyReq.Query["pass"] != "build-0.2.3" ) {
-					return "Password required.";
-				}
-
-				var sw = new Stopwatch();
-				sw.Start();
-
 #if DEBUG
 				vDataSet = Setup.SetupAll(true);
 #else
 				vDataSet = Setup.SetupAll(false);
 #endif
+				//PrintAllQueries();
 				//SendSetupTx();
 				SendIndexTx();
 				SendVertexTx();
 				SendEdgeTx();
 
-				return "success: "+sw.ElapsedMilliseconds/1000.0+"sec";
+				vResult = new {
+					Success = true,
+					Seconds = sw.ElapsedMilliseconds/1000.0
+				};
 			}
 			catch ( Exception ex ) {
-				Log.Error("error", ex);
-				return "error: "+ex.Message;
+				Log.Error("Error", ex);
+				
+				vResult = new {
+					Error = ex.Message
+				};
 			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public object GetResult() {
+			return vResult;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------* /
+		private void PrintAllQueries() {
+			int vi = 0;
+
+			foreach ( WeaverQuery q in vDataSet.Initialization ) {
+				Log.Debug(DataUtil.WeaverQueryToJson(q));
+			}
+
+			foreach ( WeaverQuery q in vDataSet.Indexes ) {
+				Log.Debug(DataUtil.WeaverQueryToJson(q));
+			}
+
+			foreach ( IDataVertex n in vDataSet.Vertices ) {
+				Log.Debug(DataUtil.WeaverQueryToJson(n.AddQuery));
+				n.Vertex.Id = (vi++)+"";
+			}
+
+			foreach ( IDataEdge r in vDataSet.Edges ) {
+				Log.Debug(DataUtil.WeaverQueryToJson(r.AddQuery));
+			}
+		}
+		
 		/*--------------------------------------------------------------------------------------------* /
 		private void SendSetupTx() {
 			Log.Debug("Remove all verts");
@@ -61,21 +99,22 @@ namespace Fabric.Api.Internal.Setups {
 			}
 
 			tx.Finish();
-			ApiCtx.Execute(tx);
+			OpCtx.Execute(tx);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
 			Log.Debug("Create Indexes...");
-			string sessId = ApiCtx.NewData().AddSessionStart()
-				.Execute("SetupCtrl-StartIndexSession").GetSessionId();
+			string sessId = vOpCtx.NewData().AddSessionStart()
+				.Execute("InitDb-StartIndexSession").GetSessionId();
 
 			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
-				ApiCtx.NewData(sessId).AddQuery(q).Execute("SetupCtrl-AddIndex");
+				Log.Debug(DataUtil.WeaverQueryToJson(q));
+				vOpCtx.NewData(sessId).AddQuery(q).Execute("InitDb-AddIndex");
 			}
 
-			ApiCtx.NewData(sessId).AddSessionCommit().AddSessionClose()
-				.Execute("SetupCtrl-CloseIndexSession");
+			vOpCtx.NewData(sessId).AddSessionCommit().AddSessionClose()
+				.Execute("InitDb-CloseIndexSession");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -98,6 +137,7 @@ namespace Fabric.Api.Internal.Setups {
 					IWeaverVarAlias vertexVar;
 					count++;
 
+					Log.Debug(DataUtil.WeaverQueryToJson(n.AddQuery));
 					tx.AddQuery(WeaverQuery.StoreResultAsVar("vertex", n.AddQuery, out vertexVar));
 					listScript += vertexVar.Name+".id,";
 				}
@@ -107,7 +147,7 @@ namespace Fabric.Api.Internal.Setups {
 				tx.AddQuery(listQ);
 
 				tx.Finish();
-				IDataResult result = ApiCtx.Execute(tx, "SetupCtrl-AddVert");
+				IDataResult result = vOpCtx.Execute(tx, "InitDb-AddVert");
 
 				for ( int i = 0 ; i < result.GetCommandResultCount() ; ++i ) {
 					string idStr = result.ToStringAt(0, i);
@@ -139,12 +179,14 @@ namespace Fabric.Api.Internal.Setups {
 						break;
 					}
 
-					tx.AddQuery(vDataSet.Edges[i].AddQuery);
+					IWeaverQuery q = vDataSet.Edges[i].AddQuery;
+					Log.Debug(DataUtil.WeaverQueryToJson(q));
+					tx.AddQuery(q);
 					count++;
 				}
 
 				tx.Finish();
-				ApiCtx.Execute(tx, "SetupCtrl-AddEdge");
+				vOpCtx.Execute(tx, "InitDb-AddEdge");
 
 				if ( count >= vDataSet.Edges.Count ) {
 					break;

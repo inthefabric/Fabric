@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Infrastructure.Util;
 
 namespace Fabric.New.Database.Init.Setups {
 
@@ -130,7 +131,7 @@ namespace Fabric.New.Database.Init.Setups {
 		private void AddEmail(SetupEmailId pId, string pAddress) {
 			var e = new Email();
 			e.Address = pAddress;
-			e.Code = new Guid().ToString("N");
+			e.Code = DataUtil.Code32;
 			e.Verified = true;
 			AddVertex(e, (SetupVertexId)(long)pId);
 		}
@@ -160,7 +161,7 @@ namespace Fabric.New.Database.Init.Setups {
 			var u = new User();
 			u.Name = pName;
 			u.NameKey = pName.ToLower();
-			//u.Password = FabricUtil.HashPassword(pPass); //TODO: hash password
+			u.Password = DataUtil.HashPassword(pPass);
 			AddArtifact(u, (SetupArtifactId)(long)pId);
 			AddEdge(u, new ArtifactUsesEmail(), Data.GetVertex<Email>((long)pSetupEmailId));
 		}

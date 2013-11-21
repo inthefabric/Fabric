@@ -61,6 +61,11 @@ namespace Fabric.New.Domain.Schemas.Utils {
 			}
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetTitanTypeName() {
+			return DomainProperty.GetTitanTypeName(DataType);
+		}
+
 	}
 
 

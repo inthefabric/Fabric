@@ -5,6 +5,7 @@ using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Cache;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
+using Fabric.New.Infrastructure.Util;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 
@@ -58,7 +59,7 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual string Code32 {
-			get { return Guid.NewGuid().ToString("N"); }
+			get { return DataUtil.Code32; }
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -77,6 +78,7 @@ namespace Fabric.New.Operations {
 			var da = new DataAccess();
 			da.Build(dc);
 			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute, OnDataPostExecuteError);
+			da.SetLoggingHook(OnLog);
 			return da;
 		}
 		
@@ -112,6 +114,11 @@ namespace Fabric.New.Operations {
 			string key = "apictx."+pAccess.ExecuteName;
 			Metrics.Counter(key, 1);
 			Metrics.Counter(key+".err", 1);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void OnLog(IDataAccess pAccess, string pName, string pText) {
+			Log.Debug(ContextId.ToString("N"), pName, pText);
 		}
 
 

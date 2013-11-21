@@ -84,7 +84,12 @@ namespace Fabric.New.Domain.Schemas.Utils {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string GetTitanTypeName() {
-			switch ( DataType.Name ) {
+			return GetTitanTypeName(DataType);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static string GetTitanTypeName(Type pType) {
+			switch ( pType.Name ) {
 				case "Boolean":
 					return "Boolean";
 
@@ -105,7 +110,7 @@ namespace Fabric.New.Domain.Schemas.Utils {
 					return "Double";
 
 				default:
-					return DataType.Name;
+					return pType.Name;
 			}
 		}
 

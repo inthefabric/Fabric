@@ -78,6 +78,8 @@
     <Compile Include="ApiSpec.cs" />
     <Compile Include="ApiLang.cs" />
     <None Include="LatestSpec.json" />
+    <Compile Include="Executors\InternalExecutors.cs" />
+    <Compile Include="Executors\InternalExecutor.cs" />
     <Compile Include="Executors\MetaExecutor.cs" />
     <Compile Include="Executors\MetaExecutors.cs" />
     <Compile Include="Executors\TraversalExecutor.cs" />

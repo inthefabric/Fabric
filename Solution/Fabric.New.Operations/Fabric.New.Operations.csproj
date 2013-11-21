@@ -55,6 +55,8 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Create\CreateOperationsCustom.cs" />
+    <Compile Include="Internal\InternalInitDbOperation.cs" />
+    <Compile Include="Internal\IInternalOperation.cs" />
     <Compile Include="IOperationAccess.cs" />
     <Compile Include="OperationAccess.cs" />
     <Compile Include="OperationContextDataExt.cs" />
@@ -116,6 +118,10 @@
       <Project>{660DDA92-D894-468B-A168-5AB4592AE70F}</Project>
       <Name>Fabric.New.Api.Objects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fabric.New.Database\Fabric.New.Database.csproj">
+      <Project>{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}</Project>
+      <Name>Fabric.New.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.New.Domain\Fabric.New.Domain.csproj">
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
       <Name>Fabric.New.Domain</Name>
@@ -128,6 +134,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
