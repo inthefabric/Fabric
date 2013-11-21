@@ -13,12 +13,19 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			ZeroOrMore,
 		};
 
+		public enum SortType {
+			None,
+			Asc,
+			Desc
+		};
+
 		public string NameDom { get; private set; }
 		public string NameApi { get; private set; }
 		public string NameDb { get; private set; }
 		public Type FromVertexType { get; private set; }
 		public Type ToVertexType { get; private set; }
 		public EdgeQuantity Quantity { get; private set; }
+		public SortType Sort { get; internal set; }
 
 		public DomainProperty<long> ToVertexId { get; private set; }
 		public ApiProperty<long> FabToVertexId { get; private set; }
@@ -33,6 +40,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 			FromVertexType = pOutVertexType;
 			ToVertexType = pInVertexType;
 			Quantity = pQuantity;
+			Sort = SortType.None;
 
 			ToVertexId = new DomainProperty<long>("VertexId", "N/A");
 			ToVertexId.IsUnique = true;

@@ -19,6 +19,7 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		string SubObjectOf { get; }
 		Type CreateFromOtherDirection { get; }
 		bool CreateInternal { get; }
+		EdgeSchema.SortType Sort { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

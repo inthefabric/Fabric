@@ -98,83 +98,143 @@ namespace Fabric.New.Database.Init.Setups {
 		private void CreateEdges() {
 
 			//AppDefinesMember
-			AddProp(Elem.Edge, "pdm.ts", "long", Index.Standard, false);
-			AddProp(Elem.Edge, "pdm.mt", "byte", Index.Standard, false);
-			AddProp(Elem.Edge, "pdm.ui", "long", Index.Standard, false);
-			AddEdge("pdm", Cardin.OneToMany, Sort.Desc, new[] {"pdm.ts"}, new[] {"pdm.mt","pdm.ui"});
+			AddProp(Elem.Edge, "pdm.ts", "long", Index.None, false);
+			AddProp(Elem.Edge, "pdm.mt", "byte", Index.None, false);
+			AddProp(Elem.Edge, "pdm.ui", "long", Index.None, false);
+			AddEdge("pdm", Cardin.OneToMany, Sort.Desc,
+				new[] {"pdm.ts", "pdm.mt", "pdm.ui"},
+				new[] {"p.na","p.nk","p.se","p.od"}
+			);
 
 			//ArtifactCreatedByMember
-			AddEdge("acbm", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("acbm", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new string[0]
+			);
 
 			//ArtifactUsedAsPrimaryByFactor
-			AddProp(Elem.Edge, "apbf.ts", "long", Index.Standard, false);
-			AddProp(Elem.Edge, "apbf.dt", "byte", Index.Standard, false);
-			AddProp(Elem.Edge, "apbf.ra", "long", Index.Standard, false);
-			AddEdge("apbf", Cardin.OneToMany, Sort.Desc, new[] {"apbf.ts"}, new[] {"apbf.dt","apbf.ra"});
+			AddProp(Elem.Edge, "apbf.ts", "long", Index.None, false);
+			AddProp(Elem.Edge, "apbf.dt", "byte", Index.None, false);
+			AddProp(Elem.Edge, "apbf.ra", "long", Index.None, false);
+			AddEdge("apbf", Cardin.OneToMany, Sort.Desc,
+				new[] {"apbf.ts", "apbf.dt", "apbf.ra"},
+				new string[0]
+			);
 
 			//ArtifactUsedAsRelatedByFactor
-			AddProp(Elem.Edge, "arbf.ts", "long", Index.Standard, false);
-			AddProp(Elem.Edge, "arbf.dt", "byte", Index.Standard, false);
-			AddProp(Elem.Edge, "arbf.pa", "long", Index.Standard, false);
-			AddEdge("arbf", Cardin.OneToMany, Sort.Desc, new[] {"arbf.ts"}, new[] {"arbf.dt","arbf.pa"});
+			AddProp(Elem.Edge, "arbf.ts", "long", Index.None, false);
+			AddProp(Elem.Edge, "arbf.dt", "byte", Index.None, false);
+			AddProp(Elem.Edge, "arbf.pa", "long", Index.None, false);
+			AddEdge("arbf", Cardin.OneToMany, Sort.Desc,
+				new[] {"arbf.ts", "arbf.dt", "arbf.pa"},
+				new string[0]
+			);
 
 			//ArtifactUsesEmail
-			AddEdge("aue", Cardin.OneToMany, Sort.None, new string[0], new string[0]);
+			AddEdge("aue", Cardin.OneToMany, Sort.None,
+				new string[0],
+				new string[0]
+			);
 
 			//EmailUsedByArtifact
-			AddEdge("eba", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("eba", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"e.ad","e.co","e.ve"}
+			);
 
 			//FactorCreatedByMember
-			AddEdge("fcbm", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("fcbm", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+			);
 
 			//FactorDescriptorRefinesPrimaryWithArtifact
-			AddEdge("frpa", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("frpa", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+			);
 
 			//FactorDescriptorRefinesRelatedWithArtifact
-			AddEdge("frra", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("frra", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+			);
 
 			//FactorDescriptorRefinesTypeWithArtifact
-			AddEdge("frta", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("frta", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+			);
 
 			//FactorUsesPrimaryArtifact
-			AddEdge("fpa", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("fpa", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+			);
 
 			//FactorUsesRelatedArtifact
-			AddEdge("fra", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("fra", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+			);
 
 			//FactorVectorUsesAxisArtifact
-			AddEdge("faa", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("faa", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"f.at","f.de","f.no","f.det","f.dit","f.dip","f.dir","f.evt","f.evd","f.idt","f.idv","f.lot","f.lox","f.loy","f.loz","f.vet","f.veu","f.vep","f.vev"}
+			);
 
 			//MemberAuthenticatedByOauthAccess
-			AddProp(Elem.Edge, "maboa.ts", "long", Index.Standard, false);
-			AddEdge("maboa", Cardin.OneToMany, Sort.Desc, new[] {"maboa.ts"}, new string[0]);
+			AddProp(Elem.Edge, "maboa.ts", "long", Index.None, false);
+			AddEdge("maboa", Cardin.OneToMany, Sort.Desc,
+				new[] {"maboa.ts"},
+				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+			);
 
 			//MemberCreatesArtifact
-			AddProp(Elem.Edge, "mca.ts", "long", Index.Standard, false);
-			AddProp(Elem.Edge, "mca.vt", "byte", Index.Standard, false);
-			AddEdge("mca", Cardin.OneToMany, Sort.Desc, new[] {"mca.ts"}, new[] {"mca.vt"});
+			AddProp(Elem.Edge, "mca.ts", "long", Index.None, false);
+			AddProp(Elem.Edge, "mca.vt", "byte", Index.None, false);
+			AddEdge("mca", Cardin.OneToMany, Sort.Desc,
+				new[] {"mca.ts", "mca.vt"},
+				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+			);
 
 			//MemberCreatesFactor
-			AddProp(Elem.Edge, "mcf.ts", "long", Index.Standard, false);
-			AddProp(Elem.Edge, "mcf.dt", "byte", Index.Standard, false);
-			AddProp(Elem.Edge, "mcf.pa", "long", Index.Standard, false);
-			AddProp(Elem.Edge, "mcf.ra", "long", Index.Standard, false);
-			AddEdge("mcf", Cardin.OneToMany, Sort.Desc, new[] {"mcf.ts"}, new[] {"mcf.dt","mcf.pa","mcf.ra"});
+			AddProp(Elem.Edge, "mcf.ts", "long", Index.None, false);
+			AddProp(Elem.Edge, "mcf.dt", "byte", Index.None, false);
+			AddProp(Elem.Edge, "mcf.pa", "long", Index.None, false);
+			AddProp(Elem.Edge, "mcf.ra", "long", Index.None, false);
+			AddEdge("mcf", Cardin.OneToMany, Sort.Desc,
+				new[] {"mcf.ts", "mcf.dt", "mcf.pa", "mcf.ra"},
+				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+			);
 
 			//MemberDefinedByApp
-			AddEdge("mdbp", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("mdbp", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+			);
 
 			//MemberDefinedByUser
-			AddEdge("mdbu", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("mdbu", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"m.at","m.osa","m.ogr","m.ogc","m.oge"}
+			);
 
 			//OauthAccessAuthenticatesMember
-			AddEdge("oaam", Cardin.OneToOne, Sort.None, new string[0], new string[0]);
+			AddEdge("oaam", Cardin.OneToOne, Sort.None,
+				new string[0],
+				new[] {"oa.to","oa.re","oa.ex","oa.dp"}
+			);
 
 			//UserDefinesMember
-			AddProp(Elem.Edge, "udm.ts", "long", Index.Standard, false);
-			AddProp(Elem.Edge, "udm.mt", "byte", Index.Standard, false);
-			AddProp(Elem.Edge, "udm.pi", "long", Index.Standard, false);
-			AddEdge("udm", Cardin.OneToMany, Sort.Desc, new[] {"udm.ts"}, new[] {"udm.mt","udm.pi"});
+			AddProp(Elem.Edge, "udm.ts", "long", Index.None, false);
+			AddProp(Elem.Edge, "udm.mt", "byte", Index.None, false);
+			AddProp(Elem.Edge, "udm.pi", "long", Index.None, false);
+			AddEdge("udm", Cardin.OneToMany, Sort.Desc,
+				new[] {"udm.ts", "udm.mt", "udm.pi"},
+				new[] {"u.na","u.nk","u.pa"}
+			);
 		}
 
 	}

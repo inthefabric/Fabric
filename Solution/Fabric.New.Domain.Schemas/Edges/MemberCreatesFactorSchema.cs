@@ -19,18 +19,22 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public MemberCreatesFactorSchema() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("Creates", "c");
 			CreateFromOtherDirection = typeof(FactorCreatedByMemberSchema);
+			Sort = SortType.Desc;
 
 			////
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
-			Timestamp.Sort = EdgeProperty.SortType.Desc;
+			Timestamp.SortIndex = 0;
 
 			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType),
 				(x => x.FabDescriptorType));
+			DescriptorType.SortIndex = 1;
 			
 			PrimaryArtifactId = PropFromEdge<FactorUsesPrimaryArtifactSchema>("PrimaryArtifactId","pa");
+			PrimaryArtifactId.SortIndex = 2;
 			
 			RelatedArtifactId = PropFromEdge<FactorUsesRelatedArtifactSchema>("RelatedArtifactId","ra");
+			RelatedArtifactId.SortIndex = 3;
 		}
 
 	}

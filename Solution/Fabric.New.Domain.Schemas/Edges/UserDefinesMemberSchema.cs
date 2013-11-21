@@ -17,15 +17,18 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public UserDefinesMemberSchema() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("Defines", "d");
 			CreateFromOtherDirection = typeof(MemberDefinedByUserSchema);
+			Sort = SortType.Desc;
 
 			////
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
-			Timestamp.Sort = EdgeProperty.SortType.Desc;
+			Timestamp.SortIndex = 0;
 
 			MemberType = Prop("MemberType", "mt", (x => x.MemberType), (x => x.FabMemberType));
+			MemberType.SortIndex = 1;
 
 			AppId = PropFromEdge<MemberDefinedByAppSchema>("AppId", "pi");
+			AppId.SortIndex = 2;
 		}
 
 	}

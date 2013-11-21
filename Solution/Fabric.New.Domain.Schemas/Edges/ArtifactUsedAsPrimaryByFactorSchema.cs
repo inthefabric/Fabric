@@ -17,16 +17,19 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public ArtifactUsedAsPrimaryByFactor() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("UsedAsPrimaryBy", "pb");
 			CreateFromOtherDirection = typeof(FactorUsesPrimaryArtifactSchema);
+			Sort = SortType.Desc;
 
 			////
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
-			Timestamp.Sort = EdgeProperty.SortType.Desc;
+			Timestamp.SortIndex = 0;
 
 			DescriptorType = Prop("DescriptorType", "dt", (x => x.DescriptorType),
 				(x => x.FabDescriptorType));
+			DescriptorType.SortIndex = 1;
 			
 			RelatedArtifactId = PropFromEdge<FactorUsesRelatedArtifactSchema>("RelatedArtifactId","ra");
+			RelatedArtifactId.SortIndex = 2;
 		}
 
 	}

@@ -65,43 +65,41 @@ foreach ( IVertexSchema v in verts ) {
 		private void CreateEdges() {
 <#
 foreach ( IEdgeSchema e in edges ) {
+	var order = e.Sort+"";
 #>
 
 			//<#= e.GetClassNameDom() #>
 <#
 	IList<EdgeProperty> edgeProps = SchemaUtil.GetEdgeProperties(e);
+	IList<DomainProperty> vertProps = SchemaUtil.GetVertexDomainProperties(e.GetFromVertex());
 	string cardin = "OneTo"+(e.GetIsMultiple() ? "Many" : "One");
 	var sort = new List<string>();
 	var sig = new List<string>();
-	var order = "None";
 
 	//TODO: investigate signature() more closely:
 	//https://github.com/thinkaurelius/titan/wiki/Type-Definition-Overview
 	//Probably supposed to use the outgoing VERTEX properties here
 
 	foreach ( EdgeProperty ep in edgeProps ) {
-		if ( ep.Sort != EdgeProperty.SortType.None ) {
-			if ( sort.Count > 0 ) {
-				throw new Exception("Multiple sort keys are not supported.");
-			}
-
-			sort.Add(ep.DbName);
-			order = ep.Sort+"";
-		}
-		else {
-			sig.Add(ep.DbName);
-		}
+		sort.Insert((int)ep.SortIndex, ep.DbName);
 #>
-			AddProp(Elem.Edge, "<#= ep.DbName #>", "<#= ep.GetDataTypeName() #>", Index.Standard, false);
+			AddProp(Elem.Edge, "<#= ep.DbName #>", "<#= ep.GetDataTypeName() #>", Index.None, false);
 <#
-	} // end property loop
+	} // end edge property loop
+
+	foreach ( DomainProperty dp in vertProps ) {
+		sig.Add(dp.DbName);
+	} // end vert property loop
 
 	string sortArray = (sort.Count == 0 ? "new string[0]" :
 		"new[] {"+string.Join(", ", sort.Select(x => "\""+x+"\""))+"}");
 	string sigArray = (sig.Count == 0 ? "new string[0]" :
 		"new[] {"+string.Join(",", sig.Select(x => "\""+x+"\""))+"}");
 #>
-			AddEdge("<#= e.NameDb #>", Cardin.<#= cardin #>, Sort.<#= order #>, <#= sortArray #>, <#= sigArray #>);
+			AddEdge("<#= e.NameDb #>", Cardin.<#= cardin #>, Sort.<#= order #>,
+				<#= sortArray #>,
+				<#= sigArray #>
+			);
 <#
 } // end edge loop
 #>

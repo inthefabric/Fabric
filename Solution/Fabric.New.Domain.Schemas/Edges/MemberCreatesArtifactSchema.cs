@@ -15,13 +15,15 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public MemberCreatesArtifactSchema() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("Creates", "c");
 			CreateFromOtherDirection = typeof(ArtifactCreatedByMemberSchema);
+			Sort = SortType.Desc;
 
 			////
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
-			Timestamp.Sort = EdgeProperty.SortType.Desc;
+			Timestamp.SortIndex = 0;
 
 			VertexType = Prop("VertexType", "vt", (x => x.VertexType), (x => x.FabVertexType));
+			VertexType.SortIndex = 1;
 		}
 
 	}

@@ -14,9 +14,10 @@ namespace Fabric.New.Domain.Schemas.Edges {
 		public MemberAuthenticatedByOauthAccess() : base(EdgeQuantity.ZeroOrMore) {
 			SetNames("AuthenticatedBy", "ab");
 			CreateFromOtherDirection = typeof(OauthAccessAuthenticatesMember);
+			Sort = SortType.Desc;
 
 			Timestamp = Prop("Timestamp", "ts", (x => x.Timestamp), (x => x.FabTimestamp));
-			Timestamp.Sort = EdgeProperty.SortType.Desc;
+			Timestamp.SortIndex = 0;
 		}
 
 	}
