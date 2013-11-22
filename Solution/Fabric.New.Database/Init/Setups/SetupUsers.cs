@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.New.Domain;
+﻿using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Util;
 
@@ -143,9 +142,22 @@ namespace Fabric.New.Database.Init.Setups {
 			m.MemberType = (byte)pMemTypeId;
 			AddVertex(m, (SetupVertexId)(long)pId);
 
-			//TODO: setup "reverse" edges for ALL types
-			AddEdge(Data.GetVertex<App>((long)pSetupAppId), new AppDefinesMember(), m);
-			AddEdge(Data.GetVertex<User>((long)pSetupUserId), new UserDefinesMember(), m);
+			App app = Data.GetVertex<App>((long)pSetupAppId);
+			User user = Data.GetVertex<User>((long)pSetupUserId);
+
+			var adm = new AppDefinesMember();
+			adm.Timestamp = m.Timestamp;
+			adm.MemberType = m.MemberType;
+			adm.UserId = (long)pSetupUserId;
+			AddEdge(app, adm, m);
+			AddEdge(m, new MemberDefinedByApp(), app);
+
+			var udm = new UserDefinesMember();
+			udm.Timestamp = m.Timestamp;
+			udm.MemberType = m.MemberType;
+			udm.AppId = (long)pSetupAppId;
+			AddEdge(user, udm, m);
+			AddEdge(m, new MemberDefinedByUser(), user);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -155,7 +167,7 @@ namespace Fabric.New.Database.Init.Setups {
 			a.NameKey = pName.ToLower();
 			a.Secret = pSecret;
 			AddArtifact(a, (SetupArtifactId)(long)pId);
-			AddEdge(a, new ArtifactUsesEmail(), Data.GetVertex<Email>((long)pSetupEmailId));
+			AddArtifactEmailLink(a, pSetupEmailId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -165,7 +177,14 @@ namespace Fabric.New.Database.Init.Setups {
 			u.NameKey = pName.ToLower();
 			u.Password = DataUtil.HashPassword(pPass);
 			AddArtifact(u, (SetupArtifactId)(long)pId);
-			AddEdge(u, new ArtifactUsesEmail(), Data.GetVertex<Email>((long)pSetupEmailId));
+			AddArtifactEmailLink(u, pSetupEmailId);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddArtifactEmailLink(Artifact pArt, SetupEmailId pSetupEmailId) {
+			Email em = Data.GetVertex<Email>((long)pSetupEmailId);
+			AddEdge(pArt, new ArtifactUsesEmail(), em);
+			AddEdge(em, new EmailUsedByArtifact(), pArt);
 		}
 
 	}

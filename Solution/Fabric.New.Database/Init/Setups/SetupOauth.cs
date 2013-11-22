@@ -114,7 +114,14 @@ namespace Fabric.New.Database.Init.Setups {
 				pMemId == SetupMemberId.BookBookData
 			);
 			AddVertex(oa, (SetupVertexId)(long)pId);
-			AddEdge(oa, new OauthAccessAuthenticatesMember(), Data.GetVertex<Member>((long)pMemId));
+
+			Member mem = Data.GetVertex<Member>((long)pMemId);
+
+			var mao = new MemberAuthenticatedByOauthAccess();
+			mao.Timestamp = oa.Timestamp;
+
+			AddEdge(oa, new OauthAccessAuthenticatesMember(), mem);
+			AddEdge(mem, mao, oa);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

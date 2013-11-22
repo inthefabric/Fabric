@@ -742,7 +742,7 @@ namespace Fabric.New.Database.Init.Setups {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddFactor(SetupMemberId pMemId, SetupArtifactId pPrimArtId,
-					SetupArtifactId pEdgeArtId, DescriptorId pDescId, DirectorId? pDirId,
+					SetupArtifactId pRelArtId, DescriptorId pDescId, DirectorId? pDirId,
 					EventorId? pEventId, IdentorId? pIdentId, LocatorId? pLocId, VectorId? pVectId,
 					bool pIsDefining, FactorAssertion.Id pAstId, string pNote) {
 
@@ -754,13 +754,40 @@ namespace Fabric.New.Database.Init.Setups {
 			f.Note = pNote;
 			AddVertex(f, (SetupVertexId)(++vIdCount));
 
-			AddEdge(Data.GetVertex<Member>((long)pMemId), new MemberCreatesFactor(), f);
-			AddEdge(f, new FactorUsesPrimaryArtifact(), Data.GetVertex<Artifact>((long)pPrimArtId));
-			AddEdge(f, new FactorUsesRelatedArtifact(), Data.GetVertex<Artifact>((long)pEdgeArtId));
+			////
 
-			/*if ( pReplaceFactorId != null ) {
-				AddEdge(f, new FactorReplacesFactor(), Data.GetVertex<Factor>((long)pReplaceFactorId));
-			}*/
+			Member mem = Data.GetVertex<Member>((long)pMemId);
+
+			var mcf = new MemberCreatesFactor();
+			mcf.Timestamp = f.Timestamp;
+			mcf.DescriptorType = f.DescriptorType;
+			mcf.PrimaryArtifactId = (long)pPrimArtId;
+			mcf.RelatedArtifactId = (long)pRelArtId;
+
+			AddEdge(mem, mcf, f);
+			AddEdge(f, new FactorCreatedByMember(), mem);
+
+			////
+			
+			Artifact priArt = Data.GetVertex<Artifact>((long)pPrimArtId);
+			Artifact relArt = Data.GetVertex<Artifact>((long)pRelArtId);
+
+			var aupf = new ArtifactUsedAsPrimaryByFactor();
+			aupf.Timestamp = f.Timestamp;
+			aupf.DescriptorType = f.DescriptorType;
+			aupf.RelatedArtifactId = relArt.VertexId;
+
+			var aurf = new ArtifactUsedAsRelatedByFactor();
+			aurf.Timestamp = f.Timestamp;
+			aurf.DescriptorType = f.DescriptorType;
+			aurf.PrimaryArtifactId = priArt.VertexId;
+
+			AddEdge(priArt, aupf, f);
+			AddEdge(relArt, aurf, f);
+			AddEdge(f, new FactorUsesPrimaryArtifact(), priArt);
+			AddEdge(f, new FactorUsesRelatedArtifact(), relArt);
+
+			////
 
 			{
 				Descriptor d = DescMap[(long)pDescId];

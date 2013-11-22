@@ -123,7 +123,7 @@ namespace Fabric.New.Operations.Internal {
 
 			for ( int i = 0 ; i < count ; i++ ) {
 				IDataVertex n = vDataSet.Vertices[i];
-				Log.Debug("Vertex "+i+"/"+count+": "+DataUtil.WeaverQueryToJson(n.AddQuery));
+				Log.Debug("Vertex "+(i+1)+"/"+count+": "+DataUtil.WeaverQueryToJson(n.AddQuery));
 
 				Vertex v = vOpCtx
 					.Execute(n.AddQuery, "InitDb-AddVert")
@@ -139,7 +139,7 @@ namespace Fabric.New.Operations.Internal {
 
 			for ( int i = 0 ; i < count ; i++ ) {
 				IDataEdge t = vDataSet.Edges[i];
-				Log.Debug("Edge "+i+"/"+count+": "+DataUtil.WeaverQueryToJson(t.AddQuery));
+				Log.Debug("Edge "+(i+1)+"/"+count+": "+DataUtil.WeaverQueryToJson(t.AddQuery));
 				vOpCtx.Execute(t.AddQuery, "InitDb-AddEdge");
 			}
 		}
