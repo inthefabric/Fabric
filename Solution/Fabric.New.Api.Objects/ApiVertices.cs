@@ -158,21 +158,27 @@ namespace Fabric.New.Api.Objects {
 		[SpecFromEnum("EventorType")]
 		public virtual byte Type { get; set; }
 		
+		[SpecRange(-100000000000, 100000000000)]
 		public virtual long Year { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(1, 12)]
 		public virtual byte? Month { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 31)]
 		public virtual byte? Day { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 23)]
 		public virtual byte? Hour { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 59)]
 		public virtual byte? Minute { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 59)]
 		public virtual byte? Second { get; set; }
 
 	}
@@ -561,21 +567,27 @@ namespace Fabric.New.Api.Objects {
 		[SpecFromEnum("EventorType")]
 		public virtual byte Type { get; set; }
 		
+		[SpecRange(-100000000000, 100000000000)]
 		public virtual long Year { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(1, 12)]
 		public virtual byte? Month { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 31)]
 		public virtual byte? Day { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 23)]
 		public virtual byte? Hour { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 59)]
 		public virtual byte? Minute { get; set; }
 		
 		[SpecOptional]
+		[SpecRange(0, 59)]
 		public virtual byte? Second { get; set; }
 
 

@@ -128,6 +128,8 @@
               "Name": "Year",
               "Type": "long",
               "Description": "The year value for the new Eventor.",
+              "Min": -100000000000,
+              "Max": 100000000000,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -135,6 +137,8 @@
               "Type": "byte?",
               "Description": "The month value for the new Eventor.",
               "IsOptional": true,
+              "Min": 1,
+              "Max": 12,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -142,6 +146,8 @@
               "Type": "byte?",
               "Description": "The day value for the new Eventor.",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 31,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -149,6 +155,8 @@
               "Type": "byte?",
               "Description": "The hour value for the new Eventor.",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 23,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -156,6 +164,8 @@
               "Type": "byte?",
               "Description": "The minute value for the new Eventor.",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 59,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -163,6 +173,8 @@
               "Type": "byte?",
               "Description": "The second value for the new Eventor.",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 59,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -618,28 +630,36 @@
             {
               "Name": "Year",
               "Type": "long",
-              "Description": "Specifies the year value.",
+              "Description": "Specifies the year value (UTC).",
+              "Min": -100000000000,
+              "Max": 100000000000,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Month",
               "Type": "byte?",
-              "Description": "Specifies the month value.",
+              "Description": "Specifies the month value (UTC).",
               "IsOptional": true,
+              "Min": 1,
+              "Max": 12,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Day",
               "Type": "byte?",
-              "Description": "Specifies the day value.",
+              "Description": "Specifies the day value (UTC).",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 31,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Hour",
               "Type": "byte?",
-              "Description": "Specifies the hour value (UTC).",
+              "Description": "Specifies the hour value in 24-hour format (UTC).",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 23,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -647,6 +667,8 @@
               "Type": "byte?",
               "Description": "Specifies the minute value (UTC).",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 59,
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -654,6 +676,8 @@
               "Type": "byte?",
               "Description": "Specifies the second value (UTC).",
               "IsOptional": true,
+              "Min": 0,
+              "Max": 59,
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1492,12 +1516,12 @@
             },
             {
               "Name": "Min",
-              "Type": "int?",
+              "Type": "long?",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "Max",
-              "Type": "int?",
+              "Type": "long?",
               "Obj": "FabSpecObjectProp"
             },
             {

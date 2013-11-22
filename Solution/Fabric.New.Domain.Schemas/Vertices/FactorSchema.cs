@@ -187,6 +187,8 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabEventorYear = new ApiProperty<long>("Year");
 			FabEventorYear.SetOpenUnmodAccess();
 			FabEventorYear.SubObjectOf = "FabEventor";
+			FabEventorYear.Min = -100000000000;
+			FabEventorYear.Max = 100000000000;
 			FabEventorYear.CustomValidation = true;
 			FabEventorYear.TraversalHas = Matching.Custom;
 
@@ -194,35 +196,40 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabEventorMonth.SetOpenUnmodAccess();
 			FabEventorMonth.SubObjectOf = "FabEventor";
 			FabEventorMonth.IsNullable = true;
-			FabEventorMonth.CustomValidation = true;
+			FabEventorMonth.Min = 1;
+			FabEventorMonth.Max = 12;
 			FabEventorMonth.TraversalHas = Matching.Custom;
 
 			FabEventorDay = new ApiProperty<byte>("Day");
 			FabEventorDay.SetOpenUnmodAccess();
 			FabEventorDay.SubObjectOf = "FabEventor";
 			FabEventorDay.IsNullable = true;
-			FabEventorDay.CustomValidation = true;
+			FabEventorDay.Min = 0;
+			FabEventorDay.Max = 31;
 			FabEventorDay.TraversalHas = Matching.Custom;
 
 			FabEventorHour = new ApiProperty<byte>("Hour");
 			FabEventorHour.SetOpenUnmodAccess();
 			FabEventorHour.SubObjectOf = "FabEventor";
 			FabEventorHour.IsNullable = true;
-			FabEventorHour.CustomValidation = true;
+			FabEventorHour.Min = 0;
+			FabEventorHour.Max = 23;
 			FabEventorHour.TraversalHas = Matching.Custom;
 
 			FabEventorMinute = new ApiProperty<byte>("Minute");
 			FabEventorMinute.SetOpenUnmodAccess();
 			FabEventorMinute.SubObjectOf = "FabEventor";
 			FabEventorMinute.IsNullable = true;
-			FabEventorMinute.CustomValidation = true;
+			FabEventorMinute.Min = 0;
+			FabEventorMinute.Max = 59;
 			FabEventorMinute.TraversalHas = Matching.Custom;
 
 			FabEventorSecond = new ApiProperty<byte>("Second");
 			FabEventorSecond.SetOpenUnmodAccess();
 			FabEventorSecond.SubObjectOf = "FabEventor";
 			FabEventorSecond.IsNullable = true;
-			FabEventorSecond.CustomValidation = true;
+			FabEventorSecond.Min = 0;
+			FabEventorSecond.Max = 59;
 			FabEventorSecond.TraversalHas = Matching.Custom;
 
 			FabIdentorType = new ApiProperty<byte>("Type");

@@ -33,6 +33,8 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public bool IsUnique { get; internal set; }
 		public bool IsNullable { get; internal set; }
 		public bool ToLowerCase { get; internal set; }
+		public long? Min { get; internal set; }
+		public long? Max { get; internal set; }
 		public int? LenMin { get; internal set; }
 		public int? LenMax { get; internal set; }
 		public string ValidRegex { get; internal set; }

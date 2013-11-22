@@ -59,7 +59,7 @@ public void OutputVertex(IVertexSchema pVertex) {
 			vCreateObj = pCreateObj;
 		}
 <#+
-	OutputVertexValidate(v, props, keepEdges);
+	OutputVertexValidate(pVertex.Names.Domain, props, keepEdges);
 #>
 
 	}
@@ -80,7 +80,7 @@ public void OutputVertex(IVertexSchema pVertex) {
 			vCreateObj = pCreateObj;
 		}
 <#+
-	OutputVertexValidate(v, subMap[sub], subEdgeMap[sub]);
+	OutputVertexValidate(pVertex.Names.Domain+sub.Substring(3), subMap[sub], subEdgeMap[sub]);
 #>
 
 	}
@@ -89,20 +89,31 @@ public void OutputVertex(IVertexSchema pVertex) {
 }
 
 
-public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProps, IList<IEdgeSchema> pEdges) {
+public void OutputVertexValidate(string pName, IList<ApiProperty> pProps, IList<IEdgeSchema> pEdges) {
 #>
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Validate() {
 			base.Validate();
 <#+
-		
+	bool custom = false;
+	
 	foreach ( ApiProperty ap in pProps ) {
 		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
+		
+		if ( ap.CustomValidation ) {
+			custom = true;
+		}
 #>
 			<#= ap.Name #>(vCreateObj.<#= ap.Name #>);
 <#+
 	} //end prop loop
+
+	if ( custom ) {
+#>
+			ApiValidatorsCustom.Validate<#= pName #>(vCreateObj);
+<#+
+	} //end "custom" contition
 #>
 			ValidateEdges();
 		}
@@ -132,6 +143,12 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 <#+
 		}
 
+		if ( ap.Min != null || ap.Max != null ) {
+#>
+			Range("<#= displayName #>", pValue, <#= ap.Min #>, <#= ap.Max #>);
+<#+
+		}
+
 		if ( ap.ValidRegex != null ) {
 #>
 			ValidRegex("<#= displayName #>", pValue, @"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
@@ -145,10 +162,8 @@ public void OutputVertexValidate(IVertexSchema pVertex, IList<ApiProperty> pProp
 		}
 			
 		if ( ap.CustomValidation ) {
-			string funcName = pVertex.Names.Domain+
-				(ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3))+ap.Name;
 #>
-			ApiValidatorsCustom.Validate<#= funcName #>("<#= displayName #>", pValue);
+			ApiValidatorsCustom.Validate<#= pName+ap.Name #>("<#= displayName #>", pValue);
 <#+
 		}
 #>

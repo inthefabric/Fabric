@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Api.Objects.Conversions {
 
@@ -13,70 +14,57 @@ namespace Fabric.New.Api.Objects.Conversions {
 			throw new NotImplementedException();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static void ValidateApp(CreateFabApp pCreateObj) {
+			//do nothing...
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ValidateFactorEventorYear(string pName, long pYear) {
-			//TODO: ApiValidatorsCustom.ValidateFactorEventorYear()
-			throw new NotImplementedException();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorEventorMonth(string pName,byte? pMonth){
-			//TODO: ApiValidatorsCustom.ValidateFactorEventorMonth()
-			throw new NotImplementedException();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorEventorDay(string pName, byte? pDay) {
-			//TODO: ApiValidatorsCustom.ValidateFactorEventorDay()
-			throw new NotImplementedException();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorEventorHour(string pName, byte? pHour) {
-			//TODO: ApiValidatorsCustom.ValidateFactorEventorHour()
-			throw new NotImplementedException();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorEventorMinute(string pName, byte? pMin){
-			//TODO: ApiValidatorsCustom.ValidateFactorEventorMinute()
-			throw new NotImplementedException();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorEventorSecond(string pName, byte? pSec){
-			//TODO: ApiValidatorsCustom.ValidateFactorEventorSecond()
-			throw new NotImplementedException();
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		protected override void ValidateElementParams() {
-			if ( vYear == 0 ) {
-				throw new FabArgumentValueFault(YearParam, 0);
+			if ( pYear == 0 ) {
+				throw new FabPropertyValueFault(pName, pYear+"", "cannot be zero.");
 			}
 
-			bool allow = true;
-			allow = ValidateRange(YearParam, vYear, -100000000000, 100000000000, allow); // +/- 100B
-			allow = ValidateRange(MonthParam, vMonth, 1, 12, allow);
-			allow = ValidateRange(DayParam, vDay, 1, 31, allow);
-			allow = ValidateRange(HourParam, vHour, 0, 23, allow);
-			allow = ValidateRange(MinuteParam, vMinute, 0, 59, allow);
-			ValidateRange(SecondParam, vSecond, 0, 59, allow);
+			CreateFabObjectValidator.Range(pName, pYear, -100000000000, 100000000000);
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		private bool ValidateRange(string pName, long? pValue, long pMin, long pMax, bool pAllow) {
+		/*--------------------------------------------------------------------------------------------*/
+		public static void ValidateFactorEventor(CreateFabEventor pCreateObj) {
+			bool allow = true;
+			allow = ValidateFactorEventorItem("Month", pCreateObj.Month, allow);
+			allow = ValidateFactorEventorItem("Day", pCreateObj.Day, allow);
+			allow = ValidateFactorEventorItem("Hour", pCreateObj.Hour, allow);
+			allow = ValidateFactorEventorItem("Minute", pCreateObj.Minute, allow);
+			allow = ValidateFactorEventorItem("Second", pCreateObj.Second, allow);
+
+			string dateStr = pCreateObj.Year+
+				(pCreateObj.Month == null ? "" : "-"+pCreateObj.Month)+
+				(pCreateObj.Day == null ? "" : "-"+pCreateObj.Day)+
+				(pCreateObj.Hour == null ? "" : "-"+pCreateObj.Hour)+
+				(pCreateObj.Minute == null ? "" : "-"+pCreateObj.Minute)+
+				(pCreateObj.Second== null ? "" : "-"+pCreateObj.Second);
+
+			DateTime dt;
+
+			if ( !DateTime.TryParse(dateStr, out dt) ) {
+				throw new FabPropertyValueFault(
+					"The Eventor does not specify a valid date/time: "+dateStr);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool ValidateFactorEventorItem(string pName, long? pValue, bool pAllow) {
 			if ( pValue == null ) {
 				return false;
 			}
 
 			if ( !pAllow ) {
-				throw new FabArgumentValueFault(pName+" cannot be specified without prior parameters.");
+				throw new FabPropertyValueFault(pName, pValue+"",
+					"cannot be specified without prior parameters.");
 			}
 
-			DomainValidator.LongBetween(pName, (long)pValue, pMin, pMax);
 			return true;
 		}
 
@@ -100,13 +88,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 			throw new NotImplementedException();
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		protected override void ValidateElementParams() {
-			Tasks.Validator.FactorLocator_TypeId(vLocTypeId, LocTypeParam);
+		/*--------------------------------------------------------------------------------------------*/
+		public static void ValidateFactorLocator(CreateFabLocator pCreateObj) {
+			throw new NotImplementedException();
 
-			////
-
-			LocatorType locType = StaticTypes.LocatorTypes[vLocTypeId];
+			/*LocatorType locType = StaticTypes.LocatorTypes[vLocTypeId];
 			const string lessThan = " is less than LocatorType.Min";
 			const string greaterThan = " is greater than LocatorType.Max";
 
@@ -132,7 +118,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 			if ( vZ > locType.MaxZ ) {
 				throw new FabArgumentOutOfRangeFault(ZParam+greaterThan+"Z.");
-			}
+			}*/
 		}
 
 
@@ -143,9 +129,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 			throw new NotImplementedException();
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		protected override void ValidateElementParams() {
-			VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
+		/*--------------------------------------------------------------------------------------------*/
+		public static void ValidateFactorVector(CreateFabVector pCreateObj) {
+			throw new NotImplementedException();
+
+			/*VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
 			double baseVal = vValue*VectorUnitPrefix.GetMult(vVecUnitPrefId);
 
 			if ( baseVal < vecType.Min ) {
@@ -154,9 +142,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 			if ( baseVal > vecType.Max ) {
 				throw new FabArgumentOutOfRangeFault(ValueParam+" is greater than VectorType.Max.");
-			}
-		}*/
-
+			}*/
+		}
+		
 	}
 
 }

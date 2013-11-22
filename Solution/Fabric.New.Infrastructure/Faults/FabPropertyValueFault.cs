@@ -9,6 +9,12 @@
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public FabPropertyValueFault(string pMessage) :
+			base(Code.PropertyInvalidValue, "") {
+			AppendMessage(pMessage);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public FabPropertyValueFault(string pName, string pValue, string pMessage) : 
 																base(Code.PropertyInvalidValue, "") {
 			Name = pName;

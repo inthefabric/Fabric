@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.New.Domain;
+﻿using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Util;
 
 namespace Fabric.New.Api.Objects.Conversions {
@@ -11,8 +10,8 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabAppCustom(App pDomain, CreateFabApp pApi) {
-			//TODO: FromCreateFabAppCustom
-			throw new NotImplementedException();
+			pDomain.Name = pApi.Name;
+			pDomain.NameKey = pApi.Name.ToLower();
 		}
 
 
@@ -34,9 +33,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabUserCustom(User pDomain, CreateFabUser pApi) {
-			//TODO: FromCreateFabUserCustom
+			pDomain.Name = pApi.Name;
+			pDomain.NameKey = pApi.Name.ToLower();
 			pDomain.Password = DataUtil.HashPassword(pApi.Password);
-			throw new NotImplementedException();
 		}
 
 	}

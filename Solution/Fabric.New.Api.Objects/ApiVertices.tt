@@ -150,6 +150,10 @@ public void OutputVertexProp(ApiProperty pProp, bool pCreateMode) {
 		OutputSpecAttribute(2, "Len", pProp.LenMin+", "+pProp.LenMax);
 	}
 
+	if ( pProp.Min != null || pProp.Max != null ) {
+		OutputSpecAttribute(2, "Range", pProp.Min+", "+pProp.Max);
+	}
+
 	if ( pProp.ValidRegex != null ) {
 		string patt = pProp.ValidRegex.Replace("\"", "\"\"");
 		OutputSpecAttribute(2, "Regex", "@\""+patt+"\"");

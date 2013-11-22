@@ -101,6 +101,7 @@
     <Compile Include="Query\Sharpflake.cs" />
     <Compile Include="Query\TxBuilder.cs" />
     <Compile Include="Query\Weave.cs" />
+    <Compile Include="Spec\SpecRangeAttribute.cs" />
     <Compile Include="Spec\SpecStepAttribute.cs" />
     <Compile Include="Spec\SpecFromEnumAttribute.cs" />
     <Compile Include="Spec\SpecToLowerCaseAttribute.cs" />

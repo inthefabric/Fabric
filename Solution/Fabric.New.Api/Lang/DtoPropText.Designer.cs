@@ -583,7 +583,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the day value..
+        ///   Looks up a localized string similar to Specifies the day value (UTC)..
         /// </summary>
         internal static string Eventor_Day {
             get {
@@ -592,7 +592,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the hour value (UTC)..
+        ///   Looks up a localized string similar to Specifies the hour value in 24-hour format (UTC)..
         /// </summary>
         internal static string Eventor_Hour {
             get {
@@ -610,7 +610,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the month value..
+        ///   Looks up a localized string similar to Specifies the month value (UTC)..
         /// </summary>
         internal static string Eventor_Month {
             get {
@@ -637,7 +637,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the year value..
+        ///   Looks up a localized string similar to Specifies the year value (UTC)..
         /// </summary>
         internal static string Eventor_Year {
             get {

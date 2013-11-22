@@ -270,8 +270,9 @@ namespace Fabric.New.Api {
 			}
 
 			////
-			
+
 			SpecLenAttribute specLen = GetAttribute<SpecLenAttribute>(pProp);
+			SpecRangeAttribute specRange = GetAttribute<SpecRangeAttribute>(pProp);
 			SpecRegexAttribute specReg = GetAttribute<SpecRegexAttribute>(pProp);
 			SpecUniqueAttribute specUni = GetAttribute<SpecUniqueAttribute>(pProp);
 			SpecToLowerCaseAttribute specLow = GetAttribute<SpecToLowerCaseAttribute>(pProp);
@@ -284,6 +285,11 @@ namespace Fabric.New.Api {
 			if ( specLen != null ) {
 				p.LenMin = specLen.Min;
 				p.LenMax = specLen.Max;
+			}
+
+			if ( specRange != null ) {
+				p.Min = specRange.Min;
+				p.Max = specRange.Max;
 			}
 
 			if ( specReg != null ) {

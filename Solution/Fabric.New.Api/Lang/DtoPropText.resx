@@ -145,7 +145,7 @@
     <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').</value>
   </data>
   <data name="Eventor_Year" xml:space="preserve">
-    <value>Specifies the year value.</value>
+    <value>Specifies the year value (UTC).</value>
   </data>
   <data name="Identor_Value" xml:space="preserve">
     <value>A text-based value that can represent names, numbers, IDs, GUIDs, etc.</value>
@@ -361,16 +361,16 @@
     <value>Specifies its value's order of magnitude.</value>
   </data>
   <data name="Eventor_Day" xml:space="preserve">
-    <value>Specifies the day value.</value>
+    <value>Specifies the day value (UTC).</value>
   </data>
   <data name="Eventor_Hour" xml:space="preserve">
-    <value>Specifies the hour value (UTC).</value>
+    <value>Specifies the hour value in 24-hour format (UTC).</value>
   </data>
   <data name="Eventor_Minute" xml:space="preserve">
     <value>Specifies the minute value (UTC).</value>
   </data>
   <data name="Eventor_Month" xml:space="preserve">
-    <value>Specifies the month value.</value>
+    <value>Specifies the month value (UTC).</value>
   </data>
   <data name="Eventor_Second" xml:space="preserve">
     <value>Specifies the second value (UTC).</value>

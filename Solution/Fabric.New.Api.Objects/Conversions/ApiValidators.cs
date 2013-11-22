@@ -25,6 +25,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			Name(vCreateObj.Name);
 			Secret(vCreateObj.Secret);
 			OauthDomains(vCreateObj.OauthDomains);
+			ApiValidatorsCustom.ValidateApp(vCreateObj);
 			ValidateEdges();
 		}
 
@@ -326,6 +327,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			Hour(vCreateObj.Hour);
 			Minute(vCreateObj.Minute);
 			Second(vCreateObj.Second);
+			ApiValidatorsCustom.ValidateFactorEventor(vCreateObj);
 			ValidateEdges();
 		}
 
@@ -336,32 +338,33 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void Year(long pValue) {
+			Range("Eventor.Year", pValue, -100000000000, 100000000000);
 			ApiValidatorsCustom.ValidateFactorEventorYear("Eventor.Year", pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void Month(byte? pValue) {
-			ApiValidatorsCustom.ValidateFactorEventorMonth("Eventor.Month", pValue);
+			Range("Eventor.Month", pValue, 1, 12);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void Day(byte? pValue) {
-			ApiValidatorsCustom.ValidateFactorEventorDay("Eventor.Day", pValue);
+			Range("Eventor.Day", pValue, 0, 31);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void Hour(byte? pValue) {
-			ApiValidatorsCustom.ValidateFactorEventorHour("Eventor.Hour", pValue);
+			Range("Eventor.Hour", pValue, 0, 23);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void Minute(byte? pValue) {
-			ApiValidatorsCustom.ValidateFactorEventorMinute("Eventor.Minute", pValue);
+			Range("Eventor.Minute", pValue, 0, 59);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void Second(byte? pValue) {
-			ApiValidatorsCustom.ValidateFactorEventorSecond("Eventor.Second", pValue);
+			Range("Eventor.Second", pValue, 0, 59);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -428,6 +431,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			ValueX(vCreateObj.ValueX);
 			ValueY(vCreateObj.ValueY);
 			ValueZ(vCreateObj.ValueZ);
+			ApiValidatorsCustom.ValidateFactorLocator(vCreateObj);
 			ValidateEdges();
 		}
 
@@ -477,6 +481,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			Unit(vCreateObj.Unit);
 			UnitPrefix(vCreateObj.UnitPrefix);
 			Value(vCreateObj.Value);
+			ApiValidatorsCustom.ValidateFactorVector(vCreateObj);
 			ValidateEdges();
 		}
 
