@@ -16,14 +16,6 @@ namespace Fabric.New.Api.Objects {
 		[SpecRegex(@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\/!@#$%&=_,:;'""<>~]*$")]
 		[SpecUnique]
 		public virtual string Name { get; set; }
-		
-		[SpecInternal]
-		[SpecLen(32, 32)]
-		[SpecRegex(@"^[a-zA-Z0-9]*$")]
-		public virtual string Secret { get; set; }
-		
-		[SpecInternal]
-		public virtual string OauthDomains { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,38 +88,6 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
-	[SpecInternal]
-	public class FabEmail : FabVertex {
-		
-		[SpecInternal]
-		[SpecLen(1, 256)]
-		[SpecRegex(@"^(([^<>()[\]\\.,;:\s@\""]+(\.[^<>()[\]\\.,;:\s@\""]+)*)|(\"".+\""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]
-		[SpecToLowerCase]
-		public virtual string Address { get; set; }
-		
-		[SpecInternal]
-		[SpecLen(32, 32)]
-		[SpecRegex(@"^[a-zA-Z0-9]*$")]
-		public virtual string Code { get; set; }
-		
-		[SpecInternal]
-		public virtual bool Verified { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(Vertex pVertex) {
-			DomainToApi.FromEmail(this, (Email)pVertex);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabEmail FromEmail(Email pVertex) {
-			var v = new FabEmail();
-			v.Fill(pVertex);
-			return v;
-		}
-
-	}
 		
 
 	/*================================================================================================*/
@@ -305,26 +265,6 @@ namespace Fabric.New.Api.Objects {
 		
 		[SpecFromEnum("MemberType")]
 		public virtual byte Type { get; set; }
-		
-		[SpecInternal]
-		[SpecOptional]
-		public virtual bool? OauthScopeAllow { get; set; }
-		
-		[SpecInternal]
-		[SpecOptional]
-		[SpecLen(1, 1024)]
-		[SpecToLowerCase]
-		public virtual string OauthGrantRedirectUri { get; set; }
-		
-		[SpecInternal]
-		[SpecOptional]
-		[SpecLen(32, 32)]
-		[SpecRegex(@"^[a-zA-Z0-9]*$")]
-		public virtual string OauthGrantCode { get; set; }
-		
-		[SpecInternal]
-		[SpecOptional]
-		public virtual long? OauthGrantExpires { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -344,44 +284,6 @@ namespace Fabric.New.Api.Objects {
 		
 
 	/*================================================================================================*/
-	[SpecInternal]
-	public class FabOauthAccess : FabVertex {
-		
-		[SpecInternal]
-		[SpecOptional]
-		[SpecLen(32, 32)]
-		[SpecRegex(@"^[a-zA-Z0-9]*$")]
-		[SpecUnique]
-		public virtual string Token { get; set; }
-		
-		[SpecInternal]
-		[SpecOptional]
-		[SpecLen(32, 32)]
-		[SpecRegex(@"^[a-zA-Z0-9]*$")]
-		[SpecUnique]
-		public virtual string Refresh { get; set; }
-		
-		[SpecInternal]
-		public virtual long Expires { get; set; }
-		
-		[SpecInternal]
-		public virtual bool IsDataProv { get; set; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Fill(Vertex pVertex) {
-			DomainToApi.FromOauthAccess(this, (OauthAccess)pVertex);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthAccess FromOauthAccess(OauthAccess pVertex) {
-			var v = new FabOauthAccess();
-			v.Fill(pVertex);
-			return v;
-		}
-
-	}
 		
 
 	/*================================================================================================*/
@@ -421,11 +323,6 @@ namespace Fabric.New.Api.Objects {
 		[SpecRegex(@"^[a-zA-Z0-9_]*$")]
 		[SpecUnique]
 		public virtual string Name { get; set; }
-		
-		[SpecInternal]
-		[SpecLen(8, 128)]
-		[SpecRegex(@"^[a-zA-Z0-9]*$")]
-		public virtual string Password { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

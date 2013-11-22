@@ -28,6 +28,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 
 foreach ( IVertexSchema v in vertexSchemas ) { 
+	if ( v.IsSpecInternal(v.GetAccess) ) {
+		continue;
+	}
+
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	string baseName = (vp == null ? "FabElement" : vp.Names.Api);
 
@@ -57,6 +61,10 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	} // end custom condition
 
 	foreach ( ApiProperty ap in props ) {
+		if ( ap.IsSpecInternal(ap.GetAccess) ) {
+			continue;
+		}
+
 		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".");
 		PropertyMapping pm = propMap[ap];
 

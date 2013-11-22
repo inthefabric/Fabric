@@ -63,7 +63,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static void FromUserCustom(FabUser pApi, User pDomain) {
 			//TODO: set custom for ApiToDomain only
 			pApi.Name = pDomain.Name;
-			pApi.Password = null; //pDomain.Password;
 		}
 
 

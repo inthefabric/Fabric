@@ -5,7 +5,6 @@ using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Menu;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Api.Objects.Oauth;
-using FabOauthAccess = Fabric.New.Api.Objects.FabOauthAccess;
 
 namespace Fabric.New.Api {
 

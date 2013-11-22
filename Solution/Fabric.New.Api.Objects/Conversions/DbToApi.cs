@@ -21,11 +21,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 				case VertexType.Id.App: return ConvertApp(pDto);
 				case VertexType.Id.Artifact: return ConvertArtifact(pDto);
 				case VertexType.Id.Class: return ConvertClass(pDto);
-				case VertexType.Id.Email: return ConvertEmail(pDto);
 				case VertexType.Id.Factor: return ConvertFactor(pDto);
 				case VertexType.Id.Instance: return ConvertInstance(pDto);
 				case VertexType.Id.Member: return ConvertMember(pDto);
-				case VertexType.Id.OauthAccess: return ConvertOauthAccess(pDto);
 				case VertexType.Id.Url: return ConvertUrl(pDto);
 				case VertexType.Id.User: return ConvertUser(pDto);
 				case VertexType.Id.Vertex: return ConvertVertex(pDto);
@@ -72,13 +70,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static FabEmail ConvertEmail(IDataDto pDto) {
-			var dom = new Email();
-			FillEmail(pDto, dom);
-			return DomainToApi.FromEmail(dom);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		private static FabFactor ConvertFactor(IDataDto pDto) {
 			var dom = new Factor();
 			FillFactor(pDto, dom);
@@ -97,13 +88,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			var dom = new Member();
 			FillMember(pDto, dom);
 			return DomainToApi.FromMember(dom);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static FabOauthAccess ConvertOauthAccess(IDataDto pDto) {
-			var dom = new OauthAccess();
-			FillOauthAccess(pDto, dom);
-			return DomainToApi.FromOauthAccess(dom);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -153,14 +137,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FillEmail(IDataDto pDto, Email pDom) {
-			FillVertex(pDto, pDom);
-			pDom.Address = GetString(pDto, "e_ad", true);
-			pDom.Code = GetString(pDto, "e_co", true);
-			pDom.Verified = GetBool(pDto, "e_ve", true);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		private static void FillFactor(IDataDto pDto, Factor pDom) {
 			FillVertex(pDto, pDom);
 			pDom.AssertionType = GetByte(pDto, "f_at", true);
@@ -200,15 +176,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pDom.OauthGrantRedirectUri = GetString(pDto, "m_ogr", false);
 			pDom.OauthGrantCode = GetString(pDto, "m_ogc", false);
 			pDom.OauthGrantExpires = GetNullableLong(pDto, "m_oge", false);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static void FillOauthAccess(IDataDto pDto, OauthAccess pDom) {
-			FillVertex(pDto, pDom);
-			pDom.Token = GetString(pDto, "oa_to", false);
-			pDom.Refresh = GetString(pDto, "oa_re", false);
-			pDom.Expires = GetLong(pDto, "oa_ex", true);
-			pDom.IsDataProv = GetBool(pDto, "oa_dp", true);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

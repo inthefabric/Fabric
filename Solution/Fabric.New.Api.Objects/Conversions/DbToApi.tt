@@ -27,10 +27,17 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static FabVertex FromVertexData(IDataDto pDto) {
 			switch ( pDto.VertexType ) {
 <#
-IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
+IList<IVertexSchema> allVerts = SchemaUtil.GetVertexSchemas();
+var verts = new List<IVertexSchema>();
 IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
 
-foreach ( IVertexSchema v in verts ) { 
+foreach ( IVertexSchema v in allVerts ) {
+	if ( !v.IsSpecInternal(v.GetAccess) ) {
+		verts.Add(v);
+	}
+}
+
+foreach ( IVertexSchema v in verts ) {
 #>
 				case VertexType.Id.<#= v.Names.Domain #>: return Convert<#= v.Names.Domain #>(pDto);
 <#

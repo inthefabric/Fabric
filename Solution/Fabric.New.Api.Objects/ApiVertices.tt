@@ -51,6 +51,10 @@ public void OutputVertex(IVertexSchema pVertex, bool pCreateMode) {
 	/*================================================================================================*/
 <#+
 	if ( v.IsSpecInternal(pCreateMode ? v.CreateAccess : v.GetAccess) ) {
+		if ( !pCreateMode ) {
+			return;
+		}
+
 		OutputSpecAttribute(1, "Internal");
 	}
 #>
@@ -128,6 +132,9 @@ public void OutputSpecAttribute(int pTabs, string pName, string pParams=null) {
 
 
 public void OutputVertexProp(ApiProperty pProp, bool pCreateMode) {
+	if ( !pCreateMode && pProp.IsSpecInternal(pProp.GetAccess) ) {
+		return;
+	}
 #>
 		
 <#+

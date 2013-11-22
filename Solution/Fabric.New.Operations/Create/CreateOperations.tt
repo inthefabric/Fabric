@@ -12,6 +12,7 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
@@ -56,16 +57,37 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	if ( v.IsSpecInternal(v.CreateAccess) ) {
+#>
 		/*--------------------------------------------------------------------------------------------*/
-		public <#= v.Names.Api #> Get<#= v.Names.Api #>Result() {
-			return DomainToApi.From<#= v.Names.Domain #>(ExecuteTx(vAlias));
+		public override FabObject GetResult() {
+			throw new NotSupportedException();
 		}
-
+<#
+	} //end internal condition
+	else {
+#>
 		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
 			return Get<#= v.Names.Api #>Result();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= v.Names.Api #> Get<#= v.Names.Api #>Result() {
+			return DomainToApi.From<#= v.Names.Domain #>(Get<#= v.Names.Domain #>Result());
+		}
+<#
+	} //end internal condition
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= v.Names.Domain #> Get<#= v.Names.Domain #>Result() {
+			return ExecuteTx(vAlias);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			<#= createObjName #> c;

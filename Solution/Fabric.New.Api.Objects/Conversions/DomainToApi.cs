@@ -30,8 +30,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			FromArtifact(pApi, pDomain);
 			//Custom: 
 			//pApi.Name <== pDomain.Name  (requires custom)
-			pApi.Secret = pDomain.Secret;
-			pApi.OauthDomains = pDomain.OauthDomains;
 			FromAppCustom(pApi, pDomain);
 		}
 
@@ -64,23 +62,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pApi.Name = pDomain.Name;
 			pApi.Disamb = pDomain.Disamb;
 			pApi.Note = pDomain.Note;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabEmail FromEmail(Email pDomain) {
-			var api = new FabEmail();
-			FromEmail(api, pDomain);
-			return api;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void FromEmail(FabEmail pApi, Email pDomain) {
-			FromVertex(pApi, pDomain);
-			pApi.Address = pDomain.Address;
-			pApi.Code = pDomain.Code;
-			pApi.Verified = pDomain.Verified;
 		}
 
 
@@ -164,28 +145,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 		public static void FromMember(FabMember pApi, Member pDomain) {
 			FromVertex(pApi, pDomain);
 			pApi.Type = pDomain.MemberType;
-			pApi.OauthScopeAllow = pDomain.OauthScopeAllow.GetValueOrDefault();
-			pApi.OauthGrantRedirectUri = pDomain.OauthGrantRedirectUri;
-			pApi.OauthGrantCode = pDomain.OauthGrantCode;
-			pApi.OauthGrantExpires = pDomain.OauthGrantExpires.GetValueOrDefault();
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public static FabOauthAccess FromOauthAccess(OauthAccess pDomain) {
-			var api = new FabOauthAccess();
-			FromOauthAccess(api, pDomain);
-			return api;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void FromOauthAccess(FabOauthAccess pApi, OauthAccess pDomain) {
-			FromVertex(pApi, pDomain);
-			pApi.Token = pDomain.Token;
-			pApi.Refresh = pDomain.Refresh;
-			pApi.Expires = pDomain.Expires;
-			pApi.IsDataProv = pDomain.IsDataProv;
 		}
 
 
@@ -218,8 +177,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			FromArtifact(pApi, pDomain);
 			//Custom: Direct mapping.
 			//pApi.Name <== pDomain.Name  (requires custom)
-			//Custom: Direct mapping.
-			//pApi.Password <== pDomain.Password  (requires custom)
 			FromUserCustom(pApi, pDomain);
 		}
 

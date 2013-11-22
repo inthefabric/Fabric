@@ -2,6 +2,7 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
@@ -20,15 +21,17 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabApp GetFabAppResult() {
-			return DomainToApi.FromApp(ExecuteTx(vAlias));
+		public override FabObject GetResult() {
+			throw new NotSupportedException();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override FabObject GetResult() {
-			return GetFabAppResult();
+		public App GetAppResult() {
+			return ExecuteTx(vAlias);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabApp c;
@@ -98,15 +101,22 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabClass GetFabClassResult() {
-			return DomainToApi.FromClass(ExecuteTx(vAlias));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
 			return GetFabClassResult();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public FabClass GetFabClassResult() {
+			return DomainToApi.FromClass(GetClassResult());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Class GetClassResult() {
+			return ExecuteTx(vAlias);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabClass c;
@@ -134,15 +144,17 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabEmail GetFabEmailResult() {
-			return DomainToApi.FromEmail(ExecuteTx(vAlias));
+		public override FabObject GetResult() {
+			throw new NotSupportedException();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override FabObject GetResult() {
-			return GetFabEmailResult();
+		public Email GetEmailResult() {
+			return ExecuteTx(vAlias);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabEmail c;
@@ -179,15 +191,22 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabFactor GetFabFactorResult() {
-			return DomainToApi.FromFactor(ExecuteTx(vAlias));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
 			return GetFabFactorResult();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public FabFactor GetFabFactorResult() {
+			return DomainToApi.FromFactor(GetFactorResult());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Factor GetFactorResult() {
+			return ExecuteTx(vAlias);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabFactor c;
@@ -279,15 +298,22 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabInstance GetFabInstanceResult() {
-			return DomainToApi.FromInstance(ExecuteTx(vAlias));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
 			return GetFabInstanceResult();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public FabInstance GetFabInstanceResult() {
+			return DomainToApi.FromInstance(GetInstanceResult());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Instance GetInstanceResult() {
+			return ExecuteTx(vAlias);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabInstance c;
@@ -315,15 +341,22 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabMember GetFabMemberResult() {
-			return DomainToApi.FromMember(ExecuteTx(vAlias));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
 			return GetFabMemberResult();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public FabMember GetFabMemberResult() {
+			return DomainToApi.FromMember(GetMemberResult());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Member GetMemberResult() {
+			return ExecuteTx(vAlias);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabMember c;
@@ -377,15 +410,17 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthAccess GetFabOauthAccessResult() {
-			return DomainToApi.FromOauthAccess(ExecuteTx(vAlias));
+		public override FabObject GetResult() {
+			throw new NotSupportedException();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override FabObject GetResult() {
-			return GetFabOauthAccessResult();
+		public OauthAccess GetOauthAccessResult() {
+			return ExecuteTx(vAlias);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabOauthAccess c;
@@ -423,15 +458,22 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUrl GetFabUrlResult() {
-			return DomainToApi.FromUrl(ExecuteTx(vAlias));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
 			return GetFabUrlResult();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public FabUrl GetFabUrlResult() {
+			return DomainToApi.FromUrl(GetUrlResult());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public Url GetUrlResult() {
+			return ExecuteTx(vAlias);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabUrl c;
@@ -474,15 +516,17 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabUser GetFabUserResult() {
-			return DomainToApi.FromUser(ExecuteTx(vAlias));
+		public override FabObject GetResult() {
+			throw new NotSupportedException();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override FabObject GetResult() {
-			return GetFabUserResult();
+		public User GetUserResult() {
+			return ExecuteTx(vAlias);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			CreateFabUser c;
