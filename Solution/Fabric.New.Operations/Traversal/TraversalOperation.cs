@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Util;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Util;
 using Weaver.Core.Query;
@@ -18,7 +14,7 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TraversalOperation : ITraversalOperation {
 
-		private static readonly Logger Log = Logger.Build<TraversalOperation>();
+		//private static readonly Logger Log = Logger.Build<TraversalOperation>();
 
 		private IOperationContext vOpCtx;
 		private ITravPath vPath;
@@ -56,12 +52,12 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<FabElement> GetResult() {
-			Type t = vPath.GetCurrentType();
 			IWeaverQuery q = vPath.BuildQuery();
+			//Log.Debug(DataUtil.WeaverQueryToJson(q));
 			string qid = "Trav"+string.Join("", vPath.GetFirstSteps(2).Select(x => "-"+x.Command));
 
 			IList<IDataDto> verts = vOpCtx.Execute(q, qid).ToDtoList();
-			return verts.Select(DbToApi.FromDbDto).Cast<FabElement>().ToList();
+			return verts.Select(DbToApi.FromDataDto).ToList();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

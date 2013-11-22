@@ -3,6 +3,7 @@
 // Changes made to this source file will be overwritten
 
 using System;
+using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
@@ -15,7 +16,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static FabVertex FromDbDtoV(IDataDto pDto) {
+		private static FabVertex FromVertexData(IDataDto pDto) {
 			switch ( pDto.VertexType ) {
 				case VertexType.Id.App: return ConvertApp(pDto);
 				case VertexType.Id.Artifact: return ConvertArtifact(pDto);
@@ -34,13 +35,18 @@ namespace Fabric.New.Api.Objects.Conversions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static FabVertex FromDbDtoE(IDataDto pDto) {
+		private static FabLink FromEdgeData(IDataDto pDto) {
 			switch ( pDto.EdgeLabel ) {
+				case "pdm": return new FabAppDefinesMember();
+				case "apbf": return new FabArtifactUsedAsPrimaryByFactor();
+				case "arbf": return new FabArtifactUsedAsRelatedByFactor();
+				case "mca": return new FabMemberCreatesArtifact();
+				case "mcf": return new FabMemberCreatesFactor();
+				case "udm": return new FabUserDefinesMember();
 			}
 			
 			return null;
 		}
-
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,7 +126,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			FillVertex(pDto, dom);
 			return DomainToApi.FromVertex(dom);
 		}
-
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -230,6 +235,5 @@ namespace Fabric.New.Api.Objects.Conversions {
 		}
 
 	}
-
 
 }

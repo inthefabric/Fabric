@@ -10,8 +10,16 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabElement FromDbDto(IDataDto pDto) {
-			return (pDto.VertexType != null ? FromDbDtoV(pDto) : FromDbDtoE(pDto));
+		public static FabElement FromDataDto(IDataDto pDto) {
+			if ( pDto.VertexType != null ) {
+				return FromVertexData(pDto);
+			}
+			
+			if ( pDto.EdgeLabel != null ) {
+				return FromEdgeData(pDto);
+			}
+
+			throw new Exception("FromDataDto() found null values for VertexType and EdgeLabel.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

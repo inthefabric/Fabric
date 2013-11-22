@@ -25,6 +25,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			ITravStepParam p = Params[0];
 			string conflictAlias;
 
+			//TODO: "Back" can't be directly after the matching "As"
+
 			TravStepAs.ValidateAlias(item, p, alias);
 
 			if ( !pPath.HasAlias(alias) ) {

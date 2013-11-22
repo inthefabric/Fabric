@@ -11,9 +11,9 @@ namespace Fabric.New.Api.Objects.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabLink(Type pFromType, Type pToType) {
+		protected FabLink(Type pFromType, Type pToType) {
 			FromType = pFromType.Name;
-			ToType = pFromType.Name;
+			ToType = pToType.Name;
 		}
 
 	}

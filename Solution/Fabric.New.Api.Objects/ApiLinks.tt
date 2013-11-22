@@ -36,6 +36,7 @@ foreach ( IEdgeSchema e in edges ) {
 
 <#
 	foreach ( EdgeProperty p in props ) {
+		//TODO: add support for edge properties?
 #>
 		//<#= p.Name #>
 <#
