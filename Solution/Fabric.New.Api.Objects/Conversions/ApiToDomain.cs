@@ -210,9 +210,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabUser(User pDomain, CreateFabUser pApi) {
 			FromCreateFabArtifact(pDomain, pApi);
-			//Custom: Encrypt Api.Password.
+			//Custom: Set Domain.NameKey = Api.Name.ToLower()
 			//pDomain.Name <== pApi.Name  (requires custom)
-			//Custom: 
+			//Custom: Encrypt Api.Password.
 			//pDomain.Password <== pApi.Password  (requires custom)
 			FromCreateFabUserCustom(pDomain, pApi);
 		}

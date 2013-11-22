@@ -58,6 +58,11 @@ namespace Fabric.New.Operations.Traversal.Routing {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public IList<ITravPathItem> GetFirstSteps(int pCount) {
+			return vItems.GetRange(0, Math.Min(vItems.Count, pCount));
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
 		public ITravPathItem GetNextStep() {
 			return (vItems.Count <= vCurrIndex ? null : vItems[vCurrIndex]);
 		}

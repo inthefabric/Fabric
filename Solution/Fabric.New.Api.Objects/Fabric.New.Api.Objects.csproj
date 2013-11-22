@@ -60,6 +60,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Conversions\DbToApiPartial.cs" />
+    <Compile Include="Conversions\DbToApi.cs">
+      <DependentUpon>DbToApi.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Conversions\CreateFabObjectValidator.cs" />
     <Compile Include="Conversions\CreateFabElementValidator.cs" />
     <Compile Include="Conversions\DomainToApi.cs">
@@ -123,6 +129,10 @@
     <None Include="Conversions\ApiValidators.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApiValidators.cs</LastGenOutput>
+    </None>
+    <None Include="Conversions\DbToApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbToApi.cs</LastGenOutput>
     </None>
     <None Include="Conversions\DomainToApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

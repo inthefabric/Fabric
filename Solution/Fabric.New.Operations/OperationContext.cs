@@ -105,8 +105,8 @@ namespace Fabric.New.Operations {
 			Metrics.Counter(key+".err", (pResult.IsError ? 1 : 0));
 
 			//Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
-			//Log.Debug(ContextId, "Data", "Request: "+pResult.RequestJson);
-			//Log.Debug(ContextId, "Data", "Response: "+pResult.ResponseJson);
+			Log.Debug(ContextId.ToString("N"), "Data", "Request: "+pResult.RequestJson);
+			Log.Debug(ContextId.ToString("N"), "Data", "Response: "+pResult.ResponseJson);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

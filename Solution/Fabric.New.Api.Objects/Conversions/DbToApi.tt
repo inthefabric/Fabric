@@ -1,0 +1,96 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System;
+using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
+using Fabric.New.Infrastructure.Data;
+
+namespace Fabric.New.Api.Objects.Conversions {
+
+	/*================================================================================================*/
+	public static partial class DbToApi {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabVertex FromDbDtoV(IDataDto pDto) {
+			switch ( pDto.VertexType ) {
+<#
+IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in verts ) { 
+#>
+				case VertexType.Id.<#= v.Names.Domain #>: return Convert<#= v.Names.Domain #>(pDto);
+<#
+} // end vertex loop
+#>
+			}
+
+			throw new Exception("Unknown VertexType: "+pDto.VertexType);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabVertex FromDbDtoE(IDataDto pDto) {
+			switch ( pDto.EdgeLabel ) {
+			}
+			
+			return null;
+		}
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+foreach ( IVertexSchema v in verts ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		private static <#= v.Names.Api #> Convert<#= v.Names.Domain #>(IDataDto pDto) {
+			var dom = new <#= v.Names.Domain #>();
+			Fill<#= v.Names.Domain #>(pDto, dom);
+			return DomainToApi.From<#= v.Names.Domain #>(dom);
+		}
+
+<#
+} // end vertex loop
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+foreach ( IVertexSchema v in verts ) {
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "Element" : vp.Names.Domain);
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		private static void Fill<#= v.Names.Domain #>(IDataDto pDto, <#= v.Names.Domain #> pDom) {
+			Fill<#= baseName #>(pDto, pDom);
+<#
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
+
+	foreach ( DomainProperty dp in props ) {
+		string isReq = (dp.IsNullable ? "false" : "true");
+#>
+			pDom.<#= dp.Name #> = Get<#= dp.GetCapitalizedDataTypeName() #>(pDto, "<#= dp.DbName #>", <#= isReq #>);
+<#
+	} // end property loop
+#>
+		}
+
+<#
+} // end vertex loop
+#>
+	}
+
+
+}

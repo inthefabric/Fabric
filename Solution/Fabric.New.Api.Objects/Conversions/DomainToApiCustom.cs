@@ -1,5 +1,4 @@
-﻿using System;
-using Fabric.New.Api.Objects.Meta;
+﻿using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Util;
 
@@ -12,8 +11,8 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromAppCustom(FabApp pApi, App pDomain) {
-			//TODO: FromAppCustom
-			throw new NotImplementedException();
+			//TODO: set custom for ApiToDomain only
+			pApi.Name = pDomain.Name;
 		}
 
 
@@ -62,8 +61,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromUserCustom(FabUser pApi, User pDomain) {
-			//TODO: FromUserCustom
-			throw new NotImplementedException();
+			//TODO: set custom for ApiToDomain only
+			pApi.Name = pDomain.Name;
+			pApi.Password = null; //pDomain.Password;
 		}
 
 

@@ -216,9 +216,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromUser(FabUser pApi, User pDomain) {
 			FromArtifact(pApi, pDomain);
-			//Custom: Leave Domain.Password encrpyted..
+			//Custom: Direct mapping.
 			//pApi.Name <== pDomain.Name  (requires custom)
-			//Custom: 
+			//Custom: Direct mapping.
 			//pApi.Password <== pDomain.Password  (requires custom)
 			FromUserCustom(pApi, pDomain);
 		}

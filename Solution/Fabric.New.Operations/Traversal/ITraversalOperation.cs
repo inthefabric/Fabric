@@ -13,7 +13,7 @@ namespace Fabric.New.Operations.Traversal {
 		void Perform(IOperationContext pOpCtx, string pPath);
 
 		/*--------------------------------------------------------------------------------------------*/
-		IList<FabObject> GetResult();
+		IList<FabElement> GetResult();
 
 		/*--------------------------------------------------------------------------------------------*/
 		IList<FabTravStep> GetResultSteps();

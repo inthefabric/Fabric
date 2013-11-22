@@ -8,7 +8,7 @@ using Fabric.New.Operations.Traversal;
 namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public class TraversalExecutor : FabResponseExecutor<FabObject> {
+	public class TraversalExecutor : FabResponseExecutor<FabElement> {
 
 		private TraversalOperation vOper;
 
@@ -18,7 +18,7 @@ namespace Fabric.New.Api.Executors {
 		public TraversalExecutor(IApiRequest pApiReq) : base(pApiReq) { }
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override IList<FabObject> GetResponse() {
+		protected override IList<FabElement> GetResponse() {
 			string path = ApiReq.Path.Substring(6); //remove "/Trav/"
 
 			vOper = new TraversalOperation();
@@ -27,8 +27,8 @@ namespace Fabric.New.Api.Executors {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override FabResponse<FabObject> NewFabResponse() {
-			var ftr = new FabTravResponse<FabObject>();
+		protected override FabResponse<FabElement> NewFabResponse() {
+			var ftr = new FabTravResponse<FabElement>();
 			ftr.Steps = vOper.GetResultSteps().ToArray();
 			return ftr;
 		}

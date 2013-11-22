@@ -20,7 +20,7 @@ namespace Fabric.New.Infrastructure.Data {
 
 		public ElementType Type { get; set; }
 		public string Id { get; set; }
-		public string Class { get; set; }
+		public VertexType.Id? VertexType { get; set; }
 		public IDictionary<string, string> Properties { get; set; }
 
 		public string EdgeLabel { get; set; }
@@ -35,7 +35,6 @@ namespace Fabric.New.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public DataDto(IGraphElement pGraphElement) {
 			Id = pGraphElement.Id;
-			Class = pGraphElement.Label; //null if not an edge
 			Properties = pGraphElement.Properties;
 
 			EdgeLabel = pGraphElement.Label;
@@ -51,11 +50,11 @@ namespace Fabric.New.Infrastructure.Data {
 
 			if ( Properties.ContainsKey(DbName.Vert.Vertex.VertexType) ) {
 				byte ft = byte.Parse(Properties[DbName.Vert.Vertex.VertexType]);
-				Class = Enum.ToObject(typeof(VertexType.Id), ft)+"";
+				VertexType = (VertexType.Id)Enum.ToObject(typeof(VertexType.Id), ft);
 				return;
 			}
 			
-			throw new Exception("Unspecified vertex class: Id="+pGraphElement.Id+
+			throw new Exception("Unspecified DataTto type: Id="+pGraphElement.Id+
 				", Props="+JsonSerializer.SerializeToString(pGraphElement.Properties));
 		}
 

@@ -37,7 +37,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			}
 
 			pPath.AddScript(
-				"["+count+"]"+
+				"[0.."+(count-1)+"]"+ //range is inclusive
 				(vInVertex ? ".inV" : "")
 			);
 		}
