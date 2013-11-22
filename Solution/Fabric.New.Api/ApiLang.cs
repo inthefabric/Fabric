@@ -31,7 +31,8 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		public static string Text<T>(string pName) {
 			string text = ResourceMap[typeof(T)].GetString(pName);
-			return (text == null ? "MISSING:"+pName : SmartLinks.Convert(text));
+			text = (text == null ? "MISSING:"+pName : SmartLinks.Convert(text));
+			return text.Replace("\r\n", "\n");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
