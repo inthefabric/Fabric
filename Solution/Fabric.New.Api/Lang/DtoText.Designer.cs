@@ -124,9 +124,128 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Class..
+        /// </summary>
+        internal static string CreateFabClass {
+            get {
+                return ResourceManager.GetString("CreateFabClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Descriptor..
+        /// </summary>
+        internal static string CreateFabDescriptor {
+            get {
+                return ResourceManager.GetString("CreateFabDescriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Director..
+        /// </summary>
+        internal static string CreateFabDirector {
+            get {
+                return ResourceManager.GetString("CreateFabDirector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The base class for the creation of Elements..
+        /// </summary>
+        internal static string CreateFabElement {
+            get {
+                return ResourceManager.GetString("CreateFabElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Eventor..
+        /// </summary>
+        internal static string CreateFabEventor {
+            get {
+                return ResourceManager.GetString("CreateFabEventor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Factor..
+        /// </summary>
+        internal static string CreateFabFactor {
+            get {
+                return ResourceManager.GetString("CreateFabFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Identor..
+        /// </summary>
+        internal static string CreateFabIdentor {
+            get {
+                return ResourceManager.GetString("CreateFabIdentor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Instance..
+        /// </summary>
+        internal static string CreateFabInstance {
+            get {
+                return ResourceManager.GetString("CreateFabInstance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Locator..
+        /// </summary>
+        internal static string CreateFabLocator {
+            get {
+                return ResourceManager.GetString("CreateFabLocator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Member..
+        /// </summary>
+        internal static string CreateFabMember {
+            get {
+                return ResourceManager.GetString("CreateFabMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The base class for the creation of Objects..
+        /// </summary>
+        internal static string CreateFabObject {
+            get {
+                return ResourceManager.GetString("CreateFabObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Url..
+        /// </summary>
+        internal static string CreateFabUrl {
+            get {
+                return ResourceManager.GetString("CreateFabUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains the data needed to create a new Vector..
+        /// </summary>
+        internal static string CreateFabVector {
+            get {
+                return ResourceManager.GetString("CreateFabVector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Factor component that describes and refines the relationship between the Factor&apos;s two Artifacts. !Descriptors are the only required Factor component.
         ///
-        ///First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A &quot;is a&quot; B, or C &quot;sounds like&quot; D. Since this relationship is directional (flowing _from_ the Factor&apos;s primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship&apos;s direc [rest of string was truncated]&quot;;.
+        ///First, the DescriptorType provides semantic meaning to the relationship, such as: a A &quot;is a&quot; B, or C &quot;sounds like&quot; D. Since this relationship is directional (flowing _from_ the Factor&apos;s primary Artifact and _to_ the related Artifact), the DescriptorType must coordinate correctly with the relationship&apos;s direction.
+        ///[(EX|Relationship Example|_Objective:_
+        ///D [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Descriptor {
             get {
@@ -137,9 +256,9 @@ namespace Fabric.New.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A Factor component that creates a directional, action-based flow between the Factor&apos;s two Artifacts.
         ///
-        ///The nature of a !Director&apos;s pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
+        ///The nature of a !Director&apos;s pathway depends on its DirectorType. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
         ///
-        ///A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on the primary Arti [rest of string was truncated]&quot;;.
+        ///A !Director specifies a DirectorAction for each of the Factor&apos;s Artifacts, which give additional meaning to the !Director&apos;s pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related ac [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Director {
             get {
@@ -168,9 +287,9 @@ namespace Fabric.New.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A Factor component that applies the concept of time to a particular Factor.
         ///
-        ///An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
+        ///An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The EventorType provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
         ///
-        ///Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in ti [rest of string was truncated]&quot;;.
+        ///Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Eventor {
             get {
@@ -214,7 +333,7 @@ namespace Fabric.New.Api.Lang {
         ///
         ///An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
         ///
-        ///The [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A &quot;Text&quot; [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organi [rest of string was truncated]&quot;;.
+        ///The IdentorType hints at the purpose or intent of the !Identor. A &quot;Text&quot; IdentorType is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A &quot;Key&quot; IdentorType is typi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Identor {
             get {
@@ -246,10 +365,10 @@ namespace Fabric.New.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to A Factor component that positions a Factor using geographic or relative coordinates.
         ///
-        ///A !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.
+        ///A !Locator attaches a three-dimensional coordinate to a Factor. The LocatorType defines the spatial context of the coordinate, supporting both geographic and relative positioning.
         ///
         ///Geographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.
-        ///[( [rest of string was truncated]&quot;;.
+        ///[(EX|Geographic Example [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Locator {
             get {
@@ -258,7 +377,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different [[MemberType|Enum|MemberType]].
+        ///   Looks up a localized string similar to An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different MemberType.
         ///
         ///Every item added to Fabric is associated with a particular !Member. This enables Fabric to determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc..
         /// </summary>

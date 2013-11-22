@@ -169,13 +169,13 @@
     <value>Specifies a meaningful points/labels mapped to the numerical range.</value>
   </data>
   <data name="VectorUnitDerived_DefinesVectorUnit" xml:space="preserve">
-    <value>One or more VectorUnitDerived items are used to represent a conversion into this particular [[unit|Enum|VectorUnit]].</value>
+    <value>One or more VectorUnitDerived items are used to represent a conversion into this particular VectorUnit.</value>
   </data>
   <data name="VectorUnitDerived_RaisesVectorUnit" xml:space="preserve">
-    <value>The [[unit|Enum|VectorUnit]] for this particular item.</value>
+    <value>The VectorUnit for this particular item.</value>
   </data>
   <data name="VectorUnitDerived_RaisesVectorUnitPrefix" xml:space="preserve">
-    <value>The [[unit prefix|Enum|VectorUnitPrefix]] that affects the "raises" unit.</value>
+    <value>The VectorUnitPrefix that affects the "raises" unit.</value>
   </data>
   <data name="EnumObject_EnumId" xml:space="preserve">
     <value>A unique string (with no spaces) that can be used by Fabric clients when creating an enumeration.</value>

@@ -178,7 +178,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provides conversion formulas from the [[&quot;derived&quot; unit|Enum|VectorUnit]] to one or more [[&quot;raises&quot; units|Enum|VectorUnit]]. Each &quot;raises&quot; unit receives a [[unit prefix|Enum|VectorUnitPrefix]] and an exponent value.
+        ///   Looks up a localized string similar to Provides conversion formulas from the &quot;derived&quot; VectorUnit to one or more &quot;raises&quot; VectorUnits. Each &quot;raises&quot; unit receives a VectorUnitPrefix and an exponent value.
         ///
         ///[(EX|Watt Example|_Description_
         ///The Watt unit conversion is defined with three seperate VectorUnitDerived items:

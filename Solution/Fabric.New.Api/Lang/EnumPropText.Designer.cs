@@ -205,7 +205,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One or more VectorUnitDerived items are used to represent a conversion into this particular [[unit|Enum|VectorUnit]]..
+        ///   Looks up a localized string similar to One or more VectorUnitDerived items are used to represent a conversion into this particular VectorUnit..
         /// </summary>
         internal static string VectorUnitDerived_DefinesVectorUnit {
             get {
@@ -214,7 +214,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The [[unit|Enum|VectorUnit]] for this particular item..
+        ///   Looks up a localized string similar to The VectorUnit for this particular item..
         /// </summary>
         internal static string VectorUnitDerived_RaisesVectorUnit {
             get {
@@ -223,7 +223,7 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The [[unit prefix|Enum|VectorUnitPrefix]] that affects the &quot;raises&quot; unit..
+        ///   Looks up a localized string similar to The VectorUnitPrefix that affects the &quot;raises&quot; unit..
         /// </summary>
         internal static string VectorUnitDerived_RaisesVectorUnitPrefix {
             get {

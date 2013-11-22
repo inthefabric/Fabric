@@ -140,7 +140,7 @@ There are no restrictions on what an !Artifact can represent.  Fabric encourages
     <value>The base class for all Fault objects.</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different [[MemberType|Enum|MemberType]].
+    <value>An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different MemberType.
 
 Every item added to Fabric is associated with a particular !Member. This enables Fabric to determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc.</value>
   </data>
@@ -170,24 +170,24 @@ While a !Url is a type of Artifact, it should be used with certain constraints. 
   <data name="Descriptor" xml:space="preserve">
     <value>A Factor component that describes and refines the relationship between the Factor's two Artifacts. !Descriptors are the only required Factor component.
 
-First, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A "is a" B, or C "sounds like" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's direction.
+First, the DescriptorType provides semantic meaning to the relationship, such as: a A "is a" B, or C "sounds like" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the DescriptorType must coordinate correctly with the relationship's direction.
 [(EX|Relationship Example|_Objective:_
 Describe that a circle is a shape. 
 
 _Method:_
 - The Factor uses 'Circle' as the primary Artifact and 'Shape' as the related Artifact.
-- The !Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]].
+- The !Descriptor uses the 'Is A' DescriptorType.
 
 _Factor Phrase:_
 Circle ... Is A ... Shape.)]
 
-!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any Artifact, a !Descriptor may refine the [[DescriptorType|Enum|DescriptorType]], the Factor's primary Artifact, and/or the Factor's related Artifact. Note: while these Artifact links are discussed here in the context of a !Descriptor, the actual traversal links exist with the Factor.
+!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any Artifact, a !Descriptor may refine the DescriptorType, the Factor's primary Artifact, and/or the Factor's related Artifact. Note: while these Artifact links are discussed here in the context of a !Descriptor, the actual traversal links exist with the Factor.
 [(EX|Refinement Example|_Objective:_
 Describe that car A and car B have headlights with a similar shape.
 
 _Method:_
 - The Factor uses 'Car A' as the primary Artifact and 'Car B' as the related Artifact.
-- The !Descriptor uses the 'Is Similar To' [[DescriptorType|Enum|DescriptorType]], uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the [[DescriptorType|Enum|DescriptorType]].
+- The !Descriptor uses the 'Is Similar To' DescriptorType, uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the DescriptorType
 
 _Factor Phrase:_
 Car A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]</value>
@@ -195,16 +195,16 @@ Car A (more specifically, its) Headlight ... Is Similar To (more specifically, b
   <data name="Director" xml:space="preserve">
     <value>A Factor component that creates a directional, action-based flow between the Factor's two Artifacts.
 
-The nature of a !Director's pathway depends on its [[DirectorType|Enum|DirectorType]]. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
+The nature of a !Director's pathway depends on its DirectorType. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
 
-A !Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.
+A !Director specifies a DirectorAction for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.
 [(EX|Defined Pathway Example|_Objective:_
 Direct along the defined pathway of listening to a particular album's third and fourth songs (song C and D) in order.
 
 _Method:_
 - The Factor uses 'Song C' as the primary Artifact and 'Song D' as the related Artifact.
-- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].
-- The !Director uses the 'Defined Path' [[DirectorType|Enum|DirectorType]] and the 'Listen' [[DirectorAction|Enum|DirectorAction]] for each Artifact.
+- The Descriptor uses the 'IsRelatedTo' DescriptorType.
+- The !Director uses the 'Defined Path' DirectorType and the 'Listen' DirectorAction for each Artifact.
 
 _Factor Phrase:_
 Song C ... Is Related To ... Song D. (The) Listen (action on) ... Song C ...  (leads to the) Listen (action on) ... Song D ... (via) Defined Path.)] [(EX|Suggested Pathway Example|_Objective:_
@@ -212,8 +212,8 @@ Direct along a suggested pathway of listening to song A and then learning about 
 
 _Method:_
 - The Factor uses 'Song A' as the primary Artifact and 'Singer B' as the related Artifact.
-- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].
-- The !Director uses the 'Suggested Path' [[DirectorType|Enum|DirectorType]], the 'Listen' primary [[DirectorAction|Enum|DirectorAction]], and the 'Learn' related [[DirectorAction|Enum|DirectorAction]].
+- The Descriptor uses the 'IsRelatedTo' DescriptorType.
+- The !Director uses the 'Suggested Path' DirectorType, the 'Listen' primary DirectorAction, and the 'Learn' related DirectorAction.
 
 _Factor Phrase:_
 Song A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]</value>
@@ -221,7 +221,7 @@ Song A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (le
   <data name="Eventor" xml:space="preserve">
     <value>A Factor component that applies the concept of time to a particular Factor.
 
-An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The [[EventorType|Enum|EventorType]] provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
+An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The EventorType provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
 
 Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level of precision ranging from one second to one year.
 [(EX|Started Example|_Objective:_
@@ -229,8 +229,8 @@ Specify that Albert Einstein was born (i.e. started his life) on March 14, 1879.
 
 _Method:_
 - The Factor uses 'Albert Einstein' as the primary Artifact and 'Life' as the related Artifact.
-- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' [[EventorType|Enum|EventorType]].
+- The Descriptor uses the 'Has A' DescriptorType. 
+- The !Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' EventorType.
 
 _Factor Phrase:_
 Albert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... 1879 ... 3 ... 14.)] [(EX|Expected Example|_Objective:_
@@ -238,8 +238,8 @@ Specify that person A plans to attend college B in the year 2024.
 
 _Method:_
 - The Factor uses 'Person A' as the primary Artifact and 'College B' as the related Artifact.
-- The Descriptor uses the 'Participates In' [[DescriptorType|Enum|DescriptorType]] and the 'Attend' Artifact to refine it.
-- The !Eventor uses '2024' as its Year value and the 'Is Expected' [[EventorType|Enum|EventorType]].
+- The Descriptor uses the 'Participates In' DescriptorType and the 'Attend' Artifact to refine it.
+- The !Eventor uses '2024' as its Year value and the 'Is Expected' EventorType.
 
 _Factor Phrase:_
 Person A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]
@@ -253,21 +253,21 @@ A !Factor forms a directional relationship from its primary Artifact to its rela
 
 There are six !Factor components: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.
 
-Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A [[FactorAssertion|Enum|FactorAssertion]] allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.</value>
+Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A FactorAssertion allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.</value>
   </data>
   <data name="Identor" xml:space="preserve">
     <value>A Factor component that applies a name or identifier to a particular Factor.
 
 An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
 
-The [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the !Identor. A "Text" [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A "Key" [[IdentorType|Enum|IdentorType]] is typically meant to associate a Factor with some external system (like a Product ID from an online store) or to provide an App with a "reverse lookup" for their own internal IDs.
+The IdentorType hints at the purpose or intent of the !Identor. A "Text" IdentorType is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A "Key" IdentorType is typically meant to associate a Factor with some external system (like a Product ID from an online store) or to provide an App with a "reverse lookup" for their own internal IDs.
 [(EX|Alternate Name Example|_Objective:_
 Identify that Grand Valley State University is also known as (has the alternate name of) 'Grand Valley'.
 
 _Method:_
 - The Factor uses 'Grand Valley State University' as the primary Artifact and 'Name' as the related Artifact.
 - The Descriptor uses the 'Has A' DescriptorType, and an 'Alternative' Artifact to refine the Factor's related Artifact.
-- The !Identor uses 'Grand Valley' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].
+- The !Identor uses 'Grand Valley' as its text value, and the 'Text' IdentorType.
 
 _Factor Phrase:_
 Grand Valley State University ... Has A ... Name (more specifically, an) Alternative, ... (identified by the) Text ... 'Grand Valley'.)] [(EX|Abbreviation Example|_Objective:_
@@ -275,8 +275,8 @@ Identify that Grand Valley State University is also known as (has the abbreviati
 
 _Method:_
 - The Factor uses 'Grand Valley State University' as the primary Artifact and 'Abbreviation' as the related Artifact.
-- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Identor uses 'GVSU' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].
+- The Descriptor uses the 'Has A' DescriptorType. 
+- The !Identor uses 'GVSU' as its text value, and the 'Text' IdentorType.
 
 _Factor Phrase:_
 Grand Valley State University ... Has A(n) ... Abbreviation, ... (identified by the) Text ... 'GVSU'.)] [(EX|Identifier Example|_Objective:_
@@ -284,8 +284,8 @@ Identify that game A is accessible in store B via its ID, which is '123a-45678'.
 
 _Method:_
 - The Factor uses 'Game A' as the primary Artifact and 'Store B' as the related Artifact.
-- The Descriptor uses the 'Is Found In' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Identor uses '123a-45678' as its text value, and the 'Key' [[IdentorType|Enum|IdentorType]].
+- The Descriptor uses the 'Is Found In' DescriptorType. 
+- The !Identor uses '123a-45678' as its text value, and the 'Key' IdentorType.
 
 _Factor Phrase:_
 Game A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]</value>
@@ -293,7 +293,7 @@ Game A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'
   <data name="Locator" xml:space="preserve">
     <value>A Factor component that positions a Factor using geographic or relative coordinates.
 
-A !Locator attaches a three-dimensional coordinate to a Factor. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.
+A !Locator attaches a three-dimensional coordinate to a Factor. The LocatorType defines the spatial context of the coordinate, supporting both geographic and relative positioning.
 
 Geographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.
 [(EX|Geographic Example|_Objective:_
@@ -301,8 +301,8 @@ Specify that person A took photo B from a spot near the Eiffel Tower.
 
 _Method:_
 - The Factor uses 'Photo B' as the primary Artifact and 'Person A' as the related Artifact.
-- The Descriptor uses the 'Is Created By' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Locator uses the 'Earth Coordinate' [[LocatorType|Enum|LocatorType]], a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.
+- The Descriptor uses the 'Is Created By' DescriptorType. 
+- The !Locator uses the 'Earth Coordinate' LocatorType, a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.
 
 _Factor Phrase:_
 Photo B ... Is Created By ... Person A, ... (at an) Earth Coordinate (location of) ... X (longitude) = '2.292977' ... Y (latitude) = '48.858154' ... Z (elevation) = '34.24' (metres above sea level).)]
@@ -316,8 +316,8 @@ Specify that book A refers to painting B on page 148 of 200 (about 74% of the bo
 
 _Method:_
 - The Factor uses 'Book A' as the primary Artifact and 'Painting B' as the related Artifact.
-- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Locator uses the 'Related 1D' [[LocatorType|Enum|LocatorType]], a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.
+- The Descriptor uses the 'Refers To' DescriptorType. 
+- The !Locator uses the 'Related 1D' LocatorType, a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.
 
 _Factor Phrase:_
 Book A ... Refers To ... Painting B, ... (at a) Relative 1D (location of) ... X (position) = 0.74.)] [(EX|Relative 2D Example|_Objective:_
@@ -325,8 +325,8 @@ Specify that photo A includes person B near the top-right (25% from the top, 84%
 
 _Method:_
 - The Factor uses 'Photo A' as the primary Artifact and 'Person B' as the related Artifact.
-- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Locator uses the 'Relative 2D' [[LocatorType|Enum|LocatorType]], a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.
+- The Descriptor uses the 'Refers To' DescriptorType. 
+- The !Locator uses the 'Relative 2D' LocatorType, a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.
 
 _Factor Phrase:_
 Photo A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]</value>
@@ -336,16 +336,16 @@ Photo A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (
 
 A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its "axis". This axis depends entiedgey upon the !Vector's purpose. For example, a factual !Vector might use an Artifact like "Height" or "Shutter Speed". A !Vector that provides an opinion might use an Artifact like "Quality" or "Excitement". While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other Apps or Users are already using as !Vector axes. Note: while the axis Artifact link is discussed here in the context of a Vector, the actual traversal link exists with the Factor.
 
-The [[VectorType|Enum|VectorType]] provides boundaries and context for the !Vector's value. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each [[VectorType|Enum|VectorType]] provides additional information, such as a [[VectorRange|Enum|VectorRange]], to provide further meaning for the levels within the the allowed value boundaries.
+The VectorType provides boundaries and context for the !Vector's value. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each VectorType provides additional information, such as a VectorRange, to provide further meaning for the levels within the the allowed value boundaries.
 
-A !Vector's numeric value often reflects a measurement or a has a specific unit. Furthermore, a !Vector can use [[VectorUnitPrefix|Enum|VectorUnitPrefix]] to specify an order of magnitude for the value. A !Vector's value is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.
+A !Vector's numeric value often reflects a measurement or a has a specific unit. Furthermore, a !Vector can use VectorUnitPrefix to specify an order of magnitude for the value. A !Vector's value is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.
 [(EX|Small Value Example|_Objective:_
 Specify that image A (which is a photo) has a shutter speed of 1/250 second.
 
 _Method:_
 - The Factor uses 'Image A' as the primary Artifact and 'Photo' as the related Artifact.
-- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Vector uses the 'Shutter Speed' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '4' as the value, the 'Milli' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the 'Second' [[VectorUnit|Enum|VectorUnit]].
+- The Descriptor uses the 'Is A' DescriptorType. 
+- The !Vector uses the 'Shutter Speed' Artifact as the axis, the 'Positive Long' VectorType, '4' as the value, the 'Milli' VectorUnitPrefix, and the 'Second' VectorUnit.
 
 _Factor Phrase:_
 Image A ... Is A ... Photo, ... (which, along the) Shutter Speed (axis) ... (with a) Positive Long (numerical range), ... (has a value) '4' ... Milli ... Second(s).)] [(EX|Large Value Example|_Objective:_
@@ -353,8 +353,8 @@ Specify that Earth and the Andromeda Galaxy are 2.5 million light years (2.2705 
 
 _Method:_
 - The Factor uses 'Earth' as the primary Artifact and 'Andromeda Galaxy' as the related Artifact.
-- The Descriptor uses the 'Is Related To' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Vector uses the 'Distance' Artifact as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '22,705' as the value, the 'Exa' [[VectorUnitPrefix|Enum|VectorUnitPrefix]] (represents 10^18), and the 'Metre' [[VectorUnit|Enum|VectorUnit]].
+- The Descriptor uses the 'Is Related To' DescriptorType. 
+- The !Vector uses the 'Distance' Artifact as the axis, the 'Positive Long' VectorType, '22,705' as the value, the 'Exa' VectorUnitPrefix (represents 10^18), and the 'Metre' VectorUnit.
 
 _Factor Phrase:_
 Earth ... Is Related To ... Andromeda Galaxy, ... (which, along the) Distance (axis) ... (with a) Positive Long (numerical range), ... (has a value) '22,705' ... Exa ... Metre(s).)] [(EX|Negative Value Example|_Objective:_
@@ -362,8 +362,8 @@ Specify that article A mentions person B in a very unfair manner, about 80% of t
 
 _Method:_
 - The Factor uses 'Article A' as the primary Artifact and 'Person B' as the related Artifact.
-- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. 
-- The !Vector uses the 'Fairness' Artifact as the axis, the 'Opposable Favorability' [[VectorType|Enum|VectorType]], '-80' as the value, the default 'Base' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the default 'None' [[VectorUnit|Enum|VectorUnit]]. This [[VectorType|Enum|VectorType]] has bounds of -100 to +100.
+- The Descriptor uses the 'Refers To' DescriptorType. 
+- The !Vector uses the 'Fairness' Artifact as the axis, the 'Opposable Favorability' VectorType, '-80' as the value, the default 'Base' VectorUnitPrefix, and the default 'None' VectorUnit. This VectorType has bounds of -100 to +100.
 
 _Factor Phrase:_
 Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]</value>
@@ -478,5 +478,44 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
   </data>
   <data name="UserDefinesMember" xml:space="preserve">
     <value>Connects a User to all of its Members.</value>
+  </data>
+  <data name="CreateFabClass" xml:space="preserve">
+    <value>Contains the data needed to create a new Class.</value>
+  </data>
+  <data name="CreateFabDescriptor" xml:space="preserve">
+    <value>Contains the data needed to create a new Descriptor.</value>
+  </data>
+  <data name="CreateFabDirector" xml:space="preserve">
+    <value>Contains the data needed to create a new Director.</value>
+  </data>
+  <data name="CreateFabElement" xml:space="preserve">
+    <value>The base class for the creation of Elements.</value>
+  </data>
+  <data name="CreateFabEventor" xml:space="preserve">
+    <value>Contains the data needed to create a new Eventor.</value>
+  </data>
+  <data name="CreateFabFactor" xml:space="preserve">
+    <value>Contains the data needed to create a new Factor.</value>
+  </data>
+  <data name="CreateFabIdentor" xml:space="preserve">
+    <value>Contains the data needed to create a new Identor.</value>
+  </data>
+  <data name="CreateFabInstance" xml:space="preserve">
+    <value>Contains the data needed to create a new Instance.</value>
+  </data>
+  <data name="CreateFabLocator" xml:space="preserve">
+    <value>Contains the data needed to create a new Locator.</value>
+  </data>
+  <data name="CreateFabMember" xml:space="preserve">
+    <value>Contains the data needed to create a new Member.</value>
+  </data>
+  <data name="CreateFabObject" xml:space="preserve">
+    <value>The base class for the creation of Objects.</value>
+  </data>
+  <data name="CreateFabUrl" xml:space="preserve">
+    <value>Contains the data needed to create a new Url.</value>
+  </data>
+  <data name="CreateFabVector" xml:space="preserve">
+    <value>Contains the data needed to create a new Vector.</value>
   </data>
 </root>

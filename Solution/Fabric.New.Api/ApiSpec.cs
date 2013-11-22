@@ -218,7 +218,7 @@ namespace Fabric.New.Api {
 			o.Extends = pType.BaseType.Name;
 
 			if ( o.Name.IndexOf("CreateFab") == 0 ) {
-				o.Description = "Contains the data needed to create a new "+o.Name;
+				o.Description = ApiLang.Text<DtoText>(o.Name);
 			}
 			else if ( o.Name.IndexOf("FabSpec") == 0 ) {
 				o.Description = null;

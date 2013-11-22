@@ -157,7 +157,7 @@
     <value>Provides a level of magnitude for the numeric value of a particular Vector.</value>
   </data>
   <data name="VectorUnitDerived" xml:space="preserve">
-    <value>Provides conversion formulas from the [["derived" unit|Enum|VectorUnit]] to one or more [["raises" units|Enum|VectorUnit]]. Each "raises" unit receives a [[unit prefix|Enum|VectorUnitPrefix]] and an exponent value.
+    <value>Provides conversion formulas from the "derived" VectorUnit to one or more "raises" VectorUnits. Each "raises" unit receives a VectorUnitPrefix and an exponent value.
 
 [(EX|Watt Example|_Description_
 The Watt unit conversion is defined with three seperate VectorUnitDerived items:
