@@ -15,7 +15,6 @@ namespace Fabric.New.Domain {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		//TODO: add properties to the Domain edges
 		public virtual void Fill(IDictionary<string, string> pData) {}
 
 	}

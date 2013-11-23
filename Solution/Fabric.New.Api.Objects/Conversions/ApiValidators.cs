@@ -10,6 +10,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabAppValidator : CreateFabArtifactValidator {
 		
+		public const string NameName = "Name";
+		public const string SecretName = "Secret";
+		public const string OauthDomainsName = "OauthDomains";
+		
 		private readonly CreateFabApp vCreateObj;
 
 
@@ -61,6 +65,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabArtifactValidator : CreateFabVertexValidator {
 		
+		
 		private readonly CreateFabArtifact vCreateObj;
 
 
@@ -86,6 +91,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabClassValidator : CreateFabArtifactValidator {
+		
+		public const string NameName = "Name";
+		public const string DisambName = "Disamb";
+		public const string NoteName = "Note";
 		
 		private readonly CreateFabClass vCreateObj;
 
@@ -136,6 +145,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabEmailValidator : CreateFabVertexValidator {
 		
+		public const string AddressName = "Address";
+		public const string CodeName = "Code";
+		public const string VerifiedName = "Verified";
+		
 		private readonly CreateFabEmail vCreateObj;
 
 
@@ -185,6 +198,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabFactorValidator : CreateFabVertexValidator {
 		
+		public const string AssertionTypeName = "AssertionType";
+		public const string IsDefiningName = "IsDefining";
+		public const string NoteName = "Note";
+		
 		private readonly CreateFabFactor vCreateObj;
 
 
@@ -231,6 +248,8 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabDescriptorValidator : CreateFabObjectValidator {
 		
+		public const string TypeName = "Descriptor.Type";
+		
 		private readonly CreateFabDescriptor vCreateObj;
 
 
@@ -264,6 +283,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabDirectorValidator : CreateFabObjectValidator {
+		
+		public const string TypeName = "Director.Type";
+		public const string PrimaryActionName = "Director.PrimaryAction";
+		public const string RelatedActionName = "Director.RelatedAction";
 		
 		private readonly CreateFabDirector vCreateObj;
 
@@ -307,6 +330,14 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabEventorValidator : CreateFabObjectValidator {
+		
+		public const string TypeName = "Eventor.Type";
+		public const string YearName = "Eventor.Year";
+		public const string MonthName = "Eventor.Month";
+		public const string DayName = "Eventor.Day";
+		public const string HourName = "Eventor.Hour";
+		public const string MinuteName = "Eventor.Minute";
+		public const string SecondName = "Eventor.Second";
 		
 		private readonly CreateFabEventor vCreateObj;
 
@@ -377,6 +408,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabIdentorValidator : CreateFabObjectValidator {
 		
+		public const string TypeName = "Identor.Type";
+		public const string ValueName = "Identor.Value";
+		
 		private readonly CreateFabIdentor vCreateObj;
 
 
@@ -414,6 +448,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabLocatorValidator : CreateFabObjectValidator {
+		
+		public const string TypeName = "Locator.Type";
+		public const string ValueXName = "Locator.ValueX";
+		public const string ValueYName = "Locator.ValueY";
+		public const string ValueZName = "Locator.ValueZ";
 		
 		private readonly CreateFabLocator vCreateObj;
 
@@ -464,6 +503,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabVectorValidator : CreateFabObjectValidator {
+		
+		public const string TypeName = "Vector.Type";
+		public const string UnitName = "Vector.Unit";
+		public const string UnitPrefixName = "Vector.UnitPrefix";
+		public const string ValueName = "Vector.Value";
 		
 		private readonly CreateFabVector vCreateObj;
 
@@ -516,6 +560,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabInstanceValidator : CreateFabArtifactValidator {
 		
+		public const string NameName = "Name";
+		public const string DisambName = "Disamb";
+		public const string NoteName = "Note";
+		
 		private readonly CreateFabInstance vCreateObj;
 
 
@@ -563,6 +611,12 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabMemberValidator : CreateFabVertexValidator {
+		
+		public const string TypeName = "Type";
+		public const string OauthScopeAllowName = "OauthScopeAllow";
+		public const string OauthGrantRedirectUriName = "OauthGrantRedirectUri";
+		public const string OauthGrantCodeName = "OauthGrantCode";
+		public const string OauthGrantExpiresName = "OauthGrantExpires";
 		
 		private readonly CreateFabMember vCreateObj;
 
@@ -622,6 +676,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabOauthAccessValidator : CreateFabVertexValidator {
 		
+		public const string TokenName = "Token";
+		public const string RefreshName = "Refresh";
+		public const string ExpiresName = "Expires";
+		public const string IsDataProvName = "IsDataProv";
+		
 		private readonly CreateFabOauthAccess vCreateObj;
 
 
@@ -674,6 +733,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabUrlValidator : CreateFabArtifactValidator {
 		
+		public const string NameName = "Name";
+		public const string FullPathName = "FullPath";
+		
 		private readonly CreateFabUrl vCreateObj;
 
 
@@ -714,6 +776,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabUserValidator : CreateFabArtifactValidator {
+		
+		public const string NameName = "Name";
+		public const string PasswordName = "Password";
 		
 		private readonly CreateFabUser vCreateObj;
 
@@ -757,6 +822,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public class CreateFabVertexValidator : CreateFabElementValidator {
+		
 		
 		private readonly CreateFabVertex vCreateObj;
 

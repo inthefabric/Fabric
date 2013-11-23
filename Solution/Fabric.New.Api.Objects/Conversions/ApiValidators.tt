@@ -50,6 +50,10 @@ public void OutputVertex(IVertexSchema pVertex) {
 	/*================================================================================================*/
 	public class Create<#= v.Names.Api #>Validator : Create<#= baseName #>Validator {
 		
+<#+
+		OutputVertexPropNames(props);
+#>
+		
 		private readonly Create<#= pVertex.Names.Api #> vCreateObj;
 
 
@@ -71,6 +75,10 @@ public void OutputVertex(IVertexSchema pVertex) {
 	/*================================================================================================*/
 	public class Create<#= sub #>Validator : CreateFabObjectValidator {
 		
+<#+
+		OutputVertexPropNames(subMap[sub]);
+#>
+		
 		private readonly Create<#= sub #> vCreateObj;
 
 
@@ -89,6 +97,18 @@ public void OutputVertex(IVertexSchema pVertex) {
 }
 
 
+
+public void OutputVertexPropNames(IList<ApiProperty> pProps) {
+	foreach ( ApiProperty ap in pProps ) {
+		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
+#>
+		public const string <#= ap.Name #>Name = "<#= displayName #>";
+<#+
+	}
+}
+
+
+
 public void OutputVertexValidate(string pName, IList<ApiProperty> pProps, IList<IEdgeSchema> pEdges) {
 #>
 
@@ -99,8 +119,6 @@ public void OutputVertexValidate(string pName, IList<ApiProperty> pProps, IList<
 	bool custom = false;
 	
 	foreach ( ApiProperty ap in pProps ) {
-		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
-		
 		if ( ap.CustomValidation ) {
 			custom = true;
 		}

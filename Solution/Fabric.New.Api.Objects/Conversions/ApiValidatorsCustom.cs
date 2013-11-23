@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Api.Objects.Conversions {
@@ -6,16 +8,24 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public static class ApiValidatorsCustom {
 
+		private const string ValidOauthDomainRegex =
+			@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$";
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ValidateAppOauthDomains(string pName, string pDomains) {
-			//TODO: ApiValidatorsCustom.ValidateAppOauthDomains()
-			throw new NotImplementedException();
+			string[] domainList = pDomains.Split('|');
+
+			foreach ( string dom in domainList ) {
+				if ( !Regex.IsMatch(dom, ValidOauthDomainRegex) ) {
+					throw new FabPropertyValueFault(pName, dom, "is not a valid OAuth domain.");
+				}
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateApp(CreateFabApp pCreateObj) {
+		public static void ValidateApp(CreateFabApp pObj) {
 			//do nothing...
 		}
 
@@ -31,26 +41,26 @@ namespace Fabric.New.Api.Objects.Conversions {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorEventor(CreateFabEventor pCreateObj) {
+		public static void ValidateFactorEventor(CreateFabEventor pObj) {
 			bool allow = true;
-			allow = ValidateFactorEventorItem("Month", pCreateObj.Month, allow);
-			allow = ValidateFactorEventorItem("Day", pCreateObj.Day, allow);
-			allow = ValidateFactorEventorItem("Hour", pCreateObj.Hour, allow);
-			allow = ValidateFactorEventorItem("Minute", pCreateObj.Minute, allow);
-			allow = ValidateFactorEventorItem("Second", pCreateObj.Second, allow);
+			allow = ValidateFactorEventorItem(CreateFabEventorValidator.MonthName, pObj.Month, allow);
+			allow = ValidateFactorEventorItem(CreateFabEventorValidator.DayName, pObj.Day, allow);
+			allow = ValidateFactorEventorItem(CreateFabEventorValidator.HourName, pObj.Hour, allow);
+			allow = ValidateFactorEventorItem(CreateFabEventorValidator.MinuteName, pObj.Minute, allow);
+			allow = ValidateFactorEventorItem(CreateFabEventorValidator.SecondName, pObj.Second, allow);
 
-			string dateStr = pCreateObj.Year+
-				(pCreateObj.Month == null ? "" : "-"+pCreateObj.Month)+
-				(pCreateObj.Day == null ? "" : "-"+pCreateObj.Day)+
-				(pCreateObj.Hour == null ? "" : "-"+pCreateObj.Hour)+
-				(pCreateObj.Minute == null ? "" : "-"+pCreateObj.Minute)+
-				(pCreateObj.Second== null ? "" : "-"+pCreateObj.Second);
+			string dateStr = pObj.Year+
+				(pObj.Month == null ? "" : "-"+pObj.Month)+
+				(pObj.Day == null ? "" : "-"+pObj.Day)+
+				(pObj.Hour == null ? "" : "-"+pObj.Hour)+
+				(pObj.Minute == null ? "" : "-"+pObj.Minute)+
+				(pObj.Second== null ? "" : "-"+pObj.Second);
 
 			DateTime dt;
 
 			if ( !DateTime.TryParse(dateStr, out dt) ) {
 				throw new FabPropertyValueFault(
-					"The Eventor does not specify a valid date/time: "+dateStr);
+					typeof(CreateFabEventor).Name+" provides an invalid date/time: "+dateStr);
 			}
 		}
 
@@ -72,77 +82,79 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ValidateFactorLocatorValueX(string pName, double pX) {
-			//TODO: ApiValidatorsCustom.ValidateFactorLocatorValueX()
-			throw new NotImplementedException();
+			//do nothing...
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ValidateFactorLocatorValueY(string pName, double pY) {
-			//TODO: ApiValidatorsCustom.ValidateFactorLocatorValueY()
-			throw new NotImplementedException();
+			//do nothing...
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ValidateFactorLocatorValueZ(string pName, double pZ) {
-			//TODO: ApiValidatorsCustom.ValidateFactorLocatorValueZ()
-			throw new NotImplementedException();
+			//do nothing...
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorLocator(CreateFabLocator pCreateObj) {
-			throw new NotImplementedException();
+		public static void ValidateFactorLocator(CreateFabLocator pObj) {
+			LocatorType.Item lt = LocatorType.Map[(LocatorType.Id)pObj.Type];
+			string text = "cannot be %0 than %1 for the '"+lt.Name+"' "+typeof(LocatorType).Name;
 
-			/*LocatorType locType = StaticTypes.LocatorTypes[vLocTypeId];
-			const string lessThan = " is less than LocatorType.Min";
-			const string greaterThan = " is greater than LocatorType.Max";
-
-			if ( vX < locType.MinX ) {
-				throw new FabArgumentOutOfRangeFault(XParam+lessThan+"X.");
+			if ( pObj.ValueX < lt.MinX ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabLocatorValidator.ValueXName,
+					pObj.ValueX, String.Format(text, "less", lt.MinX));
 			}
 
-			if ( vX > locType.MaxX ) {
-				throw new FabArgumentOutOfRangeFault(XParam+greaterThan+".");
+			if ( pObj.ValueX > lt.MaxX ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabLocatorValidator.ValueXName,
+					pObj.ValueX, String.Format(text, "greater", lt.MaxX));
 			}
 
-			if ( vY < locType.MinY ) {
-				throw new FabArgumentOutOfRangeFault(YParam+lessThan+"Y.");
+			if ( pObj.ValueY < lt.MinY ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabLocatorValidator.ValueYName,
+					pObj.ValueY, String.Format(text, "less", lt.MinY));
 			}
 
-			if ( vY > locType.MaxY ) {
-				throw new FabArgumentOutOfRangeFault(YParam+greaterThan+"Y.");
+			if ( pObj.ValueY > lt.MaxY ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabLocatorValidator.ValueYName,
+					pObj.ValueY, String.Format(text, "greater", lt.MaxY));
 			}
 
-			if ( vZ < locType.MinZ ) {
-				throw new FabArgumentOutOfRangeFault(ZParam+lessThan+"Z.");
+			if ( pObj.ValueZ < lt.MinZ ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabLocatorValidator.ValueZName,
+					pObj.ValueZ, String.Format(text, "less", lt.MinZ));
 			}
 
-			if ( vZ > locType.MaxZ ) {
-				throw new FabArgumentOutOfRangeFault(ZParam+greaterThan+"Z.");
-			}*/
+			if ( pObj.ValueZ > lt.MaxZ ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabLocatorValidator.ValueZName,
+					pObj.ValueZ, String.Format(text, "greater", lt.MaxZ));
+			}
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ValidateFactorVectorValue(string pName, long pValue) {
-			//TODO: ApiValidatorsCustom.ValidateFactorVectorValue()
-			throw new NotImplementedException();
+			//do nothing...
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void ValidateFactorVector(CreateFabVector pCreateObj) {
-			throw new NotImplementedException();
+		public static void ValidateFactorVector(CreateFabVector pObj) {
+			VectorType.Item vt = VectorType.Map[(VectorType.Id)pObj.Type];
+			VectorUnitPrefix.Item vup = VectorUnitPrefix.Map[(VectorUnitPrefix.Id)pObj.UnitPrefix];
+			double baseVal = pObj.Value*vup.Amount;
+			string text = "cannot be %0 than %1 for the '"+vt.Name+"' "+typeof(VectorType).Name;
 
-			/*VectorType vecType = StaticTypes.VectorTypes[vVecTypeId];
-			double baseVal = vValue*VectorUnitPrefix.GetMult(vVecUnitPrefId);
 
-			if ( baseVal < vecType.Min ) {
-				throw new FabArgumentOutOfRangeFault(ValueParam+" is less than VectorType.Min.");
+			if ( baseVal < vt.Min ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabVectorValidator.ValueName,
+					pObj.Value, String.Format(text, "less", vt.Min));
 			}
 
-			if ( baseVal > vecType.Max ) {
-				throw new FabArgumentOutOfRangeFault(ValueParam+" is greater than VectorType.Max.");
-			}*/
+			if ( baseVal > vt.Max ) {
+				throw new FabPropertyOutOfRangeFault(CreateFabVectorValidator.ValueName,
+					pObj.Value, String.Format(text, "greater", vt.Max));
+			}
 		}
 		
 	}

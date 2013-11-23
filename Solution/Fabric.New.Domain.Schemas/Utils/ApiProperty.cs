@@ -20,9 +20,6 @@ namespace Fabric.New.Domain.Schemas.Utils {
 		public const string ValidTitleRegex = 
 			@"^[a-zA-Z0-9 \[\]\+\?\|\(\)\{\}\^\*\-\.\\"+"/!@#$%&=_,:;'\"<>~]*$";
 
-		public const string ValidOauthDomainRegexp =
-			@"^[a-zA-Z0-9]+(:[0-9]+|([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,6})$";
-
 		public Type DataType { get; private set; }
 		public string Name { get; private set; }
 
