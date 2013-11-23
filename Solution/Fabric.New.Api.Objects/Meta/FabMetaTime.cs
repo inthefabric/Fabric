@@ -39,6 +39,11 @@ namespace Fabric.New.Api.Objects.Meta {
 			return (long)(new DateTime(pUtcNowTicks)-UnixEpoch).TotalMilliseconds;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static long GetTicks(long pTimestamp) {
+			return UnixEpoch.AddMilliseconds(pTimestamp).Ticks;
+		}
+
 	}
 
 }

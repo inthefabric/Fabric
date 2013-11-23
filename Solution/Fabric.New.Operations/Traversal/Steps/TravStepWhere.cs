@@ -11,6 +11,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 	public class TravStepWhere<TFrom, TVal, TTo> : TravStep<TFrom, TTo>
 													where TFrom : FabObject where TTo : FabElement {
 
+		public Func<TVal, TVal> UpdateValue { get; set; }
+
 		private readonly string vPropDbName;
 
 
@@ -32,6 +34,10 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
 			string op = ParamAt<string>(item, 0);
 			TVal val = ParamAt<TVal>(item, 1);
+
+			if ( UpdateValue != null ) {
+				UpdateValue(val);
+			}
 
 			pPath.AddScript(
 				".has("+

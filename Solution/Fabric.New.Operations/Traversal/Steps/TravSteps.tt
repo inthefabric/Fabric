@@ -78,7 +78,7 @@ foreach ( IVertexSchema v in verts ) {
 
 		if ( ap.TraversalHas == Matching.Custom ) {
 #>
-			TravStepsCustom.<#= v.Names.Domain+name #><<#= v.Names.Api #>, <#= apiType #>>("<#= name #>", "<#= pm.Domain.DbName #>"),
+			TravStepsCustom.<#= v.Names.Domain+name #><<#= v.Names.Api #>, <#= apiType #>, <#= v.Names.Api #>>("<#= name #>", "<#= pm.Domain.DbName #>"),
 <#
 			continue;
 		}
@@ -104,7 +104,7 @@ foreach ( IEdgeSchema e in edges ) {
 		
 		if ( ap.TraversalHas == Matching.Custom ) {
 #>
-			TravStepsCustom.<#= edgeName.Substring(3)+name #><<#= edgeName #>, <#= type #>>("<#= name #>", "<#= p.DbName #>"),
+			TravStepsCustom.<#= edgeName.Substring(3)+name #><<#= edgeName #>, <#= type #>, <#= edgeName #>>("<#= name #>", "<#= p.DbName #>"),
 <#
 			continue;
 		}
@@ -166,9 +166,14 @@ foreach ( IVertexSchema v in verts ) {
 		}
 
 		PropertyMapping pm = propMaps[ap];
-			
+
 		if ( pm.Domain.IsElastic ) {
-			if ( ap.DataType == typeof(string) ) {
+			if ( ap.TraversalHas == Matching.Custom ) {
+#>
+			TravStepsCustom.<#= v.Names.Domain #>EntryWhere<#= ap.Name #><FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
+<#
+			}
+			else if ( ap.DataType == typeof(string) ) {
 #>
 			new TravStepEntryContains<FabTrav<#= v.Names.Domain #>Root, <#= v.Names.Api #>>("Where<#= ap.Name #>Contains", "<#= pm.Domain.DbName #>"),
 <#
@@ -181,6 +186,10 @@ foreach ( IVertexSchema v in verts ) {
 		} //end IsElastic condition
 
 		if ( pm.Domain.IsIndexed ) {
+			if ( ap.TraversalHas == Matching.Custom ) {
+				throw new Exception("Custom not handled for IsIndexed.");
+			}
+
 			string toLower = (ap.ToLowerCase+"").ToLower();
 #>
 			new TravStepEntryWith<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= ap.Name #>", "<#= pm.Domain.DbName #>", <#= toLower #>),
@@ -188,6 +197,10 @@ foreach ( IVertexSchema v in verts ) {
 		} //end IsIndexed condition
 
 		if ( pm.Domain.ExactIndexVia != null ) {
+			if ( ap.TraversalHas == Matching.Custom ) {
+				throw new Exception("Custom not handled for ExactIndexVia.");
+			}
+
 			DomainProperty eiv = pm.Domain.ExactIndexVia;
 			string toLower = (eiv.ToLowerCase+"").ToLower();
 #>

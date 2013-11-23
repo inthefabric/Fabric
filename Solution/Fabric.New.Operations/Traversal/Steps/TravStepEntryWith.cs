@@ -16,21 +16,20 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		public TravStepEntryWith(string pCmd, string pPropDbName, bool pToLower) : 
 																			base(pCmd, pPropDbName) {
 			vToLower = pToLower;
-		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected override TVal UpdateValue(TVal pVal) {
-			if ( vToLower ) {
-				var valStr = (pVal as string);
+			UpdateValue = (val => {
+				if ( vToLower ) {
+					var valStr = (val as string);
 
-				if ( valStr != null ) {
-					pVal = (TVal)(object)valStr.ToLower();
+					if ( valStr != null ) {
+						val = (TVal)(object)valStr.ToLower();
+					}
 				}
-			}
 			
-			return pVal;
+				return val;
+			});
 		}
-		
+
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetGremlinOp(string pOp) {
 			return GremlinUtil.GetElasticCompareOperation(pOp);

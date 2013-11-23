@@ -10,6 +10,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 	[SpecStep("With")]
 	public class TravStepWith<TFrom, TVal, TTo> : TravStep<TFrom, TTo> 
 														where TFrom : FabObject where TTo : FabElement {
+		
+		public Func<TVal, TVal> UpdateValue { get; set; }
 
 		private readonly string vPropDbName;
 
@@ -26,7 +28,10 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		public override void ConsumePath(ITravPath pPath, Type pToType) {
 			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
 			TVal val = ParamAt<TVal>(item, 0);
-			UpdateValue(val);
+
+			if ( UpdateValue != null ) {
+				UpdateValue(val);
+			}
 
 			pPath.AddScript(
 				".has("+
@@ -39,11 +44,6 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual TVal UpdateValue(TVal pVal) {
-			return pVal;
-		}
-		
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual string GetGremlinOp(string pOp) {
 			return GremlinUtil.GetStandardCompareOperation(pOp);
