@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Spec;
 using Fabric.New.Operations.Traversal.Routing;
 
@@ -28,13 +27,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath, Type pToType) {
 			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
-			int count = item.ParamAt<int>(0);
-			ITravStepParam p = Params[0];
-			
-			if ( count < p.Min || count > p.Max ) {
-				throw item.NewStepFault(FabFault.Code.IncorrectParamValue,
-					p.Name+" cannot be less than "+p.Min+" or greater than "+p.Max+".", 0);
-			}
+			int count = ParamAt<int>(item, 0);
 
 			pPath.AddScript(
 				"[0.."+(count-1)+"]"+ //range is inclusive

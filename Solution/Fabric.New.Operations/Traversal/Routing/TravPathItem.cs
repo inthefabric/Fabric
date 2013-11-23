@@ -74,7 +74,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T ParamAt<T>(int pIndex) {
+		public T GetParamAt<T>(int pIndex) {
 			string p = vParams[pIndex];
 			Type tt = typeof(T);
 

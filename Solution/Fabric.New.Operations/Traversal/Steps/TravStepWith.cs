@@ -25,7 +25,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath, Type pToType) {
 			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
-			TVal val = item.ParamAt<TVal>(0);
+			TVal val = ParamAt<TVal>(item, 0);
 			UpdateValue(val);
 
 			pPath.AddScript(

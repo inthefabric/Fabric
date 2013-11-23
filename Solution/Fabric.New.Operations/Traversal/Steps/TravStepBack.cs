@@ -15,19 +15,17 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public TravStepBack() : base("Back") {
 			ToAliasType = true;
-			Params.Add(TravStepAs.GetParam());
+			Params.Add(TravStepAs.GetAliasParam());
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath, Type pIgnoredToType) {
 			ITravPathItem item = ConsumeFirstPathItem(pPath, ToType);
-			string alias = item.ParamAt<string>(0);
+			string alias = ParamAt<string>(item, 0);
 			ITravStepParam p = Params[0];
 			string conflictAlias;
 
 			//TODO: "Back" can't be directly after the matching "As"
-
-			TravStepAs.ValidateAlias(item, p, alias);
 
 			if ( !pPath.HasAlias(alias) ) {
 				throw item.NewStepFault(FabFault.Code.IncorrectParamValue, 

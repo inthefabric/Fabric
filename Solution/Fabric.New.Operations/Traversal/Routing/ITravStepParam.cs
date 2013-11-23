@@ -10,8 +10,8 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		string Name { get; }
 		Type DataType { get; }
 		bool IsGenericDataType { get; }
-		int? Min { get; }
-		int? Max { get; }
+		long? Min { get; }
+		long? Max { get; }
 		int? LenMax { get; }
 		string ValidRegex { get; }
 		IList<string> AcceptedStrings { get; }

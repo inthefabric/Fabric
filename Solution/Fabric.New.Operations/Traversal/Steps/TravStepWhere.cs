@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Spec;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Util;
@@ -31,16 +30,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath, Type pToType) {
 			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
-			ITravStepParam p0 = Params[0];
-			string op = item.ParamAt<string>(0);
-
-			if ( !p0.AcceptedStrings.Contains(op) ) {
-				throw item.NewStepFault(FabFault.Code.IncorrectParamValue,
-					"Invalid "+p0.Name+" value. Accepted values: "+
-					string.Join(", ", p0.AcceptedStrings)+".", 0);
-			}
-
-			TVal val = item.ParamAt<TVal>(1);
+			string op = ParamAt<string>(item, 0);
+			TVal val = ParamAt<TVal>(item, 1);
 
 			pPath.AddScript(
 				".has("+

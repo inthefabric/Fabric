@@ -18,7 +18,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static ITravStep FactorWhereEventorYear<TFrom, TType>(string pName, string pPropDb) {
-			return null;
+			return new TravStepWhereEventorDateTime();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -46,6 +46,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			return null;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static ITravStep VertexWhereTimestamp<TFrom, TType>(string pName, string pPropDb) {
 			return null;
@@ -59,6 +61,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			return null;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static ITravStep ArtifactUsedAsPrimaryByFactorWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
@@ -71,6 +75,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			return null;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static ITravStep MemberCreatesArtifactWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {
@@ -83,6 +89,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			return null;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static ITravStep UserDefinesMemberWhereTimestamp<TFrom, TType>(
 																		string pName, string pPropDb) {

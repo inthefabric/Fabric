@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Fabric.New.Infrastructure.Faults;
 
 namespace Fabric.New.Operations.Traversal.Routing {
 
@@ -49,6 +51,46 @@ namespace Fabric.New.Operations.Traversal.Routing {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected T ParamAt<T>(ITravPathItem pItem, int pIndex) {
+			ITravStepParam p = Params[pIndex];
+			T val = pItem.GetParamAt<T>(pIndex);
+			string valStr = val+"";
+
+			if ( valStr.Length == 0 ) {
+				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
+					p.Name+" is empty.", pIndex);
+			}
+
+			if ( p.Min != null && (long)(object)val > p.Min ) {
+				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
+					p.Name+" cannot be less than "+p.Min, pIndex);
+			}
+
+			if ( p.Max != null && (long)(object)val > p.Max ) {
+				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
+					p.Name+" cannot be greater than "+p.Max, pIndex);
+			}
+
+			if ( p.LenMax != null && valStr.Length > p.LenMax ) {
+				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
+					p.Name+" cannot exceed "+p.LenMax+" characters.", pIndex);
+			}
+
+			if ( p.ValidRegex != null && !Regex.IsMatch(valStr, p.ValidRegex) ) {
+				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
+					"Invalid "+p.Name+" format.", pIndex);
+			}
+
+			if ( p.AcceptedStrings != null && !p.AcceptedStrings.Contains(valStr) ) {
+				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
+					"Invalid "+p.Name+" value. Accepted values: "+
+					string.Join(", ", p.AcceptedStrings)+".", pIndex);
+			}
+
+			return val;
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		protected ITravPathItem ConsumeFirstPathItem(ITravPath pPath, Type pToType) {
 			ITravPathItem item = pPath.ConsumeSteps(1, pToType)[0];

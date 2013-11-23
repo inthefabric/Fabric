@@ -25,7 +25,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void ConsumePath(ITravPath pPath, Type pToType) {
 			ITravPathItem item = ConsumeFirstPathItem(pPath, pToType);
-			string val = item.ParamAt<string>(0);
+			string val = ParamAt<string>(item, 0);
 
 			pPath.AddScript(
 				".has("+
