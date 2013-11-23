@@ -146,6 +146,11 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public bool DoesBackTouchAs(string pAlias) {
+			return (vAliases[pAlias] == vCurrIndex-1);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public bool AllowBackToAlias(string pAlias, out string pConflictingAlias) {
 			int targetAliasI = vAliases[pAlias];
 

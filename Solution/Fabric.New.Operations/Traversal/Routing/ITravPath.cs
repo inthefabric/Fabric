@@ -54,6 +54,9 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		bool HasAlias(string pAlias);
 
 		/*--------------------------------------------------------------------------------------------*/
+		bool DoesBackTouchAs(string pAlias);
+
+		/*--------------------------------------------------------------------------------------------*/
 		bool AllowBackToAlias(string pAlias, out string pConflictingAlias);
 		
 	}

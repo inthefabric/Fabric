@@ -25,15 +25,18 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			ITravStepParam p = Params[0];
 			string conflictAlias;
 
-			//TODO: "Back" can't be directly after the matching "As"
-
 			if ( !pPath.HasAlias(alias) ) {
 				throw item.NewStepFault(FabFault.Code.IncorrectParamValue, 
 					p.Name+" '"+alias+"' could not be found.", 0);
 			}
 
+			if ( pPath.DoesBackTouchAs(alias) ) {
+				throw item.NewStepFault(FabFault.Code.InvalidStep,
+					"Back('"+alias+"') cannot occur directly after the As("+alias+").", 0);
+			}
+
 			if ( !pPath.AllowBackToAlias(alias, out conflictAlias) ) {
-				throw item.NewStepFault(FabFault.Code.IncorrectParamValue, "Cannot traverse back to "+
+				throw item.NewStepFault(FabFault.Code.InvalidStep, "Cannot traverse back to "+
 					"the As("+alias+") step; it exists within the As("+conflictAlias+") and "+
 					"Back("+conflictAlias+") traversal path.", 0);
 			}
