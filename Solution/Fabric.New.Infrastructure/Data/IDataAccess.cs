@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using RexConnectClient.Core;
+using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Infrastructure.Data {
@@ -10,6 +13,12 @@ namespace Fabric.New.Infrastructure.Data {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void Build(IDataContext pDataCtx);
+
+		/*--------------------------------------------------------------------------------------------*/
+		void SetExecuteHooks(Action<IDataAccess, RexConnDataAccess> pPreExecute,
+													Action<IDataAccess, IResponseResult> pPostExecute,
+													Action<IDataAccess, Exception> pPostExecuteErr);
+		void SetLoggingHook(Action<IDataAccess, string, string> pOutput);
 
 		/*--------------------------------------------------------------------------------------------*/
 		string GetLatestCommandId();

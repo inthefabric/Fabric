@@ -44,14 +44,14 @@ namespace Fabric.New.Operations {
 
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<OauthAccess>(x => x.Token, vOauthToken)
-					.Has(x => x.Expires, WeaverStepHasOp.GreaterThan, vGetUtcNow)
+					.Has(x => x.Expires, WeaverStepHasOp.GreaterThan, vGetUtcNow())
 				.AuthenticatesMember.ToMember
 				.ToQuery();
 
 			ActiveMember = vGetDataAcc()
 				.AddQuery(q)
 				.Execute("MemberForOauthToken")
-				.ToElementAt<Member>(0, 0);
+				.ToElement<Member>();
 
 			if ( ActiveMember == null ) {
 				throw new FabOauthFault();

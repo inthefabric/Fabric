@@ -48,6 +48,9 @@
     <Compile Include="Unit\Infrastructure\Query\TTxBuilder.cs" />
     <Compile Include="Unit\Infrastructure\Util\TDataUtil.cs" />
     <Compile Include="Unit\Infrastructure\Query\TSharpflake.cs" />
+    <Compile Include="Unit\Operations\TOperationContextDataExt.cs" />
+    <Compile Include="Unit\Operations\TOperationContext.cs" />
+    <Compile Include="Unit\Operations\TOperationAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Integration\" />
@@ -60,6 +63,10 @@
     <ProjectReference Include="..\Fabric.New.Infrastructure\Fabric.New.Infrastructure.csproj">
       <Project>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</Project>
       <Name>Fabric.New.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.New.Operations\Fabric.New.Operations.csproj">
+      <Project>{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}</Project>
+      <Name>Fabric.New.Operations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

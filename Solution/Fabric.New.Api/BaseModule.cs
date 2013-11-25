@@ -6,6 +6,7 @@ using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Cache;
+using Fabric.New.Infrastructure.Data;
 using Fabric.New.Operations;
 using Nancy;
 using Nancy.Responses;
@@ -27,6 +28,7 @@ namespace Fabric.New.Api {
 		private static MetricsManager Metrics;
 		private static CacheManager Cache;
 		private static Func<Guid, IAnalyticsManager> AnalyticsProv;
+		private static IDataAccessFactory AccessFactory;
 
 		public static string ApiUrl;
 		public static int RexConnPort;
@@ -86,7 +88,7 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private IApiRequest NewReq() {
 			int i = (NodeIndex++)%NodeCount;
-			var oc = new OperationContext(NodeIpList[i], RexConnPort, Cache, Metrics, AnalyticsProv);
+			var oc = new OperationContext(AccessFactory, Cache, Metrics, AnalyticsProv);
 			return new ApiRequest(oc, Context.Request);
 		}
 
@@ -148,6 +150,7 @@ namespace Fabric.New.Api {
 
 			Cache = new CacheManager(Metrics);
 			AnalyticsProv = (g => new AnalyticsManager(g));
+			AccessFactory = new DataAccessFactory(NodeIpList, RexConnPort, Cache);
 
 			JsConfig.ExcludeTypeInfo = true;
 		}

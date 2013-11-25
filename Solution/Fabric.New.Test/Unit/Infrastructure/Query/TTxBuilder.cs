@@ -77,7 +77,7 @@ namespace Fabric.New.Test.Unit.Infrastructure.Query {
 			IWeaverQuery q = GetFirstQuery(txb);
 			TestUtil.LogWeaverScript(Log, q);
 			Assert.AreEqual(expectScript, q.Script, "Incorrect script.");
-			TestUtil.CheckParams(q.Params, "_P", new List<object>(new object[] { id }));
+			TestUtil.CheckParams(q.Params, "_P", new List<object>{ id });
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -98,7 +98,7 @@ namespace Fabric.New.Test.Unit.Infrastructure.Query {
 			IWeaverQuery q = GetFirstQuery(txb);
 			TestUtil.LogWeaverScript(Log, q);
 			Assert.AreEqual(expectScript, q.Script, "Incorrect script.");
-			TestUtil.CheckParams(q.Params, "_P", new List<object>(new object[] { id }));
+			TestUtil.CheckParams(q.Params, "_P", new List<object>{ id });
 		}
 
 
@@ -127,8 +127,8 @@ namespace Fabric.New.Test.Unit.Infrastructure.Query {
 			IWeaverQuery q = GetFirstQuery(txb);
 			TestUtil.LogWeaverScript(Log, q);
 			Assert.AreEqual(expectScript, q.Script, "Incorrect script.");
-			TestUtil.CheckParams(q.Params, "_P", new List<object>(
-				new object[] { vert.VertexId, vert.Timestamp, vert.VertexType }));
+			TestUtil.CheckParams(q.Params, "_P", 
+				new List<object>{ vert.VertexId, vert.Timestamp, vert.VertexType });
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -149,8 +149,8 @@ namespace Fabric.New.Test.Unit.Infrastructure.Query {
 			IWeaverQuery q = GetFirstQuery(txb);
 			TestUtil.LogWeaverScript(Log, q);
 			Assert.AreEqual(expectScript, q.Script, "Incorrect script.");
-			TestUtil.CheckParams(q.Params, "_P", new List<object>(
-				new object[] { DbName.Edge.ArtifactCreatedByMemberName }));
+			TestUtil.CheckParams(q.Params, "_P", 
+				new List<object>{ DbName.Edge.ArtifactCreatedByMemberName });
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

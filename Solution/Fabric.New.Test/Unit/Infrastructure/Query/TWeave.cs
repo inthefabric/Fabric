@@ -29,7 +29,7 @@ namespace Fabric.New.Test.Unit.Infrastructure.Query {
 
 			TestUtil.LogWeaverScript(Log, q);
 			Assert.AreEqual(expectScript, q.Script, "Incorrect script.");
-			TestUtil.CheckParams(q.Params, "_P", new List<object>(new object[] { app.VertexId }));
+			TestUtil.CheckParams(q.Params, "_P", new List<object>{ app.VertexId });
 		}
 
 	}

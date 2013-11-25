@@ -16,9 +16,6 @@ namespace Fabric.New.Operations {
 
 		private static readonly Logger Log = Logger.Build<OperationContext>();
 
-		public string RexConnUrl { get; private set; }
-		public int RexConnPort { get; private set; }
-
 		public Guid ContextId { get; private set; }
 		public IOperationAccess Access { get; private set; }
 		public IAnalyticsManager Analytics { get; private set; }
@@ -28,18 +25,18 @@ namespace Fabric.New.Operations {
 		public int DbQueryExecutionCount { get; private set; }
 		public int DbQueryMillis { get; private set; }
 
+		private readonly IDataAccessFactory vAccessFactory;
 		private readonly Stopwatch vProfiler;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OperationContext(string pRexConnUrl, int pRexConnPort, ICacheManager pCache,
+		public OperationContext(IDataAccessFactory pAccessFactory, ICacheManager pCache,
 						IMetricsManager pMetrics, Func<Guid, IAnalyticsManager> pAnalyticsProvider) {
+			vAccessFactory = pAccessFactory;
 			vProfiler = new Stopwatch();
 			vProfiler.Start();
 
-			RexConnUrl = pRexConnUrl;
-			RexConnPort = pRexConnPort;
 			Metrics = pMetrics;
 			Cache = pCache;
 
@@ -72,11 +69,7 @@ namespace Fabric.New.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		public IDataAccess NewData(string pSessionId=null, bool pSetCmdIds=false,
 																			bool pOmitCmdTimers=true) {
-			var dc = new DataContext(RexConnUrl, RexConnPort, Cache.RexConn,
-				pSessionId, pSetCmdIds, pOmitCmdTimers);
-
-			var da = new DataAccess();
-			da.Build(dc);
+			IDataAccess da = vAccessFactory.Create(pSessionId, pSetCmdIds, pOmitCmdTimers);
 			da.SetExecuteHooks(OnDataPreExecute, OnDataPostExecute, OnDataPostExecuteError);
 			da.SetLoggingHook(OnLog);
 			return da;

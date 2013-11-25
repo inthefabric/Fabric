@@ -103,7 +103,7 @@ namespace Fabric.New.Test.Shared {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
+		/*--------------------------------------------------------------------------------------------*/
 		public static string InsertParamIndexes(string pQuery, string pParamBase) {
 			string[] parts = pQuery.Split(new[] { pParamBase }, 9999, StringSplitOptions.None);
 			string q = "";
@@ -113,7 +113,7 @@ namespace Fabric.New.Test.Shared {
 			}
 
 			return q;
-		}*/
+		}
 
 	}
 

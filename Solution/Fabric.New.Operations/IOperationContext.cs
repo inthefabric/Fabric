@@ -9,9 +9,6 @@ namespace Fabric.New.Operations {
 	/*================================================================================================*/
 	public interface IOperationContext {
 
-		string RexConnUrl { get; }
-		int RexConnPort { get; }
-
 		Guid ContextId { get; }
 		IOperationAccess Access { get; }
 		IAnalyticsManager Analytics { get; }

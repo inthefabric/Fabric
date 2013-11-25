@@ -75,6 +75,8 @@
     <Compile Include="Cache\ICacheManager.cs" />
     <Compile Include="Cache\IMemCache.cs" />
     <Compile Include="Cache\MemCache.cs" />
+    <Compile Include="Data\IDataAccessFactory.cs" />
+    <Compile Include="Data\DataAccessFactory.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\DataAccess.cs" />
