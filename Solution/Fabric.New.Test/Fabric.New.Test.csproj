@@ -42,6 +42,8 @@
     <Compile Include="Shared\MockDataAccessCmd.cs" />
     <Compile Include="Shared\MockDataResult.cs" />
     <Compile Include="Shared\TestUtil.cs" />
+    <Compile Include="Unit\Infrastructure\Data\TDataAccessException.cs" />
+    <Compile Include="Unit\Infrastructure\Data\TDataContext.cs" />
     <Compile Include="Unit\Infrastructure\Query\TWeave.cs" />
     <Compile Include="Unit\Infrastructure\Query\TTxBuilder.cs" />
     <Compile Include="Unit\Infrastructure\Util\TDataUtil.cs" />
@@ -67,13 +69,15 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RexConnectClient.Core">
-      <HintPath>..\..\Packages\RexConnectClient.0.3.6.0\lib\RexConnectClient.Core.dll</HintPath>
+    <Reference Include="RexConnectClient.Core, Version=0.5.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\RexConnectClient.0.5.0.1\lib\RexConnectClient.Core.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
     </Reference>

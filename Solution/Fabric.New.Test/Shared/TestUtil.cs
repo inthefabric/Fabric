@@ -29,7 +29,7 @@ namespace Fabric.New.Test.Shared {
 			return null;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static void CheckParam(IDictionary<string, IWeaverQueryVal> pParams,
 																	string pKey, object pOrigValue) {
 			Assert.NotNull(pParams, "Query.Params should not be null.");

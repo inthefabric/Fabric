@@ -8,9 +8,9 @@ namespace Fabric.New.Test.Unit.Infrastructure.Util {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TFabricUtil {
+	public class TDataUtil {
 
-		private static readonly Logger Log = Logger.Build<TFabricUtil>();
+		private static readonly Logger Log = Logger.Build<TDataUtil>();
 		private const string AlphaNum32Pattern = @"[a-zA-Z0-9]{32}";
 
 

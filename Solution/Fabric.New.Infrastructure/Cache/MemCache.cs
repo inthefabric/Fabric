@@ -8,7 +8,7 @@ using Fabric.New.Infrastructure.Broadcast;
 namespace Fabric.New.Infrastructure.Cache {
 
 	/*================================================================================================*/
-	public class MemCache : MemoryCache, IMemCache {
+	public class MemCache : MemoryCache, IMemCache { //TEST: MemCache
 
 		private readonly IMetricsManager vMetrics;
 

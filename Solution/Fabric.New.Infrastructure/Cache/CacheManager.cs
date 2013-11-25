@@ -4,7 +4,7 @@ using RexConnectClient.Core.Cache;
 namespace Fabric.New.Infrastructure.Cache {
 
 	/*================================================================================================*/
-	public class CacheManager : ICacheManager { //TEST: CacheManager and related classes
+	public class CacheManager : ICacheManager { //TEST: CacheManager
 
 		public IMemCache Memory { get; private set; }
 		public IRexConnCacheProvider RexConn { get; private set; }

@@ -8,7 +8,7 @@ using RexConnectClient.Core.Transfer;
 namespace Fabric.New.Infrastructure.Data {
 
 	/*================================================================================================*/
-	public class DataResult : IDataResult {
+	public class DataResult : IDataResult { //TEST: DataResult
 
 		private readonly IResponseResult vResult;
 

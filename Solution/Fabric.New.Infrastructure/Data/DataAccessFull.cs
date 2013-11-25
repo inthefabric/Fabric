@@ -4,7 +4,7 @@ using Weaver.Exec.RexConnect;
 namespace Fabric.New.Infrastructure.Data {
 
 	/*================================================================================================*/
-	public class DataAccessFull : DataAccess {
+	public class DataAccessFull : DataAccess { //TEST: DataAccessFull
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

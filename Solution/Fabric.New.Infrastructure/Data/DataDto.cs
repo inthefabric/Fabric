@@ -11,7 +11,7 @@ using ServiceStack.Text;
 namespace Fabric.New.Infrastructure.Data {
 	
 	/*================================================================================================*/
-	public class DataDto : IDataDto {
+	public class DataDto : IDataDto { //TEST: DataDto
 
 		public enum ElementType {
 			Vertex,

@@ -11,7 +11,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 	// This was necessary to support sending more than just integer values.
 
 	/*================================================================================================*/
-	public class GraphiteTcp : IDisposable {
+	public class GraphiteTcp : IDisposable { //TEST: GraphiteTcp
 
 		private static readonly Logger Log = Logger.Build<GraphiteTcp>();
 

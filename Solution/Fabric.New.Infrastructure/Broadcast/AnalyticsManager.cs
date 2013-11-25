@@ -10,7 +10,7 @@ using GoogleAnalyticsTracker;
 namespace Fabric.New.Infrastructure.Broadcast {
 	
 	/*================================================================================================*/
-	public class AnalyticsManager : IAnalyticsManager {
+	public class AnalyticsManager : IAnalyticsManager { //TEST: AnalyticsManager
 
 #if !MONO_DEV
 		private readonly Tracker vTracker;

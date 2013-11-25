@@ -7,7 +7,7 @@ using metrics.Core;
 namespace Fabric.New.Infrastructure.Broadcast {
 	
 	/*================================================================================================*/
-	public class MetricsManager : IMetricsManager {
+	public class MetricsManager : IMetricsManager { //TEST: MetricsManager
 
 		private readonly GraphiteTcp vGraphite;
 		private readonly Timer vTimer;
