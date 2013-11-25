@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using Fabric.Domain;
-using Fabric.Infrastructure;
-using Moq;
+using Fabric.New.Infrastructure.Broadcast;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.Test.Util {
+namespace Fabric.New.Test.Shared {
 
 	/*================================================================================================*/
 	public static class TestUtil {
-	
-		public const string TryPropScript =
-			"_TRY.each{k,v->if((z=v.getProperty(k))){_PROP.put(k,z)}};";
+
+		//public const string TryPropScript =
+		//	"_TRY.each{k,v->if((z=v.getProperty(k))){_PROP.put(k,z)}};";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static TEx CheckThrows<TEx>(bool pThrows, TestDelegate pFunc) where TEx : Exception {
+		public static T Throws<T>(TestDelegate pFunc) where T : Exception {
+			return CheckThrows<T>(true, pFunc);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public static T CheckThrows<T>(bool pThrows, TestDelegate pFunc) where T : Exception {
 			if ( pThrows ) {
-				TEx e = (TEx)Assert.Throws(typeof(TEx), pFunc);
-				Log.Info(e.Message);
-				return e;
+				return (T)Assert.Throws(typeof(T), pFunc);
 			}
 
 			Assert.DoesNotThrow(pFunc);
@@ -52,7 +52,7 @@ namespace Fabric.Test.Util {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : IVertex {
 			var tv = new Mock<IWeaverVarAlias<T>>();
 			tv.SetupGet(x => x.Name).Returns(pName);
@@ -63,30 +63,30 @@ namespace Fabric.Test.Util {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void LogWeaverScript(IWeaverScript pScripted) {
+		public static void LogWeaverScript(Logger pLog, IWeaverScript pScripted) {
 			string p = "";
 
 			foreach ( string key in pScripted.Params.Keys ) {
 				p += "\n\t"+key+" = "+pScripted.Params[key].FixedText;
 			}
 
-			LogWeaverScript(pScripted.Script, p);
+			LogWeaverScript(pLog, pScripted.Script, p);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void LogWeaverScript(string pScript, string pParamOutput) {
+		public static void LogWeaverScript(Logger pLog, string pScript, string pParamOutput) {
 			string script = pScript
 				.Replace(".outE", "\n\t\t.outE")
 				.Replace(".inE", "\n\t\t.inE")
 				.Replace(".back", "\n\t\t.back")
 				.Replace(";", ";\n\t");
 
-			Log.Debug("Query:\n\n\t"+script+pParamOutput);
+			pLog.Debug("Query:\n\n\t"+script+pParamOutput);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static NameValueCollection BuildQuery(string pQuery) {
 			var q = new NameValueCollection();
 			if ( String.IsNullOrEmpty(pQuery) ) { return q; }
@@ -103,7 +103,7 @@ namespace Fabric.Test.Util {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static string InsertParamIndexes(string pQuery, string pParamBase) {
 			string[] parts = pQuery.Split(new[] { pParamBase }, 9999, StringSplitOptions.None);
 			string q = "";
@@ -113,7 +113,8 @@ namespace Fabric.Test.Util {
 			}
 
 			return q;
-		}
+		}*/
+
 	}
 
 }

@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Fabric.Domain;
-using Fabric.Infrastructure;
+using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Broadcast;
+using Fabric.New.Infrastructure.Query;
 using NUnit.Framework;
 
-namespace Fabric.Test.Integration.FabInfra {
+namespace Fabric.New.Test.Unit.Infrastructure.Query {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class XSharpflake {
-		
+	public class TSharpflake {
+
+		private static readonly Logger Log = Logger.Build<TSharpflake>();
+
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(2)]
-		[TestCase(4)]
-		[TestCase(6)]
+		[TestCase(5)]
 		[TestCase(8)]
 		public void UniqueIds(int pMaxParallel) {
 			var map = new Dictionary<long, int>();
@@ -24,7 +26,7 @@ namespace Fabric.Test.Integration.FabInfra {
 			var opt = new ParallelOptions { MaxDegreeOfParallelism = pMaxParallel };
 
 			Parallel.For(0, 100000, opt, (i, state) => {
-				long id = Sharpflake.GetId<Artifact>();
+				long id = Sharpflake.GetId<Vertex>();
 
 				lock ( map ) {
 					if ( map.ContainsKey(id) ) {
@@ -45,7 +47,7 @@ namespace Fabric.Test.Integration.FabInfra {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static long[] GetIdComponents(long pId) {
+		private static long[] GetIdComponents(long pId) {
 			long t = (pId >> 20);
 			long t2 = (t << 20);
 			long s = ((pId-t2) >> 8);
@@ -54,7 +56,7 @@ namespace Fabric.Test.Integration.FabInfra {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string GetIdComponentString(long pId, bool pBinary) {
+		private static string GetIdComponentString(long pId, bool pBinary) {
 			long[] c = GetIdComponents(pId);
 
 			if ( !pBinary ) {

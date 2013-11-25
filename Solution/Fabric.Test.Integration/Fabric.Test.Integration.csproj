@@ -112,7 +112,6 @@
     <Compile Include="FabApiTraversal\XPathRouter.cs" />
     <Compile Include="FabApiWeb\XBaseWebFunc.cs" />
     <Compile Include="FabInfra\XParallel.cs" />
-    <Compile Include="FabInfra\XSharpflake.cs" />
     <Compile Include="FabInfra\XRandom.cs" />
     <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />

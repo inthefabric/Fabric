@@ -46,16 +46,12 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Common\MockDataResult.cs" />
-    <Compile Include="Common\MockDataAccessCmd.cs" />
-    <Compile Include="Common\MockDataAccess.cs" />
     <Compile Include="Common\TestFuncStep.cs" />
     <Compile Include="Common\TestFinalStep.cs" />
     <Compile Include="Common\TestVertexStep.cs" />
     <Compile Include="Common\TestFabVertex.cs" />
     <Compile Include="Common\TestStep.cs" />
     <Compile Include="FabApiDto\TFabFactor.cs" />
-    <Compile Include="FabInfra\TFabricUtil.cs" />
     <Compile Include="FabApiDto\TFabClass.cs" />
     <Compile Include="FabApiModify\TDeleteFactor.cs" />
     <Compile Include="FabApiModify\TCompleteFactor.cs" />
@@ -145,7 +141,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StepUtil.tt</DependentUpon>
     </Compile>
-    <Compile Include="Util\TestUtil.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetAccessToken.cs" />
     <Compile Include="FabApiOauth\Tasks\TAddAccess.cs" />
     <Compile Include="Util\UsageMap.cs" />

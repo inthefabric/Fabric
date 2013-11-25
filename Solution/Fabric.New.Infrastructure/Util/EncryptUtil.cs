@@ -8,7 +8,7 @@ namespace Fabric.New.Infrastructure.Util {
 	//adapted from http://www.4guysfromrolla.com/webtech/090501-1.shtml
 
 	/*================================================================================================*/
-	public static class EncryptUtil {
+	internal static class EncryptUtil {
 
 		static private readonly Byte[] Key = new Byte[8];
 		static private readonly Byte[] Iv = new Byte[8];
@@ -16,7 +16,7 @@ namespace Fabric.New.Infrastructure.Util {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static string EncryptData(String pStrKey, String pStrData) {
+		internal static string EncryptData(String pStrKey, String pStrData) {
 			string strResult;		//Return Result
 
 			//1. String Length cannot exceed 90Kb. Otherwise, buffer will overflow. See point 3 for reasons
@@ -74,7 +74,7 @@ namespace Fabric.New.Infrastructure.Util {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static string DecryptData(String pStrKey, String pStrData) {
+		internal static string DecryptData(String pStrKey, String pStrData) {
 			string strResult;
 
 			//1. Generate the Key used for decrypting

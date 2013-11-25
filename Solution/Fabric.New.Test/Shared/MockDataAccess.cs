@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure.Data;
-using Fabric.Test.Util;
+using Fabric.New.Infrastructure.Broadcast;
+using Fabric.New.Infrastructure.Data;
 using Moq;
 using Weaver.Core.Query;
 
-namespace Fabric.Test.Common {
+namespace Fabric.New.Test.Shared {
 
 	/*================================================================================================*/
 	public class MockDataAccess : Mock<IDataAccess> {
+
+		private static readonly Logger Log = Logger.Build<MockDataAccess>();
 
 		protected IList<MockDataAccessCmd> CmdList;
 		public int ExecuteCount;
@@ -65,7 +67,7 @@ namespace Fabric.Test.Common {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnAddQuery(string pScript, bool pCache) {
-			TestUtil.LogWeaverScript(pScript, "");
+			TestUtil.LogWeaverScript(Log, pScript, "");
 			CmdList.Add(new MockDataAccessCmd { Script = pScript, Cache = pCache});
 		}
 
@@ -81,7 +83,7 @@ namespace Fabric.Test.Common {
 			var mockWs = new Mock<IWeaverScript>();
 			mockWs.SetupGet(x => x.Script).Returns(pScript);
 			mockWs.SetupGet(x => x.Params).Returns((Dictionary<string, IWeaverQueryVal>)pParams);
-			TestUtil.LogWeaverScript(mockWs.Object);
+			TestUtil.LogWeaverScript(Log, mockWs.Object);
 
 			CmdList.Add(new MockDataAccessCmd { Script = pScript, Params = pParams, Cache = pCache });
 		}

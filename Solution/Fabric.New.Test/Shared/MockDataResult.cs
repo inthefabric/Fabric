@@ -1,9 +1,9 @@
-﻿using Fabric.Domain;
-using Fabric.Infrastructure.Data;
+﻿using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Data;
 using Moq;
 using Weaver.Core.Elements;
 
-namespace Fabric.Test.Common {
+namespace Fabric.New.Test.Shared {
 
 	/*================================================================================================*/
 	public class MockDataResult : Mock<IDataResult> {
@@ -41,7 +41,7 @@ namespace Fabric.Test.Common {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MockDataResult SetupToElement<T>(T pElement)
-											where T : class, IWeaverElement, IElementWithId, new() {
+													where T : class, IWeaverElement, IElement, new() {
 			Setup(x => x.ToElement<T>()).Returns(() => pElement);
 			return this;
 		}

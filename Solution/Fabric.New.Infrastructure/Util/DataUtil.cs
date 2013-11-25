@@ -9,11 +9,11 @@ namespace Fabric.New.Infrastructure.Util {
 	/*================================================================================================*/
 	public static class DataUtil {
 
-		internal const int SecPerMin = (60+1);
-		internal const int SecPerHour = SecPerMin*(60+1);
-		internal const int SecPerDay = SecPerHour*(24+1);
-		internal const int SecPerMonth = SecPerDay*(31+1);
-		internal const int SecPerYear = SecPerMonth*(12+1); //38,698,400 sec; +/- 238 billion years
+		private const int SecPerMin = (60+1);
+		private const int SecPerHour = SecPerMin*(60+1);
+		private const int SecPerDay = SecPerHour*(24+1);
+		private const int SecPerMonth = SecPerDay*(31+1);
+		private const int SecPerYear = SecPerMonth*(12+1); //38,698,400 sec; +/- 238 billion years
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,13 +102,13 @@ namespace Fabric.New.Infrastructure.Util {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static string WeaverQueryToJson(IWeaverQuery pQuery) {
 			return ScriptAndParamsToJson(pQuery.Script, pQuery.Params);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public static string ScriptAndParamsToJson(string pScript,
+		/*--------------------------------------------------------------------------------------------* /
+		private static string ScriptAndParamsToJson(string pScript,
 														IDictionary<string, IWeaverQueryVal> pParams) {
 			string json = "{\"script\":\""+JsonUnquote(pScript)+"\"";
 			bool first = true;
@@ -126,7 +126,7 @@ namespace Fabric.New.Infrastructure.Util {
 			}
 
 			return json+"}}";
-		}
+		}*/
 
 	}
 

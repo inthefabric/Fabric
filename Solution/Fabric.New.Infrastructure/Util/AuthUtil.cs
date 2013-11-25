@@ -4,9 +4,9 @@ using System.Net;
 namespace Fabric.New.Infrastructure.Util {
 
 	/*================================================================================================*/
-	public static class AuthUtil {
+	public static class AuthUtil { //TEST: AuthUtil
 
-		public const string FabricUserAuth = "FabricUserAuth";
+		private const string FabricUserAuth = "FabricUserAuth";
 		private const string EncryptKey = "Gu11iverIsMyD0gAuth";
 
 
@@ -38,6 +38,8 @@ namespace Fabric.New.Infrastructure.Util {
 			return new Tuple<Cookie, TimeSpan>(cook, exp);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static int TwoDigitRandom() {
 			return (new Random()).Next(89)+10;

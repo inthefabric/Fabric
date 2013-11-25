@@ -11,16 +11,16 @@ namespace Fabric.New.Infrastructure.Query {
 	public class TxBuilder {
 
 		public IWeaverTransaction Transaction { get; private set; }
-		public IList<IWeaverScript> Scripts { get; private set; }
 
 		private readonly HashSet<string> vVarHash;
+
+		//TODO: take an IWeaverTransaction parameter for injection
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TxBuilder() {
 			Transaction = new WeaverTransaction();
-			Scripts = new List<IWeaverScript>();
 			vVarHash = new HashSet<string>();
 		}
 
@@ -68,7 +68,6 @@ namespace Fabric.New.Infrastructure.Query {
 
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pVertexVar);
 			Transaction.AddQuery(q);
-			Scripts.Add(q);
 			RegisterVarWithTxBuilder(pVertexVar);
 		}
 		
@@ -84,7 +83,6 @@ namespace Fabric.New.Infrastructure.Query {
 			string varName = (pVarName ?? GetNextVarName());
 			q = WeaverQuery.StoreResultAsVar(varName, q, out pVertexVar);
 			Transaction.AddQuery(q);
-			Scripts.Add(q);
 			RegisterVarWithTxBuilder(pVertexVar);
 		}
 
@@ -95,7 +93,6 @@ namespace Fabric.New.Infrastructure.Query {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
 			q = WeaverQuery.StoreResultAsVar(GetNextVarName(), q, out pNewVertexVar);
 			Transaction.AddQuery(q);
-			Scripts.Add(q);
 			RegisterVarWithTxBuilder(pNewVertexVar);
 		}
 
@@ -107,7 +104,6 @@ namespace Fabric.New.Infrastructure.Query {
 
 			IWeaverQuery q = Weave.Inst.Graph.AddEdge(pFromVar, pEdge, pToVar);
 			Transaction.AddQuery(q);
-			Scripts.Add(q);
 		}
 
 	}
