@@ -11,7 +11,8 @@ namespace Fabric.New.Test.Unit.Infrastructure.Util {
 	public class TDataUtil {
 
 		private static readonly Logger Log = Logger.Build<TDataUtil>();
-		private const string AlphaNum32Pattern = @"[a-zA-Z0-9]{32}";
+
+		public const string AlphaNum32Pattern = @"[a-zA-Z0-9]{32}";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

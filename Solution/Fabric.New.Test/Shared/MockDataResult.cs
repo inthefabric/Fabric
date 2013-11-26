@@ -1,4 +1,5 @@
-﻿using Fabric.New.Domain;
+﻿using System.Collections.Generic;
+using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Data;
 using Moq;
 using Weaver.Core.Elements;
@@ -43,6 +44,13 @@ namespace Fabric.New.Test.Shared {
 		public MockDataResult SetupToElement<T>(T pElement)
 													where T : class, IWeaverElement, IElement, new() {
 			Setup(x => x.ToElement<T>()).Returns(() => pElement);
+			return this;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public MockDataResult SetupToElementList<T>(IList<T> pList)
+													where T : class, IWeaverElement, IElement, new() {
+			Setup(x => x.ToElementList<T>()).Returns(() => pList);
 			return this;
 		}
 

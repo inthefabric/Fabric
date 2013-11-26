@@ -17,8 +17,6 @@ namespace Fabric.New.Operations {
 			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName);
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static T Get<T>(this IOperationContext pApiCtx, IWeaverScript pWeaverScript,
 								string pName) where T : class, IElement, new() {
@@ -31,6 +29,8 @@ namespace Fabric.New.Operations {
 			return pApiCtx.NewData().AddQuery(pWeaverScript).Execute(pName).ToElementList<T>();
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static T GetVertexById<T>(this IOperationContext pApiCtx, long pVertexId)
 																	where T : Vertex, new() {

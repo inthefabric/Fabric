@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Domain.Names;
@@ -24,6 +25,17 @@ namespace Fabric.New.Test.Unit.Operations {
 
 		private string vToken;
 		private long vExpire;
+		private long vMemId;
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[SetUp]
+		public void SetUp() {
+			vToken = "sdfajasldiuf239";
+			vExpire = 1020304045060;
+			vMemId = 42363462346;
+		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,9 +60,13 @@ namespace Fabric.New.Test.Unit.Operations {
 		[TestCase(MemberType.Id.Owner, true)]
 		[TestCase(MemberType.Id.Staff, true)]
 		public void SetOauthToken(MemberType.Id? pMemType, bool pSuccess) {
-			vToken = "sdfajasldiuf239";
-			vExpire = 1020304045060;
-			Member mem = (pMemType == null ? null : new Member { MemberType = (byte)pMemType });
+			Member mem = null;
+
+			if ( pMemType != null ) {
+				mem = new Member();
+				mem.VertexId = vMemId;
+				mem.MemberType = (byte)pMemType;
+			}
 
 			var mockAcc = MockDataAccess.Create(OnExecuteGetMember);
 			mockAcc.MockResult.SetupToElement(mem);
@@ -58,6 +74,36 @@ namespace Fabric.New.Test.Unit.Operations {
 			var oa = new OperationAccess(() => mockAcc.Object, () => vExpire);
 
 			TestUtil.CheckThrows<FabOauthFault>(!pSuccess, () => oa.SetOauthToken(vToken));
+			Assert.AreEqual(mem, oa.ActiveMember, "Incorrect ActiveMember.");
+
+			if ( mem == null ) {
+				Assert.Null(oa.ActiveMemberId, "ActiveMemberId should be null.");
+			}
+			else {
+				Assert.AreEqual(mem.VertexId, oa.ActiveMemberId, "Incorrect ActiveMemberId.");
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SetOauthTokenDuplicate() {
+			Member mem = new Member { MemberType = (byte)MemberType.Id.Admin };
+
+			var mockAcc = MockDataAccess.Create(OnExecuteGetMember);
+			mockAcc.MockResult.SetupToElement(mem);
+
+			var oa = new OperationAccess(() => mockAcc.Object, () => vExpire);
+			oa.SetOauthToken(vToken);
+			TestUtil.Throws<Exception>(() => oa.SetOauthToken("duplicate"));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SetOauthTokenNull() {
+			var oa = new OperationAccess(() => null, () => 123);
+			oa.SetOauthToken(null);
+			Assert.Null(oa.ActiveMember, "ActiveMember should be null.");
+			Assert.Null(oa.ActiveMemberId, "ActiveMemberId should be null.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

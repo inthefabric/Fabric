@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Cache;
@@ -26,7 +25,7 @@ namespace Fabric.New.Operations {
 		public int DbQueryMillis { get; private set; }
 
 		private readonly IDataAccessFactory vAccessFactory;
-		private readonly Stopwatch vProfiler;
+		//private readonly Stopwatch vProfiler;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,9 +33,6 @@ namespace Fabric.New.Operations {
 		public OperationContext(IDataAccessFactory pAccessFactory, ICacheManager pCache,
 						IMetricsManager pMetrics, Func<Guid, IAnalyticsManager> pAnalyticsProvider) {
 			vAccessFactory = pAccessFactory;
-			vProfiler = new Stopwatch();
-			vProfiler.Start();
-
 			Metrics = pMetrics;
 			Cache = pCache;
 
@@ -45,6 +41,9 @@ namespace Fabric.New.Operations {
 			Analytics = pAnalyticsProvider(ContextId);
 			DbQueryExecutionCount = 0;
 			DbQueryMillis = 0;
+
+			//vProfiler = new Stopwatch();
+			//vProfiler.Start();
 		}
 
 
@@ -98,8 +97,8 @@ namespace Fabric.New.Operations {
 			Metrics.Counter(key+".err", (pResult.IsError ? 1 : 0));
 
 			//Log.Debug(ContextId, "Data", "PostExec timer: "+pResult.Response.Timer+"ms");
-			Log.Debug(ContextId.ToString("N"), "Data", "Request: "+pResult.RequestJson);
-			Log.Debug(ContextId.ToString("N"), "Data", "Response: "+pResult.ResponseJson);
+			//Log.Debug(ContextId.ToString("N"), "Data", "Request: "+pResult.RequestJson);
+			//Log.Debug(ContextId.ToString("N"), "Data", "Response: "+pResult.ResponseJson);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -116,16 +115,16 @@ namespace Fabric.New.Operations {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void ProfilerTrace(object pObj, string pName) {
 			ProfilerTrace(pObj.GetType().Name, pName);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void ProfilerTrace(string pObjName, string pName) {
 			Log.Debug("---> "+String.Format("{0,7:##0.000}", vProfiler.Elapsed.TotalMilliseconds)+
 				"ms ("+pObjName+"."+pName+")");
-		}
+		}*/
 
 	}
 
