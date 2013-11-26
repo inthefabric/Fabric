@@ -51,7 +51,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void OauthDomains(string pValue) {
-			NotNull("OauthDomains", pValue);
 			ApiValidatorsCustom.ValidateAppOauthDomains("OauthDomains", pValue);
 		}
 

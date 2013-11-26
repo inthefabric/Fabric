@@ -119,7 +119,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pDom.Name = GetString(pDto, "p_na", true);
 			pDom.NameKey = GetString(pDto, "p_nk", true);
 			pDom.Secret = GetString(pDto, "p_se", true);
-			pDom.OauthDomains = GetString(pDto, "p_od", true);
+			pDom.OauthDomains = GetString(pDto, "p_od", false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

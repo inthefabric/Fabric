@@ -15,6 +15,22 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		public static void BeforeCreateObjectValidation<T>(IOperationContext pOpCtx, T pCre) {
+			CreateFabArtifact art = (pCre as CreateFabArtifact);
+			CreateFabFactor fac = (pCre as CreateFabFactor);
+
+			if ( art != null ) {
+				art.CreatedByMemberId = (pOpCtx.Access.ActiveMemberId ?? 0);
+			}
+
+			if ( fac != null ) {
+				fac.CreatedByMemberId = (pOpCtx.Access.ActiveMemberId ?? 0);
+			}
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		public static void CreateClass(IOperationContext pOpCtx, TxBuilder pTxBuild,
 																	CreateFabClass pApi, Class pDom) {
 			//TODO: perform this in the SAME TRANSACTION as the creation query

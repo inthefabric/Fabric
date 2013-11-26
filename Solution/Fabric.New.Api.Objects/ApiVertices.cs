@@ -391,6 +391,7 @@ namespace Fabric.New.Api.Objects {
 		public virtual string Secret { get; set; }
 		
 		[SpecInternal]
+		[SpecOptional]
 		public virtual string OauthDomains { get; set; }
 
 
@@ -575,7 +576,7 @@ namespace Fabric.New.Api.Objects {
 		public virtual byte? Month { get; set; }
 		
 		[SpecOptional]
-		[SpecRange(1, 31)]
+		[SpecRange(0, 31)]
 		public virtual byte? Day { get; set; }
 		
 		[SpecOptional]

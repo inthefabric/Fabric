@@ -48,6 +48,7 @@
     <Compile Include="Unit\Infrastructure\Query\TTxBuilder.cs" />
     <Compile Include="Unit\Infrastructure\Util\TDataUtil.cs" />
     <Compile Include="Unit\Infrastructure\Query\TSharpflake.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateAppOperation.cs" />
     <Compile Include="Unit\Operations\TOperationContextDataExt.cs" />
     <Compile Include="Unit\Operations\TOperationContext.cs" />
     <Compile Include="Unit\Operations\TOperationAccess.cs" />
@@ -56,6 +57,10 @@
     <Folder Include="Integration\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fabric.New.Api.Objects\Fabric.New.Api.Objects.csproj">
+      <Project>{660DDA92-D894-468B-A168-5AB4592AE70F}</Project>
+      <Name>Fabric.New.Api.Objects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fabric.New.Domain\Fabric.New.Domain.csproj">
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
       <Name>Fabric.New.Domain</Name>

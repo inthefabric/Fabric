@@ -34,6 +34,7 @@ namespace Fabric.New.Operations.Create {
 			TxBuild = new TxBuilder();
 
 			pCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
+			CreateOperationsCustom.BeforeCreateObjectValidation(pOpCtx, pCre);
 			pCre.Validate();
 
 			pDom = pConvert(pCre);

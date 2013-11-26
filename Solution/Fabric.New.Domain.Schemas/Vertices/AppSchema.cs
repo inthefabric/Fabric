@@ -43,6 +43,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			Secret = new DomainProperty<string>("Secret", "p_se");
 
 			OauthDomains = new DomainProperty<string>("OauthDomains", "p_od");
+			OauthDomains.IsNullable = true;
 
 			////
 
@@ -60,6 +61,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabSecret.ValidRegex = ApiProperty.ValidCodeRegex;
 
 			FabOauthDomains = new ApiProperty<string>("OauthDomains");
+			FabOauthDomains.IsNullable = true;
 			FabOauthDomains.CustomValidation = true;
 
 			////

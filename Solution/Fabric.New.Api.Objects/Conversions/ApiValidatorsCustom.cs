@@ -15,6 +15,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ValidateAppOauthDomains(string pName, string pDomains) {
+			if ( pDomains == null ) {
+				return;
+			}
+
 			string[] domainList = pDomains.Split('|');
 
 			foreach ( string dom in domainList ) {
