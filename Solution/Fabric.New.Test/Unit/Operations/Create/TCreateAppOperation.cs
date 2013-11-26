@@ -32,12 +32,15 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		public void SetUp() {
 			vMemId = 123456;
 
-			var mockOpAcc = new Mock<IOperationAccess>();
+			var mockOpAcc = new Mock<IOperationAuth>();
 			mockOpAcc.SetupGet(x => x.ActiveMemberId).Returns(vMemId);
 
+			var mockOpData = new Mock<IOperationData>();
+			mockOpData.Setup(x => x.GetVertexById<Vertex>(vMemId)).Returns(new Member());
+
 			vMockCtx = new Mock<IOperationContext>();
-			vMockCtx.Setup(x => x.Access).Returns(mockOpAcc.Object);
-			vMockCtx.Setup(x => x.GetVertexById<Member>(vMemId)).Returns(new Member());
+			vMockCtx.Setup(x => x.Auth).Returns(mockOpAcc.Object);
+			vMockCtx.Setup(x => x.Data).Returns(mockOpData.Object);
 
 			vCreateApp = new CreateFabApp();
 			vCreateApp.Name = "MyApp";
@@ -52,12 +55,12 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		[Test]
 		public void Create() {
 			var c = new CreateAppOperation();
 			c.Create(vMockCtx.Object, ToJson());
-		}
+		}*/
 
 	}
 

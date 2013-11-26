@@ -14,9 +14,9 @@ namespace Fabric.New.Test.Unit.Operations {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TOperationAccess {
+	public class TOperationAuth {
 
-		private static readonly Logger Log = Logger.Build<TOperationAccess>();
+		private static readonly Logger Log = Logger.Build<TOperationAuth>();
 
 		private const string MemberForOauthToken =
 			"g.V('"+DbName.Vert.OauthAccess.Token+"',_P)"+
@@ -42,7 +42,7 @@ namespace Fabric.New.Test.Unit.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			var oa = new OperationAccess(() => (IDataAccess)null, () => 0);
+			var oa = new OperationAuth(() => (IDataAccess)null, () => 0);
 			Assert.Null(oa.ActiveMember, "ActiveMember should be null.");
 			Assert.Null(oa.ActiveMemberId, "ActiveMemberId should be null.");
 		}
@@ -71,7 +71,7 @@ namespace Fabric.New.Test.Unit.Operations {
 			var mockAcc = MockDataAccess.Create(OnExecuteGetMember);
 			mockAcc.MockResult.SetupToElement(mem);
 
-			var oa = new OperationAccess(() => mockAcc.Object, () => vExpire);
+			var oa = new OperationAuth(() => mockAcc.Object, () => vExpire);
 
 			TestUtil.CheckThrows<FabOauthFault>(!pSuccess, () => oa.SetOauthToken(vToken));
 			Assert.AreEqual(mem, oa.ActiveMember, "Incorrect ActiveMember.");
@@ -92,7 +92,7 @@ namespace Fabric.New.Test.Unit.Operations {
 			var mockAcc = MockDataAccess.Create(OnExecuteGetMember);
 			mockAcc.MockResult.SetupToElement(mem);
 
-			var oa = new OperationAccess(() => mockAcc.Object, () => vExpire);
+			var oa = new OperationAuth(() => mockAcc.Object, () => vExpire);
 			oa.SetOauthToken(vToken);
 			TestUtil.Throws<Exception>(() => oa.SetOauthToken("duplicate"));
 		}
@@ -100,7 +100,7 @@ namespace Fabric.New.Test.Unit.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void SetOauthTokenNull() {
-			var oa = new OperationAccess(() => null, () => 123);
+			var oa = new OperationAuth(() => null, () => 123);
 			oa.SetOauthToken(null);
 			Assert.Null(oa.ActiveMember, "ActiveMember should be null.");
 			Assert.Null(oa.ActiveMemberId, "ActiveMemberId should be null.");

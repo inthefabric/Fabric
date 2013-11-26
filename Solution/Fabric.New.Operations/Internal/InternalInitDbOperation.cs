@@ -104,15 +104,15 @@ namespace Fabric.New.Operations.Internal {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendIndexTx() {
 			Log.Debug("Create Indexes...");
-			string sessId = vOpCtx.NewData().AddSessionStart()
+			string sessId = vOpCtx.Data.Build().AddSessionStart()
 				.Execute("InitDb-StartIndexSession").GetSessionId();
 
 			foreach ( IWeaverQuery q in vDataSet.Indexes ) {
 				//Log.Debug(DataUtil.WeaverQueryToJson(q));
-				vOpCtx.NewData(sessId).AddQuery(q).Execute("InitDb-AddIndex");
+				vOpCtx.Data.Build(sessId).AddQuery(q).Execute("InitDb-AddIndex");
 			}
 
-			vOpCtx.NewData(sessId).AddSessionCommit().AddSessionClose()
+			vOpCtx.Data.Build(sessId).AddSessionCommit().AddSessionClose()
 				.Execute("InitDb-CloseIndexSession");
 		}
 
@@ -124,7 +124,7 @@ namespace Fabric.New.Operations.Internal {
 				IDataVertex n = vDataSet.Vertices[i];
 				Log.Debug("Vertex "+(i+1)+"/"+count);//+": "+DataUtil.WeaverQueryToJson(n.AddQuery));
 
-				Vertex v = vOpCtx
+				Vertex v = vOpCtx.Data
 					.Execute(n.AddQuery, "InitDb-AddVert")
 					.ToElementAt<Vertex>(0, 0);
 
@@ -139,7 +139,7 @@ namespace Fabric.New.Operations.Internal {
 			for ( int i = 0 ; i < count ; i++ ) {
 				IDataEdge t = vDataSet.Edges[i];
 				Log.Debug("Edge "+(i+1)+"/"+count);//+": "+DataUtil.WeaverQueryToJson(t.AddQuery));
-				vOpCtx.Execute(t.AddQuery, "InitDb-AddEdge");
+				vOpCtx.Data.Execute(t.AddQuery, "InitDb-AddEdge");
 			}
 		}
 	}

@@ -54,12 +54,13 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="IOperationData.cs" />
     <Compile Include="Create\CreateOperationsCustom.cs" />
     <Compile Include="Internal\InternalInitDbOperation.cs" />
     <Compile Include="Internal\IInternalOperation.cs" />
-    <Compile Include="IOperationAccess.cs" />
-    <Compile Include="OperationAccess.cs" />
-    <Compile Include="OperationContextDataExt.cs" />
+    <Compile Include="IOperationAuth.cs" />
+    <Compile Include="OperationAuth.cs" />
+    <Compile Include="OperationData.cs" />
     <Compile Include="IOperationContext.cs" />
     <Compile Include="OperationContext.cs" />
     <Compile Include="Create\CreateOperationBase.cs" />

@@ -112,11 +112,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 				.V.ExactIndex<<#= v.Names.Domain #>>(x => x.<#= dp.Name #>, d.<#= dp.Name #>)
 				.ToQuery();
 
-			<#= v.Names.Domain #> dup = pOpCtx
-				.NewData()
-				.AddQuery(q)
-				.Execute("Unique<#= dp.Name #>")
-				.ToElementAt<<#= v.Names.Domain #>>(0, 0);
+			<#= v.Names.Domain #> dup = pOpCtx.Data.Get<<#= v.Names.Domain #>>(q, "Unique<#= v.Names.Domain #><#= displayName #>");
 
 			if ( dup != null ) {
 				throw new FabDuplicateFault(typeof(<#= v.Names.Domain #>), "<#= displayName #>", dup.<#= displayName #>);

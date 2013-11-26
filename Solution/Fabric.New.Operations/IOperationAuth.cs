@@ -3,7 +3,7 @@
 namespace Fabric.New.Operations {
 
 	/*================================================================================================*/
-	public interface IOperationAccess {
+	public interface IOperationAuth {
 		
 		Member ActiveMember { get; }
 		long? ActiveMemberId { get; }

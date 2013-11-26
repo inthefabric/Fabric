@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
@@ -14,15 +15,19 @@ namespace Fabric.New.Test.Unit.Operations {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TOperationContextDataExt {
+	public class TOperationData {
 
-		private static readonly Logger Log = Logger.Build<TOperationContextDataExt>();
+		private static readonly Logger Log = Logger.Build<TOperationData>();
 
 		private const string BasicScript = "g.v(1)";
 		private const string GetVertexByIdScript = "g.V('"+DbName.Vert.Vertex.VertexId+"',_P0);";
 
 		private MockDataAccess vMockAcc;
-		private Mock<IOperationContext> vMockCtx;
+		private Mock<IDataAccessFactory> vMockFact;
+		private Mock<IMetricsManager> vMockMet;
+		private Mock<IMemCache> vMockCache;
+
+		private IOperationData vData;
 		private IWeaverQuery vBasicQuery;
 
 
@@ -36,8 +41,13 @@ namespace Fabric.New.Test.Unit.Operations {
 				TestUtil.CheckParams(cmd.Params, "_P", new List<object>());
 			});
 
-			vMockCtx = new Mock<IOperationContext>();
-			vMockCtx.Setup(x => x.NewData(null, false, true)).Returns(vMockAcc.Object);
+			vMockFact = new Mock<IDataAccessFactory>();
+			vMockFact.Setup(x => x.Create(null, false, true)).Returns(vMockAcc.Object);
+
+			vMockMet = new Mock<IMetricsManager>();
+			vMockCache = new Mock<IMemCache>();
+
+			vData = new OperationData(new Guid(), vMockFact.Object, vMockMet.Object, vMockCache.Object);
 
 			vBasicQuery = new WeaverQuery();
 			vBasicQuery.FinalizeQuery(BasicScript);
@@ -47,8 +57,27 @@ namespace Fabric.New.Test.Unit.Operations {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
+		public void New() {
+			Assert.AreEqual(0, vData.DbQueryExecutionCount, "Incorrect DbQueryExecutionCount.");
+			Assert.AreEqual(0, vData.DbQueryMillis, "Incorrect DbQueryMillis.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("sess", false, false)]
+		[TestCase(null, true, true)]
+		public void NewData(string pSessId, bool pCmdId, bool pCmdTimers) {
+			vMockFact.Setup(x => x.Create(pSessId, pCmdId, pCmdTimers)).Returns(vMockAcc.Object);
+
+			IDataAccess result = vData.Build(pSessId, pCmdId, pCmdTimers);
+			Assert.AreEqual(vMockAcc.Object, result, "Incorrect result.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void Execute() {
-			IDataResult result = vMockCtx.Object.Execute(vBasicQuery, "TEST");
+			IDataResult result = vData.Execute(vBasicQuery, "TEST");
 			Assert.AreEqual(vMockAcc.MockResult.Object, result, "Incorrect result.");
 		}
 
@@ -58,7 +87,7 @@ namespace Fabric.New.Test.Unit.Operations {
 			var app = new App();
 			vMockAcc.MockResult.SetupToElement(app);
 
-			App result = vMockCtx.Object.Get<App>(vBasicQuery, "TEST");
+			App result = vData.Get<App>(vBasicQuery, "TEST");
 			Assert.AreEqual(app, result, "Incorrect result.");
 		}
 
@@ -68,7 +97,7 @@ namespace Fabric.New.Test.Unit.Operations {
 			var list = new List<App>();
 			vMockAcc.MockResult.SetupToElementList(list);
 
-			IList<App> result = vMockCtx.Object.GetList<App>(vBasicQuery, "TEST");
+			IList<App> result = vData.GetList<App>(vBasicQuery, "TEST");
 			Assert.AreEqual(list, result, "Incorrect result.");
 		}
 
@@ -87,27 +116,20 @@ namespace Fabric.New.Test.Unit.Operations {
 				TestUtil.CheckParams(cmd.Params, "_P", new List<object>{ id });
 			});
 			vMockAcc.MockResult.SetupToElement(app);
+			vMockFact.Setup(x => x.Create(null, false, true)).Returns(vMockAcc.Object);
 
-			var mockMemCache = new Mock<IMemCache>();
-			var mockCache = new Mock<ICacheManager>();
-			mockCache.SetupGet(x => x.Memory).Returns(mockMemCache.Object);
-
-			vMockCtx = new Mock<IOperationContext>();
-			vMockCtx.Setup(x => x.NewData(null, false, true)).Returns(vMockAcc.Object);
-			vMockCtx.SetupGet(x => x.Cache).Returns(mockCache.Object);
-
-			App result = vMockCtx.Object.GetVertexById<App>(id);
+			App result = vData.GetVertexById<App>(id);
 
 			Assert.AreEqual(app, result, "Incorrect result.");
-			mockMemCache.Verify(x => x.FindVertex<App>(id), Times.Once);
+			vMockCache.Verify(x => x.FindVertex<App>(id), Times.Once);
 
 			if ( pFound ) {
-				mockMemCache.Verify(x => x.RemoveVertex<App>(id), Times.Never);
-				mockMemCache.Verify(x => x.AddVertex(app, null), Times.Once);
+				vMockCache.Verify(x => x.RemoveVertex<App>(id), Times.Never);
+				vMockCache.Verify(x => x.AddVertex(app, null), Times.Once);
 			}
 			else {
-				mockMemCache.Verify(x => x.RemoveVertex<App>(id), Times.Once);
-				mockMemCache.Verify(x => x.AddVertex(app, null), Times.Never);
+				vMockCache.Verify(x => x.RemoveVertex<App>(id), Times.Once);
+				vMockCache.Verify(x => x.AddVertex(app, null), Times.Never);
 			}
 		}
 		
@@ -117,21 +139,13 @@ namespace Fabric.New.Test.Unit.Operations {
 			const long id = 13241235;
 			var app = new App();
 
-			var mockMemCache = new Mock<IMemCache>();
-			mockMemCache.Setup(x => x.FindVertex<App>(id)).Returns(app);
+			vMockCache.Setup(x => x.FindVertex<App>(id)).Returns(app);
 
-			var mockCache = new Mock<ICacheManager>();
-			mockCache.SetupGet(x => x.Memory).Returns(mockMemCache.Object);
-
-			vMockCtx = new Mock<IOperationContext>();
-			vMockCtx.SetupGet(x => x.Cache).Returns(mockCache.Object);
-
-			App result = vMockCtx.Object.GetVertexById<App>(id);
+			App result = vData.GetVertexById<App>(id);
 			Assert.AreEqual(app, result, "Incorrect result.");
 
-			vMockCtx.Verify(x => x.NewData(null, false, true), Times.Never);
-			mockMemCache.Verify(x => x.RemoveVertex<App>(id), Times.Never);
-			mockMemCache.Verify(x => x.AddVertex(app, null), Times.Never);
+			vMockCache.Verify(x => x.RemoveVertex<App>(id), Times.Never);
+			vMockCache.Verify(x => x.AddVertex(app, null), Times.Never);
 		}
 
 	}

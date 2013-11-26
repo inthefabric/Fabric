@@ -20,11 +20,11 @@ namespace Fabric.New.Operations.Create {
 			CreateFabFactor fac = (pCre as CreateFabFactor);
 
 			if ( art != null ) {
-				art.CreatedByMemberId = (pOpCtx.Access.ActiveMemberId ?? 0);
+				art.CreatedByMemberId = (pOpCtx.Auth.ActiveMemberId ?? 0);
 			}
 
 			if ( fac != null ) {
-				fac.CreatedByMemberId = (pOpCtx.Access.ActiveMemberId ?? 0);
+				fac.CreatedByMemberId = (pOpCtx.Auth.ActiveMemberId ?? 0);
 			}
 		}
 
@@ -57,10 +57,7 @@ namespace Fabric.New.Operations.Create {
 				name += "("+pDom.Disamb+")";
 			}
 
-			c = pOpCtx.NewData()
-				.AddQuery(q)
-				.Execute("IsClassUnique")
-				.ToElementAt<Class>(0, 0);
+			c = pOpCtx.Data.Get<Class>(q, "IsClassUnique");
 
 			if ( c != null ) {
 				throw new FabDuplicateFault(typeof(Class), "Name", name,

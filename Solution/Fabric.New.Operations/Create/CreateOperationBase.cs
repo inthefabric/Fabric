@@ -1,7 +1,6 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using ServiceStack.Text;
@@ -49,15 +48,14 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected T ExecuteTx<T>(IWeaverVarAlias<T> pVertexAlias) where T : Vertex, IElement, new() {
 			IWeaverTransaction tx = TxBuild.Finish(pVertexAlias);
-			IDataResult data = OpCtx.NewData().AddQueries(tx).Execute(GetType().Name);
-			return data.ToElementAt<T>(0, 0);
+			return OpCtx.Data.Get<T>(tx, GetType().Name);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void VerifyVertex<T>(long pVertexId) where T : Vertex, new() {
-			Vertex v = OpCtx.GetVertexById<Vertex>(pVertexId);
+			Vertex v = OpCtx.Data.GetVertexById<Vertex>(pVertexId);
 
 			if ( v == null ) {
 				throw new FabNotFoundFault(typeof(T), "Id="+pVertexId);

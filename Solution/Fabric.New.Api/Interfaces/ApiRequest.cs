@@ -25,7 +25,7 @@ namespace Fabric.New.Api.Interfaces {
 			Path = vNancyReq.Path;
 			IpAddress = vNancyReq.UserHostAddress;
 
-			OpCtx.Access.SetOauthToken(GetBearerToken());
+			OpCtx.Auth.SetOauthToken(GetBearerToken());
 		}
 
 

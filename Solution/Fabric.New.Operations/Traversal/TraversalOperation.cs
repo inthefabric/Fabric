@@ -25,7 +25,7 @@ namespace Fabric.New.Operations.Traversal {
 		public void Perform(IOperationContext pOpCtx, string pPath) {
 			vOpCtx = pOpCtx;
 
-			vPath = new TravPath(pPath, vOpCtx.Access.ActiveMemberId);
+			vPath = new TravPath(pPath, vOpCtx.Auth.ActiveMemberId);
 
 			ITravPathItem tps = vPath.GetNextStep();
 
@@ -56,7 +56,7 @@ namespace Fabric.New.Operations.Traversal {
 			//Log.Debug(DataUtil.WeaverQueryToJson(q));
 			string qid = "Trav"+string.Join("", vPath.GetFirstSteps(2).Select(x => "-"+x.Command));
 
-			IList<IDataDto> verts = vOpCtx.Execute(q, qid).ToDtoList();
+			IList<IDataDto> verts = vOpCtx.Data.Execute(q, qid).ToDtoList();
 			return verts.Select(DbToApi.FromDataDto).ToList();
 		}
 

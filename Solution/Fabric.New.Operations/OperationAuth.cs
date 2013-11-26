@@ -11,7 +11,7 @@ using Weaver.Core.Steps;
 namespace Fabric.New.Operations {
 
 	/*================================================================================================*/
-	public class OperationAccess : IOperationAccess {
+	public class OperationAuth : IOperationAuth {
 
 		public Member ActiveMember { get; private set; }
 
@@ -22,7 +22,7 @@ namespace Fabric.New.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OperationAccess(Func<IDataAccess> pGetDataAcc, Func<long> pGetUtcNow) {
+		public OperationAuth(Func<IDataAccess> pGetDataAcc, Func<long> pGetUtcNow) {
 			vGetDataAcc = pGetDataAcc;
 			vGetUtcNow = pGetUtcNow;
 		}

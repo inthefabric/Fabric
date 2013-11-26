@@ -49,9 +49,9 @@
     <Compile Include="Unit\Infrastructure\Util\TDataUtil.cs" />
     <Compile Include="Unit\Infrastructure\Query\TSharpflake.cs" />
     <Compile Include="Unit\Operations\Create\TCreateAppOperation.cs" />
-    <Compile Include="Unit\Operations\TOperationContextDataExt.cs" />
+    <Compile Include="Unit\Operations\TOperationData.cs" />
     <Compile Include="Unit\Operations\TOperationContext.cs" />
-    <Compile Include="Unit\Operations\TOperationAccess.cs" />
+    <Compile Include="Unit\Operations\TOperationAuth.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Integration\" />

@@ -45,12 +45,11 @@ namespace Fabric.New.Test.Unit.Operations {
 		[Test]
 		public void New() {
 			Assert.NotNull(vOpCtx.ContextId, "ContextId should be filled.");
-			Assert.NotNull(vOpCtx.Access, "Access should be filled.");
+			Assert.NotNull(vOpCtx.Data, "Data should be filled.");
+			Assert.NotNull(vOpCtx.Auth, "Auth should be filled.");
 			Assert.AreEqual(vMockAna.Object, vOpCtx.Analytics, "Analytics should be filled.");
 			Assert.AreEqual(vMockMet.Object, vOpCtx.Metrics, "Metrics should be filled.");
 			Assert.AreEqual(vMockCache.Object, vOpCtx.Cache, "Cache should be filled.");
-			Assert.AreEqual(0, vOpCtx.DbQueryExecutionCount, "Incorrect DbQueryExecutionCount.");
-			Assert.AreEqual(0, vOpCtx.DbQueryMillis, "Incorrect DbQueryMillis.");
 		}
 		
 		
@@ -94,19 +93,6 @@ namespace Fabric.New.Test.Unit.Operations {
 				Assert.False(map.Contains(id), "Result must be unique.");
 				map.Add(id);
 			}
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("sess", false, false)]
-		[TestCase(null, true, true)]
-		public void NewData(string pSessId, bool pCmdId, bool pCmdTimers) {
-			var mockAcc = new Mock<IDataAccess>();
-			vMockAccFac.Setup(x => x.Create(pSessId, pCmdId, pCmdTimers)).Returns(mockAcc.Object);
-
-			IDataAccess result = vOpCtx.NewData(pSessId, pCmdId, pCmdTimers);
-			Assert.AreEqual(mockAcc.Object, result, "Incorrect result.");
 		}
 
 	}

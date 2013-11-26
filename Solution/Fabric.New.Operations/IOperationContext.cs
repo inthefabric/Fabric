@@ -2,7 +2,6 @@
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Cache;
-using Fabric.New.Infrastructure.Data;
 
 namespace Fabric.New.Operations {
 	
@@ -10,13 +9,11 @@ namespace Fabric.New.Operations {
 	public interface IOperationContext {
 
 		Guid ContextId { get; }
-		IOperationAccess Access { get; }
+		IOperationData Data { get; }
+		IOperationAuth Auth { get; }
 		IAnalyticsManager Analytics { get; }
 		IMetricsManager Metrics { get; }
 		ICacheManager Cache { get; }
-
-		int DbQueryExecutionCount { get; }
-		int DbQueryMillis { get; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,11 +25,6 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		long GetSharpflakeId<T>() where T : IVertex;
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		IDataAccess NewData(string pSessionId=null, bool pSetCmdIds=false, bool pOmitCmdTimers=true);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

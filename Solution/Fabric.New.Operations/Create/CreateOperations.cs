@@ -45,11 +45,7 @@ namespace Fabric.New.Operations.Create {
 				.V.ExactIndex<App>(x => x.NameKey, d.NameKey)
 				.ToQuery();
 
-			App dup = pOpCtx
-				.NewData()
-				.AddQuery(q)
-				.Execute("UniqueNameKey")
-				.ToElementAt<App>(0, 0);
+			App dup = pOpCtx.Data.Get<App>(q, "UniqueAppName");
 
 			if ( dup != null ) {
 				throw new FabDuplicateFault(typeof(App), "Name", dup.Name);
@@ -487,11 +483,7 @@ namespace Fabric.New.Operations.Create {
 				.V.ExactIndex<Url>(x => x.FullPath, d.FullPath)
 				.ToQuery();
 
-			Url dup = pOpCtx
-				.NewData()
-				.AddQuery(q)
-				.Execute("UniqueFullPath")
-				.ToElementAt<Url>(0, 0);
+			Url dup = pOpCtx.Data.Get<Url>(q, "UniqueUrlFullPath");
 
 			if ( dup != null ) {
 				throw new FabDuplicateFault(typeof(Url), "FullPath", dup.FullPath);
@@ -540,11 +532,7 @@ namespace Fabric.New.Operations.Create {
 				.V.ExactIndex<User>(x => x.NameKey, d.NameKey)
 				.ToQuery();
 
-			User dup = pOpCtx
-				.NewData()
-				.AddQuery(q)
-				.Execute("UniqueNameKey")
-				.ToElementAt<User>(0, 0);
+			User dup = pOpCtx.Data.Get<User>(q, "UniqueUserName");
 
 			if ( dup != null ) {
 				throw new FabDuplicateFault(typeof(User), "Name", dup.Name);
