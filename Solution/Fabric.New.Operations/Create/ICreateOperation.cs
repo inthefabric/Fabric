@@ -1,4 +1,5 @@
 ﻿using Fabric.New.Api.Objects;
+using Fabric.New.Infrastructure.Query;
 
 namespace Fabric.New.Operations.Create {
 
@@ -8,7 +9,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Create(IOperationContext pOpCtx, string pJson);
+		void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
 		FabObject GetResult();

@@ -31,7 +31,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CreateClass(IOperationContext pOpCtx, TxBuilder pTxBuild,
+		public static void CreateClass(IOperationContext pOpCtx, ITxBuilder pTxBuild,
 																	CreateFabClass pApi, Class pDom) {
 			//TODO: perform this in the SAME TRANSACTION as the creation query
 			
@@ -66,7 +66,7 @@ namespace Fabric.New.Operations.Create {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CreateFactor(IOperationContext pOpCtx, TxBuilder pTxBuild,
+		public static void CreateFactor(IOperationContext pOpCtx, ITxBuilder pTxBuild,
 																	CreateFabFactor pApi, Factor pDom) {
 			if ( pApi.UsesPrimaryArtifactId == pApi.UsesRelatedArtifactId ) {
 				throw new FabPropertyValueFault("RelatedArtifactId", pApi.UsesRelatedArtifactId+"",
@@ -75,7 +75,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CreateInstance(IOperationContext pOpCtx, TxBuilder pTxBuild,
+		public static void CreateInstance(IOperationContext pOpCtx, ITxBuilder pTxBuild,
 																CreateFabInstance pApi, Instance pDom) {
 			if ( pDom.Name == null && pDom.Disamb != null ) {
 				throw new FabPropertyValueFault("Name", null,
@@ -84,7 +84,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void CreateMember(IOperationContext pOpCtx, TxBuilder pTxBuild,
+		public static void CreateMember(IOperationContext pOpCtx, ITxBuilder pTxBuild,
 																CreateFabMember pApi, Member pDom) {
 			//TODO: verify member doesn't already exist
 			throw new NotImplementedException();

@@ -62,7 +62,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
-			throw new NotSupportedException();
+			throw new NotSupportedException("Internal access only; use Get<#= v.Names.Domain #>Result() instead.");
 		}
 <#
 	} //end internal condition
@@ -89,10 +89,10 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			<#= createObjName #> c;
 			<#= v.Names.Domain #> d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.From<#= createObjName #>, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.From<#= createObjName #>, out c, out d);
 			Create<#= v.Names.Domain #>Edges(c, d, vAlias);
 <#
 	if ( v.CustomCreate ) {

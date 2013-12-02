@@ -9,8 +9,7 @@ namespace Fabric.New.Test.Shared {
 	/*================================================================================================*/
 	public static class TestUtil {
 
-		//public const string TryPropScript =
-		//	"_TRY.each{k,v->if((z=v.getProperty(k))){_PROP.put(k,z)}};";
+		public const string RawScriptCategory = "RawScript";
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,12 +103,12 @@ namespace Fabric.New.Test.Shared {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static string InsertParamIndexes(string pQuery, string pParamBase) {
-			string[] parts = pQuery.Split(new[] { pParamBase }, 9999, StringSplitOptions.None);
+		public static string InsertParamIndexes(string pScript, string pParamPrefix) {
+			string[] parts = pScript.Split(new[] { pParamPrefix }, 9999, StringSplitOptions.None);
 			string q = "";
 
 			for ( int i = 0 ; i < parts.Length ; ++i ) {
-				q += (i == 0 ? "" : pParamBase+(i-1))+parts[i];
+				q += (i == 0 ? "" : pParamPrefix+(i-1))+parts[i];
 			}
 
 			return q;

@@ -13,12 +13,12 @@ namespace Fabric.New.Operations.Create {
 	public abstract class CreateOperationBase : ICreateOperation {
 
 		protected IOperationContext OpCtx { get; set; }
-		protected TxBuilder TxBuild { get; set; }
+		protected ITxBuilder TxBuild { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract void Create(IOperationContext pOpCtx, string pJson);
+		public abstract void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract FabObject GetResult();
@@ -26,19 +26,19 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected IWeaverVarAlias<TDom> CreateInit<TCre, TDom>(IOperationContext pOpCtx, string pJson,
-												Func<TCre, TDom> pConvert, out TCre pCre, out TDom pDom)
-												where TCre : CreateFabObject where TDom : IVertex {
+		protected IWeaverVarAlias<TDom> CreateInit<TCre, TDom>(IOperationContext pOpCtx,
+							ITxBuilder pTxBuild, string pJson, Func<TCre, TDom> pConvert, out TCre pCre,
+							out TDom pDom) where TCre : CreateFabObject where TDom : IVertex {
 			OpCtx = pOpCtx;
-			TxBuild = new TxBuilder();
+			TxBuild = pTxBuild;
 
 			pCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
 			CreateOperationsCustom.BeforeCreateObjectValidation(pOpCtx, pCre);
 			pCre.Validate();
 
 			pDom = pConvert(pCre);
-			pDom.VertexId = Sharpflake.GetId<Vertex>();
-			pDom.Timestamp = DateTime.UtcNow.Ticks;
+			pDom.VertexId = OpCtx.GetSharpflakeId<Vertex>();
+			pDom.Timestamp = OpCtx.UtcNow.Ticks;
 
 			IWeaverVarAlias<TDom> va;
 			TxBuild.AddVertex(pDom, out va);

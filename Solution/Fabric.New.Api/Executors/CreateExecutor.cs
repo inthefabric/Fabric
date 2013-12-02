@@ -2,6 +2,7 @@
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Api.Executors {
@@ -24,7 +25,7 @@ namespace Fabric.New.Api.Executors {
 			}
 
 			var o = new TOper();
-			o.Create(ApiReq.OpCtx, json);
+			o.Create(ApiReq.OpCtx, new TxBuilder(), json);
 
 			var list = new List<TObj>();
 			list.Add((TObj)o.GetResult());

@@ -22,7 +22,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
-			throw new NotSupportedException();
+			throw new NotSupportedException("Internal access only; use GetAppResult() instead.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -33,10 +33,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabApp c;
 			App d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabApp, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabApp, out c, out d);
 			CreateAppEdges(c, d, vAlias);
 
 			// Enforce unique NameKey
@@ -114,10 +114,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabClass c;
 			Class d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabClass, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabClass, out c, out d);
 			CreateClassEdges(c, d, vAlias);
 			CreateOperationsCustom.CreateClass(pOpCtx, TxBuild, c, d);
 		}
@@ -141,7 +141,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
-			throw new NotSupportedException();
+			throw new NotSupportedException("Internal access only; use GetEmailResult() instead.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -152,10 +152,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabEmail c;
 			Email d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabEmail, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabEmail, out c, out d);
 			CreateEmailEdges(c, d, vAlias);
 		}
 
@@ -204,10 +204,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabFactor c;
 			Factor d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabFactor, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabFactor, out c, out d);
 			CreateFactorEdges(c, d, vAlias);
 			CreateOperationsCustom.CreateFactor(pOpCtx, TxBuild, c, d);
 		}
@@ -311,10 +311,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabInstance c;
 			Instance d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabInstance, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabInstance, out c, out d);
 			CreateInstanceEdges(c, d, vAlias);
 			CreateOperationsCustom.CreateInstance(pOpCtx, TxBuild, c, d);
 		}
@@ -354,10 +354,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabMember c;
 			Member d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabMember, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabMember, out c, out d);
 			CreateMemberEdges(c, d, vAlias);
 			CreateOperationsCustom.CreateMember(pOpCtx, TxBuild, c, d);
 		}
@@ -407,7 +407,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
-			throw new NotSupportedException();
+			throw new NotSupportedException("Internal access only; use GetOauthAccessResult() instead.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -418,10 +418,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabOauthAccess c;
 			OauthAccess d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabOauthAccess, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabOauthAccess, out c, out d);
 			CreateOauthAccessEdges(c, d, vAlias);
 		}
 
@@ -471,10 +471,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabUrl c;
 			Url d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabUrl, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabUrl, out c, out d);
 			CreateUrlEdges(c, d, vAlias);
 
 			// Enforce unique FullPath
@@ -509,7 +509,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override FabObject GetResult() {
-			throw new NotSupportedException();
+			throw new NotSupportedException("Internal access only; use GetUserResult() instead.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -520,10 +520,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
+		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
 			CreateFabUser c;
 			User d;
-			vAlias = CreateInit(pOpCtx, pJson, ApiToDomain.FromCreateFabUser, out c, out d);
+			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.FromCreateFabUser, out c, out d);
 			CreateUserEdges(c, d, vAlias);
 
 			// Enforce unique NameKey

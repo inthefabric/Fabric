@@ -100,6 +100,7 @@
     <Compile Include="Broadcast\Logger.cs" />
     <Compile Include="Faults\FabStepFault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\ITxBuilder.cs" />
     <Compile Include="Query\Sharpflake.cs" />
     <Compile Include="Query\TxBuilder.cs" />
     <Compile Include="Query\Weave.cs" />

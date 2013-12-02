@@ -8,7 +8,7 @@ using Weaver.Core.Query;
 namespace Fabric.New.Infrastructure.Query {
 
 	/*================================================================================================*/
-	public class TxBuilder {
+	public class TxBuilder : ITxBuilder {
 
 		public IWeaverTransaction Transaction { get; private set; }
 
