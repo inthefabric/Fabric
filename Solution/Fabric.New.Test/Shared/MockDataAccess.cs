@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Moq;
+using NUnit.Framework;
+using RexConnectClient.Core;
+using RexConnectClient.Core.Result;
+using RexConnectClient.Core.Transfer;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Shared {
@@ -15,6 +19,10 @@ namespace Fabric.New.Test.Shared {
 		protected IList<MockDataAccessCmd> CmdList;
 		public int ExecuteCount;
 		public MockDataResult MockResult;
+
+		private Action<IDataAccess, RexConnDataAccess> vPreEx;
+		private Action<IDataAccess, IResponseResult> vPostEx;
+		private Action<IDataAccess, Exception> vPostExErr;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,6 +56,22 @@ namespace Fabric.New.Test.Shared {
 			Setup(x => x.AddQueries(It.IsAny<IEnumerable<IWeaverScript>>(), It.IsAny<bool>()))
 				.Callback((IEnumerable<IWeaverScript> s, bool c) => OnAddQueries(s, c))
 				.Returns(Object);
+
+			
+			Setup(x => x.SetExecuteHooks(
+					It.IsAny<Action<IDataAccess, RexConnDataAccess>>(),
+					It.IsAny<Action<IDataAccess, IResponseResult>>(),
+					It.IsAny<Action<IDataAccess, Exception>>()
+				))
+				.Callback((
+						Action<IDataAccess, RexConnDataAccess> preEx,
+						Action<IDataAccess, IResponseResult> postEx,
+						Action<IDataAccess, Exception> postExErr
+					) => {
+					vPreEx = preEx;
+					vPostEx = postEx;
+					vPostExErr = postExErr;
+				});
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -56,9 +80,25 @@ namespace Fabric.New.Test.Shared {
 			MockResult = new MockDataResult();
 
 			Setup(x => x.Execute(It.IsAny<string>()))
-				.Callback(() => {
+				.Callback((string name) => {
+					SetupGet(x => x.ExecuteName).Returns(name);
+
+					if ( vPreEx != null ) {
+						vPreEx(Object, null);
+					}
+
 					ExecuteCount++;
 					pExecuteCallback(this);
+
+					if ( vPostEx != null ) {
+						var resp = new Response();
+						resp.Timer = 100;
+
+						var mockRespRes = new Mock<IResponseResult>();
+						mockRespRes.SetupGet(x => x.Response).Returns(resp);
+						mockRespRes.SetupGet(x => x.ResponseJson).Returns("{}");
+						vPostEx(Object, mockRespRes.Object);
+					}
 				})
 				.Returns(MockResult.Object);
 		}

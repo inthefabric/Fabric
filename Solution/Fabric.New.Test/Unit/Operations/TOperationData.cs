@@ -9,6 +9,9 @@ using Fabric.New.Operations;
 using Fabric.New.Test.Shared;
 using Moq;
 using NUnit.Framework;
+using RexConnectClient.Core;
+using RexConnectClient.Core.Result;
+using RexConnectClient.Core.Transfer;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations {
@@ -79,6 +82,7 @@ namespace Fabric.New.Test.Unit.Operations {
 		public void Execute() {
 			IDataResult result = vData.Execute(vBasicQuery, "TEST");
 			Assert.AreEqual(vMockAcc.MockResult.Object, result, "Incorrect result.");
+			Assert.AreEqual(1, vData.DbQueryExecutionCount, "Incorrect DbQueryExecutionCount.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -89,6 +93,7 @@ namespace Fabric.New.Test.Unit.Operations {
 
 			App result = vData.Get<App>(vBasicQuery, "TEST");
 			Assert.AreEqual(app, result, "Incorrect result.");
+			Assert.AreEqual(1, vData.DbQueryExecutionCount, "Incorrect DbQueryExecutionCount.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -99,6 +104,7 @@ namespace Fabric.New.Test.Unit.Operations {
 
 			IList<App> result = vData.GetList<App>(vBasicQuery, "TEST");
 			Assert.AreEqual(list, result, "Incorrect result.");
+			Assert.AreEqual(1, vData.DbQueryExecutionCount, "Incorrect DbQueryExecutionCount.");
 		}
 
 
