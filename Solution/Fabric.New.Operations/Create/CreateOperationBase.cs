@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using ServiceStack.Text;
 using Weaver.Core.Elements;
@@ -14,22 +16,40 @@ namespace Fabric.New.Operations.Create {
 						where TDom : Vertex, new() where TApi : FabVertex where TCre : CreateFabVertex {
 
 		protected IOperationContext OpCtx { get; private set; }
-		protected ITxBuilder TxBuild { get; private set; }
 		protected TDom NewDom { get; private set; }
 		protected TApi NewApi { get; private set; }
 		protected TCre NewCre { get; private set; }
 		protected IWeaverVarAlias<TDom> NewDomAlias { get; private set; }
 		protected Func<TDom, TApi> DomToApi { get; private set; }
 
+		protected string CmdAddVertex { get; private set; }
+		protected IList<string> CmdVerifyVertex { get; private set; }
+		protected IList<string> CmdAddEdge { get; private set; }
+		protected IList<string> CmdAll { get; private set; }
+		protected IDataAccess DataAcc { get; private set; }
+		protected IDataResult DataRes { get; private set; }
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson);
+		public abstract void Create(IOperationContext pOpCtx, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
 		public TDom Execute() {
-			IWeaverTransaction tx = TxBuild.Finish(NewDomAlias);
-			NewDom = OpCtx.Data.Get<TDom>(tx, GetType().Name);
+			BeforeSessionCommit();
+			DataAcc.AddSessionCommit();
+			SetupLatestCommand();
+
+			DataAcc.AddSessionClose(); //don't call SetupLatestCommand() to ensure session closes.
+			CmdAll.Add(DataAcc.GetLatestCommandId());
+
+			////
+
+			DataRes = DataAcc.Execute(GetType().Name);
+			AfterExecute();
+			int addVertId = DataRes.GetCommandIndexByCmdId(CmdAddVertex);
+
+			NewDom = DataRes.ToElementAt<TDom>(addVertId, 0);
 			NewApi = (DomToApi == null ? null : DomToApi(NewDom));
 			return NewDom;
 		}
@@ -47,37 +67,37 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void Init(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson,
-											Func<TCre, TDom> pCreToDom, Func<TDom, TApi> pDomToApi) {
+		protected void Init(IOperationContext pOpCtx, string pJson, Func<TCre, TDom> pCreToDom,
+																		Func<TDom, TApi> pDomToApi) {
 			OpCtx = pOpCtx;
-			TxBuild = pTxBuild;
 			DomToApi = pDomToApi;
 
 			NewCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
-			CreateOperationsCustom.BeforeCreateObjectValidation(pOpCtx, NewCre);
+			BeforeValidation();
 			NewCre.Validate();
 
 			NewDom = pCreToDom(NewCre);
 			NewDom.VertexId = OpCtx.GetSharpflakeId<Vertex>();
 			NewDom.Timestamp = OpCtx.UtcNow.Ticks;
+
+			CmdVerifyVertex = new List<string>();
+			CmdAddEdge = new List<string>();
+			CmdAll = new List<string>();
+
+			DataAcc = OpCtx.Data.Build(null, true);
+			DataAcc.AddSessionStart();
+			SetupLatestCommand();
+			AfterSessionStart();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void AddVertex() {
-			IWeaverVarAlias<TDom> va;
-			TxBuild.AddVertex(NewDom, out va);
-			NewDomAlias = va;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private void VerifyVertex<T>(long pVertexId) where T : Vertex, new() {
-			Vertex v = OpCtx.Data.GetVertexById<Vertex>(pVertexId);
-
-			if ( v == null ) {
-				throw new FabNotFoundFault(typeof(T), "Id="+pVertexId);
-			}
+			IWeaverVarAlias<TDom> alias;
+			IWeaverQuery q = Weave.Inst.Graph.AddVertex(NewDom);
+			q = WeaverQuery.StoreResultAsVar("a", q, out alias);
+			NewDomAlias = alias;
+			DataAcc.AddQuery(q, true);
+			CmdAddVertex = SetupLatestCommand();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -86,12 +106,9 @@ namespace Fabric.New.Operations.Create {
 													where TFrom : IVertex, new()
 													where TTo : Vertex, new()
 													where TEdge : IWeaverEdge<TFrom, TTo>, new() {
-			VerifyVertex<TTo>(pToVertexId);
-
-			IWeaverVarAlias<TTo> toVertexVar;
-			TxBuild.GetVertex(pToVertexId, out toVertexVar);
-			TxBuild.AddEdge(pFromVar, new TEdge(), toVertexVar);
-			return toVertexVar;
+			IWeaverVarAlias<TTo> toVar = VerifyVertex<TTo>(pToVertexId);
+			AddEdge(pFromVar, new TEdge(), toVar);
+			return toVar;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -114,8 +131,72 @@ namespace Fabric.New.Operations.Create {
 														where TTo : IVertex, new()
 														where TEdge : IWeaverEdge<TFrom, TTo>, new() {
 			if ( pFromVar != null ) {
-				TxBuild.AddEdge(pFromVar, pEdge, pToVar);
+				AddEdge(pFromVar, pEdge, pToVar);
 			}
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void BeforeValidation() {
+			CreateFabArtifact art = (NewCre as CreateFabArtifact);
+			CreateFabFactor fac = (NewCre as CreateFabFactor);
+
+			if ( art != null ) {
+				art.CreatedByMemberId = (OpCtx.Auth.ActiveMemberId ?? 0);
+			}
+
+			if ( fac != null ) {
+				fac.CreatedByMemberId = (OpCtx.Auth.ActiveMemberId ?? 0);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void AfterSessionStart() {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void BeforeSessionCommit() {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void AfterExecute() {}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private IWeaverVarAlias<T> VerifyVertex<T>(long pVertexId) where T : Vertex, new() {
+			IWeaverVarAlias<T> alias;
+			string varName = "v"+CmdVerifyVertex.Count;
+			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex<T>(x => x.VertexId, pVertexId).ToQuery();
+			q = WeaverQuery.StoreResultAsVar(varName, q, out alias);
+
+			DataAcc.AddQuery(q, true);
+			DataAcc.AppendScriptToLatestCommand(varName+"?1:0;");
+			CmdVerifyVertex.Add(SetupLatestCommand());
+			return alias;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddEdge<TEdge>(IWeaverVarAlias pFromVar, TEdge pEdge, IWeaverVarAlias pToVar)
+																	where TEdge : IWeaverEdge, new() {
+
+			IWeaverQuery q = Weave.Inst.Graph.AddEdge(pFromVar, new TEdge(), pToVar);
+			DataAcc.AddQuery(q, true);
+			CmdAddEdge.Add(SetupLatestCommand(true));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected string SetupLatestCommand(bool pOmitResults=false) {
+			if ( CmdAll.Count > 0 ) {
+				DataAcc.AddConditionsToLatestCommand(CmdAll.Last());
+			}
+
+			if ( pOmitResults ) {
+				DataAcc.OmitResultsOfLatestCommand();
+			}
+
+			string cmdId = DataAcc.GetLatestCommandId();
+			CmdAll.Add(cmdId);
+			return cmdId;
 		}
 
 	}

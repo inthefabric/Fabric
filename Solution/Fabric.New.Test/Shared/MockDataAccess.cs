@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Moq;
-using NUnit.Framework;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;
@@ -14,12 +14,18 @@ namespace Fabric.New.Test.Shared {
 	/*================================================================================================*/
 	public class MockDataAccess : Mock<IDataAccess> {
 
+		public const string SessionStart = "start";
+		public const string SessionClose = "close";
+		public const string SessionRollback = "rollback";
+		public const string SessionCommit = "commit";
+
 		private static readonly Logger Log = Logger.Build<MockDataAccess>();
 
-		protected IList<MockDataAccessCmd> CmdList;
-		public int ExecuteCount;
-		public MockDataResult MockResult;
+		protected IList<MockDataAccessCmd> CmdList { get; private set; }
+		public int ExecuteCount { get; private set; }
+		public MockDataResult MockResult { get; private set; }
 
+		private bool vAddCommandIds;
 		private Action<IDataAccess, RexConnDataAccess> vPreEx;
 		private Action<IDataAccess, IResponseResult> vPostEx;
 		private Action<IDataAccess, Exception> vPostExErr;
@@ -27,7 +33,9 @@ namespace Fabric.New.Test.Shared {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private MockDataAccess() {}
+		private MockDataAccess(bool pAddCommandIds) {
+			vAddCommandIds = pAddCommandIds;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,13 +43,16 @@ namespace Fabric.New.Test.Shared {
 		private void SetupAddQuery() {
 			CmdList = new List<MockDataAccessCmd>();
 
+			////
+
 			Setup(x => x.AddQuery(It.IsAny<string>(), It.IsAny<bool>()))
 				.Callback((string s, bool c) => OnAddQuery(s, c))
 				.Returns(Object);
 
-			/*Setup(x => x.AddQuery(It.IsAny<string>(), It.IsAny<IDictionary<string, string>>()))
-				.Callback((string s, IDictionary<string, string> p) => OnAddQuery(s,p))
-				.Returns(Object);*/
+			Setup(x => x.AddQuery(It.IsAny<string>(), It.IsAny<IDictionary<string, string>>(),
+					It.IsAny<bool>()))
+				.Callback((string s, IDictionary<string, string> p, bool c) => OnAddQuery(s,p,c))
+				.Returns(Object);
 
 			Setup(x => x.AddQuery(It.IsAny<string>(), 
 					It.IsAny<IDictionary<string, IWeaverQueryVal>>(), It.IsAny<bool>()))
@@ -57,6 +68,40 @@ namespace Fabric.New.Test.Shared {
 				.Callback((IEnumerable<IWeaverScript> s, bool c) => OnAddQueries(s, c))
 				.Returns(Object);
 
+			Setup(x => x.AddQueries(It.IsAny<IWeaverTransaction>(), It.IsAny<bool>()))
+				.Callback((IWeaverTransaction tx, bool c) => OnAddQueries(tx, c))
+				.Returns(Object);
+
+			////
+
+			Setup(x => x.AddConditionsToLatestCommand(It.IsAny<string>()))
+				.Callback((string c) => { CmdList.Last().ConditionCmdId = c; });
+
+			Setup(x => x.AppendScriptToLatestCommand(It.IsAny<string>()))
+				.Callback((string s) => { CmdList.Last().Script += s; });
+
+			Setup(x => x.OmitResultsOfLatestCommand())
+				.Callback(() => { CmdList.Last().OmitResults = true; });
+
+			////
+			
+			Setup(x => x.AddSessionStart())
+				.Callback(() => OnAddSession(SessionStart))
+				.Returns(Object);
+
+			Setup(x => x.AddSessionClose())
+				.Callback(() => OnAddSession(SessionClose))
+				.Returns(Object);
+
+			Setup(x => x.AddSessionRollback())
+				.Callback(() => OnAddSession(SessionRollback))
+				.Returns(Object);
+
+			Setup(x => x.AddSessionCommit())
+				.Callback(() => OnAddSession(SessionCommit))
+				.Returns(Object);
+
+			////
 			
 			Setup(x => x.SetExecuteHooks(
 					It.IsAny<Action<IDataAccess, RexConnDataAccess>>(),
@@ -87,6 +132,10 @@ namespace Fabric.New.Test.Shared {
 						vPreEx(Object, null);
 					}
 
+				    foreach ( MockDataAccessCmd cmd in CmdList ) {
+				        Log.Debug(cmd+"");
+				    }
+
 					ExecuteCount++;
 					pExecuteCallback(this);
 
@@ -107,25 +156,28 @@ namespace Fabric.New.Test.Shared {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnAddQuery(string pScript, bool pCache) {
-			TestUtil.LogWeaverScript(Log, pScript, "");
-			CmdList.Add(new MockDataAccessCmd { Script = pScript, Cache = pCache});
+			AddCommand(new MockDataAccessCmd { Script = pScript, Cache = pCache });
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		private void OnAddQuery(string pScript, IDictionary<string, string> pParams) {
-			TestUtil.LogWeaverScript(pScript, JsonSerializer.SerializeToString(pParams));
-			CmdList.Add(new MockDataAccessCmd { Script = pScript, StringParams = pParams });
+		/*--------------------------------------------------------------------------------------------*/
+		private void OnAddQuery(string pScript, IDictionary<string, string> pParams, bool pCache) {
+			var par = new Dictionary<string, IWeaverQueryVal>();
+
+			foreach ( KeyValuePair<string, string> p in pParams ) {
+				par.Add(p.Key, new WeaverQueryVal(p.Value));
+			}
+
+			AddCommand(new MockDataAccessCmd { Script = pScript, Params = par, Cache = pCache });
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnAddQuery(
 							string pScript, IDictionary<string, IWeaverQueryVal> pParams, bool pCache) {
-			var mockWs = new Mock<IWeaverScript>();
+			/*var mockWs = new Mock<IWeaverScript>();
 			mockWs.SetupGet(x => x.Script).Returns(pScript);
-			mockWs.SetupGet(x => x.Params).Returns((Dictionary<string, IWeaverQueryVal>)pParams);
-			TestUtil.LogWeaverScript(Log, mockWs.Object);
+			mockWs.SetupGet(x => x.Params).Returns((Dictionary<string, IWeaverQueryVal>)pParams);*/
 
-			CmdList.Add(new MockDataAccessCmd { Script = pScript, Params = pParams, Cache = pCache });
+			AddCommand(new MockDataAccessCmd { Script = pScript, Params = pParams, Cache = pCache });
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -140,22 +192,46 @@ namespace Fabric.New.Test.Shared {
 			}
 		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public MockDataAccessCmd GetCommand(int pIndex) {
-			if ( pIndex >= CmdList.Count ) {
-				throw new Exception("Not enough MockDataAccessCmd items.");
+		private void OnAddQueries(IWeaverTransaction pWeaverTx, bool pCache) {
+			foreach ( IWeaverQuery q in pWeaverTx.Queries ) {
+				OnAddQuery(q, pCache);
 			}
+		}
 
-			return CmdList[pIndex];
+		/*--------------------------------------------------------------------------------------------*/
+		private void OnAddSession(string pSessionAction) {
+			AddCommand(new MockDataAccessCmd { SessionAction = pSessionAction });
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static MockDataAccess Create(Action<MockDataAccess> pExecuteCallback) {
-			var mda = new MockDataAccess();
+		public MockDataAccessCmd GetCommand(int pIndex) {
+			if ( pIndex >= CmdList.Count ) {
+				throw new Exception("Not enough "+typeof(MockDataAccessCmd).Name+" items.");
+			}
+
+			return CmdList[pIndex];
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddCommand(MockDataAccessCmd pCmd) {
+			if ( vAddCommandIds ) {
+				pCmd.CommandId = CmdList.Count+"";
+			}
+
+			CmdList.Add(pCmd);
+			Setup(x => x.GetLatestCommandId()).Returns(pCmd.CommandId);
+			//Log.Debug(pCmd+"");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static MockDataAccess Create(Action<MockDataAccess> pExecuteCallback,
+																			bool pAddCommandIds=false) {
+			var mda = new MockDataAccess(pAddCommandIds);
 			mda.SetupAddQuery();
 			mda.SetupExecute(pExecuteCallback);
 			return mda;

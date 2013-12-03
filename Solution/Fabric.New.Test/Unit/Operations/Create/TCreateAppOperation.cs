@@ -52,6 +52,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vCreateObj.Secret = "abcdefghijklmnopQRSTUVWXYZ012345";
 			vCreateObj.OauthDomains = null;
 
+			vMockDataAcc.MockResult.Setup(x => x.GetCommandIndexByCmdId("1")).Returns(1);
+			vMockDataAcc.MockResult.Setup(x => x.ToElementAt<App>(1, 0)).Returns(vExpectDomResult);
+
 			////
 
 			vCheckUniqueAppName = ((ws, n) => {
@@ -107,13 +110,18 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		protected override Logger GetLogger() {
+			return Log;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override bool IsInternalGetResult() {
 			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override Action<IWeaverScript, string> GetCreateScriptCallback() {
-			return vCheckCreateApp;
+		protected override void OnDataExecuteInner(MockDataAccess pDataAccess) {
+			//vCheckCreateApp
 		}
 
 	}

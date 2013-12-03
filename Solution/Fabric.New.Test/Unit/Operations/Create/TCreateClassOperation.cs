@@ -110,13 +110,18 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		protected override Logger GetLogger() {
+			return Log;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override bool IsInternalGetResult() {
 			return false;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override Action<IWeaverScript, string> GetCreateScriptCallback() {
-			return vCheckCreateClass;
+		protected override void OnDataExecuteInner(MockDataAccess pDataAccess) {
+			//vCheckCreateClass
 		}
 
 	}

@@ -28,14 +28,14 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			vMockAuth.SetupGet(x => x.ActiveMemberId).Returns(vMemId);
 			vMockData.Setup(x => x.GetVertexById<Vertex>(vMemId)).Returns(new Member());
-			vMockTxb.Setup(x => x.GetVertex(vMemId, out vMemVar));
+			//vMockTxb.Setup(x => x.GetVertex(vMemId, out vMemVar));
 		}
 
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void VerifyCreate() {
-			vMockTxb.Verify(
+			/*vMockTxb.Verify(
 				x => x.AddEdge(
 					It.IsAny<IWeaverVarAlias<Artifact>>(),
 					It.IsAny<ArtifactCreatedByMember>(),
@@ -51,7 +51,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 					It.IsAny<IWeaverVarAlias<Artifact>>()
 				),
 				Times.Once
-			);
+			);*/
 		}
 
 	}

@@ -54,8 +54,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Create\CreateMemberOperationPartial.cs" />
+    <Compile Include="Create\CreateInstanceOperationPartial.cs" />
+    <Compile Include="Create\CreateFactorOperationPartial.cs" />
     <Compile Include="IOperationData.cs" />
-    <Compile Include="Create\CreateOperationsCustom.cs" />
+    <Compile Include="Create\CreateClassOperationPartial.cs" />
     <Compile Include="Internal\InternalInitDbOperation.cs" />
     <Compile Include="Internal\IInternalOperation.cs" />
     <Compile Include="IOperationAuth.cs" />

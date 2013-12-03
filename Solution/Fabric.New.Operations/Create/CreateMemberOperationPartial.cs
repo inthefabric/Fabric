@@ -1,22 +1,22 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
+﻿using System;
 
 namespace Fabric.New.Operations.Create {
 
-
 	/*================================================================================================*/
-	public interface ICreateOperation<out TDom, out TApi> where TDom : Vertex where TApi : FabVertex {
+	public partial class CreateMemberOperation {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Create(IOperationContext pOpCtx, string pJson);
-		
-		/*--------------------------------------------------------------------------------------------*/
-		TDom Execute();
+		private static void InitCustomMember() { }
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		TApi GetResult();
+		protected override void AfterSessionStart() {
+			//TODO: verify member doesn't already exist
+			throw new NotImplementedException();
+		}
 
 	}
 

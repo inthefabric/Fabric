@@ -53,6 +53,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vCreateObj.Name = "MyUser";
 			vCreateObj.Password = "MyPassword";
 
+			vMockDataAcc.MockResult.Setup(x => x.GetCommandIndexByCmdId("1")).Returns(1);
+			vMockDataAcc.MockResult.Setup(x => x.ToElementAt<User>(1, 0)).Returns(vExpectDomResult);
+
 			////
 
 			vCheckUniqueUserName = ((ws, n) => {
@@ -108,13 +111,18 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		protected override Logger GetLogger() {
+			return Log;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override bool IsInternalGetResult() {
 			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override Action<IWeaverScript, string> GetCreateScriptCallback() {
-			return vCheckCreateUser;
+		protected override void OnDataExecuteInner(MockDataAccess pDataAccess) {
+			//vCheckCreateUser
 		}
 
 	}

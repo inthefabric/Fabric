@@ -3,7 +3,6 @@ using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Api.Executors {
@@ -28,7 +27,7 @@ namespace Fabric.New.Api.Executors {
 			}
 
 			var o = new TOp();
-			o.Create(ApiReq.OpCtx, new TxBuilder(), json);
+			o.Create(ApiReq.OpCtx, json);
 			o.Execute();
 			return new List<TApi> { o.GetResult() };
 		}

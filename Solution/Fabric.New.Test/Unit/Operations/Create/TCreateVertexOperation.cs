@@ -24,12 +24,14 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected long vVertId;
 		protected DateTime vVertTime;
 		protected Mock<IOperationAuth> vMockAuth;
+		protected MockDataAccess vMockDataAcc;
 		protected Mock<IOperationData> vMockData;
 		private Mock<IOperationContext> vMockCtx;
-		protected Mock<ITxBuilder> vMockTxb;
+		//protected Mock<ITxBuilder> vMockTxb;
 		protected TCre vCreateObj;
 		protected IWeaverVarAlias<TDom> vVertVar;
 		protected string vCreateQueryName;
+		protected TDom vExpectDomResult;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +43,10 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			vMockAuth = new Mock<IOperationAuth>();
 
+			vMockDataAcc = MockDataAccess.Create(OnDataExecute, true);
+
 			vMockData = new Mock<IOperationData>();
+			vMockData.Setup(x => x.Build(null, true, It.IsAny<bool>())).Returns(vMockDataAcc.Object);
 
 			vMockCtx = new Mock<IOperationContext>();
 			vMockCtx.Setup(x => x.GetSharpflakeId<Vertex>()).Returns(vVertId);
@@ -51,11 +56,12 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			vVertVar = new WeaverVarAlias<TDom>("vert");
 
-			vMockTxb = new Mock<ITxBuilder>();
-			vMockTxb.Setup(x => x.AddVertex(It.IsAny<TDom>(), out vVertVar));
+			//vMockTxb = new Mock<ITxBuilder>();
+			//vMockTxb.Setup(x => x.AddVertex(It.IsAny<TDom>(), out vVertVar));
 
 			vCreateObj = new TCre();
 			vCreateQueryName = "Create"+typeof(TDom).Name+"Operation";
+			vExpectDomResult = new TDom();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -64,10 +70,15 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected TOper DoCreate(ITxBuilder pTxBuild=null) {
+		protected TOper DoCreate() {
 			var c = new TOper();
-			c.Create(vMockCtx.Object, (pTxBuild ?? vMockTxb.Object), ToJson());
+			c.Create(vMockCtx.Object, ToJson());
 			return c;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void OnDataExecute(MockDataAccess pDataAccess) {
+			OnDataExecuteInner(pDataAccess);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -88,10 +99,10 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			IWeaverVarAlias<TDom> var;
 			
-			vMockTxb.Verify(
+			/*vMockTxb.Verify(
 				x => x.AddVertex(It.Is<TDom>(a => a.VertexId == vVertId), out var),
 				Times.Once
-			);
+			);*/
 
 			VerifyCreate();
 		}
@@ -104,34 +115,25 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void Execute() {
-			var tx = new Mock<IWeaverTransaction>();
-			vMockTxb.Setup(x => x.Finish(vVertVar)).Returns(tx.Object);
+			TOper c = DoCreate();
+			TDom result = c.Execute();
 
-			var expectResult = new TDom();
-			vMockData.Setup(x => x.Get<TDom>(tx.Object, vCreateQueryName)).Returns(expectResult);
+			Assert.AreEqual(vExpectDomResult, result, "Result should be filled.");
+		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		[Test]
+		[Category(TestUtil.RawScriptCategory)]
+		public void ExecuteScript() {
+			/*vMockData
+				.Setup(x => x.Get<TDom>(It.IsAny<IWeaverTransaction>(), vCreateQueryName))
+				.Callback(GetCreateScriptCallback())
+				.Returns(expectResult);* /
 
 			TOper c = DoCreate();
 			TDom result = c.Execute();
 
-			Assert.AreEqual(expectResult, result, "Result should be filled.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		[Category(TestUtil.RawScriptCategory)]
-		public void ExecuteScript() {
-			var txb = new TxBuilder();
-			var expectResult = new TDom();
-
-			vMockData
-				.Setup(x => x.Get<TDom>(It.IsAny<IWeaverTransaction>(), vCreateQueryName))
-				.Callback(GetCreateScriptCallback())
-				.Returns(expectResult);
-
-			TOper c = DoCreate(txb);
-			TDom result = c.Execute();
-
-			Assert.AreEqual(expectResult, result, "Result should be filled.");
+			Assert.AreEqual(vExpectDomResult, result, "Result should be filled.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -150,10 +152,13 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		protected abstract Logger GetLogger();
+		
+		/*--------------------------------------------------------------------------------------------*/
 		protected abstract bool IsInternalGetResult();
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract Action<IWeaverScript, string> GetCreateScriptCallback();
+		protected abstract void OnDataExecuteInner(MockDataAccess pDataAccess);
 
 	}
 
