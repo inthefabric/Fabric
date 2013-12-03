@@ -112,6 +112,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepEntryContains<FabTravAppRoot, FabApp>("WhereNameContains", "p_na"),
 			new TravStepEntryWith<FabTravAppRoot, string, FabApp>("WithName", "p_nk", true),
 			new TravStepEntryContains<FabTravClassRoot, FabClass>("WhereNameContains", "c_na"),
+			new TravStepEntryWith<FabTravClassRoot, string, FabClass>("WithName", "c_nk", true),
 			new TravStepEntryContains<FabTravClassRoot, FabClass>("WhereDisambContains", "c_di"),
 			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("WhereNameContains", "i_na"),
 			new TravStepEntryContains<FabTravInstanceRoot, FabInstance>("WhereDisambContains", "i_di"),

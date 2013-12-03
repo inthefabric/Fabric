@@ -37,6 +37,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			NameKey = new DomainProperty<string>("NameKey", "c_nk");
 			NameKey.ToLowerCase = true;
 			NameKey.IsIndexed = true;
+			Name.ExactIndexVia = NameKey;
 
 			Disamb = new DomainProperty<string>("Disamb", "c_di");
 			Disamb.IsNullable = true;
@@ -71,7 +72,9 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabNameMap = new PropertyMapping<string, string>(Name, FabName);
+			FabNameMap = new PropertyMapping<string, string>(Name, FabName, true);
+			FabNameMap.ApiToDomainNote = "Set Domain.NameKey = Api.Name.ToLower()";
+
 			FabDisambMap = new PropertyMapping<string, string>(Disamb, FabDisamb);
 			FabNoteMap = new PropertyMapping<string, string>(Note, FabNote);
 		}

@@ -17,6 +17,14 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		private static void FromCreateFabClassCustom(Class pDomain, CreateFabClass pApi) {
+			pDomain.Name = pApi.Name;
+			pDomain.NameKey = pApi.Name.ToLower();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabFactorCustom(Factor pDomain, CreateFabFactor pApi) {
 			if ( pApi.Eventor != null ) {
 				FromCreateFabFactorEventor(pDomain, pApi.Eventor);

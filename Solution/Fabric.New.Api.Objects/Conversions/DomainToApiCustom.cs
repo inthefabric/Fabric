@@ -14,6 +14,14 @@ namespace Fabric.New.Api.Objects.Conversions {
 			//TODO: set custom for ApiToDomain only
 			pApi.Name = pDomain.Name;
 		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromClassCustom(FabClass pApi, Class pDomain) {
+			//TODO: set custom for ApiToDomain only
+			pApi.Name = pDomain.Name;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

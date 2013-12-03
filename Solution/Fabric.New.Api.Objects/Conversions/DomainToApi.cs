@@ -59,9 +59,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromClass(FabClass pApi, Class pDomain) {
 			FromArtifact(pApi, pDomain);
-			pApi.Name = pDomain.Name;
+			//Custom: 
+			//pApi.Name <== pDomain.Name  (requires custom)
 			pApi.Disamb = pDomain.Disamb;
 			pApi.Note = pDomain.Note;
+			FromClassCustom(pApi, pDomain);
 		}
 
 
