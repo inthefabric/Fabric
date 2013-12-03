@@ -9,9 +9,6 @@ using Fabric.New.Operations;
 using Fabric.New.Test.Shared;
 using Moq;
 using NUnit.Framework;
-using RexConnectClient.Core;
-using RexConnectClient.Core.Result;
-using RexConnectClient.Core.Transfer;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations {

@@ -6,6 +6,7 @@ using Fabric.New.Domain.Enums;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Infrastructure.Util;
 using Fabric.New.Operations.Create;
 using Fabric.New.Test.Shared;
 using Moq;
@@ -16,17 +17,17 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateAppOperation : TCreateArtifactOperation<App, CreateFabApp, CreateAppOperation> {
+	public class TCreateUserOperation : TCreateArtifactOperation<User, CreateFabUser, CreateUserOperation> {
 
-		private static readonly Logger Log = Logger.Build<TCreateAppOperation>();
+		private static readonly Logger Log = Logger.Build<TCreateUserOperation>();
 
-		private const string UniqueAppNameScript = "g.V('"+DbName.Vert.App.NameKey+"',_P);";
+		private const string UniqueUserNameScript = "g.V('"+DbName.Vert.User.NameKey+"',_P);";
 
-		private const string CreateAppScript = 
+		private const string CreateUserScript = 
 			"_V0=g.addVertex(["+
-				DbName.Vert.App.Name+":_TP,"+
-				DbName.Vert.App.NameKey+":_TP,"+
-				DbName.Vert.App.Secret+":_TP,"+
+				DbName.Vert.User.Name+":_TP,"+
+				DbName.Vert.User.NameKey+":_TP,"+
+				DbName.Vert.User.Password+":_TP,"+
 				DbName.Vert.Vertex.VertexId+":_TP,"+
 				DbName.Vert.Vertex.Timestamp+":_TP,"+
 				DbName.Vert.Vertex.VertexType+":_TP"+
@@ -39,8 +40,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			"]);"+
 			"_V0;";
 
-		private Action<IWeaverScript, string> vCheckUniqueAppName;
-		private Action<IWeaverScript, string> vCheckCreateApp;
+		private Action<IWeaverScript, string> vCheckUniqueUserName;
+		private Action<IWeaverScript, string> vCheckCreateUser;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,36 +49,35 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		public override void SetUp() {
 			base.SetUp();
 
-			vCreateObj.Name = "MyApp";
-			vCreateObj.Secret = "abcdefghijklmnopQRSTUVWXYZ012345";
-			vCreateObj.OauthDomains = null;
+			vCreateObj.Name = "MyUser";
+			vCreateObj.Password = "MyPassword";
 
 			////
 
-			vCheckUniqueAppName = ((ws, n) => {
+			vCheckUniqueUserName = ((ws, n) => {
 				var list = new List<object> {
 					vCreateObj.Name.ToLower()
 				};
 
-			    CheckScriptAndParams(Log, ws, UniqueAppNameScript, "_P", list);
+			    CheckScriptAndParams(Log, ws, UniqueUserNameScript, "_P", list);
 			});
 
-			vCheckCreateApp = ((ws, n) => {
+			vCheckCreateUser = ((ws, n) => {
 				var list = new List<object> {
 					vCreateObj.Name,
 					vCreateObj.Name.ToLower(),
-					vCreateObj.Secret,
+					DataUtil.HashPassword(vCreateObj.Password),
 					vVertId,
 					vVertTime.Ticks,
-					(byte)VertexType.Id.App,
+					(byte)VertexType.Id.User,
 					vMemId,
 					DbName.Edge.ArtifactCreatedByMemberName,
 					DbName.Edge.MemberCreatesArtifactName,
 					vVertTime.Ticks,
-					(byte)VertexType.Id.App,
+					(byte)VertexType.Id.User,
 				};
 
-				CheckScriptAndParams(Log, ws, CreateAppScript, "_TP", list);
+				CheckScriptAndParams(Log, ws, CreateUserScript, "_TP", list);
 			});
 		}
 
@@ -88,7 +88,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			base.VerifyCreate();
 
 			vMockData.Verify(
-				x => x.Get<App>(It.IsAny<IWeaverQuery>(), "UniqueAppName"),
+				x => x.Get<User>(It.IsAny<IWeaverQuery>(), "UniqueUserName"),
 				Times.Once
 			);
 		}
@@ -97,9 +97,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		[Test]
 		public void CreateDuplicate() {
 			vMockData
-				.Setup(x => x.Get<App>(It.IsAny<IWeaverQuery>(), "UniqueAppName"))
-				.Callback(vCheckUniqueAppName)
-				.Returns(new App());
+				.Setup(x => x.Get<User>(It.IsAny<IWeaverQuery>(), "UniqueUserName"))
+				.Callback(vCheckUniqueUserName)
+				.Returns(new User());
 
 			TestUtil.Throws<FabDuplicateFault>(() => DoCreate());
 		}
@@ -113,17 +113,17 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetCreateQueryName() {
-			return "CreateAppOperation";
+			return "CreateUserOperation";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override App GetTypedResultFromOperation(CreateAppOperation pOper) {
-			return pOper.GetAppResult();
+		protected override User GetTypedResultFromOperation(CreateUserOperation pOper) {
+			return pOper.GetUserResult();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Action<IWeaverScript, string> GetCreateScriptCallback() {
-			return vCheckCreateApp;
+			return vCheckCreateUser;
 		}
 
 	}
