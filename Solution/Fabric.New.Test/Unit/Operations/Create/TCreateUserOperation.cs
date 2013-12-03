@@ -17,7 +17,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateUserOperation : TCreateArtifactOperation<User, CreateFabUser, CreateUserOperation> {
+	public class TCreateUserOperation : 
+						TCreateArtifactOperation<User, FabUser, CreateFabUser, CreateUserOperation> {
 
 		private static readonly Logger Log = Logger.Build<TCreateUserOperation>();
 
@@ -109,16 +110,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool IsInternalGetResult() {
 			return true;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override string GetCreateQueryName() {
-			return "CreateUserOperation";
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override User GetTypedResultFromOperation(CreateUserOperation pOper) {
-			return pOper.GetUserResult();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

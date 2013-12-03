@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
+using Fabric.New.Domain;
 using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Api.Executors {
@@ -44,27 +45,27 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateClass(IApiRequest pApiReq) {
-			return new CreateExecutor<FabClass, CreateClassOperation>(pApiReq).Execute();
+			return new CreateExecutor<Class, FabClass, CreateClassOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateFactor(IApiRequest pApiReq) {
-			return new CreateExecutor<FabFactor, CreateFactorOperation>(pApiReq).Execute();
+			return new CreateExecutor<Factor, FabFactor, CreateFactorOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateInstance(IApiRequest pApiReq) {
-			return new CreateExecutor<FabInstance, CreateInstanceOperation>(pApiReq).Execute();
+			return new CreateExecutor<Instance, FabInstance, CreateInstanceOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateMember(IApiRequest pApiReq) {
-			return new CreateExecutor<FabMember, CreateMemberOperation>(pApiReq).Execute();
+			return new CreateExecutor<Member, FabMember, CreateMemberOperation>(pApiReq).Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateUrl(IApiRequest pApiReq) {
-			return new CreateExecutor<FabUrl, CreateUrlOperation>(pApiReq).Execute();
+			return new CreateExecutor<Url, FabUrl, CreateUrlOperation>(pApiReq).Execute();
 		}
 
 	}

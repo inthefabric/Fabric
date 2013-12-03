@@ -12,7 +12,6 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
@@ -29,13 +28,18 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	string baseName = (vp == null ? "CreateOperationBase" : "Create"+vp.Names.Domain+"Operation");
 	string createObjName = "Create"+v.Names.Api;
 	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
+	bool isInternal = v.IsSpecInternal(v.CreateAccess);
+	string apiType = (isInternal && v.IsSpecInternal(v.GetAccess) && vp != null ? vp : v).Names.Api;
+	string domToApiFunc = (isInternal ? "null" : "DomainToApi.From"+v.Names.Domain);
 
 	if ( v.IsAbstract ) {
 #>
 
 
 	/*================================================================================================*/
-	public abstract class Create<#= v.Names.Domain #>Operation : <#= baseName #> {
+	public abstract class Create<#= v.Names.Domain #>Operation<TDom, TApi, TCre> : 
+								<#= baseName #><TDom, TApi, TCre> where TDom : <#= v.Names.Domain #>, new()
+								where TApi : <#= v.Names.Api #> where TCre : Create<#= v.Names.Api #> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,56 +55,23 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 			
 
 	/*================================================================================================*/
-	public class Create<#= v.Names.Domain #>Operation : <#= baseName #> {
+	public class Create<#= v.Names.Domain #>Operation : <#= baseName #><<#= v.Names.Domain #>, <#= apiType #>, Create<#= v.Names.Api #>> {
 		
-		private IWeaverVarAlias<<#= v.Names.Domain #>> vAlias;
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-<#
-	if ( v.IsSpecInternal(v.CreateAccess) ) {
-#>
-		/*--------------------------------------------------------------------------------------------*/
-		public override FabObject GetResult() {
-			throw new NotSupportedException("Internal access only; use Get<#= v.Names.Domain #>Result() instead.");
-		}
-<#
-	} //end internal condition
-	else {
-#>
-		/*--------------------------------------------------------------------------------------------*/
-		public override FabObject GetResult() {
-			return Get<#= v.Names.Api #>Result();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public <#= v.Names.Api #> Get<#= v.Names.Api #>Result() {
-			return DomainToApi.From<#= v.Names.Domain #>(Get<#= v.Names.Domain #>Result());
-		}
-<#
-	} //end internal condition
-#>
-
-		/*--------------------------------------------------------------------------------------------*/
-		public <#= v.Names.Domain #> Get<#= v.Names.Domain #>Result() {
-			return ExecuteTx(vAlias);
-		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson) {
-			<#= createObjName #> c;
-			<#= v.Names.Domain #> d;
-			vAlias = CreateInit(pOpCtx, pTxBuild, pJson, ApiToDomain.From<#= createObjName #>, out c, out d);
-			Create<#= v.Names.Domain #>Edges(c, d, vAlias);
+			Init(pOpCtx, pTxBuild, pJson, ApiToDomain.From<#= createObjName #>, <#= domToApiFunc #>);
 <#
 	if ( v.CustomCreate ) {
 #>
-			CreateOperationsCustom.Create<#= v.Names.Domain #>(pOpCtx, TxBuild, c, d);
+			CreateOperationsCustom.Create<#= v.Names.Domain #>(pOpCtx, TxBuild, NewCre, NewDom);
 <#
 	} //end "CustomCreate" condition
-
+#>
+			AddVertex();
+			Create<#= v.Names.Domain #>Edges(NewDomAlias);
+<#
 	foreach ( DomainProperty dp in props ) {
 		if ( dp.EnforceUnique ) {
 			string displayName = (dp.Name == "NameKey" ? "Name" : dp.Name); //ugly special case
@@ -109,7 +80,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 			// Enforce unique <#= dp.Name #>
 			
 			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<<#= v.Names.Domain #>>(x => x.<#= dp.Name #>, d.<#= dp.Name #>)
+				.V.ExactIndex<<#= v.Names.Domain #>>(x => x.<#= dp.Name #>, NewDom.<#= dp.Name #>)
 				.ToQuery();
 
 			<#= v.Names.Domain #> dup = pOpCtx.Data.Get<<#= v.Names.Domain #>>(q, "Unique<#= v.Names.Domain #><#= displayName #>");
@@ -138,13 +109,11 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(pVertex, true);
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		<#= pVertex.IsAbstract ? "protected" : "private" #> void Create<#= pVertex.Names.Domain #>Edges(Create<#= pVertex.Names.Api #> pCre, <#= pVertex.Names.Domain #> pDom,
-															IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
+		<#= pVertex.IsAbstract ? "protected" : "private" #> void Create<#= pVertex.Names.Domain #>Edges(IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
 <#+
 	if ( pParent != null ) {
 #>
-			var va = new WeaverVarAlias<<#= pParent.Names.Domain #>>(pAlias.Name);
-			Create<#= pParent.Names.Domain #>Edges(pCre, pDom, va);
+			Create<#= pParent.Names.Domain #>Edges(new WeaverVarAlias<<#= pParent.Names.Domain #>>(pAlias.Name));
 <#+
 	} //end parent condition
 
@@ -163,7 +132,7 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 			
 			IWeaverVarAlias<<#= tv.Names.Domain #>> <#= e.NameDb #>Alias =
 				AddEdge<<#= fv.Names.Domain #>, <#= e.GetClassNameDom() #>, <#= tv.Names.Domain #>>(
-					pAlias, pCre.<#= idProp #>);
+					pAlias, NewCre.<#= idProp #>);
 <#+
 
 		IEdgeSchema opp = SchemaUtil.GetReverseEdgeSchema(pVertex, e);
@@ -181,7 +150,7 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 			IEdgeSchema edgeToProp = ep.GetEdgeToDomainProp();
 			DomainProperty dp = ep.GetDomainProp();
 			string fromVar = (edgeToProp == null ?
-				"pDom."+dp.Name : "pCre."+edgeToProp.GetPropNameApi());
+				"NewDom."+dp.Name : "NewCre."+edgeToProp.GetPropNameApi());
 #>
 			<#= opp.NameDb #>Edge.<#= ep.Name #> = <#= fromVar #>;
 <#+

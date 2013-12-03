@@ -10,10 +10,16 @@ using Weaver.Core.Query;
 namespace Fabric.New.Operations.Create {
 
 	/*================================================================================================*/
-	public abstract class CreateOperationBase : ICreateOperation {
+	public abstract class CreateOperationBase<TDom, TApi, TCre> : ICreateOperation<TDom, TApi>
+						where TDom : Vertex, new() where TApi : FabVertex where TCre : CreateFabVertex {
 
-		protected IOperationContext OpCtx { get; set; }
-		protected ITxBuilder TxBuild { get; set; }
+		protected IOperationContext OpCtx { get; private set; }
+		protected ITxBuilder TxBuild { get; private set; }
+		protected TDom NewDom { get; private set; }
+		protected TApi NewApi { get; private set; }
+		protected TCre NewCre { get; private set; }
+		protected IWeaverVarAlias<TDom> NewDomAlias { get; private set; }
+		protected Func<TDom, TApi> DomToApi { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,34 +27,46 @@ namespace Fabric.New.Operations.Create {
 		public abstract void Create(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract FabObject GetResult();
+		public TDom Execute() {
+			IWeaverTransaction tx = TxBuild.Finish(NewDomAlias);
+			NewDom = OpCtx.Data.Get<TDom>(tx, GetType().Name);
+			NewApi = (DomToApi == null ? null : DomToApi(NewDom));
+			return NewDom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public TApi GetResult() {
+			if ( DomToApi == null ) {
+				throw new NotSupportedException("Internal: no DomainToApi conversion for "+
+					typeof(TDom).Name+".");
+			}
+
+			return NewApi;
+		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected IWeaverVarAlias<TDom> CreateInit<TCre, TDom>(IOperationContext pOpCtx,
-							ITxBuilder pTxBuild, string pJson, Func<TCre, TDom> pConvert, out TCre pCre,
-							out TDom pDom) where TCre : CreateFabObject where TDom : IVertex {
+		protected void Init(IOperationContext pOpCtx, ITxBuilder pTxBuild, string pJson,
+											Func<TCre, TDom> pCreToDom, Func<TDom, TApi> pDomToApi) {
 			OpCtx = pOpCtx;
 			TxBuild = pTxBuild;
+			DomToApi = pDomToApi;
 
-			pCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
-			CreateOperationsCustom.BeforeCreateObjectValidation(pOpCtx, pCre);
-			pCre.Validate();
+			NewCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
+			CreateOperationsCustom.BeforeCreateObjectValidation(pOpCtx, NewCre);
+			NewCre.Validate();
 
-			pDom = pConvert(pCre);
-			pDom.VertexId = OpCtx.GetSharpflakeId<Vertex>();
-			pDom.Timestamp = OpCtx.UtcNow.Ticks;
-
-			IWeaverVarAlias<TDom> va;
-			TxBuild.AddVertex(pDom, out va);
-			return va;
+			NewDom = pCreToDom(NewCre);
+			NewDom.VertexId = OpCtx.GetSharpflakeId<Vertex>();
+			NewDom.Timestamp = OpCtx.UtcNow.Ticks;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T ExecuteTx<T>(IWeaverVarAlias<T> pVertexAlias) where T : Vertex, IElement, new() {
-			IWeaverTransaction tx = TxBuild.Finish(pVertexAlias);
-			return OpCtx.Data.Get<T>(tx, GetType().Name);
+		protected void AddVertex() {
+			IWeaverVarAlias<TDom> va;
+			TxBuild.AddVertex(NewDom, out va);
+			NewDomAlias = va;
 		}
 
 

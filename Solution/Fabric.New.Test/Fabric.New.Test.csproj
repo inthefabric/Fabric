@@ -48,6 +48,7 @@
     <Compile Include="Unit\Infrastructure\Query\TTxBuilder.cs" />
     <Compile Include="Unit\Infrastructure\Util\TDataUtil.cs" />
     <Compile Include="Unit\Infrastructure\Query\TSharpflake.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateClassOperation.cs" />
     <Compile Include="Unit\Operations\Create\TCreateUserOperation.cs" />
     <Compile Include="Unit\Operations\Create\TCreateVertexOperation.cs" />
     <Compile Include="Unit\Operations\Create\TCreateArtifactOperation.cs" />

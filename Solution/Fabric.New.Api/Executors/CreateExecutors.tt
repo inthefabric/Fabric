@@ -11,6 +11,7 @@
 using System.Collections.Generic;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
+using Fabric.New.Domain;
 using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Api.Executors {
@@ -54,7 +55,7 @@ foreach ( IVertexSchema v in verts ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse Create<#= v.Names.Domain #>(IApiRequest pApiReq) {
-			return new CreateExecutor<<#= v.Names.Api #>, Create<#= v.Names.Domain #>Operation>(pApiReq).Execute();
+			return new CreateExecutor<<#= v.Names.Domain #>, <#= v.Names.Api #>, Create<#= v.Names.Domain #>Operation>(pApiReq).Execute();
 		}
 
 <#

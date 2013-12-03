@@ -16,17 +16,19 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateAppOperation : TCreateArtifactOperation<App, FabApp, CreateFabApp, CreateAppOperation> {
+	public class TCreateClassOperation : 
+					TCreateArtifactOperation<Class, FabClass, CreateFabClass, CreateClassOperation> {
 
-		private static readonly Logger Log = Logger.Build<TCreateAppOperation>();
+		private static readonly Logger Log = Logger.Build<TCreateClassOperation>();
 
-		private const string UniqueAppNameScript = "g.V('"+DbName.Vert.App.NameKey+"',_P);";
+		private const string UniqueClassNameScript = "g.V('"+DbName.Vert.Class.NameKey+"',_P);";
 
-		private const string CreateAppScript = 
+		private const string CreateClassScript = 
 			"_V0=g.addVertex(["+
-				DbName.Vert.App.Name+":_TP,"+
-				DbName.Vert.App.NameKey+":_TP,"+
-				DbName.Vert.App.Secret+":_TP,"+
+				DbName.Vert.Class.Name+":_TP,"+
+				DbName.Vert.Class.NameKey+":_TP,"+
+				DbName.Vert.Class.Disamb+":_TP,"+
+				DbName.Vert.Class.Note+":_TP,"+
 				DbName.Vert.Vertex.VertexId+":_TP,"+
 				DbName.Vert.Vertex.Timestamp+":_TP,"+
 				DbName.Vert.Vertex.VertexType+":_TP"+
@@ -39,8 +41,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			"]);"+
 			"_V0;";
 
-		private Action<IWeaverScript, string> vCheckUniqueAppName;
-		private Action<IWeaverScript, string> vCheckCreateApp;
+		private Action<IWeaverScript, string> vCheckUniqueClassName;
+		private Action<IWeaverScript, string> vCheckCreateClass;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,36 +50,37 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		public override void SetUp() {
 			base.SetUp();
 
-			vCreateObj.Name = "MyApp";
-			vCreateObj.Secret = "abcdefghijklmnopQRSTUVWXYZ012345";
-			vCreateObj.OauthDomains = null;
+			vCreateObj.Name = "My Name";
+			vCreateObj.Disamb = "My Disamb";
+			vCreateObj.Note = "My Note";
 
 			////
 
-			vCheckUniqueAppName = ((ws, n) => {
+			vCheckUniqueClassName = ((ws, n) => {
 				var list = new List<object> {
 					vCreateObj.Name.ToLower()
 				};
 
-			    CheckScriptAndParams(Log, ws, UniqueAppNameScript, "_P", list);
+			    CheckScriptAndParams(Log, ws, UniqueClassNameScript, "_P", list);
 			});
 
-			vCheckCreateApp = ((ws, n) => {
+			vCheckCreateClass = ((ws, n) => {
 				var list = new List<object> {
 					vCreateObj.Name,
 					vCreateObj.Name.ToLower(),
-					vCreateObj.Secret,
+					vCreateObj.Disamb,
+					vCreateObj.Note,
 					vVertId,
 					vVertTime.Ticks,
-					(byte)VertexType.Id.App,
+					(byte)VertexType.Id.Class,
 					vMemId,
 					DbName.Edge.ArtifactCreatedByMemberName,
 					DbName.Edge.MemberCreatesArtifactName,
 					vVertTime.Ticks,
-					(byte)VertexType.Id.App,
+					(byte)VertexType.Id.Class,
 				};
 
-				CheckScriptAndParams(Log, ws, CreateAppScript, "_TP", list);
+				CheckScriptAndParams(Log, ws, CreateClassScript, "_TP", list);
 			});
 		}
 
@@ -88,7 +91,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			base.VerifyCreate();
 
 			vMockData.Verify(
-				x => x.Get<App>(It.IsAny<IWeaverQuery>(), "UniqueAppName"),
+				x => x.Get<Class>(It.IsAny<IWeaverQuery>(), "UniqueClassName"),
 				Times.Once
 			);
 		}
@@ -97,9 +100,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		[Test]
 		public void CreateDuplicate() {
 			vMockData
-				.Setup(x => x.Get<App>(It.IsAny<IWeaverQuery>(), "UniqueAppName"))
-				.Callback(vCheckUniqueAppName)
-				.Returns(new App());
+				.Setup(x => x.Get<Class>(It.IsAny<IWeaverQuery>(), "UniqueClassName"))
+				.Callback(vCheckUniqueClassName)
+				.Returns(new Class());
 
 			TestUtil.Throws<FabDuplicateFault>(() => DoCreate());
 		}
@@ -108,12 +111,12 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool IsInternalGetResult() {
-			return true;
+			return false;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override Action<IWeaverScript, string> GetCreateScriptCallback() {
-			return vCheckCreateApp;
+			return vCheckCreateClass;
 		}
 
 	}

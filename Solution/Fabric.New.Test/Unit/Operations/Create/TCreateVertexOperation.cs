@@ -15,8 +15,11 @@ using Weaver.Core.Query;
 namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
-	public abstract class TCreateVertexOperation<TDom, TCre, TOper> where TDom : Vertex, new()
-					where TCre : CreateFabVertex, new() where TOper : CreateVertexOperation, new() {
+	public abstract class TCreateVertexOperation<TDom, TApi, TCre, TOper>
+										where TDom : Vertex, new()
+										where TApi : FabVertex, new()
+										where TCre : CreateFabVertex, new()
+										where TOper : CreateVertexOperation<TDom, TApi, TCre>, new() {
 
 		protected long vVertId;
 		protected DateTime vVertTime;
@@ -26,6 +29,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected Mock<ITxBuilder> vMockTxb;
 		protected TCre vCreateObj;
 		protected IWeaverVarAlias<TDom> vVertVar;
+		protected string vCreateQueryName;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +55,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vMockTxb.Setup(x => x.AddVertex(It.IsAny<TDom>(), out vVertVar));
 
 			vCreateObj = new TCre();
+			vCreateQueryName = "Create"+typeof(TDom).Name+"Operation";
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -93,6 +98,62 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void VerifyCreate();
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void Execute() {
+			var tx = new Mock<IWeaverTransaction>();
+			vMockTxb.Setup(x => x.Finish(vVertVar)).Returns(tx.Object);
+
+			var expectResult = new TDom();
+			vMockData.Setup(x => x.Get<TDom>(tx.Object, vCreateQueryName)).Returns(expectResult);
+
+			TOper c = DoCreate();
+			TDom result = c.Execute();
+
+			Assert.AreEqual(expectResult, result, "Result should be filled.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		[Category(TestUtil.RawScriptCategory)]
+		public void ExecuteScript() {
+			var txb = new TxBuilder();
+			var expectResult = new TDom();
+
+			vMockData
+				.Setup(x => x.Get<TDom>(It.IsAny<IWeaverTransaction>(), vCreateQueryName))
+				.Callback(GetCreateScriptCallback())
+				.Returns(expectResult);
+
+			TOper c = DoCreate(txb);
+			TDom result = c.Execute();
+
+			Assert.AreEqual(expectResult, result, "Result should be filled.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void GetApiResult() {
+			var c = new CreateUserOperation();
+
+			if ( IsInternalGetResult() ) {
+				TestUtil.Throws<NotSupportedException>(() => c.GetResult());
+				return;
+			}
+
+			Assert.Fail("Non-internal GetApiResult is not tested yet.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected abstract bool IsInternalGetResult();
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected abstract Action<IWeaverScript, string> GetCreateScriptCallback();
 
 	}
 
