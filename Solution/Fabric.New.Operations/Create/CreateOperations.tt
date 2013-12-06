@@ -29,7 +29,15 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
 	bool isInternal = v.IsSpecInternal(v.CreateAccess);
 	string apiType = (isInternal && v.IsSpecInternal(v.GetAccess) && vp != null ? vp : v).Names.Api;
-	string domToApiFunc = (isInternal ? "null" : "DomainToApi.From"+v.Names.Domain);
+
+	bool hasUniqueChecks = false;
+
+	foreach ( DomainProperty dp in props ) {
+		if ( dp.EnforceUnique ) {
+			hasUniqueChecks = true;
+			break;
+		}
+	}
 
 	if ( v.IsAbstract ) {
 #>
@@ -58,38 +66,66 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
 <#
 	if ( v.CustomCreate ) {
 #>
-			InitCustom<#= v.Names.Domain #>();
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void VerifyCustom() {
+			VerifyCustom<#= v.Names.Domain #>();
+		}
+
 <#
 	} //end "CustomCreate" condition
 #>
-			Init(pOpCtx, pJson, ApiToDomain.From<#= createObjName #>, <#= domToApiFunc #>);
+		/*--------------------------------------------------------------------------------------------*/
+		protected override <#= v.Names.Domain #> ToDomain(Create<#= v.Names.Api #> pCreateObj) {
+			return ApiToDomain.From<#= createObjName #>(pCreateObj);
+		}
+<#
+	if ( !isInternal ) {
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override <#= v.Names.Api #> ToApi(<#= v.Names.Domain #> pDomainObj) {
+			return DomainToApi.From<#= v.Names.Domain #>(pDomainObj);
+		}
+<#
+	} //end "isInternal" condition
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	if ( hasUniqueChecks ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void CheckForDuplicates() {
+			IWeaverVarAlias alias;
 <#
 	foreach ( DomainProperty dp in props ) {
 		if ( dp.EnforceUnique ) {
 			string displayName = (dp.Name == "NameKey" ? "Name" : dp.Name); //ugly special case
 #>
 
-			IWeaverVarAlias uni<#= dp.Name #>Var;
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<<#= v.Names.Domain #>>(x => x.<#= dp.Name #>, NewDom.<#= dp.Name #>)
-				.ToQueryAsVar("unq", out uni<#= dp.Name #>Var);
+				.ToQueryAsVar("unq", out alias);
 			DataAcc.AddQuery(q, true);
-			DataAcc.AppendScriptToLatestCommand("("+uni<#= dp.Name #>Var.Name+"?0:1);");
+			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
 			SetupLatestCommand(false, true);
 			//throw new FabDuplicateFault(typeof(<#= v.Names.Domain #>), "<#= displayName #>", dup.<#= displayName #>);
 <#
 		} //end EnforceUnique condition
 	} //end props loop
 #>
+		}
 
-			AddVertex();
-			Create<#= v.Names.Domain #>Edges(NewDomAlias);
-			Finish();
+<#
+	} //end "hasUniqueChecks" condition
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			Add<#= v.Names.Domain #>Edges(NewDomAlias);
 		}
 
 <#
@@ -107,11 +143,11 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(pVertex, true);
 #>
 		/*--------------------------------------------------------------------------------------------*/
-		<#= pVertex.IsAbstract ? "protected" : "private" #> void Create<#= pVertex.Names.Domain #>Edges(IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
+		<#= pVertex.IsAbstract ? "protected" : "private" #> void Add<#= pVertex.Names.Domain #>Edges(IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
 <#+
 	if ( pParent != null ) {
 #>
-			Create<#= pParent.Names.Domain #>Edges(new WeaverVarAlias<<#= pParent.Names.Domain #>>(pAlias.Name));
+			Add<#= pParent.Names.Domain #>Edges(new WeaverVarAlias<<#= pParent.Names.Domain #>>(pAlias.Name));
 <#+
 	} //end parent condition
 

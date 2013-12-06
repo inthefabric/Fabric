@@ -17,26 +17,33 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabApp, null);
+		protected override App ToDomain(CreateFabApp pCreateObj) {
+			return ApiToDomain.FromCreateFabApp(pCreateObj);
+		}
 
-			IWeaverVarAlias uniNameKeyVar;
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void CheckForDuplicates() {
+			IWeaverVarAlias alias;
+
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.NameKey, NewDom.NameKey)
-				.ToQueryAsVar("unq", out uniNameKeyVar);
+				.ToQueryAsVar("unq", out alias);
 			DataAcc.AddQuery(q, true);
-			DataAcc.AppendScriptToLatestCommand("("+uniNameKeyVar.Name+"?0:1);");
+			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
 			SetupLatestCommand(false, true);
 			//throw new FabDuplicateFault(typeof(App), "Name", dup.Name);
-
-			AddVertex();
-			CreateAppEdges(NewDomAlias);
-			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateAppEdges(IWeaverVarAlias<App> pAlias) {
-			CreateArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
+		protected override void AddEdges() {
+			AddAppEdges(NewDomAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddAppEdges(IWeaverVarAlias<App> pAlias) {
+			AddArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
 		}
 
 	}
@@ -50,8 +57,8 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void CreateArtifactEdges(IWeaverVarAlias<Artifact> pAlias) {
-			CreateVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+		protected void AddArtifactEdges(IWeaverVarAlias<Artifact> pAlias) {
+			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
 
 			////
 			
@@ -75,18 +82,30 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			InitCustomClass();
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabClass, DomainToApi.FromClass);
-
-			AddVertex();
-			CreateClassEdges(NewDomAlias);
-			Finish();
+		protected override void VerifyCustom() {
+			VerifyCustomClass();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateClassEdges(IWeaverVarAlias<Class> pAlias) {
-			CreateArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
+		protected override Class ToDomain(CreateFabClass pCreateObj) {
+			return ApiToDomain.FromCreateFabClass(pCreateObj);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override FabClass ToApi(Class pDomainObj) {
+			return DomainToApi.FromClass(pDomainObj);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			AddClassEdges(NewDomAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddClassEdges(IWeaverVarAlias<Class> pAlias) {
+			AddArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
 		}
 
 	}
@@ -98,17 +117,20 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabEmail, null);
+		protected override Email ToDomain(CreateFabEmail pCreateObj) {
+			return ApiToDomain.FromCreateFabEmail(pCreateObj);
+		}
 
-			AddVertex();
-			CreateEmailEdges(NewDomAlias);
-			Finish();
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			AddEmailEdges(NewDomAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateEmailEdges(IWeaverVarAlias<Email> pAlias) {
-			CreateVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+		private void AddEmailEdges(IWeaverVarAlias<Email> pAlias) {
+			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
 
 			////
 			
@@ -130,18 +152,30 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			InitCustomFactor();
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabFactor, DomainToApi.FromFactor);
-
-			AddVertex();
-			CreateFactorEdges(NewDomAlias);
-			Finish();
+		protected override void VerifyCustom() {
+			VerifyCustomFactor();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateFactorEdges(IWeaverVarAlias<Factor> pAlias) {
-			CreateVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+		protected override Factor ToDomain(CreateFabFactor pCreateObj) {
+			return ApiToDomain.FromCreateFabFactor(pCreateObj);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override FabFactor ToApi(Factor pDomainObj) {
+			return DomainToApi.FromFactor(pDomainObj);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			AddFactorEdges(NewDomAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorEdges(IWeaverVarAlias<Factor> pAlias) {
+			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
 
 			////
 			
@@ -217,18 +251,30 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			InitCustomInstance();
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabInstance, DomainToApi.FromInstance);
-
-			AddVertex();
-			CreateInstanceEdges(NewDomAlias);
-			Finish();
+		protected override void VerifyCustom() {
+			VerifyCustomInstance();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateInstanceEdges(IWeaverVarAlias<Instance> pAlias) {
-			CreateArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
+		protected override Instance ToDomain(CreateFabInstance pCreateObj) {
+			return ApiToDomain.FromCreateFabInstance(pCreateObj);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override FabInstance ToApi(Instance pDomainObj) {
+			return DomainToApi.FromInstance(pDomainObj);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			AddInstanceEdges(NewDomAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddInstanceEdges(IWeaverVarAlias<Instance> pAlias) {
+			AddArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
 		}
 
 	}
@@ -240,18 +286,30 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			InitCustomMember();
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabMember, DomainToApi.FromMember);
-
-			AddVertex();
-			CreateMemberEdges(NewDomAlias);
-			Finish();
+		protected override void VerifyCustom() {
+			VerifyCustomMember();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateMemberEdges(IWeaverVarAlias<Member> pAlias) {
-			CreateVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+		protected override Member ToDomain(CreateFabMember pCreateObj) {
+			return ApiToDomain.FromCreateFabMember(pCreateObj);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override FabMember ToApi(Member pDomainObj) {
+			return DomainToApi.FromMember(pDomainObj);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			AddMemberEdges(NewDomAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddMemberEdges(IWeaverVarAlias<Member> pAlias) {
+			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
 
 			////
 			
@@ -289,17 +347,20 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabOauthAccess, null);
+		protected override OauthAccess ToDomain(CreateFabOauthAccess pCreateObj) {
+			return ApiToDomain.FromCreateFabOauthAccess(pCreateObj);
+		}
 
-			AddVertex();
-			CreateOauthAccessEdges(NewDomAlias);
-			Finish();
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			AddOauthAccessEdges(NewDomAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateOauthAccessEdges(IWeaverVarAlias<OauthAccess> pAlias) {
-			CreateVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+		private void AddOauthAccessEdges(IWeaverVarAlias<OauthAccess> pAlias) {
+			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
 
 			////
 			
@@ -322,26 +383,38 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabUrl, DomainToApi.FromUrl);
-
-			IWeaverVarAlias uniFullPathVar;
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<Url>(x => x.FullPath, NewDom.FullPath)
-				.ToQueryAsVar("unq", out uniFullPathVar);
-			DataAcc.AddQuery(q, true);
-			DataAcc.AppendScriptToLatestCommand("("+uniFullPathVar.Name+"?0:1);");
-			SetupLatestCommand(false, true);
-			//throw new FabDuplicateFault(typeof(Url), "FullPath", dup.FullPath);
-
-			AddVertex();
-			CreateUrlEdges(NewDomAlias);
-			Finish();
+		protected override Url ToDomain(CreateFabUrl pCreateObj) {
+			return ApiToDomain.FromCreateFabUrl(pCreateObj);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateUrlEdges(IWeaverVarAlias<Url> pAlias) {
-			CreateArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
+		protected override FabUrl ToApi(Url pDomainObj) {
+			return DomainToApi.FromUrl(pDomainObj);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void CheckForDuplicates() {
+			IWeaverVarAlias alias;
+
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Url>(x => x.FullPath, NewDom.FullPath)
+				.ToQueryAsVar("unq", out alias);
+			DataAcc.AddQuery(q, true);
+			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
+			SetupLatestCommand(false, true);
+			//throw new FabDuplicateFault(typeof(Url), "FullPath", dup.FullPath);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			AddUrlEdges(NewDomAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddUrlEdges(IWeaverVarAlias<Url> pAlias) {
+			AddArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
 		}
 
 	}
@@ -353,26 +426,33 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void Create(IOperationContext pOpCtx, string pJson) {
-			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabUser, null);
+		protected override User ToDomain(CreateFabUser pCreateObj) {
+			return ApiToDomain.FromCreateFabUser(pCreateObj);
+		}
 
-			IWeaverVarAlias uniNameKeyVar;
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void CheckForDuplicates() {
+			IWeaverVarAlias alias;
+
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<User>(x => x.NameKey, NewDom.NameKey)
-				.ToQueryAsVar("unq", out uniNameKeyVar);
+				.ToQueryAsVar("unq", out alias);
 			DataAcc.AddQuery(q, true);
-			DataAcc.AppendScriptToLatestCommand("("+uniNameKeyVar.Name+"?0:1);");
+			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
 			SetupLatestCommand(false, true);
 			//throw new FabDuplicateFault(typeof(User), "Name", dup.Name);
-
-			AddVertex();
-			CreateUserEdges(NewDomAlias);
-			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CreateUserEdges(IWeaverVarAlias<User> pAlias) {
-			CreateArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
+		protected override void AddEdges() {
+			AddUserEdges(NewDomAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddUserEdges(IWeaverVarAlias<User> pAlias) {
+			AddArtifactEdges(new WeaverVarAlias<Artifact>(pAlias.Name));
 		}
 
 	}
@@ -386,7 +466,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void CreateVertexEdges(IWeaverVarAlias<Vertex> pAlias) {
+		protected void AddVertexEdges(IWeaverVarAlias<Vertex> pAlias) {
 		}
 
 	}

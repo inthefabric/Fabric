@@ -19,7 +19,6 @@ namespace Fabric.New.Operations.Create {
 		protected TApi NewApi { get; private set; }
 		protected TCre NewCre { get; private set; }
 		protected IWeaverVarAlias<TDom> NewDomAlias { get; private set; }
-		protected Func<TDom, TApi> DomToApi { get; private set; }
 
 		protected string CmdAddVertex { get; private set; }
 		protected IList<string> CmdVerifyVertex { get; private set; }
@@ -32,21 +31,14 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public abstract void Create(IOperationContext pOpCtx, string pJson);
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected void Init(IOperationContext pOpCtx, string pJson, Func<TCre, TDom> pCreToDom,
-																		Func<TDom, TApi> pDomToApi) {
+		public void Create(IOperationContext pOpCtx, string pJson) {
 			OpCtx = pOpCtx;
-			DomToApi = pDomToApi;
 
 			NewCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
 			BeforeValidation();
 			NewCre.Validate();
 
-			NewDom = pCreToDom(NewCre);
+			NewDom = ToDomain(NewCre);
 			NewDom.VertexId = OpCtx.GetSharpflakeId<Vertex>();
 			NewDom.Timestamp = OpCtx.UtcNow.Ticks;
 
@@ -55,25 +47,17 @@ namespace Fabric.New.Operations.Create {
 			CmdAll = new List<string>();
 
 			DataAcc = OpCtx.Data.Build(null, true);
+
+			////
+
 			DataAcc.AddSessionStart();
 			SetupLatestCommand();
 			AfterSessionStart();
-		}
 
+			CheckForDuplicates();
+			AddVertex();
+			AddEdges();
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected void AddVertex() {
-			IWeaverVarAlias<TDom> alias;
-			IWeaverQuery q = Weave.Inst.Graph.AddVertex(NewDom);
-			q = WeaverQuery.StoreResultAsVar("a", q, out alias);
-			NewDomAlias = alias;
-			DataAcc.AddQuery(q, true);
-			CmdAddVertex = SetupLatestCommand();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected void Finish() {
 			BeforeSessionCommit();
 			DataAcc.AddSessionCommit();
 			SetupLatestCommand();
@@ -83,22 +67,57 @@ namespace Fabric.New.Operations.Create {
 			SetupLatestCommand();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void VerifyCustom() {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual TDom ToDomain(TCre pCreateObj) {
+			return null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual TApi ToApi(TDom pDomainObj) {
+			return null;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void CheckForDuplicates() {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddVertex() {
+			IWeaverVarAlias<TDom> alias;
+
+			IWeaverQuery q = Weave.Inst.Graph.AddVertex(NewDom);
+			q = WeaverQuery.StoreResultAsVar("a", q, out alias);
+			NewDomAlias = alias;
+			
+			DataAcc.AddQuery(q, true);
+			CmdAddVertex = SetupLatestCommand();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected virtual void AddEdges() {}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TDom Execute() {
 			DataRes = DataAcc.Execute(GetType().Name);
 			AfterExecute();
-			int addVertId = DataRes.GetCommandIndexByCmdId(CmdAddVertex);
 
+			//TODO: Implement the review/handling of each response item
+
+			int addVertId = DataRes.GetCommandIndexByCmdId(CmdAddVertex);
 			NewDom = DataRes.ToElementAt<TDom>(addVertId, 0);
-			NewApi = (DomToApi == null ? null : DomToApi(NewDom));
+			NewApi = ToApi(NewDom);
 			return NewDom;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public TApi GetResult() {
-			if ( DomToApi == null ) {
+			if ( NewApi == null ) {
 				throw new NotSupportedException("Internal: no DomainToApi conversion for "+
 					typeof(TDom).Name+".");
 			}

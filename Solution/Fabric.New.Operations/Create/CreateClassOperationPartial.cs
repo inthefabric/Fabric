@@ -15,7 +15,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void InitCustomClass() {}
+		private static void VerifyCustomClass() {}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +52,7 @@ namespace Fabric.New.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AfterExecute() {
+			//TEST: CreateClassOperation.AfterExecute()
 			int dupI = DataRes.GetCommandIndexByCmdId(vCmdDuplicate);
 			int dupVal = DataRes.ToIntAt(dupI, 0);
 
