@@ -9,7 +9,7 @@ namespace Fabric.New.Test.Shared {
 	/*================================================================================================*/
 	public static class TestUtil {
 
-		public const string RawScriptCategory = "RawScript";
+		private static readonly Logger Log = Logger.Build(typeof(TestUtil));
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,9 @@ namespace Fabric.New.Test.Shared {
 		/*--------------------------------------------------------------------------------------------*/
 		public static T CheckThrows<T>(bool pThrows, TestDelegate pFunc) where T : Exception {
 			if ( pThrows ) {
-				return (T)Assert.Throws(typeof(T), pFunc);
+				T ex = (T)Assert.Throws(typeof(T), pFunc);
+				Log.Debug("CheckThrows Exception: "+ex.Message);
+				return ex;
 			}
 
 			Assert.DoesNotThrow(pFunc);

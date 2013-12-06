@@ -4,6 +4,7 @@ using System.Linq;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Moq;
+using NUnit.Framework;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;
@@ -21,11 +22,11 @@ namespace Fabric.New.Test.Shared {
 
 		private static readonly Logger Log = Logger.Build<MockDataAccess>();
 
-		protected IList<MockDataAccessCmd> CmdList { get; private set; }
-		public int ExecuteCount { get; private set; }
 		public MockDataResult MockResult { get; private set; }
 
-		private bool vAddCommandIds;
+		private IList<MockDataAccessCmd> vCmdList;
+		private int vExecuteCount;
+		private readonly bool vAddCommandIds;
 		private Action<IDataAccess, RexConnDataAccess> vPreEx;
 		private Action<IDataAccess, IResponseResult> vPostEx;
 		private Action<IDataAccess, Exception> vPostExErr;
@@ -41,7 +42,7 @@ namespace Fabric.New.Test.Shared {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void SetupAddQuery() {
-			CmdList = new List<MockDataAccessCmd>();
+			vCmdList = new List<MockDataAccessCmd>();
 
 			////
 
@@ -75,13 +76,13 @@ namespace Fabric.New.Test.Shared {
 			////
 
 			Setup(x => x.AddConditionsToLatestCommand(It.IsAny<string>()))
-				.Callback((string c) => { CmdList.Last().ConditionCmdId = c; });
+				.Callback((string c) => { vCmdList.Last().ConditionCmdId = c; });
 
 			Setup(x => x.AppendScriptToLatestCommand(It.IsAny<string>()))
-				.Callback((string s) => { CmdList.Last().Script += s; });
+				.Callback((string s) => { vCmdList.Last().Script += s; });
 
 			Setup(x => x.OmitResultsOfLatestCommand())
-				.Callback(() => { CmdList.Last().OmitResults = true; });
+				.Callback(() => { vCmdList.Last().OmitResults = true; });
 
 			////
 			
@@ -121,7 +122,7 @@ namespace Fabric.New.Test.Shared {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void SetupExecute(Action<MockDataAccess> pExecuteCallback) {
-			ExecuteCount = 0;
+			vExecuteCount = 0;
 			MockResult = new MockDataResult();
 
 			Setup(x => x.Execute(It.IsAny<string>()))
@@ -132,11 +133,7 @@ namespace Fabric.New.Test.Shared {
 						vPreEx(Object, null);
 					}
 
-				    foreach ( MockDataAccessCmd cmd in CmdList ) {
-				        Log.Debug(cmd+"");
-				    }
-
-					ExecuteCount++;
+					vExecuteCount++;
 					pExecuteCallback(this);
 
 					if ( vPostEx != null ) {
@@ -208,20 +205,38 @@ namespace Fabric.New.Test.Shared {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public MockDataAccessCmd GetCommand(int pIndex) {
-			if ( pIndex >= CmdList.Count ) {
+			if ( pIndex >= vCmdList.Count ) {
 				throw new Exception("Not enough "+typeof(MockDataAccessCmd).Name+" items.");
 			}
 
-			return CmdList[pIndex];
+			return vCmdList[pIndex];
 		}
-		
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void PrintCommands() {
+			const string line = "\n::::  ";
+
+			foreach ( MockDataAccessCmd cmd in vCmdList ) {
+				Log.Debug("Command:\n"+line+cmd.ToString().Replace("\n", line)+"\n");
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void AssertCommandList(IList<MockDataAccessCmd> pExpectCommands) {
+			Assert.AreEqual(pExpectCommands.Count, vCmdList.Count, "Incorrect CmdList.Count.");
+
+			for ( int i = 0 ; i < pExpectCommands.Count ; i++ ) {
+				vCmdList[i].AssertEqual(pExpectCommands[i], i);
+			}
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddCommand(MockDataAccessCmd pCmd) {
 			if ( vAddCommandIds ) {
-				pCmd.CommandId = CmdList.Count+"";
+				pCmd.CommandId = vCmdList.Count+"";
 			}
 
-			CmdList.Add(pCmd);
+			vCmdList.Add(pCmd);
 			Setup(x => x.GetLatestCommandId()).Returns(pCmd.CommandId);
 			//Log.Debug(pCmd+"");
 		}

@@ -5,7 +5,6 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
@@ -20,20 +19,19 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabApp, null);
-			AddVertex();
-			CreateAppEdges(NewDomAlias);
 
-			// Enforce unique NameKey
-			
+			IWeaverVarAlias uniNameKeyVar;
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.NameKey, NewDom.NameKey)
-				.ToQuery();
+				.ToQueryAsVar("unq", out uniNameKeyVar);
+			DataAcc.AddQuery(q, true);
+			DataAcc.AppendScriptToLatestCommand("("+uniNameKeyVar.Name+"?0:1);");
+			SetupLatestCommand(false, true);
+			//throw new FabDuplicateFault(typeof(App), "Name", dup.Name);
 
-			App dup = pOpCtx.Data.Get<App>(q, "UniqueAppName");
-
-			if ( dup != null ) {
-				throw new FabDuplicateFault(typeof(App), "Name", dup.Name);
-			}
+			AddVertex();
+			CreateAppEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -80,8 +78,10 @@ namespace Fabric.New.Operations.Create {
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			InitCustomClass();
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabClass, DomainToApi.FromClass);
+
 			AddVertex();
 			CreateClassEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -100,8 +100,10 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabEmail, null);
+
 			AddVertex();
 			CreateEmailEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -131,8 +133,10 @@ namespace Fabric.New.Operations.Create {
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			InitCustomFactor();
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabFactor, DomainToApi.FromFactor);
+
 			AddVertex();
 			CreateFactorEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -216,8 +220,10 @@ namespace Fabric.New.Operations.Create {
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			InitCustomInstance();
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabInstance, DomainToApi.FromInstance);
+
 			AddVertex();
 			CreateInstanceEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -237,8 +243,10 @@ namespace Fabric.New.Operations.Create {
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			InitCustomMember();
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabMember, DomainToApi.FromMember);
+
 			AddVertex();
 			CreateMemberEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -283,8 +291,10 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabOauthAccess, null);
+
 			AddVertex();
 			CreateOauthAccessEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -314,20 +324,19 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabUrl, DomainToApi.FromUrl);
-			AddVertex();
-			CreateUrlEdges(NewDomAlias);
 
-			// Enforce unique FullPath
-			
+			IWeaverVarAlias uniFullPathVar;
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<Url>(x => x.FullPath, NewDom.FullPath)
-				.ToQuery();
+				.ToQueryAsVar("unq", out uniFullPathVar);
+			DataAcc.AddQuery(q, true);
+			DataAcc.AppendScriptToLatestCommand("("+uniFullPathVar.Name+"?0:1);");
+			SetupLatestCommand(false, true);
+			//throw new FabDuplicateFault(typeof(Url), "FullPath", dup.FullPath);
 
-			Url dup = pOpCtx.Data.Get<Url>(q, "UniqueUrlFullPath");
-
-			if ( dup != null ) {
-				throw new FabDuplicateFault(typeof(Url), "FullPath", dup.FullPath);
-			}
+			AddVertex();
+			CreateUrlEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -346,20 +355,19 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Create(IOperationContext pOpCtx, string pJson) {
 			Init(pOpCtx, pJson, ApiToDomain.FromCreateFabUser, null);
-			AddVertex();
-			CreateUserEdges(NewDomAlias);
 
-			// Enforce unique NameKey
-			
+			IWeaverVarAlias uniNameKeyVar;
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<User>(x => x.NameKey, NewDom.NameKey)
-				.ToQuery();
+				.ToQueryAsVar("unq", out uniNameKeyVar);
+			DataAcc.AddQuery(q, true);
+			DataAcc.AppendScriptToLatestCommand("("+uniNameKeyVar.Name+"?0:1);");
+			SetupLatestCommand(false, true);
+			//throw new FabDuplicateFault(typeof(User), "Name", dup.Name);
 
-			User dup = pOpCtx.Data.Get<User>(q, "UniqueUserName");
-
-			if ( dup != null ) {
-				throw new FabDuplicateFault(typeof(User), "Name", dup.Name);
-			}
+			AddVertex();
+			CreateUserEdges(NewDomAlias);
+			Finish();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

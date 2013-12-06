@@ -15,7 +15,6 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
@@ -69,29 +68,28 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	} //end "CustomCreate" condition
 #>
 			Init(pOpCtx, pJson, ApiToDomain.From<#= createObjName #>, <#= domToApiFunc #>);
-			AddVertex();
-			Create<#= v.Names.Domain #>Edges(NewDomAlias);
 <#
 	foreach ( DomainProperty dp in props ) {
 		if ( dp.EnforceUnique ) {
 			string displayName = (dp.Name == "NameKey" ? "Name" : dp.Name); //ugly special case
 #>
 
-			// Enforce unique <#= dp.Name #>
-			
+			IWeaverVarAlias uni<#= dp.Name #>Var;
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<<#= v.Names.Domain #>>(x => x.<#= dp.Name #>, NewDom.<#= dp.Name #>)
-				.ToQuery();
-
-			<#= v.Names.Domain #> dup = pOpCtx.Data.Get<<#= v.Names.Domain #>>(q, "Unique<#= v.Names.Domain #><#= displayName #>");
-
-			if ( dup != null ) {
-				throw new FabDuplicateFault(typeof(<#= v.Names.Domain #>), "<#= displayName #>", dup.<#= displayName #>);
-			}
+				.ToQueryAsVar("unq", out uni<#= dp.Name #>Var);
+			DataAcc.AddQuery(q, true);
+			DataAcc.AppendScriptToLatestCommand("("+uni<#= dp.Name #>Var.Name+"?0:1);");
+			SetupLatestCommand(false, true);
+			//throw new FabDuplicateFault(typeof(<#= v.Names.Domain #>), "<#= displayName #>", dup.<#= displayName #>);
 <#
 		} //end EnforceUnique condition
 	} //end props loop
 #>
+
+			AddVertex();
+			Create<#= v.Names.Domain #>Edges(NewDomAlias);
+			Finish();
 		}
 
 <#

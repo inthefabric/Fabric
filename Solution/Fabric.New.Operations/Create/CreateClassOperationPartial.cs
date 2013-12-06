@@ -45,9 +45,9 @@ namespace Fabric.New.Operations.Create {
 			const string classVarName = "c";
 			IWeaverVarAlias<Class> alias;
 			q = WeaverQuery.StoreResultAsVar(classVarName, q, out alias);
-			DataAcc.AppendScriptToLatestCommand(classVarName+"?1:0;");
 			DataAcc.AddQuery(q, true);
-			vCmdDuplicate = SetupLatestCommand();
+			DataAcc.AppendScriptToLatestCommand(classVarName+"?1:0;");
+			vCmdDuplicate = SetupLatestCommand(false, true);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

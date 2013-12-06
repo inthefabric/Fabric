@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Data;
@@ -26,6 +25,7 @@ namespace Fabric.New.Operations.Create {
 		protected IList<string> CmdVerifyVertex { get; private set; }
 		protected IList<string> CmdAddEdge { get; private set; }
 		protected IList<string> CmdAll { get; private set; }
+		protected string LatestConditionCmdId { get; private set; }
 		protected IDataAccess DataAcc { get; private set; }
 		protected IDataResult DataRes { get; private set; }
 
@@ -33,36 +33,6 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public abstract void Create(IOperationContext pOpCtx, string pJson);
-
-		/*--------------------------------------------------------------------------------------------*/
-		public TDom Execute() {
-			BeforeSessionCommit();
-			DataAcc.AddSessionCommit();
-			SetupLatestCommand();
-
-			DataAcc.AddSessionClose(); //don't call SetupLatestCommand() to ensure session closes.
-			CmdAll.Add(DataAcc.GetLatestCommandId());
-
-			////
-
-			DataRes = DataAcc.Execute(GetType().Name);
-			AfterExecute();
-			int addVertId = DataRes.GetCommandIndexByCmdId(CmdAddVertex);
-
-			NewDom = DataRes.ToElementAt<TDom>(addVertId, 0);
-			NewApi = (DomToApi == null ? null : DomToApi(NewDom));
-			return NewDom;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public TApi GetResult() {
-			if ( DomToApi == null ) {
-				throw new NotSupportedException("Internal: no DomainToApi conversion for "+
-					typeof(TDom).Name+".");
-			}
-
-			return NewApi;
-		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +60,8 @@ namespace Fabric.New.Operations.Create {
 			AfterSessionStart();
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected void AddVertex() {
 			IWeaverVarAlias<TDom> alias;
@@ -100,6 +72,42 @@ namespace Fabric.New.Operations.Create {
 			CmdAddVertex = SetupLatestCommand();
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		protected void Finish() {
+			BeforeSessionCommit();
+			DataAcc.AddSessionCommit();
+			SetupLatestCommand();
+
+			LatestConditionCmdId = null; //ensure session closes
+			DataAcc.AddSessionClose();
+			SetupLatestCommand();
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public TDom Execute() {
+			DataRes = DataAcc.Execute(GetType().Name);
+			AfterExecute();
+			int addVertId = DataRes.GetCommandIndexByCmdId(CmdAddVertex);
+
+			NewDom = DataRes.ToElementAt<TDom>(addVertId, 0);
+			NewApi = (DomToApi == null ? null : DomToApi(NewDom));
+			return NewDom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public TApi GetResult() {
+			if ( DomToApi == null ) {
+				throw new NotSupportedException("Internal: no DomainToApi conversion for "+
+					typeof(TDom).Name+".");
+			}
+
+			return NewApi;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(
 													IWeaverVarAlias<TFrom> pFromVar, long pToVertexId)
@@ -127,9 +135,9 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void AddReverseEdge<TFrom, TEdge, TTo>(
 							IWeaverVarAlias<TFrom> pFromVar, TEdge pEdge, IWeaverVarAlias<TTo> pToVar)
-														where TFrom : IVertex, new()
-														where TTo : IVertex, new()
-														where TEdge : IWeaverEdge<TFrom, TTo>, new() {
+															where TFrom : IVertex, new()
+															where TTo : IVertex, new()
+															where TEdge : IWeaverEdge<TFrom, TTo> {
 			if ( pFromVar != null ) {
 				AddEdge(pFromVar, pEdge, pToVar);
 			}
@@ -170,24 +178,25 @@ namespace Fabric.New.Operations.Create {
 			q = WeaverQuery.StoreResultAsVar(varName, q, out alias);
 
 			DataAcc.AddQuery(q, true);
-			DataAcc.AppendScriptToLatestCommand(varName+"?1:0;");
-			CmdVerifyVertex.Add(SetupLatestCommand());
+			DataAcc.AppendScriptToLatestCommand(
+				"("+varName+"?{"+varName+"="+varName+".next();1;}:0);");
+			CmdVerifyVertex.Add(SetupLatestCommand(false, true));
 			return alias;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddEdge<TEdge>(IWeaverVarAlias pFromVar, TEdge pEdge, IWeaverVarAlias pToVar)
-																	where TEdge : IWeaverEdge, new() {
+																	where TEdge : IWeaverEdge {
 
-			IWeaverQuery q = Weave.Inst.Graph.AddEdge(pFromVar, new TEdge(), pToVar);
+			IWeaverQuery q = Weave.Inst.Graph.AddEdge(pFromVar, pEdge, pToVar);
 			DataAcc.AddQuery(q, true);
 			CmdAddEdge.Add(SetupLatestCommand(true));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected string SetupLatestCommand(bool pOmitResults=false) {
-			if ( CmdAll.Count > 0 ) {
-				DataAcc.AddConditionsToLatestCommand(CmdAll.Last());
+		protected string SetupLatestCommand(bool pOmitResults=false, bool pNewCondition=false) {
+			if ( CmdAll.Count > 0 && LatestConditionCmdId != null ) {
+				DataAcc.AddConditionsToLatestCommand(LatestConditionCmdId);
 			}
 
 			if ( pOmitResults ) {
@@ -195,6 +204,11 @@ namespace Fabric.New.Operations.Create {
 			}
 
 			string cmdId = DataAcc.GetLatestCommandId();
+
+			if ( pNewCondition ) {
+				LatestConditionCmdId = cmdId;
+			}
+
 			CmdAll.Add(cmdId);
 			return cmdId;
 		}

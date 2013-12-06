@@ -1,110 +1,80 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
 using Fabric.New.Test.Shared;
-using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateClassOperation : 
+	public class TCreateClassOperation :
 					TCreateArtifactOperation<Class, FabClass, CreateFabClass, CreateClassOperation> {
 
 		private static readonly Logger Log = Logger.Build<TCreateClassOperation>();
 
-		private const string UniqueClassNameScript = "g.V('"+DbName.Vert.Class.NameKey+"',_P);";
-
-		private const string CreateClassScript = 
-			"_V0=g.addVertex(["+
-				DbName.Vert.Class.Name+":_TP,"+
-				DbName.Vert.Class.NameKey+":_TP,"+
-				DbName.Vert.Class.Disamb+":_TP,"+
-				DbName.Vert.Class.Note+":_TP,"+
-				DbName.Vert.Vertex.VertexId+":_TP,"+
-				DbName.Vert.Vertex.Timestamp+":_TP,"+
-				DbName.Vert.Vertex.VertexType+":_TP"+
-			"]);"+
-			"_V1=g.V('"+DbName.Vert.Vertex.VertexId+"',_TP).next();"+
-			"g.addEdge(_V0,_V1,_TP);"+
-			"g.addEdge(_V1,_V0,_TP,["+
-				DbName.Edge.MemberCreatesArtifact.Timestamp+":_TP,"+
-				DbName.Edge.MemberCreatesArtifact.VertexType+":_TP"+
-			"]);"+
-			"_V0;";
-
-		private Action<IWeaverScript, string> vCheckUniqueClassName;
-		private Action<IWeaverScript, string> vCheckCreateClass;
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public override void SetUp() {
-			base.SetUp();
+		protected override void SetUpInner() {
+			base.SetUpInner();
 
 			vCreateObj.Name = "My Name";
 			vCreateObj.Disamb = "My Disamb";
 			vCreateObj.Note = "My Note";
 
-			////
+			SetupDomResultAt(2);
+		}
 
-			vCheckUniqueClassName = ((ws, n) => {
-				var list = new List<object> {
-					vCreateObj.Name.ToLower()
-				};
-
-			    CheckScriptAndParams(Log, ws, UniqueClassNameScript, "_P", list);
+		/*--------------------------------------------------------------------------------------------*/
+		protected override string SetupCommands(string pConditionCmdId) {
+			var uniqueClass = AddCommand("uniqueClass", new MockDataAccessCmd {
+				ConditionCmdId = pConditionCmdId,
+				Script = 
+					"c=g.V('"+DbName.Vert.Class.NameKey+"',_P)"+
+						".filter{"+
+							"it.property('"+DbName.Vert.Class.Disamb+"')?.toLowerCase()==_P;"+
+						"}"+
+						".property('"+DbName.Vert.Vertex.VertexId+"');"+
+						"c?1:0;",
+				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
+					vCreateObj.Name.ToLower(),
+					vCreateObj.Disamb.ToLower()
+				}),
+				Cache = true
 			});
 
-			vCheckCreateClass = ((ws, n) => {
-				var list = new List<object> {
+			pConditionCmdId = uniqueClass.CommandId;
+
+			AddCommand("addClass", new MockDataAccessCmd {
+				ConditionCmdId = pConditionCmdId,
+				Script = 
+					"a=g.addVertex(["+
+						DbName.Vert.Class.Name+":_P,"+
+						DbName.Vert.Class.NameKey+":_P,"+
+						DbName.Vert.Class.Disamb+":_P,"+
+						DbName.Vert.Class.Note+":_P,"+
+						DbName.Vert.Vertex.VertexId+":_P,"+
+						DbName.Vert.Vertex.Timestamp+":_P,"+
+						DbName.Vert.Vertex.VertexType+":_P"+
+					"]);",
+				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.Name,
 					vCreateObj.Name.ToLower(),
 					vCreateObj.Disamb,
 					vCreateObj.Note,
-					vVertId,
-					vVertTime.Ticks,
-					(byte)VertexType.Id.Class,
-					vMemId,
-					DbName.Edge.ArtifactCreatedByMemberName,
-					DbName.Edge.MemberCreatesArtifactName,
-					vVertTime.Ticks,
-					(byte)VertexType.Id.Class,
-				};
-
-				CheckScriptAndParams(Log, ws, CreateClassScript, "_TP", list);
+					vExpectDomResult.VertexId,
+					vExpectDomResult.Timestamp,
+					(byte)VertexType.Id.Class
+				}),
+				Cache = true
 			});
-		}
 
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyCreate() {
-			base.VerifyCreate();
-
-			vMockData.Verify(
-				x => x.Get<Class>(It.IsAny<IWeaverQuery>(), "UniqueClassName"),
-				Times.Once
-			);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void CreateDuplicate() {
-			vMockData
-				.Setup(x => x.Get<Class>(It.IsAny<IWeaverQuery>(), "UniqueClassName"))
-				.Callback(vCheckUniqueClassName)
-				.Returns(new Class());
-
-			TestUtil.Throws<FabDuplicateFault>(() => DoCreate());
+			return base.SetupCommands(pConditionCmdId);
 		}
 
 
@@ -120,8 +90,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void OnDataExecuteInner(MockDataAccess pDataAccess) {
-			//vCheckCreateClass
+		protected override VertexType.Id GetVertexTypeId() {
+			return VertexType.Id.Class;
 		}
 
 	}
