@@ -11,7 +11,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class DescriptorType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			IsRelatedTo = 1,
 			IsA, // 2
 			IsAnInstanceOf, // 3
@@ -208,7 +208,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class DirectorAction : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Read = 1,
 			Listen, // 2
 			View, // 3
@@ -356,7 +356,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class DirectorType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Hyperlink = 1,
 			DefinedPath, // 2
 			SuggestedPath, // 3
@@ -420,7 +420,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class EventorType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Start = 1,
 			End, // 2
 			Pause, // 3
@@ -498,7 +498,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class FactorAssertion : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Undefined = 1,
 			Fact, // 2
 			Opinion, // 3
@@ -555,7 +555,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class IdentorType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Text = 1,
 			Key, // 2
 		}
@@ -598,7 +598,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class LocatorType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			EarthCoord = 1,
 			MoonCoord, // 2
 			MarsCoord, // 3
@@ -711,7 +711,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class MemberType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			None = 1,
 			Request, // 2
 			Invite, // 3
@@ -796,7 +796,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class VectorRangeLevel : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Zero0 = 1,
 			Zero05, // 2
 			Zero1, // 3
@@ -1026,7 +1026,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class VectorRange : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			FullNum = 1,
 			PosNum, // 2
 			NegNum, // 3
@@ -1148,7 +1148,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class VectorType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			FullLong = 1,
 			PosLong, // 2
 			NegLong, // 3
@@ -1280,7 +1280,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class VectorUnitDerived : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			HertzSec = 1,
 			NewtonGram, // 2
 			NewtonMetre, // 3
@@ -1610,7 +1610,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class VectorUnitPrefix : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Base = 1,
 			Kilo, // 2
 			Mega, // 3
@@ -1792,7 +1792,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class VectorUnit : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			None = 1,
 			Unit, // 2
 			Metre, // 3
@@ -2024,7 +2024,7 @@ namespace Fabric.New.Domain.Enums {
 	/*================================================================================================*/
 	public class VertexType : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 			Vertex = 1,
 			App, // 2
 			Class, // 3

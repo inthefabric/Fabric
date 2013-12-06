@@ -22,6 +22,9 @@ namespace Fabric.New.Infrastructure.Faults {
 				(pNote == null ? "" : " "+pNote));
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public FabDuplicateFault(string pNote) : base(Code.UniqueConstraintViolation, pNote) {}
+
 	}
 
 }

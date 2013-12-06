@@ -191,13 +191,14 @@ namespace Fabric.New.Operations.Create {
 		private IWeaverVarAlias<T> VerifyVertex<T>(long pVertexId) where T : Vertex, new() {
 			IWeaverVarAlias<T> alias;
 			string varName = "v"+CmdVerifyVertex.Count;
-			IWeaverQuery q = Weave.Inst.Graph.V.ExactIndex<T>(x => x.VertexId, pVertexId).ToQuery();
-			q = WeaverQuery.StoreResultAsVar(varName, q, out alias);
+
+			IWeaverQuery q = Weave.Inst.Graph.V
+				.ExactIndex<T>(x => x.VertexId, pVertexId)
+				.ToQueryAsVar(varName, out alias);
 
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand(
 				"("+varName+"?{"+varName+"="+varName+".next();1;}:0);");
-
 			string cmdId = SetupLatestCommand(false, true);
 			CmdVerifyVertex.Add(cmdId);
 
