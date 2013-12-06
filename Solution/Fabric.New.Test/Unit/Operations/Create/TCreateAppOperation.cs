@@ -18,6 +18,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		private static readonly Logger Log = Logger.Build<TCreateAppOperation>();
 
+		private const int GetDuplicateCmdI = 1;
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -91,7 +93,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ExecuteFailDuplicate() {
-			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(1, 0)).Returns(1);
+			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(GetDuplicateCmdI, 0)).Returns(1);
 			CreateAppOperation c = BuildCreateVerify();
 			TestUtil.Throws<FabDuplicateFault>(() => c.Execute());
 		}

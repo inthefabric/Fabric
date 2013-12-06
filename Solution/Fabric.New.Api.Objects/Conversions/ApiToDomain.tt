@@ -24,6 +24,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static void FromCreateFabElement(Vertex pDomain, CreateFabElement pApi) {
 			//do nothing...
 		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static string ToLowerCase(string pValue) {
+			return (pValue == null ? null : pValue.ToLower());
+		}
 <#
 IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
 
@@ -70,9 +75,16 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 			}
 
 			if ( sub == null ) {
+				if ( dp.ToLowerCase ) {
+#>
+			pDomain.<#= dp.Name #> = ToLowerCase(pApi.<#= pm.Api.Name #>);
+<#
+				}
+				else {
 #>
 			pDomain.<#= dp.Name #> = pApi.<#= pm.Api.Name #>;
 <#
+				} // end "ToLowerCase" conditions
 			}
 			else {
 #>

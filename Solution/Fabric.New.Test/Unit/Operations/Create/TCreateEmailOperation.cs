@@ -13,12 +13,12 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateClassOperation :
-					TCreateArtifactOperation<Class, FabClass, CreateFabClass, CreateClassOperation> {
+	public class TCreateEmailOperation :
+						TCreateVertexOperation<Email, FabVertex, CreateFabEmail, CreateEmailOperation> {
 
-		private static readonly Logger Log = Logger.Build<TCreateClassOperation>();
+		private static readonly Logger Log = Logger.Build<TCreateEmailOperation>();
 
-		private const int GetDuplicateCmdI = 1;
+		private const int GetArtifactCmdI = 2;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,58 +26,71 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected override void SetUpInner() {
 			base.SetUpInner();
 
-			vCreateObj.Name = "My Name";
-			vCreateObj.Disamb = "My Disamb";
-			vCreateObj.Note = "My Note";
+			vCreateObj.Address = "MyAddress@MyDomain.com";
+			vCreateObj.Code = "abcdefghijklmnopQRSTUVWXYZ012345";
+			vCreateObj.Verified = false;
+			vCreateObj.UsedByArtifactId = 987442;
 
-			SetupAddVertexResultAt(2);
+			SetupAddVertexResultAt(1);
+			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(GetArtifactCmdI, 0)).Returns(1);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string SetupCommands(string pConditionCmdId) {
-			var uniqueClass = AddCommand("uniqueClass", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = 
-					"c=g.V('"+DbName.Vert.Class.NameKey+"',_P)"+
-						".filter{"+
-							"it.property('"+DbName.Vert.Class.Disamb+"')?.toLowerCase()==_P;"+
-						"}"+
-						".property('"+DbName.Vert.Vertex.VertexId+"');"+
-						"c?1:0;",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.Name.ToLower(),
-					vCreateObj.Disamb.ToLower()
-				}),
-				Cache = true
-			});
-
-			pConditionCmdId = uniqueClass.CommandId;
-
-			AddCommand("addClass", new MockDataAccessCmd {
+			AddCommand("addEmail", new MockDataAccessCmd {
 				ConditionCmdId = pConditionCmdId,
 				Script = 
 					"a=g.addVertex(["+
-						DbName.Vert.Class.Name+":_P,"+
-						DbName.Vert.Class.NameKey+":_P,"+
-						DbName.Vert.Class.Disamb+":_P,"+
-						DbName.Vert.Class.Note+":_P,"+
+						DbName.Vert.Email.Address+":_P,"+
+						DbName.Vert.Email.Code+":_P,"+
+						DbName.Vert.Email.Verified+":_P,"+
 						DbName.Vert.Vertex.VertexId+":_P,"+
 						DbName.Vert.Vertex.Timestamp+":_P,"+
 						DbName.Vert.Vertex.VertexType+":_P"+
 					"]);",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.Name,
-					vCreateObj.Name.ToLower(),
-					vCreateObj.Disamb,
-					vCreateObj.Note,
+					vCreateObj.Address.ToLower(),
+					vCreateObj.Code,
+					vCreateObj.Verified,
 					vExpectDomResult.VertexId,
 					vExpectDomResult.Timestamp,
-					(byte)VertexType.Id.Class
+					(byte)VertexType.Id.Email
 				}),
 				Cache = true
 			});
 
-			return base.SetupCommands(pConditionCmdId);
+			var getArtifact = AddCommand("getArtifact", new MockDataAccessCmd {
+				ConditionCmdId = pConditionCmdId,
+				Script = "v0=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);(v0?{v0=v0.next();1;}:0);",
+				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
+					vCreateObj.UsedByArtifactId
+				}),
+				Cache = true
+			});
+
+			pConditionCmdId = getArtifact.CommandId;
+
+			AddCommand("addEdgeEba", new MockDataAccessCmd {
+				ConditionCmdId = pConditionCmdId,
+				Script = "g.addEdge(a,v0,_P);",
+				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
+					DbName.Edge.EmailUsedByArtifactName
+				}),
+				Cache = true,
+				OmitResults = true
+			});
+
+			AddCommand("addEdgeAue", new MockDataAccessCmd {
+				ConditionCmdId = pConditionCmdId,
+				Script = "g.addEdge(v0,a,_P);",
+				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
+					DbName.Edge.ArtifactUsesEmailName
+				}),
+				Cache = true,
+				OmitResults = true
+			});
+
+			return pConditionCmdId;
 		}
 
 
@@ -89,22 +102,22 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool IsInternalGetResult() {
-			return false;
+			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexType.Id GetVertexTypeId() {
-			return VertexType.Id.Class;
+			return VertexType.Id.Email;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ExecuteFailDuplicate() {
-			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(GetDuplicateCmdI, 0)).Returns(1);
-			CreateClassOperation c = BuildCreateVerify();
-			TestUtil.Throws<FabDuplicateFault>(() => c.Execute());
+		public void ExecuteFailNoArtifact() {
+			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(GetArtifactCmdI, 0)).Returns(0);
+			CreateEmailOperation c = BuildCreateVerify();
+			TestUtil.Throws<FabNotFoundFault>(() => c.Execute());
 		}
 
 	}

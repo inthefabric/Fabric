@@ -48,6 +48,10 @@
     <Compile Include="Unit\Infrastructure\Query\TTxBuilder.cs" />
     <Compile Include="Unit\Infrastructure\Util\TDataUtil.cs" />
     <Compile Include="Unit\Infrastructure\Query\TSharpflake.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOauthAccessOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateUrlOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateInstanceOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateEmailOperation.cs" />
     <Compile Include="Unit\Operations\Create\TCreateClassOperation.cs" />
     <Compile Include="Unit\Operations\Create\TCreateUserOperation.cs" />
     <Compile Include="Unit\Operations\Create\TCreateVertexOperation.cs" />

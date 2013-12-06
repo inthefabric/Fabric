@@ -60,7 +60,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		continue;
 	} //end "IsAbstract" condition
 #>
-			
+
 
 	/*================================================================================================*/
 	public <#= v.CustomCreate ? "partial " : "" #>class Create<#= v.Names.Domain #>Operation : <#= baseName #><<#= v.Names.Domain #>, <#= apiType #>, Create<#= v.Names.Api #>> {

@@ -10,7 +10,7 @@ using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {
-			
+
 
 	/*================================================================================================*/
 	public class CreateAppOperation : CreateArtifactOperation<App, FabApp, CreateFabApp> {
@@ -80,7 +80,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public partial class CreateClassOperation : CreateArtifactOperation<Class, FabClass, CreateFabClass> {
@@ -115,7 +115,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public class CreateEmailOperation : CreateVertexOperation<Email, FabVertex, CreateFabEmail> {
@@ -150,7 +150,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public partial class CreateFactorOperation : CreateVertexOperation<Factor, FabFactor, CreateFabFactor> {
@@ -249,7 +249,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public partial class CreateInstanceOperation : CreateArtifactOperation<Instance, FabInstance, CreateFabInstance> {
@@ -284,7 +284,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public partial class CreateMemberOperation : CreateVertexOperation<Member, FabMember, CreateFabMember> {
@@ -345,7 +345,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public class CreateOauthAccessOperation : CreateVertexOperation<OauthAccess, FabVertex, CreateFabOauthAccess> {
@@ -381,7 +381,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public class CreateUrlOperation : CreateArtifactOperation<Url, FabUrl, CreateFabUrl> {
@@ -429,7 +429,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 	}
-			
+
 
 	/*================================================================================================*/
 	public class CreateUserOperation : CreateArtifactOperation<User, FabUser, CreateFabUser> {

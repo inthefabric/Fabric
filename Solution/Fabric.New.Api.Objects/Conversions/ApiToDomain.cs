@@ -16,6 +16,11 @@ namespace Fabric.New.Api.Objects.Conversions {
 			//do nothing...
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private static string ToLowerCase(string pValue) {
+			return (pValue == null ? null : pValue.ToLower());
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -80,7 +85,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FromCreateFabEmail(Email pDomain, CreateFabEmail pApi) {
 			FromCreateFabVertex(pDomain, pApi);
-			pDomain.Address = pApi.Address;
+			pDomain.Address = ToLowerCase(pApi.Address);
 			pDomain.Code = pApi.Code;
 			pDomain.Verified = pApi.Verified;
 		}
@@ -161,7 +166,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			FromCreateFabVertex(pDomain, pApi);
 			pDomain.MemberType = pApi.Type;
 			pDomain.OauthScopeAllow = pApi.OauthScopeAllow;
-			pDomain.OauthGrantRedirectUri = pApi.OauthGrantRedirectUri;
+			pDomain.OauthGrantRedirectUri = ToLowerCase(pApi.OauthGrantRedirectUri);
 			pDomain.OauthGrantCode = pApi.OauthGrantCode;
 			pDomain.OauthGrantExpires = pApi.OauthGrantExpires;
 		}
@@ -197,7 +202,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static void FromCreateFabUrl(Url pDomain, CreateFabUrl pApi) {
 			FromCreateFabArtifact(pDomain, pApi);
 			pDomain.Name = pApi.Name;
-			pDomain.FullPath = pApi.FullPath;
+			pDomain.FullPath = ToLowerCase(pApi.FullPath);
 		}
 
 
