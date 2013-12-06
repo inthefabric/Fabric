@@ -15,6 +15,7 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
@@ -112,8 +113,13 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 				.ToQueryAsVar("unq", out alias);
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
-			SetupLatestCommand(false, true);
-			//throw new FabDuplicateFault(typeof(<#= v.Names.Domain #>), "<#= displayName #>", dup.<#= displayName #>);
+			string cmdId = SetupLatestCommand(false, true);
+
+			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
+				if ( dr.ToIntAt(i, 0) != 0 ) {
+					throw new FabDuplicateFault(typeof(<#= v.Names.Domain #>), "<#= displayName #>", NewCre.<#= displayName #>);
+				}
+			}));
 <#
 		} //end EnforceUnique condition
 	} //end props loop

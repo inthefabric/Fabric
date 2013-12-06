@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Data;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using ServiceStack.Text;
 using Weaver.Core.Elements;
@@ -25,8 +26,10 @@ namespace Fabric.New.Operations.Create {
 		protected IList<string> CmdAddEdge { get; private set; }
 		protected IList<string> CmdAll { get; private set; }
 		protected string LatestConditionCmdId { get; private set; }
+
 		protected IDataAccess DataAcc { get; private set; }
 		protected IDataResult DataRes { get; private set; }
+		internal IList<DataResultCheck> Checks { get; private set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +50,7 @@ namespace Fabric.New.Operations.Create {
 			CmdAll = new List<string>();
 
 			DataAcc = OpCtx.Data.Build(null, true);
+			Checks = new List<DataResultCheck>();
 
 			////
 
@@ -58,7 +62,6 @@ namespace Fabric.New.Operations.Create {
 			AddVertex();
 			AddEdges();
 
-			BeforeSessionCommit();
 			DataAcc.AddSessionCommit();
 			SetupLatestCommand();
 
@@ -105,9 +108,10 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public TDom Execute() {
 			DataRes = DataAcc.Execute(GetType().Name);
-			AfterExecute();
 
-			//TODO: Implement the review/handling of each response item
+			foreach ( DataResultCheck check in Checks ) {
+				check.PerformCheck(DataRes);
+			}
 
 			int addVertId = DataRes.GetCommandIndexByCmdId(CmdAddVertex);
 			NewDom = DataRes.ToElementAt<TDom>(addVertId, 0);
@@ -181,12 +185,6 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void AfterSessionStart() {}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void BeforeSessionCommit() {}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void AfterExecute() {}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -199,7 +197,16 @@ namespace Fabric.New.Operations.Create {
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand(
 				"("+varName+"?{"+varName+"="+varName+".next();1;}:0);");
-			CmdVerifyVertex.Add(SetupLatestCommand(false, true));
+
+			string cmdId = SetupLatestCommand(false, true);
+			CmdVerifyVertex.Add(cmdId);
+
+			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
+				if ( dr.ToIntAt(i, 0) != 1 ) {
+					throw new FabNotFoundFault(typeof(T), "Id="+pVertexId);
+				}
+			}));
+
 			return alias;
 		}
 

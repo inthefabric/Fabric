@@ -22,9 +22,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 										where TOper : CreateVertexOperation<TDom, TApi, TCre>, new() {
 
 		protected Mock<IOperationAuth> vMockAuth;
-		private MockDataAccess vMockDataAcc;
+		protected MockDataAccess vMockDataAcc;
 		protected Mock<IOperationData> vMockData;
-		private Mock<IOperationContext> vMockCtx;
+		protected Mock<IOperationContext> vMockCtx;
 		protected TCre vCreateObj;
 		private IList<MockDataAccessCmd> vExpectCommands;
 		protected TDom vExpectDomResult;
@@ -74,6 +74,11 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			AddCommand("sessionClose", new MockDataAccessCmd {
 				SessionAction = MockDataAccess.SessionClose
 			});
+
+			for ( int i = 0 ; i < vExpectCommands.Count ; i++ ) {
+				string cmdId = i+"";
+				vMockDataAcc.MockResult.Setup(x => x.GetCommandIndexByCmdId(cmdId)).Returns(i);
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -83,8 +88,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected abstract string SetupCommands(string pConditionCmdId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected void SetupDomResultAt(int pIndex) {
-			vMockDataAcc.MockResult.Setup(x => x.GetCommandIndexByCmdId(pIndex+"")).Returns(pIndex);
+		protected void SetupAddVertexResultAt(int pIndex) {
 			vMockDataAcc.MockResult.Setup(x => x.ToElementAt<TDom>(pIndex,0)).Returns(vExpectDomResult);
 		}
 
@@ -102,6 +106,11 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		protected int GetExpectedCommandCount() {
+			return vExpectCommands.Count;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected abstract Logger GetLogger();
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -110,14 +119,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private string ToJson() {
-			return vCreateObj.ToJson();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private TOper BuildCreateVerify() {
+		protected TOper BuildCreateVerify() {
 			var c = new TOper();
-			c.Create(vMockCtx.Object, ToJson());
+			c.Create(vMockCtx.Object, vCreateObj.ToJson());
 			vMockDataAcc.PrintCommands();
 			vMockDataAcc.AssertCommandList(vExpectCommands);
 			return c;

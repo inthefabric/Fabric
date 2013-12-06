@@ -47,21 +47,15 @@ namespace Fabric.New.Operations.Create {
 			q = WeaverQuery.StoreResultAsVar(classVarName, q, out alias);
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand(classVarName+"?1:0;");
+			
 			vCmdDuplicate = SetupLatestCommand(false, true);
-		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void AfterExecute() {
-			//TEST: CreateClassOperation.AfterExecute()
-			int dupI = DataRes.GetCommandIndexByCmdId(vCmdDuplicate);
-			int dupVal = DataRes.ToIntAt(dupI, 0);
-
-			if ( dupVal == 0 ) {
-				return;
-			}
-
-			string dupName = NewDom.Name+(NewDom.Disamb == null ? "" : " ("+NewDom.Disamb+")");
-			throw new FabDuplicateFault(typeof(Class), "Name", dupName, "Name+Disamb conflict.");
+			Checks.Add(new DataResultCheck(vCmdDuplicate, (dr, i) => {
+				if ( DataRes.ToIntAt(i, 0) != 0 ) {
+					string name = NewDom.Name+(NewDom.Disamb == null ? "" : " ("+NewDom.Disamb+")");
+					throw new FabDuplicateFault(typeof(Class), "Name", name, "Name+Disamb conflict.");
+				}
+			}));
 		}
 
 	}

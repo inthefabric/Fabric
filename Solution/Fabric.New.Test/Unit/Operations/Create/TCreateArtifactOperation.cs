@@ -2,8 +2,10 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Names;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
 using Fabric.New.Test.Shared;
+using NUnit.Framework;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
 
@@ -16,6 +18,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 										where TOper : CreateArtifactOperation<TDom, TApi, TCre>, new() {
 
 		private long vMemId;
+		private int vGetMemCmdIndex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +34,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string SetupCommands(string pConditionCmdId) {
+			vGetMemCmdIndex = GetExpectedCommandCount();
+			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(vGetMemCmdIndex, 0)).Returns(1);
+
 			var getMember = AddCommand("getMember", new MockDataAccessCmd {
 				ConditionCmdId = pConditionCmdId,
 				Script = "v0=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);(v0?{v0=v0.next();1;}:0);",
@@ -69,6 +75,16 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			});
 
 			return pConditionCmdId;
+		}
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ExecuteFailGetMember() {
+			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(vGetMemCmdIndex, 0)).Returns(0);
+			TOper c = BuildCreateVerify();
+			TestUtil.Throws<FabNotFoundFault>(() => c.Execute());
 		}
 
 	}

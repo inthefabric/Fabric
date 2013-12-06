@@ -5,6 +5,7 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
@@ -32,8 +33,13 @@ namespace Fabric.New.Operations.Create {
 				.ToQueryAsVar("unq", out alias);
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
-			SetupLatestCommand(false, true);
-			//throw new FabDuplicateFault(typeof(App), "Name", dup.Name);
+			string cmdId = SetupLatestCommand(false, true);
+
+			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
+				if ( dr.ToIntAt(i, 0) != 0 ) {
+					throw new FabDuplicateFault(typeof(App), "Name", NewCre.Name);
+				}
+			}));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -403,8 +409,13 @@ namespace Fabric.New.Operations.Create {
 				.ToQueryAsVar("unq", out alias);
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
-			SetupLatestCommand(false, true);
-			//throw new FabDuplicateFault(typeof(Url), "FullPath", dup.FullPath);
+			string cmdId = SetupLatestCommand(false, true);
+
+			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
+				if ( dr.ToIntAt(i, 0) != 0 ) {
+					throw new FabDuplicateFault(typeof(Url), "FullPath", NewCre.FullPath);
+				}
+			}));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -441,8 +452,13 @@ namespace Fabric.New.Operations.Create {
 				.ToQueryAsVar("unq", out alias);
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
-			SetupLatestCommand(false, true);
-			//throw new FabDuplicateFault(typeof(User), "Name", dup.Name);
+			string cmdId = SetupLatestCommand(false, true);
+
+			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
+				if ( dr.ToIntAt(i, 0) != 0 ) {
+					throw new FabDuplicateFault(typeof(User), "Name", NewCre.Name);
+				}
+			}));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -4,6 +4,7 @@ using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Util;
 using Fabric.New.Operations.Create;
 using Fabric.New.Test.Shared;
@@ -27,7 +28,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vCreateObj.Name = "MyUser";
 			vCreateObj.Password = "MyPassword";
 
-			SetupDomResultAt(2);
+			SetupAddVertexResultAt(2);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -83,6 +84,16 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexType.Id GetVertexTypeId() {
 			return VertexType.Id.User;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ExecuteFailDuplicate() {
+			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(1, 0)).Returns(1);
+			CreateUserOperation c = BuildCreateVerify();
+			TestUtil.Throws<FabDuplicateFault>(() => c.Execute());
 		}
 
 	}
