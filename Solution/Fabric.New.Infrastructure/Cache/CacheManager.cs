@@ -12,7 +12,7 @@ namespace Fabric.New.Infrastructure.Cache {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CacheManager(IMetricsManager pMetrics, bool pForTesting=false) {
+		public CacheManager(IMetricsManager pMetrics) {
 			Memory = new MemCache(pMetrics);
 			RexConn = new RexConnCacheProvider();
 

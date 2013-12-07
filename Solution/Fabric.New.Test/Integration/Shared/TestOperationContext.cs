@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Analytics;
-using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Caching;
-using Fabric.Infrastructure.Data;
-using RexConnectClient.Core.Result;
+using Fabric.New.Infrastructure.Broadcast;
+using Fabric.New.Infrastructure.Cache;
+using Fabric.New.Infrastructure.Data;
+using Fabric.New.Infrastructure.Query;
+using Fabric.New.Operations;
+using Weaver.Core.Query;
 
-namespace Fabric.Test.Integration.Common {
+namespace Fabric.New.Test.Integration.Shared {
 	
 	/*================================================================================================*/
-	public class TestApiContext : ApiContext {
+	public class TestOperationContext : OperationContext {
 
 		private static readonly MetricsManager TestMetrics =
 			new MetricsManager("graphite.inthefabric.net", 2003, "api.test", 1000);
+		private static readonly CacheManager CacheMgr = new CacheManager(TestMetrics);
 		private static readonly Func<Guid, IAnalyticsManager> TestAnalyt = (g=>new AnalyticsManager(g));
+		private static readonly DataAccessFactory DataAccFact = new DataAccessFactory(
+			new[] { "rexster" }, 8185, CacheMgr);
 
 		public DateTime? TestUtcNow { get; set; }
 		public IList<long> SharpflakeIds { get; private set; }
@@ -22,8 +25,7 @@ namespace Fabric.Test.Integration.Common {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TestApiContext() : base("rexster", 8185, new CacheManager(TestMetrics, true),
-																			TestMetrics, TestAnalyt) {
+		public TestOperationContext() : base(DataAccFact, CacheMgr, TestMetrics, TestAnalyt) {
 			SharpflakeIds = new List<long>();
 		}
 
@@ -44,14 +46,12 @@ namespace Fabric.Test.Integration.Common {
 				return id;
 			}
 		}
-		
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void OnDataPostExecute(IDataAccess pAccess, IResponseResult pResult) {
-			base.OnDataPostExecute(pAccess, pResult);
-			Log.Info("Query: "+pResult.ExecutionMilliseconds+"ms ("+pResult.Response.Timer+"ms)");
-			Log.Info("");
+		public IDataResult ExecuteForTest(IWeaverQuery pQuery, string pName=null) {
+			return Data.Execute(pQuery, "TestQuery"+(pName == null ? "" : "-"+pName));
 		}
 
 	}

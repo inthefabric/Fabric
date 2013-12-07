@@ -37,11 +37,14 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Integration\Operations\Traversal\XTraversalOperation.cs" />
+    <Compile Include="Integration\Shared\IntegrationTest.cs" />
+    <Compile Include="Integration\Shared\TestOperationContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shared\MockDataAccess.cs" />
-    <Compile Include="Shared\MockDataAccessCmd.cs" />
-    <Compile Include="Shared\MockDataResult.cs" />
-    <Compile Include="Shared\TestUtil.cs" />
+    <Compile Include="Unit\Shared\MockDataAccess.cs" />
+    <Compile Include="Unit\Shared\MockDataAccessCmd.cs" />
+    <Compile Include="Unit\Shared\MockDataResult.cs" />
+    <Compile Include="Unit\Shared\TestUtil.cs" />
     <Compile Include="Unit\Infrastructure\Data\TDataAccessException.cs" />
     <Compile Include="Unit\Infrastructure\Data\TDataContext.cs" />
     <Compile Include="Unit\Infrastructure\Query\TWeave.cs" />
@@ -63,13 +66,15 @@
     <Compile Include="Unit\Operations\TOperationContext.cs" />
     <Compile Include="Unit\Operations\TOperationAuth.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integration\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Fabric.New.Api.Objects\Fabric.New.Api.Objects.csproj">
       <Project>{660DDA92-D894-468B-A168-5AB4592AE70F}</Project>
       <Name>Fabric.New.Api.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.New.Database\Fabric.New.Database.csproj">
+      <Project>{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}</Project>
+      <Name>Fabric.New.Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.New.Domain\Fabric.New.Domain.csproj">
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>

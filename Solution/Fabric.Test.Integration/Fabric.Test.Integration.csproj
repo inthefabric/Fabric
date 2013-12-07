@@ -47,7 +47,6 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Common\VertexConnectionsEdge.cs" />
-    <Compile Include="Common\TestApiContext.cs" />
     <Compile Include="Common\VertexConnections.cs" />
     <Compile Include="FabApiModify\XBatchCreateFactor.cs" />
     <Compile Include="FabApiModify\XBatchCreateClass.cs" />
@@ -113,7 +112,6 @@
     <Compile Include="FabApiWeb\XBaseWebFunc.cs" />
     <Compile Include="FabInfra\XParallel.cs" />
     <Compile Include="FabInfra\XRandom.cs" />
-    <Compile Include="IntegTestBase.cs" />
     <Compile Include="FabApiOauth\Tasks\XAddAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FabApiModify\XBaseModifyFunc.cs" />
@@ -127,7 +125,6 @@
     <Compile Include="FabApiModify\XAttachLocator.cs" />
     <Compile Include="FabApiModify\Tasks\XUpdateFactorVector.cs" />
     <Compile Include="FabApiModify\XAttachVector.cs" />
-    <Compile Include="Common\TestApiContextDataExt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

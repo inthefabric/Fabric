@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq.Expressions;
 using System.Threading;
-using Fabric.Db.Data.Setups;
-using Fabric.Domain;
-using Fabric.Domain.Meta;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Data;
-using Fabric.Infrastructure.Weaver;
-using Fabric.Test.Integration.Common;
+using Fabric.New.Database.Init.Setups;
+using Fabric.New.Domain;
+using Fabric.New.Domain.Names;
+using Fabric.New.Infrastructure.Broadcast;
+using Fabric.New.Infrastructure.Data;
 using NUnit.Framework;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
-using Weaver.Core.Util;
 
-namespace Fabric.Test.Integration {
+namespace Fabric.New.Test.Integration.Shared {
 
 	/*================================================================================================*/
-	public class IntegTestBase {
+	public abstract class IntegrationTest {
 
-		protected TestApiContext ApiCtx { get; private set; }
+		private static readonly Logger Log = Logger.Build<IntegrationTest>();
+
+		protected TestOperationContext OpCtx { get; private set; }
 		protected bool IsReadOnlyTest { get; set; }
 		protected int NewVertexCount { get; set; }
 		protected int NewEdgeCount { get; set; }
@@ -29,17 +27,17 @@ namespace Fabric.Test.Integration {
 		private Stopwatch vWatch2;
 		private Tuple<int,int> vCounts;
 
-		protected const SetupUsers.AppId AppFab = SetupUsers.AppId.FabSys;
-		protected const SetupUsers.AppId AppGal = SetupUsers.AppId.KinPhoGal;
-		protected const SetupUsers.AppId AppBook = SetupUsers.AppId.Bookmarker;
+		protected const SetupAppId AppFab = SetupAppId.FabSys;
+		protected const SetupAppId AppGal = SetupAppId.KinPhoGal;
+		protected const SetupAppId AppBook = SetupAppId.Bookmarker;
 
-		protected const SetupUsers.UserId UserFab = SetupUsers.UserId.FabData;
-		protected const SetupUsers.UserId UserGal = SetupUsers.UserId.GalData;
-		protected const SetupUsers.UserId UserBook = SetupUsers.UserId.BookData;
-		protected const SetupUsers.UserId UserZach = SetupUsers.UserId.Zach;
-		protected const SetupUsers.UserId UserMel = SetupUsers.UserId.Mel;
-		protected const SetupUsers.UserId UserEllie = SetupUsers.UserId.Ellie;
-		protected const SetupUsers.UserId UserPenny = SetupUsers.UserId.Penny;
+		protected const SetupUserId UserFab = SetupUserId.FabData;
+		protected const SetupUserId UserGal = SetupUserId.GalData;
+		protected const SetupUserId UserBook = SetupUserId.BookData;
+		protected const SetupUserId UserZach = SetupUserId.Zach;
+		protected const SetupUserId UserMel = SetupUserId.Mel;
+		protected const SetupUserId UserEllie = SetupUserId.Ellie;
+		protected const SetupUserId UserPenny = SetupUserId.Penny;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,7 +53,7 @@ namespace Fabric.Test.Integration {
 			vWatch = new Stopwatch();
 			vWatch.Start();
 
-			ApiCtx = new TestApiContext();
+			OpCtx = new TestOperationContext();
 			NewVertexCount = 0;
 			NewEdgeCount = 0;
 
@@ -66,7 +64,7 @@ namespace Fabric.Test.Integration {
 			}
 
 			//vCounts = CountVerticesAndEdges();
-			vCounts = new Tuple<int, int>(259, 590); //shortcut to help tests run faster
+			vCounts = new Tuple<int, int>(215, 934); //shortcut to help tests run faster
 
 			Log.Info("SetUp complete at T = "+GetTime());
 			Log.Info("Counts { V = "+vCounts.Item1+", E = "+vCounts.Item2+" }");
@@ -111,11 +109,11 @@ namespace Fabric.Test.Integration {
 			if ( !IsReadOnlyTest ) {
 				var q = new WeaverQuery();
 				q.FinalizeQuery("g.V.remove();1");
-				IDataResult remAllData = ApiCtx.ExecuteForTest(q);
+				IDataResult remAllData = OpCtx.ExecuteForTest(q);
 
 				q = new WeaverQuery();
-				q.FinalizeQuery("g.loadGraphSON('data/FabricTest.json');1");
-				IDataResult reloadData = ApiCtx.ExecuteForTest(q);
+				q.FinalizeQuery("g.loadGraphSON('db/FabricBackups/FabricTest.json');1");
+				IDataResult reloadData = OpCtx.ExecuteForTest(q);
 
 				Assert.AreEqual("1", remAllData.ToStringAt(0, 0),
 					"There was an issue with the RemoveAll query!");
@@ -138,7 +136,7 @@ namespace Fabric.Test.Integration {
 			////
 
 			TestPostTearDown();
-			ApiCtx = null;
+			OpCtx = null;
 
 			Log.Info("TearDown complete at T = "+GetTime());
 		}
@@ -149,23 +147,23 @@ namespace Fabric.Test.Integration {
 		protected virtual void TestPostTearDown() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected T GetVertex<T>(long pId) where T : class, IWeaverElement, IVertexWithId, new() {
-			return ApiCtx.ExecuteForTest(GetVertexQuery<T>(pId)).ToElement<T>();
+		protected T GetVertex<T>(long pId) where T : class, IWeaverElement, IVertex, new() {
+			return OpCtx.ExecuteForTest(GetVertexQuery<T>(pId)).ToElement<T>();
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		protected T GetVertexByProp<T>(Expression<Func<T, object>> pProp, string pValWithQuotes)
-												where T : class, IVertexWithId, IWeaverElement, new() {
+												where T : class, IVertex, IWeaverElement, new() {
 			int ft = (byte)VertexFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = new WeaverQuery();
-			q.FinalizeQuery("g.V.has('"+PropDbName.Vertex_FabType+"',Tokens.T.eq,(byte)"+ft+")"+
+			q.FinalizeQuery("g.V.has('"+DbName.Vert.Vertex.VertexType+"',Tokens.T.eq,(byte)"+ft+")"+
 				".has('"+WeaverUtil.GetPropertyDbName(pProp)+"',Tokens.T.eq,"+pValWithQuotes+")");
 			return ApiCtx.ExecuteForTest(q).ToElement<T>();
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected VertexConnections GetVertexConnections<T>(T pVertex) where T : class, IVertexWithId, new() {
+		/*--------------------------------------------------------------------------------------------* /
+		protected VertexConnections GetVertexConnections<T>(T pVertex) where T : class, IVertex, new() {
 			string vertexQ = "g.v("+pVertex.Id+")";
 
 			var q = new WeaverQuery();
@@ -182,25 +180,21 @@ namespace Fabric.Test.Integration {
 		private Tuple<int, int> CountVerticesAndEdges() {
 			var q = new WeaverQuery();
 			q.FinalizeQuery("[g.V.count(),g.E.count()]");
-			IDataResult data = ApiCtx.ExecuteForTest(q, "Base-Count");
+			IDataResult data = OpCtx.ExecuteForTest(q, "Base-Count");
 			return new Tuple<int, int>(data.ToIntAt(0, 0), data.ToIntAt(0, 1));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private IWeaverQuery GetVertexQuery<T>(long pId, string pAppendScript="")
-																where T : class, IVertexWithId, new() {
-			SchemaHelperVertex hn = SchemaHelper.GetVertex(typeof(T).Name);
-			string pkType = hn.GetPrimaryKeyProp().PropSchema.Name;
-			pkType = pkType.Substring(0, pkType.Length-2);
-
+		private static IWeaverQuery GetVertexQuery<T>(long pId, string pAppendScript="")
+																	where T : class, IVertex, new() {
 			var q = new WeaverQuery();
 			string idParam = q.AddParam(new WeaverQueryVal(pId));
-			q.FinalizeQuery("g.V('"+PropDbName.StrTypeIdMap[pkType]+"',"+idParam+")[0]"+pAppendScript);
+			q.FinalizeQuery("g.V('"+DbName.Vert.Vertex.VertexId+"',"+idParam+")[0]"+pAppendScript);
 			return q;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected IWeaverQuery GetVertexByPropQuery<T>(string pAppendScript="") where T : IVertexWithId {
+		/*--------------------------------------------------------------------------------------------* /
+		protected IWeaverQuery GetVertexByPropQuery<T>(string pAppendScript="") where T : IVertex {
 			int ft = (byte)VertexFabTypeUtil.TypeMap[typeof(T)];
 
 			var q = new WeaverQuery();
@@ -208,7 +202,6 @@ namespace Fabric.Test.Integration {
 				pAppendScript);
 			return q;
 		}
-
 
 		/*--------------------------------------------------------------------------------------------*/
 		private string GetTime() {
