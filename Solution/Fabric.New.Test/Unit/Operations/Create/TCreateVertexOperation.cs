@@ -4,6 +4,7 @@ using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Operations;
 using Fabric.New.Operations.Create;
@@ -11,6 +12,7 @@ using Fabric.New.Test.Shared;
 using Moq;
 using NUnit.Framework;
 using ServiceStack.Text;
+using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
 
@@ -85,7 +87,51 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected virtual void SetUpInner() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract string SetupCommands(string pConditionCmdId);
+		protected abstract string SetupCommands(string pCondCmdId);
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected string SetupEdgePair(string pName, string pCondCmdId, int pIndex, long pToVertexId,
+				string pEdgeName0, string pEdgeName1, string[] pParamNames, object[] pParamVals) {
+			var v = "v"+pIndex;
+
+			var getVert = AddCommand(pName+"Vert", new MockDataAccessCmd {
+				ConditionCmdId = pCondCmdId,
+				Script = v+"=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);"+
+					"("+v+"?{"+v+"="+v+".next();1;}:0);",
+				Params = MockDataAccessCmd.BuildParamMap(new List<object> { pToVertexId }),
+				Cache = true
+			});
+
+			pCondCmdId = getVert.CommandId;
+
+			AddCommand(pName+"Edge0", new MockDataAccessCmd {
+				ConditionCmdId = pCondCmdId,
+				Script = "g.addEdge(a,"+v+",_P);",
+				Params = MockDataAccessCmd.BuildParamMap(new List<object> { pEdgeName0 }),
+				Cache = true,
+				OmitResults = true
+			});
+
+			var cmd = new MockDataAccessCmd {
+				ConditionCmdId = pCondCmdId,
+				Script = "g.addEdge("+v+",a,_P,[",
+				Cache = true,
+				OmitResults = true
+			};
+
+			var pars = new List<object> { pEdgeName1 };
+
+			for ( int i = 0 ; i < pParamNames.Length ; ++i ) {
+				cmd.Script += (i == 0 ? "" : ",")+pParamNames[i]+":_P";
+				pars.Add(pParamVals[i]);
+			}
+
+			cmd.Script += "]);";
+			cmd.Params = MockDataAccessCmd.BuildParamMap(pars);
+			AddCommand(pName+"Edge1", cmd);
+
+			return pCondCmdId;
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void SetupAddVertexResultAt(int pIndex) {

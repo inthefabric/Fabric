@@ -65,18 +65,19 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void AddArtifactEdges(IWeaverVarAlias<Artifact> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+			AddArtifactCreatedByMember(pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<Member> acbmAlias =
-				AddEdge<Artifact, ArtifactCreatedByMember, Member>(
-					pAlias, NewCre.CreatedByMemberId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddArtifactCreatedByMember(IWeaverVarAlias<Artifact> pAlias) {
+			var a =	AddEdge<Artifact, ArtifactCreatedByMember, Member>(
+				pAlias, NewCre.CreatedByMemberId);
 
 			var mcaEdge = new MemberCreatesArtifact();
 			mcaEdge.Timestamp = NewDom.Timestamp;
 			mcaEdge.VertexType = NewDom.VertexType;
 
-			AddReverseEdge(acbmAlias, mcaEdge, pAlias);
+			AddReverseEdge(a, mcaEdge, pAlias);
 		}
 
 	}
@@ -137,16 +138,17 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddEmailEdges(IWeaverVarAlias<Email> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+			AddEmailUsedByArtifact(pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<Artifact> ebaAlias =
-				AddEdge<Email, EmailUsedByArtifact, Artifact>(
-					pAlias, NewCre.UsedByArtifactId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddEmailUsedByArtifact(IWeaverVarAlias<Email> pAlias) {
+			var a =	AddEdge<Email, EmailUsedByArtifact, Artifact>(
+				pAlias, NewCre.UsedByArtifactId);
 
 			var aueEdge = new ArtifactUsesEmail();
 
-			AddReverseEdge(ebaAlias, aueEdge, pAlias);
+			AddReverseEdge(a, aueEdge, pAlias);
 		}
 
 	}
@@ -182,12 +184,19 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddFactorEdges(IWeaverVarAlias<Factor> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+			AddFactorCreatedByMember(pAlias);
+			AddFactorDescriptorRefinesPrimaryWithArtifact(pAlias);
+			AddFactorDescriptorRefinesRelatedWithArtifact(pAlias);
+			AddFactorDescriptorRefinesTypeWithArtifact(pAlias);
+			AddFactorUsesPrimaryArtifact(pAlias);
+			AddFactorUsesRelatedArtifact(pAlias);
+			AddFactorVectorUsesAxisArtifact(pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<Member> fcbmAlias =
-				AddEdge<Factor, FactorCreatedByMember, Member>(
-					pAlias, NewCre.CreatedByMemberId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorCreatedByMember(IWeaverVarAlias<Factor> pAlias) {
+			var a =	AddEdge<Factor, FactorCreatedByMember, Member>(
+				pAlias, NewCre.CreatedByMemberId);
 
 			var mcfEdge = new MemberCreatesFactor();
 			mcfEdge.Timestamp = NewDom.Timestamp;
@@ -195,57 +204,73 @@ namespace Fabric.New.Operations.Create {
 			mcfEdge.PrimaryArtifactId = NewCre.UsesPrimaryArtifactId;
 			mcfEdge.RelatedArtifactId = NewCre.UsesRelatedArtifactId;
 
-			AddReverseEdge(fcbmAlias, mcfEdge, pAlias);
+			AddReverseEdge(a, mcfEdge, pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<Artifact> frpaAlias =
-				AddEdge<Factor, FactorDescriptorRefinesPrimaryWithArtifact, Artifact>(
-					pAlias, NewCre.Descriptor.RefinesPrimaryWithArtifactId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorDescriptorRefinesPrimaryWithArtifact(IWeaverVarAlias<Factor> pAlias) {
+			if ( NewCre.Descriptor == null || NewCre.Descriptor.RefinesPrimaryWithArtifactId == null ) {
+				return;
+			}
 
-			////
-			
-			IWeaverVarAlias<Artifact> frraAlias =
-				AddEdge<Factor, FactorDescriptorRefinesRelatedWithArtifact, Artifact>(
-					pAlias, NewCre.Descriptor.RefinesRelatedWithArtifactId);
+			var a =	AddEdge<Factor, FactorDescriptorRefinesPrimaryWithArtifact, Artifact>(
+				pAlias, NewCre.Descriptor.RefinesPrimaryWithArtifactId);
+		}
 
-			////
-			
-			IWeaverVarAlias<Artifact> frtaAlias =
-				AddEdge<Factor, FactorDescriptorRefinesTypeWithArtifact, Artifact>(
-					pAlias, NewCre.Descriptor.RefinesTypeWithArtifactId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorDescriptorRefinesRelatedWithArtifact(IWeaverVarAlias<Factor> pAlias) {
+			if ( NewCre.Descriptor == null || NewCre.Descriptor.RefinesRelatedWithArtifactId == null ) {
+				return;
+			}
 
-			////
-			
-			IWeaverVarAlias<Artifact> fpaAlias =
-				AddEdge<Factor, FactorUsesPrimaryArtifact, Artifact>(
-					pAlias, NewCre.UsesPrimaryArtifactId);
+			var a =	AddEdge<Factor, FactorDescriptorRefinesRelatedWithArtifact, Artifact>(
+				pAlias, NewCre.Descriptor.RefinesRelatedWithArtifactId);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorDescriptorRefinesTypeWithArtifact(IWeaverVarAlias<Factor> pAlias) {
+			if ( NewCre.Descriptor == null || NewCre.Descriptor.RefinesTypeWithArtifactId == null ) {
+				return;
+			}
+
+			var a =	AddEdge<Factor, FactorDescriptorRefinesTypeWithArtifact, Artifact>(
+				pAlias, NewCre.Descriptor.RefinesTypeWithArtifactId);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorUsesPrimaryArtifact(IWeaverVarAlias<Factor> pAlias) {
+			var a =	AddEdge<Factor, FactorUsesPrimaryArtifact, Artifact>(
+				pAlias, NewCre.UsesPrimaryArtifactId);
 
 			var apbfEdge = new ArtifactUsedAsPrimaryByFactor();
 			apbfEdge.Timestamp = NewDom.Timestamp;
 			apbfEdge.DescriptorType = NewDom.DescriptorType;
 			apbfEdge.RelatedArtifactId = NewCre.UsesRelatedArtifactId;
 
-			AddReverseEdge(fpaAlias, apbfEdge, pAlias);
+			AddReverseEdge(a, apbfEdge, pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<Artifact> fraAlias =
-				AddEdge<Factor, FactorUsesRelatedArtifact, Artifact>(
-					pAlias, NewCre.UsesRelatedArtifactId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorUsesRelatedArtifact(IWeaverVarAlias<Factor> pAlias) {
+			var a =	AddEdge<Factor, FactorUsesRelatedArtifact, Artifact>(
+				pAlias, NewCre.UsesRelatedArtifactId);
 
 			var arbfEdge = new ArtifactUsedAsRelatedByFactor();
 			arbfEdge.Timestamp = NewDom.Timestamp;
 			arbfEdge.DescriptorType = NewDom.DescriptorType;
 			arbfEdge.PrimaryArtifactId = NewCre.UsesPrimaryArtifactId;
 
-			AddReverseEdge(fraAlias, arbfEdge, pAlias);
+			AddReverseEdge(a, arbfEdge, pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<Artifact> faaAlias =
-				AddEdge<Factor, FactorVectorUsesAxisArtifact, Artifact>(
-					pAlias, NewCre.Vector.UsesAxisArtifactId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddFactorVectorUsesAxisArtifact(IWeaverVarAlias<Factor> pAlias) {
+			if ( NewCre.Vector == null || NewCre.Vector.UsesAxisArtifactId == null ) {
+				return;
+			}
+
+			var a =	AddEdge<Factor, FactorVectorUsesAxisArtifact, Artifact>(
+				pAlias, NewCre.Vector.UsesAxisArtifactId);
 		}
 
 	}
@@ -316,32 +341,34 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddMemberEdges(IWeaverVarAlias<Member> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+			AddMemberDefinedByApp(pAlias);
+			AddMemberDefinedByUser(pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<App> mdbpAlias =
-				AddEdge<Member, MemberDefinedByApp, App>(
-					pAlias, NewCre.DefinedByAppId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddMemberDefinedByApp(IWeaverVarAlias<Member> pAlias) {
+			var a =	AddEdge<Member, MemberDefinedByApp, App>(
+				pAlias, NewCre.DefinedByAppId);
 
 			var pdmEdge = new AppDefinesMember();
 			pdmEdge.Timestamp = NewDom.Timestamp;
 			pdmEdge.MemberType = NewDom.MemberType;
 			pdmEdge.UserId = NewCre.DefinedByUserId;
 
-			AddReverseEdge(mdbpAlias, pdmEdge, pAlias);
+			AddReverseEdge(a, pdmEdge, pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<User> mdbuAlias =
-				AddEdge<Member, MemberDefinedByUser, User>(
-					pAlias, NewCre.DefinedByUserId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddMemberDefinedByUser(IWeaverVarAlias<Member> pAlias) {
+			var a =	AddEdge<Member, MemberDefinedByUser, User>(
+				pAlias, NewCre.DefinedByUserId);
 
 			var udmEdge = new UserDefinesMember();
 			udmEdge.Timestamp = NewDom.Timestamp;
 			udmEdge.MemberType = NewDom.MemberType;
 			udmEdge.AppId = NewCre.DefinedByAppId;
 
-			AddReverseEdge(mdbuAlias, udmEdge, pAlias);
+			AddReverseEdge(a, udmEdge, pAlias);
 		}
 
 	}
@@ -367,17 +394,18 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddOauthAccessEdges(IWeaverVarAlias<OauthAccess> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
+			AddOauthAccessAuthenticatesMember(pAlias);
+		}
 
-			////
-			
-			IWeaverVarAlias<Member> oaamAlias =
-				AddEdge<OauthAccess, OauthAccessAuthenticatesMember, Member>(
-					pAlias, NewCre.AuthenticatesMemberId);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AddOauthAccessAuthenticatesMember(IWeaverVarAlias<OauthAccess> pAlias) {
+			var a =	AddEdge<OauthAccess, OauthAccessAuthenticatesMember, Member>(
+				pAlias, NewCre.AuthenticatesMemberId);
 
 			var maboaEdge = new MemberAuthenticatedByOauthAccess();
 			maboaEdge.Timestamp = NewDom.Timestamp;
 
-			AddReverseEdge(oaamAlias, maboaEdge, pAlias);
+			AddReverseEdge(a, maboaEdge, pAlias);
 		}
 
 	}

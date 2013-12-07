@@ -158,26 +158,46 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 	} //end parent condition
 
 	foreach ( IEdgeSchema e in edges ) {
+#>
+			Add<#= e.GetClassNameDom() #>(pAlias);
+<#+
+	} //end edges loop
+#>
+		}
+<#+
+	foreach ( IEdgeSchema e in edges ) {
 		IVertexSchema fv = SchemaUtil.GetVertex(e.FromVertexType);
 		IVertexSchema tv = SchemaUtil.GetVertex(e.ToVertexType);
-		string idProp = (e.SubObjectOf == null ? "" : e.SubObjectOf.Substring(3)+".")+
-			e.GetPropNameApi();
+		string sub = (e.SubObjectOf == null ? null : e.SubObjectOf.Substring(3));
+		string idProp = (sub == null ? "" : sub+".")+e.GetPropNameApi();
 
 		if ( SchemaUtil.GetEdgeProperties(e).Count > 0 ) {
 			throw new Exception("Edge should not have properties: "+e.NameDom);
 		}
 #>
 
-			////
-			
-			IWeaverVarAlias<<#= tv.Names.Domain #>> <#= e.NameDb #>Alias =
-				AddEdge<<#= fv.Names.Domain #>, <#= e.GetClassNameDom() #>, <#= tv.Names.Domain #>>(
-					pAlias, NewCre.<#= idProp #>);
+		/*--------------------------------------------------------------------------------------------*/
+		private void Add<#= e.GetClassNameDom() #>(IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
+<#+
+		if ( e.GetIsOptional() ) {
+#>
+			if ( <#= (sub == null ? "" : "NewCre."+sub+" == null || ") #>NewCre.<#= idProp #> == null ) {
+				return;
+			}
+
+<#+
+		}
+#>
+			var a =	AddEdge<<#= fv.Names.Domain #>, <#= e.GetClassNameDom() #>, <#= tv.Names.Domain #>>(
+				pAlias, NewCre.<#= idProp #>);
 <#+
 
 		IEdgeSchema opp = SchemaUtil.GetReverseEdgeSchema(pVertex, e);
 
 		if ( opp == null ) {
+#>
+		}
+<#+
 			continue;
 		}
 #>
@@ -197,11 +217,9 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 		}
 #>
 
-			AddReverseEdge(<#= e.NameDb #>Alias, <#= opp.NameDb #>Edge, pAlias);
-<#+
-	} //end edges loop
-#>
+			AddReverseEdge(a, <#= opp.NameDb #>Edge, pAlias);
 		}
 <#+
+	} //end edges loop
 } //end function
 #>

@@ -4,6 +4,7 @@ using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
 using Fabric.New.Test.Shared;
 using NUnit.Framework;
@@ -72,6 +73,15 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override VertexType.Id GetVertexTypeId() {
 			return VertexType.Id.Instance;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ValidateDisambWithoutName() {
+			vCreateObj.Name = null;
+			TestUtil.Throws<FabPropertyValueFault>(() => BuildCreateVerify());
 		}
 
 	}
