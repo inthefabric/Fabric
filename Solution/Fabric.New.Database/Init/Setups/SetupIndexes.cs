@@ -2,8 +2,6 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using Weaver.Core.Query;
-
 namespace Fabric.New.Database.Init.Setups {
 
 

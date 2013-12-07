@@ -12,7 +12,6 @@ using Fabric.New.Test.Shared;
 using Moq;
 using NUnit.Framework;
 using ServiceStack.Text;
-using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
 
