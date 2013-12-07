@@ -38,9 +38,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pConditionCmdId) {
+		protected override string SetupCommands(string pCondCmdId) {
 			AddCommand("addOauthAccess", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"a=g.addVertex(["+
 						DbName.Vert.OauthAccess.Token+":_P,"+
@@ -63,41 +63,17 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			var getMember = AddCommand("getMember", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "v0=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);(v0?{v0=v0.next();1;}:0);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.AuthenticatesMemberId
-				}),
-				Cache = true
-			});
-
-			pConditionCmdId = getMember.CommandId;
-
-			AddCommand("addEdgeOaam", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "g.addEdge(a,v0,_P);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.OauthAccessAuthenticatesMemberName
-				}),
-				Cache = true,
-				OmitResults = true
-			});
-
-			AddCommand("addEdgeMaboa", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "g.addEdge(v0,a,_P,["+
-						DbName.Edge.MemberAuthenticatedByOauthAccess.Timestamp+":_P"+
-					"]);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.MemberAuthenticatedByOauthAccessName,
+			pCondCmdId = SetupEdgePair("authMem", pCondCmdId, 0, vCreateObj.AuthenticatesMemberId,
+				DbName.Edge.OauthAccessAuthenticatesMemberName, DbName.Edge.MemberAuthenticatedByOauthAccessName,
+				new[] {
+					DbName.Edge.MemberAuthenticatedByOauthAccess.Timestamp
+				},
+				new object[] {
 					vExpectDomResult.Timestamp
-				}),
-				Cache = true,
-				OmitResults = true
-			});
+				}
+			);
 
-			return pConditionCmdId;
+			return pCondCmdId;
 		}
 
 

@@ -34,9 +34,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pConditionCmdId) {
+		protected override string SetupCommands(string pCondCmdId) {
 			var uniqueClass = AddCommand("uniqueClass", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"c=g.V('"+DbName.Vert.Class.NameKey+"',_P)"+
 						".filter{"+
@@ -51,10 +51,10 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			pConditionCmdId = uniqueClass.CommandId;
+			pCondCmdId = uniqueClass.CommandId;
 
 			AddCommand("addClass", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"a=g.addVertex(["+
 						DbName.Vert.Class.Name+":_P,"+
@@ -77,7 +77,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			return base.SetupCommands(pConditionCmdId);
+			return base.SetupCommands(pCondCmdId);
 		}
 
 

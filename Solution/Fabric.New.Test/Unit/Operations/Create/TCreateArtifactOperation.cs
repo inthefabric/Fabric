@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
+﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Faults;
@@ -33,48 +32,23 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pConditionCmdId) {
+		protected override string SetupCommands(string pCondCmdId) {
 			vGetMemCmdIndex = GetExpectedCommandCount();
 			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(vGetMemCmdIndex, 0)).Returns(1);
 
-			var getMember = AddCommand("getMember", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "v0=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);(v0?{v0=v0.next();1;}:0);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vMemId
-				}),
-				Cache = true
-			});
-
-			pConditionCmdId = getMember.CommandId;
-
-			AddCommand("addEdgeAcbm", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "g.addEdge(a,v0,_P);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.ArtifactCreatedByMemberName
-				}),
-				Cache = true,
-				OmitResults = true
-			});
-
-			AddCommand("addEdgeMca", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = 
-					"g.addEdge(v0,a,_P,["+
-						DbName.Edge.MemberCreatesArtifact.Timestamp+":_P,"+
-						DbName.Edge.MemberCreatesArtifact.VertexType+":_P"+
-					"]);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.MemberCreatesArtifactName,
+			pCondCmdId = SetupEdgePair("creByMem", pCondCmdId, 0, vMemId,
+				DbName.Edge.ArtifactCreatedByMemberName, DbName.Edge.MemberCreatesArtifactName,
+				new [] {
+					DbName.Edge.MemberCreatesArtifact.Timestamp,
+					DbName.Edge.MemberCreatesArtifact.VertexType
+				},
+				new object[] {
 					vExpectDomResult.Timestamp,
 					(byte)GetVertexTypeId()
-				}),
-				Cache = true,
-				OmitResults = true
-			});
+				}
+			);
 
-			return pConditionCmdId;
+			return pCondCmdId;
 		}
 		
 

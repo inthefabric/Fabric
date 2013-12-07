@@ -36,9 +36,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pConditionCmdId) {
+		protected override string SetupCommands(string pCondCmdId) {
 			AddCommand("addEmail", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"a=g.addVertex(["+
 						DbName.Vert.Email.Address+":_P,"+
@@ -59,38 +59,11 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			var getArtifact = AddCommand("getArtifact", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "v0=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);(v0?{v0=v0.next();1;}:0);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.UsedByArtifactId
-				}),
-				Cache = true
-			});
+			pCondCmdId = SetupEdgePair("usedByArt", pCondCmdId, 0, vCreateObj.UsedByArtifactId,
+				DbName.Edge.EmailUsedByArtifactName, DbName.Edge.ArtifactUsesEmailName,
+				new string[0], new object[0]);
 
-			pConditionCmdId = getArtifact.CommandId;
-
-			AddCommand("addEdgeEba", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "g.addEdge(a,v0,_P);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.EmailUsedByArtifactName
-				}),
-				Cache = true,
-				OmitResults = true
-			});
-
-			AddCommand("addEdgeAue", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "g.addEdge(v0,a,_P);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.ArtifactUsesEmailName
-				}),
-				Cache = true,
-				OmitResults = true
-			});
-
-			return pConditionCmdId;
+			return pCondCmdId;
 		}
 
 

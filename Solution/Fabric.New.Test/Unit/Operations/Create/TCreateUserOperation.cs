@@ -34,9 +34,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pConditionCmdId) {
+		protected override string SetupCommands(string pCondCmdId) {
 			var uniqueNameKey = AddCommand("uniqueNameKey", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = "unq=g.V('"+DbName.Vert.User.NameKey+"',_P);(unq?0:1);",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.Name.ToLower()
@@ -44,10 +44,10 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			pConditionCmdId = uniqueNameKey.CommandId;
+			pCondCmdId = uniqueNameKey.CommandId;
 
 			AddCommand("addUser", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"a=g.addVertex(["+
 						DbName.Vert.User.Name+":_P,"+
@@ -68,7 +68,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			return base.SetupCommands(pConditionCmdId);
+			return base.SetupCommands(pCondCmdId);
 		}
 
 

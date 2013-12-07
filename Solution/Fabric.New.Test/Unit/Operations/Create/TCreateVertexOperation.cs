@@ -124,19 +124,25 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			var cmd = new MockDataAccessCmd {
 				ConditionCmdId = pCondCmdId,
-				Script = "g.addEdge("+v+",a,_P,[",
+				Script = "g.addEdge("+v+",a,_P",
 				Cache = true,
 				OmitResults = true
 			};
 
 			var pars = new List<object> { pEdgeName1 };
 
-			for ( int i = 0 ; i < pParamNames.Length ; ++i ) {
-				cmd.Script += (i == 0 ? "" : ",")+pParamNames[i]+":_P";
-				pars.Add(pParamVals[i]);
+			if ( pParamNames.Length > 0 ) {
+				cmd.Script += ",[";
+
+				for ( int i = 0 ; i < pParamNames.Length ; ++i ) {
+					cmd.Script += (i == 0 ? "" : ",")+pParamNames[i]+":_P";
+					pars.Add(pParamVals[i]);
+				}
+
+				cmd.Script += "]";
 			}
 
-			cmd.Script += "]);";
+			cmd.Script += ");";
 			cmd.Params = MockDataAccessCmd.BuildParamMap(pars);
 			AddCommand(pName+"Edge1", cmd);
 

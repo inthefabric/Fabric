@@ -33,9 +33,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pConditionCmdId) {
+		protected override string SetupCommands(string pCondCmdId) {
 			var uniqueFullPath = AddCommand("uniqueFullPath", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = "unq=g.V('"+DbName.Vert.Url.FullPath+"',_P);(unq?0:1);",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.FullPath.ToLower()
@@ -44,10 +44,10 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			});
 
 
-			pConditionCmdId = uniqueFullPath.CommandId;
+			pCondCmdId = uniqueFullPath.CommandId;
 
 			AddCommand("addUrl", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"a=g.addVertex(["+
 						DbName.Vert.Url.Name+":_P,"+
@@ -66,7 +66,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			return base.SetupCommands(pConditionCmdId);
+			return base.SetupCommands(pCondCmdId);
 		}
 
 

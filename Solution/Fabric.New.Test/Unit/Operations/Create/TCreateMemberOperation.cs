@@ -38,9 +38,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pConditionCmdId) {
+		protected override string SetupCommands(string pCondCmdId) {
 			var getMember = AddCommand("getMember", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"m=g.V('"+DbName.Vert.Vertex.VertexId+"',_P)"+
 						".outE('"+DbName.Edge.UserDefinesMemberName+"')"+
@@ -53,10 +53,10 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			pConditionCmdId = getMember.CommandId;
+			pCondCmdId = getMember.CommandId;
 
 			AddCommand("addMember", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
+				ConditionCmdId = pCondCmdId,
 				Script = 
 					"a=g.addVertex(["+
 						DbName.Vert.Member.MemberType+":_P,"+
@@ -73,89 +73,35 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true
 			});
 
-			////
-
-			var getApp = AddCommand("getApp", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "v0=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);(v0?{v0=v0.next();1;}:0);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.DefinedByAppId
-				}),
-				Cache = true
-			});
-
-			pConditionCmdId = getApp.CommandId;
-
-			AddCommand("addEdgeMdbp", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "g.addEdge(a,v0,_P);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.MemberDefinedByAppName
-				}),
-				Cache = true,
-				OmitResults = true
-			});
-
-			AddCommand("addEdgePdm", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = 
-					"g.addEdge(v0,a,_P,["+
-						DbName.Edge.AppDefinesMember.Timestamp+":_P,"+
-						DbName.Edge.AppDefinesMember.MemberType+":_P,"+
-						DbName.Edge.AppDefinesMember.UserId+":_P"+
-					"]);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.AppDefinesMemberName,
+			pCondCmdId = SetupEdgePair("defByApp", pCondCmdId, 0, vCreateObj.DefinedByAppId,
+				DbName.Edge.MemberDefinedByAppName, DbName.Edge.AppDefinesMemberName,
+				new[] {
+					DbName.Edge.AppDefinesMember.Timestamp,
+					DbName.Edge.AppDefinesMember.MemberType,
+					DbName.Edge.AppDefinesMember.UserId
+				},
+				new object[] {
 					vExpectDomResult.Timestamp,
 					(byte)GetVertexTypeId(),
-					vCreateObj.DefinedByUserId,
-				}),
-				Cache = true,
-				OmitResults = true
-			});
-
-			////
-
-			var getUser = AddCommand("getUser", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "v1=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);(v1?{v1=v1.next();1;}:0);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.DefinedByUserId
-				}),
-				Cache = true
-			});
+				}
+			);
 
-			pConditionCmdId = getUser.CommandId;
-
-			AddCommand("addEdgeMdbu", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = "g.addEdge(a,v1,_P);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.MemberDefinedByUserName
-				}),
-				Cache = true,
-				OmitResults = true
-			});
-
-			AddCommand("addEdgeUdm", new MockDataAccessCmd {
-				ConditionCmdId = pConditionCmdId,
-				Script = 
-					"g.addEdge(v1,a,_P,["+
-						DbName.Edge.UserDefinesMember.Timestamp+":_P,"+
-						DbName.Edge.UserDefinesMember.MemberType+":_P,"+
-						DbName.Edge.UserDefinesMember.AppId+":_P"+
-					"]);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					DbName.Edge.UserDefinesMemberName,
+			pCondCmdId = SetupEdgePair("defByUser", pCondCmdId, 1, vCreateObj.DefinedByUserId,
+				DbName.Edge.MemberDefinedByUserName, DbName.Edge.UserDefinesMemberName,
+				new[] {
+					DbName.Edge.UserDefinesMember.Timestamp,
+					DbName.Edge.UserDefinesMember.MemberType,
+					DbName.Edge.UserDefinesMember.AppId
+				},
+				new object[] {
 					vExpectDomResult.Timestamp,
 					(byte)GetVertexTypeId(),
-					vCreateObj.DefinedByAppId,
-				}),
-				Cache = true,
-				OmitResults = true
-			});
+					vCreateObj.DefinedByAppId
+				}
+			);
 
-			return pConditionCmdId;
+			return pCondCmdId;
 		}
 
 
