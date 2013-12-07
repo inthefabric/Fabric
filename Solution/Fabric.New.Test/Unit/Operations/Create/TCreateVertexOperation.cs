@@ -90,8 +90,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected abstract string SetupCommands(string pCondCmdId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected string SetupEdgePair(string pName, string pCondCmdId, int pIndex, long pToVertexId,
-				string pEdgeName0, string pEdgeName1, string[] pParamNames, object[] pParamVals) {
+		protected string SetupEdgeSingle(string pName, string pCondCmdId, int pIndex, 
+				long pToVertexId, string pEdgeName0) {
 			var v = "v"+pIndex;
 
 			var getVert = AddCommand(pName+"Vert", new MockDataAccessCmd {
@@ -111,6 +111,16 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Cache = true,
 				OmitResults = true
 			});
+
+			return pCondCmdId;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected string SetupEdgePair(string pName, string pCondCmdId, int pIndex, long pToVertexId,
+				string pEdgeName0, string pEdgeName1, string[] pParamNames, object[] pParamVals) {
+			var v = "v"+pIndex;
+
+			pCondCmdId = SetupEdgeSingle(pName, pCondCmdId, pIndex, pToVertexId, pEdgeName0);
 
 			var cmd = new MockDataAccessCmd {
 				ConditionCmdId = pCondCmdId,

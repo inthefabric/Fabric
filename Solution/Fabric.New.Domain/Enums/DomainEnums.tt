@@ -27,7 +27,7 @@ foreach ( IEnumSchema e in enums ) {
 	/*================================================================================================*/
 	public class <#= e.Name #> : EnumObject {
 
-		public enum Id {
+		public enum Id : byte {
 <#
 	int i = 0;
 

@@ -204,7 +204,7 @@ namespace Fabric.New.Operations.Create {
 
 			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
 				if ( dr.ToIntAt(i, 0) != 1 ) {
-					throw new FabNotFoundFault(typeof(T), "Id="+pVertexId);
+					throw new FabNotFoundFault(typeof(T), "Id="+pVertexId+" // "+i+" / "+cmdId);
 				}
 			}));
 

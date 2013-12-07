@@ -307,7 +307,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabEventorSecondMap = new PropertyMapping<long, byte>(
 				EventorDateTime, FabEventorSecond, true);
 			FabIdentorTypeMap = new PropertyMapping<byte, byte>(IdentorType, FabIdentorType);
-			FabIdentorValueMap = new PropertyMapping<string, string>(Note, FabIdentorValue);
+			FabIdentorValueMap = new PropertyMapping<string, string>(IdentorValue, FabIdentorValue);
 			FabLocatorTypeMap = new PropertyMapping<byte, byte>(LocatorType, FabLocatorType);
 			FabLocatorValueXMap = new PropertyMapping<double, double>(LocatorValueX, FabLocatorValueX);
 			FabLocatorValueYMap = new PropertyMapping<double, double>(LocatorValueY, FabLocatorValueY);

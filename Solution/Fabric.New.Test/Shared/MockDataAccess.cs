@@ -223,7 +223,7 @@ namespace Fabric.New.Test.Shared {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AssertCommandList(IList<MockDataAccessCmd> pExpectCommands) {
-			//Assert.AreEqual(pExpectCommands.Count, vCmdList.Count, "Incorrect CmdList.Count.");
+			Assert.AreEqual(pExpectCommands.Count, vCmdList.Count, "Incorrect CmdList.Count.");
 
 			for ( int i = 0 ; i < pExpectCommands.Count ; i++ ) {
 				vCmdList[i].AssertEqual(pExpectCommands[i], i);

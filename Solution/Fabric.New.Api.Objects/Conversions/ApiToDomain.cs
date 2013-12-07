@@ -105,7 +105,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pDomain.AssertionType = pApi.AssertionType;
 			pDomain.IsDefining = pApi.IsDefining;
 			pDomain.Note = pApi.Note;
-			if ( pApi.Identor != null ) { pDomain.Note = pApi.Identor.Value; }
 			if ( pApi.Descriptor != null ) { pDomain.DescriptorType = pApi.Descriptor.Type; }
 			if ( pApi.Director != null ) { pDomain.DirectorType = pApi.Director.Type; }
 			if ( pApi.Director != null ) { pDomain.DirectorPrimaryAction = pApi.Director.PrimaryAction; }
@@ -124,6 +123,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			//Custom: 
 			//pDomain.EventorDateTime <== pApi.Eventor.EventorDateTime  (requires custom)
 			if ( pApi.Identor != null ) { pDomain.IdentorType = pApi.Identor.Type; }
+			if ( pApi.Identor != null ) { pDomain.IdentorValue = pApi.Identor.Value; }
 			if ( pApi.Locator != null ) { pDomain.LocatorType = pApi.Locator.Type; }
 			if ( pApi.Locator != null ) { pDomain.LocatorValueX = pApi.Locator.ValueX; }
 			if ( pApi.Locator != null ) { pDomain.LocatorValueY = pApi.Locator.ValueY; }

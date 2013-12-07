@@ -105,7 +105,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 			//Custom: 
 			//pApi.Eventor.Second <== pDomain.EventorDateTime  (requires custom)
 			pApi.Identor.Type = pDomain.IdentorType.GetValueOrDefault();
-			pApi.Identor.Value = pDomain.Note;
+			pApi.Identor.Value = pDomain.IdentorValue;
 			pApi.Locator.Type = pDomain.LocatorType.GetValueOrDefault();
 			pApi.Locator.ValueX = pDomain.LocatorValueX.GetValueOrDefault();
 			pApi.Locator.ValueY = pDomain.LocatorValueY.GetValueOrDefault();
