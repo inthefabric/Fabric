@@ -6,7 +6,7 @@ using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Cache;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Operations;
-using Fabric.New.Test.Shared;
+using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;

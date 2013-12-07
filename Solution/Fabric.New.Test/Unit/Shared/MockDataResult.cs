@@ -4,7 +4,7 @@ using Fabric.New.Infrastructure.Data;
 using Moq;
 using Weaver.Core.Elements;
 
-namespace Fabric.New.Test.Shared {
+namespace Fabric.New.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public class MockDataResult : Mock<IDataResult> {

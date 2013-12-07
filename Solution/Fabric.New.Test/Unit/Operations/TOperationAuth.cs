@@ -7,7 +7,7 @@ using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations;
-using Fabric.New.Test.Shared;
+using Fabric.New.Test.Unit.Shared;
 using NUnit.Framework;
 
 namespace Fabric.New.Test.Unit.Operations {

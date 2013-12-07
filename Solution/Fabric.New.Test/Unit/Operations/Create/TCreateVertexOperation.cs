@@ -8,7 +8,7 @@ using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Operations;
 using Fabric.New.Operations.Create;
-using Fabric.New.Test.Shared;
+using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using ServiceStack.Text;

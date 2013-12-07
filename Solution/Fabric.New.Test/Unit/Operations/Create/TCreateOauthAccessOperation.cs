@@ -7,7 +7,7 @@ using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
-using Fabric.New.Test.Shared;
+using Fabric.New.Test.Unit.Shared;
 using NUnit.Framework;
 
 namespace Fabric.New.Test.Unit.Operations.Create {

@@ -3,7 +3,7 @@ using Fabric.New.Domain;
 using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Query;
-using Fabric.New.Test.Shared;
+using Fabric.New.Test.Unit.Shared;
 using NUnit.Framework;
 using Weaver.Core.Query;
 

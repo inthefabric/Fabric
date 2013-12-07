@@ -10,7 +10,7 @@ using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Shared {
+namespace Fabric.New.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public class MockDataAccess : Mock<IDataAccess> {

@@ -4,7 +4,7 @@ using Fabric.New.Infrastructure.Broadcast;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Shared {
+namespace Fabric.New.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public static class TestUtil {

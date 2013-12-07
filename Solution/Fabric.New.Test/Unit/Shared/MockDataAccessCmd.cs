@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Shared {
+namespace Fabric.New.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public class MockDataAccessCmd {
