@@ -54,6 +54,14 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Create\CreateOperationTasks.cs">
+      <DependentUpon>CreateOperationTasks.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Create\CreateOperationContext.cs" />
+    <Compile Include="Create\ICreateOperationContext.cs" />
+    <Compile Include="Create\CreateOperationTasksPartial.cs" />
     <Compile Include="Create\DataResultCheck.cs" />
     <Compile Include="Create\CreateMemberOperationPartial.cs" />
     <Compile Include="Create\CreateInstanceOperationPartial.cs" />
@@ -109,6 +117,10 @@
     <Compile Include="Traversal\ITraversalOperation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Create\CreateOperationTasks.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateOperationTasks.cs</LastGenOutput>
+    </None>
     <None Include="Create\CreateOperations.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CreateOperations.cs</LastGenOutput>

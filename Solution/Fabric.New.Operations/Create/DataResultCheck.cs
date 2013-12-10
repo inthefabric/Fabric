@@ -4,7 +4,8 @@ using Fabric.New.Infrastructure.Data;
 namespace Fabric.New.Operations.Create {
 
 	/*================================================================================================*/
-	internal class DataResultCheck {
+
+	public class DataResultCheck {
 
 		private readonly string vCommandId;
 		private readonly Action<IDataResult, int> vCheck;

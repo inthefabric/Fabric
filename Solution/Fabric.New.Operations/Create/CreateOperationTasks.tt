@@ -1,0 +1,141 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Fabric.New.Api.Objects;
+using Fabric.New.Domain;
+using Weaver.Core.Query;
+
+namespace Fabric.New.Operations.Create {
+	
+	/*================================================================================================*/
+	public partial class CreateOperationTasks {
+
+
+		//// Find Duplicate
+<#
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in vertexSchemas ) {
+	OutputGetDuplicate(v);
+}
+#>
+
+
+		//// Add Edge
+<#
+	
+foreach ( IVertexSchema v in vertexSchemas ) {
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	OutputCreateEdges(v, vp);
+}
+#>
+
+	}
+
+}
+<#+
+
+
+private void OutputGetDuplicate(IVertexSchema pVertex) {
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(pVertex);
+	bool hasUniqueChecks = false;
+
+	foreach ( DomainProperty dp in props ) {
+		if ( dp.EnforceUnique ) {
+			hasUniqueChecks = true;
+			break;
+		}
+	}
+
+	if ( !hasUniqueChecks ) {
+		return;
+	}
+
+	foreach ( DomainProperty dp in props ) {
+		if ( !dp.EnforceUnique ) {
+			continue;
+		}
+
+		string displayName = (dp.Name == "NameKey" ? "Name" : dp.Name); //ugly special case
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void FindDuplicate<#= pVertex.Names.Domain #><#= dp.Name #>(ICreateOperationContext pCreCtx, <#= pVertex.Names.Domain #> pNewDom) {
+			FindDuplicate<<#= pVertex.Names.Domain #>>(pCreCtx, x => x.<#= dp.Name #>, pNewDom.<#= dp.Name #>, "<#= displayName #>");
+		}
+<#+
+	} //end props loop
+} //end function
+
+
+private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
+	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(pVertex, true);
+	
+	foreach ( IEdgeSchema e in edges ) {
+		IVertexSchema fv = SchemaUtil.GetVertex(e.FromVertexType);
+		IVertexSchema tv = SchemaUtil.GetVertex(e.ToVertexType);
+		string sub = (e.SubObjectOf == null ? null : e.SubObjectOf.Substring(3));
+		string idProp = (sub == null ? "" : sub+".")+e.GetPropNameApi();
+
+		if ( SchemaUtil.GetEdgeProperties(e).Count > 0 ) {
+			throw new Exception("Edge should not have properties: "+e.NameDom);
+		}
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void Add<#= e.GetClassNameDom() #>(ICreateOperationContext pCreCtx,
+				<#= pVertex.Names.Domain #> pNewDom, Create<#= pVertex.Names.Api #> pNewCre, IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
+<#+
+		if ( e.GetIsOptional() ) {
+#>
+			if ( <#= (sub == null ? "" : "pNewCre."+sub+" == null || ") #>pNewCre.<#= idProp #> == null ) {
+				return;
+			}
+
+<#+
+		}
+#>
+			var a =	AddEdge<<#= fv.Names.Domain #>, <#= e.GetClassNameDom() #>, <#= tv.Names.Domain #>>(
+				pCreCtx, pAlias, pNewCre.<#= idProp #>);
+<#+
+
+		IEdgeSchema opp = SchemaUtil.GetReverseEdgeSchema(pVertex, e);
+
+		if ( opp == null ) {
+#>
+		}
+<#+
+			continue;
+		}
+#>
+
+			var <#= opp.NameDb #>Edge = new <#= opp.GetClassNameDom() #>();
+<#+
+		IList<EdgeProperty> edgeProps = SchemaUtil.GetEdgeProperties(opp);
+
+		foreach ( EdgeProperty ep in edgeProps ) {
+			IEdgeSchema edgeToProp = ep.GetEdgeToDomainProp();
+			DomainProperty dp = ep.GetDomainProp();
+			string fromVar = (edgeToProp == null ?
+				"pNewDom."+dp.Name : "pNewCre."+edgeToProp.GetPropNameApi());
+#>
+			<#= opp.NameDb #>Edge.<#= ep.Name #> = <#= fromVar #>;
+<#+
+		}
+#>
+
+			AddReverseEdge(pCreCtx, a, <#= opp.NameDb #>Edge, pAlias);
+		}
+<#+
+	} //end edges loop
+} //end function
+#>
