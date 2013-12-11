@@ -30,9 +30,9 @@ namespace Fabric.New.Operations.Create {
 
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand("("+varName+"?0:1);");
-			string cmdId = SetupLatestCommand(false, true);
+			string cmdId = CreCtx.SetupLatestCommand(false, true);
 
-			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
+			CreCtx.AddCheck(new DataResultCheck(cmdId, (dr, i) => {
 				if ( dr.ToIntAt(i, 0) != 0 ) {
 					throw new FabDuplicateFault("A "+typeof(Member).Name+" already exists with "+
 						typeof(App).Name+"Id="+NewCre.DefinedByAppId+" and "+

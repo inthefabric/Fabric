@@ -1,4 +1,5 @@
-﻿using Weaver.Core.Query;
+﻿using System.Collections.Generic;
+using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {
 
@@ -13,11 +14,16 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		string SetupLatestCommand(bool pOmitResults=false, bool pNewCondition=false);
 
+		/*--------------------------------------------------------------------------------------------*/
+		void CommitAndCloseSession();
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		void AddCheck(DataResultCheck pCheck);
-
+		
+		/*--------------------------------------------------------------------------------------------*/
+		IList<DataResultCheck> GetChecks();
 
 	}
 

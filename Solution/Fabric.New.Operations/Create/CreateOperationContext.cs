@@ -49,6 +49,16 @@ namespace Fabric.New.Operations.Create {
 			return cmdId;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public void CommitAndCloseSession() {
+			vDataAcc.AddSessionCommit();
+			SetupLatestCommand();
+
+			vLatestConditionCmdId = null; //ensure session closes
+			vDataAcc.AddSessionClose();
+			SetupLatestCommand();
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

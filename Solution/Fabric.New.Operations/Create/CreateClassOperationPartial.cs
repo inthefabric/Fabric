@@ -48,9 +48,9 @@ namespace Fabric.New.Operations.Create {
 			DataAcc.AddQuery(q, true);
 			DataAcc.AppendScriptToLatestCommand(classVarName+"?1:0;");
 			
-			vCmdDuplicate = SetupLatestCommand(false, true);
+			vCmdDuplicate = CreCtx.SetupLatestCommand(false, true);
 
-			Checks.Add(new DataResultCheck(vCmdDuplicate, (dr, i) => {
+			CreCtx.AddCheck(new DataResultCheck(vCmdDuplicate, (dr, i) => {
 				if ( DataRes.ToIntAt(i, 0) != 0 ) {
 					string name = NewDom.Name+(NewDom.Disamb == null ? "" : " ("+NewDom.Disamb+")");
 					throw new FabDuplicateFault(typeof(Class), "Name", name, "Name+Disamb conflict.");

@@ -15,8 +15,6 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Query;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {
@@ -101,25 +99,12 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void CheckForDuplicates() {
-			IWeaverVarAlias alias;
 <#
 	foreach ( DomainProperty dp in props ) {
 		if ( dp.EnforceUnique ) {
 			string displayName = (dp.Name == "NameKey" ? "Name" : dp.Name); //ugly special case
 #>
-
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<<#= v.Names.Domain #>>(x => x.<#= dp.Name #>, NewDom.<#= dp.Name #>)
-				.ToQueryAsVar("unq", out alias);
-			DataAcc.AddQuery(q, true);
-			DataAcc.AppendScriptToLatestCommand("("+alias.Name+"?0:1);");
-			string cmdId = SetupLatestCommand(false, true);
-
-			Checks.Add(new DataResultCheck(cmdId, (dr, i) => {
-				if ( dr.ToIntAt(i, 0) != 0 ) {
-					throw new FabDuplicateFault(typeof(<#= v.Names.Domain #>), "<#= displayName #>", NewCre.<#= displayName #>);
-				}
-			}));
+			Tasks.FindDuplicate<#= v.Names.Domain #><#= dp.Name #>(CreCtx, NewDom);
 <#
 		} //end EnforceUnique condition
 	} //end props loop
@@ -159,67 +144,11 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 
 	foreach ( IEdgeSchema e in edges ) {
 #>
-			Add<#= e.GetClassNameDom() #>(pAlias);
+			Tasks.Add<#= e.GetClassNameDom() #>(CreCtx, NewDom, NewCre, pAlias);
 <#+
 	} //end edges loop
 #>
 		}
 <#+
-	foreach ( IEdgeSchema e in edges ) {
-		IVertexSchema fv = SchemaUtil.GetVertex(e.FromVertexType);
-		IVertexSchema tv = SchemaUtil.GetVertex(e.ToVertexType);
-		string sub = (e.SubObjectOf == null ? null : e.SubObjectOf.Substring(3));
-		string idProp = (sub == null ? "" : sub+".")+e.GetPropNameApi();
-
-		if ( SchemaUtil.GetEdgeProperties(e).Count > 0 ) {
-			throw new Exception("Edge should not have properties: "+e.NameDom);
-		}
-#>
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void Add<#= e.GetClassNameDom() #>(IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
-<#+
-		if ( e.GetIsOptional() ) {
-#>
-			if ( <#= (sub == null ? "" : "NewCre."+sub+" == null || ") #>NewCre.<#= idProp #> == null ) {
-				return;
-			}
-
-<#+
-		}
-#>
-			var a =	AddEdge<<#= fv.Names.Domain #>, <#= e.GetClassNameDom() #>, <#= tv.Names.Domain #>>(
-				pAlias, NewCre.<#= idProp #>);
-<#+
-
-		IEdgeSchema opp = SchemaUtil.GetReverseEdgeSchema(pVertex, e);
-
-		if ( opp == null ) {
-#>
-		}
-<#+
-			continue;
-		}
-#>
-
-			var <#= opp.NameDb #>Edge = new <#= opp.GetClassNameDom() #>();
-<#+
-		IList<EdgeProperty> edgeProps = SchemaUtil.GetEdgeProperties(opp);
-
-		foreach ( EdgeProperty ep in edgeProps ) {
-			IEdgeSchema edgeToProp = ep.GetEdgeToDomainProp();
-			DomainProperty dp = ep.GetDomainProp();
-			string fromVar = (edgeToProp == null ?
-				"NewDom."+dp.Name : "NewCre."+edgeToProp.GetPropNameApi());
-#>
-			<#= opp.NameDb #>Edge.<#= ep.Name #> = <#= fromVar #>;
-<#+
-		}
-#>
-
-			AddReverseEdge(a, <#= opp.NameDb #>Edge, pAlias);
-		}
-<#+
-	} //end edges loop
 } //end function
 #>
