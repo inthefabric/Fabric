@@ -1,6 +1,7 @@
 ﻿using System;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Names;
+using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
@@ -14,6 +15,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 	/*================================================================================================*/
 	public class TCreateOperationTasksDuplicate {
 
+		private static readonly Logger Log = Logger.Build<TCreateOperationTasksDuplicate>();
 		private const string Prefix = "_P";
 
 		private Mock<ICreateOperationContext> vMockCreCtx;
@@ -43,6 +45,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vMockCreCtx
 				.Setup(x => x.AddQuery(It.IsAny<IWeaverQuery>(), cache, It.IsAny<string>()))
 				.Callback((IWeaverQuery q, bool c, string a) => {
+					TestUtil.LogWeaverScript(Log, q);
 					string s = TestUtil.InsertParamIndexes(script, Prefix);
 					Assert.AreEqual(s, q.Script, "Incorrect script.");
 					Assert.AreEqual(append, a, "Incorrect append script.");
