@@ -36,7 +36,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected override string SetupCommands(string pCondCmdId) {
 			var uniqueFullPath = AddCommand("uniqueFullPath", new MockDataAccessCmd {
 				ConditionCmdId = pCondCmdId,
-				Script = "unq=g.V('"+DbName.Vert.Url.FullPath+"',_P);(unq?0:1);",
+				Script = "unq=g.V('"+DbName.Vert.Url.FullPath+"',_P);unq?0:1;",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.FullPath.ToLower()
 				}),

@@ -37,7 +37,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		protected override string SetupCommands(string pCondCmdId) {
 			var uniqueNameKey = AddCommand("uniqueNameKey", new MockDataAccessCmd {
 				ConditionCmdId = pCondCmdId,
-				Script = "unq=g.V('"+DbName.Vert.App.NameKey+"',_P);(unq?0:1);",
+				Script = "unq=g.V('"+DbName.Vert.App.NameKey+"',_P);unq?0:1;",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.Name.ToLower()
 				}),

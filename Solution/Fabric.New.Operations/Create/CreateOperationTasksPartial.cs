@@ -14,14 +14,12 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddVertex<T>(ICreateOperationContext pCreCtx, T pVertex) 
-																			where T : Vertex, new() {
-			IWeaverVarAlias<T> alias;
-
+		public virtual void AddVertex<T>(ICreateOperationContext pCreCtx, T pVertex,
+												out IWeaverVarAlias<T> pAlias) where T : Vertex, new() {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
-			q = WeaverQuery.StoreResultAsVar("a", q, out alias);
-
+			q = WeaverQuery.StoreResultAsVar("a", q, out pAlias);
 			pCreCtx.AddQuery(q, true);
+			pCreCtx.SetupLatestCommand();
 		}
 
 
@@ -73,7 +71,7 @@ namespace Fabric.New.Operations.Create {
 				.V.ExactIndex(pProp, pValue)
 				.ToQueryAsVar("unq", out alias);
 
-			pCreCtx.AddQuery(q, true, "("+alias.Name+"?0:1);");
+			pCreCtx.AddQuery(q, true, alias.Name+"?0:1;");
 			string cmdId = pCreCtx.SetupLatestCommand(false, true);
 
 			pCreCtx.AddCheck(new DataResultCheck(cmdId, (dr, i) => {
@@ -93,7 +91,7 @@ namespace Fabric.New.Operations.Create {
 				.ExactIndex<T>(x => x.VertexId, pVertexId)
 				.ToQueryAsVar(var, out alias);
 
-			pCreCtx.AddQuery(q, true, "("+var+"?{"+var+"="+var+".next();1;}:0);");
+			pCreCtx.AddQuery(q, true, var+"?{"+var+"="+var+".next();1;}:0;");
 			string cmdId = pCreCtx.SetupLatestCommand(false, true);
 
 			pCreCtx.AddCheck(new DataResultCheck(cmdId, (dr, i) => {

@@ -62,11 +62,6 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyCustom() {
-			VerifyCustomClass();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		protected override Class ToDomain(CreateFabClass pCreateObj) {
 			return ApiToDomain.FromCreateFabClass(pCreateObj);
 		}
@@ -78,6 +73,11 @@ namespace Fabric.New.Operations.Create {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AfterSessionStart() {
+			CreateOperationsCustom.ClassAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddEdges() {
 			AddClassEdges(NewDomAlias);
@@ -123,11 +123,6 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyCustom() {
-			VerifyCustomFactor();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		protected override Factor ToDomain(CreateFabFactor pCreateObj) {
 			return ApiToDomain.FromCreateFabFactor(pCreateObj);
 		}
@@ -139,6 +134,11 @@ namespace Fabric.New.Operations.Create {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AfterSessionStart() {
+			CreateOperationsCustom.FactorAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddEdges() {
 			AddFactorEdges(NewDomAlias);
@@ -165,11 +165,6 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyCustom() {
-			VerifyCustomInstance();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		protected override Instance ToDomain(CreateFabInstance pCreateObj) {
 			return ApiToDomain.FromCreateFabInstance(pCreateObj);
 		}
@@ -181,6 +176,11 @@ namespace Fabric.New.Operations.Create {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AfterSessionStart() {
+			CreateOperationsCustom.InstanceAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddEdges() {
 			AddInstanceEdges(NewDomAlias);
@@ -200,11 +200,6 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyCustom() {
-			VerifyCustomMember();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
 		protected override Member ToDomain(CreateFabMember pCreateObj) {
 			return ApiToDomain.FromCreateFabMember(pCreateObj);
 		}
@@ -216,6 +211,11 @@ namespace Fabric.New.Operations.Create {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AfterSessionStart() {
+			CreateOperationsCustom.MemberAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddEdges() {
 			AddMemberEdges(NewDomAlias);

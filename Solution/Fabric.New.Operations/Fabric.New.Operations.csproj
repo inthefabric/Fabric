@@ -54,6 +54,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Create\CreateOperationTasksCustom.cs" />
     <Compile Include="Create\CreateOperationTasks.cs">
       <DependentUpon>CreateOperationTasks.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -63,11 +64,8 @@
     <Compile Include="Create\ICreateOperationContext.cs" />
     <Compile Include="Create\CreateOperationTasksPartial.cs" />
     <Compile Include="Create\DataResultCheck.cs" />
-    <Compile Include="Create\CreateMemberOperationPartial.cs" />
-    <Compile Include="Create\CreateInstanceOperationPartial.cs" />
-    <Compile Include="Create\CreateFactorOperationPartial.cs" />
+    <Compile Include="Create\CreateOperationsCustom.cs" />
     <Compile Include="IOperationData.cs" />
-    <Compile Include="Create\CreateClassOperationPartial.cs" />
     <Compile Include="Internal\InternalInitDbOperation.cs" />
     <Compile Include="Internal\IInternalOperation.cs" />
     <Compile Include="IOperationAuth.cs" />

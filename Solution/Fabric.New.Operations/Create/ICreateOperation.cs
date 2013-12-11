@@ -10,7 +10,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Create(IOperationContext pOpCtx, string pJson);
+		void Create(IOperationContext pOpCtx, CreateOperationTasks pTasks, string pJson);
 		
 		/*--------------------------------------------------------------------------------------------*/
 		TDom Execute();

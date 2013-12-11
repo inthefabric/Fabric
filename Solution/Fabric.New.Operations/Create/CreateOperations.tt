@@ -65,17 +65,6 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-<#
-	if ( v.CustomCreate ) {
-#>
-		/*--------------------------------------------------------------------------------------------*/
-		protected override void VerifyCustom() {
-			VerifyCustom<#= v.Names.Domain #>();
-		}
-
-<#
-	} //end "CustomCreate" condition
-#>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override <#= v.Names.Domain #> ToDomain(Create<#= v.Names.Api #> pCreateObj) {
 			return ApiToDomain.From<#= createObjName #>(pCreateObj);
@@ -95,6 +84,16 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 <#
+	if ( v.CustomCreate ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AfterSessionStart() {
+			CreateOperationsCustom.<#= v.Names.Domain #>AfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+		}
+
+<#
+	} //end "CustomCreate" condition
+
 	if ( hasUniqueChecks ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/

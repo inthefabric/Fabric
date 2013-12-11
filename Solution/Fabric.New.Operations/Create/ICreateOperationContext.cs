@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Fabric.New.Infrastructure.Data;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Create {
@@ -23,7 +23,7 @@ namespace Fabric.New.Operations.Create {
 		void AddCheck(DataResultCheck pCheck);
 		
 		/*--------------------------------------------------------------------------------------------*/
-		IList<DataResultCheck> GetChecks();
+		void PerformChecks(IDataResult pResult);
 
 	}
 

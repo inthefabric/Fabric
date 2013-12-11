@@ -91,12 +91,12 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected string SetupEdgeSingle(string pName, string pCondCmdId, int pIndex, 
 				long pToVertexId, string pEdgeName0) {
-			var v = "v"+pIndex;
+			const string v = "vv";//+pIndex;
 
 			var getVert = AddCommand(pName+"Vert", new MockDataAccessCmd {
 				ConditionCmdId = pCondCmdId,
 				Script = v+"=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);"+
-					"("+v+"?{"+v+"="+v+".next();1;}:0);",
+					v+"?{"+v+"="+v+".next();1;}:0;",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> { pToVertexId }),
 				Cache = true
 			});
@@ -117,7 +117,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected string SetupEdgePair(string pName, string pCondCmdId, int pIndex, long pToVertexId,
 				string pEdgeName0, string pEdgeName1, string[] pParamNames, object[] pParamVals) {
-			var v = "v"+pIndex;
+			const string v = "vv"; //+pIndex;
 
 			pCondCmdId = SetupEdgeSingle(pName, pCondCmdId, pIndex, pToVertexId, pEdgeName0);
 
@@ -182,7 +182,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected TOper BuildCreateVerify() {
 			var c = new TOper();
-			c.Create(vMockCtx.Object, vCreateObj.ToJson());
+			//TODO: mock CreateOperationTasks
+			c.Create(vMockCtx.Object, new CreateOperationTasks(), vCreateObj.ToJson());
 			vMockDataAcc.PrintCommands();
 			vMockDataAcc.AssertCommandList(vExpectCommands);
 			return c;

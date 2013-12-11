@@ -45,7 +45,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 					"m=g.V('"+DbName.Vert.Vertex.VertexId+"',_P)"+
 						".outE('"+DbName.Edge.UserDefinesMemberName+"')"+
 							".has('"+DbName.Edge.UserDefinesMember.AppId+"',Tokens.T.eq,_P);"+
-					"(m?0:1);",
+					"m?0:1;",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.DefinedByUserId,
 					vCreateObj.DefinedByAppId
