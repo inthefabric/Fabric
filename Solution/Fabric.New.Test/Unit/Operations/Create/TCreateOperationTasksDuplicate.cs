@@ -58,9 +58,24 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			vMockCreCtx
 				.Setup(x => x.AddCheck(It.IsAny<DataResultCheck>()))
-				.Callback((DataResultCheck c) =>
-					Assert.AreEqual(cmdId, c.CommandId, "Incorrect DataResultCheck.CommandId.")
-				);
+				.Callback((DataResultCheck c) => {
+					Assert.AreEqual(cmdId, c.CommandId, "Incorrect DataResultCheck.CommandId.");
+
+					const int i = 999;
+
+					var mockRes = new Mock<IDataResult>();
+					mockRes.Setup(x => x.GetCommandIndexByCmdId(c.CommandId)).Returns(i);
+
+					Log.Debug("Append passing DataResultCheck...");
+					mockRes.Setup(x => x.ToIntAt(i, 0)).Returns(0);
+					TestUtil.CheckThrows<FabDuplicateFault>(false,
+						() => c.PerformCheck(mockRes.Object));
+
+					Log.Debug("Append failing DataResultCheck...");
+					mockRes.Setup(x => x.ToIntAt(i, 0)).Returns(1);
+					TestUtil.CheckThrows<FabDuplicateFault>(true,
+						() => c.PerformCheck(mockRes.Object));
+				});
 
 			pFind(vMockCreCtx.Object);
 
@@ -73,26 +88,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			vMockCreCtx
 				.Verify(x => x.AddCheck(It.IsAny<DataResultCheck>()), Times.Once);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void TestFindDuplicateCheck(
-								Action<ICreateOperationContext> pFind, int pCmdValue, bool pThrows) {
-			vMockCreCtx.Setup(x => x.AddCheck(It.IsAny<DataResultCheck>()))
-				.Callback((DataResultCheck c) => {
-					const int i = 999;
-
-					var mockRes = new Mock<IDataResult>();
-					mockRes.Setup(x => x.GetCommandIndexByCmdId(c.CommandId)).Returns(i);
-					mockRes.Setup(x => x.ToIntAt(i, 0)).Returns(pCmdValue);
-
-					TestUtil.CheckThrows<FabDuplicateFault>(pThrows,
-						() => c.PerformCheck(mockRes.Object));
-				});
-
-			////
-
-			pFind(vMockCreCtx.Object);
 		}
 
 
@@ -108,20 +103,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				new object[] { app.NameKey }
 			);
 		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0, false)]
-		[TestCase(1, true)]
-		public void FindDuplicateAppNameKeyCheck(int pCmdValue, bool pThrows) {
-			TestFindDuplicateCheck(
-				x => vTasks.FindDuplicateAppNameKey(x, new App()),
-				pCmdValue,
-				pThrows
-			);
-		}
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FindDuplicateUrlFullPath() {
@@ -135,19 +117,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0, false)]
-		[TestCase(1, true)]
-		public void FindDuplicateUrlFullPathCheck(int pCmdValue, bool pThrows) {
-			TestFindDuplicateCheck(
-				x => vTasks.FindDuplicateUrlFullPath(x, new Url()),
-				pCmdValue,
-				pThrows
-			);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void FindDuplicateUserNameKey() {
 			var user = new User { NameKey = "This is my NameKey" };
@@ -156,17 +125,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				x => vTasks.FindDuplicateUserNameKey(x, user),
 				DbName.Vert.User.NameKey,
 				new object[] { user.NameKey }
-			);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0, false)]
-		[TestCase(1, true)]
-		public void FindDuplicateUserNameKeyCheck(int pCmdValue, bool pThrows) {
-			TestFindDuplicateCheck(
-				x => vTasks.FindDuplicateUserNameKey(x, new User()),
-				pCmdValue,
-				pThrows
 			);
 		}
 
