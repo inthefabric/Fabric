@@ -30,6 +30,14 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 
 
+		//// Add Vertex
+<#
+foreach ( IVertexSchema v in vertexSchemas ) {
+	OutputAddVertex(v);
+}
+#>
+
+
 		//// Add Edge
 <#
 	
@@ -74,6 +82,22 @@ private void OutputGetDuplicate(IVertexSchema pVertex) {
 		}
 <#+
 	} //end props loop
+} //end function
+
+
+
+private void OutputAddVertex(IVertexSchema pVertex) {
+	if ( pVertex.IsAbstract ) {
+		return;
+	}
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void Add<#= pVertex.Names.Domain #>(ICreateOperationContext pCreCtx,
+										<#= pVertex.Names.Domain #> pNewDom, out IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+<#+
 } //end function
 
 

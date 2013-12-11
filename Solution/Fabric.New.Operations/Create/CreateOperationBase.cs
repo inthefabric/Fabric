@@ -47,11 +47,13 @@ namespace Fabric.New.Operations.Create {
 			CreCtx.SetupLatestCommand();
 			AfterSessionStart();
 			CheckForDuplicates();
-			AddVertex();
+			AddVertexBase();
 			AddEdges();
 			CreCtx.CommitAndCloseSession();
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual TDom ToDomain(TCre pCreateObj) {
 			return null;
@@ -85,15 +87,18 @@ namespace Fabric.New.Operations.Create {
 		protected virtual void CheckForDuplicates() {}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddVertex() {
+		private void AddVertexBase() {
 			IWeaverVarAlias<TDom> alias;
-			Tasks.AddVertex(CreCtx, NewDom, out alias);
+			AddVertex(out alias);
 			NewDomAlias = alias;
 			vCmdAddVertex = vDataAcc.GetLatestCommandId();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void AddEdges() {}
+		protected abstract void AddVertex(out IWeaverVarAlias<TDom> pAlias);
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected abstract void AddEdges();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

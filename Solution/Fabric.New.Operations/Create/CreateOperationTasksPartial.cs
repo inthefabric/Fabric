@@ -14,7 +14,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddVertex<T>(ICreateOperationContext pCreCtx, T pVertex,
+		private static void AddVertex<T>(ICreateOperationContext pCreCtx, T pVertex,
 												out IWeaverVarAlias<T> pAlias) where T : Vertex, new() {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
 			q = WeaverQuery.StoreResultAsVar("a", q, out pAlias);
@@ -64,7 +64,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FindDuplicate<T>(ICreateOperationContext pCreCtx,
 								Expression<Func<T, object>> pProp, string pValue, string pErrPropName)
-								where T : IWeaverVertex, new() {
+								where T : IVertex, new() {
 			IWeaverVarAlias alias;
 
 			IWeaverQuery q = Weave.Inst.Graph

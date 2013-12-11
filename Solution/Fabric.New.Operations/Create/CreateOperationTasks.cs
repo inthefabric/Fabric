@@ -30,6 +30,63 @@ namespace Fabric.New.Operations.Create {
 		}
 
 
+		//// Add Vertex
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddApp(ICreateOperationContext pCreCtx,
+										App pNewDom, out IWeaverVarAlias<App> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddClass(ICreateOperationContext pCreCtx,
+										Class pNewDom, out IWeaverVarAlias<Class> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddEmail(ICreateOperationContext pCreCtx,
+										Email pNewDom, out IWeaverVarAlias<Email> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddFactor(ICreateOperationContext pCreCtx,
+										Factor pNewDom, out IWeaverVarAlias<Factor> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddInstance(ICreateOperationContext pCreCtx,
+										Instance pNewDom, out IWeaverVarAlias<Instance> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddMember(ICreateOperationContext pCreCtx,
+										Member pNewDom, out IWeaverVarAlias<Member> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddOauthAccess(ICreateOperationContext pCreCtx,
+										OauthAccess pNewDom, out IWeaverVarAlias<OauthAccess> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddUrl(ICreateOperationContext pCreCtx,
+										Url pNewDom, out IWeaverVarAlias<Url> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual void AddUser(ICreateOperationContext pCreCtx,
+										User pNewDom, out IWeaverVarAlias<User> pAlias) {
+			AddVertex(pCreCtx, pNewDom, out pAlias);
+		}
+
+
 		//// Add Edge
 
 		/*--------------------------------------------------------------------------------------------*/

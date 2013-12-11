@@ -4,23 +4,23 @@ using Fabric.New.Infrastructure.Data;
 namespace Fabric.New.Operations.Create {
 
 	/*================================================================================================*/
-
 	public class DataResultCheck {
 
-		private readonly string vCommandId;
+		public string CommandId { get; private set; }
+
 		private readonly Action<IDataResult, int> vCheck;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public DataResultCheck(string pCommandId, Action<IDataResult, int> pCheck) {
-			vCommandId = pCommandId;
+			CommandId = pCommandId;
 			vCheck = pCheck;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void PerformCheck(IDataResult pDataRes) {
-			int index = pDataRes.GetCommandIndexByCmdId(vCommandId);
+			int index = pDataRes.GetCommandIndexByCmdId(CommandId);
 			vCheck(pDataRes, index);
 		}
 

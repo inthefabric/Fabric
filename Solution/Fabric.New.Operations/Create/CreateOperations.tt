@@ -114,6 +114,11 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 	} //end "hasUniqueChecks" condition
 #>
 		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddVertex(out IWeaverVarAlias<<#= v.Names.Domain #>> pAlias) {
+			Tasks.Add<#= v.Names.Domain #>(CreCtx, NewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddEdges() {
 			Add<#= v.Names.Domain #>Edges(NewDomAlias);
 		}
