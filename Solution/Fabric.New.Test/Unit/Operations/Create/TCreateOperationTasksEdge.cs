@@ -79,8 +79,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vSetupLatestReturns.Enqueue(VerifyCmdId);
 
 			vMockCreCtx
-				.Setup(x => x.AddCheck(It.IsAny<DataResultCheck>()))
-				.Callback((DataResultCheck c) => {
+				.Setup(x => x.AddCheck(It.IsAny<IDataResultCheck>()))
+				.Callback((IDataResultCheck c) => {
 					Assert.AreEqual(VerifyCmdId, c.CommandId, "Incorrect DataResultCheck.CommandId.");
 
 					const int i = 999;

@@ -56,8 +56,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				.Returns(cmdId);
 
 			pMockCreCtx
-				.Setup(x => x.AddCheck(It.IsAny<DataResultCheck>()))
-				.Callback((DataResultCheck c) => {
+				.Setup(x => x.AddCheck(It.IsAny<IDataResultCheck>()))
+				.Callback((IDataResultCheck c) => {
 					Assert.AreEqual(cmdId, c.CommandId, "Incorrect DataResultCheck.CommandId.");
 
 					const int i = 999;
@@ -86,7 +86,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				.Verify(x => x.SetupLatestCommand(It.IsAny<bool>(), It.IsAny<bool>()), Times.Once);
 
 			pMockCreCtx
-				.Verify(x => x.AddCheck(It.IsAny<DataResultCheck>()), Times.Once);
+				.Verify(x => x.AddCheck(It.IsAny<IDataResultCheck>()), Times.Once);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

@@ -131,7 +131,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddFactorDescriptorRefinesPrimaryWithArtifact(ICreateOperationContext pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
-			if ( pNewCre.Descriptor == null || pNewCre.Descriptor.RefinesPrimaryWithArtifactId == null ) {
+			if ( pNewCre.Descriptor == null ) {
 				return;
 			}
 
@@ -142,7 +142,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddFactorDescriptorRefinesRelatedWithArtifact(ICreateOperationContext pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
-			if ( pNewCre.Descriptor == null || pNewCre.Descriptor.RefinesRelatedWithArtifactId == null ) {
+			if ( pNewCre.Descriptor == null ) {
 				return;
 			}
 
@@ -153,7 +153,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddFactorDescriptorRefinesTypeWithArtifact(ICreateOperationContext pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
-			if ( pNewCre.Descriptor == null || pNewCre.Descriptor.RefinesTypeWithArtifactId == null ) {
+			if ( pNewCre.Descriptor == null ) {
 				return;
 			}
 
@@ -192,7 +192,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void AddFactorVectorUsesAxisArtifact(ICreateOperationContext pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
-			if ( pNewCre.Vector == null || pNewCre.Vector.UsesAxisArtifactId == null ) {
+			if ( pNewCre.Vector == null ) {
 				return;
 			}
 

@@ -119,9 +119,9 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 		public virtual void Add<#= e.GetClassNameDom() #>(ICreateOperationContext pCreCtx,
 				<#= pVertex.Names.Domain #> pNewDom, Create<#= pVertex.Names.Api #> pNewCre, IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
 <#+
-		if ( e.GetIsOptional() ) {
+		if ( e.GetIsOptional() && sub != null ) {
 #>
-			if ( <#= (sub == null ? "" : "pNewCre."+sub+" == null || ") #>pNewCre.<#= idProp #> == null ) {
+			if ( pNewCre.<#= sub #> == null ) {
 				return;
 			}
 
