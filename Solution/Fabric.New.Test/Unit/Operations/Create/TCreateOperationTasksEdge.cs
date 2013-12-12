@@ -12,6 +12,7 @@ using Fabric.New.Operations.Create;
 using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
+using Weaver.Core.Elements;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
@@ -45,6 +46,11 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private IWeaverVarAlias<T> GetAddVertexAlias<T>() where T : IWeaverElement {
+			return new WeaverVarAlias<T>(AddVertVar);
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		private void SetupVerifyVertex(long pToVertId) {
 			const string script = VerifyVertVar+"=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);";
@@ -201,6 +207,72 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			ExecuteAddEdge(pAdd, 3);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		private void TestAddEdgeNull(Action<ICreateOperationContext> pAdd) {
+			pAdd(vMockCreCtx.Object);
+
+			vMockCreCtx
+				.Verify(x => x.AddQuery(
+					It.IsAny<IWeaverQuery>(), It.IsAny<bool>(), It.IsAny<string>()), Times.Never);
+
+			vMockCreCtx
+				.Verify(x => x.SetupLatestCommand(It.IsAny<bool>(), It.IsAny<bool>()), Times.Never);
+
+			vMockCreCtx
+				.Verify(x => x.AddCheck(It.IsAny<DataResultCheck>()), Times.Never);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddArtifactCreatedByMember() {
+			var dom = new Artifact {
+				Timestamp = 32462346,
+				VertexType = (byte)VertexType.Id.Class
+			};
+
+			var cre = new CreateFabArtifact {
+				CreatedByMemberId = 452346234
+			};
+
+			TestAddEdge(
+				x => vTasks.AddArtifactCreatedByMember(x, dom, cre, GetAddVertexAlias<Artifact>()),
+				cre.CreatedByMemberId,
+				DbName.Edge.ArtifactCreatedByMemberName,
+				DbName.Edge.MemberCreatesArtifactName,
+				new[] {
+					DbName.Edge.MemberCreatesArtifact.Timestamp,
+					DbName.Edge.MemberCreatesArtifact.VertexType
+				},
+				new object[] {
+					dom.Timestamp,
+					dom.VertexType
+				}
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddEmailUsedByArtifact() {
+			var dom = new Email();
+
+			var cre = new CreateFabEmail {
+				UsedByArtifactId = 433622
+			};
+
+			TestAddEdge(
+				x => vTasks.AddEmailUsedByArtifact(x, dom, cre, GetAddVertexAlias<Email>()),
+				cre.UsedByArtifactId,
+				DbName.Edge.EmailUsedByArtifactName,
+				DbName.Edge.ArtifactUsesEmailName,
+				new string[0], 
+				new object[0]
+			);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -217,10 +289,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				UsesRelatedArtifactId = 6532754
 			};
 
-			var alias = new WeaverVarAlias<Factor>(AddVertVar);
-
 			TestAddEdge(
-				x => vTasks.AddFactorCreatedByMember(x, dom, cre, alias),
+				x => vTasks.AddFactorCreatedByMember(x, dom, cre, GetAddVertexAlias<Factor>()),
 				cre.CreatedByMemberId,
 				DbName.Edge.FactorCreatedByMemberName,
 				DbName.Edge.MemberCreatesFactorName,
@@ -239,9 +309,91 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			);
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void AddFactorDescriptorRefinesPrimaryWithArtifact() {
+			const long toVertId = 3465234643;
+
+			var dom = new Factor();
+
+			var cre = new CreateFabFactor {
+				Descriptor = new CreateFabDescriptor {
+					RefinesPrimaryWithArtifactId = toVertId
+				}
+			};
+
+			TestAddEdgeSingle(
+				x => vTasks.AddFactorDescriptorRefinesPrimaryWithArtifact(
+					x, dom, cre, GetAddVertexAlias<Factor>()),
+				toVertId,
+				DbName.Edge.FactorDescriptorRefinesPrimaryWithArtifactName
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(true)]
+		[TestCase(false)]
+		public void AddFactorDescriptorRefinesPrimaryWithArtifactNull(bool pType) {
+			var dom = new Factor();
+			var cre = new CreateFabFactor();
+
+			if ( pType ) {
+				cre.Descriptor = new CreateFabDescriptor();
+			}
+
+			TestAddEdgeNull(
+				x => vTasks.AddFactorDescriptorRefinesPrimaryWithArtifact(
+					x, dom, cre, GetAddVertexAlias<Factor>())
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddFactorDescriptorRefinesRelatedWithArtifact() {
+			const long toVertId = 3465234643;
+
+			var dom = new Factor();
+
+			var cre = new CreateFabFactor {
+				Descriptor = new CreateFabDescriptor {
+					RefinesRelatedWithArtifactId = toVertId
+				}
+			};
+
+			TestAddEdgeSingle(
+				x => vTasks.AddFactorDescriptorRefinesRelatedWithArtifact(
+					x, dom, cre, GetAddVertexAlias<Factor>()),
+				toVertId,
+				DbName.Edge.FactorDescriptorRefinesRelatedWithArtifactName
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(true)]
+		[TestCase(false)]
+		public void AddFactorDescriptorRefinesRelatedWithArtifactNull(bool pType) {
+			var dom = new Factor();
+			var cre = new CreateFabFactor();
+
+			if ( pType ) {
+				cre.Descriptor = new CreateFabDescriptor();
+			}
+
+			TestAddEdgeNull(
+				x => vTasks.AddFactorDescriptorRefinesRelatedWithArtifact(
+					x, dom, cre, GetAddVertexAlias<Factor>())
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddFactorDescriptorRefinesTypeWithArtifact() {
 			const long toVertId = 3465234643;
 
 			var dom = new Factor();
@@ -252,12 +404,222 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				}
 			};
 
-			var alias = new WeaverVarAlias<Factor>(AddVertVar);
-
 			TestAddEdgeSingle(
-				x => vTasks.AddFactorDescriptorRefinesTypeWithArtifact(x, dom, cre, alias),
+				x => vTasks.AddFactorDescriptorRefinesTypeWithArtifact(
+					x, dom, cre, GetAddVertexAlias<Factor>()),
 				toVertId,
 				DbName.Edge.FactorDescriptorRefinesTypeWithArtifactName
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(true)]
+		[TestCase(false)]
+		public void AddFactorDescriptorRefinesTypeWithArtifactNull(bool pType) {
+			var dom = new Factor();
+			var cre = new CreateFabFactor();
+
+			if ( pType ) {
+				cre.Descriptor = new CreateFabDescriptor();
+			}
+
+			TestAddEdgeNull(
+				x => vTasks.AddFactorDescriptorRefinesTypeWithArtifact(
+					x, dom, cre, GetAddVertexAlias<Factor>())
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddFactorUsesPrimaryArtifact() {
+			var dom = new Factor {
+				Timestamp = 9439439349,
+				DescriptorType = (byte)DescriptorType.Id.IsCreatedBy
+			};
+
+			var cre = new CreateFabFactor { 
+				UsesPrimaryArtifactId = 5436236234,
+				UsesRelatedArtifactId = 236234623
+			};
+
+			TestAddEdge(
+				x => vTasks.AddFactorUsesPrimaryArtifact(x, dom, cre, GetAddVertexAlias<Factor>()),
+				cre.UsesPrimaryArtifactId,
+				DbName.Edge.FactorUsesPrimaryArtifactName,
+				DbName.Edge.ArtifactUsedAsPrimaryByFactorName,
+				new[] {
+					DbName.Edge.ArtifactUsedAsPrimaryByFactor.Timestamp,
+					DbName.Edge.ArtifactUsedAsPrimaryByFactor.DescriptorType,
+					DbName.Edge.ArtifactUsedAsPrimaryByFactor.RelatedArtifactId
+				},
+				new object[] {
+					dom.Timestamp,
+					dom.DescriptorType,
+					cre.UsesRelatedArtifactId
+				}
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddFactorUsesRelatedArtifact() {
+			var dom = new Factor {
+				Timestamp = 94394393349,
+				DescriptorType = (byte)DescriptorType.Id.IsCreatedBy
+			};
+
+			var cre = new CreateFabFactor {
+				UsesRelatedArtifactId = 36236234,
+				UsesPrimaryArtifactId = 1236234623
+			};
+
+			TestAddEdge(
+				x => vTasks.AddFactorUsesRelatedArtifact(x, dom, cre, GetAddVertexAlias<Factor>()),
+				cre.UsesRelatedArtifactId,
+				DbName.Edge.FactorUsesRelatedArtifactName,
+				DbName.Edge.ArtifactUsedAsRelatedByFactorName,
+				new[] {
+					DbName.Edge.ArtifactUsedAsRelatedByFactor.Timestamp,
+					DbName.Edge.ArtifactUsedAsRelatedByFactor.DescriptorType,
+					DbName.Edge.ArtifactUsedAsRelatedByFactor.PrimaryArtifactId
+				},
+				new object[] {
+					dom.Timestamp,
+					dom.DescriptorType,
+					cre.UsesPrimaryArtifactId
+				}
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddFactorVectorUsesAxisArtifact() {
+			const long toVertId = 3465234643;
+
+			var dom = new Factor();
+
+			var cre = new CreateFabFactor {
+				Vector= new CreateFabVector {
+					UsesAxisArtifactId = toVertId
+				}
+			};
+
+			TestAddEdgeSingle(
+				x => vTasks.AddFactorVectorUsesAxisArtifact(x, dom, cre, GetAddVertexAlias<Factor>()),
+				toVertId,
+				DbName.Edge.FactorVectorUsesAxisArtifactName
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(true)]
+		[TestCase(false)]
+		public void AddFactorVectorUsesAxisArtifactNull(bool pType) {
+			var dom = new Factor();
+			var cre = new CreateFabFactor();
+
+			if ( pType ) {
+				cre.Vector = new CreateFabVector();
+			}
+
+			TestAddEdgeNull(
+				x => vTasks.AddFactorVectorUsesAxisArtifact(x, dom, cre, GetAddVertexAlias<Factor>())
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddMemberDefinedByApp() {
+			var dom = new Member {
+				MemberType = (byte)MemberType.Id.Staff,
+				Timestamp = 9439439349
+			};
+
+			var cre = new CreateFabMember {
+				DefinedByAppId = 5436236234,
+				DefinedByUserId = 236234623
+			};
+
+			TestAddEdge(
+				x => vTasks.AddMemberDefinedByApp(x, dom, cre, GetAddVertexAlias<Member>()),
+				cre.DefinedByAppId,
+				DbName.Edge.MemberDefinedByAppName,
+				DbName.Edge.AppDefinesMemberName,
+				new[] {
+					DbName.Edge.AppDefinesMember.Timestamp,
+					DbName.Edge.AppDefinesMember.MemberType,
+					DbName.Edge.AppDefinesMember.UserId
+				},
+				new object[] {
+					dom.Timestamp,
+					dom.MemberType,
+					cre.DefinedByUserId
+				}
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddMemberDefinedByUser() {
+			var dom = new Member {
+				MemberType = (byte)MemberType.Id.Staff,
+				Timestamp = 94394393349,
+			};
+
+			var cre = new CreateFabMember {
+				DefinedByUserId = 36236234,
+				DefinedByAppId = 1236234623
+			};
+
+			TestAddEdge(
+				x => vTasks.AddMemberDefinedByUser(x, dom, cre, GetAddVertexAlias<Member>()),
+				cre.DefinedByUserId,
+				DbName.Edge.MemberDefinedByUserName,
+				DbName.Edge.UserDefinesMemberName,
+				new[] {
+					DbName.Edge.UserDefinesMember.Timestamp,
+					DbName.Edge.UserDefinesMember.MemberType,
+					DbName.Edge.UserDefinesMember.AppId
+				},
+				new object[] {
+					dom.Timestamp,
+					dom.MemberType,
+					cre.DefinedByAppId
+				}
+			);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddOauthAccessAuthenticatesMember() {
+			var dom = new OauthAccess {
+				Timestamp = 9439439349
+			};
+
+			var cre = new CreateFabOauthAccess {
+				AuthenticatesMemberId = 7272727
+			};
+
+			TestAddEdge(
+				x => vTasks.AddOauthAccessAuthenticatesMember(
+					x, dom, cre, GetAddVertexAlias<OauthAccess>()),
+				cre.AuthenticatesMemberId,
+				DbName.Edge.OauthAccessAuthenticatesMemberName,
+				DbName.Edge.MemberAuthenticatedByOauthAccessName,
+				new[] {
+					DbName.Edge.MemberAuthenticatedByOauthAccess.Timestamp
+				},
+				new object[] {
+					dom.Timestamp
+				}
 			);
 		}
 
