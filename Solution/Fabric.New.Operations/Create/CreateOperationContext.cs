@@ -8,7 +8,7 @@ namespace Fabric.New.Operations.Create {
 	public class CreateOperationContext : ICreateOperationContext {
 
 		private readonly IDataAccess vDataAcc;
-		private readonly IList<DataResultCheck> vChecks;
+		private readonly IList<IDataResultCheck> vChecks;
 		private string vLatestConditionCmdId;
 
 
@@ -16,7 +16,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public CreateOperationContext(IDataAccess pDataAcc) {
 			vDataAcc = pDataAcc;
-			vChecks = new List<DataResultCheck>();
+			vChecks = new List<IDataResultCheck>();
 		}
 
 
@@ -62,13 +62,13 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddCheck(DataResultCheck pCheck) {
+		public void AddCheck(IDataResultCheck pCheck) {
 			vChecks.Add(pCheck);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void PerformChecks(IDataResult pResult) {
-			foreach ( DataResultCheck check in vChecks ) {
+			foreach ( IDataResultCheck check in vChecks ) {
 				check.PerformCheck(pResult);
 			}
 		}

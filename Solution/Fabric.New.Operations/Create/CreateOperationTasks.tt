@@ -22,9 +22,9 @@ namespace Fabric.New.Operations.Create {
 
 		//// Find Duplicate
 <#
-IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
+IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
 
-foreach ( IVertexSchema v in vertexSchemas ) {
+foreach ( IVertexSchema v in verts ) {
 	OutputGetDuplicate(v);
 }
 #>
@@ -32,7 +32,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 
 		//// Add Vertex
 <#
-foreach ( IVertexSchema v in vertexSchemas ) {
+foreach ( IVertexSchema v in verts ) {
 	OutputAddVertex(v);
 }
 #>
@@ -41,7 +41,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		//// Add Edge
 <#
 	
-foreach ( IVertexSchema v in vertexSchemas ) {
+foreach ( IVertexSchema v in verts ) {
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
 	OutputCreateEdges(v, vp);
 }

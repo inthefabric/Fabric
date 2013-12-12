@@ -4,7 +4,7 @@ using Fabric.New.Infrastructure.Data;
 namespace Fabric.New.Operations.Create {
 
 	/*================================================================================================*/
-	public class DataResultCheck {
+	public class DataResultCheck : IDataResultCheck {
 
 		public string CommandId { get; private set; }
 

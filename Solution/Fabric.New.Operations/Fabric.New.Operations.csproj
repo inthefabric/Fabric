@@ -54,6 +54,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Create\IDataResultCheck.cs" />
     <Compile Include="Create\CreateOperationTasksCustom.cs" />
     <Compile Include="Create\CreateOperationTasks.cs">
       <DependentUpon>CreateOperationTasks.tt</DependentUpon>
