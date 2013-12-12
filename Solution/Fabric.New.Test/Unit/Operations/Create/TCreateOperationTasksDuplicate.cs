@@ -33,30 +33,29 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestFindDuplicate(
-								Action<ICreateOperationContext> pFind, string pProp, object[] pParams) {
-			string script = "unq=g.V('"+pProp+"',_P);";
-			const string append = "unq?0:1;";
+		public static void TestFindDuplicate(Mock<ICreateOperationContext> pMockCreCtx,
+													Action<ICreateOperationContext> pFind,
+													string pScript, string pAppend, object[] pParams) {
 			const string cmdId = "1234";
 			const bool cache = true;
 			const bool omit = false;
 			const bool cond = true;
 
-			vMockCreCtx
+			pMockCreCtx
 				.Setup(x => x.AddQuery(It.IsAny<IWeaverQuery>(), cache, It.IsAny<string>()))
 				.Callback((IWeaverQuery q, bool c, string a) => {
 					TestUtil.LogWeaverScript(Log, q);
-					string s = TestUtil.InsertParamIndexes(script, Prefix);
+					string s = TestUtil.InsertParamIndexes(pScript, Prefix);
 					Assert.AreEqual(s, q.Script, "Incorrect script.");
-					Assert.AreEqual(append, a, "Incorrect append script.");
+					Assert.AreEqual(pAppend, a, "Incorrect append script.");
 					TestUtil.CheckParams(q.Params, Prefix, pParams);
 				});
 
-			vMockCreCtx
+			pMockCreCtx
 				.Setup(x => x.SetupLatestCommand(omit, cond))
 				.Returns(cmdId);
 
-			vMockCreCtx
+			pMockCreCtx
 				.Setup(x => x.AddCheck(It.IsAny<DataResultCheck>()))
 				.Callback((DataResultCheck c) => {
 					Assert.AreEqual(cmdId, c.CommandId, "Incorrect DataResultCheck.CommandId.");
@@ -77,17 +76,23 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 						() => c.PerformCheck(mockRes.Object));
 				});
 
-			pFind(vMockCreCtx.Object);
+			pFind(pMockCreCtx.Object);
 
-			vMockCreCtx
+			pMockCreCtx
 				.Verify(x => x.AddQuery(
 				It.IsAny<IWeaverQuery>(), It.IsAny<bool>(), It.IsAny<string>()), Times.Once);
 
-			vMockCreCtx
+			pMockCreCtx
 				.Verify(x => x.SetupLatestCommand(It.IsAny<bool>(), It.IsAny<bool>()), Times.Once);
 
-			vMockCreCtx
+			pMockCreCtx
 				.Verify(x => x.AddCheck(It.IsAny<DataResultCheck>()), Times.Once);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void TestFindDuplicate(
+								Action<ICreateOperationContext> pFind, string pProp, object[] pParams) {
+			TestFindDuplicate(vMockCreCtx, pFind, "unq=g.V('"+pProp+"',_P);", "unq?0:1;", pParams);
 		}
 
 

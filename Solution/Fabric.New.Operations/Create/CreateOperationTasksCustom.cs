@@ -41,11 +41,11 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void FindDuplicateClass(
-										ICreateOperationContext pCreCtx, string pName, string pDisamb) {
-			Class c = Weave.Inst.Graph.V.ExactIndex<Class>(x => x.NameKey, pName.ToLower());
+								ICreateOperationContext pCreCtx, string pNameKey, string pDisambLower) {
+			Class c = Weave.Inst.Graph.V.ExactIndex<Class>(x => x.NameKey, pNameKey);
 			IWeaverQuery q;
 
-			if ( pDisamb == null ) {
+			if ( pDisambLower == null ) {
 				q = c.HasNot(x => x.Disamb)
 					.Property(x => x.VertexId)
 					.ToQuery();
@@ -58,7 +58,7 @@ namespace Fabric.New.Operations.Create {
 					.Property(x => x.VertexId)
 					.ToQuery();
 
-				q.AddParam(new WeaverQueryVal(pDisamb.ToLower()));
+				q.AddParam(new WeaverQueryVal(pDisambLower));
 			}
 
 			////
@@ -66,13 +66,13 @@ namespace Fabric.New.Operations.Create {
 			const string classVarName = "c";
 			IWeaverVarAlias<Class> alias;
 			q = WeaverQuery.StoreResultAsVar(classVarName, q, out alias);
-			pCreCtx.AddQuery(q, true, classVarName+"?1:0;");
+			pCreCtx.AddQuery(q, true, classVarName+"?0:1;");
 
 			string cmdId = pCreCtx.SetupLatestCommand(false, true);
 
 			pCreCtx.AddCheck(new DataResultCheck(cmdId, (dr, i) => {
 				if ( dr.ToIntAt(i, 0) != 0 ) {
-					string name = pName+(pDisamb == null ? "" : " ("+pDisamb+")");
+					string name = pNameKey+(pDisambLower == null ? "" : " ("+pDisambLower+")");
 					throw new FabDuplicateFault(typeof(Class), "Name", name, "Name+Disamb conflict.");
 				}
 			}));

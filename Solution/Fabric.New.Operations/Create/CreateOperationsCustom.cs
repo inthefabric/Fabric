@@ -12,7 +12,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ClassAfterSessionStart(CreateOperationTasks pTasks,
 							ICreateOperationContext pCreCtx, Class pNewDom, CreateFabClass pNewCre) {
-			pTasks.FindDuplicateClass(pCreCtx, pNewDom.Name, pNewDom.Disamb);
+			pTasks.FindDuplicateClass(pCreCtx, pNewDom.NameKey, pNewDom.Disamb.ToLower());
 		}
 
 

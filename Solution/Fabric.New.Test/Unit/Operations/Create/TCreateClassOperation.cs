@@ -43,7 +43,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 							"it.property('"+DbName.Vert.Class.Disamb+"')?.toLowerCase()==_P;"+
 						"}"+
 						".property('"+DbName.Vert.Vertex.VertexId+"');"+
-						"c?1:0;",
+						"c?0:1;",
 				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
 					vCreateObj.Name.ToLower(),
 					vCreateObj.Disamb.ToLower()
