@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Traversal.Routing {
 
@@ -8,11 +7,6 @@ namespace Fabric.New.Operations.Traversal.Routing {
 	public interface ITravPath {
 
 		long? MemberId { get; }
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		IWeaverQuery BuildQuery();
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,9 +19,6 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		/*--------------------------------------------------------------------------------------------*/
 		IList<ITravPathItem> GetSteps(int pCount);
 		
-		/*--------------------------------------------------------------------------------------------*/
-		Type GetCurrentType();
-
 		/*--------------------------------------------------------------------------------------------*/
 		bool IsAcceptableType(Type pType, bool pRequiresExact);
 

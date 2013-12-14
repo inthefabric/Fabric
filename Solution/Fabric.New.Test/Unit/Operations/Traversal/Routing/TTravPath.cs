@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Operations.Traversal.Routing;
+using Moq;
 using NUnit.Framework;
-using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 
@@ -13,22 +12,49 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 	[TestFixture]
 	public class TTravPath {
 
-		private static readonly Logger Log = Logger.Build<TTravPath>();
+		private Mock<ITravPathData> vMockData;
 
-		private const string RawPath6 = "test/this/path/with/six(1,2,3,4,5,6)/segments";
-		private static readonly string[] RawPath6Segments = new[] { 
-			"test", "this", "path", "with", "six(1,2,3,4,5,6)", "segments" };
 
-		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[SetUp]
+		public void SetUp() {
+			vMockData = new Mock<ITravPathData>(MockBehavior.Strict);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static List<ITravPathItem> GetMockItems(int pCount) {
+			var items = new List<ITravPathItem>();
+
+			for ( int i = 0 ; i < pCount ; ++i ) {
+				var mockItem = new Mock<ITravPathItem>(MockBehavior.Strict);
+				mockItem.SetupGet(x => x.StepIndex).Returns(i);
+				items.Add(mockItem.Object);
+			}
+
+			return items;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void CheckItemList(IList<ITravPathItem> pItems, int pStartI) {
+			for ( int i = 0 ; i < pItems.Count ; ++i ) {
+				Assert.AreEqual(pStartI+i, pItems[i].StepIndex, "Incorrect Item["+i+"].StepIndex.");
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void CheckItem(ITravPathItem pItem, int pStartI) {
+			Assert.AreEqual(pStartI, pItem.StepIndex, "Incorrect Item.StepIndex.");
+		}
+
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(null)]
 		[TestCase(1234)]
-		public void New(int? pMemberId) {
-			const string rawText = "Path/Text/Here(99)";
-
-			var tp = new TravPath(rawText, pMemberId);
-
+		public void MemberId(int? pMemberId) {
+			vMockData.SetupGet(x => x.MemberId).Returns(pMemberId);
+			var tp = new TravPath(vMockData.Object);
 			Assert.AreEqual(pMemberId, tp.MemberId, "Incorrect MemberId.");
 		}
 
@@ -40,110 +66,61 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 		[TestCase(6)]
 		[TestCase(8)]
 		public void GetFirstSteps(int pCount) {
+			vMockData.SetupGet(x => x.Items).Returns(GetMockItems(6));
+
 			int expectCount = Math.Min(6, pCount);
 
-			var tp = new TravPath(RawPath6);
+			var tp = new TravPath(vMockData.Object);
 			IList<ITravPathItem> result = tp.GetFirstSteps(pCount);
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(expectCount, result.Count, "Incorrect result count.");
-
-			for ( int i = 0 ; i < expectCount ; ++i ) {
-				Assert.AreEqual(RawPath6Segments[i], result[i].RawText, "Incorrect RawText @ "+i);
-			}
+			CheckItemList(result, 0);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(1, 2)]
-		[TestCase(2, 1)]
-		[TestCase(3, 3)]
-		[TestCase(5, 1)]
-		public void ConsumeStepsTwice(int pCountA, int pCountB) {
-			var tp = new TravPath(RawPath6);
+		[TestCase(0, false)]
+		[TestCase(1, false)]
+		[TestCase(5, false)]
+		[TestCase(6, true)]
+		public void GetNextStep(int pCurrIndex, bool pNull) {
+			vMockData.SetupGet(x => x.Items).Returns(GetMockItems(6));
+			vMockData.SetupGet(x => x.CurrIndex).Returns(pCurrIndex);
 
-			IList<ITravPathItem> resultA = tp.ConsumeSteps(pCountA, typeof(FabArtifact));
-			IList<ITravPathItem> resultB = tp.ConsumeSteps(pCountB, typeof(FabArtifact));
-
-			Assert.NotNull(resultA, "Result should be filled.");
-			Assert.NotNull(resultB, "Result should be filled.");
-			Assert.AreEqual(pCountA, resultA.Count, "Incorrect result count.");
-			Assert.AreEqual(pCountB, resultB.Count, "Incorrect result count.");
-
-			for ( int i = 0 ; i < pCountA ; ++i ) {
-				Assert.AreEqual(RawPath6Segments[i], resultA[i].RawText, "Incorrect RawText @ "+i);
-			}
-
-			for ( int i = 0 ; i < pCountB ; ++i ) {
-				int j = i+pCountA;
-				Assert.AreEqual(RawPath6Segments[j], resultB[i].RawText, "Incorrect RawText @ "+j);
-			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void GetCurrentType() {
-			var tp = new TravPath(RawPath6);
-			Type result = tp.GetCurrentType();
-			Assert.AreEqual(typeof(FabTravRoot), result, "Incorrect result.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(typeof(FabArtifact), typeof(FabClass), typeof(FabClass))]
-		[TestCase(typeof(FabClass), typeof(FabArtifact), typeof(FabClass))]
-		[TestCase(typeof(FabArtifact), typeof(FabFactor), typeof(FabFactor))]
-		[TestCase(typeof(FabFactor), typeof(FabArtifact), typeof(FabArtifact))]
-		public void ConsumeStepsAndGetCurrentType(Type pTypeA, Type pTypeB, Type pExpectType) {
-			var tp = new TravPath(RawPath6);
-
-			tp.ConsumeSteps(1, pTypeA);
-			Type resultA = tp.GetCurrentType();
-
-			tp.ConsumeSteps(1, pTypeB);
-			Type resultB = tp.GetCurrentType();
-
-			Assert.AreEqual(pTypeA, resultA, "Incorrect resultA.");
-			Assert.AreEqual(pExpectType, resultB, "Incorrect resultB.");
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(1)]
-		[TestCase(6)]
-		public void ConsumeStepsAndGetNextStep(int pCount) {
-			var tp = new TravPath(RawPath6);
-			tp.ConsumeSteps(pCount, typeof(FabFactor));
+			var tp = new TravPath(vMockData.Object);
 			ITravPathItem result = tp.GetNextStep();
 
-			if ( pCount >= RawPath6Segments.Length ) {
+			if ( pNull ) {
 				Assert.Null(result, "Result should be null.");
 				return;
 			}
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(RawPath6Segments[pCount], result.RawText, "Incorrect Result.RawText.");
+			CheckItem(result, pCurrIndex);
 		}
-
+		
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(1, 1)]
-		[TestCase(1, 5)]
-		[TestCase(4, 2)]
-		[TestCase(4, 3)]
-		public void ConsumeStepsAndGetNextSteps(int pConsumeCount, int pGetCount) {
-			var tp = new TravPath(RawPath6);
-			tp.ConsumeSteps(pConsumeCount, typeof(FabFactor));
-			IList<ITravPathItem> result = tp.GetSteps(pGetCount);
+		[TestCase(0, 1, false)]
+		[TestCase(2, 4, false)]
+		[TestCase(2, 5, true)]
+		[TestCase(3, 2, false)]
+		[TestCase(5, 1, false)]
+		[TestCase(6, 1, true)]
+		public void GetSteps(int pCurrIndex, int pCount, bool pNull) {
+			vMockData.SetupGet(x => x.Items).Returns(GetMockItems(6));
+			vMockData.SetupGet(x => x.CurrIndex).Returns(pCurrIndex);
 
-			if ( pConsumeCount+pGetCount > RawPath6Segments.Length ) {
+			var tp = new TravPath(vMockData.Object);
+			IList<ITravPathItem> result = tp.GetSteps(pCount);
+
+			if ( pNull ) {
 				Assert.Null(result, "Result should be null.");
 				return;
 			}
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(pGetCount, result.Count, "Incorrect result count.");
-
-			for ( int i = 0 ; i < pGetCount ; ++i ) {
-				int j = pConsumeCount+i;
-				Assert.AreEqual(RawPath6Segments[j], result[i].RawText, "Incorrect RawText @ "+i);
-			}
+			Assert.AreEqual(pCount, result.Count, "Incorrect result count.");
+			CheckItemList(result, pCurrIndex);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -152,116 +129,161 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 		[TestCase(typeof(FabTravAppRoot), false, false)]
 		[TestCase(typeof(FabTravAppRoot), true, false)]
 		public void IsAcceptableType(Type pType, bool pExact, bool pExpectResult) {
-			var tp = new TravPath("");
+			vMockData.SetupGet(x => x.Items).Returns(GetMockItems(6));
+			vMockData.SetupGet(x => x.CurrType).Returns(typeof(FabTravRoot));
+
+			var tp = new TravPath(vMockData.Object);
 			bool result = tp.IsAcceptableType(pType, pExact);
 			Assert.AreEqual(pExpectResult, result, "Incorrect result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(false)]
-		[TestCase(true)]
-		public void ConsumeStepsAndIsAcceptableType(bool pExact) {
-			var tp = new TravPath("");
-			tp.ConsumeSteps(0, typeof(FabClass));
-			bool result = tp.IsAcceptableType(typeof(FabArtifact), pExact);
-			Assert.AreEqual(!pExact, result, "Incorrect result.");
-		}
+		[TestCase(0, 1)]
+		[TestCase(2, 4)]
+		[TestCase(3, 2)]
+		[TestCase(5, 1)]
+		public void ConsumeSteps(int pCurrIndex, int pCount) {
+			var types = new List<Type>();
+			Type currType = typeof(FabArtifact);
+			Type newType = typeof(FabFactor);
 
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(typeof(FabArtifact), typeof(FabArtifact), true)]
-		[TestCase(typeof(FabArtifact), typeof(FabApp), true)]
-		[TestCase(typeof(FabApp), typeof(FabArtifact), false)]
-		[TestCase(typeof(FabArtifact), typeof(FabFactor), false)]
-		[TestCase(typeof(FabVertex), typeof(FabArtifact), true)]
-		[TestCase(typeof(FabVertex), typeof(FabFactor), true)]
-		[TestCase(typeof(FabClass), typeof(FabApp), false)]
-		public void IsSameTypeOrSubclass(Type pBase, Type pSub, bool pExpectResult) {
-			bool result = TravPath.IsSameTypeOrSubclass(pBase, pSub);
-			Assert.AreEqual(pExpectResult, result, "Incorrect result.");
-		}
+			vMockData.SetupGet(x => x.Items).Returns(GetMockItems(6));
+			vMockData.SetupGet(x => x.CurrIndex).Returns(pCurrIndex);
+			vMockData.SetupGet(x => x.CurrType).Returns(currType);
+			vMockData.SetupGet(x => x.Types).Returns(types);
+			vMockData.Setup(x => x.UpdateCurrentType(newType));
+			vMockData.Setup(x => x.IncrementCurrentIndex(pCount));
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void AddScriptAndAddParamsAndBuildQuery() {
-			const string scriptA = ".test";
-			const string scriptB = ".this";
-			const string param0 = "_P0";
-			const string param0Val = "now";
-			const string scriptC = ".path("+param0+")";
-			const string script = "g.V"+scriptA+scriptB+scriptC+";";
-
-			var tp = new TravPath("");
-			
-			tp.AddScript(scriptA);
-			tp.AddScript(scriptB);
-			tp.AddParam(param0Val);
-			tp.AddScript(scriptC);
-
-			IWeaverQuery result = tp.BuildQuery();
+			var tp = new TravPath(vMockData.Object);
+			IList<ITravPathItem> result = tp.ConsumeSteps(pCount, newType);
 
 			Assert.NotNull(result, "Result should be filled.");
-			Assert.AreEqual(script, result.Script, "Incorrect script.");
-			Assert.NotNull(result.Params, "Params should be filled.");
-			Assert.AreEqual(1, result.Params.Count, "Incorrect Params count.");
-			Assert.AreEqual(param0Val, result.Params[param0].RawText, "Incorrect Param[0] RawText.");
+			Assert.AreEqual(pCount, result.Count, "Incorrect result count.");
+			CheckItemList(result, pCurrIndex);
+
+			Assert.AreEqual(pCount, types.Count, "Incorrect types.count.");
+
+			foreach ( Type type in types ) {
+				Assert.AreEqual(currType, type, "Incorrect types list.");
+			}
+
+			vMockData.Verify(x => x.UpdateCurrentType(newType), Times.Once);
+			vMockData.Verify(x => x.IncrementCurrentIndex(pCount), Times.Once);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void AddAliasAndHasAlias() {
-			const string aliasA = "a";
-			const string aliasB = "B";
+		public void AddScript() {
+			const string script = "My script";
+			vMockData.Setup(x => x.AddScript(script));
 
-			var tp = new TravPath("");
-			tp.AddAlias(aliasA);
-			tp.AddAlias(aliasB);
+			var tp = new TravPath(vMockData.Object);
+			tp.AddScript(script);
 
-			bool resultA = tp.HasAlias(aliasA);
-			bool resultB = tp.HasAlias(aliasB);
-			bool resultC = tp.HasAlias("C");
+			vMockData.Verify(x => x.AddScript(script), Times.Once);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddParam() {
+			object param = "My script";
+			const string paramName = "_P0";
+			vMockData.Setup(x => x.AddParam(param)).Returns(paramName);
 
-			Assert.True(resultA, "Incorrect resultA.");
-			Assert.True(resultB, "Incorrect resultB.");
-			Assert.False(resultC, "Incorrect resultC.");
+			var tp = new TravPath(vMockData.Object);
+			string result = tp.AddParam(param);
+
+			Assert.AreEqual(paramName, result, "Incorrect result.");
+			vMockData.Verify(x => x.AddParam(param), Times.Once);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void AddAlias() {
+			const string alias = "a";
+			const int currIndex = 123;
+			var aliases = new Dictionary<string, int>();
+
+			vMockData.SetupGet(x => x.CurrIndex).Returns(currIndex);
+			vMockData.SetupGet(x => x.Aliases).Returns(aliases);
+
+			var tp = new TravPath(vMockData.Object);
+			tp.AddAlias(alias);
+
+			Assert.AreEqual(1, aliases.Keys.Count, "Incorrect alias keys count.");
+			Assert.AreEqual(currIndex, aliases[alias], "Incorrect alias index.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(0, 1, true)]
-		[TestCase(0, 2, false)]
-		[TestCase(3, 1, true)]
-		[TestCase(3, 0, false)]
-		[TestCase(3, 2, false)]
-		public void AddAliasAndConsumeStepsAndDoesBackTouchAs(
-													int pConsumeA, int pConsumeB, bool pExpectResult) {
-			const string aliasA = "a";
+		[Test]
+		public void AddBackToAlias() {
+			const string alias = "a";
+			const int asIndex = 1;
+			const int currIndex = 4;
+			Type asType = typeof(FabFactor);
 
-			var tp = new TravPath(RawPath6);
-			tp.ConsumeSteps(pConsumeA, typeof(FabFactor));
-			tp.AddAlias(aliasA);
-			tp.ConsumeSteps(pConsumeB, typeof(FabFactor));
-			bool result = tp.DoesBackTouchAs(aliasA);
+			var types = new List<Type>(new[] { null, asType });
+
+			var backs = new Dictionary<string, int>();
+
+			var aliases = new Dictionary<string, int>();
+			aliases.Add(alias, asIndex);
+			
+			vMockData.SetupGet(x => x.CurrIndex).Returns(currIndex);
+			vMockData.SetupGet(x => x.Aliases).Returns(aliases);
+			vMockData.SetupGet(x => x.Backs).Returns(backs);
+			vMockData.SetupGet(x => x.Types).Returns(types);
+			vMockData.Setup(x => x.UpdateCurrentType(asType));
+
+			var tp = new TravPath(vMockData.Object);
+			tp.AddBackToAlias(alias);
+
+			Assert.AreEqual(1, backs.Keys.Count, "Incorrect back keys count.");
+			Assert.AreEqual(currIndex, backs[alias], "Incorrect back index.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase("a", true)]
+		[TestCase("b", false)]
+		public void HasAlias(string pTryAlias, bool pExpectResult) {
+			var aliases = new Dictionary<string, int>();
+			aliases.Add("a", 0);
+
+			vMockData.SetupGet(x => x.Aliases).Returns(aliases);
+
+			var tp = new TravPath(vMockData.Object);
+			bool result = tp.HasAlias(pTryAlias);
 
 			Assert.AreEqual(pExpectResult, result, "Incorrect result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void AddAliasAndConsumeStepsAndAddBackToAliasAndGetCurrentType() {
-			const string aliasA = "a";
+		[TestCase(5, false)]
+		[TestCase(6, true)]
+		[TestCase(7, false)]
+		public void DoesBackTouchAs(int pCurrIndex, bool pExpectResult) {
+			const string alias = "a";
 
-			var tp = new TravPath(RawPath6);
-			tp.ConsumeSteps(2, typeof(FabFactor));
-			tp.AddAlias(aliasA);
-			tp.ConsumeSteps(2, typeof(FabApp));
-			tp.AddBackToAlias(aliasA);
-			Type result = tp.GetCurrentType();
+			var aliases = new Dictionary<string, int>();
+			aliases.Add(alias, 5);
 
-			Assert.AreEqual(typeof(FabFactor), result, "Incorrect result.");
+			vMockData.SetupGet(x => x.CurrIndex).Returns(pCurrIndex);
+			vMockData.SetupGet(x => x.Aliases).Returns(aliases);
+
+			var tp = new TravPath(vMockData.Object);
+			bool result = tp.DoesBackTouchAs(alias);
+
+			Assert.AreEqual(pExpectResult, result, "Incorrect result.");
 		}
+
+		/*--------------------------------------------------------------------------------------------* /
+		[TestCase(...)]
+		public void AllowBackToAlias(...) {} //TODO: TTravPath.AllowBackToAlias()
+		*/
 
 	}
 

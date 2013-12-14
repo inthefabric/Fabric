@@ -1,168 +1,116 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Broadcast;
-using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public class TravPath : ITravPath {
 
-		//private static readonly Logger Log = Logger.Build<TravPath>();
-
-		public long? MemberId { get; private set; }
-
-		private readonly string vRawText;
-		private readonly List<ITravPathItem> vItems;
-		private readonly IWeaverQuery vQuery;
-		private readonly IDictionary<string, int> vAliases;
-		private readonly IDictionary<string, int> vBacks;
-		private readonly IList<Type> vTypes;
-
-		private int vCurrIndex;
-		private Type vCurrType;
-		private string vScript;
+		private readonly ITravPathData vData;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TravPath(string pRawText, long? pMemberId=null) {
-			vRawText = pRawText;
-			MemberId = pMemberId;
+		public TravPath(ITravPathData pData) {
+			vData = pData;
+		}
 
-			vItems = new List<ITravPathItem>();
-			vQuery = new WeaverQuery();
-			vAliases = new Dictionary<string, int>();
-			vBacks = new Dictionary<string, int>();
-
-			vCurrIndex = 0;
-			vCurrType = typeof(FabTravRoot);
-			vScript = "g.V";
-
-			vTypes = new List<Type> { vCurrType };
-
-			string p = vRawText.Replace("%20", " ").TrimEnd(new[] { '/' });
-			string[] parts = (p.Length > 0 ? p.Split('/') : new string[0]);
-
-			for ( int i = 0 ; i < parts.Length ; i++ ) {
-				vItems.Add(new TravPathItem(i, parts[i]));
-			}
+		/*--------------------------------------------------------------------------------------------*/
+		public long? MemberId {
+			get { return vData.MemberId; }
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<ITravPathItem> GetFirstSteps(int pCount) {
-			return vItems.GetRange(0, Math.Min(vItems.Count, pCount));
+			return vData.Items.GetRange(0, Math.Min(vData.Items.Count, pCount));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public ITravPathItem GetNextStep() {
-			return (vItems.Count <= vCurrIndex ? null : vItems[vCurrIndex]);
+			return (vData.Items.Count <= vData.CurrIndex ? null : vData.Items[vData.CurrIndex]);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<ITravPathItem> GetSteps(int pCount) {
-			return (vItems.Count < vCurrIndex+pCount ? null : vItems.GetRange(vCurrIndex, pCount));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public Type GetCurrentType() {
-			return vCurrType;
+			return (vData.Items.Count < vData.CurrIndex+pCount ? 
+				null : vData.Items.GetRange(vData.CurrIndex, pCount));
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public bool IsAcceptableType(Type pType, bool pRequiresExact) {
 			if ( pRequiresExact ) {
-				return (vCurrType == pType);
+				return (vData.CurrType == pType);
 			}
 
-			return IsSameTypeOrSubclass(pType, vCurrType);
+			return TravPathData.IsSameTypeOrSubclass(pType, vData.CurrType);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<ITravPathItem> ConsumeSteps(int pCount, Type pNewType) {
-			UpdateCurrentType(pNewType);
+			vData.UpdateCurrentType(pNewType);
 
-			List<ITravPathItem> list = vItems.GetRange(vCurrIndex, pCount);
-			vCurrIndex += pCount;
+			List<ITravPathItem> list = vData.Items.GetRange(vData.CurrIndex, pCount);
+			vData.IncrementCurrentIndex(pCount);
 
 			for ( int i = 0 ; i < pCount ; ++i ) {
-				vTypes.Add(vCurrType);
+				vData.Types.Add(vData.CurrType);
 			}
 
 			return list;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private void UpdateCurrentType(Type pNewType) {
-			if ( !IsSameTypeOrSubclass(pNewType, vCurrType) ) {
-				vCurrType = pNewType;
-			}
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public static bool IsSameTypeOrSubclass(Type pBaseType, Type pSubType) {
-			return (pBaseType == pSubType || pBaseType.IsAssignableFrom(pSubType));
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddScript(string pScript) {
-			vScript += pScript;
+			vData.AddScript(pScript);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public string AddParam(object pObject) {
-			return vQuery.AddParam(new WeaverQueryVal(pObject));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IWeaverQuery BuildQuery() {
-			vQuery.FinalizeQuery(vScript);
-			return vQuery;
+			return vData.AddParam(pObject);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddAlias(string pAlias) {
-			vAliases.Add(pAlias, vCurrIndex);
+			vData.Aliases.Add(pAlias, vData.CurrIndex);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddBackToAlias(string pAlias) {
 			//TODO: support duplicate Back alias usage
-			vBacks.Add(pAlias, vCurrIndex);
+			vData.Backs.Add(pAlias, vData.CurrIndex);
 
-			int aliasI = vAliases[pAlias];
-			UpdateCurrentType(vTypes[aliasI]);
+			int aliasI = vData.Aliases[pAlias];
+			vData.UpdateCurrentType(vData.Types[aliasI]);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public bool HasAlias(string pAlias) {
-			return vAliases.ContainsKey(pAlias);
+			return vData.Aliases.ContainsKey(pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public bool DoesBackTouchAs(string pAlias) {
-			return (vAliases[pAlias] == vCurrIndex-1);
+			return (vData.Aliases[pAlias] == vData.CurrIndex-1);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public bool AllowBackToAlias(string pAlias, out string pConflictingAlias) {
-			int targetAliasI = vAliases[pAlias];
+			int targetAliasI = vData.Aliases[pAlias];
 
 			//Do not allow scenarios where the target "As" alias is between a previous "As"/"Back" pair
 			//a.b.As(B).c.d.Back(B).c2.d2.As(D).e.f.Back(D) //OKAY
 			//a.b.As(B).c.d.As(D).e.f.Back(D).e2.f2.Back(B) //OKAY
 			//a.b.As(B).c.d.As(D).e.f.Back(B).c2.d2.Back(D) //BAD
 
-			foreach ( KeyValuePair<string, int> pair in vBacks ) {
+			foreach ( KeyValuePair<string, int> pair in vData.Backs ) {
 				int backI = pair.Value;
-				int checkAliasI = vAliases[pair.Key];
+				int checkAliasI = vData.Aliases[pair.Key];
 
 				if ( backI > targetAliasI && checkAliasI < targetAliasI ) {
 					pConflictingAlias = pair.Key;

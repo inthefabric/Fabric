@@ -91,7 +91,7 @@ namespace Fabric.New.Operations.Traversal.Util {
 				return false;
 			}
 
-			if ( !TravPath.IsSameTypeOrSubclass(pStep.FromType, pFromType) ) {
+			if ( !TravPathData.IsSameTypeOrSubclass(pStep.FromType, pFromType) ) {
 				return false;
 			}
 
@@ -110,11 +110,11 @@ namespace Fabric.New.Operations.Traversal.Util {
 
 			Type tt = pStep.ToType;
 
-			if ( TravPath.IsSameTypeOrSubclass(typeof(FabTravTypedRoot), pFromType) ) {
+			if ( TravPathData.IsSameTypeOrSubclass(typeof(FabTravTypedRoot), pFromType) ) {
 				return FabTravTypedRoot.BaseTypeMap[pFromType];
 			}
-			
-			if ( TravPath.IsSameTypeOrSubclass(tt, pFromType) ) {
+
+			if ( TravPathData.IsSameTypeOrSubclass(tt, pFromType) ) {
 				return pFromType;
 			}
 

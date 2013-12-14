@@ -57,6 +57,8 @@
     <Compile Include="Unit\Operations\Create\TCreateOperationTasksEdge.cs" />
     <Compile Include="Unit\Operations\Create\TCreateOperationTasksVertex.cs" />
     <Compile Include="Unit\Operations\Create\TCreateOperationTasksDuplicate.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravPathData.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravPath.cs" />
     <Compile Include="Unit\Operations\Traversal\Routing\TTravPathItem.cs" />
     <Compile Include="Unit\Operations\Traversal\Routing\TTravRule.cs" />
     <Compile Include="Unit\Operations\Traversal\Routing\TTravStepParam.cs" />

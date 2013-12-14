@@ -14,9 +14,8 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TraversalOperation : ITraversalOperation {
 
-		//private static readonly Logger Log = Logger.Build<TraversalOperation>();
-
 		private IOperationContext vOpCtx;
+		private ITravPathData vPathData;
 		private ITravPath vPath;
 
 
@@ -25,12 +24,13 @@ namespace Fabric.New.Operations.Traversal {
 		public void Perform(IOperationContext pOpCtx, string pPath) {
 			vOpCtx = pOpCtx;
 
-			vPath = new TravPath(pPath, vOpCtx.Auth.ActiveMemberId);
+			vPathData = new TravPathData(pPath, vOpCtx.Auth.ActiveMemberId);
+			vPath = new TravPath(vPathData);
 
 			ITravPathItem tps = vPath.GetNextStep();
 
 			while ( tps != null ) {
-				IList<ITravRule> rules = TraversalUtil.GetTravRules(vPath.GetCurrentType());
+				IList<ITravRule> rules = TraversalUtil.GetTravRules(vPathData.CurrType);
 				ITravRule rule = null;
 
 				foreach ( ITravRule r in rules ) {
@@ -52,8 +52,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<FabElement> GetResult() {
-			IWeaverQuery q = vPath.BuildQuery();
-			//Log.Debug(DataUtil.WeaverQueryToJson(q));
+			IWeaverQuery q = vPathData.BuildQuery();
 			string qid = "Trav"+string.Join("", vPath.GetFirstSteps(2).Select(x => "-"+x.Command));
 
 			IList<IDataDto> verts = vOpCtx.Data.Execute(q, qid).ToDtoList();
@@ -62,7 +61,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public IList<FabTravStep> GetResultSteps() {
-			return TraversalUtil.GetFabTravSteps(vPath.GetCurrentType());
+			return TraversalUtil.GetFabTravSteps(vPathData.CurrType);
 		}
 
 	}
