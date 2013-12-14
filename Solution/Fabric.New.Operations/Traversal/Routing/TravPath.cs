@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Infrastructure.Broadcast;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Operations.Traversal.Routing {
@@ -47,12 +48,6 @@ namespace Fabric.New.Operations.Traversal.Routing {
 			for ( int i = 0 ; i < parts.Length ; i++ ) {
 				vItems.Add(new TravPathItem(i, parts[i]));
 			}
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public IWeaverQuery BuildQuery() {
-			vQuery.FinalizeQuery(vScript);
-			return vQuery;
 		}
 
 
@@ -122,6 +117,12 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		/*--------------------------------------------------------------------------------------------*/
 		public string AddParam(object pObject) {
 			return vQuery.AddParam(new WeaverQueryVal(pObject));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public IWeaverQuery BuildQuery() {
+			vQuery.FinalizeQuery(vScript);
+			return vQuery;
 		}
 
 
