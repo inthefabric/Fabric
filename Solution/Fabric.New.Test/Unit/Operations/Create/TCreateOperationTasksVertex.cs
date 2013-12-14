@@ -20,7 +20,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		private static readonly Logger Log = Logger.Build<TCreateOperationTasksVertex>();
 		private const string Prefix = "_P";
 
-		private Mock<ICreateOperationContext> vMockCreCtx;
+		private Mock<ICreateOperationBuilder> vMockBuild;
 		private CreateOperationTasks vTasks;
 
 
@@ -28,7 +28,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockCreCtx = new Mock<ICreateOperationContext>();
+			vMockBuild = new Mock<ICreateOperationBuilder>();
 			vTasks = new CreateOperationTasks();
 		}
 
@@ -43,14 +43,14 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestAddVertex(
-							Action<ICreateOperationContext> pAdd, string[] pProps, object[] pParams) {
+							Action<ICreateOperationBuilder> pAdd, string[] pProps, object[] pParams) {
 			string script = "a=g.addVertex(["+String.Join(",", pProps.Select(x => x+":"+Prefix))+"]);";
 			const string cmdId = "1234";
 			const bool cache = true;
 			const bool omit = false;
 			const bool cond = false;
 
-			vMockCreCtx
+			vMockBuild
 				.Setup(x => x.AddQuery(It.IsAny<IWeaverQuery>(), cache, null))
 				.Callback((IWeaverQuery q, bool c, string a) => {
 					TestUtil.LogWeaverScript(Log, q);
@@ -59,17 +59,17 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 					TestUtil.CheckParams(q.Params, Prefix, pParams);
 				});
 
-			vMockCreCtx
+			vMockBuild
 				.Setup(x => x.SetupLatestCommand(omit, cond))
 				.Returns(cmdId);
 
-			pAdd(vMockCreCtx.Object);
+			pAdd(vMockBuild.Object);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.AddQuery(
 				It.IsAny<IWeaverQuery>(), It.IsAny<bool>(), It.IsAny<string>()), Times.Once);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.SetupLatestCommand(It.IsAny<bool>(), It.IsAny<bool>()), Times.Once);
 		}
 

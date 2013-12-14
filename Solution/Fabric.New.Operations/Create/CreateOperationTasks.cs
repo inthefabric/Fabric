@@ -15,17 +15,17 @@ namespace Fabric.New.Operations.Create {
 		//// Find Duplicate
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void FindDuplicateAppNameKey(ICreateOperationContext pCreCtx, App pNewDom) {
+		public virtual void FindDuplicateAppNameKey(ICreateOperationBuilder pCreCtx, App pNewDom) {
 			FindDuplicate<App>(pCreCtx, x => x.NameKey, pNewDom.NameKey, "Name");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void FindDuplicateUrlFullPath(ICreateOperationContext pCreCtx, Url pNewDom) {
+		public virtual void FindDuplicateUrlFullPath(ICreateOperationBuilder pCreCtx, Url pNewDom) {
 			FindDuplicate<Url>(pCreCtx, x => x.FullPath, pNewDom.FullPath, "FullPath");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void FindDuplicateUserNameKey(ICreateOperationContext pCreCtx, User pNewDom) {
+		public virtual void FindDuplicateUserNameKey(ICreateOperationBuilder pCreCtx, User pNewDom) {
 			FindDuplicate<User>(pCreCtx, x => x.NameKey, pNewDom.NameKey, "Name");
 		}
 
@@ -33,55 +33,55 @@ namespace Fabric.New.Operations.Create {
 		//// Add Vertex
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddApp(ICreateOperationContext pCreCtx,
+		public virtual void AddApp(ICreateOperationBuilder pCreCtx,
 										App pNewDom, out IWeaverVarAlias<App> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddClass(ICreateOperationContext pCreCtx,
+		public virtual void AddClass(ICreateOperationBuilder pCreCtx,
 										Class pNewDom, out IWeaverVarAlias<Class> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddEmail(ICreateOperationContext pCreCtx,
+		public virtual void AddEmail(ICreateOperationBuilder pCreCtx,
 										Email pNewDom, out IWeaverVarAlias<Email> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactor(ICreateOperationContext pCreCtx,
+		public virtual void AddFactor(ICreateOperationBuilder pCreCtx,
 										Factor pNewDom, out IWeaverVarAlias<Factor> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddInstance(ICreateOperationContext pCreCtx,
+		public virtual void AddInstance(ICreateOperationBuilder pCreCtx,
 										Instance pNewDom, out IWeaverVarAlias<Instance> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddMember(ICreateOperationContext pCreCtx,
+		public virtual void AddMember(ICreateOperationBuilder pCreCtx,
 										Member pNewDom, out IWeaverVarAlias<Member> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddOauthAccess(ICreateOperationContext pCreCtx,
+		public virtual void AddOauthAccess(ICreateOperationBuilder pCreCtx,
 										OauthAccess pNewDom, out IWeaverVarAlias<OauthAccess> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddUrl(ICreateOperationContext pCreCtx,
+		public virtual void AddUrl(ICreateOperationBuilder pCreCtx,
 										Url pNewDom, out IWeaverVarAlias<Url> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddUser(ICreateOperationContext pCreCtx,
+		public virtual void AddUser(ICreateOperationBuilder pCreCtx,
 										User pNewDom, out IWeaverVarAlias<User> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
@@ -90,7 +90,7 @@ namespace Fabric.New.Operations.Create {
 		//// Add Edge
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddArtifactCreatedByMember(ICreateOperationContext pCreCtx,
+		public virtual void AddArtifactCreatedByMember(ICreateOperationBuilder pCreCtx,
 				Artifact pNewDom, CreateFabArtifact pNewCre, IWeaverVarAlias<Artifact> pAlias) {
 			var a =	AddEdge<Artifact, ArtifactCreatedByMember, Member>(
 				pCreCtx, pAlias, pNewCre.CreatedByMemberId);
@@ -103,7 +103,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddEmailUsedByArtifact(ICreateOperationContext pCreCtx,
+		public virtual void AddEmailUsedByArtifact(ICreateOperationBuilder pCreCtx,
 				Email pNewDom, CreateFabEmail pNewCre, IWeaverVarAlias<Email> pAlias) {
 			var a =	AddEdge<Email, EmailUsedByArtifact, Artifact>(
 				pCreCtx, pAlias, pNewCre.UsedByArtifactId);
@@ -114,7 +114,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactorCreatedByMember(ICreateOperationContext pCreCtx,
+		public virtual void AddFactorCreatedByMember(ICreateOperationBuilder pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
 			var a =	AddEdge<Factor, FactorCreatedByMember, Member>(
 				pCreCtx, pAlias, pNewCre.CreatedByMemberId);
@@ -129,7 +129,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactorDescriptorRefinesPrimaryWithArtifact(ICreateOperationContext pCreCtx,
+		public virtual void AddFactorDescriptorRefinesPrimaryWithArtifact(ICreateOperationBuilder pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
 			if ( pNewCre.Descriptor == null ) {
 				return;
@@ -140,7 +140,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactorDescriptorRefinesRelatedWithArtifact(ICreateOperationContext pCreCtx,
+		public virtual void AddFactorDescriptorRefinesRelatedWithArtifact(ICreateOperationBuilder pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
 			if ( pNewCre.Descriptor == null ) {
 				return;
@@ -151,7 +151,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactorDescriptorRefinesTypeWithArtifact(ICreateOperationContext pCreCtx,
+		public virtual void AddFactorDescriptorRefinesTypeWithArtifact(ICreateOperationBuilder pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
 			if ( pNewCre.Descriptor == null ) {
 				return;
@@ -162,7 +162,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactorUsesPrimaryArtifact(ICreateOperationContext pCreCtx,
+		public virtual void AddFactorUsesPrimaryArtifact(ICreateOperationBuilder pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
 			var a =	AddEdge<Factor, FactorUsesPrimaryArtifact, Artifact>(
 				pCreCtx, pAlias, pNewCre.UsesPrimaryArtifactId);
@@ -176,7 +176,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactorUsesRelatedArtifact(ICreateOperationContext pCreCtx,
+		public virtual void AddFactorUsesRelatedArtifact(ICreateOperationBuilder pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
 			var a =	AddEdge<Factor, FactorUsesRelatedArtifact, Artifact>(
 				pCreCtx, pAlias, pNewCre.UsesRelatedArtifactId);
@@ -190,7 +190,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddFactorVectorUsesAxisArtifact(ICreateOperationContext pCreCtx,
+		public virtual void AddFactorVectorUsesAxisArtifact(ICreateOperationBuilder pCreCtx,
 				Factor pNewDom, CreateFabFactor pNewCre, IWeaverVarAlias<Factor> pAlias) {
 			if ( pNewCre.Vector == null ) {
 				return;
@@ -201,7 +201,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddMemberDefinedByApp(ICreateOperationContext pCreCtx,
+		public virtual void AddMemberDefinedByApp(ICreateOperationBuilder pCreCtx,
 				Member pNewDom, CreateFabMember pNewCre, IWeaverVarAlias<Member> pAlias) {
 			var a =	AddEdge<Member, MemberDefinedByApp, App>(
 				pCreCtx, pAlias, pNewCre.DefinedByAppId);
@@ -215,7 +215,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddMemberDefinedByUser(ICreateOperationContext pCreCtx,
+		public virtual void AddMemberDefinedByUser(ICreateOperationBuilder pCreCtx,
 				Member pNewDom, CreateFabMember pNewCre, IWeaverVarAlias<Member> pAlias) {
 			var a =	AddEdge<Member, MemberDefinedByUser, User>(
 				pCreCtx, pAlias, pNewCre.DefinedByUserId);
@@ -229,7 +229,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void AddOauthAccessAuthenticatesMember(ICreateOperationContext pCreCtx,
+		public virtual void AddOauthAccessAuthenticatesMember(ICreateOperationBuilder pCreCtx,
 				OauthAccess pNewDom, CreateFabOauthAccess pNewCre, IWeaverVarAlias<OauthAccess> pAlias) {
 			var a =	AddEdge<OauthAccess, OauthAccessAuthenticatesMember, Member>(
 				pCreCtx, pAlias, pNewCre.AuthenticatesMemberId);

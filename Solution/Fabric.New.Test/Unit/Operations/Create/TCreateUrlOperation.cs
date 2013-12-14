@@ -1,99 +1,48 @@
-﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
+﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
+using Moq;
 using NUnit.Framework;
+using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateUrlOperation :
-							TCreateArtifactOperation<Url, FabUrl, CreateFabUrl, CreateUrlOperation> {
-
-		private static readonly Logger Log = Logger.Build<TCreateUrlOperation>();
-
-		private const int GetDuplicateCmdI = 1;
+	public class TCreateUrlOperation :TCreateOperationBase<
+														Url, FabUrl, CreateFabUrl, CreateUrlOperation> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void SetUpInner() {
-			base.SetUpInner();
+		protected override void ExecuteSetup(CreateFabUrl pCre) {
+			pCre.Name = "Test Name";
+			pCre.FullPath = "http://test.FullPath.com";
 
-			vCreateObj.Name = "My Name";
-			vCreateObj.FullPath = "http://My.FullPath.com/test";
+			ICreateOperationBuilder build = MockBuild.Object;
+			IWeaverVarAlias<Url> alias = new WeaverVarAlias<Url>("test");
 
-			SetupAddVertexResultAt(2);
+			MockTasks
+				.Setup(x => x.FindDuplicateUrlFullPath(build, ItIsVert<Url>(VertId)))
+				.Callback(CheckCallIndex("FindDuplicateUrlFullPath"));
+			
+			MockTasks
+				.Setup(x => x.AddUrl(build, ItIsVert<Url>(VertId), out alias))
+				.Callback(CheckCallIndex("AddUrl"));
+			
+			MockTasks
+				.Setup(x => x.AddArtifactCreatedByMember(
+					build,
+					ItIsVert<Url>(VertId), 
+					It.Is<CreateFabUrl>(c => c.CreatedByMemberId == MemId),
+					It.Is<IWeaverVarAlias<Artifact>>(a => a.Name == alias.Name)
+				))
+				.Callback(CheckCallIndex("AddArtifactCreatedByMember"));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pCondCmdId) {
-			var uniqueFullPath = AddCommand("uniqueFullPath", new MockDataAccessCmd {
-				ConditionCmdId = pCondCmdId,
-				Script = "unq=g.V('"+DbName.Vert.Url.FullPath+"',_P);unq?0:1;",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.FullPath.ToLower()
-				}),
-				Cache = true
-			});
-
-
-			pCondCmdId = uniqueFullPath.CommandId;
-
-			AddCommand("addUrl", new MockDataAccessCmd {
-				ConditionCmdId = pCondCmdId,
-				Script = 
-					"a=g.addVertex(["+
-						DbName.Vert.Url.Name+":_P,"+
-						DbName.Vert.Url.FullPath+":_P,"+
-						DbName.Vert.Vertex.VertexId+":_P,"+
-						DbName.Vert.Vertex.Timestamp+":_P,"+
-						DbName.Vert.Vertex.VertexType+":_P"+
-					"]);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.Name,
-					vCreateObj.FullPath.ToLower(),
-					vExpectDomResult.VertexId,
-					vExpectDomResult.Timestamp,
-					(byte)VertexType.Id.Url
-				}),
-				Cache = true
-			});
-
-			return base.SetupCommands(pCondCmdId);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override Logger GetLogger() {
-			return Log;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override bool IsInternalGetResult() {
+		protected override bool HasInternalResult() {
 			return false;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override VertexType.Id GetVertexTypeId() {
-			return VertexType.Id.Url;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ExecuteFailDuplicate() {
-			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(GetDuplicateCmdI, 0)).Returns(1);
-			CreateUrlOperation c = BuildCreateVerify();
-			TestUtil.Throws<FabDuplicateFault>(() => c.Execute());
 		}
 
 	}

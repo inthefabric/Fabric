@@ -24,12 +24,12 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void CheckForDuplicates() {
-			Tasks.FindDuplicateAppNameKey(CreCtx, NewDom);
+			Tasks.FindDuplicateAppNameKey(Build, NewDom);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<App> pAlias) {
-			Tasks.AddApp(CreCtx, NewDom, out pAlias);
+			Tasks.AddApp(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -55,7 +55,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void AddArtifactEdges(IWeaverVarAlias<Artifact> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
-			Tasks.AddArtifactCreatedByMember(CreCtx, NewDom, NewCre, pAlias);
+			Tasks.AddArtifactCreatedByMember(Build, NewDom, NewCre, pAlias);
 		}
 
 	}
@@ -80,12 +80,12 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AfterSessionStart() {
-			CreateOperationsCustom.ClassAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+			CreateOperationsCustom.ClassAfterSessionStart(Tasks, Build, NewDom, NewCre);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<Class> pAlias) {
-			Tasks.AddClass(CreCtx, NewDom, out pAlias);
+			Tasks.AddClass(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -115,7 +115,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<Email> pAlias) {
-			Tasks.AddEmail(CreCtx, NewDom, out pAlias);
+			Tasks.AddEmail(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -126,7 +126,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddEmailEdges(IWeaverVarAlias<Email> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
-			Tasks.AddEmailUsedByArtifact(CreCtx, NewDom, NewCre, pAlias);
+			Tasks.AddEmailUsedByArtifact(Build, NewDom, NewCre, pAlias);
 		}
 
 	}
@@ -151,12 +151,12 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AfterSessionStart() {
-			CreateOperationsCustom.FactorAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+			CreateOperationsCustom.FactorAfterSessionStart(Tasks, Build, NewDom, NewCre);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<Factor> pAlias) {
-			Tasks.AddFactor(CreCtx, NewDom, out pAlias);
+			Tasks.AddFactor(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -167,13 +167,13 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddFactorEdges(IWeaverVarAlias<Factor> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
-			Tasks.AddFactorCreatedByMember(CreCtx, NewDom, NewCre, pAlias);
-			Tasks.AddFactorDescriptorRefinesPrimaryWithArtifact(CreCtx, NewDom, NewCre, pAlias);
-			Tasks.AddFactorDescriptorRefinesRelatedWithArtifact(CreCtx, NewDom, NewCre, pAlias);
-			Tasks.AddFactorDescriptorRefinesTypeWithArtifact(CreCtx, NewDom, NewCre, pAlias);
-			Tasks.AddFactorUsesPrimaryArtifact(CreCtx, NewDom, NewCre, pAlias);
-			Tasks.AddFactorUsesRelatedArtifact(CreCtx, NewDom, NewCre, pAlias);
-			Tasks.AddFactorVectorUsesAxisArtifact(CreCtx, NewDom, NewCre, pAlias);
+			Tasks.AddFactorCreatedByMember(Build, NewDom, NewCre, pAlias);
+			Tasks.AddFactorDescriptorRefinesPrimaryWithArtifact(Build, NewDom, NewCre, pAlias);
+			Tasks.AddFactorDescriptorRefinesRelatedWithArtifact(Build, NewDom, NewCre, pAlias);
+			Tasks.AddFactorDescriptorRefinesTypeWithArtifact(Build, NewDom, NewCre, pAlias);
+			Tasks.AddFactorUsesPrimaryArtifact(Build, NewDom, NewCre, pAlias);
+			Tasks.AddFactorUsesRelatedArtifact(Build, NewDom, NewCre, pAlias);
+			Tasks.AddFactorVectorUsesAxisArtifact(Build, NewDom, NewCre, pAlias);
 		}
 
 	}
@@ -198,12 +198,12 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AfterSessionStart() {
-			CreateOperationsCustom.InstanceAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+			CreateOperationsCustom.InstanceAfterSessionStart(Tasks, Build, NewDom, NewCre);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<Instance> pAlias) {
-			Tasks.AddInstance(CreCtx, NewDom, out pAlias);
+			Tasks.AddInstance(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -238,12 +238,12 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AfterSessionStart() {
-			CreateOperationsCustom.MemberAfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+			CreateOperationsCustom.MemberAfterSessionStart(Tasks, Build, NewDom, NewCre);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<Member> pAlias) {
-			Tasks.AddMember(CreCtx, NewDom, out pAlias);
+			Tasks.AddMember(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -254,8 +254,8 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddMemberEdges(IWeaverVarAlias<Member> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
-			Tasks.AddMemberDefinedByApp(CreCtx, NewDom, NewCre, pAlias);
-			Tasks.AddMemberDefinedByUser(CreCtx, NewDom, NewCre, pAlias);
+			Tasks.AddMemberDefinedByApp(Build, NewDom, NewCre, pAlias);
+			Tasks.AddMemberDefinedByUser(Build, NewDom, NewCre, pAlias);
 		}
 
 	}
@@ -275,7 +275,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<OauthAccess> pAlias) {
-			Tasks.AddOauthAccess(CreCtx, NewDom, out pAlias);
+			Tasks.AddOauthAccess(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -286,7 +286,7 @@ namespace Fabric.New.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void AddOauthAccessEdges(IWeaverVarAlias<OauthAccess> pAlias) {
 			AddVertexEdges(new WeaverVarAlias<Vertex>(pAlias.Name));
-			Tasks.AddOauthAccessAuthenticatesMember(CreCtx, NewDom, NewCre, pAlias);
+			Tasks.AddOauthAccessAuthenticatesMember(Build, NewDom, NewCre, pAlias);
 		}
 
 	}
@@ -311,12 +311,12 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void CheckForDuplicates() {
-			Tasks.FindDuplicateUrlFullPath(CreCtx, NewDom);
+			Tasks.FindDuplicateUrlFullPath(Build, NewDom);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<Url> pAlias) {
-			Tasks.AddUrl(CreCtx, NewDom, out pAlias);
+			Tasks.AddUrl(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -346,12 +346,12 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void CheckForDuplicates() {
-			Tasks.FindDuplicateUserNameKey(CreCtx, NewDom);
+			Tasks.FindDuplicateUserNameKey(Build, NewDom);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<User> pAlias) {
-			Tasks.AddUser(CreCtx, NewDom, out pAlias);
+			Tasks.AddUser(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

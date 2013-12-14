@@ -27,9 +27,13 @@ namespace Fabric.New.Api.Executors {
 			}
 
 			var o = new TOp();
-			o.Create(ApiReq.OpCtx, new CreateOperationTasks(), json);
-			o.Execute();
-			return new List<TApi> { o.GetResult() };
+
+			TDom result = o.Execute(
+				ApiReq.OpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), json);
+			
+			return new List<TApi> {
+				o.ConvertResult(result)
+			};
 		}
 
 	}

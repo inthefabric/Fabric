@@ -26,7 +26,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		private const string VerifyVertVar = "vv";
 		private const string VerifyCmdId = "verif";
 
-		private Mock<ICreateOperationContext> vMockCreCtx;
+		private Mock<ICreateOperationBuilder> vMockBuild;
 		private CreateOperationTasks vTasks;
 		private Queue<Action<IWeaverQuery, bool, string>> vAddQueryCallbacks;
 		private Queue<Action<bool, bool>> vSetupLatestCallbacks;
@@ -37,7 +37,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockCreCtx = new Mock<ICreateOperationContext>();
+			vMockBuild = new Mock<ICreateOperationBuilder>();
 			vTasks = new CreateOperationTasks();
 			vAddQueryCallbacks = new Queue<Action<IWeaverQuery, bool, string>>();
 			vSetupLatestCallbacks = new Queue<Action<bool, bool>>();
@@ -78,7 +78,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			vSetupLatestReturns.Enqueue(VerifyCmdId);
 
-			vMockCreCtx
+			vMockBuild
 				.Setup(x => x.AddCheck(It.IsAny<IDataResultCheck>()))
 				.Callback((IDataResultCheck c) => {
 					Assert.AreEqual(VerifyCmdId, c.CommandId, "Incorrect DataResultCheck.CommandId.");
@@ -162,44 +162,44 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void ExecuteAddEdge(Action<ICreateOperationContext> pAdd, int pQueryCount) {
-			vMockCreCtx
+		private void ExecuteAddEdge(Action<ICreateOperationBuilder> pAdd, int pQueryCount) {
+			vMockBuild
 				.Setup(x => x.AddQuery(It.IsAny<IWeaverQuery>(), It.IsAny<bool>(), It.IsAny<string>()))
 				.Callback((IWeaverQuery q, bool c, string a) => vAddQueryCallbacks.Dequeue()(q, c, a));
 
-			vMockCreCtx
+			vMockBuild
 				.Setup(x => x.SetupLatestCommand(It.IsAny<bool>(), It.IsAny<bool>()))
 				.Callback((bool o, bool c) => vSetupLatestCallbacks.Dequeue()(o, c))
 				.Returns(() => vSetupLatestReturns.Dequeue());
 
-			pAdd(vMockCreCtx.Object);
+			pAdd(vMockBuild.Object);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.AddQuery(
 					It.IsAny<IWeaverQuery>(), It.IsAny<bool>(), It.IsAny<string>()),
 					Times.Exactly(pQueryCount)
 				);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.SetupLatestCommand(
 					It.IsAny<bool>(), It.IsAny<bool>()),
 					Times.Exactly(pQueryCount)
 				);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.AddCheck(It.IsAny<DataResultCheck>()), Times.Once);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestAddEdgeSingle(
-							Action<ICreateOperationContext> pAdd, long pToVertId, string pEdgeName) {
+							Action<ICreateOperationBuilder> pAdd, long pToVertId, string pEdgeName) {
 			SetupVerifyVertex(pToVertId);
 			SetupPrimaryEdge(pEdgeName);
 			ExecuteAddEdge(pAdd, 2);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestAddEdge(Action<ICreateOperationContext> pAdd, long pToVertId, 
+		private void TestAddEdge(Action<ICreateOperationBuilder> pAdd, long pToVertId, 
 							string pEdgeName0, string pEdgeName1, string[] pProps, object[] pParams) {
 			SetupVerifyVertex(pToVertId);
 			SetupPrimaryEdge(pEdgeName0);
@@ -208,17 +208,17 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void TestAddEdgeNull(Action<ICreateOperationContext> pAdd) {
-			pAdd(vMockCreCtx.Object);
+		private void TestAddEdgeNull(Action<ICreateOperationBuilder> pAdd) {
+			pAdd(vMockBuild.Object);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.AddQuery(
 					It.IsAny<IWeaverQuery>(), It.IsAny<bool>(), It.IsAny<string>()), Times.Never);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.SetupLatestCommand(It.IsAny<bool>(), It.IsAny<bool>()), Times.Never);
 
-			vMockCreCtx
+			vMockBuild
 				.Verify(x => x.AddCheck(It.IsAny<DataResultCheck>()), Times.Never);
 		}
 

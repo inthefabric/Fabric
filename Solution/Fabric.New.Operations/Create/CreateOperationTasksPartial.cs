@@ -14,7 +14,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddVertex<T>(ICreateOperationContext pCreCtx, T pVertex,
+		private static void AddVertex<T>(ICreateOperationBuilder pCreCtx, T pVertex,
 												out IWeaverVarAlias<T> pAlias) where T : Vertex, new() {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
 			q = WeaverQuery.StoreResultAsVar("a", q, out pAlias);
@@ -25,7 +25,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(ICreateOperationContext pCreCtx, 
+		private static IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(ICreateOperationBuilder pCreCtx, 
 													IWeaverVarAlias<TFrom> pFromVar, long pToVertexId)
 													where TFrom : IVertex, new()
 													where TTo : Vertex, new()
@@ -36,7 +36,7 @@ namespace Fabric.New.Operations.Create {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(ICreateOperationContext pCreCtx, 
+		private static IWeaverVarAlias<TTo> AddEdge<TFrom, TEdge, TTo>(ICreateOperationBuilder pCreCtx, 
 													IWeaverVarAlias<TFrom> pFromVar, long? pToVertexId)
 													where TFrom : IVertex, new()
 													where TTo : Vertex, new()
@@ -49,7 +49,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddReverseEdge<TFrom, TEdge, TTo>(ICreateOperationContext pCreCtx, 
+		private static void AddReverseEdge<TFrom, TEdge, TTo>(ICreateOperationBuilder pCreCtx, 
 							IWeaverVarAlias<TFrom> pFromVar, TEdge pEdge, IWeaverVarAlias<TTo> pToVar)
 															where TFrom : IVertex, new()
 															where TTo : IVertex, new()
@@ -62,7 +62,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static void FindDuplicate<T>(ICreateOperationContext pCreCtx,
+		private static void FindDuplicate<T>(ICreateOperationBuilder pCreCtx,
 								Expression<Func<T, object>> pProp, string pValue, string pErrPropName)
 								where T : IVertex, new() {
 			IWeaverVarAlias alias;
@@ -82,7 +82,7 @@ namespace Fabric.New.Operations.Create {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static IWeaverVarAlias<T> VerifyVertex<T>(ICreateOperationContext pCreCtx, 
+		private static IWeaverVarAlias<T> VerifyVertex<T>(ICreateOperationBuilder pCreCtx, 
 															long pVertexId) where T : Vertex, new() {
 			IWeaverVarAlias<T> alias;
 			const string var = "vv";
@@ -104,7 +104,7 @@ namespace Fabric.New.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static void AddEdge<TEdge>(ICreateOperationContext pCreCtx, IWeaverVarAlias pFromVar, 
+		private static void AddEdge<TEdge>(ICreateOperationBuilder pCreCtx, IWeaverVarAlias pFromVar, 
 										TEdge pEdge, IWeaverVarAlias pToVar) where TEdge : IWeaverEdge {
 
 			IWeaverQuery q = Weave.Inst.Graph.AddEdge(pFromVar, pEdge, pToVar);

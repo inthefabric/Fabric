@@ -61,8 +61,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Create\CreateOperationContext.cs" />
-    <Compile Include="Create\ICreateOperationContext.cs" />
+    <Compile Include="Create\CreateOperationBuilder.cs" />
+    <Compile Include="Create\ICreateOperationBuilder.cs" />
     <Compile Include="Create\CreateOperationTasksPartial.cs" />
     <Compile Include="Create\DataResultCheck.cs" />
     <Compile Include="Create\CreateOperationsCustom.cs" />

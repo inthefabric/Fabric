@@ -5,18 +5,16 @@ namespace Fabric.New.Operations.Create {
 
 
 	/*================================================================================================*/
-	public interface ICreateOperation<out TDom, out TApi> where TDom : Vertex where TApi : FabVertex {
+	public interface ICreateOperation<TDom, out TApi> where TDom : Vertex where TApi : FabVertex {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Create(IOperationContext pOpCtx, CreateOperationTasks pTasks, string pJson);
-		
-		/*--------------------------------------------------------------------------------------------*/
-		TDom Execute();
+		TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
+			CreateOperationTasks pTasks, string pJson);
 
 		/*--------------------------------------------------------------------------------------------*/
-		TApi GetResult();
+		TApi ConvertResult(TDom pDom);
 
 	}
 

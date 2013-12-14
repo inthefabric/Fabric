@@ -18,7 +18,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		private static readonly Logger Log = Logger.Build<TCreateOperationTasksDuplicate>();
 		private const string Prefix = "_P";
 
-		private Mock<ICreateOperationContext> vMockCreCtx;
+		private Mock<ICreateOperationBuilder> vMockBuild;
 		private CreateOperationTasks vTasks;
 
 
@@ -26,15 +26,15 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockCreCtx = new Mock<ICreateOperationContext>();
+			vMockBuild = new Mock<ICreateOperationBuilder>();
 			vTasks = new CreateOperationTasks();
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static void TestFindDuplicate(Mock<ICreateOperationContext> pMockCreCtx,
-													Action<ICreateOperationContext> pFind,
+		public static void TestFindDuplicate(Mock<ICreateOperationBuilder> pMockCreCtx,
+													Action<ICreateOperationBuilder> pFind,
 													string pScript, string pAppend, object[] pParams) {
 			const string cmdId = "1234";
 			const bool cache = true;
@@ -91,8 +91,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestFindDuplicate(
-								Action<ICreateOperationContext> pFind, string pProp, object[] pParams) {
-			TestFindDuplicate(vMockCreCtx, pFind, "unq=g.V('"+pProp+"',_P);", "unq?0:1;", pParams);
+								Action<ICreateOperationBuilder> pFind, string pProp, object[] pParams) {
+			TestFindDuplicate(vMockBuild, pFind, "unq=g.V('"+pProp+"',_P);", "unq?0:1;", pParams);
 		}
 
 

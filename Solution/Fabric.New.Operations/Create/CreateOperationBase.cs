@@ -15,10 +15,9 @@ namespace Fabric.New.Operations.Create {
 		protected TDom NewDom { get; private set; }
 		protected TCre NewCre { get; private set; }
 		protected IWeaverVarAlias<TDom> NewDomAlias { get; private set; }
-		protected ICreateOperationContext CreCtx { get; private set; }
+		protected ICreateOperationBuilder Build { get; private set; }
 
 		private IOperationContext vOpCtx { get; set; }
-		private TApi vNewApi { get; set; }
 		private string vCmdAddVertex { get; set; }
 		private IDataAccess vDataAcc { get; set; }
 		private IDataResult vDataRes { get; set; }
@@ -26,8 +25,10 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Create(IOperationContext pOpCtx, CreateOperationTasks pTasks, string pJson) {
+		public TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
+															CreateOperationTasks pTasks, string pJson) {
 			vOpCtx = pOpCtx;
+			Build = pBuild;
 			Tasks = pTasks;
 
 			NewCre = JsonSerializer.DeserializeFromString<TCre>(pJson);
@@ -39,17 +40,36 @@ namespace Fabric.New.Operations.Create {
 			NewDom.Timestamp = vOpCtx.UtcNow.Ticks;
 
 			vDataAcc = vOpCtx.Data.Build(null, true);
-			CreCtx = new CreateOperationContext(vDataAcc);
+			Build.SetDataAccess(vDataAcc);
 
 			////
 
-			vDataAcc.AddSessionStart();
-			CreCtx.SetupLatestCommand();
+			Build.StartSession();
 			AfterSessionStart();
 			CheckForDuplicates();
 			AddVertexBase();
 			AddEdges();
-			CreCtx.CommitAndCloseSession();
+			Build.CommitAndCloseSession();
+
+			////
+			
+			vDataRes = vDataAcc.Execute(GetType().Name);
+			Build.PerformChecks(vDataRes);
+
+			int addVertId = vDataRes.GetCommandIndexByCmdId(vCmdAddVertex);
+			return vDataRes.ToElementAt<TDom>(addVertId, 0);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public TApi ConvertResult(TDom pDom) {
+			var newApi = ToApi(pDom);
+
+			if ( newApi == null ) {
+				throw new NotSupportedException("Internal: no DomainToApi conversion for "+
+					typeof(TDom).Name+".");
+			}
+
+			return newApi;
 		}
 
 
@@ -99,29 +119,6 @@ namespace Fabric.New.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected abstract void AddEdges();
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public TDom Execute() {
-			vDataRes = vDataAcc.Execute(GetType().Name);
-			CreCtx.PerformChecks(vDataRes);
-
-			int addVertId = vDataRes.GetCommandIndexByCmdId(vCmdAddVertex);
-			NewDom = vDataRes.ToElementAt<TDom>(addVertId, 0);
-			vNewApi = ToApi(NewDom);
-			return NewDom;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public TApi GetResult() {
-			if ( vNewApi == null ) {
-				throw new NotSupportedException("Internal: no DomainToApi conversion for "+
-					typeof(TDom).Name+".");
-			}
-
-			return vNewApi;
-		}
 
 	}
 

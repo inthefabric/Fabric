@@ -1,96 +1,46 @@
-﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
+﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
+using Moq;
 using NUnit.Framework;
+using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateEmailOperation :
-						TCreateVertexOperation<Email, FabVertex, CreateFabEmail, CreateEmailOperation> {
-
-		private static readonly Logger Log = Logger.Build<TCreateEmailOperation>();
-
-		private const int GetArtifactCmdI = 2;
+	public class TCreateEmailOperation :TCreateOperationBase<
+											Email, FabVertex, CreateFabEmail, CreateEmailOperation> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void SetUpInner() {
-			base.SetUpInner();
+		protected override void ExecuteSetup(CreateFabEmail pCre) {
+			pCre.Address = "testName@Address.com";
+			pCre.Code = "12345678901234567890123456789012";
+			pCre.Verified = false;
+			pCre.UsedByArtifactId = 1641346431;
 
-			vCreateObj.Address = "MyAddress@MyDomain.com";
-			vCreateObj.Code = "abcdefghijklmnopQRSTUVWXYZ012345";
-			vCreateObj.Verified = false;
-			vCreateObj.UsedByArtifactId = 987442;
+			ICreateOperationBuilder build = MockBuild.Object;
+			IWeaverVarAlias<Email> alias = new WeaverVarAlias<Email>("test");
 
-			SetupAddVertexResultAt(1);
-			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(GetArtifactCmdI, 0)).Returns(1);
+			MockTasks
+				.Setup(x => x.AddEmail(build, ItIsVert<Email>(VertId), out alias))
+				.Callback(CheckCallIndex("AddEmail"));
+			
+			MockTasks
+				.Setup(x => x.AddEmailUsedByArtifact(
+					build,
+					ItIsVert<Email>(VertId),
+					It.Is<CreateFabEmail>(c => c.UsedByArtifactId == pCre.UsedByArtifactId),
+					It.Is<IWeaverVarAlias<Email>>(a => a.Name == alias.Name)
+				))
+				.Callback(CheckCallIndex("AddEmailUsedByArtifact"));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pCondCmdId) {
-			AddCommand("addEmail", new MockDataAccessCmd {
-				ConditionCmdId = pCondCmdId,
-				Script = 
-					"a=g.addVertex(["+
-						DbName.Vert.Email.Address+":_P,"+
-						DbName.Vert.Email.Code+":_P,"+
-						DbName.Vert.Email.Verified+":_P,"+
-						DbName.Vert.Vertex.VertexId+":_P,"+
-						DbName.Vert.Vertex.Timestamp+":_P,"+
-						DbName.Vert.Vertex.VertexType+":_P"+
-					"]);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.Address.ToLower(),
-					vCreateObj.Code,
-					vCreateObj.Verified,
-					vExpectDomResult.VertexId,
-					vExpectDomResult.Timestamp,
-					(byte)VertexType.Id.Email
-				}),
-				Cache = true
-			});
-
-			pCondCmdId = SetupEdgePair("usedByArt", pCondCmdId, 0, vCreateObj.UsedByArtifactId,
-				DbName.Edge.EmailUsedByArtifactName, DbName.Edge.ArtifactUsesEmailName,
-				new string[0], new object[0]);
-
-			return pCondCmdId;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override Logger GetLogger() {
-			return Log;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override bool IsInternalGetResult() {
+		protected override bool HasInternalResult() {
 			return true;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override VertexType.Id GetVertexTypeId() {
-			return VertexType.Id.Email;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ExecuteFailNoArtifact() {
-			vMockDataAcc.MockResult.Setup(x => x.ToIntAt(GetArtifactCmdI, 0)).Returns(0);
-			CreateEmailOperation c = BuildCreateVerify();
-			TestUtil.Throws<FabNotFoundFault>(() => c.Execute());
 		}
 
 	}

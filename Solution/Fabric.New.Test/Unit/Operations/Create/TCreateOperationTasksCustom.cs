@@ -9,7 +9,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 	/*================================================================================================*/
 	public class TCreateOperationTasksCustom {
 
-		private Mock<ICreateOperationContext> vMockCreCtx;
+		private Mock<ICreateOperationBuilder> vMockBuild;
 		private CreateOperationTasks vTasks;
 
 
@@ -17,7 +17,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockCreCtx = new Mock<ICreateOperationContext>();
+			vMockBuild = new Mock<ICreateOperationBuilder>();
 			vTasks = new CreateOperationTasks();
 		}
 
@@ -27,7 +27,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		[Test]
 		public void FindDuplicateMember() {
 			const long userId = 362346236;
-			const long appId = 362346236;
+			const long appId = 757345745;
 
 			const string script = 
 				"m=g.V('"+DbName.Vert.Vertex.VertexId+"',_P)"+
@@ -36,7 +36,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			const string append = "m?0:1;";
 
 			TCreateOperationTasksDuplicate.TestFindDuplicate(
-				vMockCreCtx,
+				vMockBuild,
 				x => vTasks.FindDuplicateMember(x, userId, appId),
 				script,
 				append,
@@ -71,7 +71,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			}
 
 			TCreateOperationTasksDuplicate.TestFindDuplicate(
-				vMockCreCtx,
+				vMockBuild,
 				x => vTasks.FindDuplicateClass(x, name, pDisamb),
 				script,
 				append,

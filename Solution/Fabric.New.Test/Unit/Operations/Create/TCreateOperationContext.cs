@@ -14,7 +14,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		private const string LatestCmdId = "12345";
 
 		private Mock<IDataAccess> vMockDataAcc;
-		private CreateOperationContext vCreCtx;
+		private CreateOperationBuilder vCreCtx;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vMockDataAcc = new Mock<IDataAccess>();
 			vMockDataAcc.Setup(x => x.GetLatestCommandId()).Returns(LatestCmdId);
 
-			vCreCtx = new CreateOperationContext(vMockDataAcc.Object);
+			vCreCtx = new CreateOperationBuilder();
+			vCreCtx.SetDataAccess(vMockDataAcc.Object);
 		}
 
 

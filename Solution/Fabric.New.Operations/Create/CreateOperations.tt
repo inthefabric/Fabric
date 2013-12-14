@@ -88,7 +88,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AfterSessionStart() {
-			CreateOperationsCustom.<#= v.Names.Domain #>AfterSessionStart(Tasks, CreCtx, NewDom, NewCre);
+			CreateOperationsCustom.<#= v.Names.Domain #>AfterSessionStart(Tasks, Build, NewDom, NewCre);
 		}
 
 <#
@@ -103,7 +103,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		if ( dp.EnforceUnique ) {
 			string displayName = (dp.Name == "NameKey" ? "Name" : dp.Name); //ugly special case
 #>
-			Tasks.FindDuplicate<#= v.Names.Domain #><#= dp.Name #>(CreCtx, NewDom);
+			Tasks.FindDuplicate<#= v.Names.Domain #><#= dp.Name #>(Build, NewDom);
 <#
 		} //end EnforceUnique condition
 	} //end props loop
@@ -115,7 +115,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 #>
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void AddVertex(out IWeaverVarAlias<<#= v.Names.Domain #>> pAlias) {
-			Tasks.Add<#= v.Names.Domain #>(CreCtx, NewDom, out pAlias);
+			Tasks.Add<#= v.Names.Domain #>(Build, NewDom, out pAlias);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -148,7 +148,7 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 
 	foreach ( IEdgeSchema e in edges ) {
 #>
-			Tasks.Add<#= e.GetClassNameDom() #>(CreCtx, NewDom, NewCre, pAlias);
+			Tasks.Add<#= e.GetClassNameDom() #>(Build, NewDom, NewCre, pAlias);
 <#+
 	} //end edges loop
 #>

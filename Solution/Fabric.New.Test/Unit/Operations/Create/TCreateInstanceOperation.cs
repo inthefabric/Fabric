@@ -1,87 +1,61 @@
-﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
+﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
 using Fabric.New.Test.Unit.Shared;
+using Moq;
 using NUnit.Framework;
+using ServiceStack.Text;
+using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateInstanceOperation :
-			TCreateArtifactOperation<Instance, FabInstance, CreateFabInstance, CreateInstanceOperation>{
-
-		private static readonly Logger Log = Logger.Build<TCreateInstanceOperation>();
+	public class TCreateInstanceOperation :	TCreateOperationBase<
+								Instance, FabInstance, CreateFabInstance, CreateInstanceOperation> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void SetUpInner() {
-			base.SetUpInner();
+		protected override void ExecuteSetup(CreateFabInstance pCre) {
+			pCre.Name = "Test Name";
+			pCre.Disamb = "Test Disamb";
+			pCre.Note = "Test Note";
 
-			vCreateObj.Name = "My Name";
-			vCreateObj.Disamb = "My Disamb";
-			vCreateObj.Note = "My Note";
+			ICreateOperationBuilder build = MockBuild.Object;
+			IWeaverVarAlias<Instance> alias = new WeaverVarAlias<Instance>("test");
 
-			SetupAddVertexResultAt(1);
+			MockTasks
+				.Setup(x => x.AddInstance(build, ItIsVert<Instance>(VertId), out alias))
+				.Callback(CheckCallIndex("AddInstance"));
+			
+			MockTasks
+				.Setup(x => x.AddArtifactCreatedByMember(
+					build,
+					ItIsVert<Instance>(VertId), 
+					It.Is<CreateFabInstance>(c => c.CreatedByMemberId == MemId),
+					It.Is<IWeaverVarAlias<Artifact>>(a => a.Name == alias.Name)
+				))
+				.Callback(CheckCallIndex("AddArtifactCreatedByMember"));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		protected override string SetupCommands(string pCondCmdId) {
-			AddCommand("addInstance", new MockDataAccessCmd {
-				ConditionCmdId = pCondCmdId,
-				Script = 
-					"a=g.addVertex(["+
-						DbName.Vert.Instance.Name+":_P,"+
-						DbName.Vert.Instance.Disamb+":_P,"+
-						DbName.Vert.Instance.Note+":_P,"+
-						DbName.Vert.Vertex.VertexId+":_P,"+
-						DbName.Vert.Vertex.Timestamp+":_P,"+
-						DbName.Vert.Vertex.VertexType+":_P"+
-					"]);",
-				Params = MockDataAccessCmd.BuildParamMap(new List<object> {
-					vCreateObj.Name,
-					vCreateObj.Disamb,
-					vCreateObj.Note,
-					vExpectDomResult.VertexId,
-					vExpectDomResult.Timestamp,
-					(byte)VertexType.Id.Instance
-				}),
-				Cache = true
-			});
-
-			return base.SetupCommands(pCondCmdId);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected override Logger GetLogger() {
-			return Log;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override bool IsInternalGetResult() {
-			return false;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected override VertexType.Id GetVertexTypeId() {
-			return VertexType.Id.Instance;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void ValidateDisambWithoutName() {
-			vCreateObj.Name = null;
-			TestUtil.Throws<FabPropertyValueFault>(() => BuildCreateVerify());
+		public override void ValidationError() {
+			var cre = new CreateFabInstance();
+			cre.Name = new string('x', 999);
+
+			var co = new CreateInstanceOperation();
+
+			TestUtil.Throws<FabPropertyLengthFault>(() =>
+				co.Execute(MockOpCtx.Object, null, null, cre.ToJson())
+			);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override bool HasInternalResult() {
+			return false;
 		}
 
 	}

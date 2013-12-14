@@ -5,18 +5,22 @@ using Weaver.Core.Query;
 namespace Fabric.New.Operations.Create {
 
 	/*================================================================================================*/
-	public class CreateOperationContext : ICreateOperationContext {
+	public class CreateOperationBuilder : ICreateOperationBuilder {
 
-		private readonly IDataAccess vDataAcc;
 		private readonly IList<IDataResultCheck> vChecks;
+		private IDataAccess vDataAcc;
 		private string vLatestConditionCmdId;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public CreateOperationContext(IDataAccess pDataAcc) {
-			vDataAcc = pDataAcc;
+		public CreateOperationBuilder() {
 			vChecks = new List<IDataResultCheck>();
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetDataAccess(IDataAccess pDataAcc) {
+			vDataAcc = pDataAcc;
 		}
 
 
@@ -49,6 +53,14 @@ namespace Fabric.New.Operations.Create {
 			return cmdId;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void StartSession() {
+			vDataAcc.AddSessionStart();
+			SetupLatestCommand();
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public void CommitAndCloseSession() {
 			vDataAcc.AddSessionCommit();

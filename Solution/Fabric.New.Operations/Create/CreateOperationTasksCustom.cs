@@ -15,7 +15,7 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void FindDuplicateMember(
-										ICreateOperationContext pCreCtx, long pUserId, long pAppId) {
+										ICreateOperationBuilder pCreCtx, long pUserId, long pAppId) {
 			IWeaverVarAlias<Member> alias;
 			const string varName = "m";
 
@@ -41,8 +41,10 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual void FindDuplicateClass(
-								ICreateOperationContext pCreCtx, string pNameKey, string pDisambLower) {
-			Class c = Weave.Inst.Graph.V.ExactIndex<Class>(x => x.NameKey, pNameKey);
+								ICreateOperationBuilder pCreCtx, string pNameKey, string pDisambLower) {
+			Class c = Weave.Inst.Graph.V
+				.ExactIndex<Class>(x => x.NameKey, pNameKey);
+
 			IWeaverQuery q;
 
 			if ( pDisambLower == null ) {
