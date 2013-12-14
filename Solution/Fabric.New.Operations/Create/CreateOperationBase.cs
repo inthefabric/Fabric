@@ -75,9 +75,7 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual TDom ToDomain(TCre pCreateObj) {
-			return null;
-		}
+		protected abstract TDom ToDomain(TCre pCreateObj);
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual TApi ToApi(TDom pDomainObj) {

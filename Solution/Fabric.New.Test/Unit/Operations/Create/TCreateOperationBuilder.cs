@@ -9,7 +9,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TCreateOperationContext {
+	public class TCreateOperationBuilder {
 
 		private const string LatestCmdId = "12345";
 
@@ -97,6 +97,17 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			}
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void StartSession() {
+			vCreCtx.StartSession();
+
+			vMockDataAcc.Verify(x => x.AddSessionStart(), Times.Once);
+			vMockDataAcc.Verify(x => x.GetLatestCommandId(), Times.Once);
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		[TestCase(false)]
 		[TestCase(true)]

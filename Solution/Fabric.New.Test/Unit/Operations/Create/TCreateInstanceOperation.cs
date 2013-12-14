@@ -58,6 +58,23 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			return false;
 		}
 
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorDisambWithoutName() {
+			var cre = new CreateFabInstance();
+			cre.Disamb = "Can't be non-null!";
+
+			MockBuild.Setup(x => x.StartSession());
+
+			var co = new CreateInstanceOperation();
+
+			TestUtil.Throws<FabPropertyValueFault>(() =>
+				co.Execute(MockOpCtx.Object, MockBuild.Object, MockTasks.Object, cre.ToJson())
+			);
+		}
+
 	}
 
 }

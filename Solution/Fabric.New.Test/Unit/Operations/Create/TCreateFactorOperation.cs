@@ -1,9 +1,12 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
+using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
+using ServiceStack.Text;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {
@@ -144,6 +147,25 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override bool HasInternalResult() {
 			return false;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorSameArtifact() {
+			var cre = new CreateFabFactor();
+			cre.AssertionType = (byte)FactorAssertion.Id.Opinion;
+			cre.UsesPrimaryArtifactId = 12961924;
+			cre.UsesRelatedArtifactId = cre.UsesPrimaryArtifactId;
+
+			MockBuild.Setup(x => x.StartSession());
+
+			var co = new CreateFactorOperation();
+
+			TestUtil.Throws<FabPropertyValueFault>(() =>
+				co.Execute(MockOpCtx.Object, MockBuild.Object, MockTasks.Object, cre.ToJson())
+			);
 		}
 
 	}
