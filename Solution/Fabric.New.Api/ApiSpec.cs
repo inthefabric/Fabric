@@ -103,14 +103,14 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabSpecService BuildTraversalService(FabService pSvc, 
 																	Func<string, ApiEntry> pGetEntry) {
-			IList<TravRule> rules = TraversalUtil.GetTravRules();
-			var map = new Dictionary<SpecStepAttribute, IList<TravRule>>();
+			IList<ITravRule> rules = TraversalUtil.GetTravRules();
+			var map = new Dictionary<SpecStepAttribute, IList<ITravRule>>();
 
-			foreach ( TravRule rule in rules ) {
+			foreach ( ITravRule rule in rules ) {
 				SpecStepAttribute ssa = GetAttribute<SpecStepAttribute>(rule.Step.GetType());
 
 				if ( !map.ContainsKey(ssa) ) {
-					map.Add(ssa, new List<TravRule>());
+					map.Add(ssa, new List<ITravRule>());
 				}
 
 				map[ssa].Add(rule);
@@ -134,7 +134,7 @@ namespace Fabric.New.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabSpecServiceStep BuildTraversalServiceStep(SpecStepAttribute pStepAttr,
-																			IList<TravRule> pRules) {
+																			IList<ITravRule> pRules) {
 			var s = new FabSpecServiceStep();
 			s.Name = pStepAttr.Name;
 			s.Description = ApiLang.Text<StepText>(s.Name);
@@ -164,7 +164,7 @@ namespace Fabric.New.Api {
 				}
 			}
 
-			foreach ( TravRule rule in pRules ) {
+			foreach ( ITravRule rule in pRules ) {
 				ITravStep ts = rule.Step;
 
 				var r = new FabSpecServiceStepRule();

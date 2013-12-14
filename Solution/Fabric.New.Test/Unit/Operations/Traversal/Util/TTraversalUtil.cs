@@ -25,7 +25,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Util {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void GetAllTravRules() {
-			IList<TravRule> result = TraversalUtil.GetTravRules();
+			IList<ITravRule> result = TraversalUtil.GetTravRules();
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(TotalRuleCount, result.Count, "Incorrect result count.");
 
@@ -40,7 +40,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Util {
 		[TestCase(typeof(FabFactor), FactorRuleCount)]
 		[TestCase(typeof(FabTravMemberRoot), TravMemberRuleCount)]
 		public void GetTravRules(Type pType, int pExpectCount) {
-			IList<TravRule> result = TraversalUtil.GetTravRules(pType);
+			IList<ITravRule> result = TraversalUtil.GetTravRules(pType);
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(pExpectCount, result.Count, "Incorrect result count.");
 

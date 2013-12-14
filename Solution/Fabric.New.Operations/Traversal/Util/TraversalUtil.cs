@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Steps;
 
@@ -13,8 +12,8 @@ namespace Fabric.New.Operations.Traversal.Util {
 	public static class TraversalUtil {
 
 		private static readonly IList<ITravStep> StepList = BuildStepList();
-		private static readonly IList<TravRule> RulesList = BuildRulesList();
-		private static readonly IDictionary<Type, IList<TravRule>> RulesMap = BuildRulesMap();
+		private static readonly IList<ITravRule> RulesList = BuildRulesList();
+		private static readonly IDictionary<Type, IList<ITravRule>> RulesMap = BuildRulesMap();
 		private static readonly IDictionary<Type, IList<FabTravStep>> FabStepMap = BuildFabStepMap();
 
 
@@ -36,18 +35,18 @@ namespace Fabric.New.Operations.Traversal.Util {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<TravRule> GetTravRules() {
+		public static IList<ITravRule> GetTravRules() {
 			return RulesList;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public static IList<TravRule> GetTravRules(Type pType) {
+		public static IList<ITravRule> GetTravRules(Type pType) {
 			return RulesMap[pType];
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static IList<TravRule> BuildRulesList() {
-			var list = new List<TravRule>();
+		private static IList<ITravRule> BuildRulesList() {
+			var list = new List<ITravRule>();
 			Type ot = typeof(FabObject);
 			Type[] types = ot.Assembly.GetTypes();
 
@@ -70,14 +69,14 @@ namespace Fabric.New.Operations.Traversal.Util {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static IDictionary<Type, IList<TravRule>> BuildRulesMap() {
-			var map = new Dictionary<Type, IList<TravRule>>();
+		private static IDictionary<Type, IList<ITravRule>> BuildRulesMap() {
+			var map = new Dictionary<Type, IList<ITravRule>>();
 
-			foreach ( TravRule rule in RulesList ) {
+			foreach ( ITravRule rule in RulesList ) {
 				Type ft = rule.FromType;
 
 				if ( !map.ContainsKey(ft) ) {
-					map.Add(ft, new List<TravRule>());
+					map.Add(ft, new List<ITravRule>());
 				}
 
 				map[ft].Add(rule);
@@ -133,7 +132,7 @@ namespace Fabric.New.Operations.Traversal.Util {
 		private static IDictionary<Type, IList<FabTravStep>> BuildFabStepMap() {
 			var map = new Dictionary<Type, IList<FabTravStep>>();
 
-			foreach ( KeyValuePair<Type, IList<TravRule>> pair in RulesMap ) {
+			foreach ( KeyValuePair<Type, IList<ITravRule>> pair in RulesMap ) {
 				map.Add(
 					pair.Key,
 					pair.Value.Select(TravRule.ToFabTravStep).ToList()

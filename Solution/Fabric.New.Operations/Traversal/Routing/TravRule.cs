@@ -4,7 +4,7 @@ using Fabric.New.Api.Objects.Traversal;
 namespace Fabric.New.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
-	public class TravRule {
+	public class TravRule : ITravRule {
 		
 		public ITravStep Step { get; private set; }
 		public Type FromType { get; private set; }
@@ -20,7 +20,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static FabTravStep ToFabTravStep(TravRule pRule) {
+		public static FabTravStep ToFabTravStep(ITravRule pRule) {
 			var s = new FabTravStep();
 			s.Name = pRule.Step.Command;
 			s.Uri = "/"+pRule.Step.Command;

@@ -18,7 +18,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		/*--------------------------------------------------------------------------------------------*/
 		public TravPathItem(int pStepIndex, string pRawText) {
 			StepIndex = pStepIndex;
-			RawText = pRawText;
+			RawText = pRawText.Trim();
 			Command = RawText+"";
 			vParams = new string[0];
 
@@ -29,7 +29,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 				BuildParams(pi);
 			}
 
-			Command = Command.ToLower();
+			Command = Command.Trim().ToLower();
 
 			if ( Command.Length == 0 ) {
 				throw NewStepFault(FabFault.Code.InvalidStep, "Step is empty.");
@@ -48,9 +48,13 @@ namespace Fabric.New.Operations.Traversal.Routing {
 			vParams = (raw.Length > 0 ? raw.Split(',') : new string[0]);
 
 			for ( int i = 0 ; i < vParams.Length ; i++ ) {
-				if ( vParams[i].Length == 0 ) {
+				string p = vParams[i];
+
+				if ( p.Length == 0 ) {
 					throw NewStepFault(FabFault.Code.InvalidParamSyntax, "Parameter is empty.", i);
 				}
+
+				vParams[i] = p.Trim();
 			}
 		}
 

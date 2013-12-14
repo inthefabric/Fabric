@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Create\ICreateOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Traversal\Routing\ITravRule.cs" />
     <Compile Include="Traversal\Steps\TravStepWhereEventorDateTime.cs" />
     <Compile Include="Traversal\Steps\TravStepEntryWhere.cs" />
     <Compile Include="Traversal\Steps\TravStepEntryWith.cs" />

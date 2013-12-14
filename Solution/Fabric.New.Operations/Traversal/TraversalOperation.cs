@@ -30,10 +30,10 @@ namespace Fabric.New.Operations.Traversal {
 			ITravPathItem tps = vPath.GetNextStep();
 
 			while ( tps != null ) {
-				IList<TravRule> rules = TraversalUtil.GetTravRules(vPath.GetCurrentType());
-				TravRule rule = null;
+				IList<ITravRule> rules = TraversalUtil.GetTravRules(vPath.GetCurrentType());
+				ITravRule rule = null;
 
-				foreach ( TravRule r in rules ) {
+				foreach ( ITravRule r in rules ) {
 					if ( r.Step.AcceptsPath(vPath) ) {
 						rule = r;
 						break;
