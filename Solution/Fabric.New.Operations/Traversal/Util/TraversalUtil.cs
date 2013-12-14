@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Steps;
 
@@ -111,11 +112,7 @@ namespace Fabric.New.Operations.Traversal.Util {
 			Type tt = pStep.ToType;
 
 			if ( TravPath.IsSameTypeOrSubclass(typeof(FabTravTypedRoot), pFromType) ) {
-				Type baseType = FabTravTypedRoot.BaseTypeMap[pFromType];
-
-				if ( TravPath.IsSameTypeOrSubclass(tt, baseType) ) {
-					return baseType;
-				}
+				return FabTravTypedRoot.BaseTypeMap[pFromType];
 			}
 			
 			if ( TravPath.IsSameTypeOrSubclass(tt, pFromType) ) {

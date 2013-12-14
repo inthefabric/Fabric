@@ -48,13 +48,6 @@ namespace Fabric.New.Operations.Traversal.Util {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public static bool IsValidContainsOperation(string pCode) {
-			return ElasticComp.ContainsKey(pCode);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IDictionary<string, string> NewElasticCompareMap() {
 			var map = new Dictionary<string, string>();
