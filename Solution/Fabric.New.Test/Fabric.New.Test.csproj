@@ -62,6 +62,7 @@
     <Compile Include="Unit\Operations\Traversal\Routing\TTravPathItem.cs" />
     <Compile Include="Unit\Operations\Traversal\Routing\TTravRule.cs" />
     <Compile Include="Unit\Operations\Traversal\Routing\TTravStepParam.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepAs.cs" />
     <Compile Include="Unit\Operations\Traversal\Util\TTraversalUtil.cs" />
     <Compile Include="Unit\Operations\Traversal\Util\TGremlinUtil.cs" />
     <Compile Include="Unit\Shared\MockDataAccess.cs" />
