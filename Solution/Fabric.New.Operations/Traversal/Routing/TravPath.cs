@@ -82,8 +82,16 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void AddBackToAlias(string pAlias) {
-			//TODO: support duplicate Back alias usage
-			vData.Backs.Add(pAlias, vData.CurrIndex);
+			//Allows multiple Back(X) statements. The value mapped to alias X is updated using the 
+			//current index. After this occurs, the "Allow Back" function will use this new value,
+			//with a net effect of having a "wider" gap between As(X) and Back(X).
+
+			if ( vData.Backs.ContainsKey(pAlias) ) {
+				vData.Backs[pAlias] = vData.CurrIndex;
+			}
+			else {
+				vData.Backs.Add(pAlias, vData.CurrIndex);
+			}
 
 			int aliasI = vData.Aliases[pAlias];
 			vData.UpdateCurrentType(vData.Types[aliasI]);
@@ -112,7 +120,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 				int backI = pair.Value;
 				int checkAliasI = vData.Aliases[pair.Key];
 
-				if ( backI > targetAliasI && checkAliasI < targetAliasI ) {
+				if ( checkAliasI < targetAliasI && targetAliasI < backI ) {
 					pConflictingAlias = pair.Key;
 					return false;
 				}

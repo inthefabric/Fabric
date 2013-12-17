@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Operations.Traversal.Routing;
 using Moq;
 using NUnit.Framework;
@@ -11,6 +12,8 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 	/*================================================================================================*/
 	[TestFixture]
 	public class TTravPath {
+
+		private static readonly Logger Log = Logger.Build<TTravPath>();
 
 		private Mock<ITravPathData> vMockData;
 
@@ -219,8 +222,9 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void AddBackToAlias() {
+		[TestCase(false)]
+		[TestCase(true)]
+		public void AddBackToAlias(bool pDuplicate) {
 			const string alias = "a";
 			const int asIndex = 1;
 			const int currIndex = 4;
@@ -229,6 +233,10 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 			var types = new List<Type>(new[] { null, asType });
 
 			var backs = new Dictionary<string, int>();
+
+			if ( pDuplicate ) {
+				backs.Add(alias, 2);
+			}
 
 			var aliases = new Dictionary<string, int>();
 			aliases.Add(alias, asIndex);
@@ -280,10 +288,58 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 			Assert.AreEqual(pExpectResult, result, "Incorrect result.");
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		[TestCase(...)]
-		public void AllowBackToAlias(...) {} //TODO: TTravPath.AllowBackToAlias()
-		*/
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(0, 1, 2, true)]
+		[TestCase(1, 2, 0, true)]
+		[TestCase(0, 2, 1, false)]
+		public void AllowBackToAlias(int pAs1Pos, int pBack1Pos, int pAs2Pos, bool pAllow) {
+			const string alias0 = "A0";
+			const string alias1 = "A1";
+			const string alias2 = "A2";
+
+			const int as0I = 2;
+			const int back0I = 4;
+			int as1I = pAs1Pos*2+6;
+			int back1I = pBack1Pos*2+6;
+			int as2I = pAs2Pos*2+6;
+
+			var aliases = new Dictionary<string, int>();
+			aliases.Add(alias0, as0I);
+			aliases.Add(alias1, as1I);
+			aliases.Add(alias2, as2I);
+
+			var backs = new Dictionary<string, int>();
+			backs.Add(alias0, back0I);
+			backs.Add(alias1, back1I);
+
+			////
+			
+			var display = new Dictionary<int, string>();
+			display.Add(as0I, "As("+alias0+")");
+			display.Add(as1I, "As("+alias1+")");
+			display.Add(as2I, "As("+alias2+")");
+			display.Add(back0I, "Back("+alias0+")");
+			display.Add(back1I, "Back("+alias1+")");
+			string str = "";
+
+			for ( int i = 0 ; i < 12 ; ++i ) {
+				str += (display.ContainsKey(i) ? display[i] : "x"+i)+".";
+			}
+
+			Log.Debug(str+"[allow Back("+alias2+")?]");
+
+			////
+			
+			vMockData.SetupGet(x => x.Aliases).Returns(aliases);
+			vMockData.SetupGet(x => x.Backs).Returns(backs);
+
+			string confAlias;
+			var tp = new TravPath(vMockData.Object);
+			bool result = tp.AllowBackToAlias(alias2, out confAlias);
+
+			Assert.AreEqual(pAllow, result, "Incorrect result.");
+			Assert.AreEqual((pAllow ? null : alias1), confAlias, "Incorrect conflicting alias.");
+		}
 
 	}
 
