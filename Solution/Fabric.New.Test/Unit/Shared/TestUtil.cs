@@ -51,6 +51,13 @@ namespace Fabric.New.Test.Unit.Shared {
 			}
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static void AssertContains(string pName, string pString, string pContains) {
+			if ( string.IsNullOrWhiteSpace(pString) || pString.IndexOf(pContains) == -1 ) {
+				Assert.Fail(pName+" does not contain '"+pContains+"'. Full string:\n"+pString);
+			}
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------* /

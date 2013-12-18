@@ -31,7 +31,7 @@ namespace Fabric.New.Operations.Traversal.Routing {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual bool AcceptsPath(ITravPath pPath) {
+		public bool AcceptsPath(ITravPath pPath) {
 			if ( !pPath.IsAcceptableType(FromType, FromExactType) ) {
 				return false;
 			}

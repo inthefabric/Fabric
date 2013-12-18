@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fabric.New.Api.Objects;
-using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Steps;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.New.Test.Unit.Operations.Traversal.Routing;
 using Moq;
 using NUnit.Framework;
 
@@ -13,81 +11,94 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TTravStepAs {
-
-		private static readonly Logger Log = Logger.Build<TTravStepAs>();
+	public class TTravStepAs : TTravStep {
 
 		private string vAlias;
 		private string vAliasParam;
 		private string vScript;
 		private Type vToType;
-		private Mock<ITravPathItem> vMockItem;
-		private Mock<ITravPath> vMockPath;
 		private TravStepAs vStep;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
-		public void SetUp() {
+		public override void SetUp() {
+			base.SetUp();
+
 			vAlias = "test";
 			vAliasParam = "_P0";
 			vScript = ".as("+vAliasParam+")";
 			vToType = typeof(FabFactor);
 
-			vMockItem = new Mock<ITravPathItem>(MockBehavior.Strict);
-			vMockItem.Setup(x => x.VerifyParamCount(1, -1));
-			vMockItem.Setup(x => x.GetParamAt<string>(0)).Returns(vAlias);
+			MockItem.Setup(x => x.VerifyParamCount(1, -1));
+			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns(vAlias);
 
-			var items = new List<ITravPathItem>();
-			items.Add(vMockItem.Object);
-
-			vMockPath = new Mock<ITravPath>(MockBehavior.Strict);
-			vMockPath.Setup(x => x.ConsumeSteps(1, vToType)).Returns(items);
-			vMockPath.Setup(x => x.HasAlias(vAlias)).Returns(false);
-			vMockPath.Setup(x => x.AddAlias(vAlias));
-			vMockPath.Setup(x => x.AddParam(vAlias)).Returns(vAliasParam);
-			vMockPath.Setup(x => x.AddScript(vScript));
+			MockPath.Setup(x => x.HasAlias(vAlias)).Returns(false);
+			MockPath.Setup(x => x.AddAlias(vAlias));
+			MockPath.Setup(x => x.AddParam(vAlias)).Returns(vAliasParam);
+			MockPath.Setup(x => x.AddScript(vScript));
 
 			vStep = new TravStepAs();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private void CheckSuccess(bool pSuccess) {
+		protected override ITravStep GetStep() {
+			return vStep;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override Type GetToType() {
+			return vToType;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void CheckSuccess(bool pSuccess) {
 			Times t = (pSuccess ? Times.Once() : Times.Never());
 
-			vMockPath.Verify(x => x.AddAlias(vAlias), t);
-			vMockPath.Verify(x => x.AddParam(vAlias), t);
-			vMockPath.Verify(x => x.AddScript(vScript), t);
+			MockItem.Verify(x => x.VerifyParamCount(1, -1), Times.Once);
+
+			MockPath.Verify(x => x.AddAlias(vAlias), t);
+			MockPath.Verify(x => x.AddParam(vAlias), t);
+			MockPath.Verify(x => x.AddScript(vScript), t);
 		}
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void Success() {
-			vStep.ConsumePath(vMockPath.Object, vToType);
-			CheckSuccess(true);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
 		public void ErrorDuplicateAlias() {
 			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", 0);
+			MockPath.Setup(x => x.HasAlias(vAlias)).Returns(true);
+			SetupFault(f, "in use");
+			CheckConsumePathThrows(f);
+		}
 
-			vMockPath.Setup(x => x.HasAlias(vAlias)).Returns(true);
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorAliasParamEmpty() {
+			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", 0);
+			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns("");
+			SetupFault(f, "empty");
+			CheckConsumePathThrows(f);
+		}
 
-			vMockItem
-				.Setup(x => x.NewStepFault(f.ErrCode, It.IsAny<string>(), f.ParamIndex, null))
-				.Returns(f);
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorAliasParamLength() {
+			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", 0);
+			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns("abcdefghi");
+			SetupFault(f, "cannot exceed");
+			CheckConsumePathThrows(f);
+		}
 
-			FabStepFault faultResult = TestUtil.Throws<FabStepFault>(
-				() => vStep.ConsumePath(vMockPath.Object, vToType));
-
-			Assert.AreEqual(f, faultResult, "Incorrect fault result.");
-			CheckSuccess(false);
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorAliasParamFormat() {
+			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", 0);
+			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns("badAL!A$");
+			SetupFault(f, "format");
+			CheckConsumePathThrows(f);
 		}
 
 	}
