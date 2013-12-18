@@ -5,7 +5,7 @@ using Fabric.New.Operations.Traversal.Util;
 namespace Fabric.New.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
-	public class TravStepEntryWhere<TFrom, TVal, TTo> : TravStepWith<TFrom, TVal, TTo> 
+	public class TravStepEntryWhere<TFrom, TVal, TTo> : TravStepWhere<TFrom, TVal, TTo> 
 												where TFrom : FabTravTypedRoot where TTo : FabVertex {
 
 
