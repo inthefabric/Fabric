@@ -66,6 +66,17 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
+		public void CorrectParams() {
+			IList<ITravStepParam> par = GetStep().Params;
+
+			for ( int i = 0 ; i < par.Count ; ++i ) {
+				Assert.NotNull(par, "Param should not be null @ "+i+".");
+				Assert.AreEqual(i, par[i].ParamIndex, "Incorrect result @ "+i+".");
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void AcceptsType() {
 			MockPath.Setup(x => x.IsAcceptableType(It.IsAny<Type>(), It.IsAny<bool>())).Returns(true);
 			MockPath.Setup(x => x.GetSteps(1)).Returns(Items);

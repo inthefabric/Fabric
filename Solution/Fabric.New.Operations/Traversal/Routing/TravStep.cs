@@ -62,12 +62,12 @@ namespace Fabric.New.Operations.Traversal.Routing {
 					p.Name+" is empty.", pIndex);
 			}
 
-			if ( p.Min != null && (long)(object)val > p.Min ) {
+			if ( p.Min != null && long.Parse(valStr) < p.Min ) {
 				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
 					p.Name+" cannot be less than "+p.Min, pIndex);
 			}
 
-			if ( p.Max != null && (long)(object)val > p.Max ) {
+			if ( p.Max != null && long.Parse(valStr) > p.Max ) {
 				throw pItem.NewStepFault(FabFault.Code.IncorrectParamValue,
 					p.Name+" cannot be greater than "+p.Max, pIndex);
 			}

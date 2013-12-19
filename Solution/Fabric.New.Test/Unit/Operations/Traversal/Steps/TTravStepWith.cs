@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Steps;
@@ -12,7 +11,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TTravStepEntryWith : TTravStep {
+	public class TTravStepWith : TTravStep {
 
 		private string vPropDbName;
 		private string vValue;
@@ -20,7 +19,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 		private string vValueParam;
 		private string vScript;
 		private Type vToType;
-		private TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact> vStep;
+		private TravStepWith<FabFactor, string, FabArtifact> vStep;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,10 +32,9 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			vValue = "My Test Value";
 			vPropDbNameParam = "_P0";
 			vValueParam = "_P1";
-			vScript = ".has("+vPropDbNameParam+", EQUAL, "+vValueParam+")";
+			vScript = ".has("+vPropDbNameParam+", Tokens.T.eq, "+vValueParam+")";
 			vToType = typeof(FabArtifact);
-			vStep = new TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact>(
-				"cmd", vPropDbName, false);
+			vStep = new TravStepWith<FabFactor, string, FabArtifact>("cmd", vPropDbName);
 
 			MockItem.Setup(x => x.VerifyParamCount(1, -1));
 			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns(vValue);
@@ -65,22 +63,6 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			MockPath.Verify(x => x.AddParam(vPropDbName), t);
 			MockPath.Verify(x => x.AddParam(vValue), t);
 			MockPath.Verify(x => x.AddScript(vScript), t);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void SuccessToLower() {
-			vStep = new TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact>(
-				"cmd", vPropDbName, true);
-
-			MockPath.Setup(x => x.AddParam(vValue.ToLower())).Returns(vValueParam);
-
-			vStep.ConsumePath(MockPath.Object, GetToType());
-
-			MockPath.Verify(x => x.AddParam(vValue), Times.Never());
-			MockPath.Verify(x => x.AddParam(vValue.ToLower()), Times.Once());
 		}
 
 

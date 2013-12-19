@@ -36,7 +36,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			pPath.AddScript(
 				".has("+
 					pPath.AddParam(vPropDbName)+", "+
-					GetGremlinOp(GremlinUtil.Equal)+", "+
+					GetGremlinEqualOp()+", "+
 					pPath.AddParam(val)+
 				")"
 			);
@@ -45,8 +45,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual string GetGremlinOp(string pOp) {
-			return GremlinUtil.GetStandardCompareOperation(pOp);
+		protected virtual string GetGremlinEqualOp() {
+			return GremlinUtil.GetStandardCompareOperation(GremlinUtil.Equal);
 		}
 
 	}

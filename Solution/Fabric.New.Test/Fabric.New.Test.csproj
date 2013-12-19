@@ -63,6 +63,9 @@
     <Compile Include="Unit\Operations\Traversal\Routing\TTravRule.cs" />
     <Compile Include="Unit\Operations\Traversal\Routing\TTravStep.cs" />
     <Compile Include="Unit\Operations\Traversal\Routing\TTravStepParam.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTTravStepWhereEventorDateTime.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepWhere.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepWith.cs" />
     <Compile Include="Unit\Operations\Traversal\Steps\TTravStepEntryWith.cs" />
     <Compile Include="Unit\Operations\Traversal\Steps\TTravStepEntryWhere.cs" />
     <Compile Include="Unit\Operations\Traversal\Steps\TTravStepEntryContains.cs" />

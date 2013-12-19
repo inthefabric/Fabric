@@ -1,6 +1,5 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Steps;
@@ -12,15 +11,16 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[TestFixture]
-	public class TTravStepEntryWith : TTravStep {
+	public class TTravStepWhere : TTravStep {
 
 		private string vPropDbName;
-		private string vValue;
+		private string vOperation;
+		private long vValue;
 		private string vPropDbNameParam;
 		private string vValueParam;
 		private string vScript;
 		private Type vToType;
-		private TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact> vStep;
+		private TravStepWhere<FabFactor, long, FabArtifact> vStep;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,16 +30,17 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			base.SetUp();
 
 			vPropDbName = "my-db-name";
-			vValue = "My Test Value";
+			vOperation = "lte";
+			vValue = 987654;
 			vPropDbNameParam = "_P0";
 			vValueParam = "_P1";
-			vScript = ".has("+vPropDbNameParam+", EQUAL, "+vValueParam+")";
+			vScript = ".has("+vPropDbNameParam+", Tokens.T.lte, "+vValueParam+")";
 			vToType = typeof(FabArtifact);
-			vStep = new TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact>(
-				"cmd", vPropDbName, false);
+			vStep = new TravStepWhere<FabFactor, long, FabArtifact>("cmd", vPropDbName);
 
-			MockItem.Setup(x => x.VerifyParamCount(1, -1));
-			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns(vValue);
+			MockItem.Setup(x => x.VerifyParamCount(2, -1));
+			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns(vOperation);
+			MockItem.Setup(x => x.GetParamAt<long>(1)).Returns(vValue);
 
 			MockPath.Setup(x => x.AddParam(vPropDbName)).Returns(vPropDbNameParam);
 			MockPath.Setup(x => x.AddParam(vValue)).Returns(vValueParam);
@@ -60,7 +61,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 		protected override void CheckSuccess(bool pSuccess) {
 			Times t = (pSuccess ? Times.Once() : Times.Never());
 
-			MockItem.Verify(x => x.VerifyParamCount(1, -1), Times.Once);
+			MockItem.Verify(x => x.VerifyParamCount(2, -1), Times.Once);
 
 			MockPath.Verify(x => x.AddParam(vPropDbName), t);
 			MockPath.Verify(x => x.AddParam(vValue), t);
@@ -70,17 +71,17 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void SuccessToLower() {
-			vStep = new TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact>(
-				"cmd", vPropDbName, true);
+		[TestCase("eq")]
+		[TestCase("gt")]
+		public void SucessOperations(string pOperation) {
+			vOperation = pOperation;
+			vScript = ".has("+vPropDbNameParam+", Tokens.T."+pOperation+", "+vValueParam+")";
 
-			MockPath.Setup(x => x.AddParam(vValue.ToLower())).Returns(vValueParam);
+			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns(vOperation);
+			MockPath.Setup(x => x.AddScript(vScript));
 
 			vStep.ConsumePath(MockPath.Object, GetToType());
-
-			MockPath.Verify(x => x.AddParam(vValue), Times.Never());
-			MockPath.Verify(x => x.AddParam(vValue.ToLower()), Times.Once());
+			CheckSuccess(true);
 		}
 
 
@@ -91,6 +92,15 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns("");
 			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", 0);
 			SetupFault(f, "empty");
+			CheckConsumePathThrows(f);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ErrorOperationParamAccepted() {
+			MockItem.Setup(x => x.GetParamAt<string>(0)).Returns("fake");
+			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", 0);
+			SetupFault(f, "Accepted values");
 			CheckConsumePathThrows(f);
 		}
 

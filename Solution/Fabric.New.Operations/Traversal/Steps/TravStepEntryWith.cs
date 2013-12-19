@@ -31,8 +31,8 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override string GetGremlinOp(string pOp) {
-			return GremlinUtil.GetElasticCompareOperation(pOp);
+		protected override string GetGremlinEqualOp() {
+			return GremlinUtil.GetElasticCompareOperation(GremlinUtil.Equal);
 		}
 
 	}

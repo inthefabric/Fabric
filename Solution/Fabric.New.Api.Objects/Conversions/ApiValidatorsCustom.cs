@@ -56,9 +56,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 			string dateStr = pObj.Year+
 				(pObj.Month == null ? "" : "-"+pObj.Month)+
 				(pObj.Day == null ? "" : "-"+pObj.Day)+
-				(pObj.Hour == null ? "" : "-"+pObj.Hour)+
-				(pObj.Minute == null ? "" : "-"+pObj.Minute)+
-				(pObj.Second== null ? "" : "-"+pObj.Second);
+				(pObj.Hour == null ? "" : " "+pObj.Hour)+
+				(pObj.Minute == null ? "" : ":"+pObj.Minute)+
+				(pObj.Second== null ? "" : ":"+pObj.Second);
 
 			DateTime dt;
 

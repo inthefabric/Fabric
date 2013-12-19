@@ -27,27 +27,27 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			p.Max = 100000000000;
 			Params.Add(p);
 
-			p = new TravStepParam(1, CreateFabEventorValidator.MonthName, typeof(byte));
+			p = new TravStepParam(2, CreateFabEventorValidator.MonthName, typeof(byte));
 			p.Min = 1;
 			p.Max = 12;
 			Params.Add(p);
 
-			p = new TravStepParam(1, CreateFabEventorValidator.DayName, typeof(byte));
+			p = new TravStepParam(3, CreateFabEventorValidator.DayName, typeof(byte));
 			p.Min = 1;
 			p.Max = 31;
 			Params.Add(p);
 
-			p = new TravStepParam(1, CreateFabEventorValidator.HourName, typeof(byte));
+			p = new TravStepParam(4, CreateFabEventorValidator.HourName, typeof(byte));
 			p.Min = 0;
 			p.Max = 23;
 			Params.Add(p);
 
-			p = new TravStepParam(1, CreateFabEventorValidator.MinuteName, typeof(byte));
+			p = new TravStepParam(5, CreateFabEventorValidator.MinuteName, typeof(byte));
 			p.Min = 0;
 			p.Max = 59;
 			Params.Add(p);
 
-			p = new TravStepParam(1, CreateFabEventorValidator.SecondName, typeof(byte));
+			p = new TravStepParam(6, CreateFabEventorValidator.SecondName, typeof(byte));
 			p.Min = 0;
 			p.Max = 59;
 			Params.Add(p);
