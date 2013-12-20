@@ -123,7 +123,30 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			CheckConsumePathThrows(f);
 		}
 
-		//TODO: add tests for all TravStepWhereEventorDateTime params
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(-100000000001, true)]
+		[TestCase(100000000001, false)]
+		public void ErrorYearParamRange(long pYear, bool pLow) {
+			MockItem.Setup(x => x.GetParamAt<long>(1)).Returns(pYear);
+			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", 1);
+			SetupFault(f, (pLow ? "less" : "greater")+" than");
+			CheckConsumePathThrows(f);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(2, 0, true)]
+		[TestCase(2, 13, false)]
+		[TestCase(3, 0, true)]
+		[TestCase(3, 32, false)]
+		[TestCase(4, 25, false)]
+		[TestCase(5, 60, false)]
+		[TestCase(6, 60, false)]
+		public void ErrorDateParamRange(int pIndex, byte pValue, bool pLow) {
+			MockItem.Setup(x => x.GetParamAt<byte>(pIndex)).Returns(pValue);
+			var f = new FabStepFault(FabFault.Code.IncorrectParamValue, 0, "", "", pIndex);
+			SetupFault(f, (pLow ? "less" : "greater")+" than");
+			CheckConsumePathThrows(f);
+		}
 
 	}
 
