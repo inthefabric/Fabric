@@ -21,47 +21,55 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Perform(IOperationContext pOpCtx, string pPath) {
+		public IList<FabElement> Execute(IOperationContext pOpCtx, string pPath) {
 			vOpCtx = pOpCtx;
+			BuildPath(pPath);
+			return ExecutePath();
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public IList<FabTravStep> GetResultSteps() {
+			return TraversalUtil.GetFabTravSteps(vPathData.CurrType);
+		}
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private void BuildPath(string pPath) {
 			vPathData = new TravPathData(pPath, vOpCtx.Auth.ActiveMemberId);
 			vPath = new TravPath(vPathData);
 
 			ITravPathItem tps = vPath.GetNextStep();
 
 			while ( tps != null ) {
-				IList<ITravRule> rules = TraversalUtil.GetTravRules(vPathData.CurrType);
-				ITravRule rule = null;
-
-				foreach ( ITravRule r in rules ) {
-					if ( r.Step.AcceptsPath(vPath) ) {
-						rule = r;
-						break;
-					}
-				}
-
-				if ( rule == null ) {
-					throw tps.NewStepFault(FabFault.Code.InvalidStep,
-						"Step '"+tps.Command+"' is not valid.");
-				}
-
+				ITravRule rule = FindRuleForStep(tps);
 				rule.Step.ConsumePath(vPath, rule.ToType);
 				tps = vPath.GetNextStep();
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<FabElement> GetResult() {
-			IWeaverQuery q = vPathData.BuildQuery();
-			string qid = "Trav"+string.Join("", vPath.GetFirstSteps(2).Select(x => "-"+x.Command));
+		private ITravRule FindRuleForStep(ITravPathItem pStep) {
+			IList<ITravRule> rules = TraversalUtil.GetTravRules(vPathData.CurrType);
 
-			IList<IDataDto> verts = vOpCtx.Data.Execute(q, qid).ToDtoList();
-			return verts.Select(DbToApi.FromDataDto).ToList();
+			foreach ( ITravRule r in rules ) {
+				if ( r.Step.AcceptsPath(vPath) ) {
+					return r;
+				}
+			}
+
+			throw pStep.NewStepFault(FabFault.Code.InvalidStep,
+				"Step '"+pStep.Command+"' is not valid.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<FabTravStep> GetResultSteps() {
-			return TraversalUtil.GetFabTravSteps(vPathData.CurrType);
+		private IList<FabElement> ExecutePath() {
+			IWeaverQuery q = vPathData.BuildQuery();
+			string name = "Trav"+string.Join("", 
+				vPath.GetFirstSteps(2).Select(x => "-"+x.Command.ToLower()));
+
+			IList<IDataDto> verts = vOpCtx.Data.Execute(q, name).ToDtoList();
+			return verts.Select(DbToApi.FromDataDto).ToList();
 		}
 
 	}

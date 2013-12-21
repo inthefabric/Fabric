@@ -22,8 +22,7 @@ namespace Fabric.New.Api.Executors {
 			string path = ApiReq.Path.Substring(6); //remove "/Trav/"
 
 			vOper = new TraversalOperation();
-			vOper.Perform(ApiReq.OpCtx, path);
-			return vOper.GetResult();
+			return vOper.Execute(ApiReq.OpCtx, path);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

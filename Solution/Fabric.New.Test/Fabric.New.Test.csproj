@@ -78,6 +78,7 @@
     <Compile Include="Unit\Operations\Traversal\Steps\TTravStepBack.cs" />
     <Compile Include="Unit\Operations\Traversal\Steps\TTravStepActive.cs" />
     <Compile Include="Unit\Operations\Traversal\Steps\TTravStepAs.cs" />
+    <Compile Include="Unit\Operations\Traversal\TTraversalOperation.cs" />
     <Compile Include="Unit\Operations\Traversal\Util\TTraversalUtil.cs" />
     <Compile Include="Unit\Operations\Traversal\Util\TGremlinUtil.cs" />
     <Compile Include="Unit\Shared\MockDataAccess.cs" />

@@ -36,7 +36,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			TVal val = ParamAt<TVal>(item, 1);
 
 			if ( UpdateValue != null ) {
-				UpdateValue(val);
+				val = UpdateValue(val);
 			}
 
 			pPath.AddScript(

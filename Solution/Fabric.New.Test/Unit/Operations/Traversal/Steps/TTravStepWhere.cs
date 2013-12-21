@@ -84,6 +84,17 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			CheckSuccess(true);
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SucessUpdateValue() {
+			vValue = 123;
+			vStep.UpdateValue = (x => vValue);
+			MockPath.Setup(x => x.AddParam(vValue)).Returns(vValueParam);
+
+			vStep.ConsumePath(MockPath.Object, GetToType());
+			CheckSuccess(true);
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

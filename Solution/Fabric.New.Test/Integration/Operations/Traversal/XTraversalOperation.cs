@@ -27,8 +27,7 @@ namespace Fabric.New.Test.Integration.Operations.Traversal {
 		[TestCase("melkins")]
 		public void UsersWithName(string pName) {
 			var t = new TraversalOperation();
-			t.Perform(OpCtx, "Users/WithName("+pName+")");
-			IList<FabElement> results = t.GetResult();
+			IList<FabElement> results = t.Execute(OpCtx, "Users/WithName("+pName+")");
 
 			Assert.NotNull(results, "Results should be filled.");
 			Assert.AreEqual(1, results.Count, "Incorrect results count.");

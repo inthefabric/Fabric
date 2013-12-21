@@ -10,10 +10,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void Perform(IOperationContext pOpCtx, string pPath);
-
-		/*--------------------------------------------------------------------------------------------*/
-		IList<FabElement> GetResult();
+		IList<FabElement> Execute(IOperationContext pOpCtx, string pPathText);
 
 		/*--------------------------------------------------------------------------------------------*/
 		IList<FabTravStep> GetResultSteps();
