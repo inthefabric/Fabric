@@ -20,6 +20,14 @@ namespace Fabric.New.Api {
 		public static FabServiceOperation MetaVersion;
 		public static FabServiceOperation MetaTime;
 
+		public static FabServiceOperation OauthAt;
+		public static FabServiceOperation OauthAtac;
+		public static FabServiceOperation OauthAtr;
+		public static FabServiceOperation OauthAtcc;
+		public static FabServiceOperation OauthAtcd;
+		public static FabServiceOperation OauthLogin;
+		public static FabServiceOperation OauthLogout;
+
 		public readonly static FabHome Home = BuildHomeMenu();
 
 
@@ -82,26 +90,23 @@ namespace Fabric.New.Api {
 			s.Name = "Oauth";
 			s.Uri = "/Oauth";
 
-			var op = NewOperation<FabOauthAccess>("AccessToken");
-			s.Operations.Add(op);
+			if ( OauthAt == null ) {
+				OauthAt = NewOperation<FabOauthAccess>("AccessToken");
+				OauthAtac = NewOperation<FabOauthAccess>("AccessTokenAuthCode");
+				OauthAtr = NewOperation<FabOauthAccess>("AccessTokenRefresh");
+				OauthAtcc = NewOperation<FabOauthAccess>("AccessTokenClientCredentials");
+				OauthAtcd = NewOperation<FabOauthAccess>("AccessTokenClientDataProv");
+				OauthLogin = NewOperation<FabOauthLogin>("Login");
+				OauthLogout = NewOperation<FabOauthLogout>("Logout");
+			}
 
-			op = NewOperation<FabOauthAccess>("AccessTokenAuthCode");
-			s.Operations.Add(op);
-
-			op = NewOperation<FabOauthAccess>("AccessTokenRefresh");
-			s.Operations.Add(op);
-
-			op = NewOperation<FabOauthAccess>("AccessTokenClientCredentials");
-			s.Operations.Add(op);
-
-			op = NewOperation<FabOauthAccess>("AccessTokenClientDataProv");
-			s.Operations.Add(op);
-
-			op = NewOperation<FabOauthLogin>("Login");
-			s.Operations.Add(op);
-
-			op = NewOperation<FabOauthLogout>("Logout");
-			s.Operations.Add(op);
+			s.Operations.Add(OauthAt);
+			s.Operations.Add(OauthAtac);
+			s.Operations.Add(OauthAtr);
+			s.Operations.Add(OauthAtcc);
+			s.Operations.Add(OauthAtcd);
+			s.Operations.Add(OauthLogin);
+			s.Operations.Add(OauthLogout);
 
 			return s;
 		}

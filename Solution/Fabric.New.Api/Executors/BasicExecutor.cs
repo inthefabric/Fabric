@@ -5,12 +5,19 @@ using Fabric.New.Api.Interfaces;
 namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public abstract class BasicExecutor<T> : Executor {
+	public class BasicExecutor<T> : Executor {
+
+		public Func<Exception, string> OnException { get; set; }
+
+		private readonly Func<T> vGetResponse;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected BasicExecutor(IApiRequest pApiReq) : base(pApiReq) {}
+		public BasicExecutor(IApiRequest pApiReq, Func<T> pGetResponse) : base(pApiReq) {
+			vGetResponse = pGetResponse;
+			OnException = (e => null);
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override IApiResponse Execute() {
@@ -19,7 +26,7 @@ namespace Fabric.New.Api.Executors {
 			resp.StartTimer();
 
 			try {
-				resp.SetJsonWith(GetResponse());
+				resp.SetJsonWith(vGetResponse());
 			}
 			catch ( Exception e ) {
 				resp.Json = OnException(e);
@@ -32,16 +39,6 @@ namespace Fabric.New.Api.Executors {
 			resp.StopTimer();
 			resp.LogResponse(ApiReq);
 			return resp;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected abstract T GetResponse();
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual string OnException(Exception pEx) {
-			return null;
 		}
 
 	}

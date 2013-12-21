@@ -13,6 +13,7 @@ namespace Fabric.New.Api {
 			SetupFromApiEntries(MetaExecutors.ApiEntries);
 			SetupFromApiEntries(CreateExecutors.ApiEntries);
 			SetupFromApiEntries(TraversalExecutors.ApiEntries);
+			SetupFromApiEntries(OauthExecutors.ApiEntries);
 			SetupFromApiEntries(InternalExecutors.ApiEntries);
 		}
 

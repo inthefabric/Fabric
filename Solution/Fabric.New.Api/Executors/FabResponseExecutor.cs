@@ -8,12 +8,21 @@ using Fabric.New.Infrastructure.Faults;
 namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public abstract class FabResponseExecutor<T> : Executor where T : FabObject {
+	public class FabResponseExecutor<T> : Executor where T : FabObject {
+
+		public Func<Exception, FabError> OnException { get; set; }
+		public Func<FabResponse<T>> NewFabResponse { get; set; }
+
+		private readonly Func<IList<T>> vGetResponse;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected FabResponseExecutor(IApiRequest pApiReq) : base(pApiReq) {}
+		public FabResponseExecutor(IApiRequest pReq, Func<IList<T>> pGetResponse) : base(pReq) {
+			vGetResponse = pGetResponse;
+			OnException = (e => (e is FabFault ? FabError.ForFault(e as FabFault) : null));
+			NewFabResponse = (() => new FabResponse<T>());
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public override IApiResponse Execute() {
@@ -22,7 +31,7 @@ namespace Fabric.New.Api.Executors {
 			resp.StartTimer();
 
 			try {
-				IList<T> list = GetResponse();
+				IList<T> list = vGetResponse();
 				resp.StopTimer();
 
 				var fr = NewFabResponse();
@@ -49,21 +58,6 @@ namespace Fabric.New.Api.Executors {
 
 			resp.LogResponse(ApiReq);
 			return resp;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		protected abstract IList<T> GetResponse();
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual FabResponse<T> NewFabResponse() {
-			return new FabResponse<T>();
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		protected virtual FabError OnException(Exception pEx) {
-			return (pEx is FabFault ? FabError.ForFault(pEx as FabFault) : null);
 		}
 
 	}

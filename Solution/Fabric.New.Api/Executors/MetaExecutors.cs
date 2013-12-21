@@ -1,4 +1,6 @@
-﻿using Fabric.New.Api.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Meta;
 
@@ -19,17 +21,27 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetSpec(IApiRequest pApiReq) {
-			return new MetaExecutor<FabSpec>(pApiReq, ApiSpec.Spec).Execute();
+			return Execute(pApiReq, ApiSpec.Spec);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetVersion(IApiRequest pApiReq) {
-			return new MetaExecutor<FabMetaVersion>(pApiReq, BaseModule.Version).Execute();
+			return Execute(pApiReq, BaseModule.Version);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetTime(IApiRequest pApiReq) {
-			return new MetaExecutor<FabMetaTime>(pApiReq, new FabMetaTime()).Execute();
+			return Execute(pApiReq, new FabMetaTime());
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static IApiResponse Execute<T>(IApiRequest pApiReq, T pObj) where T : FabObject {
+			Func<IList<T>> getResp = (() => new List<T> { pObj });
+
+			var exec = new FabResponseExecutor<T>(pApiReq, getResp);
+			return exec.Execute();
 		}
 
 	}

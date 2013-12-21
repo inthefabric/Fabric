@@ -2,10 +2,12 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
 using System.Collections.Generic;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Api.Executors {
@@ -45,27 +47,55 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateClass(IApiRequest pApiReq) {
-			return new CreateExecutor<Class, FabClass, CreateClassOperation>(pApiReq).Execute();
+			return Execute<Class, FabClass, CreateClassOperation>(pApiReq);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateFactor(IApiRequest pApiReq) {
-			return new CreateExecutor<Factor, FabFactor, CreateFactorOperation>(pApiReq).Execute();
+			return Execute<Factor, FabFactor, CreateFactorOperation>(pApiReq);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateInstance(IApiRequest pApiReq) {
-			return new CreateExecutor<Instance, FabInstance, CreateInstanceOperation>(pApiReq).Execute();
+			return Execute<Instance, FabInstance, CreateInstanceOperation>(pApiReq);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateMember(IApiRequest pApiReq) {
-			return new CreateExecutor<Member, FabMember, CreateMemberOperation>(pApiReq).Execute();
+			return Execute<Member, FabMember, CreateMemberOperation>(pApiReq);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse CreateUrl(IApiRequest pApiReq) {
-			return new CreateExecutor<Url, FabUrl, CreateUrlOperation>(pApiReq).Execute();
+			return Execute<Url, FabUrl, CreateUrlOperation>(pApiReq);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static IApiResponse Execute<TDom, TApi, TOp>(IApiRequest pApiReq) 
+														where TDom : Vertex
+														where TApi : FabVertex
+														where TOp : ICreateOperation<TDom,TApi>, new() {
+			Func<IList<TApi>> getResp = (() => {
+				string json = pApiReq.GetFormValue("Data");
+
+				if ( json == null ) {
+					throw new FabArgumentMissingFault("Data");
+				}
+
+				var o = new TOp();
+
+				TDom result = o.Execute(
+					pApiReq.OpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), json);
+
+				return new List<TApi> {
+					o.ConvertResult(result)
+				};
+			});
+			
+			var exec = new FabResponseExecutor<TApi>(pApiReq, getResp);
+			return exec.Execute();
 		}
 
 	}

@@ -1,4 +1,6 @@
-﻿using Fabric.New.Api.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Menu;
 
@@ -19,27 +21,37 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetHome(IApiRequest pApiReq) {
-			return new MenuExecutor<FabHome>(pApiReq, ApiMenu.Home).Execute();
+			return Execute(pApiReq, ApiMenu.Home);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetMeta(IApiRequest pApiReq) {
-			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Meta).Execute();
+			return Execute(pApiReq, ApiMenu.Meta);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetMod(IApiRequest pApiReq) {
-			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Mod).Execute();
+			return Execute(pApiReq, ApiMenu.Mod);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetOauth(IApiRequest pApiReq) {
-			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Oauth).Execute();
+			return Execute(pApiReq, ApiMenu.Oauth);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetTrav(IApiRequest pApiReq) {
-			return new MenuExecutor<FabService>(pApiReq, ApiMenu.Trav).Execute();
+			return Execute(pApiReq, ApiMenu.Trav);
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static IApiResponse Execute<T>(IApiRequest pApiReq, T pObj) where T : FabObject {
+			Func<IList<T>> getResp = (() => new List<T> { pObj });
+
+			var exec = new FabResponseExecutor<T>(pApiReq, getResp);
+			return exec.Execute();
 		}
 
 	}

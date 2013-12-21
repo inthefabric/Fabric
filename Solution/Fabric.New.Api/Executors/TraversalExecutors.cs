@@ -2,9 +2,13 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Operations.Traversal;
 
 namespace Fabric.New.Api.Executors {
 
@@ -28,7 +32,18 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse TravResp(IApiRequest pApiReq) {
-			return new TraversalExecutor(pApiReq).Execute();
+			FabTravStep[] steps = null;
+			
+			Func<IList<FabElement>> getResp = (() => {
+				string path = pApiReq.Path.Substring(6); //remove "/Trav/"
+				var op = new TraversalOperation();
+				steps = op.GetResultSteps().ToArray();
+				return op.Execute(pApiReq.OpCtx, path);
+			});
+
+			var exec = new FabResponseExecutor<FabElement>(pApiReq, getResp);
+			exec.NewFabResponse = (() => new FabTravResponse<FabElement> { Steps = steps });
+			return exec.Execute();
 		}
 		
 	}

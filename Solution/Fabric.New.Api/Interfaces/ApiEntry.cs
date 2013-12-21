@@ -23,7 +23,7 @@ namespace Fabric.New.Api.Interfaces {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public ApiEntry(Method pMeth, string pPath, Func<IApiRequest, IApiResponse> pFunc,
+		private ApiEntry(Method pMeth, string pPath, Func<IApiRequest, IApiResponse> pFunc,
 								Type pRespType, IList<ApiEntryParam> pParams, bool pMemberAuth=false) {
 			RequestMethod = pMeth;
 			Path = pPath;
@@ -37,6 +37,12 @@ namespace Fabric.New.Api.Interfaces {
 		public static ApiEntry Get(string pPath, Func<IApiRequest, IApiResponse> pFunc,
 															Type pRespType, bool pMemberAuth=false) {
 			return new ApiEntry(Method.Get, pPath, pFunc, pRespType, null,pMemberAuth);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static ApiEntry Get(string pPath, Func<IApiRequest, IApiResponse> pFunc,
+								Type pRespType, IList<ApiEntryParam> pParams, bool pMemberAuth=false) {
+			return new ApiEntry(Method.Get, pPath, pFunc, pRespType, pParams, pMemberAuth);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

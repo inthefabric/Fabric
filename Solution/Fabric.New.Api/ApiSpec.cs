@@ -9,6 +9,7 @@ using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Menu;
 using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Domain.Enums;
+using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Spec;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Util;
@@ -17,6 +18,8 @@ namespace Fabric.New.Api {
 
 	/*================================================================================================*/
 	public static class ApiSpec {
+
+		private static Logger Log = Logger.Build(typeof(ApiSpec));
 
 		public readonly static FabSpec Spec = BuildSpec();
 
@@ -43,8 +46,14 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static List<FabSpecService> BuildServices() {
 			IList<ApiEntry> entries = new ApiModule().GetApiEntries();
-			IDictionary<string, ApiEntry> entryMap = entries.ToDictionary(x => x.Path, x => x);
-			Func<string, ApiEntry> getEntry = (x => (entryMap.ContainsKey(x) ? entryMap[x] : null));
+
+			IDictionary<string, ApiEntry> entryMap = entries
+				.ToDictionary(
+					x => x.RequestMethod.ToString().ToLower()+" "+x.Path.ToLower(),
+					x => x
+			);
+
+			Func<string, ApiEntry> getEntry = (x => entryMap[x.ToLower()]);
 
 			var services = new List<FabSpecService>();
 			services.Add(BuildService(ApiMenu.Meta, getEntry));
@@ -56,8 +65,6 @@ namespace Fabric.New.Api {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabSpecService BuildService(FabService pSvc, Func<string, ApiEntry> pGetEntry) {
-			ApiEntry ae = pGetEntry(pSvc.Uri);
-
 			var s = new FabSpecService();
 			s.Name = pSvc.Name;
 			s.Uri = pSvc.Uri;
@@ -66,7 +73,9 @@ namespace Fabric.New.Api {
 			s.Operations = new List<FabSpecServiceOperation>();
 
 			foreach ( FabServiceOperation svcOp in pSvc.Operations ) {
-				s.Operations.Add(BuildServiceOp(s.Name, svcOp, (x => pGetEntry(s.Uri+x))));
+				string key = svcOp.Method+" "+s.Uri+svcOp.Uri;
+				FabSpecServiceOperation sso = BuildServiceOp(s.Name, svcOp, pGetEntry(key));
+				s.Operations.Add(sso);
 			}
 
 			return s;
@@ -74,20 +83,18 @@ namespace Fabric.New.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabSpecServiceOperation BuildServiceOp(string pSvcName,
-										FabServiceOperation pSvcOp, Func<string, ApiEntry> pGetEntry) {
-			ApiEntry ae = pGetEntry(pSvcOp.Uri);
-
+														FabServiceOperation pSvcOp, ApiEntry pEntry) {
 			var so = new FabSpecServiceOperation();
 			so.Name = pSvcOp.Name;
 			so.Uri = pSvcOp.Uri;
 			so.Method = pSvcOp.Method;
-			so.Return = (ae == null ? "???" : ApiLang.TypeName(ae.ResponseType));
+			so.Return = ApiLang.TypeName(pEntry.ResponseType);
 			so.Description = ApiLang.Text<ServiceOpText>(pSvcName+"_"+so.Name+"_"+so.Method);
-			so.Auth = (ae == null ? "???" : (ae.MemberAuth ? "Member" : "None"));
+			so.Auth = (pEntry.MemberAuth ? "Member" : "None");
 			so.Parameters = new List<FabSpecServiceParam>();
 
-			for ( int i = 0 ; ae != null && i < ae.Params.Count ; i++ ) {
-				ApiEntryParam aep = ae.Params[i];
+			for ( int i = 0 ; i < pEntry.Params.Count ; i++ ) {
+				ApiEntryParam aep = pEntry.Params[i];
 
 				var sop = new FabSpecServiceParam();
 				sop.Index = i;

@@ -82,11 +82,9 @@
       <LastGenOutput>SmartLinks.cs</LastGenOutput>
     </None>
     <None Include="LatestSpec.json" />
+    <Compile Include="Executors\OauthExecutors.cs" />
     <Compile Include="Executors\InternalExecutors.cs" />
-    <Compile Include="Executors\InternalExecutor.cs" />
-    <Compile Include="Executors\MetaExecutor.cs" />
     <Compile Include="Executors\MetaExecutors.cs" />
-    <Compile Include="Executors\TraversalExecutor.cs" />
     <Compile Include="Executors\TraversalExecutors.cs">
       <DependentUpon>TraversalExecutors.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -99,8 +97,6 @@
     <Compile Include="BaseModule.cs" />
     <Compile Include="Executors\BasicExecutor.cs" />
     <Compile Include="Executors\MenuExecutors.cs" />
-    <Compile Include="Executors\MenuExecutor.cs" />
-    <Compile Include="Executors\CreateExecutor.cs" />
     <Compile Include="Executors\CreateExecutors.cs">
       <DependentUpon>CreateExecutors.tt</DependentUpon>
       <AutoGen>True</AutoGen>
