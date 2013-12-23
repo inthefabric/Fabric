@@ -114,12 +114,12 @@ namespace Fabric.New.Api.Executors {
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetAt(IApiRequest pApiReq) {
 			string grant = pApiReq.GetQueryValue(AccessGrantTypeParam);
-			string clientId = pApiReq.GetQueryValue(AccessClientIdParam);
-			string secret = pApiReq.GetQueryValue(AccessClientSecretParam);
-			string code = pApiReq.GetQueryValue(AccessCodeParam);
-			string refresh = pApiReq.GetQueryValue(AccessRefreshTokenParam);
-			string redirUri = pApiReq.GetQueryValue(AccessRedirectUriParam);
-			string dataProvId = pApiReq.GetQueryValue(AccessDataProvUserIdParam);
+			string clientId = pApiReq.GetQueryValue(AccessClientIdParam, true);
+			string secret = pApiReq.GetQueryValue(AccessClientSecretParam, true);
+			string code = pApiReq.GetQueryValue(AccessCodeParam, true);
+			string refresh = pApiReq.GetQueryValue(AccessRefreshTokenParam, true);
+			string redirUri = pApiReq.GetQueryValue(AccessRedirectUriParam, true);
+			string dataProvId = pApiReq.GetQueryValue(AccessDataProvUserIdParam, true);
 
 			return ExecuteAcc(pApiReq, grant, clientId, secret, code, refresh, redirUri, dataProvId);
 		}
@@ -189,11 +189,11 @@ namespace Fabric.New.Api.Executors {
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse PostLogin(IApiRequest pApiReq) {
 			Func<FabOauthLogin> getResp = (() => {
-				string cancel = pApiReq.GetFormValue(LoginCancel);
-				string logout = pApiReq.GetFormValue(LoginLogout);
-				string login = pApiReq.GetFormValue(LoginLogin);
-				string allow = pApiReq.GetFormValue(LoginAllow);
-				string deny = pApiReq.GetFormValue(LoginDeny);
+				string cancel = pApiReq.GetFormValue(LoginCancel, true);
+				string logout = pApiReq.GetFormValue(LoginLogout, true);
+				string login = pApiReq.GetFormValue(LoginLogin, true);
+				string allow = pApiReq.GetFormValue(LoginAllow, true);
+				string deny = pApiReq.GetFormValue(LoginDeny, true);
 
 				//var o = new OauthLoginOperation();
 				//return o.Execute(pApiReq.OpCtx, cancel, logout, login, allow, deny);

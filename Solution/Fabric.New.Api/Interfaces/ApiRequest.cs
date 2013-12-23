@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations;
 using Nancy;
 
@@ -31,13 +32,25 @@ namespace Fabric.New.Api.Interfaces {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetQueryValue(string pName) {
-			return vNancyReq.Query[pName];
+		public string GetQueryValue(string pName, bool pOptional=false) {
+			string val = vNancyReq.Query[pName];
+
+			if ( !pOptional && string.IsNullOrWhiteSpace(val) ) {
+				throw new FabArgumentMissingFault(pName);
+			}
+
+			return val;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetFormValue(string pName) {
-			return vNancyReq.Form[pName];
+		public string GetFormValue(string pName, bool pOptional=false) {
+			string val = vNancyReq.Form[pName];
+
+			if ( !pOptional && string.IsNullOrWhiteSpace(val) ) {
+				throw new FabArgumentMissingFault(pName);
+			}
+
+			return val;
 		}
 
 

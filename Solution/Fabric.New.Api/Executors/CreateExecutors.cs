@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Api.Executors {
@@ -79,11 +78,6 @@ namespace Fabric.New.Api.Executors {
 														where TOp : ICreateOperation<TDom,TApi>, new() {
 			Func<IList<TApi>> getResp = (() => {
 				string json = pApiReq.GetFormValue("Data");
-
-				if ( json == null ) {
-					throw new FabArgumentMissingFault("Data");
-				}
-
 				var o = new TOp();
 
 				TDom result = o.Execute(
