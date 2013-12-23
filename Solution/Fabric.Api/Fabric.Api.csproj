@@ -89,38 +89,22 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="BaseModule.cs" />
     <Compile Include="Common\FabParamFault.cs" />
     <Compile Include="Content\WebResources1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WebResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="MetaModule.cs" />
-    <Compile Include="ModifyModule.cs" />
-    <Compile Include="Services\MetaController.cs" />
-    <Compile Include="Services\ModifyController.cs" />
-    <Compile Include="TraversalModule.cs" />
-    <Compile Include="OauthModule.cs" />
-    <Compile Include="HomeModule.cs" />
     <Compile Include="Bootstrap.cs" />
-    <Compile Include="Services\OauthController.cs" />
-    <Compile Include="Services\HomeController.cs" />
-    <Compile Include="Services\TraversalController.cs" />
     <Compile Include="Services\Views\TraversalJsonView.cs" />
     <Compile Include="Services\Views\TraversalHtmlView.cs" />
-    <Compile Include="Common\FabResponseController.cs" />
     <Compile Include="Common\HtmlView.cs" />
     <Compile Include="Services\Views\IView.cs" />
-    <Compile Include="Common\FabRespJsonView.cs" />
     <Compile Include="Services\Views\LoginErrorView.cs" />
     <Compile Include="Services\Views\LoginPageView.cs" />
     <Compile Include="Services\Views\LoginScopeView.cs" />
     <Compile Include="Services\OauthLoginController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\NancyUtil.cs" />
-    <Compile Include="Util\HtmlUtil.cs" />
-    <Compile Include="Common\Controller.cs" />
     <Compile Include="Services\OauthAccessController.cs" />
   </ItemGroup>
   <ItemGroup>

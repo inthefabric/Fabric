@@ -1,7 +1,7 @@
 ﻿using System;
-using Fabric.Api.Dto.Oauth;
+using Fabric.New.Api.Objects.Oauth;
 
-namespace Fabric.Api.Oauth {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class OauthException : Exception {

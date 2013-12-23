@@ -44,16 +44,11 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Operations\OperOauthLogout.cs" />
-    <Compile Include="Operations\OperOauthAtac.cs" />
-    <Compile Include="Operations\OperOauthAtcc.cs" />
-    <Compile Include="Operations\OperOauthAtcd.cs" />
-    <Compile Include="Operations\OperOauthAtr.cs" />
-    <Compile Include="Operations\OperOauthAt.cs" />
-    <Compile Include="Operations\OperOauthLogin.cs" />
     <Compile Include="IOauthGrantCore.cs" />
+    <Compile Include="OauthAccessCcOperation.cs" />
+    <Compile Include="OauthAccessCdOperation.cs" />
+    <Compile Include="OauthAccessRtOperation.cs" />
     <Compile Include="Results\AccessResult.cs" />
-    <Compile Include="OauthException.cs" />
     <Compile Include="OauthGrantCore.cs" />
     <Compile Include="OauthGrantLoginAction.cs" />
     <Compile Include="OauthLogout.cs" />
@@ -66,21 +61,14 @@
     <Compile Include="Tasks\GetDataProv.cs" />
     <Compile Include="Tasks\DoLogout.cs" />
     <Compile Include="Tasks\GetAccessToken.cs" />
-    <Compile Include="Tasks\AddAccess.cs" />
     <Compile Include="Tasks\GetDomain.cs" />
     <Compile Include="Tasks\AddMemberEnsure.cs" />
     <Compile Include="Tasks\GetRefresh.cs" />
     <Compile Include="Tasks\GetScope.cs" />
     <Compile Include="Tasks\OauthTasks.cs" />
     <Compile Include="Tasks\IOauthTasks.cs" />
-    <Compile Include="OauthAccessBase.cs" />
-    <Compile Include="Tasks\GetAppAuth.cs" />
     <Compile Include="Results\GrantResult.cs" />
     <Compile Include="Tasks\GetGrant.cs" />
-    <Compile Include="OauthAccessAuthCode.cs" />
-    <Compile Include="OauthAccessClientCred.cs" />
-    <Compile Include="OauthAccessClientDataProv.cs" />
-    <Compile Include="OauthAccessRefToken.cs" />
     <Compile Include="Tasks\AddGrant.cs" />
     <Compile Include="Tasks\AddScope.cs" />
     <Compile Include="OauthGrantScopeAction.cs" />
