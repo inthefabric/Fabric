@@ -126,9 +126,9 @@ namespace Fabric.New.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special &apos;Data Provider&apos; User which the App uses for creating items in the Fabric system. This parameter is only used by the &apos;[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]&apos; flow..
         /// </summary>
-        internal static string Oauth_AccessToken_DataProvUserId {
+        internal static string Oauth_AccessToken_DataProvId {
             get {
-                return ResourceManager.GetString("Oauth_AccessToken_DataProvUserId", resourceCulture);
+                return ResourceManager.GetString("Oauth_AccessToken_DataProvId", resourceCulture);
             }
         }
         
@@ -180,9 +180,9 @@ namespace Fabric.New.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to The URL which will receive success/error redirects from the OAuth Login process.  This URL should handle the following query-string parameters: access_code, error, error_description, state..
         /// </summary>
-        internal static string Oauth_Login_RedirectUri {
+        internal static string Oauth_Login_RedirUri {
             get {
-                return ResourceManager.GetString("Oauth_Login_RedirectUri", resourceCulture);
+                return ResourceManager.GetString("Oauth_Login_RedirUri", resourceCulture);
             }
         }
         
@@ -216,9 +216,9 @@ namespace Fabric.New.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Causes the login process to behave in different ways.  If a value of &apos;1&apos; is provided, the user will see the login page even if they are currently authenticated with Fabric.  This is useful shared-computer scenarios, where the most-recently authenticated user may be different from the user making the current request..
         /// </summary>
-        internal static string Oauth_Login_SwitchMode {
+        internal static string Oauth_Login_Switch {
             get {
-                return ResourceManager.GetString("Oauth_Login_SwitchMode", resourceCulture);
+                return ResourceManager.GetString("Oauth_Login_Switch", resourceCulture);
             }
         }
         

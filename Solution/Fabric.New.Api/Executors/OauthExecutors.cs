@@ -11,6 +11,10 @@ namespace Fabric.New.Api.Executors {
 
 		private static readonly string Uri = ApiMenu.Oauth.Uri;
 
+		private const string AccessLang = "Oauth_AccessToken_";
+		private const string LoginLang = "Oauth_Login_";
+		private const string LogoutLang = "Oauth_Logout_";
+
 		private const string AccessGrantTypeAc = "authorization_code";
 		private const string AccessGrantTypeCc = "client_credentials";
 		private const string AccessGrantTypeCd = "client_dataprov";
@@ -40,44 +44,44 @@ namespace Fabric.New.Api.Executors {
 		private const string LogoutAccessTokenParam = "access_token";
 
 		private static readonly IList<ApiEntryParam> AtParams = new List<ApiEntryParam> {
-			new ApiEntryParam(AccessGrantTypeParam, typeof(string)),
-			new ApiEntryParam(AccessClientIdParam, typeof(long), true),
-			new ApiEntryParam(AccessClientSecretParam, typeof(string), true),
-			new ApiEntryParam(AccessCodeParam, typeof(string), true),
-			new ApiEntryParam(AccessRefreshTokenParam, typeof(string), true),
-			new ApiEntryParam(AccessRedirectUriParam, typeof(string), true),
-			new ApiEntryParam(AccessDataProvUserIdParam, typeof(long), true)
+			new ApiEntryParam(AccessGrantTypeParam, typeof(string), false, AccessLang+"GrantType"),
+			new ApiEntryParam(AccessClientIdParam, typeof(long), true, AccessLang+"ClientId"),
+			new ApiEntryParam(AccessClientSecretParam, typeof(string), true, AccessLang+"Secret"),
+			new ApiEntryParam(AccessCodeParam, typeof(string), true, AccessLang+"Code"),
+			new ApiEntryParam(AccessRefreshTokenParam, typeof(string), true, AccessLang+"Refresh"),
+			new ApiEntryParam(AccessRedirectUriParam, typeof(string), true, AccessLang+"RedirectUri"),
+			new ApiEntryParam(AccessDataProvUserIdParam, typeof(long), true, AccessLang+"DataProvId")
 		};
 
 		private static readonly IList<ApiEntryParam> AtacParams = new List<ApiEntryParam> {
-			new ApiEntryParam(AccessCodeParam, typeof(string)),
-			new ApiEntryParam(AccessClientSecretParam, typeof(string)),
-			new ApiEntryParam(AccessRedirectUriParam, typeof(string))
+			new ApiEntryParam(AccessCodeParam, typeof(string), false, AccessLang+"Code"),
+			new ApiEntryParam(AccessClientSecretParam, typeof(string), false, AccessLang+"Secret"),
+			new ApiEntryParam(AccessRedirectUriParam, typeof(string), false, AccessLang+"RedirectUri")
 		};
 
 		private static readonly IList<ApiEntryParam> AtrParams = new List<ApiEntryParam> {
-			new ApiEntryParam(AccessRefreshTokenParam, typeof(string)),
-			new ApiEntryParam(AccessClientSecretParam, typeof(string)),
-			new ApiEntryParam(AccessRedirectUriParam, typeof(string))
+			new ApiEntryParam(AccessRefreshTokenParam, typeof(string), false, AccessLang+"Refresh"),
+			new ApiEntryParam(AccessClientSecretParam, typeof(string), false, AccessLang+"Secret"),
+			new ApiEntryParam(AccessRedirectUriParam, typeof(string), false, AccessLang+"RedirectUri")
 		};
 
 		private static readonly IList<ApiEntryParam> AtccParams = new List<ApiEntryParam> {
-			new ApiEntryParam(AccessClientIdParam, typeof(long)),
-			new ApiEntryParam(AccessClientSecretParam, typeof(string)),
-			new ApiEntryParam(AccessRedirectUriParam, typeof(string))
+			new ApiEntryParam(AccessClientIdParam, typeof(long), false, AccessLang+"ClientId"),
+			new ApiEntryParam(AccessClientSecretParam, typeof(string), false, AccessLang+"Secret"),
+			new ApiEntryParam(AccessRedirectUriParam, typeof(string), false, AccessLang+"RedirectUri")
 		};
 
 		private static readonly IList<ApiEntryParam> AtcdParams = new List<ApiEntryParam> {
-			new ApiEntryParam(AccessDataProvUserIdParam, typeof(long))
+			new ApiEntryParam(AccessDataProvUserIdParam, typeof(long), false, AccessLang+"DataProvId")
 		};
 
 		private static readonly IList<ApiEntryParam> GetLoginParams = new List<ApiEntryParam> {
-			new ApiEntryParam(LoginResponseTypeParam, typeof(string)),
-			new ApiEntryParam(LoginClientIdParam, typeof(string)),
-			new ApiEntryParam(LoginRedirectUriParam, typeof(string)),
-			new ApiEntryParam(LoginScopeParam, typeof(string)),
-			new ApiEntryParam(LoginStateParam, typeof(string)),
-			new ApiEntryParam(LoginSwitchModeParam, typeof(string))
+			new ApiEntryParam(LoginResponseTypeParam, typeof(string), false, LoginLang+"ResponseType"),
+			new ApiEntryParam(LoginClientIdParam, typeof(string), false, LoginLang+"ClientId"),
+			new ApiEntryParam(LoginRedirectUriParam, typeof(string), false, LoginLang+"RedirUri"),
+			new ApiEntryParam(LoginScopeParam, typeof(string), false, LoginLang+"Scope"),
+			new ApiEntryParam(LoginStateParam, typeof(string), false, LoginLang+"State"),
+			new ApiEntryParam(LoginSwitchModeParam, typeof(string), false, LoginLang+"Switch")
 		};
 
 		private static readonly IList<ApiEntryParam> PostLoginParams = new List<ApiEntryParam> {
@@ -89,7 +93,7 @@ namespace Fabric.New.Api.Executors {
 		};
 
 		private static readonly IList<ApiEntryParam> GetLogoutParams = new List<ApiEntryParam> {
-			new ApiEntryParam(LogoutAccessTokenParam, typeof(string))
+			new ApiEntryParam(LogoutAccessTokenParam, typeof(string), false, LogoutLang+"Token")
 		};
 
 		public static readonly ApiEntry[] ApiEntries = new[] {

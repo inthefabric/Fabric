@@ -140,6 +140,15 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finds results where the target property is an exact match to the specified value..
         /// </summary>
         internal static string With {

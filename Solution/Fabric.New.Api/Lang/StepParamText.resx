@@ -138,4 +138,25 @@
   <data name="Take_Count" xml:space="preserve">
     <value>The maximum number of elements to return.</value>
   </data>
+  <data name="WhereEventorDateTime_Day" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="WhereEventorDateTime_Hour" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="WhereEventorDateTime_Minute" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="WhereEventorDateTime_Month" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="WhereEventorDateTime_Operation" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="WhereEventorDateTime_Second" xml:space="preserve">
+    <value>TODO</value>
+  </data>
+  <data name="WhereEventorDateTime_Year" xml:space="preserve">
+    <value>TODO</value>
+  </data>
 </root>

@@ -123,7 +123,7 @@
   <data name="Oauth_AccessToken_Code" xml:space="preserve">
     <value>The authorization code obtained after a successful OAuth entry process. This parameter is only used by the '[[Authorization Code|Oper|Oauth.AccessTokenAuthCode]]' flow.</value>
   </data>
-  <data name="Oauth_AccessToken_DataProvUserId" xml:space="preserve">
+  <data name="Oauth_AccessToken_DataProvId" xml:space="preserve">
     <value>The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special 'Data Provider' User which the App uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flow.</value>
   </data>
   <data name="Oauth_AccessToken_GrantType" xml:space="preserve">
@@ -141,7 +141,7 @@
   <data name="Oauth_Login_ClientId" xml:space="preserve">
     <value>The ID of the Fabric App making the OAuth Login request.  The access code provided after a successful OAuth process will be associated with this App ID and the authenticated User's ID.</value>
   </data>
-  <data name="Oauth_Login_RedirectUri" xml:space="preserve">
+  <data name="Oauth_Login_RedirUri" xml:space="preserve">
     <value>The URL which will receive success/error redirects from the OAuth Login process.  This URL should handle the following query-string parameters: access_code, error, error_description, state.</value>
   </data>
   <data name="Oauth_Login_ResponseType" xml:space="preserve">
@@ -153,7 +153,7 @@
   <data name="Oauth_Login_State" xml:space="preserve">
     <value>Provides a security function for a Fabric App.  All success/message redirect responses include a 'state' query-string parameter.  The App should check this value against the state value provided in the initial request.  The two values should always be equal. If the values are not equal, then the redirect did not come from the Fabric OAuth process (or from a different user's process), and should be handled accordingly.</value>
   </data>
-  <data name="Oauth_Login_SwitchMode" xml:space="preserve">
+  <data name="Oauth_Login_Switch" xml:space="preserve">
     <value>Causes the login process to behave in different ways.  If a value of '1' is provided, the user will see the login page even if they are currently authenticated with Fabric.  This is useful shared-computer scenarios, where the most-recently authenticated user may be different from the user making the current request.</value>
   </data>
   <data name="Oauth_Logout_Token" xml:space="preserve">

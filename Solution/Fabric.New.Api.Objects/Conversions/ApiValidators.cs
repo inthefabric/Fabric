@@ -247,7 +247,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabDescriptorValidator : CreateFabObjectValidator {
 		
-		public const string TypeName = "Descriptor.Type";
+		public const string TypeName = "Type";
 		
 		private readonly CreateFabDescriptor vCreateObj;
 
@@ -283,9 +283,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabDirectorValidator : CreateFabObjectValidator {
 		
-		public const string TypeName = "Director.Type";
-		public const string PrimaryActionName = "Director.PrimaryAction";
-		public const string RelatedActionName = "Director.RelatedAction";
+		public const string TypeName = "Type";
+		public const string PrimaryActionName = "PrimaryAction";
+		public const string RelatedActionName = "RelatedAction";
 		
 		private readonly CreateFabDirector vCreateObj;
 
@@ -330,13 +330,13 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabEventorValidator : CreateFabObjectValidator {
 		
-		public const string TypeName = "Eventor.Type";
-		public const string YearName = "Eventor.Year";
-		public const string MonthName = "Eventor.Month";
-		public const string DayName = "Eventor.Day";
-		public const string HourName = "Eventor.Hour";
-		public const string MinuteName = "Eventor.Minute";
-		public const string SecondName = "Eventor.Second";
+		public const string TypeName = "Type";
+		public const string YearName = "Year";
+		public const string MonthName = "Month";
+		public const string DayName = "Day";
+		public const string HourName = "Hour";
+		public const string MinuteName = "Minute";
+		public const string SecondName = "Second";
 		
 		private readonly CreateFabEventor vCreateObj;
 
@@ -407,8 +407,8 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabIdentorValidator : CreateFabObjectValidator {
 		
-		public const string TypeName = "Identor.Type";
-		public const string ValueName = "Identor.Value";
+		public const string TypeName = "Type";
+		public const string ValueName = "Value";
 		
 		private readonly CreateFabIdentor vCreateObj;
 
@@ -448,10 +448,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabLocatorValidator : CreateFabObjectValidator {
 		
-		public const string TypeName = "Locator.Type";
-		public const string ValueXName = "Locator.ValueX";
-		public const string ValueYName = "Locator.ValueY";
-		public const string ValueZName = "Locator.ValueZ";
+		public const string TypeName = "Type";
+		public const string ValueXName = "ValueX";
+		public const string ValueYName = "ValueY";
+		public const string ValueZName = "ValueZ";
 		
 		private readonly CreateFabLocator vCreateObj;
 
@@ -503,10 +503,10 @@ namespace Fabric.New.Api.Objects.Conversions {
 	/*================================================================================================*/
 	public class CreateFabVectorValidator : CreateFabObjectValidator {
 		
-		public const string TypeName = "Vector.Type";
-		public const string UnitName = "Vector.Unit";
-		public const string UnitPrefixName = "Vector.UnitPrefix";
-		public const string ValueName = "Vector.Value";
+		public const string TypeName = "Type";
+		public const string UnitName = "Unit";
+		public const string UnitPrefixName = "UnitPrefix";
+		public const string ValueName = "Value";
 		
 		private readonly CreateFabVector vCreateObj;
 

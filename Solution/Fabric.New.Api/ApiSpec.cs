@@ -100,8 +100,10 @@ namespace Fabric.New.Api {
 				sop.Index = i;
 				sop.Name = aep.Name;
 				sop.Type = ApiLang.TypeName(aep.ParamType);
-				sop.Description = ApiLang.Text<ServiceOpParamText>(pSvcName+"_"+so.Name+"_"+sop.Name);
 				so.Parameters.Add(sop);
+
+				string langKey = (aep.LangKey ?? pSvcName+"_"+so.Name+"_"+sop.Name);
+				sop.Description = ApiLang.Text<ServiceOpParamText>(langKey);
 			}
 
 			return so;

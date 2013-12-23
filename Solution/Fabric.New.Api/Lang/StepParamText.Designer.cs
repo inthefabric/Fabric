@@ -115,6 +115,69 @@ namespace Fabric.New.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime_Day {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime_Hour {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime_Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime_Minute {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime_Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime_Month {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime_Operation {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime_Operation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime_Second {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string WhereEventorDateTime_Year {
+            get {
+                return ResourceManager.GetString("WhereEventorDateTime_Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The exact value to match for this search..
         /// </summary>
         internal static string With_Value {
