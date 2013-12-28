@@ -96,7 +96,6 @@ namespace Fabric.New.Api.Executors {
 			ApiEntry.Get(Uri+ApiMenu.OauthAtac.Uri, GetAtac, typeof(FabOauthAccess), AtacParams),
 			ApiEntry.Get(Uri+ApiMenu.OauthAtr.Uri, GetAtr, typeof(FabOauthAccess), AtrParams),
 			ApiEntry.Get(Uri+ApiMenu.OauthAtcc.Uri, GetAtcc, typeof(FabOauthAccess), AtccParams),
-			ApiEntry.Get(Uri+ApiMenu.OauthAtcd.Uri, GetAtcd, typeof(FabOauthAccess), AtcdParams),
 			ApiEntry.Get(Uri+ApiMenu.OauthLogin.Uri, GetLogin, typeof(FabOauthLogin), GetLoginParams),
 			ApiEntry.Post(Uri+ApiMenu.OauthLogin.Uri, PostLogin,
 				typeof(FabOauthLogin), PostLoginParams),
@@ -116,7 +115,7 @@ namespace Fabric.New.Api.Executors {
 			string redirUri = pApiReq.GetQueryValue(AccessRedirectUriParam, true);
 			string dataProvId = pApiReq.GetQueryValue(AccessDataProvUserIdParam, true);
 
-			return ExecuteAcc(pApiReq, grant, clientId, secret, code, refresh, redirUri, dataProvId);
+			return ExecuteAcc(pApiReq, grant, clientId, secret, code, refresh, redirUri);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -126,7 +125,7 @@ namespace Fabric.New.Api.Executors {
 			string redirUri = pApiReq.GetQueryValue(AccessRedirectUriParam);
 
 			return ExecuteAcc(pApiReq, OauthAccessOperation.GrantTypeAc,
-				null, secret, code, null, redirUri, null);
+				null, secret, code, null, redirUri);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -136,7 +135,7 @@ namespace Fabric.New.Api.Executors {
 			string redirUri = pApiReq.GetQueryValue(AccessRedirectUriParam);
 
 			return ExecuteAcc(pApiReq, OauthAccessOperation.GrantTypeRt,
-				null, secret, null, refresh, redirUri, null);
+				null, secret, null, refresh, redirUri);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -146,25 +145,16 @@ namespace Fabric.New.Api.Executors {
 			string redirUri = pApiReq.GetQueryValue(AccessRedirectUriParam);
 
 			return ExecuteAcc(pApiReq, OauthAccessOperation.GrantTypeCc,
-				clientId, secret, null, null, redirUri, null);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static IApiResponse GetAtcd(IApiRequest pApiReq) {
-			string dataProvId = pApiReq.GetQueryValue(AccessDataProvUserIdParam);
-
-			return ExecuteAcc(pApiReq, OauthAccessOperation.GrantTypeCd,
-				null, null, null, null, null, dataProvId);
+				clientId, secret, null, null, redirUri);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse ExecuteAcc(IApiRequest pApiReq, string pGrantType, string pClientId,
-														string pSecret, string pCode, string pRefresh,
-														string pRedirUri, string pDataProvId) {
+									string pSecret, string pCode, string pRefresh, string pRedirUri) {
 			Func<FabOauthAccess> getResp = (() => {
 				var op = new OauthAccessOperation();
 				return op.Execute(pApiReq.OpCtx, new OauthAccessTasks(), pGrantType, pClientId,
-					pSecret, pCode, pRefresh, pRedirUri, pDataProvId);
+					pSecret, pCode, pRefresh, pRedirUri);
 			});
 
 			var exec = new BasicExecutor<FabOauthAccess>(pApiReq, getResp);

@@ -1,6 +1,7 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
@@ -34,13 +35,11 @@ namespace Fabric.New.Operations.Oauth.Access {
 		BadRefresh,
 		RedirMismatch,
 		BadClientSecret,
-		NoDataProvId,
-		BadDataProvId,
 		Unexpected
 	};
 
 	/*================================================================================================*/
-	public class OauthAccessTasks {
+	public class OauthAccessTasks : IOauthAccessTasks {
 
 		public static readonly string[] ErrDescStrings = new [] {
 			"The grant_type is invalid",
@@ -62,7 +61,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void VerifyApp(IOperationContext pOpCtx, long pAppId, string pClientSecret) {
+		public App GetApp(IOperationContext pOpCtx, long pAppId, string pClientSecret) {
 			IWeaverQuery getApp = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.VertexId, pAppId)
 					.Has(x => x.Secret, WeaverStepHasOp.EqualTo, pClientSecret)
@@ -73,61 +72,76 @@ namespace Fabric.New.Operations.Oauth.Access {
 			if ( app == null ) {
 				throw NewFault(AccessErrors.invalid_client, AccessErrorDescs.BadClientSecret);
 			}
+
+			return app;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public OauthMember GetMemberByGrant(IOperationContext pOpCtx, string pGrantCode) {
+			Member path = Weave.Inst.Graph.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode);
+			return GetOauthMember(pOpCtx, path, "GetMemberByGrant");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Member GetMemberByGrant(IOperationContext pOpCtx, string pGrantCode, 
-																out long pAppId, out long pUserId) {
-			IWeaverVarAlias<Member> memAlias;
+		public OauthMember GetMemberByRefresh(IOperationContext pOpCtx, string pGrantCode) {
+			Member path = Weave.Inst.Graph.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode);
+			return GetOauthMember(pOpCtx, path, "GetMemberByRefresh");
+		}
 
-			IWeaverQuery memQ = Weave.Inst.Graph
-				.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode)
-				.ToQueryAsVar("m", out memAlias);
+		/*--------------------------------------------------------------------------------------------*/
+		public Member GetMemberByApp(IOperationContext pOpCtx, long pAppId) {
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<App>(x => x.VertexId, pAppId)
+				.DefinesMembers
+					.Has(x => x.MemberType, WeaverStepHasOp.EqualTo, (byte)MemberType.Id.DataProv)
+					.ToMember
+				.ToQuery();
+
+			return pOpCtx.Data.Get<Member>(q, "OauthAccess-GetMemberByApp");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private OauthMember GetOauthMember(IOperationContext pOpCtx, Member pMemPath, string pName) {
+			IWeaverVarAlias<Member> memAlias;
+			IWeaverQuery memQ = pMemPath.ToQueryAsVar("m", out memAlias);
 
 			IWeaverQuery appQ = Weave.Inst.FromVar(memAlias)
 				.DefinedByApp.ToApp
 					.Property(x => x.VertexId)
 				.ToQuery();
 
-			IWeaverQuery userQ = Weave.Inst.FromVar(memAlias)
-				.DefinedByUser.ToUser
-					.Property(x => x.VertexId)
-				.ToQuery();
-
 			IDataAccess acc = pOpCtx.Data.Build();
 			acc.AddQuery(memQ, true);
 			acc.AddQuery(appQ, true);
-			acc.AddQuery(userQ, true);
 
-			IDataResult res = acc.Execute("OauthAccess-GetMemberByGrant");
-			pAppId = res.ToLongAt(1, 0);
-			pUserId = res.ToLongAt(2, 0);
-			return res.ToElementAt<Member>(0, 0);
-		} 
+			IDataResult res = acc.Execute("OauthAccess-"+pName);
 
-		/*--------------------------------------------------------------------------------------------* /
-		public Member FindMember(IOperationContext pOpCtx, long pAppId, long pUserId) {
-			Member m = pOpCtx.Cache.Memory.FindMember(pAppId, pUserId);
-
-			if ( m != null ) {
-				return m;
-			}
-
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<User>(x => x.VertexId, pUserId)
-				.DefinesMembers
-					.Has(x => x.AppId, WeaverStepHasOp.EqualTo, pAppId)
-					.ToMember
-				.ToQuery();
-
-			m = pOpCtx.Data.Get<Member>(q, "OauthAccess-GetMember");
-			pOpCtx.Cache.Memory.AddMember(pAppId, pUserId, m);
-			return m;
+			var om = new OauthMember();
+			om.Member = res.ToElementAt<Member>(0, 0);
+			om.AppId = res.ToLongAt(1, 0);
+			return om;
 		}
-		
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess AddAccess(IOperationContext pOpCtx, Member pMember,
 																			bool pClientMode=false) {
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Member>(x => x.VertexId, pMember.VertexId)
+				.AuthenticatedByOauthAccesses.ToOauthAccess
+					.SideEffect(
+						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Token),
+						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Refresh)
+					)
+				.ToQuery();
+
+			pOpCtx.Data.Execute(q, "OauthAccess-ClearOldTokens");
+			
+			////
+
 			const int expireSec = 3600;
 
 			CreateFabOauthAccess coa = new CreateFabOauthAccess();
@@ -147,20 +161,6 @@ namespace Fabric.New.Operations.Oauth.Access {
 				ExpiresIn = expireSec,
 				TokenType = "bearer"
 			};
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		public void ClearOldTokens(IOperationContext pOpCtx, Member pMember) {
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<Member>(x => x.VertexId, pMember.VertexId)
-				.AuthenticatedByOauthAccesses.ToOauthAccess
-					.SideEffect(
-						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Token),
-						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Refresh)
-					)
-				.ToQuery();
-
-			pOpCtx.Data.Execute(q, "OauthAccess-ClearOldTokens");
 		}
 
 

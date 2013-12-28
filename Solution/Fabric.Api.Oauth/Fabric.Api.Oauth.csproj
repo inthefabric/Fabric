@@ -45,9 +45,6 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="IOauthGrantCore.cs" />
-    <Compile Include="OauthAccessCcOperation.cs" />
-    <Compile Include="OauthAccessCdOperation.cs" />
-    <Compile Include="OauthAccessRtOperation.cs" />
     <Compile Include="Results\AccessResult.cs" />
     <Compile Include="OauthGrantCore.cs" />
     <Compile Include="OauthGrantLoginAction.cs" />
