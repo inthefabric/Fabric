@@ -10,6 +10,7 @@ namespace Fabric.New.Api.Interfaces {
 
 		public HttpStatusCode Status { get; set; }
 		public string Json { get; set; }
+		public string RedirectUrl { get; set; }
 		public bool IsError { get; set; }
 		public Exception Unhandled { get; set; }
 
@@ -49,9 +50,9 @@ namespace Fabric.New.Api.Interfaces {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void LogResponse(IApiRequest pApiReq) {
-			//do google analytics action
-			//do graphite action
-			//do log action
+			//TODO: google analytics action
+			//TODO: graphite action
+			//TODO: log action
 		}
 
 	}

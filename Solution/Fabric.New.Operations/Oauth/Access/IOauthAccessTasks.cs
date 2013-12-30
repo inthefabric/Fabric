@@ -9,18 +9,20 @@ namespace Fabric.New.Operations.Oauth.Access {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		App GetApp(IOperationContext pOpCtx, long pAppId, string pClientSecret);
+		App GetApp(IOperationData pData, long pAppId, string pClientSecret);
 
+		/*--------------------------------------------------------------------------------------------*/
+		void VerifyAppDomain(App pApp, string pRedirectUri);
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		OauthMember GetMemberByGrant(IOperationContext pOpCtx, string pGrantCode);
+		OauthMember GetMemberByGrant(IOperationData pData, string pGrantCode);
 
 		/*--------------------------------------------------------------------------------------------*/
-		OauthMember GetMemberByRefresh(IOperationContext pOpCtx, string pGrantCode);
+		OauthMember GetMemberByRefresh(IOperationData pData, string pGrantCode);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Member GetMemberByApp(IOperationContext pOpCtx, long pAppId);
+		Member GetMemberByApp(IOperationData pData, long pAppId);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

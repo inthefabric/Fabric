@@ -1,10 +1,12 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System.Linq;
+using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
+using Fabric.New.Operations.Oauth.Grant;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
@@ -61,13 +63,13 @@ namespace Fabric.New.Operations.Oauth.Access {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public App GetApp(IOperationContext pOpCtx, long pAppId, string pClientSecret) {
+		public App GetApp(IOperationData pData, long pAppId, string pClientSecret) {
 			IWeaverQuery getApp = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.VertexId, pAppId)
 					.Has(x => x.Secret, WeaverStepHasOp.EqualTo, pClientSecret)
 				.ToQuery();
 
-			App app = pOpCtx.Data.Get<App>(getApp, "OauthAccess-VerifyApp");
+			App app = pData.Get<App>(getApp, "OauthAccess-VerifyApp");
 
 			if ( app == null ) {
 				throw NewFault(AccessErrors.invalid_client, AccessErrorDescs.BadClientSecret);
@@ -76,22 +78,37 @@ namespace Fabric.New.Operations.Oauth.Access {
 			return app;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public void VerifyAppDomain(App pApp, string pRedirectUri) {
+			string domain = OauthGrantTasks.GetDomainFromRedirUri(pRedirectUri);
+
+			if ( domain == null ) {
+				throw NewFault(AccessErrors.invalid_grant, AccessErrorDescs.BadRedirUri);
+			}
+
+			string[] domains = (pApp.OauthDomains == null ? null : pApp.OauthDomains.Split('|'));
+
+			if ( domains == null || !domains.Contains(domain.ToLower()) ) {
+				throw NewFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
+			}
+		}
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthMember GetMemberByGrant(IOperationContext pOpCtx, string pGrantCode) {
+		public OauthMember GetMemberByGrant(IOperationData pData, string pGrantCode) {
 			Member path = Weave.Inst.Graph.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode);
-			return GetOauthMember(pOpCtx, path, "GetMemberByGrant");
+			return GetOauthMember(pData, path, "GetMemberByGrant");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthMember GetMemberByRefresh(IOperationContext pOpCtx, string pGrantCode) {
+		public OauthMember GetMemberByRefresh(IOperationData pData, string pGrantCode) {
 			Member path = Weave.Inst.Graph.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode);
-			return GetOauthMember(pOpCtx, path, "GetMemberByRefresh");
+			return GetOauthMember(pData, path, "GetMemberByRefresh");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Member GetMemberByApp(IOperationContext pOpCtx, long pAppId) {
+		public Member GetMemberByApp(IOperationData pData, long pAppId) {
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.VertexId, pAppId)
 				.DefinesMembers
@@ -99,11 +116,11 @@ namespace Fabric.New.Operations.Oauth.Access {
 					.ToMember
 				.ToQuery();
 
-			return pOpCtx.Data.Get<Member>(q, "OauthAccess-GetMemberByApp");
+			return pData.Get<Member>(q, "OauthAccess-GetMemberByApp");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private OauthMember GetOauthMember(IOperationContext pOpCtx, Member pMemPath, string pName) {
+		private OauthMember GetOauthMember(IOperationData pData, Member pMemPath, string pName) {
 			IWeaverVarAlias<Member> memAlias;
 			IWeaverQuery memQ = pMemPath.ToQueryAsVar("m", out memAlias);
 
@@ -112,7 +129,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 					.Property(x => x.VertexId)
 				.ToQuery();
 
-			IDataAccess acc = pOpCtx.Data.Build();
+			IDataAccess acc = pData.Build();
 			acc.AddQuery(memQ, true);
 			acc.AddQuery(appQ, true);
 

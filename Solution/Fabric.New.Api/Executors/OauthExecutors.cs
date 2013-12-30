@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Operations.Oauth.Access;
+using Fabric.New.Operations.Oauth.Grant;
 
 namespace Fabric.New.Api.Executors {
 
@@ -21,7 +22,6 @@ namespace Fabric.New.Api.Executors {
 		private const string AccessCodeParam = "code";
 		private const string AccessRefreshTokenParam = "refresh_token";
 		private const string AccessRedirectUriParam = "redirect_uri";
-		private const string AccessDataProvUserIdParam = "data_prov_userid";
 
 		private const string LoginResponseTypeParam = "response_type";
 		private const string LoginClientIdParam = "client_id";
@@ -44,8 +44,7 @@ namespace Fabric.New.Api.Executors {
 			new ApiEntryParam(AccessClientSecretParam, typeof(string), true, AccessLang+"Secret"),
 			new ApiEntryParam(AccessCodeParam, typeof(string), true, AccessLang+"Code"),
 			new ApiEntryParam(AccessRefreshTokenParam, typeof(string), true, AccessLang+"Refresh"),
-			new ApiEntryParam(AccessRedirectUriParam, typeof(string), true, AccessLang+"RedirectUri"),
-			new ApiEntryParam(AccessDataProvUserIdParam, typeof(long), true, AccessLang+"DataProvId")
+			new ApiEntryParam(AccessRedirectUriParam, typeof(string), true, AccessLang+"RedirectUri")
 		};
 
 		private static readonly IList<ApiEntryParam> AtacParams = new List<ApiEntryParam> {
@@ -64,10 +63,6 @@ namespace Fabric.New.Api.Executors {
 			new ApiEntryParam(AccessClientIdParam, typeof(long), false, AccessLang+"ClientId"),
 			new ApiEntryParam(AccessClientSecretParam, typeof(string), false, AccessLang+"Secret"),
 			new ApiEntryParam(AccessRedirectUriParam, typeof(string), false, AccessLang+"RedirectUri")
-		};
-
-		private static readonly IList<ApiEntryParam> AtcdParams = new List<ApiEntryParam> {
-			new ApiEntryParam(AccessDataProvUserIdParam, typeof(long), false, AccessLang+"DataProvId")
 		};
 
 		private static readonly IList<ApiEntryParam> GetLoginParams = new List<ApiEntryParam> {
@@ -113,7 +108,6 @@ namespace Fabric.New.Api.Executors {
 			string code = pApiReq.GetQueryValue(AccessCodeParam, true);
 			string refresh = pApiReq.GetQueryValue(AccessRefreshTokenParam, true);
 			string redirUri = pApiReq.GetQueryValue(AccessRedirectUriParam, true);
-			string dataProvId = pApiReq.GetQueryValue(AccessDataProvUserIdParam, true);
 
 			return ExecuteAcc(pApiReq, grant, clientId, secret, code, refresh, redirUri);
 		}
@@ -165,14 +159,28 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetLogin(IApiRequest pApiReq) {
-			string respType = pApiReq.GetQueryValue(LoginResponseTypeParam);
-			string clientId = pApiReq.GetQueryValue(LoginClientIdParam);
-			string redirUri = pApiReq.GetQueryValue(LoginRedirectUriParam);
-			string scope = pApiReq.GetQueryValue(LoginScopeParam);
-			string state = pApiReq.GetQueryValue(LoginStateParam);
-			string switchMode = pApiReq.GetQueryValue(LoginSwitchModeParam);
+			Func<FabOauthLogin> getResp = (() => {
+				string incomingError = pApiReq.GetQueryValue("error", true);
 
-			return null; //TODO: return HTML login page
+				if ( incomingError != null ) {
+					string errDesc = pApiReq.GetQueryValue("error_description", true);
+					return null; //TODO: new LoginErrorView
+				}
+
+				string respType = pApiReq.GetQueryValue(LoginResponseTypeParam);
+				string clientId = pApiReq.GetQueryValue(LoginClientIdParam);
+				string redirUri = pApiReq.GetQueryValue(LoginRedirectUriParam);
+				//string scope = pApiReq.GetQueryValue(LoginScopeParam);
+				//string state = pApiReq.GetQueryValue(LoginStateParam);
+				string switchMode = pApiReq.GetQueryValue(LoginSwitchModeParam, true);
+
+				var op = new OauthLoginGetOperation();
+				return op.Execute(pApiReq.OpCtx, new OauthGrantTasks(),
+					clientId, redirUri, respType, switchMode);
+			});
+
+			var exec = new BasicExecutor<FabOauthLogin>(pApiReq, getResp);
+			return exec.Execute(); //TODO: return HTML login page
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

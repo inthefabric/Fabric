@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Fabric.New.Api.Objects.Oauth;
+﻿using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 
 namespace Fabric.New.Operations.Oauth.Access {
@@ -47,9 +46,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 				throw vTasks.NewFault(AccessErrors.invalid_request, AccessErrorDescs.NoCode);
 			}
 
-			////
-
-			OauthMember om = vTasks.GetMemberByGrant(vOpCtx, pCode);
+			OauthMember om = vTasks.GetMemberByGrant(vOpCtx.Data, pCode);
 
 			if ( om == null ) {
 				throw vTasks.NewFault(AccessErrors.invalid_grant, AccessErrorDescs.BadCode);
@@ -59,7 +56,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 				throw vTasks.NewFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
 			}
 
-			vTasks.GetApp(vOpCtx, om.AppId, pSecret);
+			vTasks.GetApp(vOpCtx.Data, om.AppId, pSecret);
 			return vTasks.AddAccess(vOpCtx, om.Member);
 		}
 
@@ -71,15 +68,13 @@ namespace Fabric.New.Operations.Oauth.Access {
 				throw vTasks.NewFault(AccessErrors.invalid_request, AccessErrorDescs.NoRefresh);
 			}
 
-			////
-
-			OauthMember om = vTasks.GetMemberByRefresh(vOpCtx, pRefresh);
+			OauthMember om = vTasks.GetMemberByRefresh(vOpCtx.Data, pRefresh);
 
 			if ( om == null ) {
 				throw vTasks.NewFault(AccessErrors.invalid_request, AccessErrorDescs.BadRefresh);
 			}
 
-			vTasks.GetApp(vOpCtx, om.AppId, pSecret);
+			vTasks.GetApp(vOpCtx.Data, om.AppId, pSecret);
 			return vTasks.AddAccess(vOpCtx, om.Member);
 		}
 
@@ -89,40 +84,14 @@ namespace Fabric.New.Operations.Oauth.Access {
 
 			long clientId;
 			bool parsed = long.TryParse(pClientIdStr, out clientId);
-			int protocolI = pRedirUri.IndexOf("://");
 
 			if ( !parsed || clientId <= 0 ) {
 				throw vTasks.NewFault(AccessErrors.invalid_client, AccessErrorDescs.NoClientId);
 			}
 
-			if ( protocolI <= 0 ) {
-				throw vTasks.NewFault(AccessErrors.invalid_grant, AccessErrorDescs.BadRedirUri);
-			}
-
-			////
-
-			var domain = pRedirUri.Substring(protocolI+3);
-			int slashI = domain.IndexOf("/");
-			int wwwI = domain.IndexOf("www.");
-			
-			if ( slashI > 0 ) {
-				domain = domain.Substring(0, slashI);
-			}
-
-			if ( wwwI == 0 ) {
-				domain = domain.Substring(4);
-			}
-
-			////
-
-			App a = vTasks.GetApp(vOpCtx, clientId, pSecret);
-			string[] domains = (a.OauthDomains == null ? new string[0] : a.OauthDomains.Split('|'));
-
-			if ( !domains.Contains(domain.ToLower()) ) {
-				throw vTasks.NewFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
-			}
-
-			Member m = vTasks.GetMemberByApp(vOpCtx, clientId);
+			App a = vTasks.GetApp(vOpCtx.Data, clientId, pSecret);
+			vTasks.VerifyAppDomain(a, pRedirUri);
+			Member m = vTasks.GetMemberByApp(vOpCtx.Data, clientId);
 			return vTasks.AddAccess(vOpCtx, m, true);
 		}
 

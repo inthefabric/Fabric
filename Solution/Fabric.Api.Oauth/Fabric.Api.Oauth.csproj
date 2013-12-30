@@ -44,9 +44,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="IOauthGrantCore.cs" />
     <Compile Include="Results\AccessResult.cs" />
-    <Compile Include="OauthGrantCore.cs" />
     <Compile Include="OauthGrantLoginAction.cs" />
     <Compile Include="OauthLogout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,7 +67,6 @@
     <Compile Include="Tasks\AddGrant.cs" />
     <Compile Include="Tasks\AddScope.cs" />
     <Compile Include="OauthGrantScopeAction.cs" />
-    <Compile Include="OauthGrantLoginEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

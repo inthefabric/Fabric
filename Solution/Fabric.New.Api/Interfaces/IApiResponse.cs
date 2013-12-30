@@ -8,6 +8,7 @@ namespace Fabric.New.Api.Interfaces {
 
 		HttpStatusCode Status { get; set; }
 		string Json { get; set; }
+		string RedirectUrl { get; set; }
 		bool IsError { get; set; }
 		Exception Unhandled { get; set; }
 
