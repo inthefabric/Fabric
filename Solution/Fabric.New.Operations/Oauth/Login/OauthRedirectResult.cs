@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.New.Operations.Oauth.Grant {
+namespace Fabric.New.Operations.Oauth.Login {
 
 	/*================================================================================================*/
 	public class OauthRedirectResult {

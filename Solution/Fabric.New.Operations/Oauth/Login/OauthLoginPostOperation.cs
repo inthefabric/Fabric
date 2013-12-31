@@ -1,7 +1,7 @@
 ﻿using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 
-namespace Fabric.New.Operations.Oauth.Grant {
+namespace Fabric.New.Operations.Oauth.Login {
 
 	/*================================================================================================*/
 	public class OauthLoginPostOperation {
@@ -9,7 +9,7 @@ namespace Fabric.New.Operations.Oauth.Grant {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin ExecuteLogin(IOperationContext pOpCtx, IOauthGrantTasks pTasks,
+		public FabOauthLogin ExecuteLogin(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 							string pClientId, string pRedirUri, string pUsername, string pPassword) {
 			var result = new FabOauthLogin();
 
@@ -39,7 +39,7 @@ namespace Fabric.New.Operations.Oauth.Grant {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin ExecuteScope(IOperationContext pOpCtx, IOauthGrantTasks pTasks,
+		public FabOauthLogin ExecuteScope(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 												string pClientId, string pRedirUri, bool pAllowScope) {
 			ValidateAndGetApp(pOpCtx, pTasks, pClientId, pRedirUri);
 			Member actMem = pOpCtx.Auth.ActiveMember;
@@ -58,14 +58,14 @@ namespace Fabric.New.Operations.Oauth.Grant {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public void ExecuteCancel(IOauthGrantTasks pTasks) {
+		public void ExecuteCancel(IOauthLoginTasks pTasks) {
 			throw pTasks.NewFault(GrantErrors.access_denied, GrantErrorDescs.LoginCancel);
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static App ValidateAndGetApp(IOperationContext pOpCtx, IOauthGrantTasks pTasks, 
+		private static App ValidateAndGetApp(IOperationContext pOpCtx, IOauthLoginTasks pTasks, 
 																string pClientId, string pRedirUri) {
 			if ( pRedirUri == null || pRedirUri.Length <= 0 ) {
 				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.NoRedirUri);

@@ -13,10 +13,10 @@ namespace Fabric.New.Api.Interfaces {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		string GetQueryValue(string pName, bool pOptional=false);
+		string GetQueryValue(string pName, bool pRequired);
 
 		/*--------------------------------------------------------------------------------------------*/
-		string GetFormValue(string pName, bool pOptional=false);
+		string GetFormValue(string pName, bool pRequired);
 
 	}
 

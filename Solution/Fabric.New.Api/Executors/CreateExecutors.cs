@@ -77,7 +77,7 @@ namespace Fabric.New.Api.Executors {
 														where TApi : FabVertex
 														where TOp : ICreateOperation<TDom,TApi>, new() {
 			Func<IList<TApi>> getResp = (() => {
-				string json = pApiReq.GetFormValue("Data");
+				string json = pApiReq.GetFormValue("Data", true);
 				var o = new TOp();
 
 				TDom result = o.Execute(

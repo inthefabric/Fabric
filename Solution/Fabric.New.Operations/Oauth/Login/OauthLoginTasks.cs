@@ -10,7 +10,7 @@ using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Operations.Oauth.Grant {
+namespace Fabric.New.Operations.Oauth.Login {
 
 	/*================================================================================================*/
 	public enum GrantErrors { //from section "4.1.2.1. Error Response"
@@ -38,7 +38,7 @@ namespace Fabric.New.Operations.Oauth.Grant {
 	};
 
 	/*================================================================================================*/
-	public class OauthGrantTasks : IOauthGrantTasks {
+	public class OauthLoginTasks : IOauthLoginTasks {
 		
 		public static string[] ErrDescStrings = new [] {
 			"Login cancelled by user",

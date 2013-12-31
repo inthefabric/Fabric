@@ -1,9 +1,9 @@
 ﻿using Fabric.New.Domain;
 
-namespace Fabric.New.Operations.Oauth.Grant {
+namespace Fabric.New.Operations.Oauth.Login {
 
 	/*================================================================================================*/
-	public interface IOauthGrantTasks {
+	public interface IOauthLoginTasks {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@ using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
-using Fabric.New.Operations.Oauth.Grant;
+using Fabric.New.Operations.Oauth.Login;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
@@ -80,7 +80,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void VerifyAppDomain(App pApp, string pRedirectUri) {
-			string domain = OauthGrantTasks.GetDomainFromRedirUri(pRedirectUri);
+			string domain = OauthLoginTasks.GetDomainFromRedirUri(pRedirectUri);
 
 			if ( domain == null ) {
 				throw NewFault(AccessErrors.invalid_grant, AccessErrorDescs.BadRedirUri);

@@ -1,7 +1,7 @@
 ﻿using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 
-namespace Fabric.New.Operations.Oauth.Grant {
+namespace Fabric.New.Operations.Oauth.Login {
 
 	/*================================================================================================*/
 	public class OauthLoginGetOperation {
@@ -9,7 +9,7 @@ namespace Fabric.New.Operations.Oauth.Grant {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin Execute(IOperationContext pOpCtx, IOauthGrantTasks pTasks,
+		public FabOauthLogin Execute(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 						string pClientId, string pRedirUri, string pResponseType, string pSwitchMode) {
 			if ( pResponseType != "code" ) {
 				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.BadRespType);

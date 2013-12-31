@@ -32,10 +32,10 @@ namespace Fabric.New.Api.Interfaces {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetQueryValue(string pName, bool pOptional=false) {
+		public string GetQueryValue(string pName, bool pRequired) {
 			string val = vNancyReq.Query[pName];
 
-			if ( !pOptional && string.IsNullOrWhiteSpace(val) ) {
+			if ( pRequired && string.IsNullOrWhiteSpace(val) ) {
 				throw new FabArgumentMissingFault(pName);
 			}
 
@@ -43,10 +43,10 @@ namespace Fabric.New.Api.Interfaces {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public string GetFormValue(string pName, bool pOptional=false) {
+		public string GetFormValue(string pName, bool pRequired) {
 			string val = vNancyReq.Form[pName];
 
-			if ( !pOptional && string.IsNullOrWhiteSpace(val) ) {
+			if ( pRequired && string.IsNullOrWhiteSpace(val) ) {
 				throw new FabArgumentMissingFault(pName);
 			}
 

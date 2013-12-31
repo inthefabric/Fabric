@@ -9,7 +9,8 @@ namespace Fabric.New.Operations.Oauth.Logout {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogout Execute(IOperationContext pOpCtx, IOauthLogoutTasks pTasks,string pToken){
+		public FabOauthLogout Execute(IOperationContext pOpCtx, 
+															IOauthLogoutTasks pTasks, string pToken) {
 			OauthAccess oa = pTasks.GetAccessToken(pOpCtx.Data, pToken);
 			pTasks.DoLogout(pOpCtx.Data, oa);
 
