@@ -146,18 +146,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess AddAccess(IOperationContext pOpCtx, Member pMember,
 																			bool pClientMode=false) {
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<Member>(x => x.VertexId, pMember.VertexId)
-				.AuthenticatedByOauthAccesses.ToOauthAccess
-					.SideEffect(
-						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Token),
-						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Refresh)
-					)
-				.ToQuery();
-
-			pOpCtx.Data.Execute(q, "OauthAccess-ClearOldTokens");
-			
-			////
+			ClearOldTokens(pOpCtx.Data, pMember.VertexId);
 
 			const int expireSec = 3600;
 
@@ -178,6 +167,20 @@ namespace Fabric.New.Operations.Oauth.Access {
 				ExpiresIn = expireSec,
 				TokenType = "bearer"
 			};
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void ClearOldTokens(IOperationData pData, long pMemberId) {
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Member>(x => x.VertexId, pMemberId)
+				.AuthenticatedByOauthAccesses.ToOauthAccess
+					.SideEffect(
+						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Token),
+						new WeaverStatementRemoveProperty<OauthAccess>(x => x.Refresh)
+					)
+				.ToQuery();
+
+			pData.Execute(q, "OauthAccess-ClearOldTokens");
 		}
 
 

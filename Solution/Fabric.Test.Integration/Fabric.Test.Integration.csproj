@@ -173,10 +173,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
-      <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
-      <Name>Fabric.Api.Oauth</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Api.Web\Fabric.Api.Web.csproj">
       <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
       <Name>Fabric.Api.Web</Name>

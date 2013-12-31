@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api", "Fabric.Api\Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test", "Fabric.Test\Fabric.Test.csproj", "{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Oauth", "Fabric.Api.Oauth\Fabric.Api.Oauth.csproj", "{F950795F-E668-4C70-A3FA-8194BC866D39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test.Integration", "Fabric.Test.Integration\Fabric.Test.Integration.csproj", "{592F06B2-3845-47DC-896E-20B752BCE8DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Web", "Fabric.Api.Web\Fabric.Api.Web.csproj", "{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}"
@@ -68,20 +66,6 @@ Global
 		{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}.Release|x86.ActiveCfg = Release|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.DebugLive|Any CPU.ActiveCfg = DebugLive|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.DebugLive|Any CPU.Build.0 = DebugLive|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.DebugLive|Mixed Platforms.ActiveCfg = DebugLive|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.DebugLive|Mixed Platforms.Build.0 = DebugLive|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.DebugLive|x86.ActiveCfg = DebugLive|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F950795F-E668-4C70-A3FA-8194BC866D39}.Release|x86.ActiveCfg = Release|Any CPU
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
