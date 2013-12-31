@@ -70,6 +70,8 @@
     <Compile Include="Internal\InternalInitDbOperation.cs" />
     <Compile Include="Internal\IInternalOperation.cs" />
     <Compile Include="IOperationAuth.cs" />
+    <Compile Include="Oauth\Grant\IOauthGrantTasks.cs" />
+    <Compile Include="Oauth\Grant\OauthLoginAllowOperation.cs" />
     <Compile Include="Oauth\Grant\OauthGrantResult.cs" />
     <Compile Include="Oauth\Access\IOauthAccessTasks.cs" />
     <Compile Include="Oauth\Access\OauthMember.cs" />

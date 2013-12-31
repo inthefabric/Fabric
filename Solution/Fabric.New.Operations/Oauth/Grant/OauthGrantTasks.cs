@@ -3,6 +3,7 @@ using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Query;
+using Fabric.New.Infrastructure.Util;
 using Fabric.New.Operations.Create;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
@@ -37,7 +38,7 @@ namespace Fabric.New.Operations.Oauth.Grant {
 	};
 
 	/*================================================================================================*/
-	public class OauthGrantTasks {
+	public class OauthGrantTasks : IOauthGrantTasks {
 		
 		public static string[] ErrDescStrings = new [] {
 			"Login cancelled by user",
@@ -137,6 +138,17 @@ namespace Fabric.New.Operations.Oauth.Grant {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public User GetUserByCredentials(IOperationData pData, string pUsername, string pPassword) {
+			IWeaverQuery q = 
+				Weave.Inst.Graph
+				.V.ExactIndex<User>(x => x.NameKey, pUsername.ToLower())
+					.Has(x => x.Password, WeaverStepHasOp.EqualTo, DataUtil.HashPassword(pPassword))
+				.ToQuery();
+
+			return pData.Get<User>(q, "OauthGrant-GetUserByCredentials");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		public Member GetOrAddMember(IOperationContext pOpCtx, long pAppId, long pUserId) {
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<User>(x => x.VertexId, pUserId)
@@ -145,7 +157,7 @@ namespace Fabric.New.Operations.Oauth.Grant {
 						.ToMember
 				.ToQuery();
 
-			Member m = pOpCtx.Data.Get<Member>(q, "OauthGrant-GetMember");
+			Member m = pOpCtx.Data.Get<Member>(q, "OauthGrant-TryGetMember");
 
 			if ( m != null ) {
 				return m;
@@ -163,6 +175,21 @@ namespace Fabric.New.Operations.Oauth.Grant {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void DenyScope(IOperationData pData, Member pMember) {
+			pMember.OauthScopeAllow = false;
+
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Member>(x => x.VertexId, pMember.VertexId)
+					.SideEffect(
+						new WeaverStatementSetProperty<Member>(
+							x => x.OauthScopeAllow, pMember.OauthScopeAllow)
+					)
+				.ToQuery();
+
+			pData.Execute(q, "OauthGrant-DenyScope");
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public void UpdateGrant(IOperationContext pOpCtx, Member pMember, string pRedirectUri) {
 			pMember.OauthScopeAllow = true;

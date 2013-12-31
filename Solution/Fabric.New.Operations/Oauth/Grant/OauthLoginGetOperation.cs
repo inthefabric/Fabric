@@ -9,7 +9,7 @@ namespace Fabric.New.Operations.Oauth.Grant {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin Execute(IOperationContext pOpCtx,OauthGrantTasks pTasks,
+		public FabOauthLogin Execute(IOperationContext pOpCtx, IOauthGrantTasks pTasks,
 						string pClientId, string pRedirUri, string pResponseType, string pSwitchMode) {
 			if ( pResponseType != "code" ) {
 				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.BadRespType);
