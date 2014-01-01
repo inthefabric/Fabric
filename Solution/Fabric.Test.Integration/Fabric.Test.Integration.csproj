@@ -177,10 +177,6 @@
       <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
       <Name>Fabric.Api.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api\Fabric.Api.csproj">
-      <Project>{B8B58824-60DC-40A8-88CF-7048493D5517}</Project>
-      <Name>Fabric.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Test\Fabric.Test.csproj">
       <Project>{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}</Project>
       <Name>Fabric.Test</Name>

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.New.Api.Executors.Views;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Operations.Oauth;
 using Fabric.New.Operations.Oauth.Access;
 using Fabric.New.Operations.Oauth.Login;
 using Fabric.New.Operations.Oauth.Logout;
-using Nancy;
 using ServiceStack.Text;
 
 namespace Fabric.New.Api.Executors {
@@ -34,11 +34,11 @@ namespace Fabric.New.Api.Executors {
 		private const string LoginStateParam = "state";
 		private const string LoginSwitchModeParam = "switchMode";
 
-		private const string LoginCancel = "cancel";
-		private const string LoginLogout = "logout";
-		private const string LoginLogin = "login";
-		private const string LoginAllow = "allow";
-		private const string LoginDeny = "deny";
+		public const string LoginCancel = "cancel";
+		public const string LoginLogout = "logout";
+		public const string LoginLogin = "login";
+		public const string LoginAllow = "allow";
+		public const string LoginDeny = "deny";
 
 		public const string LoginUsername = "Username";
 		public const string LoginPassword = "Password";
@@ -172,6 +172,7 @@ namespace Fabric.New.Api.Executors {
 			});
 
 			var exec = new BasicExecutor<FabOauthAccess>(pApiReq, getResp);
+			exec.OnException = OnAccessExecption;
 			return exec.Execute();
 		}
 
@@ -179,128 +180,159 @@ namespace Fabric.New.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse GetLogin(IApiRequest pApiReq) {
+			string incomingError = pApiReq.GetQueryValue("error", false);
+
+			if ( incomingError != null ) {
+				string errDesc = pApiReq.GetQueryValue("error_description", false);
+
+				return new ApiResponse {
+					Html = new LoginErrorView(incomingError, errDesc).ToHtml()
+				};
+			}
+
+			////
+
 			Func<FabOauthLogin> getResp = (() => {
-				string incomingError = pApiReq.GetQueryValue("error", false);
-
-				if ( incomingError != null ) {
-					string errDesc = pApiReq.GetQueryValue("error_description", false);
-					return new LoginErrorView(incomingError, errDesc).ToResponse();
-				}
-
 				string respType = pApiReq.GetQueryValue(LoginResponseTypeParam, false);
 				string clientId = pApiReq.GetQueryValue(LoginClientIdParam, false);
 				string redirUri = pApiReq.GetQueryValue(LoginRedirectUriParam, false);
 				string switchMode = pApiReq.GetQueryValue(LoginSwitchModeParam, false);
 
 				var op = new OauthLoginGetOperation();
-				FabOauthLogin result = op.Execute(pApiReq.OpCtx, new OauthLoginTasks(),
+				return op.Execute(pApiReq.OpCtx, new OauthLoginTasks(),
 					clientId, redirUri, respType, switchMode);
-
-				if ( result.ShowLoginPage ) {
-					return new LoginPageView(result).ToResponse();
-				}
-
-				if ( result.ScopeCode != null ) {
-					string state = pApiReq.GetQueryValue(LoginStateParam, false);
-					return Redirect(result.ScopeRedirect, result.ScopeCode, state);
-				}
-
-				return new LoginScopeView(result).ToResponse();
 			});
 
 			var exec = new BasicExecutor<FabOauthLogin>(pApiReq, getResp);
-			return exec.Execute(); //TODO: return HTML login page
+			exec.OnException = OnLoginException;
+			exec.SkipJson = true;
+			IApiResponse apiResp = exec.Execute();
+			FabOauthLogin res = exec.Result;
+
+			if ( res.ShowLoginPage ) {
+				apiResp.Html = new LoginPageView(res).ToHtml();
+			}
+
+			if ( res.ScopeCode != null ) {
+				apiResp.RedirectUrl = BuildRedirectUri(res.ScopeRedirect, res.ScopeCode,
+					pApiReq.GetQueryValue(LoginStateParam, false));
+			}
+
+			apiResp.Html = new LoginScopeView(res).ToHtml();
+			return apiResp;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static IApiResponse PostLogin(IApiRequest pApiReq) {
-			Func<FabOauthLogin> getResp = null;
-
 			if ( pApiReq.GetFormValue(LoginCancel, false) != null ) {
-				getResp = GetPostLoginCancelFunc();
-			}
-			else if ( pApiReq.GetFormValue(LoginLogout, false) != null ) {
-				getResp = GetPostLoginLogoutFunc();
-			}
-			else if ( pApiReq.GetFormValue(LoginLogin, false) != null ) {
-				getResp = GetPostLoginLoginFunc(pApiReq);
-			}
-			else if ( pApiReq.GetFormValue(LoginAllow, false) != null ) {
-				getResp = GetPostLoginScopeFunc(pApiReq, true);
-			}
-			else if ( pApiReq.GetFormValue(LoginDeny, false) != null ) {
-				getResp = GetPostLoginScopeFunc(pApiReq, false);
+				return PostLoginCancel(pApiReq);
 			}
 
-			var exec = new BasicExecutor<FabOauthLogin>(pApiReq, getResp);
-			return exec.Execute();
+			if ( pApiReq.GetFormValue(LoginLogout, false) != null ) {
+				return PostLoginLogout(pApiReq);
+			}
+
+			if ( pApiReq.GetFormValue(LoginLogin, false) != null ) {
+				return PostLoginLogin(pApiReq);
+			}
+
+			if ( pApiReq.GetFormValue(LoginAllow, false) != null ) {
+				return PostLoginScope(pApiReq, true);
+			}
+
+			if ( pApiReq.GetFormValue(LoginDeny, false) != null ) {
+				return PostLoginScope(pApiReq, false);
+			}
+
+			return null;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private static Func<FabOauthLogin> GetPostLoginCancelFunc() {
-			return () => {
+		private static IApiResponse PostLoginCancel(IApiRequest pApiReq) {
+			Func<FabOauthLogin> getResp = () => {
 				var o = new OauthLoginPostOperation();
 				o.ExecuteCancel(new OauthLoginTasks());
 				return null;
 			};
+
+			var exec = new BasicExecutor<FabOauthLogin>(pApiReq, getResp);
+			exec.OnException = OnLoginException;
+			exec.SkipJson = true;
+			return exec.Execute();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Func<FabOauthLogin> GetPostLoginLogoutFunc() {
-			return () => {
-				Response r = NancyUtil.Redirect(NancyReq.Url.ToString());
-				NancyUtil.SetUserCookie(r, null, false);
-				return null;
-			};
+		private static IApiResponse PostLoginLogout(IApiRequest pApiReq) {
+			var apiResp = new ApiResponse();
+			apiResp.RedirectUrl = pApiReq.Path;
+			apiResp.SetUserCookie(null, false);
+			return apiResp;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Func<FabOauthLogin> GetPostLoginLoginFunc(IApiRequest pApiReq) {
-			return () => {
+		private static IApiResponse PostLoginLogin(IApiRequest pApiReq) {
+			bool remember = false;
+
+			Func<FabOauthLogin> getResp = () => {
 				string user = pApiReq.GetFormValue(LoginUsername, true);
 				string pass = pApiReq.GetFormValue(LoginPassword, true);
-				bool rem = (pApiReq.GetFormValue(LoginRememberMe, false) == "1");
+				remember = (pApiReq.GetFormValue(LoginRememberMe, false) == "1");
 
 				string clientId = pApiReq.GetQueryValue(LoginClientIdParam, false);
 				string redirUri = pApiReq.GetQueryValue(LoginRedirectUriParam, false);
 
 				var op = new OauthLoginPostOperation();
-				FabOauthLogin result = op.ExecuteLogin(pApiReq.OpCtx, new OauthLoginTasks(),
+				return op.ExecuteLogin(pApiReq.OpCtx, new OauthLoginTasks(),
 					clientId, redirUri, user, pass);
-
-				if ( result.ShowLoginPage ) {
-					return new LoginPageView(result).ToResponse();
-				}
-
-				bool scopeAllowed = (result.ScopeCode != null);
-				string state = pApiReq.GetQueryValue(LoginStateParam, false);
-
-				Response r = (scopeAllowed ?
-					Redirect(result.ScopeRedirect, result.ScopeCode, state) : 
-					new LoginScopeView(result).ToResponse()
-				);
-
-				NancyUtil.SetUserCookie(r, result.LoggedUserId, rem);
 			};
+
+			var exec = new BasicExecutor<FabOauthLogin>(pApiReq, getResp);
+			exec.OnException = OnLoginException;
+			exec.SkipJson = true;
+			IApiResponse apiResp = exec.Execute();
+			FabOauthLogin res = exec.Result;
+
+			if ( res.ShowLoginPage ) {
+				apiResp.Html = new LoginPageView(res).ToHtml();
+				return apiResp;
+			}
+
+			if ( res.ScopeCode != null ) {
+				apiResp.RedirectUrl = BuildRedirectUri(res.ScopeRedirect, res.ScopeCode,
+					pApiReq.GetQueryValue(LoginStateParam, false));
+			}
+			else {
+				apiResp.Html = new LoginScopeView(res).ToHtml();
+			}
+
+			apiResp.SetUserCookie(res.LoggedUserId, remember);
+			return apiResp;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Func<FabOauthLogin> GetPostLoginScopeFunc(IApiRequest pApiReq, bool pAllow) {
-			return () => {
+		private static IApiResponse PostLoginScope(IApiRequest pApiReq, bool pAllow) {
+			Func<FabOauthLogin> getResp = () => {
 				string client = pApiReq.GetQueryValue(LoginClientIdParam, false);
 				string redirUri = pApiReq.GetQueryValue(LoginRedirectUriParam, false);
 
 				var op = new OauthLoginPostOperation();
-				FabOauthLogin result = op.ExecuteScope(pApiReq.OpCtx,
-					new OauthLoginTasks(), client, redirUri, pAllow);
-
-				//fault has been thrown when !pAllow
-
-				string state = pApiReq.GetQueryValue(LoginStateParam, false);
-				Redirect(result.ScopeRedirect, result.ScopeCode, state);
+				return op.ExecuteScope(pApiReq.OpCtx, new OauthLoginTasks(), client, redirUri, pAllow);
 			};
+
+			var exec = new BasicExecutor<FabOauthLogin>(pApiReq, getResp);
+			exec.OnException = OnLoginException;
+			exec.SkipJson = true;
+			IApiResponse apiResp = exec.Execute();
+
+			apiResp.RedirectUrl = BuildRedirectUri(
+				exec.Result.ScopeRedirect, 
+				exec.Result.ScopeCode,
+				pApiReq.GetQueryValue(LoginStateParam, false)
+			);
+
+			return apiResp;
 		}
 
 
@@ -321,46 +353,47 @@ namespace Fabric.New.Api.Executors {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response BuildExceptionResponse(Exception pEx) {
+		private static string BuildRedirectUri(string pRedir, string pCode, string pState) {
+			return pRedir+"?code="+pCode+"&state="+pState;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static string BuildRedirectUri(FabOauthError pErr, string pRedir, string pState) {
+			return pRedir+"?error="+pErr.Error+"&error_description="+
+				pErr.ErrorDesc.Replace(' ', '+')+"&state="+pState;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private static bool OnLoginException(IApiRequest pReq, IApiResponse pResp, Exception pEx) {
 			FabOauthError fabErr;
 
 			if ( pEx is OauthException ) {
-				ExceptionIsHandled();
 				fabErr = (pEx as OauthException).OauthError;
 			}
 			else {
 				fabErr = FabOauthError.ForInternalServerError();
 			}
 
-			return Redirect(fabErr);
+			string redirUri = pReq.GetQueryValue(LoginRedirectUriParam, false);
+			string state = pReq.GetQueryValue(LoginStateParam, false);
+			pResp.RedirectUrl = BuildRedirectUri(fabErr, redirUri, state);
+			return true;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static Response BuildAccessExceptionResponse(Exception pEx) {
+		private static bool OnAccessExecption(IApiRequest pReq, IApiResponse pResp, Exception pEx) {
 			FabOauthError fabErr;
 
 			if ( pEx is OauthException ) {
-				ExceptionIsHandled();
 				fabErr = (pEx as OauthException).OauthError;
 			}
 			else {
 				fabErr = FabOauthError.ForInternalServerError();
 			}
 
-			return NancyUtil.BuildJsonResponse(HttpStatusCode.Forbidden, fabErr.ToJson());
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static Response Redirect(string pRedir, string pCode, string pState) {
-			return NancyUtil.Redirect(pRedir+"?code="+pCode+"&state="+pState);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static Response Redirect(FabOauthError pErr, string pRedir, string pState) {
-			return NancyUtil.Redirect(pRedir+"?error="+pErr.Error+
-				"&error_description="+pErr.ErrorDesc.Replace(' ', '+')+"&state="+pState);
+			pResp.Status = System.Net.HttpStatusCode.Forbidden;
+			pResp.Json = fabErr.ToJson();
+			return true;
 		}
 
 	}

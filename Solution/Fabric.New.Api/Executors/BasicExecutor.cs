@@ -7,7 +7,9 @@ namespace Fabric.New.Api.Executors {
 	/*================================================================================================*/
 	public class BasicExecutor<T> : Executor {
 
-		public Func<Exception, string> OnException { get; set; }
+		public Func<IApiRequest, IApiResponse, Exception, bool> OnException { get; set; }
+		public bool SkipJson { get; set; }
+		public T Result { get; private set; }
 
 		private readonly Func<T> vGetResponse;
 
@@ -16,7 +18,7 @@ namespace Fabric.New.Api.Executors {
 		/*--------------------------------------------------------------------------------------------*/
 		public BasicExecutor(IApiRequest pApiReq, Func<T> pGetResponse) : base(pApiReq) {
 			vGetResponse = pGetResponse;
-			OnException = (e => null);
+			OnException = ((req, resp ,ex) => false);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -26,12 +28,14 @@ namespace Fabric.New.Api.Executors {
 			resp.StartTimer();
 
 			try {
-				resp.SetJsonWith(vGetResponse());
+				Result = vGetResponse();
+
+				if ( !SkipJson ) {
+					resp.SetJsonWith(Result);
+				}
 			}
 			catch ( Exception e ) {
-				resp.Json = OnException(e);
-
-				if ( resp.Json == null ) {
+				if ( !OnException(ApiReq, resp, e) ) {
 					OnUnhandledException(resp, e);
 				}
 			}

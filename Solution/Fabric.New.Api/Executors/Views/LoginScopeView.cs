@@ -1,9 +1,7 @@
-﻿using Fabric.Api.Common;
-using Fabric.Api.Content;
-using Fabric.Api.Dto.Oauth;
-using Nancy;
+﻿using Fabric.Api.Content;
+using Fabric.New.Api.Objects.Oauth;
 
-namespace Fabric.Api.Services.Views {
+namespace Fabric.New.Api.Executors.Views {
 
 	/*================================================================================================*/
 	public class LoginScopeView : HtmlView {
@@ -18,15 +16,15 @@ namespace Fabric.Api.Services.Views {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public override Response ToResponse() {
+		public override string ToHtml() {
 			string html = WebResources.LoginScopeHtml
 				.Replace("@AppName", vLogin.AppName)
 				.Replace("@LoggedUserName", vLogin.LoggedUserName)
-				.Replace("@AllowAction", OauthLoginController.AllowAction)
-				.Replace("@DenyAction", OauthLoginController.DenyAction)
-				.Replace("@LogoutAction", OauthLoginController.LogoutAction);
+				.Replace("@AllowAction", OauthExecutors.LoginAllow)
+				.Replace("@DenyAction", OauthExecutors.LoginDeny)
+				.Replace("@LogoutAction", OauthExecutors.LoginLogout);
 
-			return BuildResponse("Fabirc Login: Scope", html);
+			return BuildHtml("Fabirc Login: Scope", html);
 		}
 
 	}

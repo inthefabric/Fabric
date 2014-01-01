@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using System.Text;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Meta;
@@ -9,6 +12,7 @@ using Fabric.New.Infrastructure.Cache;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Operations;
 using Nancy;
+using Nancy.Cookies;
 using Nancy.Responses;
 using Nancy.Serializers.Json.ServiceStack;
 using ServiceStack.Text;
@@ -79,9 +83,23 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private Response GetResponse(ApiEntry pEntry) {
 			IApiResponse apiResp = pEntry.Function(NewReq());
+			HttpStatusCode status = (HttpStatusCode)(int)apiResp.Status;
+			var cookies = new List<INancyCookie>();
 
-			var tr = new TextResponse(apiResp.Json, "application/json");
-			tr.StatusCode = (HttpStatusCode)(int)apiResp.Status;
+			foreach ( KeyValuePair<string, string> pair in apiResp.Cookies ) {
+				cookies.Add(new NancyCookie(pair.Key, pair.Value));
+			}
+
+			////
+
+			if ( apiResp.Html != null ) {
+				byte[] bytes = Encoding.UTF8.GetBytes(apiResp.Html);
+				return new HtmlResponse(status, (s => s.Write(bytes, 0, bytes.Length)),
+					apiResp.Headers, cookies);
+			}
+
+			var tr = new TextResponse( status, apiResp.Json, Encoding.UTF8, apiResp.Headers, cookies);
+			tr.ContentType = "application/json";
 			return tr;
 		}
 

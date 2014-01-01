@@ -82,6 +82,11 @@
       <LastGenOutput>SmartLinks.cs</LastGenOutput>
     </None>
     <None Include="LatestSpec.json" />
+    <Compile Include="Content\WebResources1.Designer.cs">
+      <DependentUpon>WebResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Executors\OauthExecutors.cs" />
     <Compile Include="Executors\InternalExecutors.cs" />
     <Compile Include="Executors\MetaExecutors.cs" />
@@ -90,6 +95,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Executors\Views\HtmlView.cs" />
+    <Compile Include="Executors\Views\LoginErrorView.cs" />
+    <Compile Include="Executors\Views\LoginPageView.cs" />
+    <Compile Include="Executors\Views\LoginScopeView.cs" />
     <Compile Include="Interfaces\ApiEntry.cs" />
     <Compile Include="ApiModule.cs" />
     <Compile Include="Interfaces\ApiRequest.cs" />
@@ -178,6 +187,19 @@
       <LastGenOutput>TraversalExecutors.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <Content Include="Content\arrow.png" />
+    <Content Include="Content\bg0.png" />
+    <Content Include="Content\bg1.png" />
+    <Content Include="Content\bg2.png" />
+    <Content Include="Content\bg3.png" />
+    <Content Include="Content\fabric.png" />
+    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\Foundation.css" />
+    <Content Include="Content\Html\Layout.html" />
+    <Content Include="Content\Html\LoginError.html" />
+    <Content Include="Content\Html\LoginPage.html" />
+    <Content Include="Content\Html\LoginScope.html" />
+    <Content Include="Content\Site.css" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +224,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Content\WebResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WebResources1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lang\DtoPropText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DtoPropText.Designer.cs</LastGenOutput>
