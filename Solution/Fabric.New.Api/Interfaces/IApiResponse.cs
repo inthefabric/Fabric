@@ -12,7 +12,7 @@ namespace Fabric.New.Api.Interfaces {
 		string Html { get; set; }
 		string RedirectUrl { get; set; }
 		IDictionary<string, string> Headers { get; }
-		IDictionary<string, string> Cookies { get; }
+		IList<Cookie> Cookies { get; }
 		bool IsError { get; set; }
 		Exception Unhandled { get; set; }
 

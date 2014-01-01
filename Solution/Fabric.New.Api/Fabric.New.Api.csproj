@@ -87,6 +87,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Executors\CustomExecutor.cs" />
     <Compile Include="Executors\OauthExecutors.cs" />
     <Compile Include="Executors\InternalExecutors.cs" />
     <Compile Include="Executors\MetaExecutors.cs" />
@@ -104,7 +105,7 @@
     <Compile Include="Interfaces\ApiRequest.cs" />
     <Compile Include="Interfaces\ApiResponse.cs" />
     <Compile Include="BaseModule.cs" />
-    <Compile Include="Executors\BasicExecutor.cs" />
+    <Compile Include="Executors\JsonExecutor.cs" />
     <Compile Include="Executors\MenuExecutors.cs" />
     <Compile Include="Executors\CreateExecutors.cs">
       <DependentUpon>CreateExecutors.tt</DependentUpon>
@@ -116,6 +117,7 @@
     <Compile Include="Executors\IExecutor.cs" />
     <Compile Include="Handlers\StatusHandler.cs" />
     <Compile Include="Interfaces\ApiEntryParam.cs" />
+    <Compile Include="Interfaces\ApiResponseCookie.cs" />
     <Compile Include="Interfaces\IApiRequest.cs" />
     <Compile Include="Interfaces\IApiResponse.cs" />
     <Compile Include="ApiMenu.cs" />

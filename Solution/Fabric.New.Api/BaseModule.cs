@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Net;
 using System.Text;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects;
@@ -16,6 +17,7 @@ using Nancy.Cookies;
 using Nancy.Responses;
 using Nancy.Serializers.Json.ServiceStack;
 using ServiceStack.Text;
+using HttpStatusCode = Nancy.HttpStatusCode;
 
 namespace Fabric.New.Api {
 
@@ -86,8 +88,12 @@ namespace Fabric.New.Api {
 			HttpStatusCode status = (HttpStatusCode)(int)apiResp.Status;
 			var cookies = new List<INancyCookie>();
 
-			foreach ( KeyValuePair<string, string> pair in apiResp.Cookies ) {
-				cookies.Add(new NancyCookie(pair.Key, pair.Value));
+			foreach ( Cookie c in apiResp.Cookies ) {
+				var nc = new NancyCookie(c.Name, c.Value, c.HttpOnly, c.Secure);
+				nc.Domain = c.Domain;
+				nc.Expires = c.Expires;
+				nc.Path = c.Path;
+				cookies.Add(nc);
 			}
 
 			////

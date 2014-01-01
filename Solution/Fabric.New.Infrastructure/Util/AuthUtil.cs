@@ -25,7 +25,6 @@ namespace Fabric.New.Infrastructure.Util {
 			if ( pUserId == null ) {
 				cook = new Cookie(FabricUserAuth, "");
 				exp = new TimeSpan(-1, 0, 0, 0);
-
 			}
 			else {
 				string val = TwoDigitRandom()+"|"+pUserId;

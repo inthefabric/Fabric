@@ -21,7 +21,7 @@ namespace Fabric.New.Api.Executors {
 				return op.GetResult();
 			});
 
-			var exec = new BasicExecutor<object>(pApiReq, getResp);
+			var exec = new JsonExecutor<object>(pApiReq, getResp);
 			return exec.Execute();
 		}
 
