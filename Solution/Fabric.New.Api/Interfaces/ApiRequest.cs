@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fabric.New.Infrastructure.Faults;
+using Fabric.New.Infrastructure.Util;
 using Fabric.New.Operations;
 using Nancy;
 
@@ -27,6 +28,7 @@ namespace Fabric.New.Api.Interfaces {
 			IpAddress = vNancyReq.UserHostAddress;
 
 			OpCtx.Auth.SetOauthToken(GetBearerToken());
+			OpCtx.Auth.SetCookieUserId(AuthUtil.GetUserIdFromCookies(pNancyReq.Cookies));
 		}
 
 

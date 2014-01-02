@@ -14,6 +14,7 @@ namespace Fabric.New.Operations {
 	public class OperationAuth : IOperationAuth {
 
 		public Member ActiveMember { get; private set; }
+		public long? CookieUserId { get; private set;  }
 
 		private readonly Func<IDataAccess> vGetDataAcc;
 		private readonly Func<long> vGetUtcNow;
@@ -65,6 +66,13 @@ namespace Fabric.New.Operations {
 			}
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetCookieUserId(long pUserId) {
+			CookieUserId = pUserId;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public long? ActiveMemberId {
 			get {

@@ -19,16 +19,19 @@ namespace Fabric.New.Operations.Oauth.Login {
 		App GetApp(IOperationData pData, long pAppId);
 
 		/*--------------------------------------------------------------------------------------------*/
-		User GetUserByMember(IOperationData pData, Member pMember);
+		User GetUser(IOperationData pData, long pUserId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		User GetUserByCredentials(IOperationData pData, string pUsername, string pPassword);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Member GetOrAddMember(IOperationContext pOpCtx, long pAppId, long pUserId);
+		Member GetMember(IOperationData pData, long pAppId, long pUserId);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		Member AddMember(IOperationContext pOpCtx, long pAppId, long pUserId);
+
 		/*--------------------------------------------------------------------------------------------*/
 		void DenyScope(IOperationData pData, Member pMember);
 

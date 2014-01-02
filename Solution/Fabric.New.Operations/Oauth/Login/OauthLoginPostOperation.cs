@@ -28,7 +28,11 @@ namespace Fabric.New.Operations.Oauth.Login {
 			result.LoggedUserId = user.VertexId;
 			result.LoggedUserName = user.Name;
 
-			Member mem = pTasks.GetOrAddMember(pOpCtx, app.VertexId, user.VertexId);
+			Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, user.VertexId);
+
+			if ( mem == null ) {
+				mem = pTasks.AddMember(pOpCtx, app.VertexId, user.VertexId);
+			}
 
 			if ( mem.OauthScopeAllow == true ) {
 				result.ScopeCode = mem.OauthGrantCode;
@@ -41,19 +45,19 @@ namespace Fabric.New.Operations.Oauth.Login {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthLogin ExecuteScope(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 												string pClientId, string pRedirUri, bool pAllowScope) {
-			ValidateAndGetApp(pOpCtx, pTasks, pClientId, pRedirUri);
-			Member actMem = pOpCtx.Auth.ActiveMember;
+			App app = ValidateAndGetApp(pOpCtx, pTasks, pClientId, pRedirUri);
+			Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, (long)pOpCtx.Auth.CookieUserId);
 
 			if ( !pAllowScope ) {
-				pTasks.DenyScope(pOpCtx.Data, actMem);
+				pTasks.DenyScope(pOpCtx.Data, mem);
 				throw pTasks.NewFault(GrantErrors.access_denied, GrantErrorDescs.AccessDeny);
 			}
 
-			pTasks.UpdateGrant(pOpCtx, actMem, pRedirUri);
+			pTasks.UpdateGrant(pOpCtx, mem, pRedirUri);
 
 			return new FabOauthLogin {
 				ScopeRedirect = pRedirUri,
-				ScopeCode = actMem.OauthGrantCode
+				ScopeCode = mem.OauthGrantCode
 			};
 		}
 		

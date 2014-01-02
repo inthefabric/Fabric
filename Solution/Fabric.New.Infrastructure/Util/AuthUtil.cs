@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace Fabric.New.Infrastructure.Util {
@@ -11,6 +12,18 @@ namespace Fabric.New.Infrastructure.Util {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static long GetUserIdFromCookies(IDictionary<string, string> pCookies) {
+			string c;
+			pCookies.TryGetValue(FabricUserAuth, out c);
+
+			if ( c == null || c == "0" ) {
+				return 0;
+			}
+
+			return GetUserIdFromCookieString(Uri.UnescapeDataString(c));
+		}
+
 		/*--------------------------------------------------------------------------------------------*/
 		public static long GetUserIdFromCookieString(string pCookieString) {
 			string val = EncryptUtil.DecryptData(EncryptKey, pCookieString);

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Net;
 using System.Text;
 using Fabric.New.Api.Interfaces;
@@ -98,13 +96,17 @@ namespace Fabric.New.Api {
 
 			////
 
+			if ( apiResp.RedirectUrl != null ) {
+				return new RedirectResponse(apiResp.RedirectUrl);
+			}
+
 			if ( apiResp.Html != null ) {
 				byte[] bytes = Encoding.UTF8.GetBytes(apiResp.Html);
 				return new HtmlResponse(status, (s => s.Write(bytes, 0, bytes.Length)),
 					apiResp.Headers, cookies);
 			}
 
-			var tr = new TextResponse( status, apiResp.Json, Encoding.UTF8, apiResp.Headers, cookies);
+			var tr = new TextResponse(status, apiResp.Json, Encoding.UTF8, apiResp.Headers, cookies);
 			tr.ContentType = "application/json";
 			return tr;
 		}

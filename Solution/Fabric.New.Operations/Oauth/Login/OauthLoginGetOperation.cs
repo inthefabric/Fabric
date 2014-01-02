@@ -27,19 +27,23 @@ namespace Fabric.New.Operations.Oauth.Login {
 			App app = pTasks.GetApp(pOpCtx.Data, appId);
 			pTasks.VerifyAppDomain(app, pRedirUri);
 
-			Member actMem = pOpCtx.Auth.ActiveMember;
 			var result = new FabOauthLogin();
 			bool forceLogin = (pSwitchMode == "1");
+			long? userId = pOpCtx.Auth.CookieUserId;
 
-			if ( actMem != null && actMem.OauthScopeAllow == true && !forceLogin ) {
-				pTasks.UpdateGrant(pOpCtx, actMem, pRedirUri);
+			if ( userId != null ) {
+				Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, (long)userId);
 
-				result.ScopeCode = actMem.OauthGrantCode;
-				result.ScopeRedirect = actMem.OauthGrantRedirectUri;
-				return result;
+				if ( mem.OauthScopeAllow == true && !forceLogin ) {
+					pTasks.UpdateGrant(pOpCtx, mem, pRedirUri);
+
+					result.ScopeCode = mem.OauthGrantCode;
+					result.ScopeRedirect = mem.OauthGrantRedirectUri;
+					return result;
+				}
 			}
 
-			User user = pTasks.GetUserByMember(pOpCtx.Data, actMem);
+			User user = (userId == null ? null : pTasks.GetUser(pOpCtx.Data, (long)userId));
 
 			result.ShowLoginPage = (user == null || forceLogin);
 			result.AppId = appId;

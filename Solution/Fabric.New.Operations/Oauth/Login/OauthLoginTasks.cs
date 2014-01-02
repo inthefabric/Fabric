@@ -110,11 +110,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public App GetApp(IOperationData pData, long pAppId) {
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<App>(x => x.VertexId, pAppId)
-				.ToQuery();
-
-			App app = pData.Get<App>(q, "OauthGrant-GetApp");
+			App app = pData.GetVertexById<App>(pAppId);
 
 			if ( app == null ) {
 				throw NewFault(GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
@@ -124,17 +120,8 @@ namespace Fabric.New.Operations.Oauth.Login {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public User GetUserByMember(IOperationData pData, Member pMember) {
-			if ( pMember == null ) {
-				return null;
-			}
-
-			IWeaverQuery q = Weave.Inst.Graph
-				.V.ExactIndex<Member>(x => x.VertexId, pMember.VertexId)
-					.DefinedByUser.ToUser
-				.ToQuery();
-
-			return pData.Get<User>(q, "OauthGrant-GetUserByMember");
+		public User GetUser(IOperationData pData, long pUserId) {
+			return pData.GetVertexById<User>(pUserId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -149,7 +136,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Member GetOrAddMember(IOperationContext pOpCtx, long pAppId, long pUserId) {
+		public Member GetMember(IOperationData pData, long pAppId, long pUserId) {
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<User>(x => x.VertexId, pUserId)
 					.DefinesMembers
@@ -157,24 +144,22 @@ namespace Fabric.New.Operations.Oauth.Login {
 						.ToMember
 				.ToQuery();
 
-			Member m = pOpCtx.Data.Get<Member>(q, "OauthGrant-TryGetMember");
-
-			if ( m != null ) {
-				return m;
-			}
-
-			var create = new CreateFabMember();
-			create.DefinedByAppId = pAppId;
-			create.DefinedByUserId = pUserId;
-			create.Type = (byte)MemberType.Id.Member;
-
-			var op = new CreateMemberOperation();
-			m = op.Execute(pOpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), create);
-			return m;
+			return pData.Get<Member>(q, "OauthGrant-GetMember");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public Member AddMember(IOperationContext pOpCtx, long pAppId, long pUserId) {
+			var m = new CreateFabMember();
+			m.DefinedByAppId = pAppId;
+			m.DefinedByUserId = pUserId;
+			m.Type = (byte)MemberType.Id.Member;
+
+			var op = new CreateMemberOperation();
+			return op.Execute(pOpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), m);
+		}
+		
 		/*--------------------------------------------------------------------------------------------*/
 		public void DenyScope(IOperationData pData, Member pMember) {
 			pMember.OauthScopeAllow = false;
