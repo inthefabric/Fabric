@@ -11,6 +11,16 @@ namespace Fabric.New.Operations.Oauth.Login {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthLogin Execute(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 						string pClientId, string pRedirUri, string pResponseType, string pSwitchMode) {
+			/*var test = new FabOauthLogin();
+			test.ShowLoginPage = false;
+			test.AppId = 123;
+			test.AppName = "Test App";
+			test.LoggedUserId = 345;
+			test.LoggedUserName = "Test User";
+			test.ScopeCode = "TestScopeCode";
+			test.ScopeRedirect = "http://test.redirect.url";
+			return test;*/
+
 			if ( pResponseType != "code" ) {
 				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.BadRespType);
 			}

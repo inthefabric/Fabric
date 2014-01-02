@@ -219,11 +219,13 @@ namespace Fabric.New.Api.Executors {
 
 				if ( result.ShowLoginPage ) {
 					apiResp.Html = new LoginPageView(result).ToHtml();
+					return;
 				}
 
 				if ( result.ScopeCode != null ) {
 					apiResp.RedirectUrl = BuildRedirectUri(result.ScopeRedirect, result.ScopeCode,
 						pApiReq.GetQueryValue(LoginStateParam, false));
+					return;
 				}
 
 				apiResp.Html = new LoginScopeView(result).ToHtml();

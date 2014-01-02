@@ -1,4 +1,4 @@
-﻿using Fabric.Api.Content;
+﻿using Fabric.New.Api.Content;
 using Fabric.New.Api.Objects.Oauth;
 
 namespace Fabric.New.Api.Executors.Views {
