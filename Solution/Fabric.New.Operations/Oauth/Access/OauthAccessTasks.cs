@@ -1,12 +1,10 @@
-﻿using System.Linq;
-using Fabric.New.Api.Objects;
+﻿using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
-using Fabric.New.Operations.Oauth.Login;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
@@ -69,7 +67,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 					.Has(x => x.Secret, WeaverStepHasOp.EqualTo, pClientSecret)
 				.ToQuery();
 
-			App app = pData.Get<App>(getApp, "OauthAccess-VerifyApp");
+			App app = pData.Get<App>(getApp, "OauthAccess-GetApp");
 
 			if ( app == null ) {
 				throw NewFault(AccessErrors.invalid_client, AccessErrorDescs.BadClientSecret);

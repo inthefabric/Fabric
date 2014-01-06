@@ -7,7 +7,7 @@ using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Oauth {
+namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 
 	/*================================================================================================*/
 	[TestFixture]

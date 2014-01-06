@@ -30,6 +30,14 @@ namespace Fabric.New.Test.Unit.Shared {
 			return null;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public static void CheckWeaverScript(IWeaverScript pWeaverScript, string pExpectScript,
+														string pParamPrefix, IList<object> pValues) {
+			pExpectScript = InsertParamIndexes(pExpectScript, pParamPrefix);
+			Assert.AreEqual(pExpectScript, pWeaverScript.Script, "Incorrect Query.Script.");
+			CheckParams(pWeaverScript.Params, pParamPrefix, pValues);
+		}
+
 		/*--------------------------------------------------------------------------------------------* /
 		public static void CheckParam(IDictionary<string, IWeaverQueryVal> pParams,
 																	string pKey, object pOrigValue) {
@@ -41,13 +49,13 @@ namespace Fabric.New.Test.Unit.Shared {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void CheckParams(IDictionary<string, IWeaverQueryVal> pParams,
-															string pParamBase, IList<object> pValues) {
+														string pParamPrefix, IList<object> pValues) {
 			Assert.NotNull(pParams, "Query.Params should not be null.");
 			Assert.AreEqual(pValues.Count, pParams.Keys.Count, "Incorrect Query.Params.Keys.Count.");
 
 			for ( int i = 0 ; i < pValues.Count ; ++i ) {
-				Assert.AreEqual(pValues[i], pParams[pParamBase+i].Original,
-					"Incorrect value for Query.Params['"+pParamBase+i+"'].");
+				Assert.AreEqual(pValues[i], pParams[pParamPrefix+i].Original,
+					"Incorrect value for Query.Params['"+pParamPrefix+i+"'].");
 			}
 		}
 
