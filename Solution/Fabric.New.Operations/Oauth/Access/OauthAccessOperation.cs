@@ -1,5 +1,7 @@
-﻿using Fabric.New.Api.Objects.Oauth;
+﻿using System.Linq;
+using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
+using Fabric.New.Operations.Oauth.Login;
 
 namespace Fabric.New.Operations.Oauth.Access {
 
@@ -89,10 +91,21 @@ namespace Fabric.New.Operations.Oauth.Access {
 				throw vTasks.NewFault(AccessErrors.invalid_client, AccessErrorDescs.NoClientId);
 			}
 
-			App a = vTasks.GetApp(vOpCtx.Data, clientId, pSecret);
-			vTasks.VerifyAppDomain(a, pRedirUri);
-			Member m = vTasks.GetMemberByApp(vOpCtx.Data, clientId);
-			return vTasks.AddAccess(vOpCtx, m, true);
+			string domain = OauthLoginTasks.GetDomainFromRedirUri(pRedirUri);
+
+			if ( domain == null ) {
+				throw vTasks.NewFault(AccessErrors.invalid_grant, AccessErrorDescs.BadRedirUri);
+			}
+
+			App app = vTasks.GetApp(vOpCtx.Data, clientId, pSecret);
+			string[] domains = (app.OauthDomains == null ? null : app.OauthDomains.Split('|'));
+
+			if ( domains == null || !domains.Contains(domain.ToLower()) ) {
+				throw vTasks.NewFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
+			}
+
+			Member mem = vTasks.GetMemberByApp(vOpCtx.Data, clientId);
+			return vTasks.AddAccess(vOpCtx, mem, true);
 		}
 
 

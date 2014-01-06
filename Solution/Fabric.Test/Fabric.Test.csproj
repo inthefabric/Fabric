@@ -110,13 +110,8 @@
     <Compile Include="FabApiOauth\Tasks\TGetScope.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetUserAuth.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetRefresh.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessRefToken.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetDataProv.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessClientDataProv.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetDomain.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessClientCred.cs" />
-    <Compile Include="FabApiOauth\TOauthAccess.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessAuthCode.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetAppAuth.cs" />
     <Compile Include="FabApiOauth\TOauthLogout.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\THasIdFunc.cs" />

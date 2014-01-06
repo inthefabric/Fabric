@@ -78,21 +78,6 @@ namespace Fabric.New.Operations.Oauth.Access {
 			return app;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public void VerifyAppDomain(App pApp, string pRedirectUri) {
-			string domain = OauthLoginTasks.GetDomainFromRedirUri(pRedirectUri);
-
-			if ( domain == null ) {
-				throw NewFault(AccessErrors.invalid_grant, AccessErrorDescs.BadRedirUri);
-			}
-
-			string[] domains = (pApp.OauthDomains == null ? null : pApp.OauthDomains.Split('|'));
-
-			if ( domains == null || !domains.Contains(domain.ToLower()) ) {
-				throw NewFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
-			}
-		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
