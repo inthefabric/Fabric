@@ -58,7 +58,7 @@ namespace Fabric.New.Test.Unit.Shared {
 			Setup(x => x.AddQuery(It.IsAny<string>(), 
 					It.IsAny<IDictionary<string, IWeaverQueryVal>>(), It.IsAny<bool>()))
 				.Callback((string s, IDictionary<string, IWeaverQueryVal> p, bool c) => 
-					OnAddQuery(s, p, c))
+					OnAddQuery(s, (Dictionary<string, IWeaverQueryVal>)p, c))
 				.Returns(Object);
 
 			Setup(x => x.AddQuery(It.IsAny<IWeaverScript>(), It.IsAny<bool>()))
@@ -169,7 +169,7 @@ namespace Fabric.New.Test.Unit.Shared {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnAddQuery(
-							string pScript, IDictionary<string, IWeaverQueryVal> pParams, bool pCache) {
+							string pScript, Dictionary<string, IWeaverQueryVal> pParams, bool pCache) {
 			/*var mockWs = new Mock<IWeaverScript>();
 			mockWs.SetupGet(x => x.Script).Returns(pScript);
 			mockWs.SetupGet(x => x.Params).Returns((Dictionary<string, IWeaverQueryVal>)pParams);*/
@@ -212,7 +212,7 @@ namespace Fabric.New.Test.Unit.Shared {
 			return vCmdList[pIndex];
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void PrintCommands() {
 			const string line = "\n::::  ";
 
@@ -221,7 +221,7 @@ namespace Fabric.New.Test.Unit.Shared {
 			}
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AssertCommandList(IList<MockDataAccessCmd> pExpectCommands) {
 			Assert.AreEqual(pExpectCommands.Count, vCmdList.Count, "Incorrect CmdList.Count.");
 

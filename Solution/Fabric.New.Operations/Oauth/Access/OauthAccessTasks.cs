@@ -80,18 +80,23 @@ namespace Fabric.New.Operations.Oauth.Access {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthMember GetMemberByGrant(IOperationData pData, string pGrantCode) {
-			Member path = Weave.Inst.Graph.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode);
+			Member path = Weave.Inst.Graph
+				.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode);
+
 			return GetOauthMember(pData, path, "GetMemberByGrant");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthMember GetMemberByRefresh(IOperationData pData, string pGrantCode) {
-			Member path = Weave.Inst.Graph.V.ExactIndex<Member>(x => x.OauthGrantCode, pGrantCode);
+		public OauthMember GetMemberByRefresh(IOperationData pData, string pRefresh) {
+			Member path = Weave.Inst.Graph
+				.V.ExactIndex<OauthAccess>(x => x.Refresh, pRefresh)
+				.AuthenticatesMember.ToMember;
+
 			return GetOauthMember(pData, path, "GetMemberByRefresh");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Member GetMemberByApp(IOperationData pData, long pAppId) {
+		public Member GetDataProvMemberByApp(IOperationData pData, long pAppId) {
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.VertexId, pAppId)
 				.DefinesMembers
@@ -99,7 +104,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 					.ToMember
 				.ToQuery();
 
-			return pData.Get<Member>(q, "OauthAccess-GetMemberByApp");
+			return pData.Get<Member>(q, "OauthAccess-GetDPMemByApp");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

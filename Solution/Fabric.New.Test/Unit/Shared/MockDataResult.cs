@@ -43,14 +43,14 @@ namespace Fabric.New.Test.Unit.Shared {
 		/*--------------------------------------------------------------------------------------------*/
 		public MockDataResult SetupToElement<T>(T pElement)
 													where T : class, IWeaverElement, IElement, new() {
-			Setup(x => x.ToElement<T>()).Returns(() => pElement);
+			Setup(x => x.ToElement<T>()).Returns(pElement);
 			return this;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public MockDataResult SetupToElementList<T>(IList<T> pList)
 													where T : class, IWeaverElement, IElement, new() {
-			Setup(x => x.ToElementList<T>()).Returns(() => pList);
+			Setup(x => x.ToElementList<T>()).Returns(pList);
 			return this;
 		}
 

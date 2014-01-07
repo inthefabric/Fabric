@@ -17,10 +17,10 @@ namespace Fabric.New.Operations.Oauth.Access {
 		OauthMember GetMemberByGrant(IOperationData pData, string pGrantCode);
 
 		/*--------------------------------------------------------------------------------------------*/
-		OauthMember GetMemberByRefresh(IOperationData pData, string pGrantCode);
+		OauthMember GetMemberByRefresh(IOperationData pData, string pRefresh);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Member GetMemberByApp(IOperationData pData, long pAppId);
+		Member GetDataProvMemberByApp(IOperationData pData, long pAppId);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

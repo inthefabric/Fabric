@@ -104,7 +104,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 				throw vTasks.NewFault(AccessErrors.invalid_grant, AccessErrorDescs.RedirMismatch);
 			}
 
-			Member mem = vTasks.GetMemberByApp(vOpCtx.Data, clientId);
+			Member mem = vTasks.GetDataProvMemberByApp(vOpCtx.Data, clientId);
 			return vTasks.AddAccess(vOpCtx, mem, true);
 		}
 

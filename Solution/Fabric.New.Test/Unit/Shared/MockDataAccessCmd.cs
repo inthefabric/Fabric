@@ -6,13 +6,13 @@ using Weaver.Core.Query;
 namespace Fabric.New.Test.Unit.Shared {
 
 	/*================================================================================================*/
-	public class MockDataAccessCmd {
+	public class MockDataAccessCmd : IWeaverScript {
 
 		public string CommandId { get; set; }
 		public string ConditionCmdId { get; set; }
 		public string SessionAction { get; set; }
 		public string Script { get; set; }
-		public IDictionary<string, IWeaverQueryVal> Params { get; set; }
+		public Dictionary<string, IWeaverQueryVal> Params { get; set; }
 		public bool Cache { get; set; }
 		public bool OmitResults { get; set; }
 

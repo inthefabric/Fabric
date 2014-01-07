@@ -275,7 +275,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 				.Returns(app);
 
 			vMockTasks
-				.Setup(x => x.GetMemberByApp(vMockData.Object, long.Parse(vClientId)))
+				.Setup(x => x.GetDataProvMemberByApp(vMockData.Object, long.Parse(vClientId)))
 				.Returns(mem);
 
 			vMockTasks
