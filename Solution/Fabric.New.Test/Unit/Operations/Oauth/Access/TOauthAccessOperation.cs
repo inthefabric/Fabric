@@ -1,6 +1,7 @@
 ﻿using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 using Fabric.New.Operations;
+using Fabric.New.Operations.Create;
 using Fabric.New.Operations.Oauth;
 using Fabric.New.Operations.Oauth.Access;
 using Fabric.New.Test.Unit.Shared;
@@ -149,6 +150,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 			var om = new OauthMember();
 			om.AppId = 12344162346;
 			om.Member = new Member();
+			om.Member.VertexId = 463462346;
 			om.Member.OauthGrantRedirectUri = vRedirUri.ToLower();
 
 			var fabOa = new FabOauthAccess();
@@ -162,7 +164,8 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 				.Returns(new App());
 
 			vMockTasks
-				.Setup(x => x.AddAccess(vMockOpCtx.Object, om.Member, false))
+				.Setup(x => x.AddAccess(vMockOpCtx.Object,
+					It.IsAny<CreateOauthAccessOperation>(), om.Member.VertexId, false))
 				.Returns(fabOa);
 
 			DoExecute();
@@ -200,6 +203,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 
 			var om = new OauthMember();
 			om.AppId = 12344162346;
+			om.Member = new Member { VertexId = 623146134 };
 
 			var fabOa = new FabOauthAccess();
 
@@ -212,7 +216,8 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 				.Returns(new App());
 
 			vMockTasks
-				.Setup(x => x.AddAccess(vMockOpCtx.Object, om.Member, false))
+				.Setup(x => x.AddAccess(vMockOpCtx.Object, 
+					It.IsAny<CreateOauthAccessOperation>(), om.Member.VertexId, false))
 				.Returns(fabOa);
 
 			DoExecute();
@@ -267,7 +272,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 			vGrantType = OauthAccessOperation.GrantTypeCc;
 
 			var app = new App { OauthDomains = "test|my.redirect.uri|another" };
-			var mem = new Member();
+			var mem = new Member { VertexId = 41252325 };
 			var fabOa = new FabOauthAccess();
 
 			vMockTasks
@@ -279,7 +284,8 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 				.Returns(mem);
 
 			vMockTasks
-				.Setup(x => x.AddAccess(vMockOpCtx.Object, mem, true))
+				.Setup(x => x.AddAccess(vMockOpCtx.Object,
+					It.IsAny<CreateOauthAccessOperation>(), mem.VertexId, true))
 				.Returns(fabOa);
 
 			DoExecute();

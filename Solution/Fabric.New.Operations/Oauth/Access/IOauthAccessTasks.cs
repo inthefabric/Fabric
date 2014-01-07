@@ -1,5 +1,6 @@
 ﻿using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
+using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Operations.Oauth.Access {
 
@@ -25,7 +26,8 @@ namespace Fabric.New.Operations.Oauth.Access {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		FabOauthAccess AddAccess(IOperationContext pOpCtx, Member pMember, bool pClientMode=false);
+		FabOauthAccess AddAccess(IOperationContext pOpCtx, CreateOauthAccessOperation pCreateOp,
+			long pMemberId, bool pClientMode=false);
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

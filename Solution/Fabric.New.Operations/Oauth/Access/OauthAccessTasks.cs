@@ -132,9 +132,9 @@ namespace Fabric.New.Operations.Oauth.Access {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthAccess AddAccess(IOperationContext pOpCtx, Member pMember,
-																			bool pClientMode=false) {
-			ClearOldTokens(pOpCtx.Data, pMember.VertexId);
+		public FabOauthAccess AddAccess(IOperationContext pOpCtx, CreateOauthAccessOperation pCreateOp,
+															long pMemberId, bool pClientMode=false) {
+			ClearOldTokens(pOpCtx.Data, pMemberId);
 
 			const int expireSec = 3600;
 
@@ -143,11 +143,10 @@ namespace Fabric.New.Operations.Oauth.Access {
 			coa.Refresh = (pClientMode ? null : pOpCtx.Code32);
 			coa.IsDataProv = pClientMode;
 			coa.Expires = pOpCtx.UtcNow.AddSeconds(expireSec).Ticks;
-			coa.AuthenticatesMemberId = pMember.VertexId;
+			coa.AuthenticatesMemberId = pMemberId;
 
-			var op = new CreateOauthAccessOperation();
-			OauthAccess result = 
-				op.Execute(pOpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), coa);
+			OauthAccess result = pCreateOp.Execute(pOpCtx,
+				new CreateOperationBuilder(), new CreateOperationTasks(), coa);
 
 			return new FabOauthAccess {
 				AccessToken = result.Token,

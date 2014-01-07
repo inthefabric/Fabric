@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
+using Fabric.New.Operations.Create;
 using Fabric.New.Operations.Oauth.Login;
 
 namespace Fabric.New.Operations.Oauth.Access {
@@ -59,7 +60,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 			}
 
 			vTasks.GetApp(vOpCtx.Data, om.AppId, pSecret);
-			return vTasks.AddAccess(vOpCtx, om.Member);
+			return vTasks.AddAccess(vOpCtx, new CreateOauthAccessOperation(), om.Member.VertexId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -77,7 +78,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 			}
 
 			vTasks.GetApp(vOpCtx.Data, om.AppId, pSecret);
-			return vTasks.AddAccess(vOpCtx, om.Member);
+			return vTasks.AddAccess(vOpCtx, new CreateOauthAccessOperation(), om.Member.VertexId);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -105,7 +106,7 @@ namespace Fabric.New.Operations.Oauth.Access {
 			}
 
 			Member mem = vTasks.GetDataProvMemberByApp(vOpCtx.Data, clientId);
-			return vTasks.AddAccess(vOpCtx, mem, true);
+			return vTasks.AddAccess(vOpCtx, new CreateOauthAccessOperation(), mem.VertexId, true);
 		}
 
 

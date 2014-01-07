@@ -25,13 +25,13 @@ namespace Fabric.New.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
+		public virtual TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
 															CreateOperationTasks pTasks, string pJson) {
 			return Execute(pOpCtx, pBuild, pTasks, JsonSerializer.DeserializeFromString<TCre>(pJson));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
+		public virtual TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
 															CreateOperationTasks pTasks, TCre pNewCre) {
 			vOpCtx = pOpCtx;
 			Build = pBuild;
