@@ -41,7 +41,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		OauthException NewFault(GrantErrors pErr, GrantErrorDescs pDesc);
+		OauthException NewFault(LoginErrors pErr, LoginErrorDescs pDesc);
 
 	}
 

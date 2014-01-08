@@ -13,7 +13,7 @@ using Weaver.Core.Steps.Statements;
 namespace Fabric.New.Operations.Oauth.Login {
 
 	/*================================================================================================*/
-	public enum GrantErrors { //from section "4.1.2.1. Error Response"
+	public enum LoginErrors { //from section "4.1.2.1. Error Response"
 		invalid_request,
 		unauthorized_client,
 		access_denied,
@@ -24,7 +24,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 	};
 
 	/*================================================================================================*/
-	public enum GrantErrorDescs {
+	public enum LoginErrorDescs {
 		LoginCancel = 0,
 		AccessDeny,
 		BadRespType,
@@ -65,7 +65,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 				}
 			}
 
-			throw NewFault(GrantErrors.unauthorized_client, GrantErrorDescs.NoClient);
+			throw NewFault(LoginErrors.unauthorized_client, LoginErrorDescs.NoClient);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -73,13 +73,13 @@ namespace Fabric.New.Operations.Oauth.Login {
 			string domain = GetDomainFromRedirUri(pRedirectUri);
 
 			if ( domain == null ) {
-				throw NewFault(GrantErrors.invalid_request, GrantErrorDescs.BadRedirUri);
+				throw NewFault(LoginErrors.invalid_request, LoginErrorDescs.BadRedirUri);
 			}
 
 			string[] domains = (pApp.OauthDomains == null ? null : pApp.OauthDomains.Split('|'));
 
 			if ( domains == null || !domains.Contains(domain.ToLower()) ) {
-				throw NewFault(GrantErrors.invalid_request, GrantErrorDescs.RedirMismatch);
+				throw NewFault(LoginErrors.invalid_request, LoginErrorDescs.RedirMismatch);
 			}
 		}
 
@@ -113,7 +113,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 			App app = pData.GetVertexById<App>(pAppId);
 
 			if ( app == null ) {
-				throw NewFault(GrantErrors.unauthorized_client, GrantErrorDescs.BadClient);
+				throw NewFault(LoginErrors.unauthorized_client, LoginErrorDescs.BadClient);
 			}
 
 			return app;
@@ -202,7 +202,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthException NewFault(GrantErrors pErr, GrantErrorDescs pDesc) {
+		public OauthException NewFault(LoginErrors pErr, LoginErrorDescs pDesc) {
 			return new OauthException(pErr.ToString(), ErrDescStrings[(int)pDesc]);
 		}
 

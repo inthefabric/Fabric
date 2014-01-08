@@ -50,7 +50,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 
 			if ( !pAllowScope ) {
 				pTasks.DenyScope(pOpCtx.Data, mem);
-				throw pTasks.NewFault(GrantErrors.access_denied, GrantErrorDescs.AccessDeny);
+				throw pTasks.NewFault(LoginErrors.access_denied, LoginErrorDescs.AccessDeny);
 			}
 
 			pTasks.UpdateGrant(pOpCtx, mem, pRedirUri);
@@ -63,7 +63,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void ExecuteCancel(IOauthLoginTasks pTasks) {
-			throw pTasks.NewFault(GrantErrors.access_denied, GrantErrorDescs.LoginCancel);
+			throw pTasks.NewFault(LoginErrors.access_denied, LoginErrorDescs.LoginCancel);
 		}
 
 
@@ -72,7 +72,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 		private static App ValidateAndGetApp(IOperationContext pOpCtx, IOauthLoginTasks pTasks, 
 																string pClientId, string pRedirUri) {
 			if ( pRedirUri == null || pRedirUri.Length <= 0 ) {
-				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.NoRedirUri);
+				throw pTasks.NewFault(LoginErrors.invalid_request, LoginErrorDescs.NoRedirUri);
 			}
 
 			long appId = pTasks.AppIdToLong(pClientId);

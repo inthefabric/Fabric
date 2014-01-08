@@ -22,15 +22,15 @@ namespace Fabric.New.Operations.Oauth.Login {
 			return test;*/
 
 			if ( pResponseType != "code" ) {
-				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.BadRespType);
+				throw pTasks.NewFault(LoginErrors.invalid_request, LoginErrorDescs.BadRespType);
 			}
 
 			if ( pSwitchMode != null && pSwitchMode != "0" && pSwitchMode != "1" ) {
-				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.BadSwitch);
+				throw pTasks.NewFault(LoginErrors.invalid_request, LoginErrorDescs.BadSwitch);
 			}
 
 			if ( pRedirUri == null || pRedirUri.Length <= 0 ) {
-				throw pTasks.NewFault(GrantErrors.invalid_request, GrantErrorDescs.NoRedirUri);
+				throw pTasks.NewFault(LoginErrors.invalid_request, LoginErrorDescs.NoRedirUri);
 			}
 
 			long appId = pTasks.AppIdToLong(pClientId);
@@ -42,7 +42,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 			long? userId = pOpCtx.Auth.CookieUserId;
 
 			if ( userId != null ) {
-				Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, (long)userId);
+				Member mem = pTasks.GetMember(pOpCtx.Data, appId, (long)userId);
 
 				if ( mem.OauthScopeAllow == true && !forceLogin ) {
 					pTasks.UpdateGrant(pOpCtx, mem, pRedirUri);

@@ -57,6 +57,7 @@
     <Compile Include="Unit\Operations\Create\TCreateOperationTasksEdge.cs" />
     <Compile Include="Unit\Operations\Create\TCreateOperationTasksVertex.cs" />
     <Compile Include="Unit\Operations\Create\TCreateOperationTasksDuplicate.cs" />
+    <Compile Include="Unit\Operations\Oauth\Login\TOauthLoginGetOperation.cs" />
     <Compile Include="Unit\Operations\Oauth\Logout\TOauthLogoutTasks.cs" />
     <Compile Include="Unit\Operations\Oauth\Access\TOauthAccessTasks.cs" />
     <Compile Include="Unit\Operations\Oauth\Access\TOauthAccessOperation.cs" />

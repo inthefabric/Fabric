@@ -118,34 +118,8 @@ namespace Fabric.Test.FabApiOauth {
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrBadRespType() {
-			vResponseType = "notCode";
-			TestUtil.CheckThrows<OauthException>(true, () => TestGo());
-			vMockCore.Verify(x => x.GetFault(
-				GrantErrors.invalid_request, GrantErrorDescs.BadRespType), Times.Once());
-		}
 		
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase("-1")]
-		[TestCase("2")]
-		public void ErrBadSwitch(string pMode) {
-			vSwitchMode = pMode;
-			TestUtil.CheckThrows<OauthException>(true, () => TestGo());
-			vMockCore.Verify(x => x.GetFault(
-				GrantErrors.invalid_request, GrantErrorDescs.BadSwitch), Times.Once());
-		}
-		
-		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(null)]
-		[TestCase("")]
-		public void ErrNoRedirUri(string pUri) {
-			vMockCore.SetupGet(x => x.RedirectUri).Returns(pUri);
-			TestUtil.CheckThrows<OauthException>(true, () => TestGo());
-			vMockCore.Verify(x => x.GetFault(
-				GrantErrors.invalid_request, GrantErrorDescs.NoRedirUri), Times.Once());
-		}
+
 		
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]

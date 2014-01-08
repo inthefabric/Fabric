@@ -56,7 +56,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void AssertFault(AccessErrors pError, AccessErrorDescs pDesc) {
+		private void AssertFault(AccessErrors pError, AccessErrorDescs pDesc) {
 			var oe = new OauthException(null, null);
 
 			vMockTasks
