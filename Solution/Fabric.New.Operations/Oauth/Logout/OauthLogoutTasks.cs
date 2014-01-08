@@ -42,7 +42,7 @@ namespace Fabric.New.Operations.Oauth.Logout {
 				.V.ExactIndex<OauthAccess>(x => x.Token, pToken)
 				.ToQuery();
 
-			OauthAccess oa = pData.Get<OauthAccess>(q, "OauthAccess-GetAccessToken");
+			OauthAccess oa = pData.Get<OauthAccess>(q, "OauthLogout-GetAccessToken");
 
 			if ( oa == null ) {
 				throw NewFault(LogoutErrors.invalid_request, LogoutErrorDescs.NoTokenMatch);
@@ -59,7 +59,7 @@ namespace Fabric.New.Operations.Oauth.Logout {
 					.AuthenticatesMember.ToMember
 					.ToQuery();
 
-				Member m = pData.Get<Member>(q, "OauthAccess-DoLogout-GetMember");
+				Member m = pData.Get<Member>(q, "OauthLogout-GetMember");
 				OauthAccessTasks.ClearOldTokens(pData, m.VertexId);
 			}
 			catch ( Exception ) {

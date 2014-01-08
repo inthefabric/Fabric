@@ -109,7 +109,6 @@
     <Compile Include="FabApiWeb\TCreateUser.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetScope.cs" />
     <Compile Include="FabApiOauth\Tasks\TGetUserAuth.cs" />
-    <Compile Include="FabApiOauth\TOauthLogout.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\THasIdFunc.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFuncRegistry.cs" />
     <Compile Include="FabApiTraversal\Steps\Functions\TFunc.cs" />
@@ -134,7 +133,6 @@
     </Compile>
     <Compile Include="FabApiOauth\Tasks\TGetAccessToken.cs" />
     <Compile Include="Util\UsageMap.cs" />
-    <Compile Include="FabApiOauth\Tasks\TDoLogout.cs" />
     <Compile Include="FabApiOauth\Tasks\TAddMemberEnsure.cs" />
     <Compile Include="FabApiOauth\Tasks\TAddGrant.cs" />
     <Compile Include="FabApiOauth\Tasks\TAddScope.cs" />
