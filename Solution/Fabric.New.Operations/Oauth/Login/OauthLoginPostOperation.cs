@@ -1,5 +1,4 @@
-﻿using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Domain;
+﻿using Fabric.New.Domain;
 
 namespace Fabric.New.Operations.Oauth.Login {
 
@@ -9,9 +8,9 @@ namespace Fabric.New.Operations.Oauth.Login {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin ExecuteLogin(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
+		public OauthLoginResult ExecuteLogin(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 							string pClientId, string pRedirUri, string pUsername, string pPassword) {
-			var result = new FabOauthLogin();
+								var result = new OauthLoginResult();
 
 			App app = ValidateAndGetApp(pOpCtx, pTasks, pClientId, pRedirUri);
 			result.AppId = app.VertexId;
@@ -35,15 +34,15 @@ namespace Fabric.New.Operations.Oauth.Login {
 			}
 
 			if ( mem.OauthScopeAllow == true ) {
-				result.ScopeCode = mem.OauthGrantCode;
-				result.ScopeRedirect = pRedirUri;
+				result.Code = mem.OauthGrantCode;
+				result.Redirect = pRedirUri;
 			}
 
 			return result;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin ExecuteScope(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
+		public OauthLoginResult ExecuteScope(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 												string pClientId, string pRedirUri, bool pAllowScope) {
 			App app = ValidateAndGetApp(pOpCtx, pTasks, pClientId, pRedirUri);
 			Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, (long)pOpCtx.Auth.CookieUserId);
@@ -55,9 +54,9 @@ namespace Fabric.New.Operations.Oauth.Login {
 
 			pTasks.UpdateGrant(pOpCtx, mem, pRedirUri);
 
-			return new FabOauthLogin {
-				ScopeRedirect = pRedirUri,
-				ScopeCode = mem.OauthGrantCode
+			return new OauthLoginResult {
+				Redirect = pRedirUri,
+				Code = mem.OauthGrantCode
 			};
 		}
 		

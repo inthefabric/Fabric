@@ -214,7 +214,7 @@ namespace Fabric.New.Api.Executors {
 				string switchMode = pApiReq.GetQueryValue(LoginSwitchModeParam, false);
 
 				var op = new OauthLoginGetOperation();
-				FabOauthLogin result = op.Execute(pApiReq.OpCtx, new OauthLoginTasks(),
+				OauthLoginResult result = op.Execute(pApiReq.OpCtx, new OauthLoginTasks(),
 					clientId, redirUri, respType, switchMode);
 
 				if ( result.ShowLoginPage ) {
@@ -222,8 +222,8 @@ namespace Fabric.New.Api.Executors {
 					return;
 				}
 
-				if ( result.ScopeCode != null ) {
-					apiResp.RedirectUrl = BuildRedirectUri(result.ScopeRedirect, result.ScopeCode,
+				if ( result.Code != null ) {
+					apiResp.RedirectUrl = BuildRedirectUri(result.Redirect, result.Code,
 						pApiReq.GetQueryValue(LoginStateParam, false));
 					return;
 				}
@@ -292,7 +292,7 @@ namespace Fabric.New.Api.Executors {
 				string redirUri = pApiReq.GetQueryValue(LoginRedirectUriParam, false);
 
 				var op = new OauthLoginPostOperation();
-				FabOauthLogin result = op.ExecuteLogin(pApiReq.OpCtx, new OauthLoginTasks(),
+				OauthLoginResult result = op.ExecuteLogin(pApiReq.OpCtx, new OauthLoginTasks(),
 					clientId, redirUri, user, pass);
 
 				if ( result.ShowLoginPage ) {
@@ -300,8 +300,8 @@ namespace Fabric.New.Api.Executors {
 					return;
 				}
 
-				if ( result.ScopeCode != null ) {
-					apiResp.RedirectUrl = BuildRedirectUri(result.ScopeRedirect, result.ScopeCode,
+				if ( result.Code != null ) {
+					apiResp.RedirectUrl = BuildRedirectUri(result.Redirect, result.Code,
 						pApiReq.GetQueryValue(LoginStateParam, false));
 				}
 				else {
@@ -322,10 +322,10 @@ namespace Fabric.New.Api.Executors {
 				string redirUri = pApiReq.GetQueryValue(LoginRedirectUriParam, false);
 
 				var op = new OauthLoginPostOperation();
-				FabOauthLogin result = op.ExecuteScope(pApiReq.OpCtx, new OauthLoginTasks(), 
+				OauthLoginResult result = op.ExecuteScope(pApiReq.OpCtx, new OauthLoginTasks(), 
 					client, redirUri, pAllow);
 
-				apiResp.RedirectUrl = BuildRedirectUri(result.ScopeRedirect, result.ScopeCode,
+				apiResp.RedirectUrl = BuildRedirectUri(result.Redirect, result.Code,
 					pApiReq.GetQueryValue(LoginStateParam, false));
 			});
 

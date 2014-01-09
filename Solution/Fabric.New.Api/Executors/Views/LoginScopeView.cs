@@ -1,17 +1,17 @@
 ﻿using Fabric.New.Api.Content;
-using Fabric.New.Api.Objects.Oauth;
+using Fabric.New.Operations.Oauth.Login;
 
 namespace Fabric.New.Api.Executors.Views {
 
 	/*================================================================================================*/
 	public class LoginScopeView : HtmlView {
 
-		private readonly FabOauthLogin vLogin;
+		private readonly OauthLoginResult vLogin;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public LoginScopeView(FabOauthLogin pLogin) {
+		public LoginScopeView(OauthLoginResult pLogin) {
 			vLogin = pLogin;
 		}
 

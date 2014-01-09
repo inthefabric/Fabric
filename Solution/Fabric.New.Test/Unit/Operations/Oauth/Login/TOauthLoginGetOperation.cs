@@ -1,5 +1,4 @@
-﻿using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Domain;
+﻿using Fabric.New.Domain;
 using Fabric.New.Operations;
 using Fabric.New.Operations.Oauth;
 using Fabric.New.Operations.Oauth.Login;
@@ -22,7 +21,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
 		private string vRespType;
 		private string vSwitchMode;
 		private OauthLoginGetOperation vOper;
-		private FabOauthLogin vExecuteResult;
+		private OauthLoginResult vExecuteResult;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,8 +136,8 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
 			DoExecute();
 
 			Assert.NotNull(vExecuteResult, "Result should be filled.");
-			Assert.Null(vExecuteResult.ScopeCode, "ScopeCode should be null.");
-			Assert.Null(vExecuteResult.ScopeRedirect, "ScopeRedirect should be null.");
+			Assert.Null(vExecuteResult.Code, "Code should be null.");
+			Assert.Null(vExecuteResult.Redirect, "Redirect should be null.");
 			Assert.AreEqual(pExpectShow, vExecuteResult.ShowLoginPage, "Incorrect ShowLoginPage.");
 			Assert.AreEqual(appId, vExecuteResult.AppId, "Incorrect AppId.");
 			Assert.AreEqual(app.Name, vExecuteResult.AppName, "Incorrect AppName.");
@@ -199,9 +198,8 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
 
 			Assert.NotNull(vExecuteResult, "Result should be filled.");
 			Assert.False(vExecuteResult.ShowLoginPage, "Incorrect ShowLoginPage.");
-			Assert.AreEqual(mem.OauthGrantCode, vExecuteResult.ScopeCode, "Incorrect ScopeCode.");
-			Assert.AreEqual(mem.OauthGrantRedirectUri, vExecuteResult.ScopeRedirect,
-				"Incorrect ScopeRedirect.");
+			Assert.AreEqual(mem.OauthGrantCode, vExecuteResult.Code, "Incorrect Code.");
+			Assert.AreEqual(mem.OauthGrantRedirectUri, vExecuteResult.Redirect, "Incorrect Redirect.");
 
 			vMockTasks.Verify(x => x.UpdateGrant(vMockOpCtx.Object, mem, vRedirUri), Times.Once);
 		}

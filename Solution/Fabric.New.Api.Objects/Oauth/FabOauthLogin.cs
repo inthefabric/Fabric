@@ -24,30 +24,6 @@ namespace Fabric.New.Api.Objects.Oauth {
 		[SpecOptional]
 		public string ErrorDesc { get; set; }
 
-		[SpecInternal]
-		public bool ShowLoginPage { get; set; }
-
-		[SpecInternal]
-		public long AppId { get; set; }
-
-		[SpecInternal]
-		public string AppName { get; set; }
-
-		[SpecInternal]
-		public long LoggedUserId { get; set; }
-
-		[SpecInternal]
-		public string LoggedUserName { get; set; }
-
-		[SpecInternal]
-		public string LoginErrorText { get; set; }
-
-		[SpecInternal]
-		public string ScopeRedirect { get; set; }
-
-		[SpecInternal]
-		public string ScopeCode { get; set; }
-
 	}
 
 }

@@ -1,5 +1,4 @@
-﻿using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Domain;
+﻿using Fabric.New.Domain;
 
 namespace Fabric.New.Operations.Oauth.Login {
 
@@ -9,7 +8,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public FabOauthLogin Execute(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
+		public OauthLoginResult Execute(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 						string pClientId, string pRedirUri, string pResponseType, string pSwitchMode) {
 			/*var test = new FabOauthLogin();
 			test.ShowLoginPage = false;
@@ -17,8 +16,8 @@ namespace Fabric.New.Operations.Oauth.Login {
 			test.AppName = "Test App";
 			test.LoggedUserId = 345;
 			test.LoggedUserName = "Test User";
-			test.ScopeCode = "TestScopeCode";
-			test.ScopeRedirect = "http://test.redirect.url";
+			test.Code = "TestCode";
+			test.Redirect = "http://test.redirect.url";
 			return test;*/
 
 			if ( pResponseType != "code" ) {
@@ -37,7 +36,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 			App app = pTasks.GetApp(pOpCtx.Data, appId);
 			pTasks.VerifyAppDomain(app, pRedirUri);
 
-			var result = new FabOauthLogin();
+			var result = new OauthLoginResult();
 			bool forceLogin = (pSwitchMode == "1");
 			long? userId = pOpCtx.Auth.CookieUserId;
 
@@ -47,8 +46,8 @@ namespace Fabric.New.Operations.Oauth.Login {
 				if ( mem.OauthScopeAllow == true && !forceLogin ) {
 					pTasks.UpdateGrant(pOpCtx, mem, pRedirUri);
 
-					result.ScopeCode = mem.OauthGrantCode;
-					result.ScopeRedirect = mem.OauthGrantRedirectUri;
+					result.Code = mem.OauthGrantCode;
+					result.Redirect = mem.OauthGrantRedirectUri;
 					return result;
 				}
 			}
