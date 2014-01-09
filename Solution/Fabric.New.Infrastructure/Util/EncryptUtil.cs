@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Fabric.New.Infrastructure.Util {
 	//adapted from http://www.4guysfromrolla.com/webtech/090501-1.shtml
 
 	/*================================================================================================*/
+	[ExcludeFromCodeCoverage]
 	internal static class EncryptUtil {
 
 		static private readonly Byte[] Key = new Byte[8];

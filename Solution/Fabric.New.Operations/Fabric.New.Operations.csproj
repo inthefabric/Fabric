@@ -74,7 +74,6 @@
     <Compile Include="Oauth\Logout\OauthLogoutOperation.cs" />
     <Compile Include="Oauth\Login\IOauthLoginTasks.cs" />
     <Compile Include="Oauth\Login\OauthLoginPostOperation.cs" />
-    <Compile Include="Oauth\Login\OauthRedirectResult.cs" />
     <Compile Include="Oauth\Access\IOauthAccessTasks.cs" />
     <Compile Include="Oauth\Access\OauthMember.cs" />
     <Compile Include="Oauth\Access\OauthAccessOperation.cs" />

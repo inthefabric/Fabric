@@ -67,7 +67,7 @@ namespace Fabric.New.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void SetCookieUserId(long pUserId) {
+		public void SetCookieUserId(long pUserId) { //TEST: OperationAuth.SetCookieUserId()
 			CookieUserId = pUserId;
 		}
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using NUnit.Framework;
+﻿using System.Collections.Generic;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Shared {
@@ -20,7 +18,7 @@ namespace Fabric.New.Test.Unit.Shared {
 		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public static IDictionary<string, IWeaverQueryVal> BuildParamMap(IEnumerable<object> pList) {
 			var map = new Dictionary<string, IWeaverQueryVal>();
 			int i = 0;
@@ -34,7 +32,7 @@ namespace Fabric.New.Test.Unit.Shared {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public void AssertEqual(MockDataAccessCmd pExpect, int pIndex) {
 			Func<string, string> fmt = (x => string.Format(
 				"Incorrect {0} at command '"+pExpect.TestCommandName+"' (index "+pIndex+").", x));
@@ -62,7 +60,7 @@ namespace Fabric.New.Test.Unit.Shared {
 			Assert.AreEqual(pExpect.OmitResults, OmitResults, fmt("OmitResults"));
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		public override string ToString() {
 			string s = "{";
 
@@ -101,7 +99,7 @@ namespace Fabric.New.Test.Unit.Shared {
 			}
 
 			return s+"\n}";
-		}
+		}*/
 
 	}
 
