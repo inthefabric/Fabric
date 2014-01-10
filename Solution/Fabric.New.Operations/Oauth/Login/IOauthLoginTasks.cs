@@ -1,4 +1,5 @@
 ﻿using Fabric.New.Domain;
+using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Operations.Oauth.Login {
 
@@ -30,7 +31,8 @@ namespace Fabric.New.Operations.Oauth.Login {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		Member AddMember(IOperationContext pOpCtx, long pAppId, long pUserId);
+		Member AddMember(IOperationContext pOpCtx, CreateMemberOperation pOper,
+			long pAppId, long pUserId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void DenyScope(IOperationData pData, Member pMember);

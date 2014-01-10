@@ -33,6 +33,7 @@ namespace Fabric.New.Test.Unit.Shared {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void CheckWeaverScript(IWeaverScript pWeaverScript, string pExpectScript,
 														string pParamPrefix, IList<object> pValues) {
+			LogWeaverScript(Log, pWeaverScript);
 			pExpectScript = InsertParamIndexes(pExpectScript, pParamPrefix);
 			Assert.AreEqual(pExpectScript, pWeaverScript.Script, "Incorrect Query.Script.");
 			CheckParams(pWeaverScript.Params, pParamPrefix, pValues);

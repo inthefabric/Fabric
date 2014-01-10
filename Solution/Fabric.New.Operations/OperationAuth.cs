@@ -43,6 +43,13 @@ namespace Fabric.New.Operations {
 				return;
 			}
 
+			////
+
+			//TODO: support caching
+			//Tuple<OauthAccess, long, long?> tuple = ApiCtx.Cache.Memory.FindOauthAccess(vToken);
+
+			////
+
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<OauthAccess>(x => x.Token, vOauthToken)
 					.Has(x => x.Expires, WeaverStepHasOp.GreaterThan, vGetUtcNow())
@@ -64,7 +71,11 @@ namespace Fabric.New.Operations {
 				case MemberType.Id.Request:
 					throw new FabOauthFault();
 			}
-		}
+
+			/*tuple = new Tuple<OauthAccess, long, long?>(oa, appId, userId);
+			var expireSec = (int)(new TimeSpan(pAcc.Expires-ApiCtx.UtcNow.Ticks).TotalSeconds);
+            ApiCtx.Cache.Memory.AddOauthAccess(vToken, tuple, expSec);*/
+        }
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetCookieUserId(long pUserId) { //TEST: OperationAuth.SetCookieUserId()

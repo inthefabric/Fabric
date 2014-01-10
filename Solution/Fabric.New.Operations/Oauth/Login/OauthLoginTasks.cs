@@ -132,7 +132,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 					.Has(x => x.Password, WeaverStepHasOp.EqualTo, DataUtil.HashPassword(pPassword))
 				.ToQuery();
 
-			return pData.Get<User>(q, "OauthGrant-GetUserByCredentials");
+			return pData.Get<User>(q, "OauthLogin-GetUserByCredentials");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -144,20 +144,20 @@ namespace Fabric.New.Operations.Oauth.Login {
 						.ToMember
 				.ToQuery();
 
-			return pData.Get<Member>(q, "OauthGrant-GetMember");
+			return pData.Get<Member>(q, "OauthLogin-GetMember");
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public Member AddMember(IOperationContext pOpCtx, long pAppId, long pUserId) {
+		public Member AddMember(IOperationContext pOpCtx, CreateMemberOperation pOper,
+																			long pAppId, long pUserId) {
 			var m = new CreateFabMember();
 			m.DefinedByAppId = pAppId;
 			m.DefinedByUserId = pUserId;
 			m.Type = (byte)MemberType.Id.Member;
 
-			var op = new CreateMemberOperation();
-			return op.Execute(pOpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), m);
+			return pOper.Execute(pOpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), m);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -172,7 +172,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 					)
 				.ToQuery();
 
-			pData.Execute(q, "OauthGrant-DenyScope");
+			pData.Execute(q, "OauthLogin-DenyScope");
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -196,7 +196,7 @@ namespace Fabric.New.Operations.Oauth.Login {
 					)
 				.ToQuery();
 
-			pOpCtx.Data.Execute(q, "OauthGrant-UpdateGrant");
+			pOpCtx.Data.Execute(q, "OauthLogin-UpdateGrant");
 		}
 
 

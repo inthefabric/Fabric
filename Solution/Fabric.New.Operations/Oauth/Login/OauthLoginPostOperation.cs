@@ -1,4 +1,5 @@
 ﻿using Fabric.New.Domain;
+using Fabric.New.Operations.Create;
 
 namespace Fabric.New.Operations.Oauth.Login {
 
@@ -30,7 +31,8 @@ namespace Fabric.New.Operations.Oauth.Login {
 			Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, user.VertexId);
 
 			if ( mem == null ) {
-				mem = pTasks.AddMember(pOpCtx, app.VertexId, user.VertexId);
+				mem = pTasks.AddMember(pOpCtx, 
+					new CreateMemberOperation(), app.VertexId, user.VertexId);
 			}
 
 			if ( mem.OauthScopeAllow == true ) {

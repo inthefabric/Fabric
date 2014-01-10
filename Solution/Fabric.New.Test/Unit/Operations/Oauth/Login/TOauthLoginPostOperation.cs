@@ -1,5 +1,6 @@
 ﻿using Fabric.New.Domain;
 using Fabric.New.Operations;
+using Fabric.New.Operations.Create;
 using Fabric.New.Operations.Oauth;
 using Fabric.New.Operations.Oauth.Login;
 using Fabric.New.Test.Unit.Shared;
@@ -139,7 +140,8 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
 
 			if ( !pMemberExists ) {
 				vMockTasks
-					.Setup(x => x.AddMember(vMockOpCtx.Object, app.VertexId, user.VertexId))
+					.Setup(x => x.AddMember(vMockOpCtx.Object, It.IsAny<CreateMemberOperation>(), 
+						app.VertexId, user.VertexId))
 					.Returns(mem);
 			}
 
@@ -160,7 +162,8 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
 				Assert.Null(vExecuteResult.Redirect, "Redirect should be null.");
 			}
 
-			vMockTasks.Verify(x => x.AddMember(vMockOpCtx.Object, app.VertexId, user.VertexId),
+			vMockTasks.Verify(x => x.AddMember(vMockOpCtx.Object, It.IsAny<CreateMemberOperation>(),
+					app.VertexId, user.VertexId),
 				(pMemberExists ? Times.Never() : Times.Once()));
 		}
 
