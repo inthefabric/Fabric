@@ -37,6 +37,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Integration\Api\Executors\XCreateExecutors.cs" />
     <Compile Include="Integration\Operations\Traversal\XTraversalOperation.cs" />
     <Compile Include="Integration\Shared\IntegrationTest.cs" />
     <Compile Include="Integration\Shared\TestOperationContext.cs" />
@@ -102,11 +103,17 @@
     <Compile Include="Unit\Operations\TOperationContext.cs" />
     <Compile Include="Unit\Operations\TOperationAuth.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Integration\Operations\Create\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabric.New.Api.Objects\Fabric.New.Api.Objects.csproj">
       <Project>{660DDA92-D894-468B-A168-5AB4592AE70F}</Project>
       <Name>Fabric.New.Api.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric.New.Api\Fabric.New.Api.csproj">
+      <Project>{E9910A54-A1FB-48BF-AA18-36DB80495AFA}</Project>
+      <Name>Fabric.New.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.New.Database\Fabric.New.Database.csproj">
       <Project>{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}</Project>
@@ -126,8 +133,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CsQuery">
+      <HintPath>..\..\Packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\Packages\Moq.4.1.1311.0615\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\..\Packages\Nancy.0.21.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Testing">
+      <HintPath>..\..\Packages\Nancy.Testing.0.21.1\lib\net40\Nancy.Testing.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -140,6 +156,7 @@
       <HintPath>..\..\Packages\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Weaver.Core">
@@ -153,6 +170,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
