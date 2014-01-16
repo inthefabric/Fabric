@@ -59,7 +59,7 @@ namespace Fabric.New.Test.Unit.Operations {
 		[TestCase(MemberType.Id.Member, true)]
 		[TestCase(MemberType.Id.Owner, true)]
 		[TestCase(MemberType.Id.Staff, true)]
-		public void SetOauthToken(MemberType.Id? pMemType, bool pSuccess) {
+		public void SetOauthTokenAndExecuteOauth(MemberType.Id? pMemType, bool pSuccess) {
 			Member mem = null;
 
 			if ( pMemType != null ) {
@@ -72,8 +72,9 @@ namespace Fabric.New.Test.Unit.Operations {
 			mockAcc.MockResult.SetupToElement(mem);
 
 			var oa = new OperationAuth(() => mockAcc.Object, () => vExpire);
+			oa.SetOauthToken(vToken);
 
-			TestUtil.CheckThrows<FabOauthFault>(!pSuccess, () => oa.SetOauthToken(vToken));
+			TestUtil.CheckThrows<FabOauthFault>(!pSuccess, oa.ExecuteOauth);
 			Assert.AreEqual(mem, oa.ActiveMember, "Incorrect ActiveMember.");
 
 			if ( mem == null ) {
@@ -113,6 +114,19 @@ namespace Fabric.New.Test.Unit.Operations {
 
 			Assert.AreEqual(expect, cmd.Script, "Incorrect Query.Script.");
 			TestUtil.CheckParams(cmd.Params, "_P", new List<object> { vToken, vExpire });
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SetCookieUserId() {
+			const long userId = 1234325;
+
+			var oa = new OperationAuth(() => (IDataAccess)null, () => 0);
+			oa.SetCookieUserId(userId);
+
+			Assert.AreEqual(userId, oa.CookieUserId, "Incorrect CookieUserId.");
 		}
 
 	}

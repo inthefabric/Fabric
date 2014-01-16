@@ -75,7 +75,7 @@ namespace Fabric.New.Operations.Create {
 			string cmdId = pCreCtx.SetupLatestCommand(false, true);
 
 			pCreCtx.AddCheck(new DataResultCheck(cmdId, (dr, i) => {
-				if ( dr.ToIntAt(i, 0) != 0 ) {
+				if ( dr.ToIntAt(i, 0) != 1 ) {
 					throw new FabDuplicateFault(typeof(T), pErrPropName, pValue);
 				}
 			}));

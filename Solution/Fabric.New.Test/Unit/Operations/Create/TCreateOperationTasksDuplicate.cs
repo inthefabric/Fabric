@@ -66,12 +66,12 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 					mockRes.Setup(x => x.GetCommandIndexByCmdId(c.CommandId)).Returns(i);
 
 					Log.Debug("Append passing DataResultCheck...");
-					mockRes.Setup(x => x.ToIntAt(i, 0)).Returns(0);
+					mockRes.Setup(x => x.ToIntAt(i, 0)).Returns(1);
 					TestUtil.CheckThrows<FabDuplicateFault>(false,
 						() => c.PerformCheck(mockRes.Object));
 
 					Log.Debug("Append failing DataResultCheck...");
-					mockRes.Setup(x => x.ToIntAt(i, 0)).Returns(1);
+					mockRes.Setup(x => x.ToIntAt(i, 0)).Returns(0);
 					TestUtil.CheckThrows<FabDuplicateFault>(true,
 						() => c.PerformCheck(mockRes.Object));
 				});

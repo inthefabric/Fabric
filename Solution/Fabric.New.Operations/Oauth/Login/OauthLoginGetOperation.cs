@@ -10,15 +10,15 @@ namespace Fabric.New.Operations.Oauth.Login {
 		/*--------------------------------------------------------------------------------------------*/
 		public OauthLoginResult Execute(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 						string pClientId, string pRedirUri, string pResponseType, string pSwitchMode) {
-			/*var test = new FabOauthLogin();
-			test.ShowLoginPage = false;
-			test.AppId = 123;
-			test.AppName = "Test App";
-			test.LoggedUserId = 345;
-			test.LoggedUserName = "Test User";
-			test.Code = "TestCode";
-			test.Redirect = "http://test.redirect.url";
-			return test;*/
+			/*var fake = new OauthLoginResult();
+			fake.ShowLoginPage = false;
+			fake.AppId = 123;
+			fake.AppName = "Test App";
+			fake.LoggedUserId = 345;
+			fake.LoggedUserName = "Test User";
+			fake.Code = "TestCode";
+			fake.Redirect = "http://test.redirect.url";
+			return fake;*/
 
 			if ( pResponseType != "code" ) {
 				throw pTasks.NewFault(LoginErrors.invalid_request, LoginErrorDescs.BadRespType);

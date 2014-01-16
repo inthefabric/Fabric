@@ -54,7 +54,8 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void SetupVerifyVertex(long pToVertId) {
 			const string script = VerifyVertVar+"=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);";
-			const string append = VerifyVertVar+"?{"+VerifyVertVar+"="+VerifyVertVar+".next();1;}:0;";
+			const string append = "if("+VerifyVertVar+"){"+
+				VerifyVertVar+"="+VerifyVertVar+".next();1;}else{0;}";
 			const bool cache = true;
 			const bool omit = false;
 			const bool cond = true;
