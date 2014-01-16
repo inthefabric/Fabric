@@ -91,7 +91,7 @@ namespace Fabric.New.Operations.Create {
 				.ExactIndex<T>(x => x.VertexId, pVertexId)
 				.ToQueryAsVar(var, out alias);
 
-			pCreCtx.AddQuery(q, true, var+"?{"+var+"="+var+".next();1;}:0;");
+			pCreCtx.AddQuery(q, true, "if("+var+"){"+var+"="+var+".next();1;}else{0;}");
 			string cmdId = pCreCtx.SetupLatestCommand(false, true);
 
 			pCreCtx.AddCheck(new DataResultCheck(cmdId, (dr, i) => {

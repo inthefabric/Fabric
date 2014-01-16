@@ -2,6 +2,7 @@
 using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Data;
+using Fabric.New.Infrastructure.Faults;
 using ServiceStack.Text;
 using Weaver.Core.Query;
 
@@ -92,15 +93,20 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void BeforeValidation() {
+			if ( vOpCtx.Auth.ActiveMemberId == null ) {
+				throw new FabPreventedFault(FabFault.Code.AuthorizationRequired,
+					"Authorization is required to create new items.");
+			}
+
 			CreateFabArtifact art = (NewCre as CreateFabArtifact);
 			CreateFabFactor fac = (NewCre as CreateFabFactor);
 
 			if ( art != null ) {
-				art.CreatedByMemberId = (vOpCtx.Auth.ActiveMemberId ?? 0);
+				art.CreatedByMemberId = (long)vOpCtx.Auth.ActiveMemberId;
 			}
 
 			if ( fac != null ) {
-				fac.CreatedByMemberId = (vOpCtx.Auth.ActiveMemberId ?? 0);
+				fac.CreatedByMemberId = (long)vOpCtx.Auth.ActiveMemberId;
 			}
 		}
 

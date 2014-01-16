@@ -73,7 +73,7 @@ namespace Fabric.New.Operations.Create {
 			string cmdId = pCreCtx.SetupLatestCommand(false, true);
 
 			pCreCtx.AddCheck(new DataResultCheck(cmdId, (dr, i) => {
-				if ( dr.ToIntAt(i, 0) != 0 ) {
+				if ( dr.ToIntAt(i, 0) != 1 ) {
 					string name = pNameKey+(pDisambLower == null ? "" : " ("+pDisambLower+")");
 					throw new FabDuplicateFault(typeof(Class), "Name", name, "Name+Disamb conflict.");
 				}

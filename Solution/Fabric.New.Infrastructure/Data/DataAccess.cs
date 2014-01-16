@@ -65,7 +65,7 @@ namespace Fabric.New.Infrastructure.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AppendScriptToLatestCommand(string pScript) {
-			vLatestCmd.Cmd += pScript;
+			vLatestCmd.Args[0] += pScript;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
