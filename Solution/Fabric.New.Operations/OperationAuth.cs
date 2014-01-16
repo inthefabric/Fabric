@@ -37,7 +37,26 @@ namespace Fabric.New.Operations {
 			}
 
 			vOauthToken = pToken;
+		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetCookieUserId(long pUserId) { //TEST: OperationAuth.SetCookieUserId()
+			CookieUserId = pUserId;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public long? ActiveMemberId {
+			get {
+				return (ActiveMember == null ? (long?)null : ActiveMember.VertexId);
+			}
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void ExecuteOauth() {
 			if ( vOauthToken == null ) {
 				ActiveMember = null;
 				return;
@@ -75,20 +94,6 @@ namespace Fabric.New.Operations {
 			/*tuple = new Tuple<OauthAccess, long, long?>(oa, appId, userId);
 			var expireSec = (int)(new TimeSpan(pAcc.Expires-ApiCtx.UtcNow.Ticks).TotalSeconds);
             ApiCtx.Cache.Memory.AddOauthAccess(vToken, tuple, expSec);*/
-        }
-
-		/*--------------------------------------------------------------------------------------------*/
-		public void SetCookieUserId(long pUserId) { //TEST: OperationAuth.SetCookieUserId()
-			CookieUserId = pUserId;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public long? ActiveMemberId {
-			get {
-				return (ActiveMember == null ? (long?)null : ActiveMember.VertexId);
-			}
 		}
 
 	}

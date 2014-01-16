@@ -31,6 +31,8 @@ namespace Fabric.New.Api.Executors {
 			resp.StartTimer();
 
 			try {
+				ApiReq.OpCtx.Auth.ExecuteOauth();
+
 				IList<T> list = vGetResponse();
 				resp.StopTimer();
 
@@ -52,7 +54,8 @@ namespace Fabric.New.Api.Executors {
 					fr.TotalMs = resp.GetTimerMilliseconds();
 					fr.Error = err;
 					resp.SetJsonWith(fr);
-					resp.Status = HttpStatusCode.BadRequest;
+					resp.Status = (err.Code == (int)FabFault.Code.AuthorizationRequired ? 
+						HttpStatusCode.Unauthorized : HttpStatusCode.BadRequest);
 				}
 			}
 

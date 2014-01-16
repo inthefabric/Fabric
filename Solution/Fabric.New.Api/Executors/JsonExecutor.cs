@@ -26,6 +26,7 @@ namespace Fabric.New.Api.Executors {
 			resp.StartTimer();
 
 			try {
+				ApiReq.OpCtx.Auth.ExecuteOauth();
 				resp.SetJsonWith(vGetResponse());
 			}
 			catch ( Exception e ) {
