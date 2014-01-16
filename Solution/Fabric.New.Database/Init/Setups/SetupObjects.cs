@@ -9,9 +9,6 @@ namespace Fabric.New.Database.Init.Setups {
 		public const int NumClasses = 45;
 		public const int NumInstances = 16;*/
 
-		public const string ThingGvsuName = "Grand Valley State University";
-		public const string ThingGvsuDisamb = "Allendale, MI";
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -54,7 +51,7 @@ namespace Fabric.New.Database.Init.Setups {
 			AddClass(SetupClassId.GradePointAvg, "Grade Point Average", null, ffd);
 			AddClass(SetupClassId.ACTTest, "ACT Test", null, ffd);
 			AddClass(SetupClassId.Overall, "Overall", null, ffd);
-			AddInst(SetupInstanceId.GrandValley, ThingGvsuName, ThingGvsuDisamb, ffd);
+			AddInst(SetupInstanceId.GrandValley, "Grand Valley State University", "Allendale, MI", ffd);
 			AddInst(SetupInstanceId.AestheticInteractive, "Aesthetic Interactive", "software firm",ffd);
 			AddClass(SetupClassId.Software, "Software", null, ffd);
 			AddClass(SetupClassId.Art, "Art", null, ffd);

@@ -6,6 +6,7 @@ using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
+using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Test.Integration.Shared;
 using Nancy;
@@ -75,24 +76,37 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private TFab AssertResult<TCre, TFab>(BrowserResponse pResp, TCre pObj, bool pAuth)
-												where TCre : CreateFabVertex where TFab : FabVertex {
-			Assert.NotNull(pResp, "Response should not be null.");
-			Assert.NotNull(pResp.Body, "Response.Body should not be null.");
-			string bodyStr = pResp.Body.AsString();
+		private FabResponse<T> ResponseToFab<T>(BrowserResponse pResp) where T : FabVertex {
+			AssertBody(pResp);
 
 			Log.Debug("Response:\n"+
 				" - Status: "+pResp.StatusCode+" ("+(int)pResp.StatusCode+")\n"+
-				" - Body: "+bodyStr
+				" - Body: "+pResp.Body.AsString()
 			);
 
-			if ( !pAuth ) {
-				Assert.AreEqual(HttpStatusCode.Unauthorized, pResp.StatusCode,
-					"Incorrect Response.StatusCode.");
-				return null;
-			}
+			FabResponse<T> fab = 
+				JsonSerializer.DeserializeFromString<FabResponse<T>>(pResp.Body.AsString());
+			
+			Assert.NotNull(fab, "The FabResponse<"+typeof(T).Name+"> object should be filled.");
+			return fab;
+		}
 
-			FabResponse<TFab> fr = JsonSerializer.DeserializeFromString<FabResponse<TFab>>(bodyStr);
+		/*--------------------------------------------------------------------------------------------*/
+		private void AssertBody(BrowserResponse pResp) {
+			Assert.NotNull(pResp, "Response should not be null.");
+			Assert.NotNull(pResp.Body, "Response.Body should not be null.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void AssertNoAuth(BrowserResponse pResp) {
+			AssertBody(pResp);
+			Assert.AreEqual(HttpStatusCode.Unauthorized, pResp.StatusCode,
+				"Incorrect Response.StatusCode.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private T AssertResult<T>(BrowserResponse pResp) where T : FabVertex {
+			FabResponse<T> fr = ResponseToFab<T>(pResp);
 
 			Assert.Null(fr.Error, "FabResponse.Error should be null: "+fr.Error.ToJson());
 			Assert.NotNull(fr.Data, "FabResponse.Data should be filled.");
@@ -105,20 +119,15 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(false)]
-		[TestCase(true)]
-		public void CreateClass(bool pAuth) {
+		[Test]
+		public void ClassSuccess() {
 			var obj = new CreateFabClass();
 			obj.Name = "integration test";
 			obj.Disamb = "a new class";
 			obj.Note = "creating a class";
 
-			BrowserResponse br = Request("classes", obj, pAuth);
-			FabClass result = AssertResult<CreateFabClass, FabClass>(br, obj, pAuth);
-
-			if ( !pAuth ) {
-				return;
-			}
+			BrowserResponse br = Request("classes", obj, true);
+			FabClass result = AssertResult<FabClass>(br);
 
 			Assert.AreNotEqual(0, result.Id, "Incorrect Id.");
 			Assert.AreNotEqual(0, result.VertexType, "Incorrect VertexType.");
@@ -129,6 +138,30 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 			NewVertexCount = 1;
 			NewEdgeCount = 2;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ClassNoAuth() {
+			var obj = new CreateFabClass();
+			
+			BrowserResponse br = Request("classes", obj, false);
+
+			AssertNoAuth(br);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ClassDuplicate() {
+			var obj = new CreateFabClass();
+			obj.Name = "Human";
+
+			BrowserResponse br = Request("classes", obj, true);
+			FabResponse<FabClass> result = ResponseToFab<FabClass>(br);
+
+			Assert.NotNull(result.Error, "Result.Error should be filled.");
+			Assert.AreEqual((int)FabFault.Code.UniqueConstraintViolation, result.Error.Code,
+				"Incorrect Result.Error.Code.");
 		}
 
 	}
