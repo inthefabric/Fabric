@@ -14,7 +14,7 @@ namespace Fabric.New.Operations {
 		//private static readonly Logger Log = Logger.Build<OperationContext>();
 
 		public Guid ContextId { get; private set; }
-		public IOperationAuth Auth { get; private set; }
+		public IOperationAuth Auth { get; protected set; }
 		public IOperationData Data { get; private set; }
 		public IAnalyticsManager Analytics { get; private set; }
 		public IMetricsManager Metrics { get; private set; }

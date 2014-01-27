@@ -5,6 +5,7 @@ using Fabric.New.Infrastructure.Cache;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations;
+using Moq;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Integration.Shared {
@@ -27,6 +28,11 @@ namespace Fabric.New.Test.Integration.Shared {
 		/*--------------------------------------------------------------------------------------------*/
 		public TestOperationContext() : base(DataAccFact, CacheMgr, TestMetrics, TestAnalyt) {
 			SharpflakeIds = new List<long>();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetMockAuth(Mock<IOperationAuth> pMockAuth) {
+			Auth = pMockAuth.Object;
 		}
 
 

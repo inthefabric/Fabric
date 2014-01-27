@@ -21,6 +21,7 @@ namespace Fabric.New.Test.Integration.Shared {
 		protected bool IsReadOnlyTest { get; set; }
 		protected int NewVertexCount { get; set; }
 		protected int NewEdgeCount { get; set; }
+		protected Action NewElementFunc { get; set; }
 		protected bool UsesElasticSearch { get; set; }
 
 		private Stopwatch vWatch;
@@ -91,6 +92,10 @@ namespace Fabric.New.Test.Integration.Shared {
 
 			////
 
+			if ( NewElementFunc != null ) {
+				NewElementFunc();
+			}
+
 			Tuple<int, int> c = CountVerticesAndEdges();
 			Log.Info("Counts { V = "+c.Item1+", E = "+c.Item2+" }");
 
@@ -146,7 +151,7 @@ namespace Fabric.New.Test.Integration.Shared {
 		protected virtual void TestPreTearDown() {}
 		protected virtual void TestPostTearDown() {}
 
-		/*--------------------------------------------------------------------------------------------*/
+		/*--------------------------------------------------------------------------------------------* /
 		protected T GetVertex<T>(long pId) where T : class, IWeaverElement, IVertex, new() {
 			return OpCtx.ExecuteForTest(GetVertexQuery<T>(pId)).ToElement<T>();
 		}

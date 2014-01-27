@@ -38,6 +38,9 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Integration\Api\Executors\XCreateExecutors.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateClassOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateAppOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateOperation.cs" />
     <Compile Include="Integration\Operations\Traversal\XTraversalOperation.cs" />
     <Compile Include="Integration\Shared\IntegrationTest.cs" />
     <Compile Include="Integration\Shared\TestOperationContext.cs" />
@@ -104,9 +107,7 @@
     <Compile Include="Unit\Operations\TOperationContext.cs" />
     <Compile Include="Unit\Operations\TOperationAuth.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integration\Operations\Create\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Fabric.New.Api.Objects\Fabric.New.Api.Objects.csproj">
       <Project>{660DDA92-D894-468B-A168-5AB4592AE70F}</Project>
