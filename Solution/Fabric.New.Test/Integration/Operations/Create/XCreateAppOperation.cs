@@ -61,7 +61,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicate() {
-			vCreateApp.Name = "Fabric System";
+			vCreateApp.Name = "Fabric SYSTEM";
 			TestUtil.Throws<FabDuplicateFault>(() => ExecuteOperation());
 		}
 

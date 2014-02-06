@@ -4,6 +4,7 @@ using Fabric.New.Api;
 using Fabric.New.Api.Objects;
 using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
@@ -110,17 +111,79 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		[Test]
 		public void Class() {
 			var obj = new CreateFabClass();
-			obj.Name = "integration test";
-			obj.Disamb = "a new class";
-			obj.Note = "creating a class";
+			obj.Name = "class test";
 
 			BrowserResponse br = Request("classes", obj);
-			AssertResult<FabClass>(br);
+			FabClass result = AssertResult<FabClass>(br);
+			Assert.AreEqual(obj.Name, result.Name, "Incorrect result.");
+
+			NewVertexCount = 1;
+			NewEdgeCount = 2;
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void Factor() {
+			var obj = new CreateFabFactor();
+			obj.UsesPrimaryArtifactId = (long)SetupClassId.Blue;
+			obj.UsesRelatedArtifactId = (long)SetupClassId.Beauty;
+			obj.AssertionType = (byte)FactorAssertion.Id.Guess;
+			obj.Descriptor = new CreateFabDescriptor();
+			obj.Descriptor.Type = (byte)DescriptorType.Id.BelongsTo;
+
+			BrowserResponse br = Request("factors", obj);
+			FabFactor result = AssertResult<FabFactor>(br);
+			Assert.AreEqual(obj.AssertionType, result.AssertionType, "Incorrect result.");
+
+			NewVertexCount = 1;
+			NewEdgeCount = 6;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void Instance() {
+			var obj = new CreateFabInstance();
+			obj.Name = "instance test";
+
+			BrowserResponse br = Request("instances", obj);
+			FabInstance result = AssertResult<FabInstance>(br);
+			Assert.AreEqual(obj.Name, result.Name, "Incorrect result.");
 
 			NewVertexCount = 1;
 			NewEdgeCount = 2;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void Member() {
+			var obj = new CreateFabMember();
+			obj.DefinedByAppId = (long)SetupAppId.Bookmarker;
+			obj.DefinedByUserId = (long)SetupUserId.FabData;
+			obj.Type = (byte)MemberType.Id.Invite;
+
+			BrowserResponse br = Request("members", obj);
+			FabMember result = AssertResult<FabMember>(br);
+			Assert.AreEqual(obj.Type, result.Type, "Incorrect result.");
+
+			NewVertexCount = 1;
+			NewEdgeCount = 4;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void Url() {
+			var obj = new CreateFabUrl();
+			obj.Name = "url test";
+			obj.FullPath = "http://www.inthefabric.com";
+
+			BrowserResponse br = Request("urls", obj);
+			FabUrl result = AssertResult<FabUrl>(br);
+			Assert.AreEqual(obj.Name, result.Name, "Incorrect result.");
+
+			NewVertexCount = 1;
+			NewEdgeCount = 2;
+		}
+		
 	}
 
 }
