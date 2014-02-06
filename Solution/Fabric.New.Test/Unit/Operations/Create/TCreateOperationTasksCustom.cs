@@ -53,13 +53,19 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		public void FindDuplicateClass(string pDisamb) {
 			const string name = "My Name";
 
-			string script =
-				"c=g.V('"+DbName.Vert.Class.NameKey+"',_P)"+
-				(pDisamb == null ? 
-					".hasNot('"+DbName.Vert.Class.Disamb+"')" :
-					".filter{it.property('"+DbName.Vert.Class.Disamb+"')?.toLowerCase()==_P;}"
-				)+
-				".property('"+DbName.Vert.Vertex.VertexId+"');";
+			string script = "c=g.V('"+DbName.Vert.Class.NameKey+"',_P)";
+
+			if ( pDisamb == null ) {
+				script += ".hasNot('"+DbName.Vert.Class.Disamb+"')";
+			}
+			else {
+				script += ".has('"+DbName.Vert.Class.Disamb+"')"+
+					".filter{"+
+						"it.property('"+DbName.Vert.Class.Disamb+"').next().toLowerCase()==_P"+
+					"}";
+			}
+
+			script += ".property('"+DbName.Vert.Vertex.VertexId+"');";
 
 			const string append = "c?0:1;";
 

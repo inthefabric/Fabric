@@ -67,10 +67,11 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void ErrDuplicate() {
-			vCreateClass.Name = "Human";
-			vCreateClass.Disamb = null;
+		[TestCase("HUMAN", null)]
+		[TestCase("LocatION", "GEOgraphical")]
+		public void ErrDuplicate(string pName, string pDisamb) {
+			vCreateClass.Name = pName;
+			vCreateClass.Disamb = pDisamb;
 			TestUtil.Throws<FabDuplicateFault>(() => ExecuteOperation());
 		}
 

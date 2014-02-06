@@ -53,9 +53,9 @@ namespace Fabric.New.Operations.Create {
 					.ToQuery();
 			}
 			else {
-				q = c.CustomStep(
-					"filter{"+ //the "?." before "toLowerCase()" is the "safe-navigation" operator
-						"it.property('"+DbName.Vert.Class.Disamb+"')?.toLowerCase()==_P1;"+
+				q = c.Has(x => x.Disamb)
+					.CustomStep("filter{"+
+						"it.property('"+DbName.Vert.Class.Disamb+"').next().toLowerCase()==_P1"+
 					"}")
 					.Property(x => x.VertexId)
 					.ToQuery();
