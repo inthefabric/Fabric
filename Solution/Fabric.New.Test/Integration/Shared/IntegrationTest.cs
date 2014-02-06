@@ -7,7 +7,6 @@ using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using NUnit.Framework;
-using Weaver.Core.Elements;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Integration.Shared {
@@ -92,8 +91,15 @@ namespace Fabric.New.Test.Integration.Shared {
 
 			////
 
+			AssertionException newElemEx = null;
+
 			if ( NewElementFunc != null ) {
-				NewElementFunc();
+				try {
+					NewElementFunc();
+				}
+				catch ( AssertionException e ) {
+					newElemEx = e;
+				}
 			}
 
 			Tuple<int, int> c = CountVerticesAndEdges();
@@ -136,6 +142,10 @@ namespace Fabric.New.Test.Integration.Shared {
 			if ( IsReadOnlyTest ) {
 				Assert.AreEqual(0, NewVertexCount, "NewVertexCount should be zero!");
 				Assert.AreEqual(0, NewEdgeCount, "NewEdgeCount should be zero!");
+			}
+
+			if ( newElemEx != null ) {
+				throw newElemEx;
 			}
 
 			////

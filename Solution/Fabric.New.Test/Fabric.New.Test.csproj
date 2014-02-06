@@ -38,6 +38,13 @@
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Integration\Api\Executors\XCreateExecutors.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateFactorOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateUserOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateUrlOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateOauthAccessOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateMemberOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateInstanceOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateEmailOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateClassOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateAppOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateOperation.cs" />
