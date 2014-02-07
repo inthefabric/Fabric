@@ -1,5 +1,6 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
 using NUnit.Framework;
@@ -39,9 +40,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		public void Success() {
 			Instance result = ExecuteOperation();
 
-			Assert.AreNotEqual(0, result.Id, "Incorrect Id.");
-			Assert.AreNotEqual(0, result.VertexType, "Incorrect VertexType.");
-			Assert.AreNotEqual(0, result.Timestamp, "Incorrect Timestamp.");
+			CheckNewVertex(result, VertexType.Id.Instance);
 			Assert.AreEqual(vCreateInstance.Name, result.Name, "Incorrect Name.");
 			Assert.AreEqual(vCreateInstance.Disamb, result.Disamb, "Incorrect Disamb.");
 			Assert.AreEqual(vCreateInstance.Note, result.Note, "Incorrect Note.");
@@ -50,7 +49,10 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 				.V.ExactIndex<Instance>(x => x.VertexId, result.VertexId)
 				.CreatedByMember.ToMember
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, CreatorId)
-				.CreatesArtifacts.ToArtifact
+				.CreatesArtifacts
+					.Has(x => x.VertexType, WeaverStepHasOp.EqualTo, result.VertexType)
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToArtifact
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, result.VertexId)
 				.ToQuery();
 

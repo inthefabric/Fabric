@@ -82,9 +82,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		public void Success() {
 			Factor result = ExecuteOperation();
 
-			Assert.AreNotEqual(0, result.Id, "Incorrect Id.");
-			Assert.AreNotEqual(0, result.VertexType, "Incorrect VertexType.");
-			Assert.AreNotEqual(0, result.Timestamp, "Incorrect Timestamp.");
+			CheckNewVertex(result, VertexType.Id.Factor);
 			Assert.AreEqual(vCreateFactor.AssertionType, result.AssertionType,
 				"Incorrect AssertionType.");
 			Assert.AreEqual(vCreateFactor.IsDefining, result.IsDefining, "Incorrect IsDefining.");
@@ -137,17 +135,34 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 
 				.CreatedByMember.ToMember
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, vCreateFactor.CreatedByMemberId)
-				.CreatesFactors.ToFactor
+				.CreatesFactors
+					.Has(x => x.DescriptorType, WeaverStepHasOp.EqualTo, result.DescriptorType)
+					.Has(x => x.PrimaryArtifactId, WeaverStepHasOp.EqualTo,
+						vCreateFactor.UsesPrimaryArtifactId)
+					.Has(x => x.RelatedArtifactId, WeaverStepHasOp.EqualTo,
+						vCreateFactor.UsesRelatedArtifactId)
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToFactor
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, facId)
 
 				.UsesPrimaryArtifact.ToArtifact
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, vCreateFactor.UsesPrimaryArtifactId)
-				.UsedAsPrimaryByFactors.ToFactor
+				.UsedAsPrimaryByFactors
+					.Has(x => x.DescriptorType, WeaverStepHasOp.EqualTo, result.DescriptorType)
+					.Has(x => x.RelatedArtifactId, WeaverStepHasOp.EqualTo,
+						vCreateFactor.UsesRelatedArtifactId)
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToFactor
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, facId)
 
 				.UsesRelatedArtifact.ToArtifact
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, vCreateFactor.UsesRelatedArtifactId)
-				.UsedAsRelatedByFactors.ToFactor
+				.UsedAsRelatedByFactors
+					.Has(x => x.DescriptorType, WeaverStepHasOp.EqualTo, result.DescriptorType)
+					.Has(x => x.PrimaryArtifactId, WeaverStepHasOp.EqualTo,
+						vCreateFactor.UsesPrimaryArtifactId)
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToFactor
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, facId)
 
 				.DescriptorRefinesPrimaryWithArtifact.ToArtifact
@@ -175,8 +190,6 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 			NewVertexCount = 1;
 			NewEdgeCount = 10;
 			SetNewElementQuery(verify);
-
-			//TODO: add checks for VCI properties in the "NewElementQuery" queries
 		}
 
 	}

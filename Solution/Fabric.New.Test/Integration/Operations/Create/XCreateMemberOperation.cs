@@ -43,9 +43,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		public void Success() {
 			Member result = ExecuteOperation();
 
-			Assert.AreNotEqual(0, result.Id, "Incorrect Id.");
-			Assert.AreNotEqual(0, result.VertexType, "Incorrect VertexType.");
-			Assert.AreNotEqual(0, result.Timestamp, "Incorrect Timestamp.");
+			CheckNewVertex(result, VertexType.Id.Member);
 			Assert.AreEqual(vCreateMember.Type, result.MemberType, "Incorrect MemberType.");
 			Assert.AreEqual(null, result.OauthGrantCode, "Incorrect OauthGrantCode.");
 			Assert.AreEqual(null, result.OauthGrantExpires, "Incorrect OauthGrantExpires.");
@@ -56,11 +54,19 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 				.V.ExactIndex<Member>(x => x.VertexId, result.VertexId)
 				.DefinedByApp.ToApp
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, vCreateMember.DefinedByAppId)
-				.DefinesMembers.ToMember
+				.DefinesMembers
+					.Has(x => x.UserId, WeaverStepHasOp.EqualTo, vCreateMember.DefinedByUserId)
+					.Has(x => x.MemberType, WeaverStepHasOp.EqualTo, result.MemberType)
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToMember
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, result.VertexId)
 				.DefinedByUser.ToUser
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, vCreateMember.DefinedByUserId)
-				.DefinesMembers.ToMember
+				.DefinesMembers
+					.Has(x => x.AppId, WeaverStepHasOp.EqualTo, vCreateMember.DefinedByAppId)
+					.Has(x => x.MemberType, WeaverStepHasOp.EqualTo, result.MemberType)
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToMember
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, result.VertexId)
 				.ToQuery();
 

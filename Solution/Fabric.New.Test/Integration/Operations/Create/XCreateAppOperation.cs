@@ -1,5 +1,6 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
@@ -40,16 +41,17 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		public void Success() {
 			App result = ExecuteOperation();
 
-			Assert.AreNotEqual(0, result.Id, "Incorrect Id.");
-			Assert.AreNotEqual(0, result.VertexType, "Incorrect VertexType.");
-			Assert.AreNotEqual(0, result.Timestamp, "Incorrect Timestamp.");
+			CheckNewVertex(result, VertexType.Id.App);
 			Assert.AreEqual(vCreateApp.Name, result.Name, "Incorrect Name.");
 
 			IWeaverQuery verify = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.VertexId, result.VertexId)
 				.CreatedByMember.ToMember
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, CreatorId)
-				.CreatesArtifacts.ToArtifact
+				.CreatesArtifacts
+					.Has(x => x.VertexType, WeaverStepHasOp.EqualTo, result.VertexType)
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToArtifact
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, result.VertexId)
 				.ToQuery();
 

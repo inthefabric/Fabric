@@ -1,6 +1,7 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
 using NUnit.Framework;
@@ -41,9 +42,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		public void Success() {
 			OauthAccess result = ExecuteOperation();
 
-			Assert.AreNotEqual(0, result.Id, "Incorrect Id.");
-			Assert.AreNotEqual(0, result.VertexType, "Incorrect VertexType.");
-			Assert.AreNotEqual(0, result.Timestamp, "Incorrect Timestamp.");
+			CheckNewVertex(result, VertexType.Id.OauthAccess);
 			Assert.AreEqual(vCreateOauthAccess.Expires, result.Expires, "Incorrect Expires.");
 			Assert.AreEqual(vCreateOauthAccess.Refresh, result.Refresh, "Incorrect Refresh.");
 			Assert.AreEqual(vCreateOauthAccess.Token, result.Token, "Incorrect Token.");
@@ -53,7 +52,9 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 				.AuthenticatesMember.ToMember
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo,
 						vCreateOauthAccess.AuthenticatesMemberId)
-				.AuthenticatedByOauthAccesses.ToOauthAccess
+				.AuthenticatedByOauthAccesses
+					.Has(x => x.Timestamp, WeaverStepHasOp.EqualTo, result.Timestamp)
+				.ToOauthAccess
 					.Has(x => x.VertexId, WeaverStepHasOp.EqualTo, result.VertexId)
 				.ToQuery();
 

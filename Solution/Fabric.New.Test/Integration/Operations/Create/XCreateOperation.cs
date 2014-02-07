@@ -1,5 +1,7 @@
-﻿using Fabric.New.Database.Init.Setups;
+﻿using System;
+using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations;
@@ -14,8 +16,6 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 
 	/*================================================================================================*/
 	public abstract class XCreateOperation<T> : IntegrationTest where T : Vertex {
-
-		//see XCreateExecutors for other "Create Operations" tests
 
 		protected CreateOperationBuilder Build;
 		protected CreateOperationTasks Tasks;
@@ -47,6 +47,14 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 				IDataResult dr = OpCtx.Data.Execute(pQuery, "Test-CreateOperations");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified.");
 			};
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected void CheckNewVertex(Vertex pVertex, VertexType.Id pType) {
+			Assert.NotNull(pVertex.Id, "Incorrect Id.");
+			Assert.Less(1L, pVertex.VertexId, "Incorrect VertexId.");
+			Assert.AreEqual((byte)pType, pVertex.VertexType, "Incorrect VertexType.");
+			Assert.Less(DateTime.UtcNow.AddMinutes(-1).Ticks, pVertex.Timestamp,"Incorrect Timestamp.");
 		}
 
 

@@ -1,6 +1,7 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Create;
 using NUnit.Framework;
@@ -40,9 +41,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		public void Success() {
 			Email result = ExecuteOperation();
 
-			Assert.AreNotEqual(0, result.Id, "Incorrect Id.");
-			Assert.AreNotEqual(0, result.VertexType, "Incorrect VertexType.");
-			Assert.AreNotEqual(0, result.Timestamp, "Incorrect Timestamp.");
+			CheckNewVertex(result, VertexType.Id.Email);
 			Assert.AreEqual(vCreateEmail.Address, result.Address, "Incorrect Address.");
 			Assert.AreEqual(vCreateEmail.Code, result.Code, "Incorrect Code.");
 
