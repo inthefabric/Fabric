@@ -1,10 +1,13 @@
 ﻿using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
+using Fabric.New.Infrastructure.Query;
+using Fabric.New.Operations;
 using Fabric.New.Operations.Oauth;
 using Fabric.New.Operations.Oauth.Login;
 using Fabric.New.Test.Integration.Shared;
 using Fabric.New.Test.Unit.Shared;
 using NUnit.Framework;
+using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Integration.Operations.Oauth.Login {
 
@@ -24,7 +27,7 @@ namespace Fabric.New.Test.Integration.Operations.Oauth.Login {
 			base.TestSetUp();
 			vTasks = new OauthLoginTasks();
 			vClientId = ((long)SetupAppId.KinPhoGal)+"";
-			vRedirUri = "http://www.zachkinstner.com/gallery/test/oauth";
+			vRedirUri = "http://www."+SetupOauth.DomGal1+"/gallery/test/oauth";
 			vRespType = "code";
 			vSwitchMode = "0";
 		}
@@ -40,6 +43,15 @@ namespace Fabric.New.Test.Integration.Operations.Oauth.Login {
 			Assert.AreEqual(pErr.ToString(), pEx.OauthError.Error, "Incorrect Error.");
 			Assert.AreEqual(OauthLoginTasks.ErrDescStrings[(int)pDesc], pEx.OauthError.ErrorDesc,
 				"Incorrect ErrorDesc.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static Member GetMember(IOperationData pData, long pMemId) {
+			IWeaverQuery q = Weave.Inst.Graph
+				.V.ExactIndex<Member>(x => x.VertexId, pMemId)
+				.ToQuery();
+
+			return pData.Get<Member>(q, "Test-OauthLoginGetMember");
 		}
 
 
@@ -66,13 +78,12 @@ namespace Fabric.New.Test.Integration.Operations.Oauth.Login {
 			const long userId = (long)SetupUserId.Zach;
 			OpCtx.Auth.SetCookieUserId(userId);
 
-			Member origMem = OpCtx.Data.GetVertexById<Member>(memId);
+			Member origMem = GetMember(OpCtx.Data, memId);
 			Assert.AreEqual(true, origMem.OauthScopeAllow, "This test requires an allowed scope.");
 
 			OauthLoginResult result = ExecuteOperation();
 
-			OpCtx.Cache.Memory.RemoveVertex<Member>(memId);
-			Member updatedMem = OpCtx.Data.GetVertexById<Member>(memId);
+			Member updatedMem = GetMember(OpCtx.Data, memId);
 
 			Assert.AreEqual(updatedMem.OauthGrantCode, result.Code, "Incorrect Code.");
 			Assert.AreEqual(updatedMem.OauthGrantRedirectUri, result.Redirect, "Incorrect Redirect.");

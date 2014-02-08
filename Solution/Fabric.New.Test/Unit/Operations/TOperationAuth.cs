@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Domain.Names;
@@ -127,6 +128,45 @@ namespace Fabric.New.Test.Unit.Operations {
 			oa.SetCookieUserId(userId);
 
 			Assert.AreEqual(userId, oa.CookieUserId, "Incorrect CookieUserId.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SetFabricActiveMember() {
+			var oa = new OperationAuth(() => (IDataAccess)null, () => 0);
+			oa.SetFabricActiveMember();
+
+			Assert.AreEqual((long)SetupMemberId.FabFabData, oa.ActiveMemberId,
+				"Incorrect ActiveMemberId.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SetFabricActiveMemberErrAlreadySet() {
+			var oa = new OperationAuth(() => (IDataAccess)null, () => 0);
+			oa.SetFabricActiveMember();
+
+			TestUtil.Throws<Exception>(oa.SetFabricActiveMember);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RemoveFabricActiveMember() {
+			var oa = new OperationAuth(() => (IDataAccess)null, () => 0);
+			oa.SetFabricActiveMember();
+			oa.RemoveFabricActiveMember();
+
+			Assert.Null(oa.ActiveMember, "ActiveMember should be null.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void RemoveFabricActiveMemberErrNotSet() {
+			var oa = new OperationAuth(() => (IDataAccess)null, () => 0);
+
+			TestUtil.Throws<Exception>(oa.RemoveFabricActiveMember);
 		}
 
 	}

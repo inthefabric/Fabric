@@ -157,7 +157,11 @@ namespace Fabric.New.Operations.Oauth.Login {
 			m.DefinedByUserId = pUserId;
 			m.Type = (byte)MemberType.Id.Member;
 
-			return pOper.Execute(pOpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), m);
+			pOpCtx.Auth.SetFabricActiveMember();
+			Member newMem = pOper.Execute(
+				pOpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), m);
+			pOpCtx.Auth.RemoveFabricActiveMember();
+			return newMem;
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

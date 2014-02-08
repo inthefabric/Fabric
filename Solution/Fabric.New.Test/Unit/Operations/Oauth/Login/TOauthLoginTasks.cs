@@ -230,6 +230,12 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
 			const long appId = 657465723;
 			const long userId = 763462332;
 
+			var mockAuth = new Mock<IOperationAuth>();
+			mockAuth.Setup(x => x.SetFabricActiveMember());
+			mockAuth.Setup(x => x.RemoveFabricActiveMember());
+
+			vMockOpCtx.SetupGet(x => x.Auth).Returns(mockAuth.Object);
+
 			var mem = new Member();
 
 			var mockCreOp = new Mock<CreateMemberOperation>();
@@ -248,6 +254,9 @@ namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
 			Member result = vTasks.AddMember(vMockOpCtx.Object, mockCreOp.Object, appId, userId);
 
 			Assert.AreEqual(mem, result, "Incorrect result.");
+
+			mockAuth.Verify(x => x.SetFabricActiveMember(), Times.Once);
+			mockAuth.Verify(x => x.RemoveFabricActiveMember(), Times.Once);
 		}
 
 

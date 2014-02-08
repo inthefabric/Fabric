@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Data;
@@ -42,6 +43,26 @@ namespace Fabric.New.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetCookieUserId(long pUserId) {
 			CookieUserId = pUserId;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		//TEST: fabric active member
+		public void SetFabricActiveMember() {
+			if ( ActiveMember != null ) {
+				throw new Exception("ActiveMember is already set.");
+			}
+
+			ActiveMember = new Member();
+			ActiveMember.VertexId = (long)SetupMemberId.FabFabData;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void RemoveFabricActiveMember() {
+			if ( ActiveMember == null || ActiveMember.VertexId != (long)SetupMemberId.FabFabData ) {
+				throw new Exception("ActiveMember is not set to Fabric.");
+			}
+
+			ActiveMember = null;
 		}
 
 
