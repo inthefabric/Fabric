@@ -46,7 +46,6 @@ namespace Fabric.New.Operations {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		//TEST: fabric active member
 		public void SetFabricActiveMember() {
 			if ( ActiveMember != null ) {
 				throw new Exception("ActiveMember is already set.");

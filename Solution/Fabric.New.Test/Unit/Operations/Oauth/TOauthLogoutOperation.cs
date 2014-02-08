@@ -1,11 +1,11 @@
 ﻿using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 using Fabric.New.Operations;
-using Fabric.New.Operations.Oauth.Logout;
+using Fabric.New.Operations.Oauth;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Oauth.Logout {
+namespace Fabric.New.Test.Unit.Operations.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]

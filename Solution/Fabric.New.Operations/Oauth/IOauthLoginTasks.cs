@@ -1,7 +1,7 @@
 ﻿using Fabric.New.Domain;
 using Fabric.New.Operations.Create;
 
-namespace Fabric.New.Operations.Oauth.Login {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public interface IOauthLoginTasks {

@@ -5,13 +5,12 @@ using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Operations;
 using Fabric.New.Operations.Oauth;
-using Fabric.New.Operations.Oauth.Logout;
 using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations.Oauth.Logout {
+namespace Fabric.New.Test.Unit.Operations.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]

@@ -1,6 +1,6 @@
 ﻿using Fabric.New.Domain;
 
-namespace Fabric.New.Operations.Oauth.Access {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class OauthMember {

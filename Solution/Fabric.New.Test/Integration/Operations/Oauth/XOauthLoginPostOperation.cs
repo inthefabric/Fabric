@@ -1,12 +1,11 @@
 ﻿using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
 using Fabric.New.Operations.Oauth;
-using Fabric.New.Operations.Oauth.Login;
 using Fabric.New.Test.Integration.Shared;
 using Fabric.New.Test.Unit.Shared;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Integration.Operations.Oauth.Login {
+namespace Fabric.New.Test.Integration.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class XOauthLoginPostOperation : IntegrationTest {

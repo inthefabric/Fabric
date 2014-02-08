@@ -1,12 +1,11 @@
 ﻿using Fabric.New.Domain;
 using Fabric.New.Operations;
 using Fabric.New.Operations.Oauth;
-using Fabric.New.Operations.Oauth.Login;
 using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Oauth.Login {
+namespace Fabric.New.Test.Unit.Operations.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]

@@ -9,13 +9,12 @@ using Fabric.New.Infrastructure.Data;
 using Fabric.New.Operations;
 using Fabric.New.Operations.Create;
 using Fabric.New.Operations.Oauth;
-using Fabric.New.Operations.Oauth.Access;
 using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations.Oauth.Access {
+namespace Fabric.New.Test.Unit.Operations.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]

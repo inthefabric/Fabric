@@ -2,7 +2,7 @@
 using Fabric.New.Domain;
 using Fabric.New.Operations.Create;
 
-namespace Fabric.New.Operations.Oauth.Access {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public interface IOauthAccessTasks {

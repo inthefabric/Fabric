@@ -4,9 +4,6 @@ using Fabric.New.Api.Executors.Views;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Operations.Oauth;
-using Fabric.New.Operations.Oauth.Access;
-using Fabric.New.Operations.Oauth.Login;
-using Fabric.New.Operations.Oauth.Logout;
 using ServiceStack.Text;
 
 namespace Fabric.New.Api.Executors {

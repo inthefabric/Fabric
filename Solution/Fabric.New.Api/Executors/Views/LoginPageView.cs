@@ -1,5 +1,5 @@
 ﻿using Fabric.New.Api.Content;
-using Fabric.New.Operations.Oauth.Login;
+using Fabric.New.Operations.Oauth;
 
 namespace Fabric.New.Api.Executors.Views {
 

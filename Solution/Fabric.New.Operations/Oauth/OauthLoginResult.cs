@@ -1,6 +1,6 @@
 ﻿using Fabric.New.Api.Objects;
 
-namespace Fabric.New.Operations.Oauth.Login {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class OauthLoginResult : FabObject {

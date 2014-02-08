@@ -2,9 +2,8 @@
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Domain;
 using Fabric.New.Operations.Create;
-using Fabric.New.Operations.Oauth.Login;
 
-namespace Fabric.New.Operations.Oauth.Access {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class OauthAccessOperation {

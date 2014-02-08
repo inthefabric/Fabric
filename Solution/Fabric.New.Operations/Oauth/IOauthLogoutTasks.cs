@@ -1,6 +1,6 @@
 ﻿using Fabric.New.Domain;
 
-namespace Fabric.New.Operations.Oauth.Logout {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public interface IOauthLogoutTasks {

@@ -10,7 +10,7 @@ using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Operations.Oauth.Login {
+namespace Fabric.New.Operations.Oauth {
 
 	/*================================================================================================*/
 	public enum LoginErrors { //from section "4.1.2.1. Error Response"

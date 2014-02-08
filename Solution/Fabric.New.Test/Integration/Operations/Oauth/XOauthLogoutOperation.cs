@@ -4,14 +4,13 @@ using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Operations.Oauth;
-using Fabric.New.Operations.Oauth.Logout;
 using Fabric.New.Test.Integration.Shared;
 using Fabric.New.Test.Unit.Shared;
 using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Operations.Oauth.Logout {
+namespace Fabric.New.Test.Integration.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class XOauthLogoutOperation : IntegrationTest {
