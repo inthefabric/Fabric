@@ -94,39 +94,56 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void GetMemberByGrant() {
+		[TestCase(0)]
+		[TestCase(1)]
+		public void GetMemberByGrant(int pResultCount) {
 			const long appId = 125125235;
 			const string code = "asdugalsdgualsdkgulsdkug";
 			var mem = new Member();
 
 			var mockDataAcc = MockDataAccess.Create(mda => {
-				string expectScript = "m=g.V('"+DbName.Vert.Member.OauthGrantCode+"',_P);";
+				Assert.AreEqual(MockDataAccess.SessionStart, mda.GetCommand(0).SessionAction,
+					"Incorrect Command 0 SessionAction.");
+
+				string expectScript = "m=g.V('"+DbName.Vert.Member.OauthGrantCode+"',_P);"+
+					"(m?m=m.next():null);";
 				var expectParam = new List<object> { code };
-				TestUtil.CheckWeaverScript(mda.GetCommand(0), expectScript, "_P", expectParam);
+				TestUtil.CheckWeaverScript(mda.GetCommand(1), expectScript, "_P", expectParam);
 
 				expectScript = "m.outE('"+DbName.Edge.MemberDefinedByAppName+"')"+
 					".inV.property('"+DbName.Vert.Vertex.VertexId+"');";
 				expectParam = new List<object>();
-				TestUtil.CheckWeaverScript(mda.GetCommand(1), expectScript, "_P", expectParam);
+				TestUtil.CheckWeaverScript(mda.GetCommand(2), expectScript, "_P", expectParam);
+
+				Assert.AreEqual(MockDataAccess.SessionClose, mda.GetCommand(3).SessionAction,
+					"Incorrect Command 3 SessionAction.");
 
 				Assert.AreEqual("OauthAccess-GetMemberByGrant", 
 					mda.Object.ExecuteName, "Incorrect ExecuteName.");
 			});
 
 			mockDataAcc.MockResult
-				.Setup(x => x.ToElementAt<Member>(0, 0))
+				.Setup(x => x.GetCommandResultCount(pResultCount))
+				.Returns(1);
+
+			mockDataAcc.MockResult
+				.Setup(x => x.ToElementAt<Member>(1, 0))
 				.Returns(mem);
 
 			mockDataAcc.MockResult
-				.Setup(x => x.ToLongAt(1, 0))
+				.Setup(x => x.ToLongAt(2, 0))
 				.Returns(appId);
 
 			vMockData
-				.Setup(x => x.Build(null, false, true))
+				.Setup(x => x.Build(null, true, true))
 				.Returns(mockDataAcc.Object);
 
 			OauthMember result = vTasks.GetMemberByGrant(vMockData.Object, code);
+
+			if ( pResultCount == 0 ) {
+				Assert.Null(result, "Result should be null.");
+				return;
+			}
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(mem, result.Member, "Incorrect Member.");
@@ -134,40 +151,57 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void GetMemberByRefresh() {
+		[TestCase(0)]
+		[TestCase(1)]
+		public void GetMemberByRefresh(int pResultCount) {
 			const long appId = 125125235;
 			const string code = "asdugalsdgualsdkgulsdkug";
 			var mem = new Member();
 
 			var mockDataAcc = MockDataAccess.Create(mda => {
+				Assert.AreEqual(MockDataAccess.SessionStart, mda.GetCommand(0).SessionAction,
+					"Incorrect Command 0 SessionAction.");
+
 				string expectScript = "m=g.V('"+DbName.Vert.OauthAccess.Refresh+"',_P)"+
-					".outE('"+DbName.Edge.OauthAccessAuthenticatesMemberName+"').inV;";
+					".outE('"+DbName.Edge.OauthAccessAuthenticatesMemberName+"').inV;"+
+					"(m?m=m.next():null);";
 				var expectParam = new List<object> { code };
-				TestUtil.CheckWeaverScript(mda.GetCommand(0), expectScript, "_P", expectParam);
+				TestUtil.CheckWeaverScript(mda.GetCommand(1), expectScript, "_P", expectParam);
 
 				expectScript = "m.outE('"+DbName.Edge.MemberDefinedByAppName+"')"+
 					".inV.property('"+DbName.Vert.Vertex.VertexId+"');";
 				expectParam = new List<object>();
-				TestUtil.CheckWeaverScript(mda.GetCommand(1), expectScript, "_P", expectParam);
+				TestUtil.CheckWeaverScript(mda.GetCommand(2), expectScript, "_P", expectParam);
+
+				Assert.AreEqual(MockDataAccess.SessionClose, mda.GetCommand(3).SessionAction,
+					"Incorrect Command 3 SessionAction.");
 
 				Assert.AreEqual("OauthAccess-GetMemberByRefresh",
 					mda.Object.ExecuteName, "Incorrect ExecuteName.");
 			});
 
 			mockDataAcc.MockResult
-				.Setup(x => x.ToElementAt<Member>(0, 0))
+				.Setup(x => x.GetCommandResultCount(pResultCount))
+				.Returns(1);
+
+			mockDataAcc.MockResult
+				.Setup(x => x.ToElementAt<Member>(1, 0))
 				.Returns(mem);
 
 			mockDataAcc.MockResult
-				.Setup(x => x.ToLongAt(1, 0))
+				.Setup(x => x.ToLongAt(2, 0))
 				.Returns(appId);
 
 			vMockData
-				.Setup(x => x.Build(null, false, true))
+				.Setup(x => x.Build(null, true, true))
 				.Returns(mockDataAcc.Object);
 
 			OauthMember result = vTasks.GetMemberByRefresh(vMockData.Object, code);
+
+			if ( pResultCount == 0 ) {
+				Assert.Null(result, "Result should be null.");
+				return;
+			}
 
 			Assert.NotNull(result, "Result should be filled.");
 			Assert.AreEqual(mem, result.Member, "Incorrect Member.");
@@ -213,6 +247,12 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			const string code1 = "362343fsdfsdfasd";
 			const long utcNowTicks = 6423156122345252;
 			const long utcExpireTicks = utcNowTicks + 3600*TimeSpan.TicksPerSecond;
+
+			var mockAuth = new Mock<IOperationAuth>();
+			mockAuth.Setup(x => x.SetFabricActiveMember());
+			mockAuth.Setup(x => x.RemoveFabricActiveMember());
+
+			vMockOpCtx.SetupGet(x => x.Auth).Returns(mockAuth.Object);
 
 			var codeQueue = new Queue<string>();
 			codeQueue.Enqueue(code0);
@@ -264,6 +304,9 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			Assert.AreEqual(oa.Refresh, result.RefreshToken, "Incorrect RefreshToken.");
 			Assert.AreEqual(3600, result.ExpiresIn, "Incorrect ExpiresIn.");
 			Assert.AreEqual("bearer", result.TokenType, "Incorrect TokenType.");
+
+			mockAuth.Verify(x => x.SetFabricActiveMember(), Times.Once);
+			mockAuth.Verify(x => x.RemoveFabricActiveMember(), Times.Once);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

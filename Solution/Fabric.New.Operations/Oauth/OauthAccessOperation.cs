@@ -26,7 +26,7 @@ namespace Fabric.New.Operations.Oauth {
 
 			switch ( pGrantType ) {
 				case GrantTypeAc:
-					return ExecuteAt(pCode, pSecret, pRedirUri);
+					return ExecuteAc(pCode, pSecret, pRedirUri);
 
 				case GrantTypeRt:
 					return ExecuteRt(pRefresh, pSecret, pRedirUri);
@@ -41,10 +41,10 @@ namespace Fabric.New.Operations.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private FabOauthAccess ExecuteAt(string pCode, string pSecret, string pRedirUri) {
+		private FabOauthAccess ExecuteAc(string pCode, string pSecret, string pRedirUri) {
 			Validate(pSecret, pRedirUri);
 
-			if ( pCode == null || pCode.Length <= 0 ) {
+			if ( string.IsNullOrEmpty(pCode) ) {
 				throw vTasks.NewFault(AccessErrors.invalid_request, AccessErrorDescs.NoCode);
 			}
 
@@ -66,7 +66,7 @@ namespace Fabric.New.Operations.Oauth {
 		private FabOauthAccess ExecuteRt(string pRefresh, string pSecret, string pRedirUri) {
 			Validate(pSecret, pRedirUri);
 
-			if ( pRefresh == null || pRefresh.Length <= 0 ) {
+			if ( string.IsNullOrEmpty(pRefresh) ) {
 				throw vTasks.NewFault(AccessErrors.invalid_request, AccessErrorDescs.NoRefresh);
 			}
 
@@ -112,11 +112,11 @@ namespace Fabric.New.Operations.Oauth {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void Validate(string pSecret, string pRedirUri) {
-			if ( pSecret == null || pSecret.Length <= 0 ) {
+			if ( string.IsNullOrEmpty(pSecret) ) {
 				throw vTasks.NewFault(AccessErrors.invalid_request, AccessErrorDescs.NoClientSecret);
 			}
 
-			if ( pRedirUri == null || pRedirUri.Length <= 0 ) {
+			if ( string.IsNullOrEmpty(pRedirUri) ) {
 				throw vTasks.NewFault(AccessErrors.invalid_request, AccessErrorDescs.NoRedirUri);
 			}
 		}

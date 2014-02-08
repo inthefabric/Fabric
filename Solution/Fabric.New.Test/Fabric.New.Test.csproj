@@ -48,6 +48,7 @@
     <Compile Include="Integration\Operations\Create\XCreateClassOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateAppOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateOperation.cs" />
+    <Compile Include="Integration\Operations\Oauth\XOauthAccessOperation.cs" />
     <Compile Include="Integration\Operations\Oauth\XOauthLoginPostOperation.cs" />
     <Compile Include="Integration\Operations\Oauth\XOauthLoginGetOperation.cs" />
     <Compile Include="Integration\Operations\Oauth\XOauthLogoutOperation.cs" />

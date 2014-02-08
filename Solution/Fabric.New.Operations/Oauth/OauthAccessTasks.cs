@@ -117,15 +117,24 @@ namespace Fabric.New.Operations.Oauth {
 					.Property(x => x.VertexId)
 				.ToQuery();
 
-			IDataAccess acc = pData.Build();
+			IDataAccess acc = pData.Build(null, true);
+			acc.AddSessionStart();
 			acc.AddQuery(memQ, true);
+			acc.AppendScriptToLatestCommand("(m?m=m.next():null);");
+			string memCmdId = acc.GetLatestCommandId();
 			acc.AddQuery(appQ, true);
+			acc.AddConditionsToLatestCommand(memCmdId);
+			acc.AddSessionClose();
 
 			IDataResult res = acc.Execute("OauthAccess-"+pName);
 
+			if ( res.GetCommandResultCount(1) == 0 ) {
+				return null;
+			}
+
 			var om = new OauthMember();
-			om.Member = res.ToElementAt<Member>(0, 0);
-			om.AppId = res.ToLongAt(1, 0);
+			om.Member = res.ToElementAt<Member>(1, 0);
+			om.AppId = res.ToLongAt(2, 0);
 			return om;
 		}
 
@@ -145,8 +154,10 @@ namespace Fabric.New.Operations.Oauth {
 			coa.Expires = pOpCtx.UtcNow.AddSeconds(expireSec).Ticks;
 			coa.AuthenticatesMemberId = pMemberId;
 
+			pOpCtx.Auth.SetFabricActiveMember();
 			OauthAccess result = pCreateOp.Execute(pOpCtx,
 				new CreateOperationBuilder(), new CreateOperationTasks(), coa);
+			pOpCtx.Auth.RemoveFabricActiveMember();
 
 			return new FabOauthAccess {
 				AccessToken = result.Token,
