@@ -64,6 +64,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicate() {
+			IsReadOnlyTest = true;
 			vCreateUrl.FullPath = "http://zachKINSTNER.com";
 			TestUtil.Throws<FabDuplicateFault>(() => ExecuteOperation());
 		}

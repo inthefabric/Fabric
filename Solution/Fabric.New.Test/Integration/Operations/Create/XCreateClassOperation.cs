@@ -72,6 +72,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		[TestCase("HUMAN", null)]
 		[TestCase("LocatION", "GEOgraphical")]
 		public void ErrDuplicate(string pName, string pDisamb) {
+			IsReadOnlyTest = true;
 			vCreateClass.Name = pName;
 			vCreateClass.Disamb = pDisamb;
 			TestUtil.Throws<FabDuplicateFault>(() => ExecuteOperation());

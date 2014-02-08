@@ -27,7 +27,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
-			NewElementFunc = null;
+			VerificationQueryFunc = null;
 			CreatorId = (long)SetupMemberId.FabZach;
 
 			vMockAuth = new Mock<IOperationAuth>();
@@ -43,7 +43,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void SetNewElementQuery(IWeaverQuery pQuery) {
-			NewElementFunc = () => {
+			VerificationQueryFunc = () => {
 				IDataResult dr = OpCtx.Data.Execute(pQuery, "Test-CreateOperations");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified.");
 			};
@@ -62,6 +62,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrNoAuth() {
+			IsReadOnlyTest = true;
 			vMockAuth.SetupGet(x => x.ActiveMemberId).Returns((long?)null);
 
 			FabPreventedFault fpf = TestUtil.Throws<FabPreventedFault>(() => ExecuteOperation());

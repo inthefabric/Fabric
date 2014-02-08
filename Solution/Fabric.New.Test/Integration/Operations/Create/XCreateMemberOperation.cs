@@ -78,6 +78,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicate() {
+			IsReadOnlyTest = true;
 			vCreateMember.DefinedByAppId = (long)SetupAppId.KinPhoGal;
 			vCreateMember.DefinedByUserId = (long)SetupUserId.Zach;
 			TestUtil.Throws<FabDuplicateFault>(() => ExecuteOperation());

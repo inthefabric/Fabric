@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading;
 using metrics;
 using metrics.Core;
@@ -12,10 +12,10 @@ namespace Fabric.New.Infrastructure.Broadcast {
 		private readonly GraphiteTcp vGraphite;
 		private readonly Timer vTimer;
 
-		private HashSet<string> vTimerPaths;
-		private HashSet<string> vMeanPaths;
-		private HashSet<string> vCounterPaths;
-		private HashSet<string> vGaugePaths;
+		private ConcurrentDictionary<string, bool> vTimerPaths;
+		private ConcurrentDictionary<string, bool> vMeanPaths;
+		private ConcurrentDictionary<string, bool> vCounterPaths;
+		private ConcurrentDictionary<string, bool> vGaugePaths;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,12 +28,12 @@ namespace Fabric.New.Infrastructure.Broadcast {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void ResetPaths(bool pResetGauges=false) {
-			vTimerPaths = new HashSet<string>();
-			vMeanPaths = new HashSet<string>();
-			vCounterPaths = new HashSet<string>();
+			vTimerPaths = new ConcurrentDictionary<string, bool>();
+			vMeanPaths = new ConcurrentDictionary<string, bool>();
+			vCounterPaths = new ConcurrentDictionary<string, bool>();
 
 			if ( pResetGauges ) {
-				vGaugePaths = new HashSet<string>();
+				vGaugePaths = new ConcurrentDictionary<string, bool>();
 			}
 		}
 
@@ -41,26 +41,26 @@ namespace Fabric.New.Infrastructure.Broadcast {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void Timer(string pPath, long pMilliseconds) {
-			vTimerPaths.Add(pPath);
+			vTimerPaths.GetOrAdd(pPath, true);
 			Metrics.ManualTimer(GetType(), pPath, TimeUnit.Milliseconds, TimeUnit.Milliseconds)
 				.RecordElapsedMillis(pMilliseconds);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Mean(string pPath, long pValue) {
-			vMeanPaths.Add(pPath);
+			vMeanPaths.GetOrAdd(pPath, true);
 			Metrics.Histogram(GetType(), pPath).Update(pValue);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Counter(string pPath, long pIncrement) {
-			vCounterPaths.Add(pPath);
+			vCounterPaths.GetOrAdd(pPath, true);
 			Metrics.Counter(GetType(), pPath).Increment(pIncrement);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Gauge(string pPath, Func<long> pEvaluator) {
-			vGaugePaths.Add(pPath);
+			vGaugePaths.GetOrAdd(pPath, true);
 			Metrics.Gauge(GetType(), pPath, pEvaluator);
 		}
 
@@ -68,7 +68,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendData(object pState) {
-			foreach ( string path in vTimerPaths ) {
+			foreach ( string path in vTimerPaths.Keys ) {
 				ManualTimerMetric mtm = Metrics.ManualTimer(GetType(), path, 
 					TimeUnit.Milliseconds, TimeUnit.Milliseconds);
 				double[] perc = mtm.Percentiles(0.95, 0.99);
@@ -79,19 +79,19 @@ namespace Fabric.New.Infrastructure.Broadcast {
 				mtm.Clear();
 			}
 
-			foreach ( string path in vMeanPaths ) {
+			foreach ( string path in vMeanPaths.Keys ) {
 				HistogramMetric hm = Metrics.Histogram(GetType(), path);
 				vGraphite.Send(path+".mean", hm.Mean);
 				hm.Clear();
 			}
 
-			foreach ( string path in vCounterPaths ) {
+			foreach ( string path in vCounterPaths.Keys ) {
 				CounterMetric cm = Metrics.Counter(GetType(), path);
 				vGraphite.Send(path+".counter", cm.Count);
 				cm.Clear();
 			}
 
-			foreach ( string path in vGaugePaths ) {
+			foreach ( string path in vGaugePaths.Keys ) {
 				GaugeMetric<long> gm = Metrics.Gauge<long>(GetType(), path, null);
 				vGraphite.Send(path+".gauge", gm.Value);
 			}

@@ -66,6 +66,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicate() {
+			IsReadOnlyTest = true;
 			vCreateUser.Name = "zachKINSTNER";
 			TestUtil.Throws<FabDuplicateFault>(() => ExecuteOperation());
 		}

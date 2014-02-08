@@ -63,6 +63,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ErrDuplicate() {
+			IsReadOnlyTest = true;
 			vCreateApp.Name = "Fabric SYSTEM";
 			TestUtil.Throws<FabDuplicateFault>(() => ExecuteOperation());
 		}
