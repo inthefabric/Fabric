@@ -48,7 +48,8 @@
     <Compile Include="Integration\Operations\Create\XCreateClassOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateAppOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateOperation.cs" />
-    <Compile Include="Integration\Operations\Oauth\XOauthLogoutOperation.cs" />
+    <Compile Include="Integration\Operations\Oauth\Login\XOauthLoginGetOperation.cs" />
+    <Compile Include="Integration\Operations\Oauth\Logout\XOauthLogoutOperation.cs" />
     <Compile Include="Integration\Operations\Traversal\XTraversalOperation.cs" />
     <Compile Include="Integration\Shared\IntegrationTest.cs" />
     <Compile Include="Integration\Shared\TestOperationContext.cs" />

@@ -11,7 +11,7 @@ using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Operations.Oauth {
+namespace Fabric.New.Test.Integration.Operations.Oauth.Logout {
 
 	/*================================================================================================*/
 	public class XOauthLogoutOperation : IntegrationTest {

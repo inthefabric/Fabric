@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using metrics;
 using metrics.Core;
@@ -68,7 +69,12 @@ namespace Fabric.New.Infrastructure.Broadcast {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendData(object pState) {
-			foreach ( string path in vTimerPaths.Keys ) {
+			string[] timerPaths = vTimerPaths.Keys.ToArray();
+			string[] meanPaths = vMeanPaths.Keys.ToArray();
+			string[] countPaths = vCounterPaths.Keys.ToArray();
+			string[] gaugePaths = vGaugePaths.Keys.ToArray();
+
+			foreach ( string path in timerPaths ) {
 				ManualTimerMetric mtm = Metrics.ManualTimer(GetType(), path, 
 					TimeUnit.Milliseconds, TimeUnit.Milliseconds);
 				double[] perc = mtm.Percentiles(0.95, 0.99);
@@ -79,19 +85,19 @@ namespace Fabric.New.Infrastructure.Broadcast {
 				mtm.Clear();
 			}
 
-			foreach ( string path in vMeanPaths.Keys ) {
+			foreach ( string path in meanPaths ) {
 				HistogramMetric hm = Metrics.Histogram(GetType(), path);
 				vGraphite.Send(path+".mean", hm.Mean);
 				hm.Clear();
 			}
 
-			foreach ( string path in vCounterPaths.Keys ) {
+			foreach ( string path in countPaths ) {
 				CounterMetric cm = Metrics.Counter(GetType(), path);
 				vGraphite.Send(path+".counter", cm.Count);
 				cm.Clear();
 			}
 
-			foreach ( string path in vGaugePaths.Keys ) {
+			foreach ( string path in gaugePaths ) {
 				GaugeMetric<long> gm = Metrics.Gauge<long>(GetType(), path, null);
 				vGraphite.Send(path+".gauge", gm.Value);
 			}
