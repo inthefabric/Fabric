@@ -11,8 +11,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 	/*================================================================================================*/
 	public class TCreateOperationsCustom {
 
-		//TODO: make sure all unit tests use MockBehavior.Strict
-
 		private Mock<ICreateOperationBuilder> vMockBuild;
 		private Mock<CreateOperationTasks> vMockTasks;
 

@@ -37,7 +37,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockBuild = new Mock<ICreateOperationBuilder>();
+			vMockBuild = new Mock<ICreateOperationBuilder>(MockBehavior.Strict);
 			vTasks = new CreateOperationTasks();
 			vAddQueryCallbacks = new Queue<Action<IWeaverQuery, bool, string>>();
 			vSetupLatestCallbacks = new Queue<Action<bool, bool>>();
@@ -86,7 +86,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 					const int i = 999;
 
-					var mockRes = new Mock<IDataResult>();
+					var mockRes = new Mock<IDataResult>(MockBehavior.Strict);
 					mockRes.Setup(x => x.GetCommandIndexByCmdId(c.CommandId)).Returns(i);
 
 					Log.Debug("Append passing DataResultCheck...");

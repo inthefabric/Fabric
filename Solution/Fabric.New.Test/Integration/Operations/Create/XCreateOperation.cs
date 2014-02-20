@@ -30,7 +30,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 			VerificationQueryFunc = null;
 			CreatorId = (long)SetupMemberId.FabZach;
 
-			vMockAuth = new Mock<IOperationAuth>();
+			vMockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 			vMockAuth.SetupGet(x => x.ActiveMemberId).Returns(CreatorId);
 			OpCtx.SetMockAuth(vMockAuth);
 

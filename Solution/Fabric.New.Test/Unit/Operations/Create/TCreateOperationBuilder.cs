@@ -21,7 +21,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockDataAcc = new Mock<IDataAccess>();
+			vMockDataAcc = new Mock<IDataAccess>(); //does not need MockBehavior.Strict
 			vMockDataAcc.Setup(x => x.GetLatestCommandId()).Returns(LatestCmdId);
 
 			vCreCtx = new CreateOperationBuilder();
@@ -36,7 +36,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		[TestCase(true, null)]
 		[TestCase(true, "my.append.script")]
 		public void AddQuery(bool pCache, string pAppend) {
-			var mockQ = new Mock<IWeaverQuery>();
+			var mockQ = new Mock<IWeaverQuery>(MockBehavior.Strict);
 
 			vCreCtx.AddQuery(mockQ.Object, pCache, pAppend);
 
@@ -151,10 +151,12 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		[TestCase(99)]
 		public void AddAndPerformChecks(int pCount) {
 			var mockChecks = new List<Mock<IDataResultCheck>>();
-			var mockRes = new Mock<IDataResult>();
+			var mockRes = new Mock<IDataResult>(MockBehavior.Strict);
 
 			for ( int i = 0 ; i < pCount ; ++i ) {
-				mockChecks.Add(new Mock<IDataResultCheck>());
+				var mc = new Mock<IDataResultCheck>(MockBehavior.Strict);
+				mc.Setup(x => x.PerformCheck(mockRes.Object));
+				mockChecks.Add(mc);
 			}
 
 			foreach ( Mock<IDataResultCheck> mc in mockChecks ) {

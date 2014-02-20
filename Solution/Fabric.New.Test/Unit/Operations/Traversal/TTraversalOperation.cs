@@ -65,7 +65,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal {
 
 			var vertDtos = new List<IDataDto> { dto };
 
-			var mockRes = new Mock<IDataResult>();
+			var mockRes = new Mock<IDataResult>(MockBehavior.Strict);
 			mockRes.Setup(x => x.ToDtoList()).Returns(vertDtos);
 
 			vMockData

@@ -27,7 +27,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockData = new Mock<IOperationData>();
+			vMockData = new Mock<IOperationData>(MockBehavior.Strict);
 
 			vMockOpCtx = new Mock<IOperationContext>(MockBehavior.Strict);
 			vMockOpCtx.SetupGet(x => x.Data).Returns(vMockData.Object);
@@ -96,7 +96,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			const long appId = 12345;
 			var app = new App { Name = "testName" };
 			User user = null;
-			var mockAuth = new Mock<IOperationAuth>();
+			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 
 			vMockTasks
 				.Setup(x => x.AppIdToLong(vClientId))
@@ -161,7 +161,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			const long userId = 74578457;
 
 			var app = new App();
-			var mockAuth = new Mock<IOperationAuth>();
+			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 
 			var mem = new Member();
 			mem.OauthScopeAllow = true;

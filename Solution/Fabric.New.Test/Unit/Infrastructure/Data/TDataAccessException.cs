@@ -16,7 +16,7 @@ namespace Fabric.New.Test.Unit.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void New() {
-			IDataAccess acc = new Mock<IDataAccess>().Object;
+			IDataAccess acc = new Mock<IDataAccess>(MockBehavior.Strict).Object;
 			const string msg = "this is a message.";
 
 			var dae = new DataAccessException(acc, msg);

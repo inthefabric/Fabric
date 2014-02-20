@@ -19,7 +19,7 @@ namespace Fabric.New.Test.Unit.Infrastructure.Data {
 		public void New() {
 			const string url = "url";
 			const int port = 1234;
-			IRexConnCacheProvider cache = new Mock<IRexConnCacheProvider>().Object;
+			IRexConnCacheProvider cache = new Mock<IRexConnCacheProvider>(MockBehavior.Strict).Object;
 			const string sessId = "mysess";
 			const bool cmdId = true;
 			const bool cmdTime = true;

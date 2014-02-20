@@ -39,15 +39,6 @@ namespace Fabric.New.Test.Unit.Shared {
 			CheckParams(pWeaverScript.Params, pParamPrefix, pValues);
 		}
 
-		/*--------------------------------------------------------------------------------------------* /
-		public static void CheckParam(IDictionary<string, IWeaverQueryVal> pParams,
-																	string pKey, object pOrigValue) {
-			Assert.NotNull(pParams, "Query.Params should not be null.");
-			Assert.True(pParams.ContainsKey(pKey), "Query.Params['"+pKey+"'] should be filled.");
-			Assert.AreEqual(pOrigValue, pParams[pKey].Original,
-				"Incorrect Query.Params['"+pKey+"'].Original.");
-		}
-
 		/*--------------------------------------------------------------------------------------------*/
 		public static void CheckParams(IDictionary<string, IWeaverQueryVal> pParams,
 														string pParamPrefix, IList<object> pValues) {
@@ -69,16 +60,6 @@ namespace Fabric.New.Test.Unit.Shared {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public static IWeaverVarAlias<T> GetTxVar<T>(string pName) where T : IVertex {
-			var tv = new Mock<IWeaverVarAlias<T>>();
-			tv.SetupGet(x => x.Name).Returns(pName);
-			tv.SetupGet(x => x.VarType).Returns(typeof(T));
-			return tv.Object;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static void LogWeaverScript(Logger pLog, IWeaverScript pScripted) {
 			string p = "";
@@ -91,7 +72,7 @@ namespace Fabric.New.Test.Unit.Shared {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void LogWeaverScript(Logger pLog, string pScript, string pParamOutput) {
+		private static void LogWeaverScript(Logger pLog, string pScript, string pParamOutput) {
 			string script = pScript
 				.Replace(".outE", "\n\t\t.outE")
 				.Replace(".inE", "\n\t\t.inE")
@@ -99,23 +80,6 @@ namespace Fabric.New.Test.Unit.Shared {
 				.Replace(";", ";\n\t");
 
 			pLog.Debug("Query:\n\n\t"+script+pParamOutput);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public static NameValueCollection BuildQuery(string pQuery) {
-			var q = new NameValueCollection();
-			if ( String.IsNullOrEmpty(pQuery) ) { return q; }
-
-			string[] pairs = pQuery.Split('&');
-
-			foreach ( string pair in pairs ) {
-				string[] nameVal = pair.Split('=');
-				q.Add(nameVal[0], nameVal[1]);
-			}
-
-			return q;
 		}
 
 

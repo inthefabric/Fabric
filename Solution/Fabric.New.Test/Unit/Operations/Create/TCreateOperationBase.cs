@@ -48,7 +48,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 			vMockAcc = new Mock<IDataAccess>(MockBehavior.Strict);
 
-			vMockRes = new Mock<IDataResult>();
+			vMockRes = new Mock<IDataResult>(MockBehavior.Strict);
 
 			var mockData = new Mock<IOperationData>(MockBehavior.Strict);
 			mockData.Setup(x => x.Build(null, true, true)).Returns(vMockAcc.Object);

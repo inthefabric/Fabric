@@ -27,7 +27,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			IDataResult checkDataRes = null;
 			int checkIndex = -1;
 
-			var mockDataRes = new Mock<IDataResult>();
+			var mockDataRes = new Mock<IDataResult>(MockBehavior.Strict);
 			mockDataRes.Setup(x => x.GetCommandIndexByCmdId(cmdId)).Returns(cmdIndex);
 
 			var dr = new DataResultCheck(cmdId, (r, i) => {

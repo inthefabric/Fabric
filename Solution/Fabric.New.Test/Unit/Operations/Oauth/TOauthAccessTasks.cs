@@ -248,7 +248,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			const long utcNowTicks = 6423156122345252;
 			const long utcExpireTicks = utcNowTicks + 3600*TimeSpan.TicksPerSecond;
 
-			var mockAuth = new Mock<IOperationAuth>();
+			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 			mockAuth.Setup(x => x.SetFabricActiveMember());
 			mockAuth.Setup(x => x.RemoveFabricActiveMember());
 
@@ -278,7 +278,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 				.SetupGet(x => x.UtcNow)
 				.Returns(new DateTime(utcNowTicks));
 
-			var mockCreOp = new Mock<CreateOauthAccessOperation>();
+			var mockCreOp = new Mock<CreateOauthAccessOperation>(MockBehavior.Strict);
 
 			mockCreOp
 				.Setup(x => x.Execute(vMockOpCtx.Object, It.IsAny<ICreateOperationBuilder>(),

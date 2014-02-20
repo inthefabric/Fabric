@@ -41,11 +41,15 @@ namespace Fabric.New.Test.Unit.Operations {
 				TestUtil.CheckParams(cmd.Params, "_P", new List<object>());
 			});
 
-			vMockFact = new Mock<IDataAccessFactory>();
+			vMockFact = new Mock<IDataAccessFactory>(MockBehavior.Strict);
 			vMockFact.Setup(x => x.Create(null, false, true)).Returns(vMockAcc.Object);
 
-			vMockMet = new Mock<IMetricsManager>();
-			vMockCache = new Mock<IMemCache>();
+			vMockMet = new Mock<IMetricsManager>(MockBehavior.Strict);
+			vMockMet.Setup(x => x.Counter(It.IsAny<string>(), It.IsAny<long>()));
+			vMockMet.Setup(x => x.Timer(It.IsAny<string>(), It.IsAny<long>()));
+			vMockMet.Setup(x => x.Mean(It.IsAny<string>(), It.IsAny<long>()));
+
+			vMockCache = new Mock<IMemCache>(MockBehavior.Strict);
 
 			vData = new OperationData(new Guid(), vMockFact.Object, vMockMet.Object, vMockCache.Object);
 
@@ -119,6 +123,9 @@ namespace Fabric.New.Test.Unit.Operations {
 				TestUtil.CheckParams(cmd.Params, "_P", new List<object>{ id });
 			});
 			vMockAcc.MockResult.SetupToElement(app);
+			vMockCache.Setup(x => x.FindVertex<App>(id)).Returns((App)null);
+			vMockCache.Setup(x => x.AddVertex(app, null));
+			vMockCache.Setup(x => x.RemoveVertex<App>(id)).Returns((App)null);
 			vMockFact.Setup(x => x.Create(null, false, true)).Returns(vMockAcc.Object);
 
 			App result = vData.GetVertexById<App>(id);

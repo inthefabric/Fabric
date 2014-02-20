@@ -29,7 +29,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockData = new Mock<IOperationData>();
+			vMockData = new Mock<IOperationData>(MockBehavior.Strict);
 
 			vMockOpCtx = new Mock<IOperationContext>(MockBehavior.Strict);
 			vMockOpCtx.SetupGet(x => x.Data).Returns(vMockData.Object);
@@ -186,7 +186,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			const long userId = 125262346;
 			var mem = new Member();
 
-			var mockAuth = new Mock<IOperationAuth>();
+			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 			mockAuth.SetupGet(x => x.CookieUserId).Returns(userId);
 
 			vMockOpCtx.SetupGet(x => x.Auth).Returns(mockAuth.Object);
@@ -212,7 +212,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			const long userId = 125262346;
 			var mem = new Member { OauthGrantCode = "testcode" };
 
-			var mockAuth = new Mock<IOperationAuth>();
+			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 			mockAuth.SetupGet(x => x.CookieUserId).Returns(userId);
 
 			vMockOpCtx.SetupGet(x => x.Auth).Returns(mockAuth.Object);

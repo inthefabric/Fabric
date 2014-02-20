@@ -30,10 +30,14 @@ namespace Fabric.New.Test.Unit.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockAccFac = new Mock<IDataAccessFactory>();
-			vMockCache = new Mock<ICacheManager>();
-			vMockMet = new Mock<IMetricsManager>();
-			vMockAna = new Mock<IAnalyticsManager>();
+			vMockAccFac = new Mock<IDataAccessFactory>(MockBehavior.Strict);
+
+			vMockCache = new Mock<ICacheManager>(MockBehavior.Strict);
+			vMockCache.SetupGet(x => x.Memory).Returns((IMemCache)null);
+
+			vMockMet = new Mock<IMetricsManager>(MockBehavior.Strict);
+			
+			vMockAna = new Mock<IAnalyticsManager>(MockBehavior.Strict);
 
 			vOpCtx = new OperationContext(vMockAccFac.Object,
 				vMockCache.Object, vMockMet.Object, (x => vMockAna.Object));

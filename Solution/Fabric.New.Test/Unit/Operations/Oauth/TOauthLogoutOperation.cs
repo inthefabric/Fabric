@@ -24,7 +24,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockData = new Mock<IOperationData>();
+			vMockData = new Mock<IOperationData>(MockBehavior.Strict);
 
 			vMockOpCtx = new Mock<IOperationContext>(MockBehavior.Strict);
 			vMockOpCtx.SetupGet(x => x.Data).Returns(vMockData.Object);

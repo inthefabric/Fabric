@@ -28,7 +28,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		[SetUp]
 		public void SetUp() {
-			vMockBuild = new Mock<ICreateOperationBuilder>();
+			vMockBuild = new Mock<ICreateOperationBuilder>(MockBehavior.Strict);
 			vTasks = new CreateOperationTasks();
 		}
 

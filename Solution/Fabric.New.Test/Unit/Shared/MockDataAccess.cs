@@ -140,9 +140,11 @@ namespace Fabric.New.Test.Unit.Shared {
 						var resp = new Response();
 						resp.Timer = 100;
 
-						var mockRespRes = new Mock<IResponseResult>();
+						var mockRespRes = new Mock<IResponseResult>(MockBehavior.Strict);
 						mockRespRes.SetupGet(x => x.Response).Returns(resp);
 						mockRespRes.SetupGet(x => x.ResponseJson).Returns("{}");
+						mockRespRes.SetupGet(x => x.ExecutionMilliseconds).Returns(0);
+						mockRespRes.SetupGet(x => x.IsError).Returns(false);
 						vPostEx(Object, mockRespRes.Object);
 					}
 				})
@@ -170,7 +172,7 @@ namespace Fabric.New.Test.Unit.Shared {
 		/*--------------------------------------------------------------------------------------------*/
 		private void OnAddQuery(
 							string pScript, Dictionary<string, IWeaverQueryVal> pParams, bool pCache) {
-			/*var mockWs = new Mock<IWeaverScript>();
+			/*var mockWs = new Mock<IWeaverScript>(MockBehavior.Strict);
 			mockWs.SetupGet(x => x.Script).Returns(pScript);
 			mockWs.SetupGet(x => x.Params).Returns((Dictionary<string, IWeaverQueryVal>)pParams);*/
 

@@ -229,7 +229,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 			const long appId = 657465723;
 			const long userId = 763462332;
 
-			var mockAuth = new Mock<IOperationAuth>();
+			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 			mockAuth.Setup(x => x.SetFabricActiveMember());
 			mockAuth.Setup(x => x.RemoveFabricActiveMember());
 
@@ -237,7 +237,7 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 
 			var mem = new Member();
 
-			var mockCreOp = new Mock<CreateMemberOperation>();
+			var mockCreOp = new Mock<CreateMemberOperation>(MockBehavior.Strict);
 			mockCreOp
 				.Setup(x => x.Execute(vMockOpCtx.Object, It.IsAny<ICreateOperationBuilder>(),
 					It.IsAny<CreateOperationTasks>(), It.IsAny<CreateFabMember>()))
