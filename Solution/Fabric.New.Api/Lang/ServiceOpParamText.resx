@@ -118,16 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Oauth_AccessToken_ClientId" xml:space="preserve">
-    <value>The App ID value (an integer) for the App making the request. This parameter is only used by the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' and '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flows.</value>
+    <value>The App ID value (an integer) for the App making the request. This parameter is only used by the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow.</value>
   </data>
   <data name="Oauth_AccessToken_Code" xml:space="preserve">
     <value>The authorization code obtained after a successful OAuth entry process. This parameter is only used by the '[[Authorization Code|Oper|Oauth.AccessTokenAuthCode]]' flow.</value>
   </data>
-  <data name="Oauth_AccessToken_DataProvId" xml:space="preserve">
-    <value>The User ID value (an integer) for the Data Provider of the App making the request. Upon App creation, Fabric creates a special 'Data Provider' User which the App uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flow.</value>
-  </data>
   <data name="Oauth_AccessToken_GrantType" xml:space="preserve">
-    <value>Defines the desired access token flow.  The four accepted (case-sensitive) values are '[[authorization_code|Oper|Oauth.AccessTokenAuthCode]]', '[[refresh|Oper|Oauth.AccessTokenRefresh]]', '[[client_credentials|Oper|Oauth.AccessTokenClientCredentials]]', and '[[client_data_provider|Oper|Oauth.AccessTokenClientDataProv]]'.</value>
+    <value>Defines the desired access token flow.  The three accepted (case-sensitive) values are '[[authorization_code|Oper|Oauth.AccessTokenAuthCode]]', '[[refresh|Oper|Oauth.AccessTokenRefresh]]', and '[[client_credentials|Oper|Oauth.AccessTokenClientCredentials]]'.</value>
   </data>
   <data name="Oauth_AccessToken_RedirectUri" xml:space="preserve">
     <value>This value must be exactly the same as the redirect URI provided for the OAuth entry process.</value>

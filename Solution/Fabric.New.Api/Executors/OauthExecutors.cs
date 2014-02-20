@@ -9,7 +9,7 @@ using ServiceStack.Text;
 namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public static class OauthExecutors {
+	public static class OauthExecutors { //TODO: OauthExecutors integration test
 
 		private static readonly string Uri = ApiMenu.Oauth.Uri;
 

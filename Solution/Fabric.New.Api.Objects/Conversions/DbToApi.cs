@@ -29,7 +29,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 				case VertexType.Id.Vertex: return ConvertVertex(pDto);
 			}
 
-			throw new Exception("Unknown VertexType: "+pDto.VertexType);
+			return null; //throw new Exception("Unknown VertexType: "+pDto.VertexType);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

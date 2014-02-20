@@ -36,7 +36,7 @@ namespace Fabric.New.Api.Executors {
 				IList<T> list = vGetResponse();
 				resp.StopTimer();
 
-				var fr = NewFabResponse();
+				FabResponse<T> fr = NewFabResponse();
 				fr.Data = list;
 				fr.TotalMs = resp.GetTimerMilliseconds();
 				

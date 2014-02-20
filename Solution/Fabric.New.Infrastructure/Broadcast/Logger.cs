@@ -159,7 +159,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 															string pSessId=null, string pMode=null) {
 			pText = Prefix("Info", pSessId, pMode)+pText;
 			LevelMap[pLevel](vLog, pText, pEx);
-			ConsoleOut(pText);
+			ConsoleOut(pText, pEx);
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/

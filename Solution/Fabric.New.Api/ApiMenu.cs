@@ -24,7 +24,6 @@ namespace Fabric.New.Api {
 		public static FabServiceOperation OauthAtac;
 		public static FabServiceOperation OauthAtr;
 		public static FabServiceOperation OauthAtcc;
-		public static FabServiceOperation OauthAtcd;
 		public static FabServiceOperation OauthLogin;
 		public static FabServiceOperation OauthLogout;
 
@@ -87,7 +86,7 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabService BuildOauthMenu() {
 			var s = new FabService();
-			s.Name = "Oauth";
+			s.Name = "OAuth";
 			s.Uri = "/Oauth";
 
 			if ( OauthAt == null ) {
@@ -95,7 +94,6 @@ namespace Fabric.New.Api {
 				OauthAtac = NewOperation<FabOauthAccess>("AccessTokenAuthCode");
 				OauthAtr = NewOperation<FabOauthAccess>("AccessTokenRefresh");
 				OauthAtcc = NewOperation<FabOauthAccess>("AccessTokenClientCredentials");
-				OauthAtcd = NewOperation<FabOauthAccess>("AccessTokenClientDataProv");
 				OauthLogin = NewOperation<FabOauthLogin>("Login");
 				OauthLogout = NewOperation<FabOauthLogout>("Logout");
 			}
@@ -104,7 +102,6 @@ namespace Fabric.New.Api {
 			s.Operations.Add(OauthAtac);
 			s.Operations.Add(OauthAtr);
 			s.Operations.Add(OauthAtcc);
-			s.Operations.Add(OauthAtcd);
 			s.Operations.Add(OauthLogin);
 			s.Operations.Add(OauthLogout);
 

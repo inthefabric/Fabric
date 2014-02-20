@@ -35,7 +35,7 @@ foreach ( IVertexSchema v in allVerts ) {
 
 foreach ( IVertexSchema v in verts ) {
 #>
-			ApiEntry.Get("/Trav/<#= v.Names.DomainPlural #>", TravResp, typeof(FabResponse<FabTrav<#= v.Names.Domain #>Root>)),
+			ApiEntry.Get("/Trav/<#= v.Names.DomainPlural #>", <#= v.Names.DomainPlural #>Resp, typeof(FabResponse<FabTrav<#= v.Names.Domain #>Root>)),
 <#
 } //end vertex loop
 #>
@@ -48,16 +48,39 @@ foreach ( IVertexSchema v in verts ) {
 			FabTravStep[] steps = null;
 			
 			Func<IList<FabElement>> getResp = (() => {
-				string path = pApiReq.Path.Substring(6); //remove "/Trav/"
+				string path = pApiReq.Path;
+				path = path.Substring(path.ToLower().IndexOf("trav/")+5); //remove "/Trav/"
+
 				var op = new TraversalOperation();
+
+				IList<FabElement> result = op.Execute(pApiReq.OpCtx, path);
 				steps = op.GetResultSteps().ToArray();
-				return op.Execute(pApiReq.OpCtx, path);
+				return result;
 			});
 
 			var exec = new FabResponseExecutor<FabElement>(pApiReq, getResp);
 			exec.NewFabResponse = (() => new FabTravResponse<FabElement> { Steps = steps });
 			return exec.Execute();
 		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static IApiResponse ExecuteRoot<T>(IApiRequest pApiReq) where T : FabObject, new() {
+			var exec = new FabResponseExecutor<T>(pApiReq, () => new List<T>(new[] { new T() }));
+			return exec.Execute();
+		}
+<#
+foreach ( IVertexSchema v in verts ) {
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static IApiResponse <#= v.Names.DomainPlural #>Resp(IApiRequest pApiReq) {
+			return ExecuteRoot<FabTrav<#= v.Names.Domain #>Root>(pApiReq);
+		}
+<#
+} //end vertex loop
+#>
 		
 	}
 

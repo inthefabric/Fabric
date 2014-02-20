@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Fabric.New.Test.Integration.Operations.Traversal {
 
 	/*================================================================================================*/
-	public class XTraversalOperation : IntegrationTest {
+	public class XTraversalOperation : IntegrationTest { //TEST: XTraversalOperation
 
 		private static readonly Logger Log = Logger.Build<XTraversalOperation>();
 

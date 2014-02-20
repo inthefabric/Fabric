@@ -45,7 +45,7 @@ foreach ( IVertexSchema v in verts ) {
 #>
 			}
 
-			throw new Exception("Unknown VertexType: "+pDto.VertexType);
+			return null; //throw new Exception("Unknown VertexType: "+pDto.VertexType);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

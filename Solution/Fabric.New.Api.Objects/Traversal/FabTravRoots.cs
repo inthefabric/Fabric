@@ -11,7 +11,7 @@ namespace Fabric.New.Api.Objects.Traversal {
 	/*================================================================================================*/
 	public abstract partial class FabTravTypedRoot {
 
-		public static IDictionary<Type, Type> BaseTypeMap = new Dictionary<Type, Type> {
+		public static readonly IDictionary<Type, Type> BaseTypeMap = new Dictionary<Type, Type> {
 			{ typeof(FabTravAppRoot), typeof(FabApp) },
 			{ typeof(FabTravArtifactRoot), typeof(FabArtifact) },
 			{ typeof(FabTravClassRoot), typeof(FabClass) },

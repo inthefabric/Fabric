@@ -151,11 +151,6 @@ See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OA
 
 See [[Access Token|Oper|Oauth.AccessToken]] or general information about the OAuth process.</value>
   </data>
-  <data name="Oauth_AccessTokenClientDataProv_GET" xml:space="preserve">
-    <value>This OAuth flow should be used to begin an OAuth session for your Fabric App's Data Provider User. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric App's OAuth needs.
-
-See [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.</value>
-  </data>
   <data name="Oauth_AccessTokenRefresh_GET" xml:space="preserve">
     <value>This OAuth flow should be used to refresh an expired access token. If the refresh token is valid, Fabric generates new access and refresh tokens for the given OAuth session. This process also invalidates the original refresh token.
 

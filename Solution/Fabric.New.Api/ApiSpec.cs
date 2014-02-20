@@ -73,8 +73,21 @@ namespace Fabric.New.Api {
 			s.Operations = new List<FabSpecServiceOperation>();
 
 			foreach ( FabServiceOperation svcOp in pSvc.Operations ) {
+				if ( svcOp == null ) {
+					throw new Exception("Missing ServiceOperation for '"+pSvc.Name+"'.");
+				}
+
 				string key = svcOp.Method+" "+s.Uri+svcOp.Uri;
-				FabSpecServiceOperation sso = BuildServiceOp(s.Name, svcOp, pGetEntry(key));
+				ApiEntry ae;
+
+				try {
+					ae = pGetEntry(key);
+				}
+				catch ( Exception e ) {
+					throw new Exception("No ApiEntry for '"+pSvc.Name+"' with key '"+key+"'.", e);
+				}
+
+				FabSpecServiceOperation sso = BuildServiceOp(s.Name, svcOp, ae);
 				s.Operations.Add(sso);
 			}
 
