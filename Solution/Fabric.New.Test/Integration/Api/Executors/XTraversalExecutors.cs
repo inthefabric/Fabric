@@ -1,7 +1,7 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
-using Nancy.Testing;
 using NUnit.Framework;
+using Nancy.Testing;
 
 namespace Fabric.New.Test.Integration.Api.Executors {
 

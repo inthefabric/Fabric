@@ -1,12 +1,9 @@
 ﻿using Fabric.New.Api.Objects;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
-using ServiceStack.Text;
 using Weaver.Core.Query;
 
 namespace Fabric.New.Test.Unit.Operations.Create {

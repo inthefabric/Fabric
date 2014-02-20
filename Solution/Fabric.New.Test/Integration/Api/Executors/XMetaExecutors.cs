@@ -1,8 +1,8 @@
 ﻿using System;
 using Fabric.New.Api;
 using Fabric.New.Api.Objects.Meta;
-using Nancy.Testing;
 using NUnit.Framework;
+using Nancy.Testing;
 
 namespace Fabric.New.Test.Integration.Api.Executors {
 

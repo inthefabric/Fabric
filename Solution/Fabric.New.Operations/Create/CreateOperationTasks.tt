@@ -77,7 +77,7 @@ private void OutputGetDuplicate(IVertexSchema pVertex) {
 #>
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void FindDuplicate<#= pVertex.Names.Domain #><#= dp.Name #>(ICreateOperationContext pCreCtx, <#= pVertex.Names.Domain #> pNewDom) {
+		public virtual void FindDuplicate<#= pVertex.Names.Domain #><#= dp.Name #>(ICreateOperationBuilder pCreCtx, <#= pVertex.Names.Domain #> pNewDom) {
 			FindDuplicate<<#= pVertex.Names.Domain #>>(pCreCtx, x => x.<#= dp.Name #>, pNewDom.<#= dp.Name #>, "<#= displayName #>");
 		}
 <#+
@@ -93,7 +93,7 @@ private void OutputAddVertex(IVertexSchema pVertex) {
 #>
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void Add<#= pVertex.Names.Domain #>(ICreateOperationContext pCreCtx,
+		public virtual void Add<#= pVertex.Names.Domain #>(ICreateOperationBuilder pCreCtx,
 										<#= pVertex.Names.Domain #> pNewDom, out IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
 			AddVertex(pCreCtx, pNewDom, out pAlias);
 		}
@@ -116,7 +116,7 @@ private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
 #>
 
 		/*--------------------------------------------------------------------------------------------*/
-		public virtual void Add<#= e.GetClassNameDom() #>(ICreateOperationContext pCreCtx,
+		public virtual void Add<#= e.GetClassNameDom() #>(ICreateOperationBuilder pCreCtx,
 				<#= pVertex.Names.Domain #> pNewDom, Create<#= pVertex.Names.Api #> pNewCre, IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
 <#+
 		if ( e.GetIsOptional() && sub != null ) {

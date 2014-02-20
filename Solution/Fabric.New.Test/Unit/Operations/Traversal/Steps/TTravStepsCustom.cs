@@ -4,7 +4,6 @@ using Fabric.New.Api.Objects.Meta;
 using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Steps;
-using Moq;
 using NUnit.Framework;
 
 namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {

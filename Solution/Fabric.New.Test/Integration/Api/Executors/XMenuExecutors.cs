@@ -1,6 +1,6 @@
 ﻿using Fabric.New.Api.Objects;
-using Nancy.Testing;
 using NUnit.Framework;
+using Nancy.Testing;
 
 namespace Fabric.New.Test.Integration.Api.Executors {
 

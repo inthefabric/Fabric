@@ -4,7 +4,6 @@ using System.Linq;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Moq;
-using NUnit.Framework;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;

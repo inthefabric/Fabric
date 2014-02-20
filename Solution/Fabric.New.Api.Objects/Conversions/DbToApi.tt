@@ -10,7 +10,6 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using System;
 using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;

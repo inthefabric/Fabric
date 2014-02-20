@@ -4,8 +4,8 @@ using Fabric.New.Api.Objects;
 using Fabric.New.Database.Init.Setups;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Test.Integration.Shared;
-using Nancy.Testing;
 using NUnit.Framework;
+using Nancy.Testing;
 using ServiceStack.Text;
 
 namespace Fabric.New.Test.Integration.Api.Executors {
