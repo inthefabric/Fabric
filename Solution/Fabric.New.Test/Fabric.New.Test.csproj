@@ -37,6 +37,7 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Integration\Api\Executors\XOauthExecutors.cs" />
     <Compile Include="Integration\Api\Executors\XTraversalExecutors.cs" />
     <Compile Include="Integration\Api\Executors\XMetaExecutors.cs" />
     <Compile Include="Integration\Api\Executors\XExecutorBase.cs" />

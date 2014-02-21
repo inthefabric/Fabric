@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using Fabric.New.Api;
 using Fabric.New.Api.Objects;
 using Fabric.New.Database.Init.Setups;
@@ -30,8 +31,16 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected BrowserResponse Get(string pUri) {
-			return vBrowser.Get(pUri);
+		protected BrowserResponse Get(string pUri, IDictionary<string, string> pQuery=null) {
+			return vBrowser.Get(pUri, x => {
+				if ( pQuery == null ) {
+					return;
+				}
+
+			    foreach ( KeyValuePair<string, string> pair in pQuery ) {
+			        x.Query(pair.Key, pair.Value);
+			    }
+			});
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
@@ -45,7 +54,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected T AssertResult<T>(BrowserResponse pResp) where T : FabObject {
+		protected T AssertFabObject<T>(BrowserResponse pResp) where T : FabObject {
 			AssertBody(pResp);
 
 			Log.Debug("Response:\n"+
