@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Net;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
 using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
-using Nancy;
+using Fabric.New.Infrastructure.Util;
+using Fabric.New.Test.Unit.Shared;
 using Nancy.Testing;
 using NUnit.Framework;
-using RexConnectClient.Core.Cache;
 using ServiceStack.Text;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
+using HttpStatusCode = Nancy.HttpStatusCode;
 
 namespace Fabric.New.Test.Integration.Api.Executors {
 
@@ -24,6 +24,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		private static readonly Logger Log = Logger.Build<XOauthExecutors>();
 
 		private string vGrantCode;
+		private string vToken;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,17 +42,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 					)
 				.ToQuery();
 
-			var dataCtx = new DataContext(
-				ConfigurationManager.AppSettings["Dev_NodeIp1"],
-				int.Parse(ConfigurationManager.AppSettings["Dev_RexConnPort"]),
-				new RexConnCacheProvider()
-			);
-
-			var acc = new DataAccess();
-			acc.Build(dataCtx);
-			acc.SetLoggingHook((a, b, c) => Log.Debug(a+" / "+b+" / "+c));
-			acc.AddQuery(q);
-			acc.Execute("Test-UpdateGrantExpiration");
+			ExecuteTestQuery(q, "UpdateGrantExpiration");
 		}
 
 
@@ -148,15 +139,58 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void Login() {
-			BrowserResponse br = Get("oauth/login");
-			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
-			Assert.Fail(JsonSerializer.SerializeToString(result));
+		public void LoginPage() {
+			IsReadOnlyTest = true;
+
+			var query = new Dictionary<string, string>();
+			query.Add("response_type", "code");
+			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			BrowserResponse br = Get("oauth/login", query);
+			AssertBody(br);
+			Assert.AreEqual(HttpStatusCode.OK, br.StatusCode, "Incorrect StatusCode.");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "<html>");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void LoginPost() {
+		public void LoginScope() {
+			var query = new Dictionary<string, string>();
+			query.Add("response_type", "code");
+			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			Cookie c = AuthUtil.CreateUserIdCookie((long)SetupUserId.Zach, false).Item1;
+			var cookies = new Dictionary<string, string>();
+			cookies.Add(c.Name, c.Value);
+
+			BrowserResponse br = Get("oauth/login", query, cookies);
+			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+			Assert.False(result.ContainsKey("error"), "No error should occur.");
+			Assert.True(result.ContainsKey("code"), "Missing 'code' redirect parameter.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void LoginFail() {
+			IsReadOnlyTest = true;
+
+			var query = new Dictionary<string, string>();
+			query.Add("response_type", "code");
+			query.Add("client_id", "abcd");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			BrowserResponse br = Get("oauth/login", query);
+			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+			Assert.True(result.ContainsKey("error"), "An error should occur.");
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void LoginPostCancel() {
 			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
 			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
 			Assert.Fail(JsonSerializer.SerializeToString(result));
@@ -164,10 +198,47 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void Logout() {
-			BrowserResponse br = Get("oauth/logout");
+		public void LoginPostLogout() {
+			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
 			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
 			Assert.Fail(JsonSerializer.SerializeToString(result));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void LoginPostLogin() {
+			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
+			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
+			Assert.Fail(JsonSerializer.SerializeToString(result));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void LoginPostAllow() {
+			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
+			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
+			Assert.Fail(JsonSerializer.SerializeToString(result));
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void LoginPostDeny() {
+			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
+			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
+			Assert.Fail(JsonSerializer.SerializeToString(result));
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void Logout() {
+			var query = new Dictionary<string, string>();
+			query.Add("access_token", SetupOauth.TokenGalZach);
+
+			BrowserResponse br = Get("oauth/logout", query);
+			FabOauthLogout result = AssertFabObject<FabOauthLogout>(br);
+			Assert.AreEqual(1, result.Success, "Incorrect Success.");
 		}
 
 	}

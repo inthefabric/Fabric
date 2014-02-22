@@ -15,7 +15,7 @@ namespace Fabric.New.Operations {
 		void SetOauthToken(string pToken);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void SetCookieUserId(long pUserId);
+		void SetCookieUserId(long? pUserId);
 
 		/*--------------------------------------------------------------------------------------------*/
 		void SetFabricActiveMember();

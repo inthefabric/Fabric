@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Configuration;
 using Fabric.New.Api.Objects;
 using Fabric.New.Database.Init.Setups;
 using Fabric.New.Domain;
 using Fabric.New.Domain.Enums;
 using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Query;
-using NUnit.Framework;
 using Nancy.Testing;
-using RexConnectClient.Core.Cache;
+using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
@@ -39,17 +36,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 					)
 				.ToQuery();
 
-			var dataCtx = new DataContext(
-				ConfigurationManager.AppSettings["Dev_NodeIp1"],
-				int.Parse(ConfigurationManager.AppSettings["Dev_RexConnPort"]),
-				new RexConnCacheProvider()
-			);
-
-			var acc = new DataAccess();
-			acc.Build(dataCtx);
-			acc.SetLoggingHook((a, b ,c) => Log.Debug(a+" / "+b+" / "+c));
-			acc.AddQuery(q);
-			acc.Execute("Test-UpdateOauthExpiration");
+			ExecuteTestQuery(q, "UpdateAccessExpiration");
 		}
 
 

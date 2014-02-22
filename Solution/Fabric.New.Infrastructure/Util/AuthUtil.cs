@@ -13,12 +13,12 @@ namespace Fabric.New.Infrastructure.Util {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public static long GetUserIdFromCookies(IDictionary<string, string> pCookies) {
+		public static long? GetUserIdFromCookies(IDictionary<string, string> pCookies) {
 			string c;
 			pCookies.TryGetValue(FabricUserAuth, out c);
 
 			if ( c == null || c == "0" ) {
-				return 0;
+				return null;
 			}
 
 			return GetUserIdFromCookieString(Uri.UnescapeDataString(c));

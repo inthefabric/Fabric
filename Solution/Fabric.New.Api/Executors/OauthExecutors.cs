@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using Fabric.New.Api.Executors.Views;
 using Fabric.New.Api.Interfaces;
 using Fabric.New.Api.Objects.Oauth;
+using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Operations.Oauth;
 using ServiceStack.Text;
 
 namespace Fabric.New.Api.Executors {
 
 	/*================================================================================================*/
-	public static class OauthExecutors { //TODO: OauthExecutors integration test
+	public static class OauthExecutors {
 
+		private static readonly Logger Log = Logger.Build(typeof(OauthExecutors));
 		private static readonly string Uri = ApiMenu.Oauth.Uri;
 
 		private const string AccessLang = "Oauth_AccessToken_";
@@ -367,6 +369,7 @@ namespace Fabric.New.Api.Executors {
 			}
 			else {
 				fabErr = FabOauthError.ForInternalServerError();
+				Log.Fatal("Unhandled OAuth Login Exception", pEx);
 			}
 
 			string redirUri = pReq.GetQueryValue(LoginRedirectUriParam, false);
