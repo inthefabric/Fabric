@@ -12,7 +12,6 @@ using Fabric.New.Test.Unit.Shared;
 using Nancy.Cookies;
 using Nancy.Testing;
 using NUnit.Framework;
-using ServiceStack.Text;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
@@ -47,8 +46,8 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private IDictionary<string, string> BuildRequestAuthCookies() {
-			Cookie c = AuthUtil.CreateUserIdCookie((long)SetupUserId.Zach, false).Item1;
+		private IDictionary<string, string> BuildRequestAuthCookies(SetupUserId pUserId) {
+			Cookie c = AuthUtil.CreateUserIdCookie((long)pUserId, false).Item1;
 
 			var cookies = new Dictionary<string, string>();
 			cookies.Add(c.Name, c.Value);
@@ -149,6 +148,22 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
+		public void LoginIncomingError() {
+			IsReadOnlyTest = true;
+
+			var query = new Dictionary<string, string>();
+			query.Add("error", "test");
+
+			BrowserResponse br = Get("oauth/login", query);
+			AssertBody(br);
+
+			Assert.AreEqual(HttpStatusCode.OK, br.StatusCode, "Incorrect StatusCode.");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "<html>");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "Sorry! There was an issue");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void LoginPage() {
 			IsReadOnlyTest = true;
 
@@ -162,6 +177,25 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 			Assert.AreEqual(HttpStatusCode.OK, br.StatusCode, "Incorrect StatusCode.");
 			TestUtil.AssertContains("Body", br.Body.AsString(), "<html>");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "Username");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "Password");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void LoginCode() {
+			var query = new Dictionary<string, string>();
+			query.Add("response_type", "code");
+			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			IDictionary<string, string> reqCookies = BuildRequestAuthCookies(SetupUserId.Zach);
+
+			BrowserResponse br = Get("oauth/login", query, reqCookies);
+			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+
+			Assert.False(result.ContainsKey("error"), "No error should occur.");
+			Assert.True(result.ContainsKey("code"), "Missing 'code' redirect parameter.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -169,16 +203,18 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		public void LoginScope() {
 			var query = new Dictionary<string, string>();
 			query.Add("response_type", "code");
-			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
-			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+			query.Add("client_id", (long)SetupAppId.Bookmarker+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlBook);
 
-			IDictionary<string, string> reqCookies = BuildRequestAuthCookies();
+			IDictionary<string, string> reqCookies = BuildRequestAuthCookies(SetupUserId.Ellie);
 
 			BrowserResponse br = Get("oauth/login", query, reqCookies);
-			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+			AssertBody(br);
 
-			Assert.False(result.ContainsKey("error"), "No error should occur.");
-			Assert.True(result.ContainsKey("code"), "Missing 'code' redirect parameter.");
+			Assert.AreEqual(HttpStatusCode.OK, br.StatusCode, "Incorrect StatusCode.");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "<html>");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "allow");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "deny");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -240,7 +276,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void LoginPostLogin() {
+		public void LoginPostLoginComplete() {
 			IsReadOnlyTest = true;
 
 			var form = new Dictionary<string, string>();
@@ -270,6 +306,54 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
+		public void LoginPostLoginInvalidCredentials() {
+			IsReadOnlyTest = true;
+
+			var form = new Dictionary<string, string>();
+			form.Add("login", "1");
+			form.Add("Username", "zachkinstner");
+			form.Add("Password", "BAD PASSWORD");
+			form.Add("RememberMe", "1");
+
+			var query = new Dictionary<string, string>();
+			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			BrowserResponse br = Post("oauth/login", form, query);
+			AssertBody(br);
+
+			Assert.AreEqual(HttpStatusCode.OK, br.StatusCode, "Incorrect StatusCode.");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "<html>");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "Username");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "Password");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void LoginPostLoginNoScope() {
+			IsReadOnlyTest = true;
+
+			var form = new Dictionary<string, string>();
+			form.Add("login", "1");
+			form.Add("Username", "EllieJoy");
+			form.Add("Password", "iLOVEdaddy");
+			form.Add("RememberMe", "1");
+
+			var query = new Dictionary<string, string>();
+			query.Add("client_id", (long)SetupAppId.Bookmarker+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlBook);
+
+			BrowserResponse br = Post("oauth/login", form, query);
+			AssertBody(br);
+
+			Assert.AreEqual(HttpStatusCode.OK, br.StatusCode, "Incorrect StatusCode.");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "<html>");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "allow");
+			TestUtil.AssertContains("Body", br.Body.AsString(), "deny");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void LoginPostAllow() {
 			var form = new Dictionary<string, string>();
 			form.Add("allow", "1");
@@ -278,7 +362,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
 			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
 
-			IDictionary<string, string> reqCookies = BuildRequestAuthCookies();
+			IDictionary<string, string> reqCookies = BuildRequestAuthCookies(SetupUserId.Zach);
 
 			BrowserResponse br = Post("oauth/login", form, query, reqCookies);
 			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
@@ -297,7 +381,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
 			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
 
-			IDictionary<string, string> reqCookies = BuildRequestAuthCookies();
+			IDictionary<string, string> reqCookies = BuildRequestAuthCookies(SetupUserId.Zach);
 
 			BrowserResponse br = Post("oauth/login", form, query, reqCookies);
 			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
