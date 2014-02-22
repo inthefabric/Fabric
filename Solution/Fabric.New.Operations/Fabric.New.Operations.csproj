@@ -130,6 +130,12 @@
     <Compile Include="Traversal\Routing\TravPathItem.cs" />
     <Compile Include="Traversal\TraversalOperation.cs" />
     <Compile Include="Traversal\ITraversalOperation.cs" />
+    <Compile Include="Web\WebUpdateMemberTypeOperation.cs" />
+    <Compile Include="Web\WebUpdateUserPasswordOperation.cs" />
+    <Compile Include="Web\WebUpdateAppDomainsOperation.cs" />
+    <Compile Include="Web\SuccessResult.cs" />
+    <Compile Include="Web\WebUpdateAppSecretOperation.cs" />
+    <Compile Include="Web\WebUpdateAppNameOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Create\CreateOperationTasks.tt">

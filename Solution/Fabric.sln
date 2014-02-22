@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test", "Fabric.Test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test.Integration", "Fabric.Test.Integration\Fabric.Test.Integration.csproj", "{592F06B2-3845-47DC-896E-20B752BCE8DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Web", "Fabric.Api.Web\Fabric.Api.Web.csproj", "{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Domain.Schemas", "Fabric.New.Domain.Schemas\Fabric.New.Domain.Schemas.csproj", "{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Api", "Fabric.New.Api\Fabric.New.Api.csproj", "{E9910A54-A1FB-48BF-AA18-36DB80495AFA}"
@@ -64,20 +62,6 @@ Global
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{592F06B2-3845-47DC-896E-20B752BCE8DB}.Release|x86.ActiveCfg = Release|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.DebugLive|Any CPU.ActiveCfg = DebugLive|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.DebugLive|Any CPU.Build.0 = DebugLive|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.DebugLive|Mixed Platforms.ActiveCfg = DebugLive|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.DebugLive|Mixed Platforms.Build.0 = DebugLive|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.DebugLive|x86.ActiveCfg = DebugLive|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}.Release|x86.ActiveCfg = Release|Any CPU
 		{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

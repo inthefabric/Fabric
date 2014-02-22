@@ -179,12 +179,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Api.Web\Fabric.Api.Web.csproj">
-      <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
-      <Name>Fabric.Api.Web</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

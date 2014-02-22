@@ -173,10 +173,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.Api.Web\Fabric.Api.Web.csproj">
-      <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
-      <Name>Fabric.Api.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Test\Fabric.Test.csproj">
       <Project>{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}</Project>
       <Name>Fabric.Test</Name>

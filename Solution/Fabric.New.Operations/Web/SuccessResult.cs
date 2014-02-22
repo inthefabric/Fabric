@@ -1,4 +1,5 @@
-﻿namespace Fabric.Api.Web.Results {
+﻿
+namespace Fabric.New.Operations.Web {
 
 	/*================================================================================================*/
 	public class SuccessResult {
