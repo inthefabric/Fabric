@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Fabric.New.Api.Objects.Oauth;
 using Fabric.New.Database.Init.Setups;
@@ -8,6 +9,7 @@ using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Query;
 using Fabric.New.Infrastructure.Util;
 using Fabric.New.Test.Unit.Shared;
+using Nancy.Cookies;
 using Nancy.Testing;
 using NUnit.Framework;
 using ServiceStack.Text;
@@ -24,7 +26,6 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		private static readonly Logger Log = Logger.Build<XOauthExecutors>();
 
 		private string vGrantCode;
-		private string vToken;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +44,15 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 				.ToQuery();
 
 			ExecuteTestQuery(q, "UpdateGrantExpiration");
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		private IDictionary<string, string> BuildRequestAuthCookies() {
+			Cookie c = AuthUtil.CreateUserIdCookie((long)SetupUserId.Zach, false).Item1;
+
+			var cookies = new Dictionary<string, string>();
+			cookies.Add(c.Name, c.Value);
+			return cookies;
 		}
 
 
@@ -149,6 +159,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 			BrowserResponse br = Get("oauth/login", query);
 			AssertBody(br);
+
 			Assert.AreEqual(HttpStatusCode.OK, br.StatusCode, "Incorrect StatusCode.");
 			TestUtil.AssertContains("Body", br.Body.AsString(), "<html>");
 		}
@@ -161,12 +172,11 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
 			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
 
-			Cookie c = AuthUtil.CreateUserIdCookie((long)SetupUserId.Zach, false).Item1;
-			var cookies = new Dictionary<string, string>();
-			cookies.Add(c.Name, c.Value);
+			IDictionary<string, string> reqCookies = BuildRequestAuthCookies();
 
-			BrowserResponse br = Get("oauth/login", query, cookies);
+			BrowserResponse br = Get("oauth/login", query, reqCookies);
 			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+
 			Assert.False(result.ContainsKey("error"), "No error should occur.");
 			Assert.True(result.ContainsKey("code"), "Missing 'code' redirect parameter.");
 		}
@@ -183,6 +193,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 			BrowserResponse br = Get("oauth/login", query);
 			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+
 			Assert.True(result.ContainsKey("error"), "An error should occur.");
 		}
 
@@ -191,41 +202,108 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LoginPostCancel() {
-			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
-			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
-			Assert.Fail(JsonSerializer.SerializeToString(result));
+			IsReadOnlyTest = true;
+
+			var form = new Dictionary<string, string>();
+			form.Add("cancel", "1");
+
+			var query = new Dictionary<string, string>();
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			BrowserResponse br = Post("oauth/login", form, query);
+			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+
+			Assert.True(result.ContainsKey("error"), "An error should occur.");
+			Assert.AreEqual("access_denied", result["error"], "Incorrect Error.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LoginPostLogout() {
-			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
-			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
-			Assert.Fail(JsonSerializer.SerializeToString(result));
+			IsReadOnlyTest = true;
+
+			var form = new Dictionary<string, string>();
+			form.Add("logout", "1");
+
+			BrowserResponse br = Post("oauth/login", form);
+			IDictionary<string, string> result = AssertRedirect(br, "oauth/login");
+
+			Assert.False(result.ContainsKey("error"), "An error should occur.");
+
+			INancyCookie[] cookies = br.Cookies.ToArray();
+			Assert.AreEqual(1, cookies.Length, "Incorrect Cookies length.");
+
+			INancyCookie c = cookies[0];
+			Assert.AreEqual("FabricUserAuth", c.Name, "Incorrect cookie Name.");
+			Assert.AreEqual("", c.Value, "Incorrect cookie Value.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LoginPostLogin() {
-			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
-			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
-			Assert.Fail(JsonSerializer.SerializeToString(result));
+			IsReadOnlyTest = true;
+
+			var form = new Dictionary<string, string>();
+			form.Add("login", "1");
+			form.Add("Username", "zachkinstner");
+			form.Add("Password", "asdfasdf");
+			form.Add("RememberMe", "1");
+
+			var query = new Dictionary<string, string>();
+			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			BrowserResponse br = Post("oauth/login", form, query);
+			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+
+			Assert.True(result.ContainsKey("code"), "Redirect should include a code.");
+			Assert.AreEqual(32, result["code"].Length, "Incorrect code.");
+
+			INancyCookie[] cookies = br.Cookies.ToArray();
+			Assert.AreEqual(1, cookies.Length, "Incorrect Cookies length.");
+
+			INancyCookie c = cookies[0];
+			Assert.AreEqual("FabricUserAuth", c.Name, "Incorrect cookie Name.");
+			Assert.AreNotEqual(null, c.Value, "Incorrect cookie Value.");
+			Assert.AreNotEqual("", c.Value, "Incorrect cookie Value.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LoginPostAllow() {
-			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
-			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
-			Assert.Fail(JsonSerializer.SerializeToString(result));
+			var form = new Dictionary<string, string>();
+			form.Add("allow", "1");
+
+			var query = new Dictionary<string, string>();
+			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			IDictionary<string, string> reqCookies = BuildRequestAuthCookies();
+
+			BrowserResponse br = Post("oauth/login", form, query, reqCookies);
+			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+
+			Assert.True(result.ContainsKey("code"), "Redirect should include a code.");
+			Assert.AreEqual(32, result["code"].Length, "Incorrect code.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void LoginPostDeny() {
-			BrowserResponse br = Post("oauth/login", new FabOauthLogin());
-			FabOauthLogin result = AssertFabObject<FabOauthLogin>(br);
-			Assert.Fail(JsonSerializer.SerializeToString(result));
+			var form = new Dictionary<string, string>();
+			form.Add("deny", "1");
+
+			var query = new Dictionary<string, string>();
+			query.Add("client_id", (long)SetupAppId.KinPhoGal+"");
+			query.Add("redirect_uri", SetupOauth.GrantUrlGalLoc);
+
+			IDictionary<string, string> reqCookies = BuildRequestAuthCookies();
+
+			BrowserResponse br = Post("oauth/login", form, query, reqCookies);
+			IDictionary<string, string> result = AssertRedirect(br, SetupOauth.GrantUrlGalLoc);
+
+			Assert.True(result.ContainsKey("error"), "An error should occur.");
+			Assert.AreEqual("access_denied", result["error"], "Incorrect Error.");
 		}
 
 

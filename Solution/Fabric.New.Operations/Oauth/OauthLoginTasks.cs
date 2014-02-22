@@ -34,6 +34,7 @@ namespace Fabric.New.Operations.Oauth {
 		BadClient,
 		RedirMismatch,
 		BadSwitch,
+		NotLoggedIn,
 		Unexpected
 	};
 
@@ -50,6 +51,7 @@ namespace Fabric.New.Operations.Oauth {
 			"The client_id is invalid",
 			"The redirect_uri is not valid for the client_id",
 			"The optional switch value must be 0 or 1.",
+			"User is not logged in.",
 			"An unexpected error occurred"
 		};
 

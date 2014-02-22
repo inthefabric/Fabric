@@ -7,6 +7,7 @@ using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Query;
 using Nancy.Testing;
 using NUnit.Framework;
+using ServiceStack.Text;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
@@ -47,7 +48,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			var obj = new CreateFabClass();
 			obj.Name = "class test";
 
-			BrowserResponse br = Post("mod/classes", obj);
+			BrowserResponse br = PostCreate("mod/classes", obj);
 			FabClass result = AssertFabResponseData<FabClass>(br);
 			Assert.AreEqual(obj.Name, result.Name, "Incorrect result.");
 
@@ -65,7 +66,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			obj.Descriptor = new CreateFabDescriptor();
 			obj.Descriptor.Type = (byte)DescriptorType.Id.BelongsTo;
 
-			BrowserResponse br = Post("mod/factors", obj);
+			BrowserResponse br = PostCreate("mod/factors", obj);
 			FabFactor result = AssertFabResponseData<FabFactor>(br);
 			Assert.AreEqual(obj.AssertionType, result.AssertionType, "Incorrect result.");
 
@@ -79,7 +80,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			var obj = new CreateFabInstance();
 			obj.Name = "instance test";
 
-			BrowserResponse br = Post("mod/instances", obj);
+			BrowserResponse br = PostCreate("mod/instances", obj);
 			FabInstance result = AssertFabResponseData<FabInstance>(br);
 			Assert.AreEqual(obj.Name, result.Name, "Incorrect result.");
 
@@ -95,7 +96,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			obj.DefinedByUserId = (long)SetupUserId.FabData;
 			obj.Type = (byte)MemberType.Id.Invite;
 
-			BrowserResponse br = Post("mod/members", obj);
+			BrowserResponse br = PostCreate("mod/members", obj);
 			FabMember result = AssertFabResponseData<FabMember>(br);
 			Assert.AreEqual(obj.Type, result.Type, "Incorrect result.");
 
@@ -110,7 +111,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			obj.Name = "url test";
 			obj.FullPath = "http://www.inthefabric.com";
 
-			BrowserResponse br = Post("mod/urls", obj);
+			BrowserResponse br = PostCreate("mod/urls", obj);
 			FabUrl result = AssertFabResponseData<FabUrl>(br);
 			Assert.AreEqual(obj.Name, result.Name, "Incorrect result.");
 

@@ -97,7 +97,13 @@ namespace Fabric.New.Api {
 			////
 
 			if ( apiResp.RedirectUrl != null ) {
-				return new RedirectResponse(apiResp.RedirectUrl);
+				var r = new RedirectResponse(apiResp.RedirectUrl);
+
+				foreach ( INancyCookie c in cookies ) {
+					r.Cookies.Add(c);
+				}
+
+				return r;
 			}
 
 			if ( apiResp.Html != null ) {

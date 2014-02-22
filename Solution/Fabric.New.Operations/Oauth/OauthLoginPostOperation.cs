@@ -47,6 +47,11 @@ namespace Fabric.New.Operations.Oauth {
 		public OauthLoginResult ExecuteScope(IOperationContext pOpCtx, IOauthLoginTasks pTasks,
 												string pClientId, string pRedirUri, bool pAllowScope) {
 			App app = ValidateAndGetApp(pOpCtx, pTasks, pClientId, pRedirUri);
+			
+			if ( pOpCtx.Auth.CookieUserId == null ) {
+				throw pTasks.NewFault(LoginErrors.access_denied, LoginErrorDescs.NotLoggedIn);
+			}
+
 			Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, (long)pOpCtx.Auth.CookieUserId);
 
 			if ( !pAllowScope ) {

@@ -94,11 +94,12 @@ namespace Fabric.New.Api.Executors {
 		};
 
 		private static readonly IList<ApiEntryParam> PostLoginParams = new List<ApiEntryParam> {
-			new ApiEntryParam(LoginCancel, typeof(string), true),
-			new ApiEntryParam(LoginLogout, typeof(string), true),
-			new ApiEntryParam(LoginLogin, typeof(string), true),
-			new ApiEntryParam(LoginAllow, typeof(string), true),
-			new ApiEntryParam(LoginDeny, typeof(string), true)
+			new ApiEntryParam(LoginRedirectUriParam, typeof(string)),
+			new ApiEntryParam(LoginCancel, typeof(string)),
+			new ApiEntryParam(LoginLogout, typeof(string)),
+			new ApiEntryParam(LoginLogin, typeof(string)),
+			new ApiEntryParam(LoginAllow, typeof(string)),
+			new ApiEntryParam(LoginDeny, typeof(string))
 		};
 
 		private static readonly IList<ApiEntryParam> GetLogoutParams = new List<ApiEntryParam> {

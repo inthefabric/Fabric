@@ -178,6 +178,19 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
+		public void ScopeErrNotLoggedIn() {
+			SetupAppTasks();
+
+			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
+			mockAuth.SetupGet(x => x.CookieUserId).Returns((long?)null);
+
+			vMockOpCtx.SetupGet(x => x.Auth).Returns(mockAuth.Object);
+
+			AssertFault(DoExecuteScope, LoginErrors.access_denied, LoginErrorDescs.NotLoggedIn);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
 		public void ScopeAccessDeny() {
 			vAllowScope = false;
 

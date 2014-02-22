@@ -8,6 +8,7 @@ using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Test.Integration.Shared;
 using Nancy;
+using Nancy.Cookies;
 using Nancy.Testing;
 using NUnit.Framework;
 using RexConnectClient.Core.Cache;
@@ -54,13 +55,11 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		protected BrowserResponse Get(string pUri, IDictionary<string, string> pQuery=null, 
 															IDictionary<string, string> pCookies=null) {
 			return vBrowser.Get(pUri, x => {
-				if ( pQuery == null ) {
-					return;
+				if ( pQuery != null ) {
+					foreach ( KeyValuePair<string, string> pair in pQuery ) {
+						x.Query(pair.Key, pair.Value);
+					}
 				}
-
-			    foreach ( KeyValuePair<string, string> pair in pQuery ) {
-			        x.Query(pair.Key, pair.Value);
-			    }
 
 				if ( pCookies != null ) {
 					x.Cookie(pCookies);
@@ -69,7 +68,29 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected BrowserResponse Post<T>(string pUri, T pForm) where T : FabObject {
+		protected BrowserResponse Post(string pUri, IDictionary<string, string> pForm,
+				IDictionary<string, string> pQuery=null, IDictionary<string, string> pCookies=null) {
+			return vBrowser.Post(pUri, x => {
+				if ( pForm != null ) {
+					foreach ( KeyValuePair<string, string> pair in pForm ) {
+						x.FormValue(pair.Key, pair.Value);
+					}
+				}
+
+				if ( pQuery != null ) {
+					foreach ( KeyValuePair<string, string> pair in pQuery ) {
+						x.Query(pair.Key, pair.Value);
+					}
+				}
+
+				if ( pCookies != null ) {
+					x.Cookie(pCookies);
+				}
+			});
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected BrowserResponse PostCreate<T>(string pUri, T pForm) where T : FabObject {
 			return vBrowser.Post(pUri, x => {
 				x.FormValue("Data", pForm.ToJson());
 				x.Header("Authorization", "Bearer "+SetupOauth.TokenFabZach);
@@ -83,13 +104,19 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 			Assert.NotNull(pResp, "Response should not be null.");
 			Assert.NotNull(pResp.Body, "Response.Body should not be null.");
 
-			string s = "Response:\n"+
-				" - Status: "+pResp.StatusCode+" ("+(int)pResp.StatusCode+")\n"+
-				" - Body: "+pResp.Body.AsString()+"\n"+
-				" - Headers: ";
+			string s = "Response:"+
+				"\n - Status: "+pResp.StatusCode+" ("+(int)pResp.StatusCode+")"+
+				"\n - Body: "+pResp.Body.AsString()+
+				"\n - Headers: ";
 
 			foreach ( KeyValuePair<string, string> pair in pResp.Headers ) {
 				s += "\n   * "+pair.Key+" = "+pair.Value;
+			}
+
+			s += "\n - Cookies: ";
+
+			foreach ( INancyCookie c in pResp.Cookies ) {
+				s += "\n   * "+c.Name+" = "+c.Value;
 			}
 
 			Log.Debug(s);
