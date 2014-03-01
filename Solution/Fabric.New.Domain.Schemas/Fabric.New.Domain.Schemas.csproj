@@ -44,10 +44,10 @@
     <Compile Include="Edges\ArtifactCreatedByMemberSchema.cs" />
     <Compile Include="Edges\ArtifactUsedAsPrimaryByFactorSchema.cs" />
     <Compile Include="Edges\ArtifactUsedAsRelatedByFactorSchema.cs" />
-    <Compile Include="Edges\ArtifactUsesEmail.cs" />
-    <Compile Include="Edges\MemberAuthenticatedByOauthAccess.cs" />
-    <Compile Include="Edges\OauthAccessAuthenticatesMember.cs" />
-    <Compile Include="Edges\EmailUsedByArtifact.cs" />
+    <Compile Include="Edges\ArtifactUsesEmailSchema.cs" />
+    <Compile Include="Edges\MemberAuthenticatedByOauthAccessSchema.cs" />
+    <Compile Include="Edges\OauthAccessAuthenticatesMemberSchema.cs" />
+    <Compile Include="Edges\EmailUsedByArtifactSchema.cs" />
     <Compile Include="Edges\IEdgeSchema.cs" />
     <Compile Include="Edges\FactorDescriptorRefinesTypeWithArtifactSchema.cs" />
     <Compile Include="Edges\FactorDescriptorRefinesRelatedWithArtifactSchema.cs" />

@@ -3,12 +3,12 @@
 namespace Fabric.New.Domain.Schemas.Edges {
 	
 	/*================================================================================================*/
-	public class EmailUsedByArtifact : EdgeSchema<EmailSchema, ArtifactSchema> {
+	public class EmailUsedByArtifactSchema : EdgeSchema<EmailSchema, ArtifactSchema> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public EmailUsedByArtifact() : base(EdgeQuantity.One) {
+		public EmailUsedByArtifactSchema() : base(EdgeQuantity.One) {
 			SetNames("UsedBy", "b");
 		}
 

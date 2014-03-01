@@ -3,13 +3,14 @@
 namespace Fabric.New.Domain.Schemas.Edges {
 	
 	/*================================================================================================*/
-	public class OauthAccessAuthenticatesMember : EdgeSchema<OauthAccessSchema, MemberSchema> {
+	public class ArtifactUsesEmailSchema : EdgeSchema<ArtifactSchema, EmailSchema> {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OauthAccessAuthenticatesMember() : base(EdgeQuantity.One) {
-			SetNames("Authenticates", "a");
+		public ArtifactUsesEmailSchema() : base(EdgeQuantity.ZeroOrMore) {
+			SetNames("Uses", "u");
+			CreateFromOtherDirection = typeof(EmailUsedByArtifactSchema);
 		}
 
 	}
