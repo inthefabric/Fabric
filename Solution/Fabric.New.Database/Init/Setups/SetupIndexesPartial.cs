@@ -71,8 +71,7 @@ namespace Fabric.New.Database.Init.Setups {
 				s += ".sortKey("+string.Join(",", pSort)+")";
 
 				if ( pOrder != Sort.None ) {
-					//TODO: this isn't present in Titan 0.4, but is present on 'master' branch
-					//s += ".sortOrder(Order."+(pOrder+"").ToUpper()+")";
+					s += ".sortOrder(Order."+(pOrder+"").ToUpper()+")";
 				}
 			}
 
