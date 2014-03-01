@@ -170,7 +170,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void FillMember(IDataDto pDto, Member pDom) {
 			FillVertex(pDto, pDom);
-			pDom.MemberType = GetByte(pDto, "m_at", true);
+			pDom.MemberType = GetByte(pDto, "m_mt", true);
 			pDom.OauthScopeAllow = GetNullableBool(pDto, "m_osa", false);
 			pDom.OauthGrantRedirectUri = GetString(pDto, "m_ogr", false);
 			pDom.OauthGrantCode = GetString(pDto, "m_ogc", false);

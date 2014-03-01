@@ -53,7 +53,7 @@ i_di (Disamb)
 i_no (Note)
 
 m (Member)
-m_at (MemberType)
+m_mt (MemberType)
 m_osa (OauthScopeAllow)
 m_ogr (OauthGrantRedirectUri)
 m_ogc (OauthGrantCode)

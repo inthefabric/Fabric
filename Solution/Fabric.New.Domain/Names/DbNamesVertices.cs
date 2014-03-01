@@ -90,7 +90,7 @@ namespace Fabric.New.Domain.Names {
 			/*----------------------------------------------------------------------------------------*/
 			public static class Member {
 
-				public const string MemberType = "m_at";
+				public const string MemberType = "m_mt";
 				public const string OauthScopeAllow = "m_osa";
 				public const string OauthGrantRedirectUri = "m_ogr";
 				public const string OauthGrantCode = "m_ogc";

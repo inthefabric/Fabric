@@ -65,7 +65,7 @@ namespace Fabric.New.Database.Init.Setups {
 			AddProp(Elem.Vertex, "i_no", "String", Index.None, false);
 
 			//Member
-			AddProp(Elem.Vertex, "m_at", "Byte", Index.None, false);
+			AddProp(Elem.Vertex, "m_mt", "Byte", Index.None, false);
 			AddProp(Elem.Vertex, "m_osa", "Boolean", Index.None, false);
 			AddProp(Elem.Vertex, "m_ogr", "String", Index.None, false);
 			AddProp(Elem.Vertex, "m_ogc", "String", Index.Standard, false);
@@ -186,7 +186,7 @@ namespace Fabric.New.Database.Init.Setups {
 			AddProp(Elem.Edge, "maboa_ts", "Long", Index.None, false);
 			AddEdge("maboa", Cardin.OneToMany, Sort.Desc,
 				new[] {"maboa_ts"},
-				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
+				new[] {"m_mt","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberCreatesArtifact
@@ -194,7 +194,7 @@ namespace Fabric.New.Database.Init.Setups {
 			AddProp(Elem.Edge, "mca_vt", "Byte", Index.None, false);
 			AddEdge("mca", Cardin.OneToMany, Sort.Desc,
 				new[] {"mca_ts", "mca_vt"},
-				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
+				new[] {"m_mt","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberCreatesFactor
@@ -204,19 +204,19 @@ namespace Fabric.New.Database.Init.Setups {
 			AddProp(Elem.Edge, "mcf_ra", "Long", Index.None, false);
 			AddEdge("mcf", Cardin.OneToMany, Sort.Desc,
 				new[] {"mcf_ts", "mcf_dt", "mcf_pa", "mcf_ra"},
-				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
+				new[] {"m_mt","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberDefinedByApp
 			AddEdge("mdbp", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
+				new[] {"m_mt","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//MemberDefinedByUser
 			AddEdge("mdbu", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"m_at","m_osa","m_ogr","m_ogc","m_oge"}
+				new[] {"m_mt","m_osa","m_ogr","m_ogc","m_oge"}
 			);
 
 			//OauthAccessAuthenticatesMember

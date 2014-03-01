@@ -336,7 +336,7 @@ namespace Fabric.New.Domain {
 	[WeaverTitanVertex]
 	public class Member : Vertex {
 
-		[WeaverTitanProperty("m_at", TitanIndex=false, TitanElasticIndex=false)]
+		[WeaverTitanProperty("m_mt", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual byte MemberType { get; set; }
 		
 		[WeaverTitanProperty("m_osa", TitanIndex=false, TitanElasticIndex=false)]
@@ -388,7 +388,7 @@ namespace Fabric.New.Domain {
 		/*--------------------------------------------------------------------------------------------*/
 		public override void Fill(IDictionary<string, string> pData) {
 			base.Fill(pData);
-			MemberType = TryGetByte(pData, "m_at");
+			MemberType = TryGetByte(pData, "m_mt");
 			OauthScopeAllow = TryGetNullableBool(pData, "m_osa");
 			OauthGrantRedirectUri = TryGetString(pData, "m_ogr");
 			OauthGrantCode = TryGetString(pData, "m_ogc");

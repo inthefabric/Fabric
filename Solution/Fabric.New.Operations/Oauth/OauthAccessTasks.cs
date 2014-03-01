@@ -169,6 +169,8 @@ namespace Fabric.New.Operations.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ClearOldTokens(IOperationData pData, long pMemberId) {
+			//TODO: delete old OauthAccess vertices
+
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<Member>(x => x.VertexId, pMemberId)
 				.AuthenticatedByOauthAccesses.ToOauthAccess

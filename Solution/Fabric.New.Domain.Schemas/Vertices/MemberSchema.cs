@@ -36,7 +36,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			MemberType = new DomainProperty<byte>("MemberType", "m_at");
+			MemberType = new DomainProperty<byte>("MemberType", "m_mt");
 
 			OauthScopeAllow = new DomainProperty<bool>("OauthScopeAllow", "m_osa");
 			OauthScopeAllow.IsNullable = true;

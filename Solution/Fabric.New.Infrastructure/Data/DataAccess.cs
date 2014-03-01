@@ -33,6 +33,12 @@ namespace Fabric.New.Infrastructure.Data {
 
 			vRexConnCtx = new RexConnContext(vReq, vDataCtx.RexConnUrl, vDataCtx.RexConnPort);
 			vRexConnCtx.SetCacheProvider(vDataCtx.RexConnCacheProv);
+			
+			vRexConnCtx.Logger = (level, category, text, ex) => {
+				if ( ex != null ) {
+					vLogOutput(this, "RexConn", level+" / "+category+" / "+text+" / "+ex);
+				}
+			};
 
 			vSetCmdIds = vDataCtx.SetCommandIds;
 			vOmitCmdTimers = vDataCtx.OmitCommandTimers;

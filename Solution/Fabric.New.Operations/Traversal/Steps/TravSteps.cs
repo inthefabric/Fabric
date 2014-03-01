@@ -56,7 +56,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 			new TravStepWith<FabFactor, byte, FabFactor>("WithVectorUnit", "f_veu"),
 			new TravStepWith<FabFactor, byte, FabFactor>("WithVectorUnitPrefix", "f_vep"),
 			new TravStepWhere<FabFactor, long, FabFactor>("WhereVectorValue", "f_vev"),
-			new TravStepWith<FabMember, byte, FabMember>("WithType", "m_at"),
+			new TravStepWith<FabMember, byte, FabMember>("WithType", "m_mt"),
 			new TravStepWith<FabVertex, long, FabVertex>("WithId", "v_id"),
 			TravStepsCustom.VertexWhereTimestamp<FabVertex, long, FabVertex>("WhereTimestamp", "v_ts"),
 			new TravStepWith<FabVertex, byte, FabVertex>("WithVertexType", "v_t"),

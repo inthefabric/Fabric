@@ -17,7 +17,7 @@ namespace Fabric.New.Api.Executors {
 		private static IApiResponse DoSetupDatabase(IApiRequest pApiReq) {
 			Func<object> getResp = (() => {
 				var op = new InternalInitDbOperation();
-				op.Perform(pApiReq.OpCtx, pApiReq.GetQueryValue("pass", true));
+				op.Perform(pApiReq.OpCtx, pApiReq.GetQueryValue("pass", false));
 				return op.GetResult();
 			});
 
