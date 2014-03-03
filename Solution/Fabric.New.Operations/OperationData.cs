@@ -120,7 +120,6 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnDataPostExecuteError(IDataAccess pAccess, Exception pEx) {
-			//TEST: OperationData.OnDataPostExecuteError()
 			string key = "apictx."+pAccess.ExecuteName;
 			vMetrics.Counter(key, 1);
 			vMetrics.Counter(key+".err", 1);
@@ -128,7 +127,6 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnLog(IDataAccess pAccess, string pName, string pText) {
-			//TEST: OperationData.OnLog()
 			Log.Debug(vContextId.ToString("N"), pName, pText);
 		}
 
