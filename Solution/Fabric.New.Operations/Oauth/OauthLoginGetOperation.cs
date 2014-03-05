@@ -1,5 +1,4 @@
 ﻿using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
 
 namespace Fabric.New.Operations.Oauth {
 
@@ -40,7 +39,6 @@ namespace Fabric.New.Operations.Oauth {
 			var result = new OauthLoginResult();
 			bool forceLogin = (pSwitchMode == "1");
 			long? userId = pOpCtx.Auth.CookieUserId;
-			Logger.Build(typeof(OauthLoginGetOperation)).Debug("USER: "+userId);
 
 			if ( userId != null ) {
 				Member mem = pTasks.GetMember(pOpCtx.Data, appId, (long)userId);

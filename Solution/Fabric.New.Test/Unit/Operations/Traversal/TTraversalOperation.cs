@@ -88,6 +88,25 @@ namespace Fabric.New.Test.Unit.Operations.Traversal {
 			Assert.NotNull(resultSteps, "Result steps should be filled.");
 			Assert.Less(0, resultSteps.Count, "Incorrect result steps count.");
 		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void ExecuteRootAndGetResultSteps() {
+			const string pathText = "Users";
+
+			IList<FabElement> result = vOper.Execute(vMockOpCtx.Object, pathText);
+
+			Assert.NotNull(result, "Result should be filled.");
+			Assert.AreEqual(0, result.Count, "Incorrect result count.");
+
+			////
+
+			IList<FabTravStep> resultSteps = vOper.GetResultSteps();
+			Assert.NotNull(resultSteps, "Result steps should be filled.");
+			Assert.Less(0, resultSteps.Count, "Incorrect result steps count.");
+
+			vMockData.Verify(x => x.Execute(It.IsAny<WeaverQuery>(), It.IsAny<string>()), Times.Never);
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]

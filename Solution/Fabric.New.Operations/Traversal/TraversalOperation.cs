@@ -3,7 +3,6 @@ using System.Linq;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Conversions;
 using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Routing;
@@ -65,9 +64,7 @@ namespace Fabric.New.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private IList<FabElement> ExecutePath() {
-			//TEST: special case for root traversals
 			if ( typeof(FabTravTypedRoot).IsAssignableFrom(vPathData.CurrType) ) {
-				Logger.Build<TraversalOperation>().Debug("ROOT "+vPathData.CurrType.Name);
 				return new List<FabElement>();
 			}
 
