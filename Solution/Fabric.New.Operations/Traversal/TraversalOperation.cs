@@ -6,6 +6,7 @@ using Fabric.New.Api.Objects.Traversal;
 using Fabric.New.Infrastructure.Data;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Routing;
+using Fabric.New.Operations.Traversal.Steps;
 using Fabric.New.Operations.Traversal.Util;
 using Weaver.Core.Query;
 
@@ -13,6 +14,8 @@ namespace Fabric.New.Operations.Traversal {
 
 	/*================================================================================================*/
 	public class TraversalOperation : ITraversalOperation {
+
+		//TODO: fill properties in the ApiLinks DTO objects?
 
 		private IOperationContext vOpCtx;
 		private ITravPathData vPathData;
@@ -46,6 +49,9 @@ namespace Fabric.New.Operations.Traversal {
 				rule.Step.ConsumePath(vPath, rule.ToType);
 				tps = vPath.GetNextStep();
 			}
+
+			//ensure that query results are limited (this may be redundant in many cases)
+			vPathData.AddScript("[0.."+(TravStepTake.Maximum-1)+"]");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

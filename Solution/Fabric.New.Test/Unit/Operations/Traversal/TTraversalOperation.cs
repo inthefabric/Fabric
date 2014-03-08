@@ -51,9 +51,12 @@ namespace Fabric.New.Test.Unit.Operations.Traversal {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void ExecuteAndGetResultSteps() {
-			const string pathText = "Users/WithId(123)";
-			const string queryName = "Trav-users-withid";
 			const long vertId = 987654;
+			const string queryName = "Trav-users-withid";
+			string pathText = "Users/WithId("+vertId+")";
+
+			const string expectScript = "g.V.has(_P, EQUAL, _P)[0..99];";
+			var expectValues = new List<object> { DbName.Vert.Vertex.VertexId, vertId };
 
 			var dto = new DataDto();
 			dto.Id = "A";
@@ -70,7 +73,9 @@ namespace Fabric.New.Test.Unit.Operations.Traversal {
 
 			vMockData
 				.Setup(x => x.Execute(It.IsAny<WeaverQuery>(), queryName))
-				.Returns(mockRes.Object);
+				.Returns(mockRes.Object)
+				.Callback((IWeaverQuery q, string name) => 
+					TestUtil.CheckWeaverScript(q, expectScript, "_P", expectValues));
 
 			IList<FabElement> result = vOper.Execute(vMockOpCtx.Object, pathText);
 

@@ -10,6 +10,10 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 		private readonly bool vToLower;
 
+		//TODO: in all entry steps, also check for VERTEX TYPE when searching via a 
+		//a property defined at the vertex or artifact level. Otherwise, a traversal like 
+		//"Apps/WithId(2)" could return a User.
+
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

@@ -4,6 +4,14 @@ using Fabric.New.Infrastructure.Spec;
 using Fabric.New.Operations.Traversal.Routing;
 
 namespace Fabric.New.Operations.Traversal.Steps {
+	
+	/*================================================================================================*/
+	public static class TravStepTake {
+
+		public const int Maximum = 100;
+
+	}
+
 
 	/*================================================================================================*/
 	[SpecStep("Take")]
@@ -20,7 +28,7 @@ namespace Fabric.New.Operations.Traversal.Steps {
 
 			var p = new TravStepParam(0, "Count", typeof(int));
 			p.Min = 1;
-			p.Max = 100;
+			p.Max = TravStepTake.Maximum;
 			Params.Add(p);
 		}
 
