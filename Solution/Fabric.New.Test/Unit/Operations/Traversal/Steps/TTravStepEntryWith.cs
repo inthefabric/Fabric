@@ -1,6 +1,8 @@
 ﻿using System;
 using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Domain.Enums;
+using Fabric.New.Domain.Names;
 using Fabric.New.Infrastructure.Faults;
 using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Steps;
@@ -19,8 +21,9 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 		private string vPropDbNameParam;
 		private string vValueParam;
 		private string vScript;
+		private string vScriptLimit;
 		private Type vToType;
-		private TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact> vStep;
+		private ITravStep vStep;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,9 +36,10 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			vValue = "My Test Value";
 			vPropDbNameParam = "_P0";
 			vValueParam = "_P1";
-			vScript = ".has("+vPropDbNameParam+", EQUAL, "+vValueParam+")";
-			vToType = typeof(FabArtifact);
-			vStep = new TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact>(
+			vScript = ".has("+vPropDbNameParam+", Tokens.T.eq, "+vValueParam+")";
+			vScriptLimit = "[0..99]";
+			vToType = typeof(FabUser);
+			vStep = new TravStepEntryWith<FabTravUserRoot, string, FabUser>(
 				"cmd", vPropDbName, false);
 
 			MockItem.Setup(x => x.VerifyParamCount(1, -1));
@@ -44,6 +48,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			MockPath.Setup(x => x.AddParam(vPropDbName)).Returns(vPropDbNameParam);
 			MockPath.Setup(x => x.AddParam(vValue)).Returns(vValueParam);
 			MockPath.Setup(x => x.AddScript(vScript));
+			MockPath.Setup(x => x.AddScript(vScriptLimit));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -65,6 +70,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 			MockPath.Verify(x => x.AddParam(vPropDbName), t);
 			MockPath.Verify(x => x.AddParam(vValue), t);
 			MockPath.Verify(x => x.AddScript(vScript), t);
+			MockPath.Verify(x => x.AddScript(vScriptLimit), t);
 		}
 
 
@@ -72,8 +78,7 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
 		public void SuccessToLower() {
-			vStep = new TravStepEntryWith<FabTravArtifactRoot, string, FabArtifact>(
-				"cmd", vPropDbName, true);
+			vStep = new TravStepEntryWith<FabTravUserRoot, string, FabUser>("cmd", vPropDbName, true);
 
 			MockPath.Setup(x => x.AddParam(vValue.ToLower())).Returns(vValueParam);
 
@@ -81,6 +86,27 @@ namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
 
 			MockPath.Verify(x => x.AddParam(vValue), Times.Never());
 			MockPath.Verify(x => x.AddParam(vValue.ToLower()), Times.Once());
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void SuccessTypeFilter() {
+			const string typeDbName = DbName.Vert.Vertex.VertexType;
+			const byte typeId = (byte)VertexType.Id.User;
+			const string typeDbNameParam = "_P2";
+			const string typeIdParam = "_P3";
+			const string typeScript = ".has("+typeDbNameParam+", Tokens.T.eq, "+typeIdParam+")";
+
+			MockPath.Setup(x => x.AddScript(typeScript));
+			MockPath.Setup(x => x.AddParam(typeDbName)).Returns(typeDbNameParam);
+			MockPath.Setup(x => x.AddParam(typeId)).Returns(typeIdParam);
+
+			vStep = new TravStepEntryWith<FabTravVertexRoot, string, FabVertex>(
+				"cmd", vPropDbName, false);
+			vStep.ConsumePath(MockPath.Object, GetToType());
+
+			CheckSuccess(true);
+			MockPath.Verify(x => x.AddScript(typeScript), Times.Once);
 		}
 
 

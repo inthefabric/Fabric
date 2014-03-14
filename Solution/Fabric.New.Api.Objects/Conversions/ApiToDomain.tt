@@ -11,7 +11,10 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
+using System.Collections.Generic;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Api.Objects.Conversions {
 
@@ -29,8 +32,31 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static string ToLowerCase(string pValue) {
 			return (pValue == null ? null : pValue.ToLower());
 		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static VertexType.Id GetVertexTypeId(Type pFabType) {
+			return VertexTypeIdMap[pFabType];
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static readonly IDictionary<Type, VertexType.Id> VertexTypeIdMap = 
+			new Dictionary<Type, VertexType.Id> {
 <#
 IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in vertexSchemas ) {
+	if ( v.GetAccess == Access.Internal ) {
+		continue;
+	}
+#>
+				{ typeof(Fab<#= v.Names.Domain #>), VertexType.Id.<#= v.Names.Domain #> },
+<#
+} // end vertex loop
+#>
+			};
+<#
 
 foreach ( IVertexSchema v in vertexSchemas ) { 
 	IVertexSchema vp = SchemaUtil.GetVertexParent(v);

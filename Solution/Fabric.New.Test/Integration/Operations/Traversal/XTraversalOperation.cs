@@ -26,6 +26,8 @@ namespace Fabric.New.Test.Integration.Operations.Traversal {
 		[TestCase("ZACHkinstner")]
 		[TestCase("melkins")]
 		public void UsersWithName(string pName) {
+			IsReadOnlyTest = true;
+
 			var t = new TraversalOperation();
 			IList<FabElement> results = t.Execute(OpCtx, "Users/WithName("+pName+")");
 

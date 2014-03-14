@@ -1,5 +1,7 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System;
+using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Util;
 
 namespace Fabric.New.Operations.Traversal.Steps {
@@ -9,10 +11,6 @@ namespace Fabric.New.Operations.Traversal.Steps {
 												where TFrom : FabTravTypedRoot where TTo : FabVertex {
 
 		private readonly bool vToLower;
-
-		//TODO: in all entry steps, also check for VERTEX TYPE when searching via a 
-		//a property defined at the vertex or artifact level. Otherwise, a traversal like 
-		//"Apps/WithId(2)" could return a User.
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,8 +33,15 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
+		public override void ConsumePath(ITravPath pPath, Type pToType) {
+			base.ConsumePath(pPath, pToType);
+			TravStepEntry.AddTypeFilterIfNecessary(pPath, ToType, pToType);
+			TravStepEntry.AddLimit(pPath);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetGremlinEqualOp() {
-			return GremlinUtil.GetElasticCompareOperation(GremlinUtil.Equal);
+			return GremlinUtil.GetStandardCompareOperation(GremlinUtil.Equal);
 		}
 
 	}

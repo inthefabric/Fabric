@@ -2,7 +2,10 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
+using System;
+using System.Collections.Generic;
 using Fabric.New.Domain;
+using Fabric.New.Domain.Enums;
 
 namespace Fabric.New.Api.Objects.Conversions {
 
@@ -20,6 +23,27 @@ namespace Fabric.New.Api.Objects.Conversions {
 		private static string ToLowerCase(string pValue) {
 			return (pValue == null ? null : pValue.ToLower());
 		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static VertexType.Id GetVertexTypeId(Type pFabType) {
+			return VertexTypeIdMap[pFabType];
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static readonly IDictionary<Type, VertexType.Id> VertexTypeIdMap = 
+			new Dictionary<Type, VertexType.Id> {
+				{ typeof(FabApp), VertexType.Id.App },
+				{ typeof(FabArtifact), VertexType.Id.Artifact },
+				{ typeof(FabClass), VertexType.Id.Class },
+				{ typeof(FabFactor), VertexType.Id.Factor },
+				{ typeof(FabInstance), VertexType.Id.Instance },
+				{ typeof(FabMember), VertexType.Id.Member },
+				{ typeof(FabUrl), VertexType.Id.Url },
+				{ typeof(FabUser), VertexType.Id.User },
+				{ typeof(FabVertex), VertexType.Id.Vertex },
+			};
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

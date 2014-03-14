@@ -1,5 +1,7 @@
-﻿using Fabric.New.Api.Objects;
+﻿using System;
+using Fabric.New.Api.Objects;
 using Fabric.New.Api.Objects.Traversal;
+using Fabric.New.Operations.Traversal.Routing;
 using Fabric.New.Operations.Traversal.Util;
 
 namespace Fabric.New.Operations.Traversal.Steps {
@@ -12,6 +14,13 @@ namespace Fabric.New.Operations.Traversal.Steps {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public TravStepEntryWhere(string pCmd, string pPropDbName) : base(pCmd, pPropDbName) {}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void ConsumePath(ITravPath pPath, Type pToType) {
+			base.ConsumePath(pPath, pToType);
+			TravStepEntry.AddTypeFilterIfNecessary(pPath, ToType, pToType);
+			TravStepEntry.AddLimit(pPath);
+		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected override string GetGremlinOp(string pOp) {

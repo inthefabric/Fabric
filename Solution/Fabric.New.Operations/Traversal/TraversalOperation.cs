@@ -50,7 +50,7 @@ namespace Fabric.New.Operations.Traversal {
 				tps = vPath.GetNextStep();
 			}
 
-			//ensure that query results are limited (this may be redundant in many cases)
+			//ensure that query results are limited (this may be redundant in some cases)
 			vPathData.AddScript("[0.."+(TravStepTake.Maximum-1)+"]");
 		}
 

@@ -52,10 +52,10 @@ namespace Fabric.New.Test.Unit.Operations.Traversal {
 		[Test]
 		public void ExecuteAndGetResultSteps() {
 			const long vertId = 987654;
-			const string queryName = "Trav-users-withid";
-			string pathText = "Users/WithId("+vertId+")";
+			const string queryName = "Trav-vertices-withid";
+			string pathText = "Vertices/WithId("+vertId+")";
 
-			const string expectScript = "g.V.has(_P, EQUAL, _P)[0..99];";
+			const string expectScript = "g.V.has(_P, Tokens.T.eq, _P)[0..99][0..99];";
 			var expectValues = new List<object> { DbName.Vert.Vertex.VertexId, vertId };
 
 			var dto = new DataDto();

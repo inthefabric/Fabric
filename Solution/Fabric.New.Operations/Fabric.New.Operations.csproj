@@ -98,6 +98,7 @@
     <Compile Include="Traversal\Routing\ITravPathData.cs" />
     <Compile Include="Traversal\Routing\TravPathData.cs" />
     <Compile Include="Traversal\Routing\ITravRule.cs" />
+    <Compile Include="Traversal\Steps\TravStepEntry.cs" />
     <Compile Include="Traversal\Steps\TravStepWhereEventorDateTime.cs" />
     <Compile Include="Traversal\Steps\TravStepEntryWhere.cs" />
     <Compile Include="Traversal\Steps\TravStepEntryWith.cs" />
