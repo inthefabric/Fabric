@@ -19,4 +19,4 @@ Fabric has separated some of its key functionality into separate projects here a
 Please visit the [Fabric website](http://www.inTheFabric.com), or jump directly to Fabric's [API documentation](http://www.inTheFabric.com/docs/reference).
 
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/017600c71999597bffa109de0a090010 "githalytics.com")](http://githalytics.com/inthefabric/Fabric)
+[![githalytics.com alpha](https://cruel-carlota.gopagoda.com/017600c71999597bffa109de0a090010 "githalytics.com")](http://githalytics.com/inthefabric/Fabric)
