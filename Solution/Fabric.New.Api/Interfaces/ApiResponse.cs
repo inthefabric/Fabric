@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
+using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Util;
+using Fabric.New.Operations;
 using ServiceStack.Text;
 
 namespace Fabric.New.Api.Interfaces {
 
 	/*================================================================================================*/
 	public class ApiResponse : IApiResponse {
+
+		private static readonly Logger Log = Logger.Build<ApiResponse>();
 
 		public HttpStatusCode Status { get; set; }
 		public string Html { get; set; }
@@ -66,9 +71,72 @@ namespace Fabric.New.Api.Interfaces {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void LogResponse(IApiRequest pApiReq) {
-			//TODO: google analytics action
-			//TODO: graphite action
-			//TODO: log action
+			IOperationContext oc = pApiReq.OpCtx;
+			long totalMs = (long)GetTimerMilliseconds();
+			long jsonLen = (Json == null ? 0 : Json.Length);
+			
+			oc.Analytics.TrackRequest(pApiReq.Method, pApiReq.Path);
+
+			////
+
+			IMetricsManager m = oc.Metrics;
+			string key = BuildGraphiteKey(pApiReq);
+
+			m.Counter(key, 1);
+			m.Counter(key+".requests", 1);
+			m.Counter(key+".errors", (IsError ? 1 : 0));
+			m.Timer(key+".total-ms", totalMs);
+			m.Mean(key+".json-len", jsonLen);
+
+			if ( oc.Data.DbQueryExecutionCount > 0 ) {
+				m.Timer(key+".db", oc.Data.DbQueryMillis);
+				m.Mean(key+".db.queries", oc.Data.DbQueryExecutionCount);
+			}
+
+			//ARv1: (ApiResponse log, version 1)
+			// IP, QueryCount, TotalMs, JsonLen, Timestamp, HttpStatus, IsError, Method, Path, Exception
+
+			const string name = "ARv1";
+			const string x = " | ";
+			string ctxId = Logger.GuidToString(oc.ContextId);
+
+			string v1 =
+				pApiReq.IpAddress +x+
+				oc.Data.DbQueryExecutionCount +x+
+				totalMs +x+
+				jsonLen +x+
+				DateTime.UtcNow.Ticks +x+
+				(int)Status +x+
+				(IsError ? 1 : 0) +x+
+				pApiReq.Method +x+
+				pApiReq.Path;
+
+			if ( Unhandled == null ) {
+				Log.Info(ctxId, name, v1);
+			}
+			else {
+				Log.Error(ctxId, name, v1, Unhandled);
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static string BuildGraphiteKey(IApiRequest pApiReq) {
+			string key = pApiReq.Method;
+			string path = pApiReq.Path.ToLower().Trim(new[] { '/' }).Split('?')[0];
+			string[] pathSegs = path.Split('/').Take(3).ToArray();
+
+			for ( int i = 0 ; i < pathSegs.Length ; ++i ) {
+				string seg = pathSegs[i];
+				int endI = seg.IndexOf('('); //TODO: further sterilize path string?
+
+				if ( endI != -1 ) {
+					seg = seg.Substring(0, endI);
+				}
+
+				key += "-"+seg;
+			}
+
+			return "req."+key;
 		}
 
 	}

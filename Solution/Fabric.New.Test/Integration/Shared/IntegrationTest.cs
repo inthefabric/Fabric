@@ -109,7 +109,7 @@ namespace Fabric.New.Test.Integration.Shared {
 				IDataResult remAllData = OpCtx.ExecuteForTest(q);
 
 				q = new WeaverQuery();
-				q.FinalizeQuery("g.loadGraphSON('db/FabricBackups/FabricTest.json');1");
+				q.FinalizeQuery("g.loadGraphSON('../db/FabricBackups/FabricTest.json');1");
 				IDataResult reloadData = OpCtx.ExecuteForTest(q);
 
 				Assert.AreEqual("1", remAllData.ToStringAt(0, 0),

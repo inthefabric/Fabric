@@ -15,8 +15,6 @@ namespace Fabric.New.Operations.Traversal {
 	/*================================================================================================*/
 	public class TraversalOperation : ITraversalOperation {
 
-		//TODO: fill properties in the ApiLinks DTO objects?
-
 		private IOperationContext vOpCtx;
 		private ITravPathData vPathData;
 		private ITravPath vPath;

@@ -100,9 +100,9 @@ namespace Fabric.New.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnDataPostExecute(IDataAccess pAccess, IResponseResult pResult) {
 			DbQueryExecutionCount++;
-			DbQueryMillis += (int)pResult.Response.Timer;
+			DbQueryMillis += (pResult.Response.Timer == null ? 0 : (int)pResult.Response.Timer);
 
-			string key = "apictx."+pAccess.ExecuteName;
+			string key = "opdata."+pAccess.ExecuteName;
 			vMetrics.Counter(key, 1);
 
 			if ( pResult.Response.Timer != null ) {
@@ -120,14 +120,14 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnDataPostExecuteError(IDataAccess pAccess, Exception pEx) {
-			string key = "apictx."+pAccess.ExecuteName;
+			string key = "opdata."+pAccess.ExecuteName;
 			vMetrics.Counter(key, 1);
 			vMetrics.Counter(key+".err", 1);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnLog(IDataAccess pAccess, string pName, string pText) {
-			Log.Debug(vContextId.ToString("N"), pName, pText);
+			Log.Debug(Logger.GuidToString(vContextId), pName, pText);
 		}
 
 	}
