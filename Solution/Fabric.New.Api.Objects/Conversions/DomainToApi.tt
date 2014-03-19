@@ -68,7 +68,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		string sub = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".");
 		PropertyMapping pm = propMap[ap];
 
-		if ( pm.Custom ) {
+		if ( pm.Custom == CustomDir.Both || pm.Custom == CustomDir.DomainToApi ) {
 			custom = true;
 #>
 			//Custom: <#= (pm.DomainToApiNote ?? "") #>

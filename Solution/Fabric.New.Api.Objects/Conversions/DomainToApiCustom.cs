@@ -6,23 +6,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class DomainToApi {
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static void FromAppCustom(FabApp pApi, App pDomain) {
-			//TODO: set custom for ApiToDomain only
-			pApi.Name = pDomain.Name;
-		}
 		
-		
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static void FromClassCustom(FabClass pApi, Class pDomain) {
-			//TODO: set custom for ApiToDomain only
-			pApi.Name = pDomain.Name;
-		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -63,14 +47,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pApi.Eventor.Hour = h;
 			pApi.Eventor.Minute = min;
 			pApi.Eventor.Second = s;
-		}
-		
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		private static void FromUserCustom(FabUser pApi, User pDomain) {
-			//TODO: set custom for ApiToDomain only
-			pApi.Name = pDomain.Name;
 		}
 
 

@@ -28,9 +28,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromApp(FabApp pApi, App pDomain) {
 			FromArtifact(pApi, pDomain);
-			//Custom: 
-			//pApi.Name <== pDomain.Name  (requires custom)
-			FromAppCustom(pApi, pDomain);
+			pApi.Name = pDomain.Name;
 		}
 
 
@@ -59,11 +57,9 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromClass(FabClass pApi, Class pDomain) {
 			FromArtifact(pApi, pDomain);
-			//Custom: 
-			//pApi.Name <== pDomain.Name  (requires custom)
+			pApi.Name = pDomain.Name;
 			pApi.Disamb = pDomain.Disamb;
 			pApi.Note = pDomain.Note;
-			FromClassCustom(pApi, pDomain);
 		}
 
 
@@ -177,9 +173,7 @@ namespace Fabric.New.Api.Objects.Conversions {
 		/*--------------------------------------------------------------------------------------------*/
 		public static void FromUser(FabUser pApi, User pDomain) {
 			FromArtifact(pApi, pDomain);
-			//Custom: Direct mapping.
-			//pApi.Name <== pDomain.Name  (requires custom)
-			FromUserCustom(pApi, pDomain);
+			pApi.Name = pDomain.Name;
 		}
 
 

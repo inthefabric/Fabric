@@ -53,6 +53,8 @@ namespace Fabric.New.Operations.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		public void DoLogout(IOperationData pData, OauthAccess pAccess) {
 			try {
+				//OPTIMIZE: don't make a query to get Member (ClearOldTokens does the reverse)
+
 				IWeaverQuery q = Weave.Inst.Graph
 					.V.ExactIndex<OauthAccess>(x => x.VertexId, pAccess.VertexId)
 					.AuthenticatesMember.ToMember

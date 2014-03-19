@@ -56,11 +56,11 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			////
 
-			FabNameMap = new PropertyMapping<string, string>(Name, FabName, true);
+			FabNameMap = new PropertyMapping<string, string>(Name, FabName, CustomDir.ApiToDomain);
 			FabNameMap.ApiToDomainNote = "Set Domain.NameKey = Api.Name.ToLower()";
 			FabNameMap.DomainToApiNote = "Direct mapping.";
 
-			FabPasswordMap = new PropertyMapping<string, string>(Password, FabPassword, true);
+			FabPasswordMap = new PropertyMapping<string, string>(Password, FabPassword, CustomDir.Both);
 			FabPasswordMap.ApiToDomainNote = "Encrypt Api.Password.";
 			FabPasswordMap.DomainToApiNote = "Direct mapping.";
 		}

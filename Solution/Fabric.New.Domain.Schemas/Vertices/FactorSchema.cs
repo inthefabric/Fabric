@@ -296,16 +296,20 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 			FabDirectorRelatedActionMap = new PropertyMapping<byte, byte>(
 				DirectorRelatedAction, FabDirectorRelatedAction);
 			FabEventorTypeMap = new PropertyMapping<byte, byte>(EventorType, FabEventorType);
-			FabEventorYearMap = new PropertyMapping<long, long>(EventorDateTime, FabEventorYear, true);
+			FabEventorYearMap = new PropertyMapping<long, long>(EventorDateTime, FabEventorYear,
+				CustomDir.Both);
 			FabEventorYearMap.ApiToDomainNote = "Set Domain.EventorDateTime using Api.Year/Month/etc.";
 			FabEventorYearMap.DomainToApiNote = "Set Api.Year/Momth/etc. using Domain.EventorDateTime.";
-			FabEventorMonthMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorMonth,true);
-			FabEventorDayMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorDay, true);
-			FabEventorHourMap = new PropertyMapping<long, byte>(EventorDateTime, FabEventorHour, true);
+			FabEventorMonthMap = new PropertyMapping<long, byte>(
+				EventorDateTime, FabEventorMonth, CustomDir.Both);
+			FabEventorDayMap = new PropertyMapping<long, byte>(
+				EventorDateTime, FabEventorDay, CustomDir.Both);
+			FabEventorHourMap = new PropertyMapping<long, byte>(
+				EventorDateTime, FabEventorHour, CustomDir.Both);
 			FabEventorMinuteMap = new PropertyMapping<long, byte>(
-				EventorDateTime, FabEventorMinute, true);
+				EventorDateTime, FabEventorMinute, CustomDir.Both);
 			FabEventorSecondMap = new PropertyMapping<long, byte>(
-				EventorDateTime, FabEventorSecond, true);
+				EventorDateTime, FabEventorSecond, CustomDir.Both);
 			FabIdentorTypeMap = new PropertyMapping<byte, byte>(IdentorType, FabIdentorType);
 			FabIdentorValueMap = new PropertyMapping<string, string>(IdentorValue, FabIdentorValue);
 			FabLocatorTypeMap = new PropertyMapping<byte, byte>(LocatorType, FabLocatorType);

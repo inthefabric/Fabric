@@ -71,7 +71,7 @@ namespace Fabric.New.Domain.Schemas.Vertices {
 
 			FabIdMap = new PropertyMapping<long, long>(VertexId, FabId);
 
-			FabTimestampMap = new PropertyMapping<long, long>(Timestamp, FabTimestamp, true);
+			FabTimestampMap = new PropertyMapping<long, long>(Timestamp, FabTimestamp, CustomDir.Both);
 			FabTimestampMap.ApiToDomainNote = "Convert Api.Timestamp from Unix-based seconds.";
 			FabTimestampMap.DomainToApiNote = "Convert Domain.Timestamp to Unix-based seconds.";
 
