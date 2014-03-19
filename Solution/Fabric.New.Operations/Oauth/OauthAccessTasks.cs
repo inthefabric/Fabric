@@ -150,7 +150,6 @@ namespace Fabric.New.Operations.Oauth {
 			CreateFabOauthAccess coa = new CreateFabOauthAccess();
 			coa.Token = pOpCtx.Code32;
 			coa.Refresh = (pClientMode ? null : pOpCtx.Code32);
-			coa.IsDataProv = pClientMode;
 			coa.Expires = pOpCtx.UtcNow.AddSeconds(expireSec).Ticks;
 			coa.AuthenticatesMemberId = pMemberId;
 
@@ -169,7 +168,7 @@ namespace Fabric.New.Operations.Oauth {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void ClearOldTokens(IOperationData pData, long pMemberId) {
-			//TODO: delete old OauthAccess vertices
+			//TODO: delete old OauthAccess vertices?
 
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<Member>(x => x.VertexId, pMemberId)

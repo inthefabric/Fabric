@@ -761,9 +761,6 @@ namespace Fabric.New.Api.Objects {
 		[SpecInternal]
 		public virtual long Expires { get; set; }
 		
-		[SpecInternal]
-		public virtual bool IsDataProv { get; set; }
-		
 		public virtual long AuthenticatesMemberId { get; set; }
 
 

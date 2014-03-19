@@ -289,7 +289,6 @@ namespace Fabric.New.Test.Unit.Operations.Oauth {
 					Assert.AreEqual(code0, cre.Token, "Incorrect Create.Token.");
 					Assert.AreEqual((pClientMode ? null : code1), cre.Refresh,
 						"Incorrect Create.Refresh.");
-					Assert.AreEqual(pClientMode, cre.IsDataProv, "Incorrect Create.IsDataProv.");
 					Assert.AreEqual(utcExpireTicks, cre.Expires, "Incorrect Create.Expires.");
 					Assert.AreEqual(memId, cre.AuthenticatesMemberId,
 						"Incorrect Create.AuthenticatesMemberId.");

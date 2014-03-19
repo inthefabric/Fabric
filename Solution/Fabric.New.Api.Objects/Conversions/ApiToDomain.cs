@@ -210,7 +210,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			pDomain.Token = pApi.Token;
 			pDomain.Refresh = pApi.Refresh;
 			pDomain.Expires = pApi.Expires;
-			pDomain.IsDataProv = pApi.IsDataProv;
 		}
 
 

@@ -75,7 +75,6 @@ namespace Fabric.New.Database.Init.Setups {
 			AddProp(Elem.Vertex, "oa_to", "String", Index.Standard, false);
 			AddProp(Elem.Vertex, "oa_re", "String", Index.Standard, false);
 			AddProp(Elem.Vertex, "oa_ex", "Long", Index.None, false);
-			AddProp(Elem.Vertex, "oa_dp", "Boolean", Index.None, false);
 
 			//Url
 			AddProp(Elem.Vertex, "r_na", "String", Index.Elastic, false);
@@ -222,7 +221,7 @@ namespace Fabric.New.Database.Init.Setups {
 			//OauthAccessAuthenticatesMember
 			AddEdge("oaam", Cardin.OneToOne, Sort.None,
 				new string[0],
-				new[] {"oa_to","oa_re","oa_ex","oa_dp"}
+				new[] {"oa_to","oa_re","oa_ex"}
 			);
 
 			//UserDefinesMember

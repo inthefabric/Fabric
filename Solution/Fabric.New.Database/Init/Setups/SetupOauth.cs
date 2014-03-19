@@ -108,11 +108,6 @@ namespace Fabric.New.Database.Init.Setups {
 			oa.Expires = new DateTime(Data.NowTimestamp).AddMinutes(pMins).Ticks;
 			oa.Token = pToken;
 			oa.Refresh = (pRefresh ?? DataUtil.Code32);
-			oa.IsDataProv = (
-				pMemId == SetupMemberId.FabFabData ||
-				pMemId == SetupMemberId.GalGalData ||
-				pMemId == SetupMemberId.BookBookData
-			);
 			AddVertex(oa, (SetupVertexId)(long)pId);
 
 			Member mem = Data.GetVertex<Member>((long)pMemId);

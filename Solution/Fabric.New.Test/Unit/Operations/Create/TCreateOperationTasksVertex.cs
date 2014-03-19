@@ -359,7 +359,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 				Token = "asdgsdgasdlg",
 				Refresh = "rgqregzsdfggdsgee",
 				Expires = 346234623463,
-				IsDataProv = true
 			});
 
 			IWeaverVarAlias<OauthAccess> alias;
@@ -370,7 +369,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 					DbName.Vert.OauthAccess.Token,
 					DbName.Vert.OauthAccess.Refresh,
 					DbName.Vert.OauthAccess.Expires,
-					DbName.Vert.OauthAccess.IsDataProv,
 					DbName.Vert.Vertex.VertexId,
 					DbName.Vert.Vertex.Timestamp,
 					DbName.Vert.Vertex.VertexType
@@ -379,7 +377,6 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 					oa.Token,
 					oa.Refresh,
 					oa.Expires,
-					oa.IsDataProv,
 					oa.VertexId,
 					oa.Timestamp,
 					(byte)VertexType.Id.OauthAccess

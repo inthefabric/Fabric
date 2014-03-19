@@ -678,7 +678,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 		public const string TokenName = "Token";
 		public const string RefreshName = "Refresh";
 		public const string ExpiresName = "Expires";
-		public const string IsDataProvName = "IsDataProv";
 		
 		private readonly CreateFabOauthAccess vCreateObj;
 
@@ -695,7 +694,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 			Token(vCreateObj.Token);
 			Refresh(vCreateObj.Refresh);
 			Expires(vCreateObj.Expires);
-			IsDataProv(vCreateObj.IsDataProv);
 			ValidateEdges();
 		}
 
@@ -715,10 +713,6 @@ namespace Fabric.New.Api.Objects.Conversions {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public static void Expires(long pValue) {
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public static void IsDataProv(bool pValue) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

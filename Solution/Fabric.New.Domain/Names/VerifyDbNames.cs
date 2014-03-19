@@ -63,7 +63,6 @@ oa (OauthAccess)
 oa_to (Token)
 oa_re (Refresh)
 oa_ex (Expires)
-oa_dp (IsDataProv)
 
 r (Url)
 r_na (Name)

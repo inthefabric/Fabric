@@ -104,7 +104,6 @@ namespace Fabric.New.Domain.Names {
 				public const string Token = "oa_to";
 				public const string Refresh = "oa_re";
 				public const string Expires = "oa_ex";
-				public const string IsDataProv = "oa_dp";
 
 			}
 

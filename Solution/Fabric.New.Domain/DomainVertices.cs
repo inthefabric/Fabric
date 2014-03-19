@@ -411,9 +411,6 @@ namespace Fabric.New.Domain {
 		[WeaverTitanProperty("oa_ex", TitanIndex=false, TitanElasticIndex=false)]
 		public virtual long Expires { get; set; }
 		
-		[WeaverTitanProperty("oa_dp", TitanIndex=false, TitanElasticIndex=false)]
-		public virtual bool IsDataProv { get; set; }
-		
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
@@ -434,7 +431,6 @@ namespace Fabric.New.Domain {
 			Token = TryGetString(pData, "oa_to");
 			Refresh = TryGetString(pData, "oa_re");
 			Expires = TryGetLong(pData, "oa_ex");
-			IsDataProv = TryGetBool(pData, "oa_dp");
 		}
 
 	}
