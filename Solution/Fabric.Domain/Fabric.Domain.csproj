@@ -8,8 +8,8 @@
     <ProjectGuid>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Domain</RootNamespace>
-    <AssemblyName>Fabric.New.Domain</AssemblyName>
+    <RootNamespace>Fabric.Domain</RootNamespace>
+    <AssemblyName>Fabric.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

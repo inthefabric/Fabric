@@ -1,16 +1,16 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
+﻿using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Faults;
+using Fabric.Infrastructure.Query;
+using Fabric.Operations.Create;
+using Fabric.Test.Unit.Shared;
 using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 
-namespace Fabric.New.Test.Integration.Operations.Create {
+namespace Fabric.Test.Integration.Operations.Create {
 
 	/*================================================================================================*/
 	public class XCreateClassOperation : XCreateOperation<Class> {

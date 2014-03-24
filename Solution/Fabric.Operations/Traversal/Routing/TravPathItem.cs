@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.Infrastructure.Faults;
 
-namespace Fabric.New.Operations.Traversal.Routing {
+namespace Fabric.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public class TravPathItem : ITravPathItem {

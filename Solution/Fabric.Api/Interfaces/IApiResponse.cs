@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace Fabric.New.Api.Interfaces {
+namespace Fabric.Api.Interfaces {
 
 	/*================================================================================================*/
 	public interface IApiResponse {

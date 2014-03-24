@@ -1,6 +1,6 @@
-﻿using Fabric.New.Infrastructure.Faults;
+﻿using Fabric.Infrastructure.Faults;
 
-namespace Fabric.New.Api.Objects {
+namespace Fabric.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabError : FabObject {

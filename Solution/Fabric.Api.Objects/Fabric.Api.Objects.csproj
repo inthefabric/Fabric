@@ -8,8 +8,8 @@
     <ProjectGuid>{660DDA92-D894-468B-A168-5AB4592AE70F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Api.Objects</RootNamespace>
-    <AssemblyName>Fabric.New.Api.Objects</AssemblyName>
+    <RootNamespace>Fabric.Api.Objects</RootNamespace>
+    <AssemblyName>Fabric.Api.Objects</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

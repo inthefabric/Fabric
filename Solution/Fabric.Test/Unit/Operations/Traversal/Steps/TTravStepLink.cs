@@ -1,12 +1,12 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Operations.Traversal.Steps;
-using Fabric.New.Test.Unit.Operations.Traversal.Routing;
+using Fabric.Api.Objects;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Operations.Traversal.Steps;
+using Fabric.Test.Unit.Operations.Traversal.Routing;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
+namespace Fabric.Test.Unit.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[TestFixture]

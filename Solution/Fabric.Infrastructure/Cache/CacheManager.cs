@@ -1,7 +1,7 @@
-﻿using Fabric.New.Infrastructure.Broadcast;
+﻿using Fabric.Infrastructure.Broadcast;
 using RexConnectClient.Core.Cache;
 
-namespace Fabric.New.Infrastructure.Cache {
+namespace Fabric.Infrastructure.Cache {
 
 	/*================================================================================================*/
 	public class CacheManager : ICacheManager { //TEST: CacheManager

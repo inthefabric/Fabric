@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Operations.Traversal.Util;
+using Fabric.Operations.Traversal.Util;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal.Util {
+namespace Fabric.Test.Unit.Operations.Traversal.Util {
 
 	/*================================================================================================*/
 	[TestFixture]

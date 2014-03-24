@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Meta;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Meta;
 
-namespace Fabric.New.Api.Executors {
+namespace Fabric.Api.Executors {
 
 	/*================================================================================================*/
 	public static class MetaExecutors {

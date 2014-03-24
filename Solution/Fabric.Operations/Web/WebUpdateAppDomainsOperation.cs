@@ -1,10 +1,10 @@
-﻿using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Query;
+﻿using Fabric.Domain;
+using Fabric.Infrastructure.Query;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Operations.Web {
+namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
 	public class WebUpdateAppDomainsOperation {

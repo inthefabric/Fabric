@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Faults;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using ServiceStack.Text;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 	
 	/*================================================================================================*/
 	public class DataDto : IDataDto { //TEST: DataDto

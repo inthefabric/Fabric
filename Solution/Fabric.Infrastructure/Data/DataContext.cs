@@ -1,6 +1,6 @@
 ﻿using RexConnectClient.Core.Cache;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public class DataContext : IDataContext {

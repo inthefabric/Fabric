@@ -1,16 +1,16 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Operations.Create;
+﻿using Fabric.Api.Objects;
+using Fabric.Api.Objects.Oauth;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Query;
+using Fabric.Operations.Create;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Operations.Oauth {
+namespace Fabric.Operations.Oauth {
 
 	/*================================================================================================*/
 	public enum AccessErrors { //from section "5.2. Error Response"

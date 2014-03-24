@@ -1,10 +1,10 @@
 ﻿using System;
-using Fabric.New.Api;
-using Fabric.New.Api.Objects.Meta;
+using Fabric.Api;
+using Fabric.Api.Objects.Meta;
 using NUnit.Framework;
 using Nancy.Testing;
 
-namespace Fabric.New.Test.Integration.Api.Executors {
+namespace Fabric.Test.Integration.Api.Executors {
 
 	/*================================================================================================*/
 	public class XMetaExecutors : XExecutorBase {

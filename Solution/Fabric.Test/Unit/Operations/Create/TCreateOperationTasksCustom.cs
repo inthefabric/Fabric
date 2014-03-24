@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Domain.Names;
-using Fabric.New.Operations.Create;
+using Fabric.Domain.Names;
+using Fabric.Operations.Create;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Create {
+namespace Fabric.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	public class TCreateOperationTasksCustom {

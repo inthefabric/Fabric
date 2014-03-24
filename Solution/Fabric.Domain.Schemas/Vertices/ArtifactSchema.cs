@@ -1,6 +1,6 @@
-﻿using Fabric.New.Domain.Schemas.Utils;
+﻿using Fabric.Domain.Schemas.Utils;
 
-namespace Fabric.New.Domain.Schemas.Vertices {
+namespace Fabric.Domain.Schemas.Vertices {
 	
 	/*================================================================================================*/
 	public class ArtifactSchema : VertexSchema {

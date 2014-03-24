@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Query;
+using Fabric.Domain;
+using Fabric.Infrastructure.Faults;
+using Fabric.Infrastructure.Query;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
 	public partial class CreateOperationTasks {

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Api.Executors.Views;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Operations.Oauth;
+using Fabric.Api.Executors.Views;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects.Oauth;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Operations.Oauth;
 using ServiceStack.Text;
 
-namespace Fabric.New.Api.Executors {
+namespace Fabric.Api.Executors {
 
 	/*================================================================================================*/
 	public static class OauthExecutors {

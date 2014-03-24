@@ -5,7 +5,7 @@
 using Weaver.Core.Elements;
 using Weaver.Titan.Elements;
 
-namespace Fabric.New.Domain {
+namespace Fabric.Domain {
 
 
 	/*================================================================================================*/

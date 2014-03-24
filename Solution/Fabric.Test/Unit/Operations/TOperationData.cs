@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Cache;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Operations;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Domain;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Data;
+using Fabric.Operations;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations {
+namespace Fabric.Test.Unit.Operations {
 
 	/*================================================================================================*/
 	[TestFixture]

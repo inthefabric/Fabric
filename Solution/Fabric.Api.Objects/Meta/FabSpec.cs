@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.New.Api.Objects.Meta {
+namespace Fabric.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabSpec : FabObject {

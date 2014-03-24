@@ -1,7 +1,7 @@
 using System.Runtime.Serialization;
-using Fabric.New.Infrastructure.Spec;
+using Fabric.Infrastructure.Spec;
 
-namespace Fabric.New.Api.Objects.Oauth {
+namespace Fabric.Api.Objects.Oauth {
 
 	/*================================================================================================*/
 	[DataContract]

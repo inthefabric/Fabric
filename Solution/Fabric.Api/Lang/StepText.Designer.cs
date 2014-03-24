@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fabric.New.Api.Lang {
+namespace Fabric.Api.Lang {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fabric.New.Api.Lang {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.New.Api.Lang.StepText", typeof(StepText).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.Api.Lang.StepText", typeof(StepText).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -84,7 +84,8 @@ namespace Fabric.New.Api.Lang {
         ///When traversal execution reaches a Back step, the execution retraces (steps backwards through) the traversal path until the alias is reached. Execution then proceeds using the traversal step(s) that immediately follow the Back function step.
         ///
         ///The return type of the Back step is determined by the return type of the corresponding alias.
-        ///[(EX|Return Type Example|_Traversal Steps_        /// [rest of string was truncated]&quot;;.
+        ///[(EX|Return Type Example|_Traversal Steps_
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Back {
             get {

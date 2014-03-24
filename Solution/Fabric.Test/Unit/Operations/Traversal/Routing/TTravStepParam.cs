@@ -1,9 +1,9 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Operations.Traversal.Routing;
+using Fabric.Api.Objects;
+using Fabric.Operations.Traversal.Routing;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
+namespace Fabric.Test.Unit.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	[TestFixture]

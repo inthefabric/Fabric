@@ -8,8 +8,8 @@
     <ProjectGuid>{B4C6BB7B-CEE7-433D-9CC6-1DDB041B9F16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Test</RootNamespace>
-    <AssemblyName>Fabric.New.Test</AssemblyName>
+    <RootNamespace>Fabric.Test</RootNamespace>
+    <AssemblyName>Fabric.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

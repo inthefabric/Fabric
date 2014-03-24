@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Infrastructure.Util;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Api.Objects.Oauth;
+using Fabric.Database.Init.Setups;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Query;
+using Fabric.Infrastructure.Util;
+using Fabric.Test.Unit.Shared;
 using Nancy.Cookies;
 using Nancy.Testing;
 using NUnit.Framework;
@@ -17,7 +17,7 @@ using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
 using HttpStatusCode = Nancy.HttpStatusCode;
 
-namespace Fabric.New.Test.Integration.Api.Executors {
+namespace Fabric.Test.Integration.Api.Executors {
 
 	/*================================================================================================*/
 	public class XOauthExecutors : XExecutorBase {

@@ -1,6 +1,6 @@
-﻿using Fabric.New.Database.Init.Setups;
+﻿using Fabric.Database.Init.Setups;
 
-namespace Fabric.New.Database.Init {
+namespace Fabric.Database.Init {
 
 	/*================================================================================================*/
 	public static class Setup {

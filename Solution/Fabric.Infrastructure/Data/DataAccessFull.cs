@@ -1,7 +1,7 @@
 ﻿using RexConnectClient.Core;
 using Weaver.Exec.RexConnect;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public class DataAccessFull : DataAccess { //TEST: DataAccessFull

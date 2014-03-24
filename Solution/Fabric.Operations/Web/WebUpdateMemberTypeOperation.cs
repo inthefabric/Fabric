@@ -1,13 +1,13 @@
-﻿using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Query;
+﻿using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Query;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Operations.Web {
+namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
 	public class WebUpdateMemberTypeOperation {

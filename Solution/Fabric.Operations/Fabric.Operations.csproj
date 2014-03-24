@@ -8,8 +8,8 @@
     <ProjectGuid>{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Operations</RootNamespace>
-    <AssemblyName>Fabric.New.Operations</AssemblyName>
+    <RootNamespace>Fabric.Operations</RootNamespace>
+    <AssemblyName>Fabric.Operations</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Infrastructure.Faults {
+﻿namespace Fabric.Infrastructure.Faults {
 
 	/*================================================================================================*/
 	public class FabPropertyNullFault : FabFault {

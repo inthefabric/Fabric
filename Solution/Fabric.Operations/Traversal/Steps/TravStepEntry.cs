@@ -1,11 +1,11 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Conversions;
-using Fabric.New.Domain.Names;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Operations.Traversal.Util;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Conversions;
+using Fabric.Domain.Names;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Operations.Traversal.Util;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public static class TravStepEntry {

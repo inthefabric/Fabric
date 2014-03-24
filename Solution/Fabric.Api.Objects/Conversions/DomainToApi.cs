@@ -2,9 +2,9 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using Fabric.New.Domain;
+using Fabric.Domain;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class DomainToApi {

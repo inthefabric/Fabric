@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Api.Objects.Conversions {
+﻿namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public abstract class CreateFabElementValidator : CreateFabObjectValidator {

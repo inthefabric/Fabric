@@ -1,12 +1,12 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Operations.Create;
+﻿using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Operations.Create;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations.Create {
+namespace Fabric.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]

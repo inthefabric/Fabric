@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Cache;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Query;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Query;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations {
+namespace Fabric.Operations {
 
 	/*================================================================================================*/
 	public class OperationData : IOperationData {

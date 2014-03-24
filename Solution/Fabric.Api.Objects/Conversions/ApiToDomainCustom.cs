@@ -1,7 +1,7 @@
-﻿using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Util;
+﻿using Fabric.Domain;
+using Fabric.Infrastructure.Util;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class ApiToDomain {

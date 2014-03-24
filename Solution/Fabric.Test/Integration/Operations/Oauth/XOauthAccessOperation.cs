@@ -1,11 +1,11 @@
-﻿using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Operations.Oauth;
-using Fabric.New.Test.Integration.Shared;
-using Fabric.New.Test.Unit.Shared;
+﻿using Fabric.Api.Objects.Oauth;
+using Fabric.Database.Init.Setups;
+using Fabric.Operations.Oauth;
+using Fabric.Test.Integration.Shared;
+using Fabric.Test.Unit.Shared;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Integration.Operations.Oauth {
+namespace Fabric.Test.Integration.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class XOauthAccessOperation : IntegrationTest {

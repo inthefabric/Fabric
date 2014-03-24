@@ -4,7 +4,7 @@ using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public interface IDataAccess {

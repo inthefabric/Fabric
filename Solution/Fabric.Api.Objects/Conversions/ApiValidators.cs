@@ -2,9 +2,9 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using Fabric.New.Domain.Enums;
+using Fabric.Domain.Enums;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 		
 
 	/*================================================================================================*/

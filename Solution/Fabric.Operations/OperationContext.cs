@@ -1,12 +1,12 @@
 ﻿using System;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Cache;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Infrastructure.Util;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Query;
+using Fabric.Infrastructure.Util;
 
-namespace Fabric.New.Operations {
+namespace Fabric.Operations {
 
 	/*================================================================================================*/
 	public class OperationContext : IOperationContext {

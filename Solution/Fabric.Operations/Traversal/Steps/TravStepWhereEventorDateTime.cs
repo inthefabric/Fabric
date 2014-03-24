@@ -1,14 +1,14 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Conversions;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Spec;
-using Fabric.New.Infrastructure.Util;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Operations.Traversal.Util;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Conversions;
+using Fabric.Domain.Enums;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Spec;
+using Fabric.Infrastructure.Util;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Operations.Traversal.Util;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[SpecStep("WhereEventorDateTime")]

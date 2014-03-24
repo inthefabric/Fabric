@@ -1,6 +1,6 @@
-﻿using Fabric.New.Operations;
+﻿using Fabric.Operations;
 
-namespace Fabric.New.Api.Interfaces {
+namespace Fabric.Api.Interfaces {
 
 	/*================================================================================================*/
 	public interface IApiRequest {

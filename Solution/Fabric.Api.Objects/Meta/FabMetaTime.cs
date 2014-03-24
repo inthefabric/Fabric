@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Api.Objects.Meta {
+namespace Fabric.Api.Objects.Meta {
 
 	/*================================================================================================*/
 	public class FabMetaTime : FabObject {

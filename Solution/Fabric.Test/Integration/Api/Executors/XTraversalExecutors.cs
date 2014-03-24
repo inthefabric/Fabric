@@ -1,9 +1,9 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
+﻿using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
 using NUnit.Framework;
 using Nancy.Testing;
 
-namespace Fabric.New.Test.Integration.Api.Executors {
+namespace Fabric.Test.Integration.Api.Executors {
 
 	/*================================================================================================*/
 	public class XTraversalExecutors : XExecutorBase {

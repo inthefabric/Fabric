@@ -4,12 +4,12 @@
 
 using System;
 using System.Collections.Generic;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Operations.Create;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Operations.Create;
 
-namespace Fabric.New.Api.Executors {
+namespace Fabric.Api.Executors {
 
 	/*================================================================================================*/
 	public static class CreateExecutors {

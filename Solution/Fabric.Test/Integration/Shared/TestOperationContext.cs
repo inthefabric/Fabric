@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Cache;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Operations;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Query;
+using Fabric.Operations;
 using Moq;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Shared {
+namespace Fabric.Test.Integration.Shared {
 	
 	/*================================================================================================*/
 	public class TestOperationContext : OperationContext {

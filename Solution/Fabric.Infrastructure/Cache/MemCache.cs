@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Runtime.Caching;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
 
-namespace Fabric.New.Infrastructure.Cache {
+namespace Fabric.Infrastructure.Cache {
 
 	/*================================================================================================*/
 	public class MemCache : MemoryCache, IMemCache { //TEST: MemCache

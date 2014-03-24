@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Fabric.New.Domain;
+using Fabric.Domain;
 using Weaver.Core;
 using Weaver.Core.Graph;
 using Weaver.Titan.Elements;
 
-namespace Fabric.New.Infrastructure.Query {
+namespace Fabric.Infrastructure.Query {
 
 	/*================================================================================================*/
 	public static class Weave {

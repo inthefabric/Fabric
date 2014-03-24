@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Util;
-using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Util;
+using Fabric.Operations.Create;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations.Create {
+namespace Fabric.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	public class TCreateOperationTasksVertex {

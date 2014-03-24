@@ -1,15 +1,15 @@
 ﻿using System;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Query;
+using Fabric.Database.Init.Setups;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
+using Fabric.Infrastructure.Query;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 
-namespace Fabric.New.Operations {
+namespace Fabric.Operations {
 
 	/*================================================================================================*/
 	public class OperationAuth : IOperationAuth {

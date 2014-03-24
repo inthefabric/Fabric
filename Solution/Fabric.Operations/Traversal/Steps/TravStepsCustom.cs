@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Meta;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Operations.Traversal.Routing;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Meta;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Operations.Traversal.Routing;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public static class TravStepsCustom {

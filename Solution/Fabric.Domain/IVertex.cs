@@ -1,6 +1,6 @@
 ﻿using Weaver.Core.Elements;
 
-namespace Fabric.New.Domain {
+namespace Fabric.Domain {
 
 	/*================================================================================================*/
 	public interface IVertex : IElement, IWeaverVertex {

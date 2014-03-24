@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.New.Api.Objects.Menu {
+namespace Fabric.Api.Objects.Menu {
 
 	/*================================================================================================*/
 	public class FabHome : FabObject {

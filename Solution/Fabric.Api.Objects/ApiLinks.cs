@@ -2,9 +2,9 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using Fabric.New.Api.Objects.Traversal;
+using Fabric.Api.Objects.Traversal;
 
-namespace Fabric.New.Api.Objects {
+namespace Fabric.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabAppDefinesMember : FabLink {

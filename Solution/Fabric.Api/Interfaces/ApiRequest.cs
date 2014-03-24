@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Util;
-using Fabric.New.Operations;
+using Fabric.Infrastructure.Faults;
+using Fabric.Infrastructure.Util;
+using Fabric.Operations;
 using Nancy;
 
-namespace Fabric.New.Api.Interfaces {
+namespace Fabric.Api.Interfaces {
 
 	/*================================================================================================*/
 	public class ApiRequest : IApiRequest {

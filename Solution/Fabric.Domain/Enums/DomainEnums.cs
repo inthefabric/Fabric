@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Fabric.New.Domain.Enums {
+namespace Fabric.Domain.Enums {
 
 
 	/*================================================================================================*/

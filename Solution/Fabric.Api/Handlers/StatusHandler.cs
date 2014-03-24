@@ -1,11 +1,11 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Infrastructure.Faults;
+﻿using Fabric.Api.Objects;
+using Fabric.Infrastructure.Faults;
 using Nancy;
 using Nancy.ErrorHandling;
 using Nancy.Responses;
 using Nancy.Serializers.Json.ServiceStack;
 
-namespace Fabric.New.Api.Handlers {
+namespace Fabric.Api.Handlers {
 
 	/*================================================================================================*/
 	public class StatusHandler : IStatusCodeHandler {

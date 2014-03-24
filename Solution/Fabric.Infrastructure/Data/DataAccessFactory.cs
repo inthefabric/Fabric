@@ -1,7 +1,7 @@
-﻿using Fabric.New.Infrastructure.Cache;
+﻿using Fabric.Infrastructure.Cache;
 using RexConnectClient.Core.Cache;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public class DataAccessFactory : IDataAccessFactory { //TEST: DataAccessFactory

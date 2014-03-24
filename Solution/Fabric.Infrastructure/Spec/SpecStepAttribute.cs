@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Infrastructure.Spec {
+namespace Fabric.Infrastructure.Spec {
 
 	/*================================================================================================*/
 	[AttributeUsage(AttributeTargets.Class)]

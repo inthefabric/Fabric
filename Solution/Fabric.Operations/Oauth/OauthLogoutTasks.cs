@@ -1,9 +1,9 @@
 ﻿using System;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Query;
+using Fabric.Domain;
+using Fabric.Infrastructure.Query;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Oauth {
+namespace Fabric.Operations.Oauth {
 
 	/*================================================================================================*/
 	public enum LogoutErrors {

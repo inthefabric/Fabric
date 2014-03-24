@@ -1,9 +1,9 @@
 ﻿using System;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Spec;
-using Fabric.New.Operations.Traversal.Routing;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Infrastructure.Spec;
+using Fabric.Operations.Traversal.Routing;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[SpecStep("Root", IsRoot=true)]

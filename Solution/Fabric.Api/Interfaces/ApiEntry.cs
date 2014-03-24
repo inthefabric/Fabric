@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fabric.New.Api.Interfaces {
+namespace Fabric.Api.Interfaces {
 
 	/*================================================================================================*/
 	public class ApiEntry {

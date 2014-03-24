@@ -1,12 +1,12 @@
-﻿using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Infrastructure.Util;
+﻿using Fabric.Domain;
+using Fabric.Infrastructure.Faults;
+using Fabric.Infrastructure.Query;
+using Fabric.Infrastructure.Util;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Operations.Web {
+namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
 	public class WebUpdateUserPasswordOperation { //TEST: all Web Operations

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Domain.Enums;
+using Fabric.Domain.Enums;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 	
 	/*================================================================================================*/
 	public interface IDataDto {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Faults;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static class ApiValidatorsCustom {

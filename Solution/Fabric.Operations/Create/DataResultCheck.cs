@@ -1,7 +1,7 @@
 ﻿using System;
-using Fabric.New.Infrastructure.Data;
+using Fabric.Infrastructure.Data;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
 	public class DataResultCheck : IDataResultCheck {

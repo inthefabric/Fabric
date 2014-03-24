@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Fabric.New.Infrastructure.Util {
+namespace Fabric.Infrastructure.Util {
 
 	//adapted from http://www.4guysfromrolla.com/webtech/090501-1.shtml
 

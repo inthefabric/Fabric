@@ -1,6 +1,6 @@
-﻿using Fabric.New.Domain;
+﻿using Fabric.Domain;
 
-namespace Fabric.New.Operations.Oauth {
+namespace Fabric.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class OauthLoginGetOperation {

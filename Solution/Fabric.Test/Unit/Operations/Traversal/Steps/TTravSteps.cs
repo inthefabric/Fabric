@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Operations.Traversal.Steps;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Operations.Traversal.Steps;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal.Steps {
+namespace Fabric.Test.Unit.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[TestFixture]

@@ -3,12 +3,12 @@
 // Changes made to this source file will be overwritten
 
 using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Operations.Traversal.Routing;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Domain.Enums;
+using Fabric.Operations.Traversal.Routing;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	public static class TravSteps {

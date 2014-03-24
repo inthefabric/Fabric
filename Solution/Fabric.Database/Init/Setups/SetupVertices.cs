@@ -1,7 +1,7 @@
 ﻿using System;
-using Fabric.New.Domain;
+using Fabric.Domain;
 
-namespace Fabric.New.Database.Init.Setups {
+namespace Fabric.Database.Init.Setups {
 
 	/*================================================================================================*/
 	public class SetupVertices {

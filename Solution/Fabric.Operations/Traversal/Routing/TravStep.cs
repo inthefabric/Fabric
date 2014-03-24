@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.Infrastructure.Faults;
 
-namespace Fabric.New.Operations.Traversal.Routing {
+namespace Fabric.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public abstract class TravStep : ITravStep {

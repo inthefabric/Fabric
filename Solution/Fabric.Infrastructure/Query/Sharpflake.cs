@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using Fabric.New.Domain;
+using Fabric.Domain;
 
-namespace Fabric.New.Infrastructure.Query {
+namespace Fabric.Infrastructure.Query {
 
 	//idea from: https://github.com/twitter/snowflake
 

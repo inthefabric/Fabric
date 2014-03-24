@@ -1,6 +1,6 @@
-﻿using Fabric.New.Domain;
+﻿using Fabric.Domain;
 
-namespace Fabric.New.Database.Init.Setups {
+namespace Fabric.Database.Init.Setups {
 
 	/*================================================================================================*/
 	public class SetupObjects : SetupVertices {

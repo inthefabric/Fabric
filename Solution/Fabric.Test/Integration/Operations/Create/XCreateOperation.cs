@@ -1,18 +1,18 @@
 ﻿using System;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations;
-using Fabric.New.Operations.Create;
-using Fabric.New.Test.Integration.Shared;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Database.Init.Setups;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations;
+using Fabric.Operations.Create;
+using Fabric.Test.Integration.Shared;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Operations.Create {
+namespace Fabric.Test.Integration.Operations.Create {
 
 	/*================================================================================================*/
 	public abstract class XCreateOperation<T> : IntegrationTest where T : Vertex {

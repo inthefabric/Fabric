@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Broadcast;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Shared {
+namespace Fabric.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public static class TestUtil {

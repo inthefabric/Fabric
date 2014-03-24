@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Query;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Query;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Infrastructure.Query {
+namespace Fabric.Test.Unit.Infrastructure.Query {
 
 	/*================================================================================================*/
 	[TestFixture]

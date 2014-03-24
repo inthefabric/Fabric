@@ -1,7 +1,7 @@
-﻿using Fabric.New.Infrastructure.Data;
+﻿using Fabric.Infrastructure.Data;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
 	public interface ICreateOperationBuilder {

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Operations.Traversal.Routing;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Operations.Traversal.Routing;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
+namespace Fabric.Test.Unit.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	[TestFixture]

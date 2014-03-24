@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Domain;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Query;
+using Fabric.Test.Unit.Shared;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Infrastructure.Query {
+namespace Fabric.Test.Unit.Infrastructure.Query {
 
 	/*================================================================================================*/
 	[TestFixture]

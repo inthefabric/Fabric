@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Fabric.New.Domain.Schemas.Edges;
-using Fabric.New.Domain.Schemas.Enums;
-using Fabric.New.Domain.Schemas.Vertices;
+using Fabric.Domain.Schemas.Edges;
+using Fabric.Domain.Schemas.Enums;
+using Fabric.Domain.Schemas.Vertices;
 
-namespace Fabric.New.Domain.Schemas.Utils {
+namespace Fabric.Domain.Schemas.Utils {
 	
 	/*================================================================================================*/
 	public static class SchemaUtil {

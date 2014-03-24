@@ -1,8 +1,8 @@
-﻿using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Domain;
-using Fabric.New.Operations.Create;
+﻿using Fabric.Api.Objects.Oauth;
+using Fabric.Domain;
+using Fabric.Operations.Create;
 
-namespace Fabric.New.Operations.Oauth {
+namespace Fabric.Operations.Oauth {
 
 	/*================================================================================================*/
 	public interface IOauthAccessTasks {

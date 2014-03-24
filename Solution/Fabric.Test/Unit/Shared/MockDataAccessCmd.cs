@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Shared {
+namespace Fabric.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public class MockDataAccessCmd : IWeaverScript {

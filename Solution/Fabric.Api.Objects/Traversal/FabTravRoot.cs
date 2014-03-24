@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Api.Objects.Traversal {
+﻿namespace Fabric.Api.Objects.Traversal {
 
 	/*================================================================================================*/
 	public abstract class FabTravRoot : FabObject {}

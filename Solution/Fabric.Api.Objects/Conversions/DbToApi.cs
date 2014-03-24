@@ -2,12 +2,12 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Data;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Data;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class DbToApi {

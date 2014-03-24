@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Util;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Util;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Infrastructure.Util {
+namespace Fabric.Test.Unit.Infrastructure.Util {
 
 	/*================================================================================================*/
 	[TestFixture]

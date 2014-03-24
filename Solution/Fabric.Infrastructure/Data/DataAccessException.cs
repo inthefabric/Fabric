@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public class DataAccessException : Exception {

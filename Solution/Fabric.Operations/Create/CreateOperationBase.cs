@@ -1,12 +1,12 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
 using ServiceStack.Text;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
 	public abstract class CreateOperationBase<TDom, TApi, TCre> : ICreateOperation<TDom, TApi>

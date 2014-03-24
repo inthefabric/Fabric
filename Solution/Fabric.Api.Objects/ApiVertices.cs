@@ -2,11 +2,11 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using Fabric.New.Api.Objects.Conversions;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Spec;
+using Fabric.Api.Objects.Conversions;
+using Fabric.Domain;
+using Fabric.Infrastructure.Spec;
 
-namespace Fabric.New.Api.Objects {
+namespace Fabric.Api.Objects {
 		
 
 	/*================================================================================================*/

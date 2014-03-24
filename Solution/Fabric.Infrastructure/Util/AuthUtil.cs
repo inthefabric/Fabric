@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace Fabric.New.Infrastructure.Util {
+namespace Fabric.Infrastructure.Util {
 
 	/*================================================================================================*/
 	public static class AuthUtil { //TEST: AuthUtil

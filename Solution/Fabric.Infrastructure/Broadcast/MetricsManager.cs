@@ -4,7 +4,7 @@ using System.Threading;
 using metrics;
 using metrics.Core;
 
-namespace Fabric.New.Infrastructure.Broadcast {
+namespace Fabric.Infrastructure.Broadcast {
 	
 	/*================================================================================================*/
 	public class MetricsManager : IMetricsManager { //TEST: MetricsManager

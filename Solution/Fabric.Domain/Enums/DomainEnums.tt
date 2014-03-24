@@ -1,12 +1,12 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Reflection" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Enums" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Enums" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
 <#@ output extension=".cs" #>
 
 // GENERATED CODE
@@ -15,7 +15,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Fabric.New.Domain.Enums {
+namespace Fabric.Domain.Enums {
 <#
 IList<IEnumSchema> enums = SchemaUtil.GetEnumSchemas();
 

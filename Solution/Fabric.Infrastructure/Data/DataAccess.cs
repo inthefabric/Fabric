@@ -6,7 +6,7 @@ using RexConnectClient.Core.Transfer;
 using Weaver.Core.Query;
 using Weaver.Exec.RexConnect;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public class DataAccess : IDataAccess { //TEST: DataAccess

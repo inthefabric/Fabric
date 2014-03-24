@@ -1,16 +1,16 @@
 ﻿using System;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Domain;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations.Create;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations.Create {
+namespace Fabric.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	public class TCreateOperationTasksDuplicate {

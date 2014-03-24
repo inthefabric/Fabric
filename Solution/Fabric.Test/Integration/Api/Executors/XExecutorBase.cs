@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using Fabric.New.Api;
-using Fabric.New.Api.Objects;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Test.Integration.Shared;
+using Fabric.Api;
+using Fabric.Api.Objects;
+using Fabric.Database.Init.Setups;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Data;
+using Fabric.Test.Integration.Shared;
 using Nancy;
 using Nancy.Cookies;
 using Nancy.Testing;
@@ -15,7 +15,7 @@ using RexConnectClient.Core.Cache;
 using ServiceStack.Text;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Api.Executors {
+namespace Fabric.Test.Integration.Api.Executors {
 
 	/*================================================================================================*/
 	public abstract class XExecutorBase : IntegrationTest {

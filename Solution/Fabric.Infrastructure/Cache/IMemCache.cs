@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Caching;
-using Fabric.New.Domain;
+using Fabric.Domain;
 
-namespace Fabric.New.Infrastructure.Cache {
+namespace Fabric.Infrastructure.Cache {
 
 	/*================================================================================================*/
 	public interface IMemCache {

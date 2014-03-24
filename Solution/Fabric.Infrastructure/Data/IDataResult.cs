@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Domain;
+using Fabric.Domain;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public interface IDataResult {

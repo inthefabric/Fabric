@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Operations.Traversal;
-using Fabric.New.Test.Integration.Shared;
+using Fabric.Api.Objects;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Operations.Traversal;
+using Fabric.Test.Integration.Shared;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Integration.Operations.Traversal {
+namespace Fabric.Test.Integration.Operations.Traversal {
 
 	/*================================================================================================*/
 	public class XTraversalOperation : IntegrationTest { //TEST: XTraversalOperation

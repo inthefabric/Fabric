@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Text;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Meta;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Cache;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Operations;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Meta;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Data;
+using Fabric.Operations;
 using Nancy;
 using Nancy.Cookies;
 using Nancy.Responses;
@@ -17,7 +17,7 @@ using Nancy.Serializers.Json.ServiceStack;
 using ServiceStack.Text;
 using HttpStatusCode = Nancy.HttpStatusCode;
 
-namespace Fabric.New.Api {
+namespace Fabric.Api {
 
 	/*================================================================================================*/
 	public abstract class BaseModule : NancyModule {

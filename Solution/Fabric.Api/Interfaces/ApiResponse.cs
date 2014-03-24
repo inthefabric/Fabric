@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Util;
-using Fabric.New.Operations;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Util;
+using Fabric.Operations;
 using ServiceStack.Text;
 
-namespace Fabric.New.Api.Interfaces {
+namespace Fabric.Api.Interfaces {
 
 	/*================================================================================================*/
 	public class ApiResponse : IApiResponse {

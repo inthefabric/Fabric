@@ -1,8 +1,8 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
+﻿using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Infrastructure.Faults;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
 	public static class CreateOperationsCustom {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Util;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Util;
 
-namespace Fabric.New.Database.Init.Setups {
+namespace Fabric.Database.Init.Setups {
 
 	/*================================================================================================*/
 	public class SetupFactors : SetupVertices {

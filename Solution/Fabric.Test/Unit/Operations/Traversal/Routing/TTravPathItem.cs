@@ -1,11 +1,11 @@
 ﻿using System;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Test.Unit.Shared;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
+namespace Fabric.Test.Unit.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	[TestFixture]

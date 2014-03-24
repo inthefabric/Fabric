@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.New.Api.Objects {
+namespace Fabric.Api.Objects {
 
 	/*================================================================================================*/
 	public class FabResponse {

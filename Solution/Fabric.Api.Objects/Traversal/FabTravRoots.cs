@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Fabric.New.Api.Objects.Traversal {
+namespace Fabric.Api.Objects.Traversal {
 
 
 	/*================================================================================================*/

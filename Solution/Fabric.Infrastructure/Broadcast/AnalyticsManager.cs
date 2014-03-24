@@ -7,7 +7,7 @@ using GoogleAnalyticsTracker;
 
 #endif
 
-namespace Fabric.New.Infrastructure.Broadcast {
+namespace Fabric.Infrastructure.Broadcast {
 	
 	/*================================================================================================*/
 	public class AnalyticsManager : IAnalyticsManager { //TEST: AnalyticsManager

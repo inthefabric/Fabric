@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Infrastructure.Faults;
 
-namespace Fabric.New.Api.Executors {
+namespace Fabric.Api.Executors {
 
 	/*================================================================================================*/
 	public class FabResponseExecutor<T> : Executor where T : FabObject {

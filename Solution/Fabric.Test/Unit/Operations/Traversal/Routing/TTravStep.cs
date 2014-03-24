@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal.Routing {
+namespace Fabric.Test.Unit.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public abstract class TTravStep {

@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Domain.Schemas.Enums {
+﻿namespace Fabric.Domain.Schemas.Enums {
 
 	/*================================================================================================*/
 	public class VertexTypeSchema : EnumSchema {

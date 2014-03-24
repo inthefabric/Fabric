@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Database.Init.Setups {
+﻿namespace Fabric.Database.Init.Setups {
 
 	/*================================================================================================*/
 	public enum SetupVertexId : long {

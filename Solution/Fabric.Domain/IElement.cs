@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Weaver.Core.Elements;
 
-namespace Fabric.New.Domain {
+namespace Fabric.Domain {
 
 	/*================================================================================================*/
 	public interface IElement : IWeaverElement {

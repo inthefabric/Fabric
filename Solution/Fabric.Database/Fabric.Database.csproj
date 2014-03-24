@@ -8,8 +8,8 @@
     <ProjectGuid>{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Database</RootNamespace>
-    <AssemblyName>Fabric.New.Database</AssemblyName>
+    <RootNamespace>Fabric.Database</RootNamespace>
+    <AssemblyName>Fabric.Database</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

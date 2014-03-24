@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations;
-using Fabric.New.Operations.Traversal;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Domain.Enums;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations;
+using Fabric.Operations.Traversal;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations.Traversal {
+namespace Fabric.Test.Unit.Operations.Traversal {
 
 	/*================================================================================================*/
 	[TestFixture]

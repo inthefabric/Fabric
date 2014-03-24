@@ -1,5 +1,5 @@
 ﻿
-namespace Fabric.New.Operations {
+namespace Fabric.Operations {
 
 	/*================================================================================================*/
 	public interface IOperationAuth {

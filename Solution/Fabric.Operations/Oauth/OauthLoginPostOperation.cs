@@ -1,7 +1,7 @@
-﻿using Fabric.New.Domain;
-using Fabric.New.Operations.Create;
+﻿using Fabric.Domain;
+using Fabric.Operations.Create;
 
-namespace Fabric.New.Operations.Oauth {
+namespace Fabric.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class OauthLoginPostOperation {

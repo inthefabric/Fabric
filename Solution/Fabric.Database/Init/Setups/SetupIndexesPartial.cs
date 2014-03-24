@@ -1,6 +1,6 @@
 ﻿using Weaver.Core.Query;
 
-namespace Fabric.New.Database.Init.Setups {
+namespace Fabric.Database.Init.Setups {
 
 
 	/*================================================================================================*/

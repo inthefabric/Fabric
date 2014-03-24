@@ -8,8 +8,8 @@
     <ProjectGuid>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Infrastructure</RootNamespace>
-    <AssemblyName>Fabric.New.Infrastructure</AssemblyName>
+    <RootNamespace>Fabric.Infrastructure</RootNamespace>
+    <AssemblyName>Fabric.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

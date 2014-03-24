@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Operations;
-using Fabric.New.Operations.Create;
-using Fabric.New.Operations.Oauth;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Oauth;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Data;
+using Fabric.Operations;
+using Fabric.Operations.Create;
+using Fabric.Operations.Oauth;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Operations.Oauth {
+namespace Fabric.Test.Unit.Operations.Oauth {
 
 	/*================================================================================================*/
 	[TestFixture]

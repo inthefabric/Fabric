@@ -1,14 +1,14 @@
-﻿using Fabric.New.Database.Init.Setups;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Operations;
-using Fabric.New.Operations.Oauth;
-using Fabric.New.Test.Integration.Shared;
-using Fabric.New.Test.Unit.Shared;
+﻿using Fabric.Database.Init.Setups;
+using Fabric.Domain;
+using Fabric.Infrastructure.Query;
+using Fabric.Operations;
+using Fabric.Operations.Oauth;
+using Fabric.Test.Integration.Shared;
+using Fabric.Test.Unit.Shared;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Operations.Oauth {
+namespace Fabric.Test.Integration.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class XOauthLoginGetOperation : IntegrationTest {

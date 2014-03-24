@@ -8,8 +8,8 @@
     <ProjectGuid>{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fabric.New.Domain.Schemas</RootNamespace>
-    <AssemblyName>Fabric.New.Domain.Schemas</AssemblyName>
+    <RootNamespace>Fabric.Domain.Schemas</RootNamespace>
+    <AssemblyName>Fabric.Domain.Schemas</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

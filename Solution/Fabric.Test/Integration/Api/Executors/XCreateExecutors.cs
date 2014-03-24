@@ -1,10 +1,10 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Query;
+using Fabric.Api.Objects;
+using Fabric.Database.Init.Setups;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Query;
 using Nancy.Testing;
 using NUnit.Framework;
 using ServiceStack.Text;
@@ -12,7 +12,7 @@ using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Test.Integration.Api.Executors {
+namespace Fabric.Test.Integration.Api.Executors {
 
 	/*================================================================================================*/
 	public class XCreateExecutors : XExecutorBase {

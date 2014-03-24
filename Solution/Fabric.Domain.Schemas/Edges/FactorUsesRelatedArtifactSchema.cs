@@ -1,7 +1,7 @@
-﻿using Fabric.New.Domain.Schemas.Utils;
-using Fabric.New.Domain.Schemas.Vertices;
+﻿using Fabric.Domain.Schemas.Utils;
+using Fabric.Domain.Schemas.Vertices;
 
-namespace Fabric.New.Domain.Schemas.Edges {
+namespace Fabric.Domain.Schemas.Edges {
 	
 	/*================================================================================================*/
 	public class FactorUsesRelatedArtifactSchema : EdgeSchema<FactorSchema, ArtifactSchema> {

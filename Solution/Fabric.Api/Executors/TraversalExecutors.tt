@@ -1,8 +1,8 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
 <#@ output extension=".cs" #>
 
 // GENERATED CODE
@@ -11,12 +11,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Operations.Traversal;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Operations.Traversal;
 
-namespace Fabric.New.Api.Executors {
+namespace Fabric.Api.Executors {
 
 	/*================================================================================================*/
 	public static class TraversalExecutors {

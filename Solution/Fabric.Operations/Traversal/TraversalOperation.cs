@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Conversions;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Operations.Traversal.Steps;
-using Fabric.New.Operations.Traversal.Util;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Conversions;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Operations.Traversal.Steps;
+using Fabric.Operations.Traversal.Util;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.Operations.Traversal {
 
 	/*================================================================================================*/
 	public class TraversalOperation : ITraversalOperation {

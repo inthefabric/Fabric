@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Domain.Schemas.Enums {
+namespace Fabric.Domain.Schemas.Enums {
 
 	/*================================================================================================*/
 	[AttributeUsage(AttributeTargets.Property)]

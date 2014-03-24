@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Fabric.New.Infrastructure.Util {
+namespace Fabric.Infrastructure.Util {
 
 	/*================================================================================================*/
 	public static class DataUtil {

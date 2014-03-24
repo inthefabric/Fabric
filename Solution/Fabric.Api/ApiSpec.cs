@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Lang;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Menu;
-using Fabric.New.Api.Objects.Meta;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Spec;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Operations.Traversal.Util;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Lang;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Menu;
+using Fabric.Api.Objects.Meta;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Spec;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Operations.Traversal.Util;
 
-namespace Fabric.New.Api {
+namespace Fabric.Api {
 
 	/*================================================================================================*/
 	public static class ApiSpec {

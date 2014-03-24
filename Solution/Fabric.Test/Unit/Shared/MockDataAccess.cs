@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Data;
 using Moq;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Unit.Shared {
+namespace Fabric.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public class MockDataAccess : Mock<IDataAccess> {

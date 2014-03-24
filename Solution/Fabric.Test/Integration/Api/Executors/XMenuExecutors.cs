@@ -1,8 +1,8 @@
-﻿using Fabric.New.Api.Objects;
+﻿using Fabric.Api.Objects;
 using NUnit.Framework;
 using Nancy.Testing;
 
-namespace Fabric.New.Test.Integration.Api.Executors {
+namespace Fabric.Test.Integration.Api.Executors {
 
 	/*================================================================================================*/
 	public class XMenuExecutors : XExecutorBase {
@@ -46,7 +46,7 @@ namespace Fabric.New.Test.Integration.Api.Executors {
 
 			BrowserResponse br = Get("oauth");
 			FabClass result = AssertFabResponseData<FabClass>(br);
-			Assert.AreEqual("OAuth", result.Name, "Incorrect result.");
+			Assert.AreEqual("Oauth", result.Name, "Incorrect result.");
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

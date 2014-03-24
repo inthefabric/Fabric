@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Cache;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Operations;
-using Fabric.New.Test.Unit.Infrastructure.Util;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Data;
+using Fabric.Operations;
+using Fabric.Test.Unit.Infrastructure.Util;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations {
+namespace Fabric.Test.Unit.Operations {
 
 	/*================================================================================================*/
 	[TestFixture]

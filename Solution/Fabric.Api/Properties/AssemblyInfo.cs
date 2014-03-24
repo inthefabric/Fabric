@@ -1,4 +1,4 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("Fabric.New.Api")]
+[assembly: AssemblyTitle("Fabric.Api")]
 [assembly: AssemblyDescription("")]

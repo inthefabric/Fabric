@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Database.Init.Setups;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations;
+using Fabric.Test.Unit.Shared;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations {
+namespace Fabric.Test.Unit.Operations {
 
 	/*================================================================================================*/
 	[TestFixture]

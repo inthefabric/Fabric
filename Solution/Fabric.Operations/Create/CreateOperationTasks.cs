@@ -2,11 +2,11 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
+using Fabric.Api.Objects;
+using Fabric.Domain;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 	
 	/*================================================================================================*/
 	public partial class CreateOperationTasks {

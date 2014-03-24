@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using Fabric.New.Database.Init;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
+using Fabric.Database.Init;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Internal {
+namespace Fabric.Operations.Internal {
 
 	/*================================================================================================*/
 	public class InternalInitDbOperation : IInternalOperation {

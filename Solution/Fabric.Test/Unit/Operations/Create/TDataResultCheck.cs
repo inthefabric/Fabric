@@ -1,9 +1,9 @@
-﻿using Fabric.New.Infrastructure.Data;
-using Fabric.New.Operations.Create;
+﻿using Fabric.Infrastructure.Data;
+using Fabric.Operations.Create;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Create {
+namespace Fabric.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	[TestFixture]

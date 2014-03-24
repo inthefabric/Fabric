@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Infrastructure.Faults {
+namespace Fabric.Infrastructure.Faults {
 
 	/*================================================================================================*/
 	public class FabDuplicateFault : FabFault {

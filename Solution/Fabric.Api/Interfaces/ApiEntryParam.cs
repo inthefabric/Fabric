@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Api.Interfaces {
+namespace Fabric.Api.Interfaces {
 
 	/*================================================================================================*/
 	public class ApiEntryParam {

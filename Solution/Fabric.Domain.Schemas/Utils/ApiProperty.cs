@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Domain.Schemas.Utils {
+namespace Fabric.Domain.Schemas.Utils {
 
 	/*================================================================================================*/
 	public abstract class ApiProperty {

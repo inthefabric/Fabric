@@ -1,16 +1,16 @@
 ﻿using System.Linq;
-using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Infrastructure.Util;
-using Fabric.New.Operations.Create;
+using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Query;
+using Fabric.Infrastructure.Util;
+using Fabric.Operations.Create;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 using Weaver.Core.Steps.Statements;
 
-namespace Fabric.New.Operations.Oauth {
+namespace Fabric.Operations.Oauth {
 
 	/*================================================================================================*/
 	public enum LoginErrors { //from section "4.1.2.1. Error Response"

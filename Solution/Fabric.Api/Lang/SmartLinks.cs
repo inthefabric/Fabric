@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace Fabric.New.Api.Lang {
+namespace Fabric.Api.Lang {
 
 	/*================================================================================================*/
 	public static partial class SmartLinks {

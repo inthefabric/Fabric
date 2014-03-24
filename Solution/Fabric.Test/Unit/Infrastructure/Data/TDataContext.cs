@@ -1,10 +1,10 @@
-﻿using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
+﻿using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Data;
 using Moq;
 using NUnit.Framework;
 using RexConnectClient.Core.Cache;
 
-namespace Fabric.New.Test.Unit.Infrastructure.Data {
+namespace Fabric.Test.Unit.Infrastructure.Data {
 
 	/*================================================================================================*/
 	[TestFixture]

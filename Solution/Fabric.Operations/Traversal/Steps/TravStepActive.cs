@@ -1,12 +1,12 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Spec;
-using Fabric.New.Operations.Traversal.Routing;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Faults;
+using Fabric.Infrastructure.Spec;
+using Fabric.Operations.Traversal.Routing;
 
-namespace Fabric.New.Operations.Traversal.Steps {
+namespace Fabric.Operations.Traversal.Steps {
 
 	/*================================================================================================*/
 	[SpecStep("Active")]

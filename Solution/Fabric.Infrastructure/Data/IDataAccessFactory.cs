@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Infrastructure.Data {
+﻿namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public interface IDataAccessFactory {

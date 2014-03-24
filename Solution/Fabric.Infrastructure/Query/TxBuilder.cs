@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Domain;
+using Fabric.Domain;
 using Weaver.Core.Elements;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Infrastructure.Query {
+namespace Fabric.Infrastructure.Query {
 
 	/*================================================================================================*/
 	public class TxBuilder : ITxBuilder {

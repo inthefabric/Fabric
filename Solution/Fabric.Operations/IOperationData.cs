@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Data;
+using Fabric.Domain;
+using Fabric.Infrastructure.Data;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations {
+namespace Fabric.Operations {
 
 	/*================================================================================================*/
 	public interface IOperationData {

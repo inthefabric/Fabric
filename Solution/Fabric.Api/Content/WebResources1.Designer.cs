@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fabric.New.Api.Content {
+namespace Fabric.Api.Content {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fabric.New.Api.Content {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.New.Api.Content.WebResources", typeof(WebResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fabric.Api.Content.WebResources", typeof(WebResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

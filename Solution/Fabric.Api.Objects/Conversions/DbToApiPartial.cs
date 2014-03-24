@@ -1,8 +1,8 @@
 ﻿using System;
-using Fabric.New.Infrastructure.Data;
+using Fabric.Infrastructure.Data;
 using Weaver.Core.Elements;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class DbToApi {

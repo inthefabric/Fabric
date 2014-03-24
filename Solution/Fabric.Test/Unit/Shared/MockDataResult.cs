@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Data;
+using Fabric.Domain;
+using Fabric.Infrastructure.Data;
 using Moq;
 using Weaver.Core.Elements;
 
-namespace Fabric.New.Test.Unit.Shared {
+namespace Fabric.Test.Unit.Shared {
 
 	/*================================================================================================*/
 	public class MockDataResult : Mock<IDataResult> {

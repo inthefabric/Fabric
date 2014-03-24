@@ -1,7 +1,7 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
+﻿using Fabric.Api.Objects;
+using Fabric.Domain;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 
 
 	/*================================================================================================*/

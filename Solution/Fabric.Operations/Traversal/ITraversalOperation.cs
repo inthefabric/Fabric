@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
 
-namespace Fabric.New.Operations.Traversal {
+namespace Fabric.Operations.Traversal {
 
 	/*================================================================================================*/
 	public interface ITraversalOperation {

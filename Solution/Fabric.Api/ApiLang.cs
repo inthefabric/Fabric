@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Resources;
-using Fabric.New.Api.Lang;
-using Fabric.New.Api.Objects;
+using Fabric.Api.Lang;
+using Fabric.Api.Objects;
 
-namespace Fabric.New.Api {
+namespace Fabric.Api {
 
 	/*================================================================================================*/
 	public static class ApiLang {

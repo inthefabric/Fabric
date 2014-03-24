@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Infrastructure.Broadcast {
+namespace Fabric.Infrastructure.Broadcast {
 
 	/*================================================================================================*/
 	public interface IMetricsManager : IDisposable {

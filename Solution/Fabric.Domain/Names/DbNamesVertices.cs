@@ -2,7 +2,7 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-namespace Fabric.New.Domain.Names {
+namespace Fabric.Domain.Names {
 
 	/*================================================================================================*/
 	public static partial class DbName {

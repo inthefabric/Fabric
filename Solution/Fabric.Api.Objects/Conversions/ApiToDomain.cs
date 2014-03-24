@@ -4,10 +4,10 @@
 
 using System;
 using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class ApiToDomain {

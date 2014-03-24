@@ -1,9 +1,9 @@
 ﻿using System;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Cache;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
 
-namespace Fabric.New.Operations {
+namespace Fabric.Operations {
 	
 	/*================================================================================================*/
 	public interface IOperationContext {

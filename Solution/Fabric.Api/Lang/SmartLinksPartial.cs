@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Fabric.New.Api.Lang {
+namespace Fabric.Api.Lang {
 
 	/*================================================================================================*/
 	public static partial class SmartLinks {

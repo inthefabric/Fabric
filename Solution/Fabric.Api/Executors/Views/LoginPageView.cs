@@ -1,7 +1,7 @@
-﻿using Fabric.New.Api.Content;
-using Fabric.New.Operations.Oauth;
+﻿using Fabric.Api.Content;
+using Fabric.Operations.Oauth;
 
-namespace Fabric.New.Api.Executors.Views {
+namespace Fabric.Api.Executors.Views {
 
 	/*================================================================================================*/
 	public class LoginPageView : HtmlView {

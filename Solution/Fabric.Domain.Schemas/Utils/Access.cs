@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Domain.Schemas.Utils {
+﻿namespace Fabric.Domain.Schemas.Utils {
 
 	/*================================================================================================*/
 	public enum Access {

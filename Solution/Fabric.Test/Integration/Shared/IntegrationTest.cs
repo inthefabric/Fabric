@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Data;
 using NUnit.Framework;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Shared {
+namespace Fabric.Test.Integration.Shared {
 
 	/*================================================================================================*/
 	public abstract class IntegrationTest {

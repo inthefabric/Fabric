@@ -1,5 +1,5 @@
 ﻿
-namespace Fabric.New.Operations.Web {
+namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
 	public class SuccessResult {

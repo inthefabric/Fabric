@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace Fabric.New.Api.Objects.Oauth {
+namespace Fabric.Api.Objects.Oauth {
 
 	/*================================================================================================*/
 	[DataContract]

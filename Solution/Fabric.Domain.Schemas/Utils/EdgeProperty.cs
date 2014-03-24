@@ -1,8 +1,8 @@
 ﻿using System;
-using Fabric.New.Domain.Schemas.Edges;
-using Fabric.New.Domain.Schemas.Vertices;
+using Fabric.Domain.Schemas.Edges;
+using Fabric.Domain.Schemas.Vertices;
 
-namespace Fabric.New.Domain.Schemas.Utils {
+namespace Fabric.Domain.Schemas.Utils {
 
 	/*================================================================================================*/
 	public abstract class EdgeProperty {

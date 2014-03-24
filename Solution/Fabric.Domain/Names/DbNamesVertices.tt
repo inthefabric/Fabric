@@ -1,14 +1,14 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
 <#@ output extension=".cs" #>
 
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-namespace Fabric.New.Domain.Names {
+namespace Fabric.Domain.Names {
 
 	/*================================================================================================*/
 	public static partial class DbName {

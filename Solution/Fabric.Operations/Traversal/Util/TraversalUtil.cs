@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Operations.Traversal.Routing;
-using Fabric.New.Operations.Traversal.Steps;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Operations.Traversal.Routing;
+using Fabric.Operations.Traversal.Steps;
 
-namespace Fabric.New.Operations.Traversal.Util {
+namespace Fabric.Operations.Traversal.Util {
 
 	/*================================================================================================*/
 	public static class TraversalUtil {

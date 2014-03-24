@@ -1,12 +1,12 @@
-﻿using Fabric.New.Domain;
-using Fabric.New.Domain.Names;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Infrastructure.Query;
+﻿using Fabric.Domain;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Faults;
+using Fabric.Infrastructure.Query;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 using Weaver.Core.Steps;
 
-namespace Fabric.New.Operations.Create {
+namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
 	public partial class CreateOperationTasks {

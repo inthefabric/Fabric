@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Api.Objects.Traversal {
+namespace Fabric.Api.Objects.Traversal {
 
 	/*================================================================================================*/
 	public abstract partial class FabTravTypedRoot : FabObject {

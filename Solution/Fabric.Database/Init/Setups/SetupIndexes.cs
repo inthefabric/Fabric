@@ -2,7 +2,7 @@
 // GENERATED CODE
 // Changes made to this source file will be overwritten
 
-namespace Fabric.New.Database.Init.Setups {
+namespace Fabric.Database.Init.Setups {
 
 
 	/*================================================================================================*/

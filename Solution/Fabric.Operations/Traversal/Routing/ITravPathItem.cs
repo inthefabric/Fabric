@@ -1,7 +1,7 @@
 ﻿using System;
-using Fabric.New.Infrastructure.Faults;
+using Fabric.Infrastructure.Faults;
 
-namespace Fabric.New.Operations.Traversal.Routing {
+namespace Fabric.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public interface ITravPathItem {

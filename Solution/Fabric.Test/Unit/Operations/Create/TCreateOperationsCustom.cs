@@ -1,12 +1,12 @@
-﻿using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
+﻿using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations.Create;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 
-namespace Fabric.New.Test.Unit.Operations.Create {
+namespace Fabric.Test.Unit.Operations.Create {
 
 	/*================================================================================================*/
 	public class TCreateOperationsCustom {

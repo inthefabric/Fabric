@@ -5,12 +5,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Traversal;
-using Fabric.New.Operations.Traversal;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Traversal;
+using Fabric.Operations.Traversal;
 
-namespace Fabric.New.Api.Executors {
+namespace Fabric.Api.Executors {
 
 	/*================================================================================================*/
 	public static class TraversalExecutors {

@@ -1,12 +1,12 @@
 ﻿using System;
-using Fabric.New.Api.Executors;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Api.Objects;
-using Fabric.New.Api.Objects.Menu;
-using Fabric.New.Api.Objects.Meta;
-using Fabric.New.Api.Objects.Oauth;
+using Fabric.Api.Executors;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Menu;
+using Fabric.Api.Objects.Meta;
+using Fabric.Api.Objects.Oauth;
 
-namespace Fabric.New.Api {
+namespace Fabric.Api {
 
 	/*================================================================================================*/
 	public static class ApiMenu {

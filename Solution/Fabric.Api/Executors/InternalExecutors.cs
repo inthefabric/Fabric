@@ -1,8 +1,8 @@
 ﻿using System;
-using Fabric.New.Api.Interfaces;
-using Fabric.New.Operations.Internal;
+using Fabric.Api.Interfaces;
+using Fabric.Operations.Internal;
 
-namespace Fabric.New.Api.Executors {
+namespace Fabric.Api.Executors {
 
 	/*================================================================================================*/
 	public static class InternalExecutors {

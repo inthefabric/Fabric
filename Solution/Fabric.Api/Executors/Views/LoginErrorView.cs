@@ -1,6 +1,6 @@
-﻿using Fabric.New.Api.Content;
+﻿using Fabric.Api.Content;
 
-namespace Fabric.New.Api.Executors.Views {
+namespace Fabric.Api.Executors.Views {
 
 	/*================================================================================================*/
 	public class LoginErrorView : HtmlView {

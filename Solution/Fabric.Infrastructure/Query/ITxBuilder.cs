@@ -1,8 +1,8 @@
-﻿using Fabric.New.Domain;
+﻿using Fabric.Domain;
 using Weaver.Core.Elements;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Infrastructure.Query {
+namespace Fabric.Infrastructure.Query {
 
 	/*================================================================================================*/
 	public interface ITxBuilder {

@@ -1,6 +1,6 @@
 ﻿using RexConnectClient.Core.Cache;
 
-namespace Fabric.New.Infrastructure.Cache {
+namespace Fabric.Infrastructure.Cache {
 
 	/*================================================================================================*/
 	public interface ICacheManager {

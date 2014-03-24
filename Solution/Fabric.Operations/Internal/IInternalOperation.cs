@@ -1,4 +1,4 @@
-﻿namespace Fabric.New.Operations.Internal {
+﻿namespace Fabric.Operations.Internal {
 
 	/*================================================================================================*/
 	public interface IInternalOperation {

@@ -1,16 +1,16 @@
-﻿using Fabric.New.Api.Objects.Oauth;
-using Fabric.New.Database.Init.Setups;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Query;
-using Fabric.New.Operations.Oauth;
-using Fabric.New.Test.Integration.Shared;
-using Fabric.New.Test.Unit.Shared;
+﻿using Fabric.Api.Objects.Oauth;
+using Fabric.Database.Init.Setups;
+using Fabric.Domain;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Query;
+using Fabric.Operations.Oauth;
+using Fabric.Test.Integration.Shared;
+using Fabric.Test.Unit.Shared;
 using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Test.Integration.Operations.Oauth {
+namespace Fabric.Test.Integration.Operations.Oauth {
 
 	/*================================================================================================*/
 	public class XOauthLogoutOperation : IntegrationTest {

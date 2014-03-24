@@ -1,11 +1,11 @@
 ﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(SolutionDir)Fabric.New.Domain.Schemas\bin\Debug\Fabric.New.Domain.Schemas.dll" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Vertices" #>
-<#@ import namespace="Fabric.New.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
 <#@ output extension=".cs" #>
 
 // GENERATED CODE
@@ -13,10 +13,10 @@
 
 using System;
 using System.Collections.Generic;
-using Fabric.New.Domain;
-using Fabric.New.Domain.Enums;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
 
-namespace Fabric.New.Api.Objects.Conversions {
+namespace Fabric.Api.Objects.Conversions {
 
 	/*================================================================================================*/
 	public static partial class ApiToDomain {

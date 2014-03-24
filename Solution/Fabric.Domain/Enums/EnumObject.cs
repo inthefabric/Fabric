@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fabric.New.Domain.Enums {
+namespace Fabric.Domain.Enums {
 
 	/*================================================================================================*/
 	public class EnumObject {

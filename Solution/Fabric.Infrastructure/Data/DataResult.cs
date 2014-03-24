@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fabric.New.Domain;
+using Fabric.Domain;
 using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;
 
-namespace Fabric.New.Infrastructure.Data {
+namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
 	public class DataResult : IDataResult { //TEST: DataResult

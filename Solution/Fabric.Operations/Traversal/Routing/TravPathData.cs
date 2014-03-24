@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.New.Api.Objects.Traversal;
+using Fabric.Api.Objects.Traversal;
 using Weaver.Core.Query;
 
-namespace Fabric.New.Operations.Traversal.Routing {
+namespace Fabric.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public class TravPathData : ITravPathData {

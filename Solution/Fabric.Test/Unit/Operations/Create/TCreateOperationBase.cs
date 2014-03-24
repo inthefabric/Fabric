@@ -1,17 +1,17 @@
 ﻿using System;
-using Fabric.New.Api.Objects;
-using Fabric.New.Domain;
-using Fabric.New.Infrastructure.Broadcast;
-using Fabric.New.Infrastructure.Data;
-using Fabric.New.Infrastructure.Faults;
-using Fabric.New.Operations;
-using Fabric.New.Operations.Create;
-using Fabric.New.Test.Unit.Shared;
+using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Data;
+using Fabric.Infrastructure.Faults;
+using Fabric.Operations;
+using Fabric.Operations.Create;
+using Fabric.Test.Unit.Shared;
 using Moq;
 using NUnit.Framework;
 using ServiceStack.Text;
 
-namespace Fabric.New.Test.Unit.Operations.Create {
+namespace Fabric.Test.Unit.Operations.Create {
 	
 	/*================================================================================================*/
 	public abstract class TCreateOperationBase<TDom, TApi, TCre, TOper>

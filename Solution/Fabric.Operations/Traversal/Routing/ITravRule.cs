@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabric.New.Operations.Traversal.Routing {
+namespace Fabric.Operations.Traversal.Routing {
 
 	/*================================================================================================*/
 	public interface ITravRule {

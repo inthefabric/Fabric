@@ -1,6 +1,6 @@
-﻿using Fabric.New.Api.Executors;
+﻿using Fabric.Api.Executors;
 
-namespace Fabric.New.Api {
+namespace Fabric.Api {
 
 	/*================================================================================================*/
 	public class ApiModule : BaseModule {

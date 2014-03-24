@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using GoogleAnalyticsTracker;
 
-namespace Fabric.New.Infrastructure.Broadcast {
+namespace Fabric.Infrastructure.Broadcast {
 
 	// This class was adapted from:
 	//  - https://github.com/ragnard/Graphite.NET
