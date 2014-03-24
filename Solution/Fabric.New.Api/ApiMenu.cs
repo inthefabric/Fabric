@@ -86,7 +86,7 @@ namespace Fabric.New.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabService BuildOauthMenu() {
 			var s = new FabService();
-			s.Name = "OAuth";
+			s.Name = "Oauth";
 			s.Uri = "/Oauth";
 
 			if ( OauthAt == null ) {

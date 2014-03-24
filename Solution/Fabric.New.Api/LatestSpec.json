@@ -1919,14 +1919,14 @@
                   "Index": 0,
                   "Name": "grant_type",
                   "Type": "string",
-                  "Description": "Defines the desired access token flow.  The four accepted (case-sensitive) values are '[[authorization_code|Oper|Oauth.AccessTokenAuthCode]]', '[[refresh|Oper|Oauth.AccessTokenRefresh]]', '[[client_credentials|Oper|Oauth.AccessTokenClientCredentials]]', and '[[client_data_provider|Oper|Oauth.AccessTokenClientDataProv]]'.",
+                  "Description": "Defines the desired access token flow.  The three accepted (case-sensitive) values are '[[authorization_code|Oper|Oauth.AccessTokenAuthCode]]', '[[refresh|Oper|Oauth.AccessTokenRefresh]]', and '[[client_credentials|Oper|Oauth.AccessTokenClientCredentials]]'.",
                   "Obj": "FabSpecServiceParam"
                 },
                 {
                   "Index": 1,
                   "Name": "client_id",
                   "Type": "long",
-                  "Description": "The [[App|Object|FabApp]] ID value (an integer) for the [[App|Object|FabApp]] making the request. This parameter is only used by the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' and '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flows.",
+                  "Description": "The [[App|Object|FabApp]] ID value (an integer) for the [[App|Object|FabApp]] making the request. This parameter is only used by the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow.",
                   "Obj": "FabSpecServiceParam"
                 },
                 {
@@ -1955,13 +1955,6 @@
                   "Name": "redirect_uri",
                   "Type": "string",
                   "Description": "This value must be exactly the same as the redirect URI provided for the OAuth entry process.",
-                  "Obj": "FabSpecServiceParam"
-                },
-                {
-                  "Index": 6,
-                  "Name": "data_prov_userid",
-                  "Type": "long",
-                  "Description": "The [[User|Object|FabUser]] ID value (an integer) for the Data Provider of the [[App|Object|FabApp]] making the request. Upon [[App|Object|FabApp]] creation, Fabric creates a special 'Data Provider' [[User|Object|FabUser]] which the [[App|Object|FabApp]] uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flow.",
                   "Obj": "FabSpecServiceParam"
                 }
               ],
@@ -2043,7 +2036,7 @@
                   "Index": 0,
                   "Name": "client_id",
                   "Type": "long",
-                  "Description": "The [[App|Object|FabApp]] ID value (an integer) for the [[App|Object|FabApp]] making the request. This parameter is only used by the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' and '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flows.",
+                  "Description": "The [[App|Object|FabApp]] ID value (an integer) for the [[App|Object|FabApp]] making the request. This parameter is only used by the '[[Client Credentials|Oper|Oauth.AccessTokenClientCredentials]]' flow.",
                   "Obj": "FabSpecServiceParam"
                 },
                 {
@@ -2058,24 +2051,6 @@
                   "Name": "redirect_uri",
                   "Type": "string",
                   "Description": "This value must be exactly the same as the redirect URI provided for the OAuth entry process.",
-                  "Obj": "FabSpecServiceParam"
-                }
-              ],
-              "Obj": "FabSpecServiceOperation"
-            },
-            {
-              "Name": "AccessTokenClientDataProv",
-              "Uri": "/AccessTokenClientDataProv",
-              "Method": "GET",
-              "Return": "FabOauthAccess",
-              "Description": "This OAuth flow should be used to begin an OAuth session for your Fabric [[App|Object|FabApp]]'s 'sData Provider [[User|Object|FabUser]]. This flow does not require an authorization code from the typical OAuth entry process. Note: this flow is not defined by the OAuth 2.0 specification; it is specifically designed to meet a Fabric [[App|Object|FabApp]]'s 'sOAuth needs.\n\nSee [[Access Token|Oper|Oauth.AccessToken]] for general information about the OAuth process.",
-              "Auth": "None",
-              "Parameters": [
-                {
-                  "Index": 0,
-                  "Name": "data_prov_userid",
-                  "Type": "long",
-                  "Description": "The [[User|Object|FabUser]] ID value (an integer) for the Data Provider of the [[App|Object|FabApp]] making the request. Upon [[App|Object|FabApp]] creation, Fabric creates a special 'Data Provider' [[User|Object|FabUser]] which the [[App|Object|FabApp]] uses for creating items in the Fabric system. This parameter is only used by the '[[Client Data Provider|Oper|Oauth.AccessTokenClientDataProv]]' flow.",
                   "Obj": "FabSpecServiceParam"
                 }
               ],
