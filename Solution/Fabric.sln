@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Domain.Schemas", "Fabric.New.Domain.Schemas\Fabric.New.Domain.Schemas.csproj", "{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain.Schemas", "Fabric.Domain.Schemas\Fabric.Domain.Schemas.csproj", "{DFCEA2F2-0BE0-46CB-8576-7C4F7A662FDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Api", "Fabric.New.Api\Fabric.New.Api.csproj", "{E9910A54-A1FB-48BF-AA18-36DB80495AFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api", "Fabric.Api\Fabric.Api.csproj", "{E9910A54-A1FB-48BF-AA18-36DB80495AFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Api.Objects", "Fabric.New.Api.Objects\Fabric.New.Api.Objects.csproj", "{660DDA92-D894-468B-A168-5AB4592AE70F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Api.Objects", "Fabric.Api.Objects\Fabric.Api.Objects.csproj", "{660DDA92-D894-468B-A168-5AB4592AE70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Operations", "Fabric.New.Operations\Fabric.New.Operations.csproj", "{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Operations", "Fabric.Operations\Fabric.Operations.csproj", "{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Domain", "Fabric.New.Domain\Fabric.New.Domain.csproj", "{CDBE2265-0187-44BF-81EF-20AC39E8CC46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Domain", "Fabric.Domain\Fabric.Domain.csproj", "{CDBE2265-0187-44BF-81EF-20AC39E8CC46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Infrastructure", "Fabric.New.Infrastructure\Fabric.New.Infrastructure.csproj", "{E9638290-CA4D-46FA-A5F7-0B712FA1C647}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Infrastructure", "Fabric.Infrastructure\Fabric.Infrastructure.csproj", "{E9638290-CA4D-46FA-A5F7-0B712FA1C647}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Database", "Fabric.New.Database\Fabric.New.Database.csproj", "{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Database", "Fabric.Database\Fabric.Database.csproj", "{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.New.Test", "Fabric.New.Test\Fabric.New.Test.csproj", "{B4C6BB7B-CEE7-433D-9CC6-1DDB041B9F16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Test", "Fabric.Test\Fabric.Test.csproj", "{B4C6BB7B-CEE7-433D-9CC6-1DDB041B9F16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

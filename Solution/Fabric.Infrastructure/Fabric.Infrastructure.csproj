@@ -121,7 +121,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.New.Domain\Fabric.New.Domain.csproj">
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
       <Name>Fabric.New.Domain</Name>
     </ProjectReference>

@@ -154,19 +154,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.New.Api.Objects\Fabric.New.Api.Objects.csproj">
+    <ProjectReference Include="..\Fabric.Api.Objects\Fabric.Api.Objects.csproj">
       <Project>{660DDA92-D894-468B-A168-5AB4592AE70F}</Project>
       <Name>Fabric.New.Api.Objects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.New.Database\Fabric.New.Database.csproj">
+    <ProjectReference Include="..\Fabric.Database\Fabric.Database.csproj">
       <Project>{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}</Project>
       <Name>Fabric.New.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.New.Domain\Fabric.New.Domain.csproj">
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
       <Name>Fabric.New.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.New.Infrastructure\Fabric.New.Infrastructure.csproj">
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</Project>
       <Name>Fabric.New.Infrastructure</Name>
     </ProjectReference>

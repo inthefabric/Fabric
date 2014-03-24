@@ -56,13 +56,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fabric.New.Domain\Fabric.New.Domain.csproj">
+    <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
       <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
-      <Name>Fabric.New.Domain</Name>
+      <Name>Fabric.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.New.Infrastructure\Fabric.New.Infrastructure.csproj">
+    <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
       <Project>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</Project>
-      <Name>Fabric.New.Infrastructure</Name>
+      <Name>Fabric.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
