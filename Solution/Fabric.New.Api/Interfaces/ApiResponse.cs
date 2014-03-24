@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using Fabric.New.Infrastructure.Broadcast;
 using Fabric.New.Infrastructure.Util;
 using Fabric.New.Operations;
@@ -74,8 +75,15 @@ namespace Fabric.New.Api.Interfaces {
 			IOperationContext oc = pApiReq.OpCtx;
 			long totalMs = (long)GetTimerMilliseconds();
 			long jsonLen = (Json == null ? 0 : Json.Length);
-			
-			oc.Analytics.TrackRequest(pApiReq.Method, pApiReq.Path);
+
+			/* //NEXT: ThreadPool.QueueUserWorkItem(w => {
+				try {
+					oc.Analytics.TrackRequest(pApiReq.Method, pApiReq.Path);
+				}
+				catch ( Exception e ) {
+					Log.Error("Analytics failure", e);
+				}
+			});*/
 
 			////
 

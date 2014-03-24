@@ -6,6 +6,7 @@ using Fabric.New.Infrastructure.Query;
 using Fabric.New.Infrastructure.Util;
 using Fabric.New.Operations.Create;
 using Fabric.New.Test.Unit.Shared;
+using Moq;
 using NUnit.Framework;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
@@ -23,6 +24,8 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			base.TestSetUp();
+
+			vMockAuth.Setup(x => x.SetNewUserMember(It.IsAny<long>()));
 
 			vCreateUser = new CreateFabUser();
 			vCreateUser.Name = "myUsername";
@@ -46,6 +49,8 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 			Assert.AreEqual(vCreateUser.Name, result.Name, "Incorrect Name.");
 			Assert.AreEqual(DataUtil.HashPassword(vCreateUser.Password), result.Password,
 				"Incorrect Password.");
+
+			vMockAuth.Verify(x => x.SetNewUserMember(result.VertexId), Times.Once);
 
 			IWeaverQuery verify = Weave.Inst.Graph
 				.V.ExactIndex<User>(x => x.VertexId, result.VertexId)

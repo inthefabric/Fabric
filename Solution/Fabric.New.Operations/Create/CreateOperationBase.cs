@@ -18,10 +18,11 @@ namespace Fabric.New.Operations.Create {
 		protected IWeaverVarAlias<TDom> NewDomAlias { get; private set; }
 		protected ICreateOperationBuilder Build { get; private set; }
 
-		private IOperationContext vOpCtx { get; set; }
-		private string vCmdAddVertex { get; set; }
-		private IDataAccess vDataAcc { get; set; }
-		private IDataResult vDataRes { get; set; }
+		private long vVertexId;
+		private IOperationContext vOpCtx;
+		private string vCmdAddVertex;
+		private IDataAccess vDataAcc;
+		private IDataResult vDataRes;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,13 +38,14 @@ namespace Fabric.New.Operations.Create {
 			vOpCtx = pOpCtx;
 			Build = pBuild;
 			Tasks = pTasks;
+			vVertexId = vOpCtx.GetSharpflakeId<Vertex>();
 
 			NewCre = pNewCre;
 			BeforeValidation();
 			NewCre.Validate();
 
 			NewDom = ToDomain(NewCre);
-			NewDom.VertexId = vOpCtx.GetSharpflakeId<Vertex>();
+			NewDom.VertexId = vVertexId;
 			NewDom.Timestamp = vOpCtx.UtcNow.Ticks;
 
 			vDataAcc = vOpCtx.Data.Build(null, true);
@@ -93,6 +95,10 @@ namespace Fabric.New.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private void BeforeValidation() {
+			if ( (NewCre as CreateFabUser) != null ) {
+				vOpCtx.Auth.SetNewUserMember(vVertexId);
+			}
+
 			if ( vOpCtx.Auth.ActiveMemberId == null ) {
 				throw new FabPreventedFault(FabFault.Code.AuthorizationRequired,
 					"Authorization is required to create new items.");

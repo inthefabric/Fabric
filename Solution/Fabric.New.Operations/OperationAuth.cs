@@ -14,11 +14,11 @@ namespace Fabric.New.Operations {
 	/*================================================================================================*/
 	public class OperationAuth : IOperationAuth {
 
-		public Member ActiveMember { get; private set; }
 		public long? CookieUserId { get; private set;  }
 
 		private readonly Func<IDataAccess> vGetDataAcc;
 		private readonly Func<long> vGetUtcNow;
+		private Member vActiveMember;
 		private string vOauthToken;
 
 
@@ -47,21 +47,28 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetFabricActiveMember() {
-			if ( ActiveMember != null ) {
+			if ( vActiveMember != null ) {
 				throw new Exception("ActiveMember is already set.");
 			}
 
-			ActiveMember = new Member();
-			ActiveMember.VertexId = (long)SetupMemberId.FabFabData;
+			vActiveMember = new Member();
+			vActiveMember.VertexId = (long)SetupMemberId.FabFabData;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void RemoveFabricActiveMember() {
-			if ( ActiveMember == null || ActiveMember.VertexId != (long)SetupMemberId.FabFabData ) {
+			if ( vActiveMember == null || vActiveMember.VertexId != (long)SetupMemberId.FabFabData ) {
 				throw new Exception("ActiveMember is not set to Fabric.");
 			}
 
-			ActiveMember = null;
+			vActiveMember = null;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetNewUserMember(long pVertexId) {
+			vActiveMember = new Member();
+			vActiveMember.VertexId = pVertexId;
+			vActiveMember.MemberType = (byte)MemberType.Id.Member;
 		}
 
 
@@ -69,7 +76,7 @@ namespace Fabric.New.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		public long? ActiveMemberId {
 			get {
-				return (ActiveMember == null ? (long?)null : ActiveMember.VertexId);
+				return (vActiveMember == null ? (long?)null : vActiveMember.VertexId);
 			}
 		}
 
@@ -78,7 +85,7 @@ namespace Fabric.New.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		public void ExecuteOauth() {
 			if ( vOauthToken == null ) {
-				ActiveMember = null;
+				vActiveMember = null;
 				return;
 			}
 
@@ -95,16 +102,16 @@ namespace Fabric.New.Operations {
 				.AuthenticatesMember.ToMember
 				.ToQuery();
 
-			ActiveMember = vGetDataAcc()
+			vActiveMember = vGetDataAcc()
 				.AddQuery(q)
 				.Execute("MemberForOauthToken")
 				.ToElement<Member>();
 
-			if ( ActiveMember == null ) {
+			if ( vActiveMember == null ) {
 				throw new FabOauthFault();
 			}
 
-			switch ( (MemberType.Id)ActiveMember.MemberType ) {
+			switch ( (MemberType.Id)vActiveMember.MemberType ) {
 				case MemberType.Id.None:
 				case MemberType.Id.Invite:
 				case MemberType.Id.Request:

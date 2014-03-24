@@ -45,6 +45,13 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			return true;
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public override void Execute() {
+			base.Execute();
+			MockAuth.Verify(x => x.SetNewUserMember(VertId), Times.Once);
+		}
+
 	}
 
 }

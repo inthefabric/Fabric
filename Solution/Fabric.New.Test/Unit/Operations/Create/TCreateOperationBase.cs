@@ -22,6 +22,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 
 		private static Logger Log = Logger.Build<Object>();
 
+		protected Mock<IOperationAuth> MockAuth { get; private set; }
 		protected Mock<IOperationContext> MockOpCtx { get; private set; }
 		protected Mock<ICreateOperationBuilder> MockBuild { get; private set; }
 		protected Mock<CreateOperationTasks> MockTasks { get; private set; }
@@ -43,8 +44,9 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			vCallsAdded = 0;
 			vCalls = 0;
 
-			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
-			mockAuth.Setup(x => x.ActiveMemberId).Returns(MemId);
+			MockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
+			MockAuth.Setup(x => x.ActiveMemberId).Returns(MemId);
+			MockAuth.Setup(x => x.SetNewUserMember(VertId));
 
 			vMockAcc = new Mock<IDataAccess>(MockBehavior.Strict);
 
@@ -56,7 +58,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 			MockOpCtx = new Mock<IOperationContext>(MockBehavior.Strict);
 			MockOpCtx.Setup(x => x.GetSharpflakeId<Vertex>()).Returns(VertId);
 			MockOpCtx.SetupGet(x => x.UtcNow).Returns(new DateTime(99999999));
-			MockOpCtx.Setup(x => x.Auth).Returns(mockAuth.Object);
+			MockOpCtx.Setup(x => x.Auth).Returns(MockAuth.Object);
 			MockOpCtx.Setup(x => x.Data).Returns(mockData.Object);
 
 			MockBuild = new Mock<ICreateOperationBuilder>(MockBehavior.Strict);
@@ -86,7 +88,7 @@ namespace Fabric.New.Test.Unit.Operations.Create {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void Execute() {
+		public virtual void Execute() {
 			var cre = new TCre();
 			var expectResult = new TDom();
 			const string addVertCmd = "addVertCmdId";

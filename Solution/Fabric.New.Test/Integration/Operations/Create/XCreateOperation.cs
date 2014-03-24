@@ -21,7 +21,7 @@ namespace Fabric.New.Test.Integration.Operations.Create {
 		protected CreateOperationTasks Tasks;
 
 		protected long CreatorId;
-		private Mock<IOperationAuth> vMockAuth;
+		protected Mock<IOperationAuth> vMockAuth;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

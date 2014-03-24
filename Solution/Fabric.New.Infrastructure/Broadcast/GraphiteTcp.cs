@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using GoogleAnalyticsTracker;
 
 namespace Fabric.New.Infrastructure.Broadcast {
@@ -19,6 +20,7 @@ namespace Fabric.New.Infrastructure.Broadcast {
 		private readonly string vHost;
 		private readonly int vPort;
 		private TcpClient vTcp;
+		private string vMsg;
 		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,17 +65,24 @@ namespace Fabric.New.Infrastructure.Broadcast {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void Send(string pPath, string pNumericValue, DateTime pTimeStamp) {
+			if ( !string.IsNullOrWhiteSpace(vPrefix) ) {
+				pPath = vPrefix+"."+pPath;
+			}
+
+			vMsg = pPath+" "+pNumericValue+" "+pTimeStamp.ToUnixTime()+"\n";
+			ThreadPool.QueueUserWorkItem(SendAndForget);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void SendAndForget(object pState) {
+			return; //NEXT: allow Graphite TCP once internet connection is available
+
 			try {
 				if ( vTcp == null ) {
 					vTcp = new TcpClient(vHost, vPort);
 				}
 				
-				if ( !string.IsNullOrWhiteSpace(vPrefix) ) {
-					pPath = vPrefix+"."+pPath;
-				}
-
-				string msg = pPath+" "+pNumericValue+" "+pTimeStamp.ToUnixTime()+"\n";
-				byte[] bytes = Encoding.UTF8.GetBytes(msg);
+				byte[] bytes = Encoding.UTF8.GetBytes(vMsg);
 				vTcp.GetStream().Write(bytes, 0, bytes.Length);
 			}
 			catch ( Exception e ) {

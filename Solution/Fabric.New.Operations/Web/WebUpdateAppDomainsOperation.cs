@@ -9,9 +9,6 @@ namespace Fabric.New.Operations.Web {
 	/*================================================================================================*/
 	public class WebUpdateAppDomainsOperation {
 
-		//TODO: WebCreateAppOperation (with proper "created by" member)
-		//TODO: WebCreateUserOperation (with proper "created by" member)
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/

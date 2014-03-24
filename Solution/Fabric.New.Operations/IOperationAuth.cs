@@ -1,11 +1,9 @@
-﻿using Fabric.New.Domain;
-
+﻿
 namespace Fabric.New.Operations {
 
 	/*================================================================================================*/
 	public interface IOperationAuth {
 		
-		Member ActiveMember { get; }
 		long? ActiveMemberId { get; }
 		long? CookieUserId { get; }
 
@@ -22,6 +20,9 @@ namespace Fabric.New.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		void RemoveFabricActiveMember();
+
+		/*--------------------------------------------------------------------------------------------*/
+		void SetNewUserMember(long pVertexId);
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
