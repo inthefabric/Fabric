@@ -11,8 +11,8 @@ namespace Fabric.Domain.Schemas.Vertices {
 		public ArtifactSchema() {
 			Names = new NameProvider("Artifact", "Artifacts", "a");
 			GetAccess = Access.All;
-			CreateAccess = Access.None;
-			DeleteAccess = Access.None;
+			CreateAccess = Access.Custom;
+			DeleteAccess = Access.Custom;
 			IsAbstract = true;
 		}
 

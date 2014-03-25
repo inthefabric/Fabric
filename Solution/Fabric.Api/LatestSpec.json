@@ -5,6 +5,39 @@
       "BuildDay": 24,
       "Objects": [
         {
+          "Name": "FabResponse",
+          "Extends": "Object",
+          "Description": "The response wrapper for most API requests. It contains a data payload, error information, and/or other metadata.",
+          "Properties": [
+            {
+              "Name": "TotalMs",
+              "Type": "double",
+              "Description": "The time (in milliseconds) that it took the server(s) to complete this request.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Error",
+              "Type": "FabError",
+              "Description": "If an error occurred, this contains information about the problem. Typically, the Data value is null when an Error value is present.",
+              "Obj": "FabSpecObjectProp"
+            },
+            {
+              "Name": "Data",
+              "Type": "FabObject[]",
+              "Description": "Contains the result of the request as a list of zero or more [[Objects|Object|FabObject]].",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
+          "Name": "CreateFabArtifact",
+          "Extends": "CreateFabVertex",
+          "Description": "The base class for the creation of [[Artifacts|Object|FabArtifact]].",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
           "Name": "CreateFabClass",
           "Extends": "CreateFabArtifact",
           "Description": "Contains the data needed to create a new [[Class|Object|FabClass]].",
@@ -457,6 +490,13 @@
           "Obj": "FabSpecObject"
         },
         {
+          "Name": "CreateFabVertex",
+          "Extends": "CreateFabElement",
+          "Description": "The base class for the creation of [[Vertices|Object|FabVertex]].",
+          "Properties": [],
+          "Obj": "FabSpecObject"
+        },
+        {
           "Name": "FabApp",
           "Extends": "FabArtifact",
           "Description": "A registered project, application, or business that has direct access to the Fabric API.\n\nAn App's 'sprimary purpose is to facilitate [[User|Object|FabUser]] interaction with Fabric. To accomplish this, an App typically creates an interface for its [[Users|Object|FabUser]]. This interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. \n\nWhen a [[User|Object|FabUser]] becomes a [[Member|Object|FabMember]] of an App, they are granting that App permission to perform various actions on their behalf (via the App's 'sinterface). It is vital for an App to provide each [[User|Object|FabUser]] with a positive experience and do nothing to violate the [[User|Object|FabUser]]'s 'strust.\n\nEvery App has a special 'Data Provider' [[Member|Object|FabMember]], which is typically controlled by that App's 'sadministrator. The 'Data Provider' allows the App to interact with Fabric as itself (rather than on behalf of a particular User).\n\nEvery item added to Fabric is associated with (via Member) a [[User|Object|FabUser]] and and an App. Thus, Fabric can determine which App is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App or [[Member|Object|FabMember]], etc.",
@@ -505,7 +545,7 @@
         {
           "Name": "FabClass",
           "Extends": "FabArtifact",
-          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an [[App|Object|FabApp]] or [[User|Object|FabUser]] can define and/or use to generate meaning. Classes and [[Instances|Object|FabInstance]] are closely related, and are the primary method for generating new [[Artifacts|Object|FabArtifact]].\n\nA Class represents a particular group, type, set, or category of items. Each Class must uniquely identifiable (via name and disambiguation) amonst all other Classes.\n[(EX|Ellie's 's[[Class|Object|FabClass]] Example|Ellie is building an [[App|Object|FabApp]] for dog lovers, but there are not yet animal-related Classes for Ellie to use. She first creates broad Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').\n\nShe then creates narrower Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]",
+          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an [[App|Object|FabApp]] or [[User|Object|FabUser]] can define and/or use to generate meaning. Classes and [[Instances|Object|FabInstance]] are closely related, and are the primary method for generating new [[Artifacts|Object|FabArtifact]].\n\nA Class represents a particular group, type, set, or category of items. Each Class must uniquely identifiable (via name and disambiguation) amongst all other Classes.\n[(EX|Ellie's 's[[Class|Object|FabClass]] Example|Ellie is building an [[App|Object|FabApp]] for dog lovers, but there are not yet animal-related Classes for Ellie to use. She first creates broad Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').\n\nShe then creates narrower Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]",
           "Properties": [
             {
               "Name": "Name",

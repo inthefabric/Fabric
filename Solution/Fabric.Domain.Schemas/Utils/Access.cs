@@ -8,7 +8,7 @@
 		CreatorUser,
 		CreatorApp,
 		CreatorUserAndApp,
-		Custom,
+		Custom
 	}
 
 }

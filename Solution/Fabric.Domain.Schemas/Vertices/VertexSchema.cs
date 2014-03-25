@@ -30,8 +30,8 @@ namespace Fabric.Domain.Schemas.Vertices {
 		public VertexSchema() {
 			Names = new NameProvider("Vertex", "Vertices", "v");
 			GetAccess = Access.All;
-			CreateAccess = Access.None;
-			DeleteAccess = Access.None;
+			CreateAccess = Access.Custom;
+			DeleteAccess = Access.Custom;
 			IsAbstract = true;
 
 			////

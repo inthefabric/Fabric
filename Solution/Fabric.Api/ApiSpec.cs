@@ -218,6 +218,8 @@ namespace Fabric.Api {
 			var objects = new List<FabSpecObject>();
 			var types = typeof(FabObject).Assembly.GetTypes().OrderBy(x => x.Name);
 
+			objects.Add(BuildObject(typeof(FabResponse)));
+
 			foreach ( Type t in types ) {
 				if ( !typeof(FabObject).IsAssignableFrom(t) ) {
 					continue;

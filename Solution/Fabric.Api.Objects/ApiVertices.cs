@@ -405,7 +405,6 @@ namespace Fabric.Api.Objects {
 		
 
 	/*================================================================================================*/
-	[SpecInternal]
 	public class CreateFabArtifact : CreateFabVertex {
 		
 		[SpecInternal]
@@ -822,7 +821,6 @@ namespace Fabric.Api.Objects {
 		
 
 	/*================================================================================================*/
-	[SpecInternal]
 	public class CreateFabVertex : CreateFabElement {
 
 

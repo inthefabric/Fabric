@@ -154,7 +154,7 @@ Every item added to Fabric is associated with (via Member) a !User and and an Ap
   <data name="Class" xml:space="preserve">
     <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
 
-A !Class represents a particular group, type, set, or category of items. Each !Class must uniquely identifiable (via name and disambiguation) amonst all other !Classes.
+A !Class represents a particular group, type, set, or category of items. Each !Class must uniquely identifiable (via name and disambiguation) amongst all other !Classes.
 [(EX|Ellie's Class Example|Ellie is building an App for dog lovers, but there are not yet animal-related !Classes for Ellie to use. She first creates broad !Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').
 
 She then creates narrower !Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A !Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' !Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]</value>
@@ -517,5 +517,11 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
   </data>
   <data name="CreateFabVector" xml:space="preserve">
     <value>Contains the data needed to create a new Vector.</value>
+  </data>
+  <data name="CreateFabArtifact" xml:space="preserve">
+    <value>The base class for the creation of Artifacts.</value>
+  </data>
+  <data name="CreateFabVertex" xml:space="preserve">
+    <value>The base class for the creation of Vertices.</value>
   </data>
 </root>
