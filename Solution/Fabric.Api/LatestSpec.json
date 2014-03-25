@@ -4835,8 +4835,8 @@
           "Items": [
             {
               "VectorRange": "FullNum",
-              "Min": -9223372036854776000,
-              "Max": 9223372036854776000,
+              "Min": -9223372036854775808,
+              "Max": 9223372036854775807,
               "Id": 1,
               "EnumId": "FullLong",
               "Name": "Full Bounds"
@@ -4844,14 +4844,14 @@
             {
               "VectorRange": "PosNum",
               "Min": 0,
-              "Max": 9223372036854776000,
+              "Max": 9223372036854775807,
               "Id": 2,
               "EnumId": "PosLong",
               "Name": "Positive Bounds"
             },
             {
               "VectorRange": "NegNum",
-              "Min": -9223372036854776000,
+              "Min": -9223372036854775808,
               "Max": 0,
               "Id": 3,
               "EnumId": "NegLong",
@@ -4859,8 +4859,8 @@
             },
             {
               "VectorRange": "FullNum",
-              "Min": -9223372036854776000,
-              "Max": 9223372036854776000,
+              "Min": -9223372036854775808,
+              "Max": 9223372036854775807,
               "Id": 4,
               "EnumId": "FullPerc",
               "Name": "Full Percentage"
