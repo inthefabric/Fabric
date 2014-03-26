@@ -7,14 +7,13 @@ namespace Fabric.Api.Objects {
 
 		public double TotalMs { get; set; }
 		public FabError Error { get; set; }
-		public IList<FabObject> Data { get; set; }
 
 	}
 
 	/*================================================================================================*/
 	public class FabResponse<T> : FabResponse where T : FabObject {
 
-		public new IList<T> Data { get; set; }
+		public IList<T> Data { get; set; }
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

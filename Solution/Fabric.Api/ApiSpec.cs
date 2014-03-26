@@ -217,8 +217,14 @@ namespace Fabric.Api {
 		private static List<FabSpecObject> BuildObjects() {
 			var objects = new List<FabSpecObject>();
 			var types = typeof(FabObject).Assembly.GetTypes().OrderBy(x => x.Name);
-
-			objects.Add(BuildObject(typeof(FabResponse)));
+			
+			FabSpecObject frObj = BuildObject(typeof(FabResponse));
+			FabSpecObject frObjT = BuildObject(typeof(FabResponse<FabObject>));
+			FabSpecObjectProp frDataProp = frObjT.Properties[0];
+			frDataProp.Description = 
+				ApiLang.Text<DtoPropText>(frObj.Name.Substring(3)+"_"+frDataProp.Name);
+			frObj.Properties.Add(frDataProp);
+			objects.Add(frObj);
 
 			foreach ( Type t in types ) {
 				if ( !typeof(FabObject).IsAssignableFrom(t) ) {
