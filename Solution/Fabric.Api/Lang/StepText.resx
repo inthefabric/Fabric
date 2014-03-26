@@ -161,7 +161,7 @@ Retrace to the Member list, which now also excludes any Members who have not cre
     <value>Restricts the number of results at the current traversal step.</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>Restricts the results to include only App vertices.</value>
+    <value>Casts the results to the specified vertex type, and filters out any results that are incompatible.</value>
   </data>
   <data name="WhereContains" xml:space="preserve">
     <value>Finds results where the target property contains one or more of the specified tokens.</value>

@@ -3545,7 +3545,7 @@
             },
             {
               "Name": "To",
-              "Description": "Restricts the results to include only [[App|Object|FabApp]] vertices.",
+              "Description": "Casts the results to the specified vertex type, and filters out any results that are incompatible.",
               "Parameters": [],
               "Rules": [
                 {
