@@ -185,6 +185,7 @@ namespace Fabric.Api.Executors {
 			}
 			else {
 				fabErr = FabOauthError.ForInternalServerError();
+				Log.Fatal("Unhandled OAuth Access Exception", pEx);
 			}
 
 			pResp.Status = System.Net.HttpStatusCode.Forbidden;
@@ -345,7 +346,9 @@ namespace Fabric.Api.Executors {
 			});
 
 			var exec = new JsonExecutor<FabOauthLogout>(pApiReq, getResp);
-			return exec.Execute();
+			IApiResponse resp = exec.Execute();
+			resp.SetUserCookie(null, false);
+			return resp;
 		}
 
 

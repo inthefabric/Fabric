@@ -11,6 +11,8 @@ namespace Fabric.Infrastructure.Data {
 	/*================================================================================================*/
 	public class DataAccess : IDataAccess { //TEST: DataAccess
 
+		public string ExecuteName { get; private set; }
+
 		protected IDataContext vDataCtx;
 		protected WeaverRequest vReq;
 		protected RexConnContext vRexConnCtx;
@@ -218,9 +220,6 @@ namespace Fabric.Infrastructure.Data {
 			LogAction(rr);
 			return new DataResult(rr);
 		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public string ExecuteName { get; private set; }
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void CacheQueryScript(bool pCache, RequestCmd pCmd) {

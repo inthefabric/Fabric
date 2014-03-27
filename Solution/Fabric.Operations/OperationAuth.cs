@@ -48,7 +48,7 @@ namespace Fabric.Operations {
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetFabricActiveMember() {
 			if ( vActiveMember != null ) {
-				throw new Exception("ActiveMember is already set.");
+				throw new Exception("ActiveMember is already set: "+vActiveMember.VertexId);
 			}
 
 			vActiveMember = new Member();

@@ -127,6 +127,10 @@ namespace Fabric.Operations {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected virtual void OnLog(IDataAccess pAccess, string pName, string pText) {
+			if ( !pName.Contains("DB") ) {
+				pText = pAccess.ExecuteName+" | "+pText;
+			}
+
 			Log.Debug(Logger.GuidToString(vContextId), pName, pText);
 		}
 
