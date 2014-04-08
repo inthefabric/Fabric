@@ -76,14 +76,14 @@ namespace Fabric.Api.Interfaces {
 			long totalMs = (long)GetTimerMilliseconds();
 			long jsonLen = (Json == null ? 0 : Json.Length);
 
-			/* //NEXT: ThreadPool.QueueUserWorkItem(w => {
+			ThreadPool.QueueUserWorkItem(w => {
 				try {
 					oc.Analytics.TrackRequest(pApiReq.Method, pApiReq.Path);
 				}
 				catch ( Exception e ) {
 					Log.Error("Analytics failure", e);
 				}
-			});*/
+			});
 
 			////
 

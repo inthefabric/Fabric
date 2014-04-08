@@ -239,9 +239,11 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		[TestCase(false)]
-		[TestCase(true)]
-		public void AddAccess(bool pClientMode) {
+		[TestCase(false, false)]
+		[TestCase(false, true)]
+		[TestCase(true, false)]
+		[TestCase(true, true)]
+		public void AddAccess(bool pClientMode, bool pHasActiveMem) {
 			const long memId = 763462332;
 			const string code0 = "12351252sadfasdf";
 			const string code1 = "362343fsdfsdfasd";
@@ -249,8 +251,12 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 			const long utcExpireTicks = utcNowTicks + 3600*TimeSpan.TicksPerSecond;
 
 			var mockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
-			mockAuth.Setup(x => x.SetFabricActiveMember());
-			mockAuth.Setup(x => x.RemoveFabricActiveMember());
+			mockAuth.SetupGet(x => x.ActiveMemberId).Returns(pHasActiveMem ? 1234 : (long?)null);
+
+			if ( !pHasActiveMem ) {
+				mockAuth.Setup(x => x.SetFabricActiveMember());
+				mockAuth.Setup(x => x.RemoveFabricActiveMember());
+			}
 
 			vMockOpCtx.SetupGet(x => x.Auth).Returns(mockAuth.Object);
 
@@ -304,8 +310,9 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 			Assert.AreEqual(3600, result.ExpiresIn, "Incorrect ExpiresIn.");
 			Assert.AreEqual("bearer", result.TokenType, "Incorrect TokenType.");
 
-			mockAuth.Verify(x => x.SetFabricActiveMember(), Times.Once);
-			mockAuth.Verify(x => x.RemoveFabricActiveMember(), Times.Once);
+			var times = (pHasActiveMem ? Times.Never() : Times.Once());
+			mockAuth.Verify(x => x.SetFabricActiveMember(), times);
+			mockAuth.Verify(x => x.RemoveFabricActiveMember(), times);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

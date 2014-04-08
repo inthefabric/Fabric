@@ -146,6 +146,7 @@ namespace Fabric.Operations.Oauth {
 			ClearOldTokens(pOpCtx.Data, pMemberId);
 
 			const int expireSec = 3600;
+			bool needsActiveMem = (pOpCtx.Auth.ActiveMemberId == null);
 
 			CreateFabOauthAccess coa = new CreateFabOauthAccess();
 			coa.Token = pOpCtx.Code32;
@@ -153,10 +154,16 @@ namespace Fabric.Operations.Oauth {
 			coa.Expires = pOpCtx.UtcNow.AddSeconds(expireSec).Ticks;
 			coa.AuthenticatesMemberId = pMemberId;
 
-			pOpCtx.Auth.SetFabricActiveMember();
+			if ( needsActiveMem ) {
+				pOpCtx.Auth.SetFabricActiveMember();
+			}
+
 			OauthAccess result = pCreateOp.Execute(pOpCtx,
 				new CreateOperationBuilder(), new CreateOperationTasks(), coa);
-			pOpCtx.Auth.RemoveFabricActiveMember();
+
+			if ( needsActiveMem ) {
+				pOpCtx.Auth.RemoveFabricActiveMember();
+			}
 
 			return new FabOauthAccess {
 				AccessToken = result.Token,

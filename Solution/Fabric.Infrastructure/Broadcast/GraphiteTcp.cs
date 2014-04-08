@@ -75,8 +75,6 @@ namespace Fabric.Infrastructure.Broadcast {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private void SendAndForget(object pState) {
-			return; //NEXT: allow Graphite TCP once internet connection is available
-
 			try {
 				if ( vTcp == null ) {
 					vTcp = new TcpClient(vHost, vPort);
