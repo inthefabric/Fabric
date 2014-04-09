@@ -110,6 +110,11 @@
     <Compile Include="Unit\Operations\Traversal\TTraversalOperation.cs" />
     <Compile Include="Unit\Operations\Traversal\Util\TTraversalUtil.cs" />
     <Compile Include="Unit\Operations\Traversal\Util\TGremlinUtil.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateMemberTypeOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateAppDomainsOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateAppNameOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateAppSecretOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateUserPasswordOperation.cs" />
     <Compile Include="Unit\Shared\MockDataAccess.cs" />
     <Compile Include="Unit\Shared\MockDataAccessCmd.cs" />
     <Compile Include="Unit\Shared\MockDataResult.cs" />

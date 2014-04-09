@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using Fabric.Api.Objects.Conversions;
+using Fabric.Domain;
 using Fabric.Infrastructure.Faults;
 using Fabric.Infrastructure.Query;
 using Fabric.Infrastructure.Util;
@@ -9,13 +10,15 @@ using Weaver.Core.Steps.Statements;
 namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
-	public class WebUpdateUserPasswordOperation { //TEST: all Web Operations
+	public class WebUpdateUserPasswordOperation { //TEST: all Web Operations (integration tests)
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public SuccessResult Execute(IOperationContext pOpCtx, long pUserId,
 																	string pOldPass, string pNewPass) {
+			CreateFabUserValidator.Password(pNewPass);
+
 			User user = pOpCtx.Data.GetVertexById<User>(pUserId);
 
 			if ( user.Password != DataUtil.HashPassword(pOldPass) ) {

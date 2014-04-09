@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using Fabric.Api.Objects.Conversions;
+using Fabric.Domain;
 using Fabric.Infrastructure.Faults;
 using Fabric.Infrastructure.Query;
 using Weaver.Core.Pipe;
@@ -14,6 +15,8 @@ namespace Fabric.Operations.Web {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public SuccessResult Execute(IOperationContext pOpCtx, long pAppId, string pName) {
+			CreateFabAppValidator.Name(pName);
+
 			ConfirmUniqueAppName(pOpCtx, pName);
 			App app = UpdateAppName(pOpCtx, pAppId, pName);
 			return new SuccessResult(app != null);
@@ -38,7 +41,10 @@ namespace Fabric.Operations.Web {
 		private static App UpdateAppName(IOperationContext pOpCtx, long pAppId, string pName) {
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.VertexId, pAppId)
-					.SideEffect(new WeaverStatementSetProperty<App>(x => x.Name, pName))
+					.SideEffect(
+						new WeaverStatementSetProperty<App>(x => x.Name, pName),
+						new WeaverStatementSetProperty<App>(x => x.NameKey, pName.ToLower())
+					)
 				.ToQuery();
 
 			return pOpCtx.Data.Get<App>(q, "Web-UpdateAppName");

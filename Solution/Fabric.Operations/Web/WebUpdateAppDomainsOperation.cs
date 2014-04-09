@@ -1,4 +1,8 @@
-﻿using Fabric.Domain;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Fabric.Api.Objects.Conversions;
+using Fabric.Domain;
+using Fabric.Infrastructure.Faults;
 using Fabric.Infrastructure.Query;
 using Weaver.Core.Pipe;
 using Weaver.Core.Query;
@@ -22,15 +26,20 @@ namespace Fabric.Operations.Web {
 		public App ExecuteRemove(IOperationContext pOpCtx, long pAppId, string pDomain) {
 			App a = pOpCtx.Data.GetVertexById<App>(pAppId);
 
-			if ( string.IsNullOrEmpty(a.OauthDomains) || !a.OauthDomains.Contains(pDomain) ) {
+			if ( string.IsNullOrEmpty(a.OauthDomains) ) {
 				return a;
 			}
 
-			a.OauthDomains = a.OauthDomains
-				.Replace(pDomain, "")
-				.Replace("||", "|")
-				.Trim(new[] { '|' });
+			IList<string> list = a.OauthDomains.Split('|').ToList();
+			int i = list.IndexOf(pDomain);
 
+			if ( i == -1 ) {
+				throw new FabPropertyValueFault(
+					"Domain '"+pDomain+"' (case-sensitive) is not present, and cannot be removed.");
+			}
+
+			list.RemoveAt(i);
+			a.OauthDomains = string.Join("|", list);
 			return UpdateAppDomains(pOpCtx, a);
 		}
 
@@ -38,6 +47,8 @@ namespace Fabric.Operations.Web {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		private static App UpdateAppDomains(IOperationContext pOpCtx, App pApp) {
+			CreateFabAppValidator.OauthDomains(pApp.OauthDomains);
+
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex<App>(x => x.VertexId, pApp.VertexId)
 					.SideEffect(new WeaverStatementSetProperty<App>(

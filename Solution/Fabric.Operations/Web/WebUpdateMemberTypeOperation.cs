@@ -1,4 +1,5 @@
-﻿using Fabric.Domain;
+﻿using Fabric.Api.Objects.Conversions;
+using Fabric.Domain;
 using Fabric.Domain.Enums;
 using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Query;
@@ -16,6 +17,8 @@ namespace Fabric.Operations.Web {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public Member Execute(IOperationContext pOpCtx, long pMemberId, MemberType.Id pTypeId) {
+			CreateFabMemberValidator.Type((byte)pTypeId);
+
 			IWeaverVarAlias<Member> memAlias;
 
 			IWeaverQuery memQ = Weave.Inst.Graph
