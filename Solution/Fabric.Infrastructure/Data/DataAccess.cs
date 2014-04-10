@@ -252,7 +252,7 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		private void LogAction(IResponseResult pRes) {
 			//DBv1: 
-			//	TotalMs, QueryMs, Timestamp, QueryChars
+			//	TotalMs, QueryMs, Timestamp, QueryChars, ExecuteName
 
 			const string name = "DBv1";
 			const string x = " | ";
@@ -261,7 +261,8 @@ namespace Fabric.Infrastructure.Data {
 				pRes.ExecutionMilliseconds +x+
 				pRes.Response.Timer +x+
 				DateTime.UtcNow.Ticks +x+
-				pRes.RequestJson.Length;
+				pRes.RequestJson.Length +x+
+				ExecuteName;
 			
 			vLogOutput(this, name, v1);
 		}

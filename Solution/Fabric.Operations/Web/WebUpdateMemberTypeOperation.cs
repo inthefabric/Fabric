@@ -11,7 +11,7 @@ using Weaver.Core.Steps.Statements;
 namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
-	public class WebUpdateMemberTypeOperation {
+	public class WebUpdateMemberTypeOperation { //TEST: WebUpdateMemberTypeOperation integration test
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////

@@ -106,11 +106,11 @@ namespace Fabric.Test.Integration.Shared {
 			if ( !IsReadOnlyTest ) {
 				var q = new WeaverQuery();
 				q.FinalizeQuery("g.V.remove();1");
-				IDataResult remAllData = OpCtx.ExecuteForTest(q);
+				IDataResult remAllData = OpCtx.ExecuteForTest(q, "TestQuery-Remove-All");
 
 				q = new WeaverQuery();
 				q.FinalizeQuery("g.loadGraphSON('../db/FabricBackups/FabricTest.json');1");
-				IDataResult reloadData = OpCtx.ExecuteForTest(q);
+				IDataResult reloadData = OpCtx.ExecuteForTest(q, "TestQuery-Reset-Data");
 
 				Assert.AreEqual("1", remAllData.ToStringAt(0, 0),
 					"There was an issue with the RemoveAll query!");

@@ -10,7 +10,7 @@ using Weaver.Core.Steps.Statements;
 namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
-	public class WebUpdateUserPasswordOperation { //TEST: all Web Operations (integration tests)
+	public class WebUpdateUserPasswordOperation {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
