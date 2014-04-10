@@ -11,7 +11,7 @@ using Weaver.Core.Steps.Statements;
 namespace Fabric.Operations.Web {
 
 	/*================================================================================================*/
-	public class WebUpdateMemberTypeOperation { //TEST: WebUpdateMemberTypeOperation integration test
+	public class WebUpdateMemberTypeOperation {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,6 +23,7 @@ namespace Fabric.Operations.Web {
 
 			IWeaverQuery memQ = Weave.Inst.Graph
 				.V.ExactIndex<Member>(x => x.VertexId, pMemberId)
+					.Next()
 				.ToQueryAsVar("m", out memAlias);
 
 			IWeaverQuery userQ = Weave.Inst.FromVar(memAlias)
@@ -58,13 +59,13 @@ namespace Fabric.Operations.Web {
 					.Has(x => x.AppId, WeaverStepHasOp.EqualTo, appId)
 					.SideEffect(new WeaverStatementSetProperty<UserDefinesMember>(
 						x => x.MemberType, (byte)pTypeId))
-				.ToMember
+					.ToMember
 				.DefinedByApp.ToApp
 				.DefinesMembers
 					.Has(x => x.UserId, WeaverStepHasOp.EqualTo, userId)
 					.SideEffect(new WeaverStatementSetProperty<AppDefinesMember>(
 						x => x.MemberType, (byte)pTypeId))
-				.ToMember
+					.ToMember
 				.ToQuery();
 
 			return pOpCtx.Data.Get<Member>(q, "Web-UpdateMemberType");

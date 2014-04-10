@@ -58,6 +58,7 @@
     <Compile Include="Integration\Operations\Oauth\XOauthLoginGetOperation.cs" />
     <Compile Include="Integration\Operations\Oauth\XOauthLogoutOperation.cs" />
     <Compile Include="Integration\Operations\Traversal\XTraversalOperation.cs" />
+    <Compile Include="Integration\Operations\Web\XWebUpdateMemberTypeOperation.cs" />
     <Compile Include="Integration\Operations\Web\XWebUpdateUserPasswordOperation.cs" />
     <Compile Include="Integration\Operations\Web\XWebUpdateAppSecretOperation.cs" />
     <Compile Include="Integration\Operations\Web\XWebUpdateAppNameOperation.cs" />
