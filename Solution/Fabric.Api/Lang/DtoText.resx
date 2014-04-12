@@ -249,9 +249,9 @@ _Note: every Factor recieves a timestamp upon creation. This timestamp is not re
   <data name="Factor" xml:space="preserve">
     <value>Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
 
-A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
+A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each component has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
 
-There are six !Factor components: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required Element; the rest are optional. A !Factor typically uses one or two Elements, but (in very complex cases) could potentially use four or more.
+There are six !Factor components: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required component; the rest are optional. A !Factor typically uses one or two component, but (in very complex cases) could potentially use four or more.
 
 Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A FactorAssertion allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.</value>
   </data>

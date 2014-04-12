@@ -318,9 +318,9 @@ namespace Fabric.Api.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
         ///
-        ///A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each Element has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
+        ///A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each component has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
         ///
-        ///There are six !Factor components: Descriptor, Director, E [rest of string was truncated]&quot;;.
+        ///There are six !Factor components: Descriptor, Director, [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Factor {
             get {
