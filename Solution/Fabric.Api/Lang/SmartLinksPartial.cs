@@ -7,7 +7,7 @@ namespace Fabric.Api.Lang {
 	public static partial class SmartLinks {
 
 		//private static readonly Logger Log = Logger.Build(typeof(SmartLinks));
-		private const string DelimSet = @"('s)?[\s.,;-]+";
+		private const string DelimSet = @"[\s.,;-]+";
 
 		private static readonly IDictionary<string, string> ObjMap = new Dictionary<string, string> {
 			{"Object", "FabObject"},
@@ -39,7 +39,7 @@ namespace Fabric.Api.Lang {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static string ConvertToken(string pToken) {
-			Match m = Regex.Match(pToken, DelimSet);
+			Match m = Regex.Match(pToken, @"('s)?"+DelimSet);
 			string key = (m.Length == 0 ? pToken : pToken.Replace(m.Value, ""));
 			string result = key;
 

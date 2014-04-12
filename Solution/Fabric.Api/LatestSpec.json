@@ -64,7 +64,7 @@
             {
               "Name": "Note",
               "Type": "string",
-              "Description": "A brief description of the new [[Class|Object|FabClass]]. It can be useful for helping others understand the creator's 'sintended purpose or meaning.",
+              "Description": "A brief description of the new [[Class|Object|FabClass]]. It can be useful for helping others understand the creator's intended purpose or meaning.",
               "IsOptional": true,
               "LenMin": 1,
               "LenMax": 256,
@@ -88,21 +88,21 @@
             {
               "Name": "RefinesPrimaryWithArtifactId",
               "Type": "long?",
-              "Description": "Identifies the [[Artifact|Object|FabArtifact]] that refines the [[Factor|Object|FabFactor]]'s 'sprimary [[Artifact|Object|FabArtifact]].",
+              "Description": "Identifies the [[Artifact|Object|FabArtifact]] that refines the [[Factor|Object|FabFactor]]'s primary [[Artifact|Object|FabArtifact]].",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "RefinesRelatedWithArtifactId",
               "Type": "long?",
-              "Description": "Identifies the [[Artifact|Object|FabArtifact]] that refines the [[Factor|Object|FabFactor]]'s 'srelated [[Artifact|Object|FabArtifact]].",
+              "Description": "Identifies the [[Artifact|Object|FabArtifact]] that refines the [[Factor|Object|FabFactor]]'s related [[Artifact|Object|FabArtifact]].",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             },
             {
               "Name": "RefinesTypeWithArtifactId",
               "Type": "long?",
-              "Description": "Identifies the [[Artifact|Object|FabArtifact]] that refines the new Descriptor's 's[[DescriptorType|Enum|DescriptorType]].",
+              "Description": "Identifies the [[Artifact|Object|FabArtifact]] that refines the new Descriptor's [[DescriptorType|Enum|DescriptorType]].",
               "IsOptional": true,
               "Obj": "FabSpecObjectProp"
             }
@@ -125,14 +125,14 @@
               "Enum": "DirectorAction",
               "Name": "PrimaryAction",
               "Type": "byte",
-              "Description": "Identifies the [[DirectorAction|Enum|DirectorAction]] associated with the [[Factor|Object|FabFactor]]'s 'sprimary [[Artifact|Object|FabArtifact]].",
+              "Description": "Identifies the [[DirectorAction|Enum|DirectorAction]] associated with the [[Factor|Object|FabFactor]]'s primary [[Artifact|Object|FabArtifact]].",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "DirectorAction",
               "Name": "RelatedAction",
               "Type": "byte",
-              "Description": "Identifies the [[DirectorAction|Enum|DirectorAction]] associated with the [[Factor|Object|FabFactor]]'s 'srelated [[Artifact|Object|FabArtifact]].",
+              "Description": "Identifies the [[DirectorAction|Enum|DirectorAction]] associated with the [[Factor|Object|FabFactor]]'s related [[Artifact|Object|FabArtifact]].",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -234,7 +234,7 @@
             {
               "Name": "Note",
               "Type": "string",
-              "Description": "A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new [[Factor|Object|FabFactor]]. A descriptive note can help others understand the creator's 'sintended purpose or meaning for the [[Factor|Object|FabFactor]].",
+              "Description": "A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new [[Factor|Object|FabFactor]]. A descriptive note can help others understand the creator's intended purpose or meaning for the [[Factor|Object|FabFactor]].",
               "IsOptional": true,
               "LenMin": 1,
               "LenMax": 256,
@@ -343,7 +343,7 @@
             {
               "Name": "Note",
               "Type": "string",
-              "Description": "A brief description of the new [[Instance|Object|FabInstance]].  It can be useful for helping others understand the creator's 'sintended purpose or meaning.",
+              "Description": "A brief description of the new [[Instance|Object|FabInstance]].  It can be useful for helping others understand the creator's intended purpose or meaning.",
               "IsOptional": true,
               "LenMin": 1,
               "LenMax": 256,
@@ -439,7 +439,7 @@
               "IsUnique": true,
               "Name": "FullPath",
               "Type": "string",
-              "Description": "The complete absolute URL for new [[Url|Object|FabUrl]] object. It must include the URL's 'sprotocol (such as 'http://').",
+              "Description": "The complete absolute URL for new [[Url|Object|FabUrl]] object. It must include the URL's protocol (such as 'http://').",
               "LenMin": 1,
               "LenMax": 2048,
               "Obj": "FabSpecObjectProp"
@@ -499,7 +499,7 @@
         {
           "Name": "FabApp",
           "Extends": "FabArtifact",
-          "Description": "A registered project, application, or business that has direct access to the Fabric API.\n\nAn App's 'sprimary purpose is to facilitate [[User|Object|FabUser]] interaction with Fabric. To accomplish this, an App typically creates an interface for its [[Users|Object|FabUser]]. This interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. \n\nWhen a [[User|Object|FabUser]] becomes a [[Member|Object|FabMember]] of an App, they are granting that App permission to perform various actions on their behalf (via the App's 'sinterface). It is vital for an App to provide each [[User|Object|FabUser]] with a positive experience and do nothing to violate the [[User|Object|FabUser]]'s 'strust.\n\nEvery App has a special 'Data Provider' [[Member|Object|FabMember]], which is typically controlled by that App's 'sadministrator. The 'Data Provider' allows the App to interact with Fabric as itself (rather than on behalf of a particular User).\n\nEvery item added to Fabric is associated with (via Member) a [[User|Object|FabUser]] and and an App. Thus, Fabric can determine which App is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App or [[Member|Object|FabMember]], etc.",
+          "Description": "A registered project, application, or business that has direct access to the Fabric API.\n\nAn App's primary purpose is to facilitate [[User|Object|FabUser]] interaction with Fabric. To accomplish this, an App typically creates an interface for its [[Users|Object|FabUser]]. This interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. \n\nWhen a [[User|Object|FabUser]] becomes a [[Member|Object|FabMember]] of an App, they are granting that App permission to perform various actions on their behalf (via the App's interface). It is vital for an App to provide each [[User|Object|FabUser]] with a positive experience and do nothing to violate the [[User|Object|FabUser]]'s trust.\n\nEvery App has a special 'Data Provider' [[Member|Object|FabMember]], which is typically controlled by that App's administrator. The 'Data Provider' allows the App to interact with Fabric as itself (rather than on behalf of a particular User).\n\nEvery item added to Fabric is associated with (via Member) a [[User|Object|FabUser]] and and an App. Thus, Fabric can determine which App is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App or [[Member|Object|FabMember]], etc.",
           "Properties": [
             {
               "IsUnique": true,
@@ -545,7 +545,7 @@
         {
           "Name": "FabClass",
           "Extends": "FabArtifact",
-          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an [[App|Object|FabApp]] or [[User|Object|FabUser]] can define and/or use to generate meaning. Classes and [[Instances|Object|FabInstance]] are closely related, and are the primary method for generating new [[Artifacts|Object|FabArtifact]].\n\nA Class represents a particular group, type, set, or category of items. Each Class must uniquely identifiable (via name and disambiguation) amongst all other Classes.\n[(EX|Ellie's 's[[Class|Object|FabClass]] Example|Ellie is building an [[App|Object|FabApp]] for dog lovers, but there are not yet animal-related Classes for Ellie to use. She first creates broad Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').\n\nShe then creates narrower Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]",
+          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an [[App|Object|FabApp]] or [[User|Object|FabUser]] can define and/or use to generate meaning. Classes and [[Instances|Object|FabInstance]] are closely related, and are the primary method for generating new [[Artifacts|Object|FabArtifact]].\n\nA Class represents a particular group, type, set, or category of items. Each Class must uniquely identifiable (via name and disambiguation) amongst all other Classes.\n[(EX|Ellie's [[Class|Object|FabClass]] Example|Ellie is building an [[App|Object|FabApp]] for dog lovers, but there are not yet animal-related Classes for Ellie to use. She first creates broad Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').\n\nShe then creates narrower Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]",
           "Properties": [
             {
               "Name": "Name",
@@ -569,7 +569,7 @@
             {
               "Name": "Note",
               "Type": "string",
-              "Description": "A summary of the Class's 'sintended meaning or purpose. This can resolve confusion in cases where a Class has vague or missing [[Factors|Object|FabFactor]].",
+              "Description": "A summary of the Class's intended meaning or purpose. This can resolve confusion in cases where a Class has vague or missing [[Factors|Object|FabFactor]].",
               "IsOptional": true,
               "LenMin": 1,
               "LenMax": 256,
@@ -581,7 +581,7 @@
         {
           "Name": "FabDescriptor",
           "Extends": "FabObject",
-          "Description": "A [[Factor|Object|FabFactor]] component that describes and refines the relationship between the [[Factor|Object|FabFactor]]'s 'stwo [[Artifacts|Object|FabArtifact]]. Descriptors are the only required [[Factor|Object|FabFactor]] component.\n\nFirst, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A \"is a\" B, or C \"sounds like\" D. Since this relationship is directional (flowing _from_ the [[Factor|Object|FabFactor]]'s 'sprimary [[Artifact|Object|FabArtifact]] and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's 'sdirection.\n[(EX|Relationship Example|_Objective:_\nDescribe that a circle is a shape. \n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Circle' as the primary [[Artifact|Object|FabArtifact]] and 'Shape' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]].\n\n_Factor Phrase:_\nCircle ... Is A ... Shape.)]\n\nDescriptors also offer optional (but powerful) refinement capabilities, which allow a Descriptor to be very specific. Using any [[Artifact|Object|FabArtifact]], a Descriptor may refine the [[DescriptorType|Enum|DescriptorType]], the [[Factor|Object|FabFactor]]'s 'sprimary [[Artifact|Object|FabArtifact]], and/or the [[Factor|Object|FabFactor]]'s 'srelated [[Artifact|Object|FabArtifact]]. Note: while these [[Artifact|Object|FabArtifact]] links are discussed here in the context of a Descriptor, the actual traversal links exist with the [[Factor|Object|FabFactor]].\n[(EX|Refinement Example|_Objective:_\nDescribe that car A and car B have headlights with a similar shape.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Car A' as the primary [[Artifact|Object|FabArtifact]] and 'Car B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Similar To' [[DescriptorType|Enum|DescriptorType]], uses 'Headlight' to refine both [[Artifacts|Object|FabArtifact]], and uses 'Shape' to refine the [[DescriptorType|Enum|DescriptorType]]\n\n_Factor Phrase:_\nCar A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]",
+          "Description": "A [[Factor|Object|FabFactor]] component that describes and refines the relationship between the [[Factor|Object|FabFactor]]'s two [[Artifacts|Object|FabArtifact]]. Descriptors are the only required [[Factor|Object|FabFactor]] component.\n\nFirst, the [[DescriptorType|Enum|DescriptorType]] provides semantic meaning to the relationship, such as: a A \"is a\" B, or C \"sounds like\" D. Since this relationship is directional (flowing _from_ the [[Factor|Object|FabFactor]]'s primary [[Artifact|Object|FabArtifact]] and _to_ the related Artifact), the [[DescriptorType|Enum|DescriptorType]] must coordinate correctly with the relationship's direction.\n[(EX|Relationship Example|_Objective:_\nDescribe that a circle is a shape. \n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Circle' as the primary [[Artifact|Object|FabArtifact]] and 'Shape' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]].\n\n_Factor Phrase:_\nCircle ... Is A ... Shape.)]\n\nDescriptors also offer optional (but powerful) refinement capabilities, which allow a Descriptor to be very specific. Using any [[Artifact|Object|FabArtifact]], a Descriptor may refine the [[DescriptorType|Enum|DescriptorType]], the [[Factor|Object|FabFactor]]'s primary [[Artifact|Object|FabArtifact]], and/or the [[Factor|Object|FabFactor]]'s related [[Artifact|Object|FabArtifact]]. Note: while these [[Artifact|Object|FabArtifact]] links are discussed here in the context of a Descriptor, the actual traversal links exist with the [[Factor|Object|FabFactor]].\n[(EX|Refinement Example|_Objective:_\nDescribe that car A and car B have headlights with a similar shape.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Car A' as the primary [[Artifact|Object|FabArtifact]] and 'Car B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Similar To' [[DescriptorType|Enum|DescriptorType]], uses 'Headlight' to refine both [[Artifacts|Object|FabArtifact]], and uses 'Shape' to refine the [[DescriptorType|Enum|DescriptorType]]\n\n_Factor Phrase:_\nCar A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]",
           "Properties": [
             {
               "Enum": "DescriptorType",
@@ -596,7 +596,7 @@
         {
           "Name": "FabDirector",
           "Extends": "FabObject",
-          "Description": "A [[Factor|Object|FabFactor]] component that creates a directional, action-based flow between the [[Factor|Object|FabFactor]]'s 'stwo [[Artifacts|Object|FabArtifact]].\n\nThe nature of a Director's 'spathway depends on its [[DirectorType|Enum|DirectorType]]. The Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.\n\nA Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the [[Factor|Object|FabFactor]]'s 's[[Artifacts|Object|FabArtifact]], which give additional meaning to the Director's 'spathway. The primary action is meant to be performed on the primary [[Artifact|Object|FabArtifact]] before the pathway begins. The related action is meant to be performed on the related [[Artifact|Object|FabArtifact]] after the pathway ends.\n[(EX|Defined Pathway Example|_Objective:_\nDirect along the defined pathway of listening to a particular album's 'sthird and fourth songs (song C and D) in order.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Song C' as the primary [[Artifact|Object|FabArtifact]] and 'Song D' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\n- The Director uses the 'Defined Path' [[DirectorType|Enum|DirectorType]] and the 'Listen' [[DirectorAction|Enum|DirectorAction]] for each [[Artifact|Object|FabArtifact]].\n\n_Factor Phrase:_\nSong C ... Is Related To ... Song D. (The) Listen (action on) ... Song C ...  (leads to the) Listen (action on) ... Song D ... (via) Defined Path.)] [(EX|Suggested Pathway Example|_Objective:_\nDirect along a suggested pathway of listening to song A and then learning about that song's 'svocalist, singer B.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Song A' as the primary [[Artifact|Object|FabArtifact]] and 'Singer B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\n- The Director uses the 'Suggested Path' [[DirectorType|Enum|DirectorType]], the 'Listen' primary [[DirectorAction|Enum|DirectorAction]], and the 'Learn' related [[DirectorAction|Enum|DirectorAction]].\n\n_Factor Phrase:_\nSong A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]",
+          "Description": "A [[Factor|Object|FabFactor]] component that creates a directional, action-based flow between the [[Factor|Object|FabFactor]]'s two [[Artifacts|Object|FabArtifact]].\n\nThe nature of a Director's pathway depends on its [[DirectorType|Enum|DirectorType]]. The Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.\n\nA Director specifies a [[DirectorAction|Enum|DirectorAction]] for each of the [[Factor|Object|FabFactor]]'s [[Artifacts|Object|FabArtifact]], which give additional meaning to the Director's pathway. The primary action is meant to be performed on the primary [[Artifact|Object|FabArtifact]] before the pathway begins. The related action is meant to be performed on the related [[Artifact|Object|FabArtifact]] after the pathway ends.\n[(EX|Defined Pathway Example|_Objective:_\nDirect along the defined pathway of listening to a particular album's third and fourth songs (song C and D) in order.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Song C' as the primary [[Artifact|Object|FabArtifact]] and 'Song D' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\n- The Director uses the 'Defined Path' [[DirectorType|Enum|DirectorType]] and the 'Listen' [[DirectorAction|Enum|DirectorAction]] for each [[Artifact|Object|FabArtifact]].\n\n_Factor Phrase:_\nSong C ... Is Related To ... Song D. (The) Listen (action on) ... Song C ...  (leads to the) Listen (action on) ... Song D ... (via) Defined Path.)] [(EX|Suggested Pathway Example|_Objective:_\nDirect along a suggested pathway of listening to song A and then learning about that song's vocalist, singer B.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Song A' as the primary [[Artifact|Object|FabArtifact]] and 'Singer B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'IsRelatedTo' [[DescriptorType|Enum|DescriptorType]].\n- The Director uses the 'Suggested Path' [[DirectorType|Enum|DirectorType]], the 'Listen' primary [[DirectorAction|Enum|DirectorAction]], and the 'Learn' related [[DirectorAction|Enum|DirectorAction]].\n\n_Factor Phrase:_\nSong A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]",
           "Properties": [
             {
               "Enum": "DirectorType",
@@ -609,14 +609,14 @@
               "Enum": "DirectorAction",
               "Name": "PrimaryAction",
               "Type": "byte",
-              "Description": "Specifies the action to be performed on the [[Factor|Object|FabFactor]]'s 'sprimary [[Artifact|Object|FabArtifact]].",
+              "Description": "Specifies the action to be performed on the [[Factor|Object|FabFactor]]'s primary [[Artifact|Object|FabArtifact]].",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "DirectorAction",
               "Name": "RelatedAction",
               "Type": "byte",
-              "Description": "Specifies the action to be performed on the [[Factor|Object|FabFactor]]'s 'srelated [[Artifact|Object|FabArtifact]].",
+              "Description": "Specifies the action to be performed on the [[Factor|Object|FabFactor]]'s related [[Artifact|Object|FabArtifact]].",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -625,7 +625,7 @@
         {
           "Name": "FabElement",
           "Extends": "FabObject",
-          "Description": "An item (Vertex or Link) in Fabric's 'sgraph structure.",
+          "Description": "An item (Vertex or Link) in Fabric's graph structure.",
           "Properties": [],
           "Obj": "FabSpecObject"
         },
@@ -744,7 +744,7 @@
             {
               "Name": "Note",
               "Type": "string",
-              "Description": "A summary of the Factor's 'sintended meaning or purpose. This is useful in cases when the Factor is vague, complex, or confusing. It can help resolve issues in cases where the [[Factor|Object|FabFactor]]'s 'scomponents inaccurately model the intended meaning. Typically, this value is not written directly by a [[User|Object|FabUser]]; the [[App|Object|FabApp]] should have enough information about a particular Factor-creating action to form a reasonable sentence or phrase.",
+              "Description": "A summary of the Factor's intended meaning or purpose. This is useful in cases when the Factor is vague, complex, or confusing. It can help resolve issues in cases where the [[Factor|Object|FabFactor]]'s components inaccurately model the intended meaning. Typically, this value is not written directly by a [[User|Object|FabUser]]; the [[App|Object|FabApp]] should have enough information about a particular Factor-creating action to form a reasonable sentence or phrase.",
               "IsOptional": true,
               "LenMin": 1,
               "LenMax": 256,
@@ -818,13 +818,13 @@
         {
           "Name": "FabIdentor",
           "Extends": "FabObject",
-          "Description": "A [[Factor|Object|FabFactor]] component that applies a name or identifier to a particular [[Factor|Object|FabFactor]].\n\nAn Identor attaches a text-based value to a [[Factor|Object|FabFactor]]. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.\n\nThe [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the Identor. A \"Text\" [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A \"Key\" [[IdentorType|Enum|IdentorType]] is typically meant to associate a [[Factor|Object|FabFactor]] with some external system (like a Product ID from an online store) or to provide an [[App|Object|FabApp]] with a \"reverse lookup\" for their own internal IDs.\n[(EX|Alternate Name Example|_Objective:_\nIdentify that Grand Valley State University is also known as (has the alternate name of) 'Grand Valley'.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Grand Valley State University' as the primary [[Artifact|Object|FabArtifact]] and 'Name' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]], and an 'Alternative' [[Artifact|Object|FabArtifact]] to refine the [[Factor|Object|FabFactor]]'s 'srelated [[Artifact|Object|FabArtifact]].\n- The Identor uses 'Grand Valley' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\n\n_Factor Phrase:_\nGrand Valley State University ... Has A ... Name (more specifically, an) Alternative, ... (identified by the) Text ... 'Grand Valley'.)] [(EX|Abbreviation Example|_Objective:_\nIdentify that Grand Valley State University is also known as (has the abbreviation of) 'GVSU'.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Grand Valley State University' as the primary [[Artifact|Object|FabArtifact]] and 'Abbreviation' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \n- The Identor uses 'GVSU' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\n\n_Factor Phrase:_\nGrand Valley State University ... Has A(n) ... Abbreviation, ... (identified by the) Text ... 'GVSU'.)] [(EX|Identifier Example|_Objective:_\nIdentify that game A is accessible in store B via its ID, which is '123a-45678'.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Game A' as the primary [[Artifact|Object|FabArtifact]] and 'Store B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Found In' [[DescriptorType|Enum|DescriptorType]]. \n- The Identor uses '123a-45678' as its text value, and the 'Key' [[IdentorType|Enum|IdentorType]].\n\n_Factor Phrase:_\nGame A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]",
+          "Description": "A [[Factor|Object|FabFactor]] component that applies a name or identifier to a particular [[Factor|Object|FabFactor]].\n\nAn Identor attaches a text-based value to a [[Factor|Object|FabFactor]]. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.\n\nThe [[IdentorType|Enum|IdentorType]] hints at the purpose or intent of the Identor. A \"Text\" [[IdentorType|Enum|IdentorType]] is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A \"Key\" [[IdentorType|Enum|IdentorType]] is typically meant to associate a [[Factor|Object|FabFactor]] with some external system (like a Product ID from an online store) or to provide an [[App|Object|FabApp]] with a \"reverse lookup\" for their own internal IDs.\n[(EX|Alternate Name Example|_Objective:_\nIdentify that Grand Valley State University is also known as (has the alternate name of) 'Grand Valley'.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Grand Valley State University' as the primary [[Artifact|Object|FabArtifact]] and 'Name' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]], and an 'Alternative' [[Artifact|Object|FabArtifact]] to refine the [[Factor|Object|FabFactor]]'s related [[Artifact|Object|FabArtifact]].\n- The Identor uses 'Grand Valley' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\n\n_Factor Phrase:_\nGrand Valley State University ... Has A ... Name (more specifically, an) Alternative, ... (identified by the) Text ... 'Grand Valley'.)] [(EX|Abbreviation Example|_Objective:_\nIdentify that Grand Valley State University is also known as (has the abbreviation of) 'GVSU'.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Grand Valley State University' as the primary [[Artifact|Object|FabArtifact]] and 'Abbreviation' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Has A' [[DescriptorType|Enum|DescriptorType]]. \n- The Identor uses 'GVSU' as its text value, and the 'Text' [[IdentorType|Enum|IdentorType]].\n\n_Factor Phrase:_\nGrand Valley State University ... Has A(n) ... Abbreviation, ... (identified by the) Text ... 'GVSU'.)] [(EX|Identifier Example|_Objective:_\nIdentify that game A is accessible in store B via its ID, which is '123a-45678'.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Game A' as the primary [[Artifact|Object|FabArtifact]] and 'Store B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Found In' [[DescriptorType|Enum|DescriptorType]]. \n- The Identor uses '123a-45678' as its text value, and the 'Key' [[IdentorType|Enum|IdentorType]].\n\n_Factor Phrase:_\nGame A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]",
           "Properties": [
             {
               "Enum": "IdentorType",
               "Name": "Type",
               "Type": "byte",
-              "Description": "Specifies the value's 'spurpose or intent.",
+              "Description": "Specifies the value's purpose or intent.",
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -842,7 +842,7 @@
         {
           "Name": "FabInstance",
           "Extends": "FabArtifact",
-          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an [[App|Object|FabApp]] or [[User|Object|FabUser]] can define and/or use to generate meaning. [[Classes|Object|FabClass]] and Instances are closely related, and are the primary method for generating new [[Artifacts|Object|FabArtifact]].\n\nAn Instance represents a singular, unique item. It may have a specific name, however, the name is not required to be unique. Instead, the creator should apply [[Factors|Object|FabFactor]] to make the [[Instance|Object|FabInstance]] as specific and meaningful as possible.\n[(EX|Ellie's 's[[Instance|Object|FabInstance]] Example|_Continued from Ellie's 's[[Class|Object|FabClass]] Example..._\n\nAfter completing her new [[Classes|Object|FabClass]], Ellie would like to add her own dog. She creates an Instance named 'Gulliver', and attaches several [[Factors|Object|FabFactor]] to make the [[Instance|Object|FabInstance]] as unique as possible. Her [[Factors|Object|FabFactor]] define that Gulliver is a Lhasa Apso breed, is owned by Ellie, and was born in September 2007.)] [(EX|Zach's 's[[Instance|Object|FabInstance]] Example|Zach built an [[App|Object|FabApp]] that allows users to rate restaurants and individual meals. He created [[Classes|Object|FabClass]] for restaurant chains and meal types. He also created Instances for specific restaurants (with relevant relationships for each).\n\nWhen [[Users|Object|FabUser]] rate a particular meal, they also specify the restaurant, the day/time the meal was served, and the meal type. Behind the scenes, the [[App|Object|FabApp]] uses this data to construct a new Instance and its relationships. Because Zach's 'sInstances are well-defined, one [[User|Object|FabUser]] could rate the same meal (at the same restaurant) every day, creating a unique and meaningful [[Instance|Object|FabInstance]] each time.)]",
+          "Description": "Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an [[App|Object|FabApp]] or [[User|Object|FabUser]] can define and/or use to generate meaning. [[Classes|Object|FabClass]] and Instances are closely related, and are the primary method for generating new [[Artifacts|Object|FabArtifact]].\n\nAn Instance represents a singular, unique item. It may have a specific name, however, the name is not required to be unique. Instead, the creator should apply [[Factors|Object|FabFactor]] to make the [[Instance|Object|FabInstance]] as specific and meaningful as possible.\n[(EX|Ellie's [[Instance|Object|FabInstance]] Example|_Continued from Ellie's [[Class|Object|FabClass]] Example..._\n\nAfter completing her new [[Classes|Object|FabClass]], Ellie would like to add her own dog. She creates an Instance named 'Gulliver', and attaches several [[Factors|Object|FabFactor]] to make the [[Instance|Object|FabInstance]] as unique as possible. Her [[Factors|Object|FabFactor]] define that Gulliver is a Lhasa Apso breed, is owned by Ellie, and was born in September 2007.)] [(EX|Zach's [[Instance|Object|FabInstance]] Example|Zach built an [[App|Object|FabApp]] that allows users to rate restaurants and individual meals. He created [[Classes|Object|FabClass]] for restaurant chains and meal types. He also created Instances for specific restaurants (with relevant relationships for each).\n\nWhen [[Users|Object|FabUser]] rate a particular meal, they also specify the restaurant, the day/time the meal was served, and the meal type. Behind the scenes, the [[App|Object|FabApp]] uses this data to construct a new Instance and its relationships. Because Zach's Instances are well-defined, one [[User|Object|FabUser]] could rate the same meal (at the same restaurant) every day, creating a unique and meaningful [[Instance|Object|FabInstance]] each time.)]",
           "Properties": [
             {
               "Name": "Name",
@@ -867,7 +867,7 @@
             {
               "Name": "Note",
               "Type": "string",
-              "Description": "A summary of the Instance's 'sintended meaning or purpose. This can resolve confusion in cases where an Instance has vague or missing [[Factors|Object|FabFactor]].",
+              "Description": "A summary of the Instance's intended meaning or purpose. This can resolve confusion in cases where an Instance has vague or missing [[Factors|Object|FabFactor]].",
               "IsOptional": true,
               "LenMin": 1,
               "LenMax": 256,
@@ -899,7 +899,7 @@
         {
           "Name": "FabLocator",
           "Extends": "FabObject",
-          "Description": "A [[Factor|Object|FabFactor]] component that positions a [[Factor|Object|FabFactor]] using geographic or relative coordinates.\n\nA Locator attaches a three-dimensional coordinate to a [[Factor|Object|FabFactor]]. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.\n\nGeographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.\n[(EX|Geographic Example|_Objective:_\nSpecify that person A took photo B from a spot near the Eiffel Tower.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Photo B' as the primary [[Artifact|Object|FabArtifact]] and 'Person A' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Created By' [[DescriptorType|Enum|DescriptorType]]. \n- The Locator uses the 'Earth Coordinate' [[LocatorType|Enum|LocatorType]], a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.\n\n_Factor Phrase:_\nPhoto B ... Is Created By ... Person A, ... (at an) Earth Coordinate (location of) ... X (longitude) = '2.292977' ... Y (latitude) = '48.858154' ... Z (elevation) = '34.24' (metres above sea level).)]\n\nRelative coordinates represent a position relative to the origin and size/bounds of the [[Factor|Object|FabFactor]]'s 'sprimary [[Artifact|Object|FabArtifact]]. There are LocatorTypes for one, two, and three-dimensional relative coordinates. For coordinates which have:\n- One dimension, use X for time or progress, and leave Y and Z equal to zero.\n- Two dimensions, use X for width, Y for height, and leave Z equal to zero.\n- Three dimensions, use X, Y, and Z values which correspond to the [[Artifact|Object|FabArtifact]]'s 'sX, Y, and Z values. If these axes are undefined, use X for width (or breadth), Y for length (or depth), and Z for height (or elevation).\n[(EX|Relative 1D Example|_Objective:_\nSpecify that book A refers to painting B on page 148 of 200 (about 74% of the book's 'slength).\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Book A' as the primary [[Artifact|Object|FabArtifact]] and 'Painting B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \n- The Locator uses the 'Related 1D' [[LocatorType|Enum|LocatorType]], a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.\n\n_Factor Phrase:_\nBook A ... Refers To ... Painting B, ... (at a) Relative 1D (location of) ... X (position) = 0.74.)] [(EX|Relative 2D Example|_Objective:_\nSpecify that photo A includes person B near the top-right (25% from the top, 84% from the left) of the image.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Photo A' as the primary [[Artifact|Object|FabArtifact]] and 'Person B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \n- The Locator uses the 'Relative 2D' [[LocatorType|Enum|LocatorType]], a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.\n\n_Factor Phrase:_\nPhoto A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]",
+          "Description": "A [[Factor|Object|FabFactor]] component that positions a [[Factor|Object|FabFactor]] using geographic or relative coordinates.\n\nA Locator attaches a three-dimensional coordinate to a [[Factor|Object|FabFactor]]. The [[LocatorType|Enum|LocatorType]] defines the spatial context of the coordinate, supporting both geographic and relative positioning.\n\nGeographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.\n[(EX|Geographic Example|_Objective:_\nSpecify that person A took photo B from a spot near the Eiffel Tower.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Photo B' as the primary [[Artifact|Object|FabArtifact]] and 'Person A' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Created By' [[DescriptorType|Enum|DescriptorType]]. \n- The Locator uses the 'Earth Coordinate' [[LocatorType|Enum|LocatorType]], a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.\n\n_Factor Phrase:_\nPhoto B ... Is Created By ... Person A, ... (at an) Earth Coordinate (location of) ... X (longitude) = '2.292977' ... Y (latitude) = '48.858154' ... Z (elevation) = '34.24' (metres above sea level).)]\n\nRelative coordinates represent a position relative to the origin and size/bounds of the [[Factor|Object|FabFactor]]'s primary [[Artifact|Object|FabArtifact]]. There are LocatorTypes for one, two, and three-dimensional relative coordinates. For coordinates which have:\n- One dimension, use X for time or progress, and leave Y and Z equal to zero.\n- Two dimensions, use X for width, Y for height, and leave Z equal to zero.\n- Three dimensions, use X, Y, and Z values which correspond to the [[Artifact|Object|FabArtifact]]'s X, Y, and Z values. If these axes are undefined, use X for width (or breadth), Y for length (or depth), and Z for height (or elevation).\n[(EX|Relative 1D Example|_Objective:_\nSpecify that book A refers to painting B on page 148 of 200 (about 74% of the book's length).\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Book A' as the primary [[Artifact|Object|FabArtifact]] and 'Painting B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \n- The Locator uses the 'Related 1D' [[LocatorType|Enum|LocatorType]], a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.\n\n_Factor Phrase:_\nBook A ... Refers To ... Painting B, ... (at a) Relative 1D (location of) ... X (position) = 0.74.)] [(EX|Relative 2D Example|_Objective:_\nSpecify that photo A includes person B near the top-right (25% from the top, 84% from the left) of the image.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Photo A' as the primary [[Artifact|Object|FabArtifact]] and 'Person B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \n- The Locator uses the 'Relative 2D' [[LocatorType|Enum|LocatorType]], a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.\n\n_Factor Phrase:_\nPhoto A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]",
           "Properties": [
             {
               "Enum": "LocatorType",
@@ -938,7 +938,7 @@
               "Enum": "MemberType",
               "Name": "Type",
               "Type": "byte",
-              "Description": "Specifies the [[Member|Object|FabMember]]'s 'sstate and/or access privileges.",
+              "Description": "Specifies the [[Member|Object|FabMember]]'s state and/or access privileges.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -1028,7 +1028,7 @@
             {
               "Name": "Version",
               "Type": "string",
-              "Description": "This build's 'sfull version string, in the format: \"Major.Minor.Patch.Revision\".",
+              "Description": "This build's full version string, in the format: \"Major.Minor.Patch.Revision\".",
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -1052,7 +1052,7 @@
             {
               "Name": "Revision",
               "Type": "string",
-              "Description": "The revision text is derived from internal build information. It may be safely omitted from the build's 'sversion string.",
+              "Description": "The revision text is derived from internal build information. It may be safely omitted from the build's version string.",
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -1198,7 +1198,7 @@
         {
           "Name": "FabObject",
           "Extends": "Object",
-          "Description": "The base class for all Objects returned by Fabric's 'sservices.",
+          "Description": "The base class for all Objects returned by Fabric's services.",
           "Properties": [
             {
               "Name": "Obj",
@@ -1705,7 +1705,7 @@
               "IsUnique": true,
               "Name": "FullPath",
               "Type": "string",
-              "Description": "A unique, valid absolute URL. The string must include the link's 'sprotocol (such as 'http://').",
+              "Description": "A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').",
               "LenMin": 1,
               "LenMax": 2048,
               "Obj": "FabSpecObjectProp"
@@ -1716,7 +1716,7 @@
         {
           "Name": "FabUser",
           "Extends": "FabArtifact",
-          "Description": "A registered Fabric account that has indirect access (via Apps) to the Fabric API. A User can become a [[Member|Object|FabMember]] of an [[App|Object|FabApp]], and then use the [[App|Object|FabApp]]'s 'sinterface to interact with Fabric. An [[App|Object|FabApp]]'s 'sinterface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. \n\nUsers control their private account data and preferences using the Fabric website.\n\nEvery item added to Fabric is associated with (via Member) a User and and an [[App|Object|FabApp]]. Thus, Fabric can determine which User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular User or [[Member|Object|FabMember]], etc.",
+          "Description": "A registered Fabric account that has indirect access (via Apps) to the Fabric API. A User can become a [[Member|Object|FabMember]] of an [[App|Object|FabApp]], and then use the [[App|Object|FabApp]]'s interface to interact with Fabric. An [[App|Object|FabApp]]'s interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. \n\nUsers control their private account data and preferences using the Fabric website.\n\nEvery item added to Fabric is associated with (via Member) a User and and an [[App|Object|FabApp]]. Thus, Fabric can determine which User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular User or [[Member|Object|FabMember]], etc.",
           "Properties": [
             {
               "IsUnique": true,
@@ -1741,27 +1741,27 @@
         {
           "Name": "FabVector",
           "Extends": "FabObject",
-          "Description": "A [[Factor|Object|FabFactor]] component that applies a meaningful numeric axis and value to a particular [[Factor|Object|FabFactor]].\n\nA Vector attaches a numeric value to a [[Factor|Object|FabFactor]], using an arbitrary [[Artifact|Object|FabArtifact]] to define its \"axis\". This axis depends entiedgey upon the Vector's 'spurpose. For example, a factual Vector might use an [[Artifact|Object|FabArtifact]] like \"Height\" or \"Shutter Speed\". A Vector that provides an opinion might use an [[Artifact|Object|FabArtifact]] like \"Quality\" or \"Excitement\". While the choice of an axis Artififact is not restricted, it can be beneficial to use [[Artifacts|Object|FabArtifact]] which are other [[Apps|Object|FabApp]] or [[Users|Object|FabUser]] are already using as Vector axes. Note: while the axis [[Artifact|Object|FabArtifact]] link is discussed here in the context of a Vector, the actual traversal link exists with the [[Factor|Object|FabFactor]].\n\nThe [[VectorType|Enum|VectorType]] provides boundaries and context for the Vector's 'svalue. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each [[VectorType|Enum|VectorType]] provides additional information, such as a [[VectorRange|Enum|VectorRange]], to provide further meaning for the levels within the the allowed value boundaries.\n\nA Vector's 'snumeric value often reflects a measurement or a has a specific unit. Furthermore, a Vector can use [[VectorUnitPrefix|Enum|VectorUnitPrefix]] to specify an order of magnitude for the value. A Vector's 'svalue is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.\n[(EX|Small Value Example|_Objective:_\nSpecify that image A (which is a photo) has a shutter speed of 1/250 second.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Image A' as the primary [[Artifact|Object|FabArtifact]] and 'Photo' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]]. \n- The Vector uses the 'Shutter Speed' [[Artifact|Object|FabArtifact]] as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '4' as the value, the 'Milli' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the 'Second' [[VectorUnit|Enum|VectorUnit]].\n\n_Factor Phrase:_\nImage A ... Is A ... Photo, ... (which, along the) Shutter Speed (axis) ... (with a) Positive Long (numerical range), ... (has a value) '4' ... Milli ... Second(s).)] [(EX|Large Value Example|_Objective:_\nSpecify that Earth and the Andromeda Galaxy are 2.5 million light years (2.2705 x 10^22 metres) apart.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Earth' as the primary [[Artifact|Object|FabArtifact]] and 'Andromeda Galaxy' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Related To' [[DescriptorType|Enum|DescriptorType]]. \n- The Vector uses the 'Distance' [[Artifact|Object|FabArtifact]] as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '22,705' as the value, the 'Exa' [[VectorUnitPrefix|Enum|VectorUnitPrefix]] (represents 10^18), and the 'Metre' [[VectorUnit|Enum|VectorUnit]].\n\n_Factor Phrase:_\nEarth ... Is Related To ... Andromeda Galaxy, ... (which, along the) Distance (axis) ... (with a) Positive Long (numerical range), ... (has a value) '22,705' ... Exa ... Metre(s).)] [(EX|Negative Value Example|_Objective:_\nSpecify that article A mentions person B in a very unfair manner, about 80% of the maximum unfairness imaginable.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Article A' as the primary [[Artifact|Object|FabArtifact]] and 'Person B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \n- The Vector uses the 'Fairness' [[Artifact|Object|FabArtifact]] as the axis, the 'Opposable Favorability' [[VectorType|Enum|VectorType]], '-80' as the value, the default 'Base' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the default 'None' [[VectorUnit|Enum|VectorUnit]]. This [[VectorType|Enum|VectorType]] has bounds of -100 to +100.\n\n_Factor Phrase:_\nArticle A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]",
+          "Description": "A [[Factor|Object|FabFactor]] component that applies a meaningful numeric axis and value to a particular [[Factor|Object|FabFactor]].\n\nA Vector attaches a numeric value to a [[Factor|Object|FabFactor]], using an arbitrary [[Artifact|Object|FabArtifact]] to define its \"axis\". This axis depends entiedgey upon the Vector's purpose. For example, a factual Vector might use an [[Artifact|Object|FabArtifact]] like \"Height\" or \"Shutter Speed\". A Vector that provides an opinion might use an [[Artifact|Object|FabArtifact]] like \"Quality\" or \"Excitement\". While the choice of an axis Artififact is not restricted, it can be beneficial to use [[Artifacts|Object|FabArtifact]] which are other [[Apps|Object|FabApp]] or [[Users|Object|FabUser]] are already using as Vector axes. Note: while the axis [[Artifact|Object|FabArtifact]] link is discussed here in the context of a Vector, the actual traversal link exists with the [[Factor|Object|FabFactor]].\n\nThe [[VectorType|Enum|VectorType]] provides boundaries and context for the Vector's value. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each [[VectorType|Enum|VectorType]] provides additional information, such as a [[VectorRange|Enum|VectorRange]], to provide further meaning for the levels within the the allowed value boundaries.\n\nA Vector's numeric value often reflects a measurement or a has a specific unit. Furthermore, a Vector can use [[VectorUnitPrefix|Enum|VectorUnitPrefix]] to specify an order of magnitude for the value. A Vector's value is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.\n[(EX|Small Value Example|_Objective:_\nSpecify that image A (which is a photo) has a shutter speed of 1/250 second.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Image A' as the primary [[Artifact|Object|FabArtifact]] and 'Photo' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is A' [[DescriptorType|Enum|DescriptorType]]. \n- The Vector uses the 'Shutter Speed' [[Artifact|Object|FabArtifact]] as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '4' as the value, the 'Milli' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the 'Second' [[VectorUnit|Enum|VectorUnit]].\n\n_Factor Phrase:_\nImage A ... Is A ... Photo, ... (which, along the) Shutter Speed (axis) ... (with a) Positive Long (numerical range), ... (has a value) '4' ... Milli ... Second(s).)] [(EX|Large Value Example|_Objective:_\nSpecify that Earth and the Andromeda Galaxy are 2.5 million light years (2.2705 x 10^22 metres) apart.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Earth' as the primary [[Artifact|Object|FabArtifact]] and 'Andromeda Galaxy' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Is Related To' [[DescriptorType|Enum|DescriptorType]]. \n- The Vector uses the 'Distance' [[Artifact|Object|FabArtifact]] as the axis, the 'Positive Long' [[VectorType|Enum|VectorType]], '22,705' as the value, the 'Exa' [[VectorUnitPrefix|Enum|VectorUnitPrefix]] (represents 10^18), and the 'Metre' [[VectorUnit|Enum|VectorUnit]].\n\n_Factor Phrase:_\nEarth ... Is Related To ... Andromeda Galaxy, ... (which, along the) Distance (axis) ... (with a) Positive Long (numerical range), ... (has a value) '22,705' ... Exa ... Metre(s).)] [(EX|Negative Value Example|_Objective:_\nSpecify that article A mentions person B in a very unfair manner, about 80% of the maximum unfairness imaginable.\n\n_Method:_\n- The [[Factor|Object|FabFactor]] uses 'Article A' as the primary [[Artifact|Object|FabArtifact]] and 'Person B' as the related [[Artifact|Object|FabArtifact]].\n- The Descriptor uses the 'Refers To' [[DescriptorType|Enum|DescriptorType]]. \n- The Vector uses the 'Fairness' [[Artifact|Object|FabArtifact]] as the axis, the 'Opposable Favorability' [[VectorType|Enum|VectorType]], '-80' as the value, the default 'Base' [[VectorUnitPrefix|Enum|VectorUnitPrefix]], and the default 'None' [[VectorUnit|Enum|VectorUnit]]. This [[VectorType|Enum|VectorType]] has bounds of -100 to +100.\n\n_Factor Phrase:_\nArticle A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]",
           "Properties": [
             {
               "Enum": "VectorType",
               "Name": "Type",
               "Type": "byte",
-              "Description": "Specifies its value's 'sboundaries and context.",
+              "Description": "Specifies its value's boundaries and context.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "VectorUnit",
               "Name": "Unit",
               "Type": "byte",
-              "Description": "Specifies its value's 'sunit of measurement.",
+              "Description": "Specifies its value's unit of measurement.",
               "Obj": "FabSpecObjectProp"
             },
             {
               "Enum": "VectorUnitPrefix",
               "Name": "UnitPrefix",
               "Type": "byte",
-              "Description": "Specifies its value's 'sorder of magnitude.",
+              "Description": "Specifies its value's order of magnitude.",
               "Obj": "FabSpecObjectProp"
             },
             {
@@ -2101,7 +2101,7 @@
               "Uri": "/Login",
               "Method": "GET",
               "Return": "FabOauthLogin",
-              "Description": "This API request is unique -- it represents the entry point for Fabric's 'sOAuth 2.0 authentication process.  Instead of making this API request directly from a Fabric [[App|Object|FabApp]], the [[App|Object|FabApp]] should provide a link so that its users can load this request's 'sURL (including the required query-string parameters) in their browser.\n\nA web-based Fabric [[App|Object|FabApp]] would typically load this OAuth entry page as a browser popup window. Once the user completes the full OAuth process (or upon an error), Fabric will redirect the browser to the [[App|Object|FabApp]]'s 'sspecified redirect URI.  This redirect includes query-string parameters that provide success or error information.\n\t\nFor a user, this OAuth process includes two steps: login and 'scope' acceptance.\n\nThe first step is login, where the user is prompted to enter their username and password. If a user has already logged into Fabric (i.e. has an active authentication cookie from Fabric) and the [[App|Object|FabApp]] has not requested 'switchMode', the login step is skipped.  Important note: login occurs on Fabric's 'sserver -- a Fabric [[App|Object|FabApp]] never receives or sends a Fabric user's 'slogin credentials.\n\nThe second step is 'scope' acceptance.  The page tells the user that a particular Fabric [[App|Object|FabApp]] wants to connect to their Fabric account, and briefly explains what this means to the user and the [[App|Object|FabApp]]. The user must accept or deny access.  Upon acceptance, the page redirects to the [[App|Object|FabApp]] with a 'success' message.  Upon denial, Fabric performs an error redirect.\n\t\nSimilar to the login step, if a user has already accepted 'scope' for a particular [[App|Object|FabApp]], the second step is skipped.  Thus, in the case where a user is already authenticated with Fabric and has already allowed [[App|Object|FabApp]] access, the entire process results in a success redirect.\n\t\nSee FabOauthLogin for the query string parameters that can be included in the success and error redirects.",
+              "Description": "This API request is unique -- it represents the entry point for Fabric's OAuth 2.0 authentication process.  Instead of making this API request directly from a Fabric [[App|Object|FabApp]], the [[App|Object|FabApp]] should provide a link so that its users can load this request's URL (including the required query-string parameters) in their browser.\n\nA web-based Fabric [[App|Object|FabApp]] would typically load this OAuth entry page as a browser popup window. Once the user completes the full OAuth process (or upon an error), Fabric will redirect the browser to the [[App|Object|FabApp]]'s specified redirect URI.  This redirect includes query-string parameters that provide success or error information.\n\t\nFor a user, this OAuth process includes two steps: login and 'scope' acceptance.\n\nThe first step is login, where the user is prompted to enter their username and password. If a user has already logged into Fabric (i.e. has an active authentication cookie from Fabric) and the [[App|Object|FabApp]] has not requested 'switchMode', the login step is skipped.  Important note: login occurs on Fabric's server -- a Fabric [[App|Object|FabApp]] never receives or sends a Fabric user's login credentials.\n\nThe second step is 'scope' acceptance.  The page tells the user that a particular Fabric [[App|Object|FabApp]] wants to connect to their Fabric account, and briefly explains what this means to the user and the [[App|Object|FabApp]]. The user must accept or deny access.  Upon acceptance, the page redirects to the [[App|Object|FabApp]] with a 'success' message.  Upon denial, Fabric performs an error redirect.\n\t\nSimilar to the login step, if a user has already accepted 'scope' for a particular [[App|Object|FabApp]], the second step is skipped.  Thus, in the case where a user is already authenticated with Fabric and has already allowed [[App|Object|FabApp]] access, the entire process results in a success redirect.\n\t\nSee FabOauthLogin for the query string parameters that can be included in the success and error redirects.",
               "Auth": "None",
               "Parameters": [
                 {
@@ -2115,7 +2115,7 @@
                   "Index": 1,
                   "Name": "client_id",
                   "Type": "string",
-                  "Description": "The ID of the Fabric [[App|Object|FabApp]] making the OAuth Login request.  The access code provided after a successful OAuth process will be associated with this [[App|Object|FabApp]] ID and the authenticated [[User|Object|FabUser]]'s 'sID.",
+                  "Description": "The ID of the Fabric [[App|Object|FabApp]] making the OAuth Login request.  The access code provided after a successful OAuth process will be associated with this [[App|Object|FabApp]] ID and the authenticated [[User|Object|FabUser]]'s ID.",
                   "Obj": "FabSpecServiceParam"
                 },
                 {
@@ -2129,14 +2129,14 @@
                   "Index": 3,
                   "Name": "scope",
                   "Type": "string",
-                  "Description": "Describes the level of access the [[App|Object|FabApp]] will have to the [[User|Object|FabUser]]'s 'saccount.  This value is required by the OAuth 2.0 specification, however, Fabric currently ignores it.  All OAuth requests currently receive the same level of access to the [[User|Object|FabUser]]'s 'saccount.  Fabric may begin using this parameter in the future.",
+                  "Description": "Describes the level of access the [[App|Object|FabApp]] will have to the [[User|Object|FabUser]]'s account.  This value is required by the OAuth 2.0 specification, however, Fabric currently ignores it.  All OAuth requests currently receive the same level of access to the [[User|Object|FabUser]]'s account.  Fabric may begin using this parameter in the future.",
                   "Obj": "FabSpecServiceParam"
                 },
                 {
                   "Index": 4,
                   "Name": "state",
                   "Type": "string",
-                  "Description": "Provides a security function for a Fabric [[App|Object|FabApp]].  All success/message redirect responses include a 'state' query-string parameter.  The [[App|Object|FabApp]] should check this value against the state value provided in the initial request.  The two values should always be equal. If the values are not equal, then the redirect did not come from the Fabric OAuth process (or from a different user's 'sprocess), and should be handled accordingly.",
+                  "Description": "Provides a security function for a Fabric [[App|Object|FabApp]].  All success/message redirect responses include a 'state' query-string parameter.  The [[App|Object|FabApp]] should check this value against the state value provided in the initial request.  The two values should always be equal. If the values are not equal, then the redirect did not come from the Fabric OAuth process (or from a different user's process), and should be handled accordingly.",
                   "Obj": "FabSpecServiceParam"
                 },
                 {
@@ -2154,7 +2154,7 @@
               "Uri": "/Logout",
               "Method": "GET",
               "Return": "FabOauthLogout",
-              "Description": "Terminates a particular OAuth session by invalidating the session's 'saccess token. Any further OAuth requests made with this particular access token are rejected.\n\nLogging out of an OAuth session does not revoke the the [[App|Object|FabApp]] scope accepted by the [[User|Object|FabUser]] (during the first OAuth login process).  Furthermore, it does not end the [[User|Object|FabUser]]'s 'sauthenticated session with Fabric.  Thus, a subsequent OAuth entry by the same user may actually require zero input from the user -- they could potentially bypass both OAuth entry steps (login and scope acceptance).  This allows a user to begin a new OAuth session seamlessly, even after logging out.",
+              "Description": "Terminates a particular OAuth session by invalidating the session's access token. Any further OAuth requests made with this particular access token are rejected.\n\nLogging out of an OAuth session does not revoke the the [[App|Object|FabApp]] scope accepted by the [[User|Object|FabUser]] (during the first OAuth login process).  Furthermore, it does not end the [[User|Object|FabUser]]'s authenticated session with Fabric.  Thus, a subsequent OAuth entry by the same user may actually require zero input from the user -- they could potentially bypass both OAuth entry steps (login and scope acceptance).  This allows a user to begin a new OAuth session seamlessly, even after logging out.",
               "Auth": "None",
               "Parameters": [
                 {
@@ -4285,7 +4285,7 @@
             {
               "Name": "Description",
               "Type": "string",
-              "Description": "A summary of this object's 'sintended meaning or purpose.",
+              "Description": "A summary of this object's intended meaning or purpose.",
               "Obj": "FabSpecObjectProp"
             }
           ],
@@ -4825,7 +4825,7 @@
             {
               "Name": "Position",
               "Type": "float",
-              "Description": "A value (between 0.0 and 1.0) which defines the relative position between a numeric range's 'sminimum and maximum boundaries.",
+              "Description": "A value (between 0.0 and 1.0) which defines the relative position between a numeric range's minimum and maximum boundaries.",
               "Obj": "FabSpecObjectProp"
             }
           ],

@@ -9,7 +9,6 @@ using Fabric.Api.Objects;
 using Fabric.Api.Objects.Menu;
 using Fabric.Api.Objects.Meta;
 using Fabric.Domain.Enums;
-using Fabric.Infrastructure.Broadcast;
 using Fabric.Infrastructure.Spec;
 using Fabric.Operations.Traversal.Routing;
 using Fabric.Operations.Traversal.Util;
@@ -19,7 +18,7 @@ namespace Fabric.Api {
 	/*================================================================================================*/
 	public static class ApiSpec {
 
-		private static Logger Log = Logger.Build(typeof(ApiSpec));
+		//private static Logger Log = Logger.Build(typeof(ApiSpec));
 
 		public readonly static FabSpec Spec = BuildSpec();
 
