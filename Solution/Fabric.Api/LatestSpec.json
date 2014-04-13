@@ -2777,72 +2777,72 @@
               ],
               "Rules": [
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravVertexRoot",
                   "Return": "FabVertex",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravArtifactRoot",
                   "Return": "FabArtifact",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravAppRoot",
                   "Return": "FabApp",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravClassRoot",
                   "Return": "FabClass",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravFactorRoot",
                   "Return": "FabFactor",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravInstanceRoot",
                   "Return": "FabInstance",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravMemberRoot",
                   "Return": "FabMember",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravUrlRoot",
                   "Return": "FabUrl",
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "Timestamp",
-                  "Uri": "/Timestamp",
+                  "Name": "WhereTimestamp",
+                  "Uri": "/WhereTimestamp",
                   "T": "long",
                   "Entry": "FabTravUserRoot",
                   "Return": "FabUser",

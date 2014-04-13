@@ -170,7 +170,7 @@ foreach ( IVertexSchema v in verts ) {
 		if ( pm.Domain.IsElastic ) {
 			if ( ap.TraversalHas == Matching.Custom ) {
 #>
-			TravStepsCustom.<#= v.Names.Domain #>EntryWhere<#= ap.Name #><FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
+			TravStepsCustom.<#= v.Names.Domain #>EntryWhere<#= ap.Name #><FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("Where<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
 <#
 			}
 			else if ( ap.DataType == typeof(string) ) {

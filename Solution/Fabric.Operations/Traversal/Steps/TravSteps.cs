@@ -123,7 +123,7 @@ namespace Fabric.Operations.Traversal.Steps {
 			new TravStepEntryContains<FabTravUserRoot, FabUser>("WhereNameContains", "u_na"),
 			new TravStepEntryWith<FabTravUserRoot, string, FabUser>("WithName", "u_nk", true),
 			new TravStepEntryWith<FabTravVertexRoot, long, FabVertex>("WithId", "v_id", false),
-			TravStepsCustom.VertexEntryWhereTimestamp<FabTravVertexRoot, long, FabVertex>("Timestamp", "v_ts"),
+			TravStepsCustom.VertexEntryWhereTimestamp<FabTravVertexRoot, long, FabVertex>("WhereTimestamp", "v_ts"),
 		};
 
 		public static readonly IList<ITravStep> RootList = new List<ITravStep> {
