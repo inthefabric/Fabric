@@ -549,4 +549,7 @@
   <data name="CreateMember_Type" xml:space="preserve">
     <value>Identifies the MemberType for the new Member.</value>
   </data>
+  <data name="TravResponse_Steps" xml:space="preserve">
+    <value>The list of traversal steps available from the current traversal position.</value>
+  </data>
 </root>

@@ -50,7 +50,7 @@ namespace Fabric.Api.Executors {
 					OnUnhandledException(resp, e);
 				}
 				else {
-					var fr = new FabResponse();
+					var fr = new FabResponse<FabObject>();
 					fr.TotalMs = resp.GetTimerMilliseconds();
 					fr.Error = err;
 					resp.SetJsonWith(fr);

@@ -3,16 +3,10 @@
 namespace Fabric.Api.Objects {
 
 	/*================================================================================================*/
-	public class FabResponse {
+	public class FabResponse<T> where T : FabObject {
 
 		public double TotalMs { get; set; }
 		public FabError Error { get; set; }
-
-	}
-
-	/*================================================================================================*/
-	public class FabResponse<T> : FabResponse where T : FabObject {
-
 		public IList<T> Data { get; set; }
 
 

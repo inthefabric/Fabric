@@ -52,7 +52,7 @@ namespace Fabric.Test.Unit.Operations.Web {
 				Assert.AreEqual(MockDataAccess.SessionStart, mda.GetCommand(0).SessionAction,
 					"Incorrect Command 0 SessionAction.");
 
-				string expectScript = "m=g.V('"+DbName.Vert.Vertex.VertexId+"',_P);";
+				string expectScript = "m=g.V('"+DbName.Vert.Vertex.VertexId+"',_P).next();";
 				var expectParam = new List<object> { vMem.VertexId };
 				TestUtil.CheckWeaverScript(mda.GetCommand(1), expectScript, "_P", expectParam);
 

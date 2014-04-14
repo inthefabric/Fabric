@@ -8,6 +8,7 @@ using Fabric.Api.Lang;
 using Fabric.Api.Objects;
 using Fabric.Api.Objects.Menu;
 using Fabric.Api.Objects.Meta;
+using Fabric.Api.Objects.Traversal;
 using Fabric.Domain.Enums;
 using Fabric.Infrastructure.Spec;
 using Fabric.Operations.Traversal.Routing;
@@ -217,13 +218,8 @@ namespace Fabric.Api {
 			var objects = new List<FabSpecObject>();
 			var types = typeof(FabObject).Assembly.GetTypes().OrderBy(x => x.Name);
 			
-			FabSpecObject frObj = BuildObject(typeof(FabResponse));
-			FabSpecObject frObjT = BuildObject(typeof(FabResponse<FabObject>));
-			FabSpecObjectProp frDataProp = frObjT.Properties[0];
-			frDataProp.Description = 
-				ApiLang.Text<DtoPropText>(frObj.Name.Substring(3)+"_"+frDataProp.Name);
-			frObj.Properties.Add(frDataProp);
-			objects.Add(frObj);
+			objects.Add(BuildObject(typeof(FabResponse<FabObject>)));
+			objects.Add(BuildObject(typeof(FabTravResponse<FabObject>)));
 
 			foreach ( Type t in types ) {
 				if ( !typeof(FabObject).IsAssignableFrom(t) ) {
@@ -243,8 +239,8 @@ namespace Fabric.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static FabSpecObject BuildObject(Type pType) {
 			var o = new FabSpecObject();
-			o.Name = pType.Name;
-			o.Extends = pType.BaseType.Name;
+			o.Name = pType.Name.Split(new[] { '`' })[0];
+			o.Extends = pType.BaseType.Name.Split(new[] { '`' })[0];
 
 			if ( o.Name.IndexOf("CreateFab") == 0 ) {
 				o.Description = ApiLang.Text<DtoText>(o.Name);

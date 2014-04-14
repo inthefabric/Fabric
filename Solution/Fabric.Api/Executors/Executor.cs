@@ -27,7 +27,7 @@ namespace Fabric.Api.Executors {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected void OnUnhandledException(IApiResponse pResp, Exception pEx) {
-			var fr = new FabResponse();
+			var fr = new FabResponse<FabObject>();
 			fr.Error = FabError.ForInternalServerError();
 			fr.TotalMs = pResp.GetTimerMilliseconds();
 

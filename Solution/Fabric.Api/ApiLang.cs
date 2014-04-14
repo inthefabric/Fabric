@@ -58,7 +58,7 @@ namespace Fabric.Api {
 				}
 
 				if ( gt == typeof(FabResponse<>) ) {
-					return typeof(FabResponse).Name+"<"+TypeName(arg)+">";
+					return gt.Name.Split(new[] { '`' })[0]+"<"+TypeName(arg)+">";
 				}
 			}
 

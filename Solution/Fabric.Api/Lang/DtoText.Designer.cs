@@ -579,6 +579,15 @@ namespace Fabric.Api.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The response wrapper for traversal API requests..
+        /// </summary>
+        internal static string TravResponse {
+            get {
+                return ResourceManager.GetString("TravResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects..
         /// </summary>
         internal static string TravRoot {

@@ -25,7 +25,7 @@ namespace Fabric.Api.Handlers {
 			err.Message = pContext.Response.StatusCode+" ("+(int)pContext.Response.StatusCode+") "+
 				"for API request: "+pContext.Request.Method+" "+pContext.Request.Path;
 
-			var fr = new FabResponse();
+			var fr = new FabResponse<FabObject>();
 			fr.Error = err;
 
 			var jr = new JsonResponse(fr, new ServiceStackJsonSerializer());

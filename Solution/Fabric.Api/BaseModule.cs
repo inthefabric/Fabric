@@ -128,7 +128,7 @@ namespace Fabric.Api {
 		private Response HandleError(NancyContext pContext, Exception pException) {
 			Log.Fatal("Error at "+pContext.Request.Path, pException);
 
-			var fr = new FabResponse();
+			var fr = new FabResponse<FabObject>();
 			fr.Error = FabError.ForInternalServerError();
 
 			var jr = new JsonResponse(fr, new ServiceStackJsonSerializer());

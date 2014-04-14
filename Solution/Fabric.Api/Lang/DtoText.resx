@@ -524,4 +524,7 @@ When Users rate a particular meal, they also specify the restaurant, the day/tim
   <data name="CreateFabVertex" xml:space="preserve">
     <value>The base class for the creation of Vertices.</value>
   </data>
+  <data name="TravResponse" xml:space="preserve">
+    <value>The response wrapper for traversal API requests.</value>
+  </data>
 </root>

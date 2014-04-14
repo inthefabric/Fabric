@@ -31,6 +31,20 @@
           "Obj": "FabSpecObject"
         },
         {
+          "Name": "FabTravResponse",
+          "Extends": "FabResponse",
+          "Description": "The response wrapper for traversal API requests.",
+          "Properties": [
+            {
+              "Name": "Steps",
+              "Type": "FabTravStep[]",
+              "Description": "The list of traversal steps available from the current traversal position.",
+              "Obj": "FabSpecObjectProp"
+            }
+          ],
+          "Obj": "FabSpecObject"
+        },
+        {
           "Name": "CreateFabArtifact",
           "Extends": "CreateFabVertex",
           "Description": "The base class for the creation of [[Artifacts|Object|FabArtifact]].",
