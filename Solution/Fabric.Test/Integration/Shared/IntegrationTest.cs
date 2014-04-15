@@ -50,7 +50,7 @@ namespace Fabric.Test.Integration.Shared {
 			}
 
 			//vCounts = CountVerticesAndEdges();
-			vCounts = new Tuple<int, int>(215, 934); //shortcut to help tests run faster
+			vCounts = new Tuple<int, int>(215, 943); //shortcut to help tests run faster
 
 			Log.Info("SetUp complete at T = "+GetTime());
 			Log.Info("Counts { V = "+vCounts.Item1+", E = "+vCounts.Item2+" }");

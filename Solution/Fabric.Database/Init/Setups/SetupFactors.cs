@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Domain.Enums;
 using Fabric.Infrastructure.Util;
@@ -673,14 +672,14 @@ namespace Fabric.Database.Init.Setups {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddDescriptor(DescriptorType.Id pTypeId, SetupArtifactId? pPrimModId=null,
-				SetupArtifactId? pDtModId=null, SetupArtifactId? pEdgeModId=null) {
+		private void AddDescriptor(DescriptorType.Id pTypeId, SetupArtifactId? pPrimRefId=null,
+				SetupArtifactId? pDtRefId=null, SetupArtifactId? pRelRefId=null) {
 			var d = new Descriptor();
 			d.DescriptorId = ++vIdCount;
 			d.Type = (byte)pTypeId;
-			d.PrimArtRefId = (long?)pPrimModId;
-			d.EdgeArtRefId = (long?)pEdgeModId;
-			d.TypeArtRefId = (long?)pEdgeModId;
+			d.PrimArtRefId = (long?)pPrimRefId;
+			d.TypeArtRefId = (long?)pDtRefId;
+			d.RelArtRefId = (long?)pRelRefId;
 			DescMap.Add(d.DescriptorId, d);
 		}
 
@@ -746,14 +745,15 @@ namespace Fabric.Database.Init.Setups {
 					EventorId? pEventId, IdentorId? pIdentId, LocatorId? pLocId, VectorId? pVectId,
 					bool pIsDefining, FactorAssertion.Id pAstId, string pNote) {
 
-			DateTime dt = Data.SetupDateTime;
+			Descriptor desc = DescMap[(long)pDescId];
 
 			var f = new Factor();
 			f.AssertionType = (byte)pAstId;
 			f.IsDefining = pIsDefining;
 			f.Note = pNote;
+			f.DescriptorType = desc.Type;
 			AddVertex(f, (SetupVertexId)(++vIdCount));
-
+			
 			////
 
 			Member mem = Data.GetVertex<Member>((long)pMemId);
@@ -788,27 +788,22 @@ namespace Fabric.Database.Init.Setups {
 			AddEdge(f, new FactorUsesRelatedArtifact(), relArt);
 
 			////
-
-			{
-				Descriptor d = DescMap[(long)pDescId];
-				f.DescriptorType = d.Type;
-
-				if ( d.PrimArtRefId != null ) {
-					AddEdge(f, new FactorDescriptorRefinesPrimaryWithArtifact(),
-						Data.GetVertex<Artifact>((long)d.PrimArtRefId));
-				}
-
-				if ( d.TypeArtRefId != null ) {
-					AddEdge(f, new FactorDescriptorRefinesTypeWithArtifact(),
-						Data.GetVertex<Artifact>((long)d.TypeArtRefId));
-				}
-
-				if ( d.EdgeArtRefId != null ) {
-					AddEdge(f, new FactorDescriptorRefinesRelatedWithArtifact(),
-						Data.GetVertex<Artifact>((long)d.EdgeArtRefId));
-				}
+			
+			if ( desc.PrimArtRefId != null ) {
+				AddEdge(f, new FactorDescriptorRefinesPrimaryWithArtifact(),
+					Data.GetVertex<Artifact>((long)desc.PrimArtRefId));
 			}
 
+			if ( desc.TypeArtRefId != null ) {
+				AddEdge(f, new FactorDescriptorRefinesTypeWithArtifact(),
+					Data.GetVertex<Artifact>((long)desc.TypeArtRefId));
+			}
+
+			if ( desc.RelArtRefId != null ) {
+				AddEdge(f, new FactorDescriptorRefinesRelatedWithArtifact(),
+					Data.GetVertex<Artifact>((long)desc.RelArtRefId));
+			}
+			
 			if ( pDirId != null ) {
 				Director dir = DirMap[(long)pDirId];
 				f.DirectorType = dir.Type;
@@ -857,7 +852,7 @@ namespace Fabric.Database.Init.Setups {
 		public virtual long DescriptorId { get; set; }
 		public virtual byte Type { get; set; }
 		public virtual long? PrimArtRefId { get; set; }
-		public virtual long? EdgeArtRefId { get; set; }
+		public virtual long? RelArtRefId { get; set; }
 		public virtual long? TypeArtRefId { get; set; }
 
 	}
