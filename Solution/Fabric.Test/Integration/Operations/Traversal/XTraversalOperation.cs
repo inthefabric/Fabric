@@ -39,6 +39,18 @@ namespace Fabric.Test.Integration.Operations.Traversal {
 			Assert.AreEqual(pName.ToLower(), user.Name.ToLower(), "Incorrect user Name.");
 		}
 
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void TakeResultCount() { //TODO: test fails, fix traversal "Take()" issue
+			IsReadOnlyTest = true;
+
+			var t = new TraversalOperation();
+			IList<FabElement> results = t.Execute(OpCtx, "Users/WhereTimestamp(gt,1)/Take(3)");
+
+			Assert.NotNull(results, "Results should be filled.");
+			Assert.AreEqual(3, results.Count, "Incorrect results count.");
+		}
+
 	}
 
 }

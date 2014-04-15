@@ -2344,8 +2344,8 @@
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "WithValue",
-                  "Uri": "/WithValue",
+                  "Name": "WithIdentorValue",
+                  "Uri": "/WithIdentorValue",
                   "T": "string",
                   "Entry": "FabTravFactorRoot",
                   "Return": "FabFactor",
@@ -3052,8 +3052,8 @@
                   "Obj": "FabSpecServiceStepRule"
                 },
                 {
-                  "Name": "WhereValueContains",
-                  "Uri": "/WhereValueContains",
+                  "Name": "WhereIdentorValueContains",
+                  "Uri": "/WhereIdentorValueContains",
                   "Entry": "FabTravFactorRoot",
                   "Return": "FabFactor",
                   "Obj": "FabSpecServiceStepRule"

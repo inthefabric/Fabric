@@ -166,21 +166,22 @@ foreach ( IVertexSchema v in verts ) {
 		}
 
 		PropertyMapping pm = propMaps[ap];
+		string propName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3))+ap.Name;
 
 		if ( pm.Domain.IsElastic ) {
 			if ( ap.TraversalHas == Matching.Custom ) {
 #>
-			TravStepsCustom.<#= v.Names.Domain #>EntryWhere<#= ap.Name #><FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("Where<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
+			TravStepsCustom.<#= v.Names.Domain #>EntryWhere<#= ap.Name #><FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("Where<#= propName #>", "<#= pm.Domain.DbName #>"),
 <#
 			}
 			else if ( ap.DataType == typeof(string) ) {
 #>
-			new TravStepEntryContains<FabTrav<#= v.Names.Domain #>Root, <#= v.Names.Api #>>("Where<#= ap.Name #>Contains", "<#= pm.Domain.DbName #>"),
+			new TravStepEntryContains<FabTrav<#= v.Names.Domain #>Root, <#= v.Names.Api #>>("Where<#= propName #>Contains", "<#= pm.Domain.DbName #>"),
 <#
 			}
 			else {
 #>
-			new TravStepEntryWhere<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("Where<#= ap.Name #>", "<#= pm.Domain.DbName #>"),
+			new TravStepEntryWhere<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("Where<#= propName #>", "<#= pm.Domain.DbName #>"),
 <#
 			} //end DataType conditions
 		} //end IsElastic condition
@@ -192,7 +193,7 @@ foreach ( IVertexSchema v in verts ) {
 
 			string toLower = (ap.ToLowerCase+"").ToLower();
 #>
-			new TravStepEntryWith<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= ap.Name #>", "<#= pm.Domain.DbName #>", <#= toLower #>),
+			new TravStepEntryWith<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= propName #>", "<#= pm.Domain.DbName #>", <#= toLower #>),
 <#
 		} //end IsIndexed condition
 
@@ -204,7 +205,7 @@ foreach ( IVertexSchema v in verts ) {
 			DomainProperty eiv = pm.Domain.ExactIndexVia;
 			string toLower = (eiv.ToLowerCase+"").ToLower();
 #>
-			new TravStepEntryWith<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= ap.Name #>", "<#= eiv.DbName #>", <#= toLower #>),
+			new TravStepEntryWith<FabTrav<#= v.Names.Domain #>Root, <#= ap.GetDataTypeName() #>, <#= v.Names.Api #>>("With<#= propName #>", "<#= eiv.DbName #>", <#= toLower #>),
 <#
 		} //end IsElastic condition
 
