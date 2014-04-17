@@ -41,15 +41,17 @@ namespace Fabric.Operations.Traversal {
 			vPath = new TravPath(vPathData);
 
 			ITravPathItem tps = vPath.GetNextStep();
+			ITravRule rule = null;
 
 			while ( tps != null ) {
-				ITravRule rule = FindRuleForStep(tps);
+				rule = FindRuleForStep(tps);
 				rule.Step.ConsumePath(vPath, rule.ToType);
 				tps = vPath.GetNextStep();
 			}
 
-			//ensure that query results are limited (this may be redundant in some cases)
-			vPathData.AddScript("[0.."+(TravStepTake.Maximum-1)+"]");
+			if ( rule == null || !rule.Step.EndsWithRangeFilter ) {
+				vPathData.AddScript("[0.."+(TravStepTake.Maximum-1)+"]");
+			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

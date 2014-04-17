@@ -26,6 +26,8 @@ namespace Fabric.Operations.Traversal.Steps {
 		public TravStepTake(string pCmd, bool pInVertex) : base(pCmd) {
 			vInVertex = pInVertex;
 
+			EndsWithRangeFilter = true;
+
 			var p = new TravStepParam(0, "Count", typeof(int));
 			p.Min = 1;
 			p.Max = TravStepTake.Maximum;

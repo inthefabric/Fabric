@@ -46,6 +46,7 @@ namespace Fabric.Test.Integration.Shared {
 			TestSetUp();
 
 			if ( UsesElasticSearch ) {
+				Log.Info("Sleeping for ElasticSearch...");
 				Thread.Sleep(1000); //ElasticSearch has a delay when re-indexing
 			}
 

@@ -27,11 +27,6 @@ namespace Fabric.Operations.Traversal.Steps {
 			);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public static void AddLimit(ITravPath pPath) {
-			pPath.AddScript("[0.."+(TravStepTake.Maximum-1)+"]");
-		}
-
 	}
 
 }

@@ -15,6 +15,7 @@ namespace Fabric.Operations.Traversal.Routing {
 		public Type ParamValueType { get; protected set; }
 		public bool ToAliasType { get; protected set; }
 		public bool FromExactType { get; protected set; }
+		public bool EndsWithRangeFilter { get; protected set; }
 
 		public IList<ITravStepParam> Params { get; private set; }
 

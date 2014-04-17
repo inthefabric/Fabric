@@ -13,6 +13,7 @@ namespace Fabric.Operations.Traversal.Routing {
 		Type ParamValueType { get; }
 		bool ToAliasType { get; }
 		bool FromExactType { get; }
+		bool EndsWithRangeFilter { get; }
 		IList<ITravStepParam> Params { get; } //public only for the API spec
 
 

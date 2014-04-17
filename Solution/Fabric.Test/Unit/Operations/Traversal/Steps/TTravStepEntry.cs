@@ -52,17 +52,6 @@ namespace Fabric.Test.Unit.Operations.Traversal.Steps {
 			vMockPath.Verify(x => x.AddScript(It.IsAny<string>()), Times.Never);
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		[Test]
-		public void AddLimit() {
-			const string script = "[0..99]";
-			vMockPath.Setup(x => x.AddScript(script));
-
-			TravStepEntry.AddLimit(vMockPath.Object);
-
-			vMockPath.Verify(x => x.AddScript(script), Times.Once);
-		}
-
 	}
 
 }

@@ -34,8 +34,6 @@ namespace Fabric.Operations.Traversal.Steps {
 					pPath.AddParam(val)+
 				")"
 			);
-
-			TravStepEntry.AddLimit(pPath);
 		}
 
 	}

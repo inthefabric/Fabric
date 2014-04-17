@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Fabric.Api.Objects;
-using Fabric.Infrastructure.Broadcast;
 using Fabric.Operations.Traversal;
 using Fabric.Test.Integration.Shared;
 using NUnit.Framework;
@@ -10,13 +9,12 @@ namespace Fabric.Test.Integration.Operations.Traversal {
 	/*================================================================================================*/
 	public class XTraversalOperation : IntegrationTest { //TEST: XTraversalOperation
 
-		private static readonly Logger Log = Logger.Build<XTraversalOperation>();
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected override void TestSetUp() {
 			IsReadOnlyTest = true;
+			UsesElasticSearch = true;
 		}
 
 
@@ -26,8 +24,6 @@ namespace Fabric.Test.Integration.Operations.Traversal {
 		[TestCase("ZACHkinstner")]
 		[TestCase("melkins")]
 		public void UsersWithName(string pName) {
-			IsReadOnlyTest = true;
-
 			var t = new TraversalOperation();
 			IList<FabElement> results = t.Execute(OpCtx, "Users/WithName("+pName+")");
 
@@ -41,14 +37,22 @@ namespace Fabric.Test.Integration.Operations.Traversal {
 
 		/*--------------------------------------------------------------------------------------------*/
 		[Test]
-		public void TakeResultCount() { //TODO: test fails, fix traversal "Take()" issue
-			IsReadOnlyTest = true;
-
+		public void TakeResultCount() {
 			var t = new TraversalOperation();
 			IList<FabElement> results = t.Execute(OpCtx, "Users/WhereTimestamp(gt,1)/Take(3)");
 
 			Assert.NotNull(results, "Results should be filled.");
 			Assert.AreEqual(3, results.Count, "Incorrect results count.");
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[Test]
+		public void EntryResultCount() {
+			var t = new TraversalOperation();
+			IList<FabElement> results = t.Execute(OpCtx, "Vertices/WhereTimestamp(gt,1)");
+
+			Assert.NotNull(results, "Results should be filled.");
+			Assert.AreEqual(100, results.Count, "Incorrect results count.");
 		}
 
 	}

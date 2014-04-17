@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fabric.Api.Objects;
 using Fabric.Api.Objects.Traversal;
 using Fabric.Domain.Enums;
@@ -55,7 +56,7 @@ namespace Fabric.Test.Unit.Operations.Traversal {
 			const string queryName = "Trav-vertices-withid";
 			string pathText = "Vertices/WithId("+vertId+")";
 
-			const string expectScript = "g.V.has(_P, Tokens.T.eq, _P)[0..99][0..99];";
+			const string expectScript = "g.V.has(_P, Tokens.T.eq, _P)[0..99];";
 			var expectValues = new List<object> { DbName.Vert.Vertex.VertexId, vertId };
 
 			var dto = new DataDto();
@@ -111,6 +112,26 @@ namespace Fabric.Test.Unit.Operations.Traversal {
 			Assert.Less(0, resultSteps.Count, "Incorrect result steps count.");
 
 			vMockData.Verify(x => x.Execute(It.IsAny<WeaverQuery>(), It.IsAny<string>()), Times.Never);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		[TestCase(false)]
+		[TestCase(true)]
+		public void ExecuteAndSkipRangeFilter(bool pEndsWithRange) {
+			string travPath = "Users/WithId(1)"+(pEndsWithRange ? "/Take(5)" : "");
+
+			var mockRes = new Mock<IDataResult>(MockBehavior.Strict);
+			mockRes.Setup(x => x.ToDtoList()).Returns(new List<IDataDto>());
+
+			vMockData
+				.Setup(x => x.Execute(It.IsAny<WeaverQuery>(), It.IsAny<string>()))
+				.Returns(mockRes.Object)
+				.Callback((IWeaverQuery q, string name) => {
+					string expectEnd = (pEndsWithRange ? "[0..4]" : "[0..99]")+";";
+					TestUtil.AssertContains("Script", q.Script, expectEnd);
+				});
+
+			vOper.Execute(vMockOpCtx.Object, travPath);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

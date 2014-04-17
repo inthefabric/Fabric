@@ -36,7 +36,6 @@ namespace Fabric.Operations.Traversal.Steps {
 		public override void ConsumePath(ITravPath pPath, Type pToType) {
 			base.ConsumePath(pPath, pToType);
 			TravStepEntry.AddTypeFilterIfNecessary(pPath, ToType, pToType);
-			TravStepEntry.AddLimit(pPath);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

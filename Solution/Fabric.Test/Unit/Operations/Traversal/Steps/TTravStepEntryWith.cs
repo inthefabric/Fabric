@@ -21,7 +21,6 @@ namespace Fabric.Test.Unit.Operations.Traversal.Steps {
 		private string vPropDbNameParam;
 		private string vValueParam;
 		private string vScript;
-		private string vScriptLimit;
 		private Type vToType;
 		private ITravStep vStep;
 
@@ -37,7 +36,6 @@ namespace Fabric.Test.Unit.Operations.Traversal.Steps {
 			vPropDbNameParam = "_P0";
 			vValueParam = "_P1";
 			vScript = ".has("+vPropDbNameParam+", Tokens.T.eq, "+vValueParam+")";
-			vScriptLimit = "[0..99]";
 			vToType = typeof(FabUser);
 			vStep = new TravStepEntryWith<FabTravUserRoot, string, FabUser>(
 				"cmd", vPropDbName, false);
@@ -48,7 +46,6 @@ namespace Fabric.Test.Unit.Operations.Traversal.Steps {
 			MockPath.Setup(x => x.AddParam(vPropDbName)).Returns(vPropDbNameParam);
 			MockPath.Setup(x => x.AddParam(vValue)).Returns(vValueParam);
 			MockPath.Setup(x => x.AddScript(vScript));
-			MockPath.Setup(x => x.AddScript(vScriptLimit));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -70,7 +67,6 @@ namespace Fabric.Test.Unit.Operations.Traversal.Steps {
 			MockPath.Verify(x => x.AddParam(vPropDbName), t);
 			MockPath.Verify(x => x.AddParam(vValue), t);
 			MockPath.Verify(x => x.AddScript(vScript), t);
-			MockPath.Verify(x => x.AddScript(vScriptLimit), t);
 		}
 
 
