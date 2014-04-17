@@ -11,7 +11,7 @@ namespace Fabric.Operations.Oauth {
 		OauthAccess GetAccessToken(IOperationData pData, string pToken);
 
 		/*--------------------------------------------------------------------------------------------*/
-		void DoLogout(IOperationData pData, OauthAccess pAccess);
+		void DoLogout(IOperationContext pOpCtx, OauthAccess pAccess);
 
 	}
 

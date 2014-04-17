@@ -12,7 +12,7 @@ namespace Fabric.Operations.Oauth {
 		public FabOauthLogout Execute(IOperationContext pOpCtx, 
 															IOauthLogoutTasks pTasks, string pToken) {
 			OauthAccess oa = pTasks.GetAccessToken(pOpCtx.Data, pToken);
-			pTasks.DoLogout(pOpCtx.Data, oa);
+			pTasks.DoLogout(pOpCtx, oa);
 
 			return new FabOauthLogout {
 				Success = 1,

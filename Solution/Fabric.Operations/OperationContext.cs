@@ -32,7 +32,7 @@ namespace Fabric.Operations {
 
 			ContextId = Guid.NewGuid();
 			Data = new OperationData(ContextId, pAccessFactory, Metrics, Cache.Memory);
-			Auth = new OperationAuth(() => Data.Build(), () => UtcNow.Ticks);
+			Auth = new OperationAuth(Cache.Memory, () => Data.Build(), () => UtcNow.Ticks);
 			Analytics = pAnalyticsProvider(ContextId);
 
 			//vProfiler = new Stopwatch();

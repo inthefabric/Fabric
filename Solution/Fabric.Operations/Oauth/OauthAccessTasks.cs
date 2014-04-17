@@ -143,7 +143,7 @@ namespace Fabric.Operations.Oauth {
 		/*--------------------------------------------------------------------------------------------*/
 		public FabOauthAccess AddAccess(IOperationContext pOpCtx, CreateOauthAccessOperation pCreateOp,
 															long pMemberId, bool pClientMode=false) {
-			ClearOldTokens(pOpCtx.Data, pMemberId);
+			ClearOldTokens(pOpCtx, pMemberId);
 
 			const int expireSec = 3600;
 			bool needsActiveMem = (pOpCtx.Auth.ActiveMemberId == null);
@@ -174,7 +174,9 @@ namespace Fabric.Operations.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static void ClearOldTokens(IOperationData pData, long pMemberId) {
+		public static void ClearOldTokens(IOperationContext pOpCtx, long pMemberId) {
+			pOpCtx.Cache.Memory.RemoveOauthMembers(pMemberId);
+
 			//OPTIMIZE: delete old OauthAccess vertices, or filter the Member->OauthAccess edges?
 
 			IWeaverQuery q = Weave.Inst.Graph
@@ -186,7 +188,7 @@ namespace Fabric.Operations.Oauth {
 					)
 				.ToQuery();
 
-			pData.Execute(q, "OauthAccess-ClearOldTokens");
+			pOpCtx.Data.Execute(q, "OauthAccess-ClearOldTokens");
 		}
 
 

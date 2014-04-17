@@ -51,7 +51,7 @@ namespace Fabric.Operations.Oauth {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void DoLogout(IOperationData pData, OauthAccess pAccess) {
+		public void DoLogout(IOperationContext pOpCtx, OauthAccess pAccess) {
 			try {
 				//OPTIMIZE: don't make a query to get Member (ClearOldTokens does the reverse)
 
@@ -60,8 +60,8 @@ namespace Fabric.Operations.Oauth {
 					.AuthenticatesMember.ToMember
 					.ToQuery();
 
-				Member m = pData.Get<Member>(q, "OauthLogout-GetMember");
-				OauthAccessTasks.ClearOldTokens(pData, m.VertexId);
+				Member m = pOpCtx.Data.Get<Member>(q, "OauthLogout-GetMember");
+				OauthAccessTasks.ClearOldTokens(pOpCtx, m.VertexId);
 			}
 			catch ( Exception ) {
 				throw NewFault(LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fabric.Domain;
 using Fabric.Domain.Names;
+using Fabric.Infrastructure.Cache;
 using Fabric.Infrastructure.Data;
 using Fabric.Operations;
 using Fabric.Operations.Oauth;
@@ -99,7 +100,7 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 				.Setup(x => x.Get<Member>(It.IsAny<IWeaverQuery>(), "OauthLogout-GetMember"))
 				.Throws(new Exception("test"));
 
-			AssertFault(() => vTasks.DoLogout(vMockData.Object, new OauthAccess()),
+			AssertFault(() => vTasks.DoLogout(vMockOpCtx.Object, new OauthAccess()),
 				LogoutErrors.logout_failure, LogoutErrorDescs.LogoutFailed);
 		}
 
@@ -107,7 +108,7 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 		[Test]
 		public void DoLogoutSuccess() {
 			var oa = new OauthAccess { VertexId = 12352532 };
-			var mem = new Member();
+			var mem = new Member { VertexId = 98736455 };
 
 			const string expectScript =
 				"g.V('"+DbName.Vert.Vertex.VertexId+"',_P)"+
@@ -125,7 +126,17 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 				.Setup(x => x.Execute(It.IsAny<IWeaverQuery>(), "OauthAccess-ClearOldTokens"))
 				.Returns((IDataResult)null);
 
-			TestUtil.CheckThrows<OauthException>(false, () => vTasks.DoLogout(vMockData.Object, oa));
+			var mockMemCache = new Mock<IMemCache>(MockBehavior.Strict);
+			mockMemCache.Setup(x => x.RemoveOauthMembers(mem.VertexId));
+
+			var mockCacheMan = new Mock<ICacheManager>(MockBehavior.Strict);
+			mockCacheMan.SetupGet(x => x.Memory).Returns(mockMemCache.Object);
+
+			vMockOpCtx.SetupGet(x => x.Cache).Returns(mockCacheMan.Object);
+
+			vTasks.DoLogout(vMockOpCtx.Object, oa);
+
+			mockMemCache.Verify(x => x.RemoveOauthMembers(mem.VertexId), Times.Once);
 		}
 
 	}

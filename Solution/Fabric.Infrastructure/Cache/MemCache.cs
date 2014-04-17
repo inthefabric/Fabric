@@ -35,29 +35,6 @@ namespace Fabric.Infrastructure.Cache {
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------* /
-		public void AddExists<T>(long pVertexTypeId, CacheItemPolicy pPolicy=null) where T : IVertexWithId {
-			if ( pPolicy == null ) {
-				pPolicy = NewPolicy(3600);
-			}
-
-			Add(GetDomainVertexKey<T>(pVertexTypeId), true, pPolicy);
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public bool? FindExists<T>(long pVertexTypeId) where T : IVertexWithId {
-			string key = GetDomainVertexKey<T>(pVertexTypeId);
-			return (Contains(key) ? (bool)Get(key) : (bool?)null);
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public bool? RemoveExists<T>(long pVertexTypeId) where T : IVertexWithId {
-			string key = GetDomainVertexKey<T>(pVertexTypeId);
-			return (Contains(key) ? (bool)Remove(key) : (bool?)null);
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public static CacheItemPolicy NewPolicy(int pExpiresInSec, bool pSliding=true) {
 			var pol = new CacheItemPolicy();
@@ -103,89 +80,32 @@ namespace Fabric.Infrastructure.Cache {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void AddMember(long pAppId, long pUserId, Member pMember, CacheItemPolicy pPolicy=null) {
-			if ( pPolicy == null ) {
-				pPolicy = new CacheItemPolicy();
-				pPolicy.SlidingExpiration = new TimeSpan(0, 1, 0, 0);
-			}
-
-			Add(GetMemberKey(pAppId, pUserId), pMember, pPolicy);
+		public void AddOauthMember(string pToken, Member pMember, int pExpiresInSec) {
+			Add(GetOauthMemberKey(pToken), pMember, NewPolicy(pExpiresInSec, false));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Member FindMember(long pAppId, long pUserId) {
-			string key = GetMemberKey(pAppId, pUserId);
-			return (IsCacheHit("FindMember", key) ? (Member)Get(key) : null);
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public Member RemoveMember(long pAppId, long pUserId) {
-			string key = GetMemberKey(pAppId, pUserId);
-			return (Contains(key) ? (Member)Remove(key) : null);
+		public Member FindOauthMember(string pToken) {
+			string key = GetOauthMemberKey(pToken);
+			return (IsCacheHit("FindOauthMember", key) ? (Member)Get(key) : null);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public Member RemoveMember(long pMemberId) {
+		public void RemoveOauthMembers(long pMemberId) {
 			IEnumerator<KeyValuePair<string, object>> e = GetEnumerator();
 
 			while ( e.MoveNext() ) {
-				var m = (e.Current.Value as Member);
+				var mem = (e.Current.Value as Member);
 
-				if ( m != null && m.VertexId == pMemberId ) {
+				if ( mem != null && mem.VertexId == pMemberId ) {
 					Remove(e.Current.Key);
-					return m;
 				}
 			}
-
-			return null;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private static string GetMemberKey(long pAppId, long pUserId) {
-			return "M|"+pAppId+"|"+pUserId;
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		public void AddOauthAccess(string pToken, Tuple<OauthAccess, long, long?> pData,
-																					int pExpiresInSec) {
-			Add(GetOauthAccessKey(pToken), pData, NewPolicy(pExpiresInSec, false));
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public Tuple<OauthAccess, long, long?> FindOauthAccess(string pToken) {
-			string key = GetOauthAccessKey(pToken);
-			return (IsCacheHit("FindOauthAccess", key) ?
-				(Tuple<OauthAccess, long, long?>)Get(key) : null);
-		}
-
-		/*--------------------------------------------------------------------------------------------* /
-		public Tuple<OauthAccess, long, long?> RemoveOauthAccess(string pToken) {
-			string key = GetOauthAccessKey(pToken);
-			return (Contains(key) ? (Tuple<OauthAccess, long, long?>)Remove(key) : null);
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		public int RemoveOauthAccesses(long pAppId, long? pUserId) {
-			IEnumerator<KeyValuePair<string, object>> e = GetEnumerator();
-			int count = 0;
-
-			while ( e.MoveNext() ) {
-				var t = (e.Current.Value as Tuple<OauthAccess, long,long?>);
-
-				if ( t != null && t.Item2 == pAppId && t.Item3 == pUserId ) {
-					Remove(e.Current.Key);
-					count++;
-				}
-			}
-
-			return count;
-		}
-
-		/*--------------------------------------------------------------------------------------------*/
-		private static string GetOauthAccessKey(string pToken) {
-			return "OA|"+pToken;
+		private static string GetOauthMemberKey(string pToken) {
+			return "OM|"+pToken;
 		}
 		
 	}

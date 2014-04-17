@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Caching;
+﻿using System.Runtime.Caching;
 using Fabric.Domain;
 
 namespace Fabric.Infrastructure.Cache {
@@ -7,16 +6,6 @@ namespace Fabric.Infrastructure.Cache {
 	/*================================================================================================*/
 	public interface IMemCache {
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		//void AddExists<T>(long pVertexTypeId, CacheItemPolicy pPolicy=null) where T : IVertex;
-		
-		/*--------------------------------------------------------------------------------------------*/
-		//bool? FindExists<T>(long pVertexTypeId) where T : IVertex;
-
-		/*--------------------------------------------------------------------------------------------*/
-		//bool? RemoveExists<T>(long pVertexTypeId) where T : IVertex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,30 +21,13 @@ namespace Fabric.Infrastructure.Cache {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		void AddMember(long pAppId, long pUserId, Member pMember, CacheItemPolicy pPolicy=null);
+		void AddOauthMember(string pToken, Member pMember, int pExpiresInSec);
 
 		/*--------------------------------------------------------------------------------------------*/
-		Member FindMember(long pAppId, long pUserId);
+		Member FindOauthMember(string pToken);
 
 		/*--------------------------------------------------------------------------------------------*/
-		//Member RemoveMember(long pAppId, long pUserId);
-
-		/*--------------------------------------------------------------------------------------------*/
-		Member RemoveMember(long pMemberId);
-
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		void AddOauthAccess(string pToken, Tuple<OauthAccess, long, long?> pData, int pExpiresInSec);
-
-		/*--------------------------------------------------------------------------------------------*/
-		Tuple<OauthAccess, long, long?> FindOauthAccess(string pToken);
-
-		/*--------------------------------------------------------------------------------------------*/
-		//Tuple<OauthAccess, long, long?> RemoveOauthAccess(string pToken);
-
-		/*--------------------------------------------------------------------------------------------*/
-		int RemoveOauthAccesses(long pAppId, long? pUserId);
+		void RemoveOauthMembers(long pMemberId);
 
 	}
 

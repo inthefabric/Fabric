@@ -5,6 +5,7 @@ using Fabric.Api.Objects.Oauth;
 using Fabric.Domain;
 using Fabric.Domain.Enums;
 using Fabric.Domain.Names;
+using Fabric.Infrastructure.Cache;
 using Fabric.Infrastructure.Data;
 using Fabric.Operations;
 using Fabric.Operations.Create;
@@ -284,6 +285,14 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 				.SetupGet(x => x.UtcNow)
 				.Returns(new DateTime(utcNowTicks));
 
+			var mockMemCache = new Mock<IMemCache>(MockBehavior.Strict);
+			mockMemCache.Setup(x => x.RemoveOauthMembers(memId));
+
+			var mockCacheMan = new Mock<ICacheManager>(MockBehavior.Strict);
+			mockCacheMan.SetupGet(x => x.Memory).Returns(mockMemCache.Object);
+
+			vMockOpCtx.SetupGet(x => x.Cache).Returns(mockCacheMan.Object);
+
 			var mockCreOp = new Mock<CreateOauthAccessOperation>(MockBehavior.Strict);
 
 			mockCreOp
@@ -313,6 +322,8 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 			var times = (pHasActiveMem ? Times.Never() : Times.Once());
 			mockAuth.Verify(x => x.SetFabricActiveMember(), times);
 			mockAuth.Verify(x => x.RemoveFabricActiveMember(), times);
+
+			mockMemCache.Verify(x => x.RemoveOauthMembers(memId), Times.Once);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -336,7 +347,17 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 					TestUtil.CheckWeaverScript(q, expectScript, "_P", expectParams))
 				.Returns((DataResult)null);
 
-			OauthAccessTasks.ClearOldTokens(vMockData.Object, memId);
+			var mockMemCache = new Mock<IMemCache>(MockBehavior.Strict);
+			mockMemCache.Setup(x => x.RemoveOauthMembers(memId));
+
+			var mockCacheMan = new Mock<ICacheManager>(MockBehavior.Strict);
+			mockCacheMan.SetupGet(x => x.Memory).Returns(mockMemCache.Object);
+
+			vMockOpCtx.SetupGet(x => x.Cache).Returns(mockCacheMan.Object);
+
+			OauthAccessTasks.ClearOldTokens(vMockOpCtx.Object, memId);
+
+			mockMemCache.Verify(x => x.RemoveOauthMembers(memId), Times.Once);
 		}
 
 

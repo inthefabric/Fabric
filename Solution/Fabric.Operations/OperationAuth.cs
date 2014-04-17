@@ -2,6 +2,7 @@
 using Fabric.Database.Init.Setups;
 using Fabric.Domain;
 using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Cache;
 using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Faults;
 using Fabric.Infrastructure.Query;
@@ -16,6 +17,7 @@ namespace Fabric.Operations {
 
 		public long? CookieUserId { get; private set;  }
 
+		private readonly IMemCache vMemCache;
 		private readonly Func<IDataAccess> vGetDataAcc;
 		private readonly Func<long> vGetUtcNow;
 		private Member vActiveMember;
@@ -24,7 +26,8 @@ namespace Fabric.Operations {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public OperationAuth(Func<IDataAccess> pGetDataAcc, Func<long> pGetUtcNow) {
+		public OperationAuth(IMemCache pMemCache, Func<IDataAccess> pGetDataAcc, Func<long> pGetUtcNow){
+			vMemCache = pMemCache;
 			vGetDataAcc = pGetDataAcc;
 			vGetUtcNow = pGetUtcNow;
 		}
@@ -89,10 +92,11 @@ namespace Fabric.Operations {
 				return;
 			}
 
-			////
+			vActiveMember = vMemCache.FindOauthMember(vOauthToken);
 
-			//OPTIMIZE: support caching
-			//Tuple<OauthAccess, long, long?> tuple = ApiCtx.Cache.Memory.FindOauthAccess(vToken);
+			if ( vActiveMember != null ) {
+				return;
+			}
 
 			////
 
@@ -115,12 +119,15 @@ namespace Fabric.Operations {
 				case MemberType.Id.None:
 				case MemberType.Id.Invite:
 				case MemberType.Id.Request:
+					vActiveMember = null;
 					throw new FabOauthFault();
 			}
 
-			/*tuple = new Tuple<OauthAccess, long, long?>(oa, appId, userId);
-			var expireSec = (int)(new TimeSpan(pAcc.Expires-ApiCtx.UtcNow.Ticks).TotalSeconds);
-            ApiCtx.Cache.Memory.AddOauthAccess(vToken, tuple, expSec);*/
+			////
+
+			long exp = (vActiveMember.OauthGrantExpires ?? 0);
+			var expSec = (int)(new TimeSpan(exp-vGetUtcNow()).TotalSeconds);
+			vMemCache.AddOauthMember(vOauthToken, vActiveMember, expSec);
 		}
 
 	}

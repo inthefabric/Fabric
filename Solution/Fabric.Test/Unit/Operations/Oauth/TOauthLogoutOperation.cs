@@ -53,7 +53,7 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 				.Returns(oa);
 
 			vMockTasks
-				.Setup(x => x.DoLogout(vMockData.Object, oa));
+				.Setup(x => x.DoLogout(vMockOpCtx.Object, oa));
 
 			DoExecute();
 
