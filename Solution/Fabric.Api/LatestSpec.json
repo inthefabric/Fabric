@@ -1,8 +1,8 @@
 ﻿{
-      "BuildVersion": "0.3.0.4b054df",
+      "BuildVersion": "0.3.0.ecc0c99",
       "BuildYear": 2014,
-      "BuildMonth": 3,
-      "BuildDay": 24,
+      "BuildMonth": 4,
+      "BuildDay": 22,
       "Objects": [
         {
           "Name": "FabResponse",

@@ -170,8 +170,8 @@ namespace Fabric.Api {
 		/*--------------------------------------------------------------------------------------------*/
 		private static void BuildObjects() {
 			Version = new FabMetaVersion();
-			Version.SetBuild(0, 3, 0, "4b054df");
-			Version.SetDate(2014, 3, 24);
+			Version.SetBuild(0, 3, 0, "ecc0c99");
+			Version.SetDate(2014, 4, 22);
 
 			Log.Debug("Fabric Version: "+Version.Version+
 				" ("+Version.Year+'.'+Version.Month+'.'+Version.Day+")");
