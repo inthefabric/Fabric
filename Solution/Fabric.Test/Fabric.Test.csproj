@@ -5,17 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E0828CD9-3166-4E68-9FE8-DD7BA9BCC4DE}</ProjectGuid>
+    <ProjectGuid>{B4C6BB7B-CEE7-433D-9CC6-1DDB041B9F16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fabric.Test</RootNamespace>
     <AssemblyName>Fabric.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -23,21 +24,21 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;LIVE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DebugLive\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LIVE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>False</Optimize>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Global\GlobalAssemblyInfo.cs">
@@ -46,197 +47,170 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Common\MockDataResult.cs" />
-    <Compile Include="Common\MockDataAccessCmd.cs" />
-    <Compile Include="Common\MockDataAccess.cs" />
-    <Compile Include="Common\TestFuncStep.cs" />
-    <Compile Include="Common\TestFinalStep.cs" />
-    <Compile Include="Common\TestVertexStep.cs" />
-    <Compile Include="Common\TestFabVertex.cs" />
-    <Compile Include="Common\TestStep.cs" />
-    <Compile Include="FabApiDto\TFabFactor.cs" />
-    <Compile Include="FabInfra\TFabricUtil.cs" />
-    <Compile Include="FabApiDto\TFabClass.cs" />
-    <Compile Include="FabApiModify\TDeleteFactor.cs" />
-    <Compile Include="FabApiModify\TCompleteFactor.cs" />
-    <Compile Include="FabApiModify\TUpdateFactor.cs" />
-    <Compile Include="FabApiModify\Tasks\TUpdateFactor.cs" />
-    <Compile Include="FabApiModify\TAttachDirector.cs" />
-    <Compile Include="FabApiModify\Tasks\TUpdateFactorDirector.cs" />
-    <Compile Include="FabApiModify\TAttachDescriptor.cs" />
-    <Compile Include="FabApiModify\TAttachFactorElement.cs" />
-    <Compile Include="FabApiModify\Tasks\TUpdateFactorDescriptor.cs" />
-    <Compile Include="FabApiModify\Tasks\TGetActiveFactorFromMember.cs" />
-    <Compile Include="FabApiModify\TCreateFactor.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddFactor.cs" />
-    <Compile Include="FabApiModify\TCreateInstance.cs" />
-    <Compile Include="FabApiModify\TCreateClass.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddInstance.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddClass.cs" />
-    <Compile Include="FabApiModify\TCreateUrl.cs" />
-    <Compile Include="FabApiModify\Tasks\TTxAddUrl.cs" />
-    <Compile Include="FabApiModify\Tasks\TGetValidMemberByContext.cs" />
-    <Compile Include="FabApiModify\Tasks\TGetUrlByAbsoluteUrl.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TElasticIndexContainsFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TIndexFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TElasticIndexHasFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TIdIndexFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TExactIndexFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TToTypeFunc.cs" />
-    <Compile Include="FabApiWeb\Tasks\TGetMemberTypeAssignByMember.cs" />
-    <Compile Include="FabApiWeb\TChangeMemberType.cs" />
-    <Compile Include="FabApiWeb\TRemoveOauthDomain.cs" />
-    <Compile Include="FabApiWeb\TAddOauthDomain.cs" />
-    <Compile Include="FabApiWeb\Tasks\TGetOauthDomainByDomain.cs" />
-    <Compile Include="FabApiWeb\TChangeAppSecret.cs" />
-    <Compile Include="FabApiWeb\TChangeAppName.cs" />
-    <Compile Include="FabApiWeb\Tasks\TAddMemberTypeAssign.cs" />
-    <Compile Include="FabApiWeb\Tasks\TGetMemberOfApp.cs" />
-    <Compile Include="FabApiWeb\Tasks\TDeleteOauthDomain.cs" />
-    <Compile Include="FabApiWeb\Tasks\TAddOauthDomain.cs" />
-    <Compile Include="FabApiWeb\Tasks\TUpdateAppSecret.cs" />
-    <Compile Include="FabApiWeb\Tasks\TUpdateAppName.cs" />
-    <Compile Include="FabApiWeb\Tasks\TWebTasks.cs" />
-    <Compile Include="FabApiWeb\Tasks\TUpdateUserPassword.cs" />
-    <Compile Include="FabApiWeb\TChangeUserPassword.cs" />
-    <Compile Include="FabApiWeb\TBaseWebFunc.cs" />
-    <Compile Include="FabApiWeb\TCreateApp.cs" />
-    <Compile Include="FabApiModify\TBaseModifyFunc.cs" />
-    <Compile Include="FabApiWeb\Tasks\TTxAddDataProvMember.cs" />
-    <Compile Include="FabApiWeb\Tasks\TTxAddApp.cs" />
-    <Compile Include="FabApiWeb\Tasks\TTxAddMember.cs" />
-    <Compile Include="FabApiWeb\Tasks\TTxAddUser.cs" />
-    <Compile Include="FabApiWeb\Tasks\TTxAddEmail.cs" />
-    <Compile Include="FabApiWeb\Tasks\TGetAppByName.cs" />
-    <Compile Include="FabApiModify\Tasks\TModifyTasks.cs" />
-    <Compile Include="FabApiWeb\Tasks\TGetUserByName.cs" />
-    <Compile Include="FabApiWeb\TCreateUser.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetScope.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetUserAuth.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetRefresh.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessRefToken.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetDataProv.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessClientDataProv.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetDomain.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessClientCred.cs" />
-    <Compile Include="FabApiOauth\TOauthAccess.cs" />
-    <Compile Include="FabApiOauth\TOauthAccessAuthCode.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetAppAuth.cs" />
-    <Compile Include="FabApiOauth\TOauthLogout.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\THasIdFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFuncRegistry.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\TStepException.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TLimitFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TBackFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexSteps.cs" />
-    <Compile Include="FabApiTraversal\Steps\Vertices\TVertexStep.cs" />
-    <Compile Include="FabApiTraversal\Steps\TStepData.cs" />
-    <Compile Include="FabApiTraversal\Steps\TStep.cs" />
-    <Compile Include="FabApiTraversal\TPathRouter.cs" />
-    <Compile Include="FabApiTraversal\TPathSegment.cs" />
-    <Compile Include="FabApiTraversal\TPath.cs" />
-    <Compile Include="FabDbData\TSetup.cs" />
-    <Compile Include="FabDbData\TDataEdge.cs" />
+    <Compile Include="Integration\Api\Executors\XOauthExecutors.cs" />
+    <Compile Include="Integration\Api\Executors\XTraversalExecutors.cs" />
+    <Compile Include="Integration\Api\Executors\XMetaExecutors.cs" />
+    <Compile Include="Integration\Api\Executors\XExecutorBase.cs" />
+    <Compile Include="Integration\Api\Executors\XMenuExecutors.cs" />
+    <Compile Include="Integration\Api\Executors\XCreateExecutors.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateFactorOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateUserOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateUrlOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateOauthAccessOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateMemberOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateInstanceOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateEmailOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateClassOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateAppOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateOperation.cs" />
+    <Compile Include="Integration\Operations\Oauth\XOauthAccessOperation.cs" />
+    <Compile Include="Integration\Operations\Oauth\XOauthLoginPostOperation.cs" />
+    <Compile Include="Integration\Operations\Oauth\XOauthLoginGetOperation.cs" />
+    <Compile Include="Integration\Operations\Oauth\XOauthLogoutOperation.cs" />
+    <Compile Include="Integration\Operations\Traversal\XTraversalOperation.cs" />
+    <Compile Include="Integration\Operations\Web\XWebUpdateMemberTypeOperation.cs" />
+    <Compile Include="Integration\Operations\Web\XWebUpdateUserPasswordOperation.cs" />
+    <Compile Include="Integration\Operations\Web\XWebUpdateAppSecretOperation.cs" />
+    <Compile Include="Integration\Operations\Web\XWebUpdateAppNameOperation.cs" />
+    <Compile Include="Integration\Operations\Web\XWebUpdateAppDomainsOperation.cs" />
+    <Compile Include="Integration\Shared\IntegrationTest.cs" />
+    <Compile Include="Integration\Shared\TestOperationContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TTestBase.cs" />
-    <Compile Include="Util\StepUtil.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StepUtil.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Util\TestUtil.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetAccessToken.cs" />
-    <Compile Include="FabApiOauth\Tasks\TAddAccess.cs" />
-    <Compile Include="Util\UsageMap.cs" />
-    <Compile Include="FabApiOauth\Tasks\TDoLogout.cs" />
-    <Compile Include="FabApiOauth\Tasks\TGetGrant.cs" />
-    <Compile Include="FabApiOauth\Tasks\TAddMemberEnsure.cs" />
-    <Compile Include="FabApiOauth\Tasks\TAddGrant.cs" />
-    <Compile Include="FabApiOauth\Tasks\TAddScope.cs" />
-    <Compile Include="FabApiOauth\TOauthGrantCore.cs" />
-    <Compile Include="FabApiOauth\TOauthGrantLoginAction.cs" />
-    <Compile Include="FabApiOauth\TOauthGrantScopeAction.cs" />
-    <Compile Include="FabApiOauth\TOauthGrantLoginEntry.cs" />
-    <Compile Include="FabApiModify\Tasks\TUpdateFactorEventor.cs" />
-    <Compile Include="FabApiModify\TAttachEventor.cs" />
-    <Compile Include="FabApiModify\Tasks\TUpdateFactorIdentor.cs" />
-    <Compile Include="FabApiModify\TAttachIdentor.cs" />
-    <Compile Include="FabApiModify\Tasks\TUpdateFactorLocator.cs" />
-    <Compile Include="FabApiModify\TAttachLocator.cs" />
-    <Compile Include="FabApiModify\Tasks\TUpdateFactorVector.cs" />
-    <Compile Include="FabApiModify\TAttachVector.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TActiveAppFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TActiveUserFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TActiveMemberFunc.cs" />
-    <Compile Include="FabApiTraversal\Steps\Functions\TAsFunc.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOperationsCustom.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateFactorOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateMemberOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOauthAccessOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateEmailOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateUrlOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateInstanceOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateClassOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateUserOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOperationBase.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateAppOperation.cs" />
+    <Compile Include="Unit\Operations\Create\TDataResultCheck.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOperationBuilder.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOperationTasksCustom.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOperationTasksEdge.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOperationTasksVertex.cs" />
+    <Compile Include="Unit\Operations\Create\TCreateOperationTasksDuplicate.cs" />
+    <Compile Include="Unit\Operations\Oauth\TOauthLoginTasks.cs" />
+    <Compile Include="Unit\Operations\Oauth\TOauthLoginPostOperation.cs" />
+    <Compile Include="Unit\Operations\Oauth\TOauthLoginGetOperation.cs" />
+    <Compile Include="Unit\Operations\Oauth\TOauthLogoutTasks.cs" />
+    <Compile Include="Unit\Operations\Oauth\TOauthAccessTasks.cs" />
+    <Compile Include="Unit\Operations\Oauth\TOauthAccessOperation.cs" />
+    <Compile Include="Unit\Operations\Oauth\TOauthLogoutOperation.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravPathData.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravPath.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravPathItem.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravRule.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravStep.cs" />
+    <Compile Include="Unit\Operations\Traversal\Routing\TTravStepParam.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepEntry.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepsCustom.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravSteps.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepTake.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepTo.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepRoot.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepLink.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTTravStepWhereEventorDateTime.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepWhere.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepWith.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepEntryWith.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepEntryWhere.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepEntryContains.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepBack.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepActive.cs" />
+    <Compile Include="Unit\Operations\Traversal\Steps\TTravStepAs.cs" />
+    <Compile Include="Unit\Operations\Traversal\TTraversalOperation.cs" />
+    <Compile Include="Unit\Operations\Traversal\Util\TTraversalUtil.cs" />
+    <Compile Include="Unit\Operations\Traversal\Util\TGremlinUtil.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateMemberTypeOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateAppDomainsOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateAppNameOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateAppSecretOperation.cs" />
+    <Compile Include="Unit\Operations\Web\TWebUpdateUserPasswordOperation.cs" />
+    <Compile Include="Unit\Shared\MockDataAccess.cs" />
+    <Compile Include="Unit\Shared\MockDataAccessCmd.cs" />
+    <Compile Include="Unit\Shared\MockDataResult.cs" />
+    <Compile Include="Unit\Shared\TestUtil.cs" />
+    <Compile Include="Unit\Infrastructure\Data\TDataAccessException.cs" />
+    <Compile Include="Unit\Infrastructure\Data\TDataContext.cs" />
+    <Compile Include="Unit\Infrastructure\Query\TWeave.cs" />
+    <Compile Include="Unit\Infrastructure\Query\TTxBuilder.cs" />
+    <Compile Include="Unit\Infrastructure\Util\TDataUtil.cs" />
+    <Compile Include="Unit\Infrastructure\Query\TSharpflake.cs" />
+    <Compile Include="Unit\Operations\TOperationData.cs" />
+    <Compile Include="Unit\Operations\TOperationContext.cs" />
+    <Compile Include="Unit\Operations\TOperationAuth.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\..\Packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Nancy.0.18.0\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\Packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.59.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.59\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="Weaver.Core, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Util\StepUtil.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StepUtil.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fabric.Api.Dto\Fabric.Api.Dto.csproj">
-      <Project>{05D64C91-BB7F-4C9E-8A7D-0A3A0EB3E19E}</Project>
-      <Name>Fabric.Api.Dto</Name>
+    <ProjectReference Include="..\Fabric.Api.Objects\Fabric.Api.Objects.csproj">
+      <Project>{660DDA92-D894-468B-A168-5AB4592AE70F}</Project>
+      <Name>Fabric.New.Api.Objects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Modify\Fabric.Api.Modify.csproj">
-      <Project>{0871F5F4-CF33-4072-9619-F94E24D611E8}</Project>
-      <Name>Fabric.Api.Modify</Name>
+    <ProjectReference Include="..\Fabric.Api\Fabric.Api.csproj">
+      <Project>{E9910A54-A1FB-48BF-AA18-36DB80495AFA}</Project>
+      <Name>Fabric.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Oauth\Fabric.Api.Oauth.csproj">
-      <Project>{F950795F-E668-4C70-A3FA-8194BC866D39}</Project>
-      <Name>Fabric.Api.Oauth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Traversal\Fabric.Api.Traversal.csproj">
-      <Project>{8AD70384-1405-41EE-BA61-25BD053CD56B}</Project>
-      <Name>Fabric.Api.Traversal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fabric.Api.Web\Fabric.Api.Web.csproj">
-      <Project>{1050AFE4-4257-4F83-B2C5-5E6A50638DB2}</Project>
-      <Name>Fabric.Api.Web</Name>
+    <ProjectReference Include="..\Fabric.Database\Fabric.Database.csproj">
+      <Project>{0D037DB4-09F4-4EB9-B66B-5009F4EBDC88}</Project>
+      <Name>Fabric.New.Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
+      <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
+      <Name>Fabric.New.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fabric.Infrastructure\Fabric.Infrastructure.csproj">
-      <Project>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</Project>
-      <Name>Fabric.Infrastructure</Name>
+      <Project>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</Project>
+      <Name>Fabric.New.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fabric.Db.Data\Fabric.Db.Data.csproj">
-      <Project>{878B57C3-E251-4F77-8427-463693F033AF}</Project>
-      <Name>Fabric.Db.Data</Name>
+    <ProjectReference Include="..\Fabric.Operations\Fabric.Operations.csproj">
+      <Project>{28A9FD01-C994-4BCE-A17A-0E724F4DAC76}</Project>
+      <Name>Fabric.New.Operations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Reference Include="CsQuery">
+      <HintPath>..\..\Packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\Packages\Moq.4.1.1311.0615\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\..\Packages\Nancy.0.21.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Testing">
+      <HintPath>..\..\Packages\Nancy.Testing.0.21.1\lib\net40\Nancy.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\Packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RexConnectClient.Core, Version=0.5.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Packages\RexConnectClient.0.5.0.1\lib\RexConnectClient.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Weaver.Core">
+      <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Exec.RexConnect">
+      <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.4\lib\Weaver.Exec.RexConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Weaver.Titan">
+      <HintPath>..\..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -246,5 +220,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
 </Project>

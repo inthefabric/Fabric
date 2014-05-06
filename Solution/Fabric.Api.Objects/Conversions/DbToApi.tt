@@ -1,0 +1,119 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Fabric.Api.Objects.Traversal;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Data;
+
+namespace Fabric.Api.Objects.Conversions {
+
+	/*================================================================================================*/
+	public static partial class DbToApi {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabVertex FromVertexData(IDataDto pDto) {
+			switch ( pDto.VertexType ) {
+<#
+IList<IVertexSchema> allVerts = SchemaUtil.GetVertexSchemas();
+var verts = new List<IVertexSchema>();
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
+
+foreach ( IVertexSchema v in allVerts ) {
+	if ( !v.IsSpecInternal(v.GetAccess) ) {
+		verts.Add(v);
+	}
+}
+
+foreach ( IVertexSchema v in verts ) {
+#>
+				case VertexType.Id.<#= v.Names.Domain #>: return Convert<#= v.Names.Domain #>(pDto);
+<#
+} // end vertex loop
+#>
+			}
+
+			return null; //throw new Exception("Unknown VertexType: "+pDto.VertexType);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static FabLink FromEdgeData(IDataDto pDto) {
+			switch ( pDto.EdgeLabel ) {
+<#
+foreach ( IEdgeSchema e in edges ) {
+	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+
+	if ( props.Count == 0 ) {
+		continue;
+	}
+
+	IVertexSchema fv = e.GetFromVertex();
+	IVertexSchema tv = e.GetToVertex();
+
+	if ( fv.IsSpecInternal(fv.GetAccess) || tv.IsSpecInternal(tv.GetAccess) ) {
+		continue;
+	}
+#>
+				case "<#= e.NameDb #>": return new <#= e.GetClassNameApi(false) #>();
+<#
+} // end vertex loop
+#>
+			}
+			
+			return null;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+foreach ( IVertexSchema v in verts ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		private static <#= v.Names.Api #> Convert<#= v.Names.Domain #>(IDataDto pDto) {
+			var dom = new <#= v.Names.Domain #>();
+			Fill<#= v.Names.Domain #>(pDto, dom);
+			return DomainToApi.From<#= v.Names.Domain #>(dom);
+		}
+
+<#
+} // end vertex loop
+#>
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+foreach ( IVertexSchema v in verts ) {
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "Element" : vp.Names.Domain);
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		private static void Fill<#= v.Names.Domain #>(IDataDto pDto, <#= v.Names.Domain #> pDom) {
+			Fill<#= baseName #>(pDto, pDom);
+<#
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
+
+	foreach ( DomainProperty dp in props ) {
+		string isReq = (dp.IsNullable ? "false" : "true");
+#>
+			pDom.<#= dp.Name #> = Get<#= dp.GetCapitalizedDataTypeName() #>(pDto, "<#= dp.DbName #>", <#= isReq #>);
+<#
+	} // end property loop
+#>
+		}
+
+<#
+} // end vertex loop
+#>
+	}
+
+}

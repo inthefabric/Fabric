@@ -1,0 +1,207 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Fabric.Domain.Enums;
+
+namespace Fabric.Api.Objects.Conversions {
+<#
+IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in verts ) { 
+	OutputVertex(v);
+}
+#>
+
+}
+<#+
+public void OutputVertex(IVertexSchema pVertex) {
+	IVertexSchema v = pVertex;
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "FabElement" : vp.Names.Api);
+
+	IList<ApiProperty> props = SchemaUtil.GetVertexApiProperties(v, true, true);
+	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, true);
+	var keepEdges = new List<IEdgeSchema>();
+	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
+	var subEdgeMap = new Dictionary<string, IList<IEdgeSchema>>();
+
+	foreach ( string key in subMap.Keys ) {
+		subEdgeMap.Add(key, new List<IEdgeSchema>());
+	}
+
+	foreach ( IEdgeSchema es in edges ) {
+		if ( es.SubObjectOf != null ) {
+			subEdgeMap[es.SubObjectOf].Add(es);
+			continue;
+		}
+
+		keepEdges.Add(es);
+	}
+#>		
+
+	/*================================================================================================*/
+	public class Create<#= v.Names.Api #>Validator : Create<#= baseName #>Validator {
+		
+<#+
+		OutputVertexPropNames(props);
+#>
+		
+		private readonly Create<#= pVertex.Names.Api #> vCreateObj;
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public Create<#= pVertex.Names.Api #>Validator(Create<#= pVertex.Names.Api #> pCreateObj) : base(pCreateObj) {
+			vCreateObj = pCreateObj;
+		}
+<#+
+	OutputVertexValidate(pVertex.Names.Domain, props, keepEdges);
+#>
+
+	}
+<#+
+	foreach ( string sub in subMap.Keys ) {
+#>
+
+
+	/*================================================================================================*/
+	public class Create<#= sub #>Validator : CreateFabObjectValidator {
+		
+<#+
+		OutputVertexPropNames(subMap[sub]);
+#>
+		
+		private readonly Create<#= sub #> vCreateObj;
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public Create<#= sub #>Validator(Create<#= sub #> pCreateObj) : base(pCreateObj) {
+			vCreateObj = pCreateObj;
+		}
+<#+
+	OutputVertexValidate(pVertex.Names.Domain+sub.Substring(3), subMap[sub], subEdgeMap[sub]);
+#>
+
+	}
+<#+
+	} //end subMap loop
+}
+
+
+
+public void OutputVertexPropNames(IList<ApiProperty> pProps) {
+	foreach ( ApiProperty ap in pProps ) {
+		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
+#>
+		public const string <#= ap.Name #>Name = "<#= ap.Name #>";
+<#+
+	}
+}
+
+
+
+public void OutputVertexValidate(string pName, IList<ApiProperty> pProps, IList<IEdgeSchema> pEdges) {
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Validate() {
+			base.Validate();
+<#+
+	bool custom = false;
+	
+	foreach ( ApiProperty ap in pProps ) {
+		if ( ap.CustomValidation ) {
+			custom = true;
+		}
+#>
+			<#= ap.Name #>(vCreateObj.<#= ap.Name #>);
+<#+
+	} //end prop loop
+
+	if ( custom ) {
+#>
+			ApiValidatorsCustom.Validate<#= pName #>(vCreateObj);
+<#+
+	} //end "custom" contition
+#>
+			ValidateEdges();
+		}
+<#+
+	foreach ( ApiProperty ap in pProps ) {
+		string displayName = (ap.SubObjectOf == null ? "" : ap.SubObjectOf.Substring(3)+".")+ap.Name;
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public static void <#= ap.Name #>(<#= ap.GetDataTypeName() #> pValue) {
+<#+
+		if ( !ap.IsNullable && ap.DataType == typeof(string) ) {
+#>
+			NotNull("<#= displayName #>", pValue);
+<#+
+		}
+
+		if ( ap.LenMin != null ) {
+#>
+			LenMin("<#= displayName #>", pValue, <#= ap.LenMin #>);
+<#+
+		}
+
+		if ( ap.LenMax != null ) {
+#>
+			LenMax("<#= displayName #>", pValue, <#= ap.LenMax #>);
+<#+
+		}
+
+		if ( ap.Min != null || ap.Max != null ) {
+#>
+			Range("<#= displayName #>", pValue, <#= ap.Min #>, <#= ap.Max #>);
+<#+
+		}
+
+		if ( ap.ValidRegex != null ) {
+#>
+			ValidRegex("<#= displayName #>", pValue, @"<#= ap.ValidRegex.Replace("\"", "\"\"") #>");
+<#+
+		}
+
+		if ( ap.FromEnum != null ) {
+#>
+			ValidEnum<<#= ap.FromEnum #>.Id>("<#= displayName #>", pValue);
+<#+
+		}
+			
+		if ( ap.CustomValidation ) {
+#>
+			ApiValidatorsCustom.Validate<#= pName+ap.Name #>("<#= displayName #>", pValue);
+<#+
+		}
+#>
+		}
+<#+
+	} //end property loop
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void ValidateEdges() {
+<#+
+	foreach ( IEdgeSchema es in pEdges ) {
+		string displayName = (es.SubObjectOf == null ? "" :	
+			es.SubObjectOf.Substring(3)+".")+es.GetPropNameApi();
+#>
+			ValidVertexId("<#= displayName #>", vCreateObj.<#= es.GetPropNameApi() #>);
+<#+
+	} //end edges loop
+#>
+		}
+<#+
+}
+#>

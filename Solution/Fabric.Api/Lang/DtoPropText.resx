@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App_Name" xml:space="preserve">
+    <value>A unique title or identifier.</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>A sentence or paragraph providing details about the error.</value>
+  </data>
+  <data name="Error_Name" xml:space="preserve">
+    <value>A descriptive name that is associated with the error code.</value>
+  </data>
+  <data name="Error_Code" xml:space="preserve">
+    <value>A numeric value which identifies the specific error type.</value>
+  </data>
+  <data name="Fault_Message" xml:space="preserve">
+    <value>Information about the details and/or causes of the Fault.</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>A unique username.</value>
+  </data>
+  <data name="Class_Disamb" xml:space="preserve">
+    <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
+  </data>
+  <data name="Class_Note" xml:space="preserve">
+    <value>A summary of the !Class's intended meaning or purpose. This can resolve confusion in cases where a !Class has vague or missing Factors.</value>
+  </data>
+  <data name="Url_FullPath" xml:space="preserve">
+    <value>A unique, valid absolute URL. The string must include the link's protocol (such as 'http://').</value>
+  </data>
+  <data name="Eventor_Year" xml:space="preserve">
+    <value>Specifies the year value (UTC).</value>
+  </data>
+  <data name="Identor_Value" xml:space="preserve">
+    <value>A text-based value that can represent names, numbers, IDs, GUIDs, etc.</value>
+  </data>
+  <data name="Locator_ValueX" xml:space="preserve">
+    <value>A value representing longitude, time/progress, width, or a particular three-dimensional axis.</value>
+  </data>
+  <data name="Locator_ValueY" xml:space="preserve">
+    <value>A value representing latitude, height, or a particular three-dimensional axis.</value>
+  </data>
+  <data name="Locator_ValueZ" xml:space="preserve">
+    <value>A value representing elevation or a particular three-dimensional axis.</value>
+  </data>
+  <data name="Vector_Value" xml:space="preserve">
+    <value>An integral value which is to be plotted along the specified axis. This value must account for the choice of prefix. After being multiplied by the prefix magnitude, the value must fall within the bounds specified by VectorType. Before prefix multiplication, this value must be between –9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.</value>
+  </data>
+  <data name="Factor_IsDefining" xml:space="preserve">
+    <value>Specifies whether this !Factor helps to directly and uniquely define the primary Artifact.</value>
+  </data>
+  <data name="Factor_Note" xml:space="preserve">
+    <value>A summary of the !Factor's intended meaning or purpose. This is useful in cases when the !Factor is vague, complex, or confusing. It can help resolve issues in cases where the Factor's components inaccurately model the intended meaning. Typically, this value is not written directly by a User; the App should have enough information about a particular !Factor-creating action to form a reasonable sentence or phrase.</value>
+  </data>
+  <data name="Object_Obj" xml:space="preserve">
+    <value>The data type of this object.</value>
+  </data>
+  <data name="Vertex_Id" xml:space="preserve">
+    <value>A unique identifier for this !Vertex.</value>
+  </data>
+  <data name="Response_Data" xml:space="preserve">
+    <value>Contains the result of the request as a list of zero or more Objects.</value>
+  </data>
+  <data name="Response_TotalMs" xml:space="preserve">
+    <value>The time (in milliseconds) that it took the server(s) to complete this request.</value>
+  </data>
+  <data name="Vertex_Timestamp" xml:space="preserve">
+    <value>The date/time of creation.</value>
+  </data>
+  <data name="Class_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Url_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Response_Error" xml:space="preserve">
+    <value>If an error occurred, this contains information about the problem. Typically, the Data value is null when an Error value is present.</value>
+  </data>
+  <data name="OauthAccess_AccessToken" xml:space="preserve">
+    <value>A code that maps to various authentication information. Notably, it is refers to exactly one App and at most one User.</value>
+  </data>
+  <data name="OauthAccess_ExpiresIn" xml:space="preserve">
+    <value>The number of seconds until the access token expires.</value>
+  </data>
+  <data name="OauthAccess_RefreshToken" xml:space="preserve">
+    <value>A code that refreshes the authentication session for an expired OAuth access token. App-only access tokens do not include a refresh token; instead, the App should [[request a new access token|Oper|Oauth.AccessTokenClientCredentials]].</value>
+  </data>
+  <data name="OauthAccess_TokenType" xml:space="preserve">
+    <value>For the current Fabric OAuth implementation, this value is always equal to "bearer".</value>
+  </data>
+  <data name="OauthError_Error" xml:space="preserve">
+    <value>An error code as defined by the OAuth 2.0 specification.</value>
+  </data>
+  <data name="OauthError_ErrorDesc" xml:space="preserve">
+    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions.</value>
+  </data>
+  <data name="OauthLogin_Code" xml:space="preserve">
+    <value>Use this code (also called the 'authorization code') to generate a new OAuth access token. For security purposes, each code is valid for a single use, and expires 120 seconds after creation.</value>
+  </data>
+  <data name="OauthLogin_Error" xml:space="preserve">
+    <value>An error code as defined by the OAuth 2.0 specification.</value>
+  </data>
+  <data name="OauthLogin_ErrorDesc" xml:space="preserve">
+    <value>Provides specific details about the error. A single error code may have one or more possible error descriptions. For use in the redirect URI, this string uses a '+' character in place of each space character.</value>
+  </data>
+  <data name="OauthLogin_State" xml:space="preserve">
+    <value>Returns the 'state' value that the App provided in the original Oauth request. For security reasons, the App should reject the response if the original and returned values are not equal.</value>
+  </data>
+  <data name="OauthLogout_AccessToken" xml:space="preserve">
+    <value>Identifies a particular OAuth session.</value>
+  </data>
+  <data name="OauthLogout_Success" xml:space="preserve">
+    <value>Describes the result of the logout attempt. Successful logout attempts return a value of 1.</value>
+  </data>
+  <data name="Instance_Disamb" xml:space="preserve">
+    <value>A secondary label or identifier, used to resolve unique-name conflicts.</value>
+  </data>
+  <data name="Instance_Name" xml:space="preserve">
+    <value>A descriptive name or title.</value>
+  </data>
+  <data name="Instance_Note" xml:space="preserve">
+    <value>A summary of the !Instance's intended meaning or purpose. This can resolve confusion in cases where an !Instance has vague or missing Factors.</value>
+  </data>
+  <data name="Home_Services" xml:space="preserve">
+    <value>The complete list of services.</value>
+  </data>
+  <data name="ServiceOperation_Method" xml:space="preserve">
+    <value>The required HTTP method.</value>
+  </data>
+  <data name="ServiceOperation_Name" xml:space="preserve">
+    <value>A descriptive name for this operation.</value>
+  </data>
+  <data name="ServiceOperation_Return" xml:space="preserve">
+    <value>The type of Object returned by this operation.</value>
+  </data>
+  <data name="ServiceOperation_Uri" xml:space="preserve">
+    <value>Append this value to the current URI (and use the correct HTTP method) to invoke this operation.</value>
+  </data>
+  <data name="Service_Name" xml:space="preserve">
+    <value>The service name.</value>
+  </data>
+  <data name="Service_Operations" xml:space="preserve">
+    <value>The complete list of operations for this service.</value>
+  </data>
+  <data name="Service_Uri" xml:space="preserve">
+    <value>Append this path to the current URI to obtain details about this service.</value>
+  </data>
+  <data name="MetaTime_Day" xml:space="preserve">
+    <value>The current day of the month.</value>
+  </data>
+  <data name="MetaTime_Hour" xml:space="preserve">
+    <value>The current hour (using 24-hour time).</value>
+  </data>
+  <data name="MetaTime_Millisecond" xml:space="preserve">
+    <value>The current millisecond.</value>
+  </data>
+  <data name="MetaTime_Minute" xml:space="preserve">
+    <value>The current minute.</value>
+  </data>
+  <data name="MetaTime_Month" xml:space="preserve">
+    <value>The current month.</value>
+  </data>
+  <data name="MetaTime_Second" xml:space="preserve">
+    <value>The current second.</value>
+  </data>
+  <data name="MetaTime_Timestamp" xml:space="preserve">
+    <value>A Unix timestamp value (in milliseconds).</value>
+  </data>
+  <data name="MetaTime_Year" xml:space="preserve">
+    <value>The current year.</value>
+  </data>
+  <data name="MetaVersion_Day" xml:space="preserve">
+    <value>The day of the month that this build was released.</value>
+  </data>
+  <data name="MetaVersion_Major" xml:space="preserve">
+    <value>The major revision number for this build. This value is only incremented in cases where significant or important changes have occurred. These changes may introduce backwards-incompatability with previous builds.</value>
+  </data>
+  <data name="MetaVersion_Minor" xml:space="preserve">
+    <value>The minor revision number for this build. This value is incremented in cases when substantial functionality or improvements are introduced. It may also occur when certain functionality becomes deprecated.</value>
+  </data>
+  <data name="MetaVersion_Month" xml:space="preserve">
+    <value>The month that this build was released.</value>
+  </data>
+  <data name="MetaVersion_Patch" xml:space="preserve">
+    <value>The patch revision number for this build. This value is incremented when bug fixes or other internal changes occur.</value>
+  </data>
+  <data name="MetaVersion_Revision" xml:space="preserve">
+    <value>The revision text is derived from internal build information. It may be safely omitted from the build's version string.</value>
+  </data>
+  <data name="MetaVersion_Version" xml:space="preserve">
+    <value>This build's full version string, in the format: "Major.Minor.Patch.Revision".</value>
+  </data>
+  <data name="MetaVersion_Year" xml:space="preserve">
+    <value>The year that this build was released.</value>
+  </data>
+  <data name="Descriptor_Type" xml:space="preserve">
+    <value>Specifies the type of relationship or connection.</value>
+  </data>
+  <data name="Director_PrimaryAction" xml:space="preserve">
+    <value>Specifies the action to be performed on the Factor's primary Artifact.</value>
+  </data>
+  <data name="Director_RelatedAction" xml:space="preserve">
+    <value>Specifies the action to be performed on the Factor's related Artifact.</value>
+  </data>
+  <data name="Director_Type" xml:space="preserve">
+    <value>Specifies the type and reason for the pathway.</value>
+  </data>
+  <data name="Eventor_Type" xml:space="preserve">
+    <value>Specifies the significance of this point in time.</value>
+  </data>
+  <data name="Factor_Descriptor" xml:space="preserve">
+    <value>This component defines the relationship between the primary and related Artifact.</value>
+  </data>
+  <data name="Factor_Director" xml:space="preserve">
+    <value>This component creates a directional pathway between the primary and related Artifacts.</value>
+  </data>
+  <data name="Factor_Eventor" xml:space="preserve">
+    <value>This component applies the concept of time.</value>
+  </data>
+  <data name="Factor_FactorAssertion" xml:space="preserve">
+    <value>Specifies the type of information and/or level of confidence.</value>
+  </data>
+  <data name="Factor_Identor" xml:space="preserve">
+    <value>This component applies a name or identifier.</value>
+  </data>
+  <data name="Factor_Locator" xml:space="preserve">
+    <value>This component provides a geographical or relative position.</value>
+  </data>
+  <data name="Factor_Vector" xml:space="preserve">
+    <value>This component applies a numeric axis and value.</value>
+  </data>
+  <data name="Identor_Type" xml:space="preserve">
+    <value>Specifies the value's purpose or intent.</value>
+  </data>
+  <data name="Locator_Type" xml:space="preserve">
+    <value>Specifies the spatial context of the coordinate.</value>
+  </data>
+  <data name="Vector_Type" xml:space="preserve">
+    <value>Specifies its value's boundaries and context.</value>
+  </data>
+  <data name="Vector_Unit" xml:space="preserve">
+    <value>Specifies its value's unit of measurement.</value>
+  </data>
+  <data name="Vector_UnitPrefix" xml:space="preserve">
+    <value>Specifies its value's order of magnitude.</value>
+  </data>
+  <data name="Eventor_Day" xml:space="preserve">
+    <value>Specifies the day value (UTC).</value>
+  </data>
+  <data name="Eventor_Hour" xml:space="preserve">
+    <value>Specifies the hour value in 24-hour format (UTC).</value>
+  </data>
+  <data name="Eventor_Minute" xml:space="preserve">
+    <value>Specifies the minute value (UTC).</value>
+  </data>
+  <data name="Eventor_Month" xml:space="preserve">
+    <value>Specifies the month value (UTC).</value>
+  </data>
+  <data name="Eventor_Second" xml:space="preserve">
+    <value>Specifies the second value (UTC).</value>
+  </data>
+  <data name="Factor_AssertionType" xml:space="preserve">
+    <value>Describes the type of information (and/or level of confidence) provided by a particular Factor. Example assertions include: Fact, Opinion, Guess, etc.</value>
+  </data>
+  <data name="Home_Name" xml:space="preserve">
+    <value>The name of this API.</value>
+  </data>
+  <data name="Home_Uri" xml:space="preserve">
+    <value>The relative URI for this API level.</value>
+  </data>
+  <data name="Link_FromType" xml:space="preserve">
+    <value>The Vertex type at the "outgoing" end of this !Link.</value>
+  </data>
+  <data name="Link_ToType" xml:space="preserve">
+    <value>The Vertex type at the "incoming" end of this !Link.</value>
+  </data>
+  <data name="Member_Type" xml:space="preserve">
+    <value>Specifies the Member's state and/or access privileges.</value>
+  </data>
+  <data name="MetaTime_Timezone" xml:space="preserve">
+    <value>The timezone used by the time metrics.</value>
+  </data>
+  <data name="TravStep_Name" xml:space="preserve">
+    <value>The name of this traversal step.</value>
+  </data>
+  <data name="TravStep_Return" xml:space="preserve">
+    <value>The return type.</value>
+  </data>
+  <data name="TravStep_Uri" xml:space="preserve">
+    <value>The URI to append in order to execute this traversal step.</value>
+  </data>
+  <data name="Vertex_VertexType" xml:space="preserve">
+    <value>Specifies the Vertex type.</value>
+  </data>
+  <data name="CreateClass_Disamb" xml:space="preserve">
+    <value>The disambiguation text for the new Class.  When provided, the disambiguation text permits the use of a non-unique name.</value>
+  </data>
+  <data name="CreateClass_Name" xml:space="preserve">
+    <value>The name of the new Class. It must be unique on its own, or be unique in combination with the disambiguation text.</value>
+  </data>
+  <data name="CreateClass_Note" xml:space="preserve">
+    <value>A brief description of the new Class. It can be useful for helping others understand the creator's intended purpose or meaning.</value>
+  </data>
+  <data name="CreateFactor_AssertionType" xml:space="preserve">
+    <value>Identifies the FactorAssertion for the new Factor. In cases where the assertion type is unclear or not known, please use the 'Undefined' FactorAssertion.</value>
+  </data>
+  <data name="CreateFactor_IsDefining" xml:space="preserve">
+    <value>The IsDefining value for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_Note" xml:space="preserve">
+    <value>A sentence or short paragraph describing (in a human-readable format) the intended meaning of the new Factor. A descriptive note can help others understand the creator's intended purpose or meaning for the Factor.</value>
+  </data>
+  <data name="CreateFactor_UsesPrimaryArtifactId" xml:space="preserve">
+    <value>Identifies the primary Artifact for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_UsesRelatedArtifactId" xml:space="preserve">
+    <value>Identifies the related Artifact for the new Factor. The related Artifact cannot be the same as the primary Artifact.</value>
+  </data>
+  <data name="CreateInstance_Disamb" xml:space="preserve">
+    <value>The disambiguation text for the new Instance. When provided, the disambiguation text permits the use of a non-unique name.</value>
+  </data>
+  <data name="CreateInstance_Name" xml:space="preserve">
+    <value>The name of the new Instance. It does not need to be unique.</value>
+  </data>
+  <data name="CreateInstance_Note" xml:space="preserve">
+    <value>A brief description of the new Instance.  It can be useful for helping others understand the creator's intended purpose or meaning.</value>
+  </data>
+  <data name="CreateUrl_Name" xml:space="preserve">
+    <value>The name of the new Url.</value>
+  </data>
+  <data name="CreateUrl_FullPath" xml:space="preserve">
+    <value>The complete absolute URL for new Url object. It must include the URL's protocol (such as 'http://').</value>
+  </data>
+  <data name="CreateDescriptor_Type" xml:space="preserve">
+    <value>Identifies the DescriptorType for the new Descriptor.</value>
+  </data>
+  <data name="CreateDescriptor_RefinesTypeWithArtifactId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the new Descriptor's DescriptorType.</value>
+  </data>
+  <data name="CreateDescriptor_RefinesPrimaryWithArtifactId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the Factor's primary Artifact.</value>
+  </data>
+  <data name="CreateDescriptor_RefinesRelatedWithArtifactId" xml:space="preserve">
+    <value>Identifies the Artifact that refines the Factor's related Artifact.</value>
+  </data>
+  <data name="CreateDirector_Type" xml:space="preserve">
+    <value>Identifies the DirectorType for the new Director.</value>
+  </data>
+  <data name="CreateDirector_PrimaryAction" xml:space="preserve">
+    <value>Identifies the DirectorAction associated with the Factor's primary Artifact.</value>
+  </data>
+  <data name="CreateDirector_RelatedAction" xml:space="preserve">
+    <value>Identifies the DirectorAction associated with the Factor's related Artifact.</value>
+  </data>
+  <data name="CreateEventor_Day" xml:space="preserve">
+    <value>The day value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Type" xml:space="preserve">
+    <value>Identifies the EventorType for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Hour" xml:space="preserve">
+    <value>The hour value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Minute" xml:space="preserve">
+    <value>The minute value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Month" xml:space="preserve">
+    <value>The month value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Second" xml:space="preserve">
+    <value>The second value for the new Eventor.</value>
+  </data>
+  <data name="CreateEventor_Year" xml:space="preserve">
+    <value>The year value for the new Eventor.</value>
+  </data>
+  <data name="CreateIdentor_Type" xml:space="preserve">
+    <value>Identifies the IdentorType for the new Identor.</value>
+  </data>
+  <data name="CreateIdentor_Value" xml:space="preserve">
+    <value>The text-based value for the new Identor.</value>
+  </data>
+  <data name="CreateLocator_Type" xml:space="preserve">
+    <value>Identifies the LocatorType for the new Locator.</value>
+  </data>
+  <data name="CreateLocator_ValueX" xml:space="preserve">
+    <value>The X value for the new Locator.</value>
+  </data>
+  <data name="CreateLocator_ValueY" xml:space="preserve">
+    <value>The Y value for the new Locator.</value>
+  </data>
+  <data name="CreateLocator_ValueZ" xml:space="preserve">
+    <value>The Z value for the new Locator.</value>
+  </data>
+  <data name="CreateVector_UsesAxisArtifactId" xml:space="preserve">
+    <value>The Artifact which provides meaning for the new Vector.</value>
+  </data>
+  <data name="CreateVector_Value" xml:space="preserve">
+    <value>The value for the new Vector. This value must be within the range specified by the VectorType. Decimal values are not supported; if additional precision is required, use a VectorUnitPrefix such as Milli or Micro.</value>
+  </data>
+  <data name="CreateVector_Type" xml:space="preserve">
+    <value>Identifies the VectorType for the new Vector.</value>
+  </data>
+  <data name="CreateVector_Unit" xml:space="preserve">
+    <value>Identifies the VectorUnit for the new Vector.</value>
+  </data>
+  <data name="CreateVector_UnitPrefix" xml:space="preserve">
+    <value>Identifies the VectorUnitPrefix for the new Vector.</value>
+  </data>
+  <data name="CreateFactor_Descriptor" xml:space="preserve">
+    <value>Provides Descriptor data for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_Director" xml:space="preserve">
+    <value>Provides Director data for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_Eventor" xml:space="preserve">
+    <value>Provides Eventor data for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_Identor" xml:space="preserve">
+    <value>Provides Identor data for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_Locator" xml:space="preserve">
+    <value>Provides Locator data for the new Factor.</value>
+  </data>
+  <data name="CreateFactor_Vector" xml:space="preserve">
+    <value>Provides Vector data for the new Factor.</value>
+  </data>
+  <data name="CreateMember_DefinedByAppId" xml:space="preserve">
+    <value>Identifies the App that defines the new Member.</value>
+  </data>
+  <data name="CreateMember_DefinedByUserId" xml:space="preserve">
+    <value>Identifies the User that defines the new Member.</value>
+  </data>
+  <data name="CreateMember_Type" xml:space="preserve">
+    <value>Identifies the MemberType for the new Member.</value>
+  </data>
+  <data name="TravResponse_Steps" xml:space="preserve">
+    <value>The list of traversal steps available from the current traversal position.</value>
+  </data>
+</root>

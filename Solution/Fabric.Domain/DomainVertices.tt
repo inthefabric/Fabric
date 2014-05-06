@@ -1,0 +1,88 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System.Collections.Generic;
+using Weaver.Core.Elements;
+using Weaver.Titan.Elements;
+
+namespace Fabric.Domain {
+<#
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in vertexSchemas ) {
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "VertexBase" : vp.Names.Domain);
+	string inter = (vp == null ? ", I"+v.Names.Domain : "");
+
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
+	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(v, false);
+#>
+
+
+	/*================================================================================================*/
+	[WeaverTitanVertex]
+	public class <#= v.Names.Domain #> : <#= baseName #><#= inter #> {
+
+<#
+	foreach ( DomainProperty dp in props ) {
+		string isInd = (dp.IsIndexed+"").ToLower();
+		string isEla = (dp.IsElastic+"").ToLower();
+#>
+		[WeaverTitanProperty("<#= dp.DbName #>", TitanIndex=<#= isInd #>, TitanElasticIndex=<#= isEla #>)]
+		public virtual <#= dp.GetDataTypeName() #> <#= dp.Name #> { get; set; }
+		
+<#
+	} // end property loop
+#>
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= v.Names.Domain #>() {
+			VertexType = (byte)Enums.VertexType.Id.<#= v.Names.Domain #>;
+		}
+<#
+	foreach ( IEdgeSchema es in edges ) {
+		string edgeClass = es.GetClassNameDom();
+		string outConn = es.GetOutgoingWeaverEdgeConn();
+		string edgeName = es.GetPropNameDom(es.GetIsMultiple());
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual <#= edgeClass #> <#= edgeName #> {
+			get { return NewEdge<<#= edgeClass #>>(WeaverEdgeConn.<#= outConn #>); }
+		}
+<#
+	} // end property loop
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public override void Fill(IDictionary<string, string> pData) {
+			base.Fill(pData);
+<#
+	foreach ( DomainProperty dp in props ) {
+#>
+			<#= dp.Name #> = TryGet<#= dp.GetCapitalizedDataTypeName() #>(pData, "<#= dp.DbName #>");
+<#
+	} // end property loop
+#>
+		}
+
+	}
+<#
+} // end vertex loop
+#>
+
+}

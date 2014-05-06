@@ -4,12 +4,11 @@ using System.Linq;
 using Fabric.Domain;
 using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;
-using Weaver.Core.Elements;
 
 namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
-	public class DataResult : IDataResult {
+	public class DataResult : IDataResult { //TEST: DataResult
 
 		private readonly IResponseResult vResult;
 
@@ -67,7 +66,7 @@ namespace Fabric.Infrastructure.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public T ToElement<T>() where T : class, IWeaverElement, IElementWithId, new() {
+		public T ToElement<T>() where T : class, IElement, new() {
 			IDataDto dto = ToDto();
 			return (dto == null ? null : DataDto.ToElement<T>(dto));
 		}
@@ -108,7 +107,7 @@ namespace Fabric.Infrastructure.Data {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public IList<T> ToElementList<T>() where T : class, IWeaverElement, IElementWithId, new() {
+		public IList<T> ToElementList<T>() where T : class, IElement, new() {
 			return ToDtoList().Select(DataDto.ToElement<T>).ToList();
 		}
 
@@ -126,8 +125,7 @@ namespace Fabric.Infrastructure.Data {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		public T ToElementAt<T>(int pCommandIndex, int pResultIndex)
-											where T : class, IWeaverElement, IElementWithId, new() {
+		public T ToElementAt<T>(int pCommandIndex, int pResultIndex) where T : class, IElement, new() {
 			IDataDto dto = ToDtoAt(pCommandIndex, pResultIndex);
 			return DataDto.ToElement<T>(dto);
 		}

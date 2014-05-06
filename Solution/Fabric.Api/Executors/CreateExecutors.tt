@@ -1,0 +1,90 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System;
+using System.Collections.Generic;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Domain;
+using Fabric.Operations.Create;
+
+namespace Fabric.Api.Executors {
+
+	/*================================================================================================*/
+	public static class CreateExecutors {
+<#
+IList<IVertexSchema> allVerts = SchemaUtil.GetVertexSchemas();
+var verts = new List<IVertexSchema>();
+
+foreach ( IVertexSchema v in allVerts ) {
+	if ( v.CreateAccess == Access.All ) {
+		verts.Add(v);
+	}
+}
+
+foreach ( IVertexSchema v in verts ) {
+#>
+
+		private static readonly IList<ApiEntryParam> <#= v.Names.Domain #>Params = new List<ApiEntryParam> {
+			new ApiEntryParam("Data", typeof(Create<#= v.Names.Api #>))
+		};
+<#
+} //end vertex loop
+#>
+
+		public static readonly ApiEntry[] ApiEntries = new [] {
+<#
+foreach ( IVertexSchema v in verts ) {
+#>
+			ApiEntry.Post("/Mod/<#= v.Names.DomainPlural #>", Create<#= v.Names.Domain #>, typeof(FabResponse<<#= v.Names.Api#>>), <#= v.Names.Domain #>Params),
+<#
+} //end vertex loop
+#>
+		};
+		
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+foreach ( IVertexSchema v in verts ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		private static IApiResponse Create<#= v.Names.Domain #>(IApiRequest pApiReq) {
+			return Execute<<#= v.Names.Domain #>, <#= v.Names.Api #>, Create<#= v.Names.Domain #>Operation>(pApiReq);
+		}
+
+<#
+} //end vertex loop
+#>
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static IApiResponse Execute<TDom, TApi, TOp>(IApiRequest pApiReq) 
+														where TDom : Vertex
+														where TApi : FabVertex
+														where TOp : ICreateOperation<TDom,TApi>, new() {
+			Func<IList<TApi>> getResp = (() => {
+				string json = pApiReq.GetFormValue("Data", true);
+				var o = new TOp();
+
+				TDom result = o.Execute(
+					pApiReq.OpCtx, new CreateOperationBuilder(), new CreateOperationTasks(), json);
+
+				return new List<TApi> {
+					o.ConvertResult(result)
+				};
+			});
+			
+			var exec = new FabResponseExecutor<TApi>(pApiReq, getResp);
+			return exec.Execute();
+		}
+
+	}
+
+}

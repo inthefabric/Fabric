@@ -1,19 +1,18 @@
-﻿using Fabric.Infrastructure.Api;
-using RexConnectClient.Core;
+﻿using RexConnectClient.Core;
 using Weaver.Exec.RexConnect;
 
 namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
-	public class DataAccessFull : DataAccess {
+	public class DataAccessFull : DataAccess { //TEST: DataAccessFull
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Build(WeaverRequest pRequest, IApiContext pApiCtx) {
-			vApiCtx = pApiCtx;
+		public void Build(WeaverRequest pRequest, IDataContext pDataCtx) {
+			vDataCtx = pDataCtx;
 			vReq = pRequest;
-			vRexConnCtx = new RexConnContext(vReq, pApiCtx.RexConnUrl, pApiCtx.RexConnPort);
+			vRexConnCtx = new RexConnContext(vReq, vDataCtx.RexConnUrl, vDataCtx.RexConnPort);
 		}
 
 	}

@@ -1,99 +1,190 @@
-﻿//#define MONO_DEV
-
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
-using Fabric.Api.Dto;
-using Fabric.Api.Dto.Meta;
-using Fabric.Api.Util;
-using Fabric.Infrastructure;
-using Fabric.Infrastructure.Analytics;
-using Fabric.Infrastructure.Api;
-using Fabric.Infrastructure.Caching;
+using System.Net;
+using System.Text;
+using Fabric.Api.Interfaces;
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Meta;
+using Fabric.Infrastructure.Broadcast;
+using Fabric.Infrastructure.Cache;
+using Fabric.Infrastructure.Data;
+using Fabric.Operations;
 using Nancy;
+using Nancy.Cookies;
+using Nancy.Responses;
+using Nancy.Serializers.Json.ServiceStack;
 using ServiceStack.Text;
+using HttpStatusCode = Nancy.HttpStatusCode;
 
 namespace Fabric.Api {
 
 	/*================================================================================================*/
 	public abstract class BaseModule : NancyModule {
 
+		private static readonly Logger Log = Logger.Build<BaseModule>();
+
+		private readonly IList<ApiEntry> vApiEntries;
+		private readonly IDictionary<ApiEntry.Method, RouteBuilder> vMethodMap;
+
 		private static string ConfPrefix;
-		protected static FabMetaVersion Version;
+		public static FabMetaVersion Version;
 		private static MetricsManager Metrics;
 		private static CacheManager Cache;
 		private static Func<Guid, IAnalyticsManager> AnalyticsProv;
+		private static IDataAccessFactory AccessFactory;
 
 		public static string ApiUrl;
 		public static int RexConnPort;
-		public static int VertexCount;
-		public static string[] VertexIpList;
-		public static int VertexIndex;
+		public static int NodeCount;
+		public static string[] NodeIpList;
+		public static int NodeIndex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		protected BaseModule() {
-			Log.ConfigureOnce();
 			OnError.AddItemToStartOfPipeline(HandleError);
 
-			if ( ConfPrefix == null ) {
-#if !DEBUG
-				ConfPrefix = "Prod_";
-#elif LIVE
-				ConfPrefix = "DevLive_";
-#else
-				ConfPrefix = "Dev_";
-#endif
+			vApiEntries = new List<ApiEntry>();
 
-#if MONO_DEV
-				ApiUrl = "http://localhost:9000";
-				RexConnPort = 8185;
-				VertexCount = 1;
-				VertexIpList = new string[1] { "rexster" };
-#else
-				ApiUrl = "http://"+ConfigurationManager.AppSettings[ConfPrefix+"Api"];
-				RexConnPort = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexConnPort"]);
-				VertexCount = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"VertexCount"]);
-				VertexIpList = new string[VertexCount];
+			vMethodMap = new Dictionary<ApiEntry.Method, RouteBuilder>();
+			vMethodMap.Add(ApiEntry.Method.Get, Get);
+			vMethodMap.Add(ApiEntry.Method.Post, Post);
+			vMethodMap.Add(ApiEntry.Method.Put, Put);
+			vMethodMap.Add(ApiEntry.Method.Delete, Delete);
 
-				for ( int i = 0 ; i < VertexCount ; ++i ) {
-					VertexIpList[i] = ConfigurationManager.AppSettings[ConfPrefix+"VertexIp"+(i+1)];
-				}
-#endif
-
-				VertexIndex = 0;
+			if ( Version != null ) {
+				return;
 			}
-			
-			if ( Version == null ) {
-				Version = new FabMetaVersion();
-				Version.SetBuild(0, 2, 4, "37fd2cd");
-				Version.SetDate(2013, 9, 18);
 
-				Log.Debug("Fabric Version: "+Version.Version+
-					" ("+Version.Year+'.'+Version.Month+'.'+Version.Day+")");
-
-				string graphite = ConfigurationManager.AppSettings[ConfPrefix+"Graphite"];
-				string prefix = ConfigurationManager.AppSettings[ConfPrefix+"GraphitePrefix"];
-				Metrics = new MetricsManager(graphite, 2003, prefix);
-
-				Cache = new CacheManager(Metrics);
-				AnalyticsProv = (g => new AnalyticsManager(g));
+			lock ( this ) {
+				GetConfigValues();
+				BuildObjects();
 			}
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected static IApiContext NewApiCtx() {
-			int i = (VertexIndex++)%VertexCount;
-			return new ApiContext(VertexIpList[i], RexConnPort, Cache, Metrics, AnalyticsProv);
+		public IList<ApiEntry> GetApiEntries() {
+			return vApiEntries;
 		}
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
+		protected void SetupFromApiEntries(IEnumerable<ApiEntry> pEntries) {
+			foreach ( ApiEntry e in pEntries ) {
+				ApiEntry ee = e;
+				vApiEntries.Add(ee);
+				vMethodMap[e.RequestMethod][e.Path] = (p => GetResponse(ee));
+			}
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private Response GetResponse(ApiEntry pEntry) {
+			IApiResponse apiResp = pEntry.Function(NewReq());
+			HttpStatusCode status = (HttpStatusCode)(int)apiResp.Status;
+			var cookies = new List<INancyCookie>();
+
+			foreach ( Cookie c in apiResp.Cookies ) {
+				var nc = new NancyCookie(c.Name, c.Value, c.HttpOnly, c.Secure);
+				nc.Domain = c.Domain;
+				nc.Expires = c.Expires;
+				nc.Path = c.Path;
+				cookies.Add(nc);
+			}
+
+			////
+
+			if ( apiResp.RedirectUrl != null ) {
+				var r = new RedirectResponse(apiResp.RedirectUrl);
+
+				foreach ( INancyCookie c in cookies ) {
+					r.Cookies.Add(c);
+				}
+
+				return r;
+			}
+
+			if ( apiResp.Html != null ) {
+				byte[] bytes = Encoding.UTF8.GetBytes(apiResp.Html);
+				return new HtmlResponse(status, (s => s.Write(bytes, 0, bytes.Length)),
+					apiResp.Headers, cookies);
+			}
+
+			var tr = new TextResponse(status, apiResp.Json, Encoding.UTF8, apiResp.Headers, cookies);
+			tr.ContentType = "application/json";
+			return tr;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private IApiRequest NewReq() {
+			int i = (NodeIndex++)%NodeCount;
+			var oc = new OperationContext(AccessFactory, Cache, Metrics, AnalyticsProv);
+			return new ApiRequest(oc, Context.Request);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
 		private Response HandleError(NancyContext pContext, Exception pException) {
 			Log.Fatal("Error at "+pContext.Request.Path, pException);
-			var err = FabError.ForInternalServerError();
-			return NancyUtil.BuildJsonResponse(HttpStatusCode.InternalServerError, err.ToJson());
+
+			var fr = new FabResponse<FabObject>();
+			fr.Error = FabError.ForInternalServerError();
+
+			var jr = new JsonResponse(fr, new ServiceStackJsonSerializer());
+			jr.StatusCode = HttpStatusCode.InternalServerError;
+			return jr;
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static void GetConfigValues() {
+#if !DEBUG
+			ConfPrefix = "Prod_";
+#elif LIVE
+			ConfPrefix = "DevLive_";
+#else
+			ConfPrefix = "Dev_";
+#endif
+
+#if MONO_DEV
+			ApiUrl = "http://localhost:9000";
+			RexConnPort = 8185;
+			VertexCount = 1;
+			VertexIpList = new string[1] { "rexster" };
+#else
+			ApiUrl = "http://"+ConfigurationManager.AppSettings[ConfPrefix+"Api"];
+			RexConnPort = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"RexConnPort"]);
+			NodeCount = int.Parse(ConfigurationManager.AppSettings[ConfPrefix+"NodeCount"]);
+			NodeIpList = new string[NodeCount];
+
+			for ( int i = 0 ; i < NodeCount ; ++i ) {
+				NodeIpList[i] = ConfigurationManager.AppSettings[ConfPrefix+"NodeIp"+(i+1)];
+			}
+#endif
+
+			NodeIndex = 0;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void BuildObjects() {
+			Version = new FabMetaVersion();
+			Version.SetBuild(0, 3, 0, "ecc0c99");
+			Version.SetDate(2014, 4, 22);
+
+			Log.Debug("Fabric Version: "+Version.Version+
+				" ("+Version.Year+'.'+Version.Month+'.'+Version.Day+")");
+
+			string graphite = ConfigurationManager.AppSettings[ConfPrefix+"Graphite"];
+			string prefix = ConfigurationManager.AppSettings[ConfPrefix+"GraphitePrefix"];
+			Metrics = new MetricsManager(graphite, 2003, prefix);
+
+			Cache = new CacheManager(Metrics);
+			AnalyticsProv = (g => new AnalyticsManager(g));
+			AccessFactory = new DataAccessFactory(NodeIpList, RexConnPort, Cache);
+
+			JsConfig.ExcludeTypeInfo = true;
 		}
 
 	}

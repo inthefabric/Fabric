@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fabric.Domain;
-using Fabric.Infrastructure.Api.Faults;
-using Fabric.Infrastructure.Weaver;
+using Fabric.Domain.Enums;
+using Fabric.Domain.Names;
+using Fabric.Infrastructure.Faults;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
+using ServiceStack.Text;
 
 namespace Fabric.Infrastructure.Data {
 	
 	/*================================================================================================*/
-	public class DataDto : IDataDto {
+	public class DataDto : IDataDto { //TEST: DataDto
 
 		public enum ElementType {
 			Vertex,
@@ -18,7 +20,7 @@ namespace Fabric.Infrastructure.Data {
 
 		public ElementType Type { get; set; }
 		public string Id { get; set; }
-		public string Class { get; set; }
+		public VertexType.Id? VertexType { get; set; }
 		public IDictionary<string, string> Properties { get; set; }
 
 		public string EdgeLabel { get; set; }
@@ -33,7 +35,6 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		public DataDto(IGraphElement pGraphElement) {
 			Id = pGraphElement.Id;
-			Class = pGraphElement.Label; //null if not an edge
 			Properties = pGraphElement.Properties;
 
 			EdgeLabel = pGraphElement.Label;
@@ -47,13 +48,14 @@ namespace Fabric.Infrastructure.Data {
 				return;
 			}
 
-			if ( Properties.ContainsKey(PropDbName.Vertex_FabType) ) {
-				byte ft = byte.Parse(Properties[PropDbName.Vertex_FabType]);
-				Class = VertexFabTypeUtil.ValueMap[ft]+"";
+			if ( Properties.ContainsKey(DbName.Vert.Vertex.VertexType) ) {
+				byte ft = byte.Parse(Properties[DbName.Vert.Vertex.VertexType]);
+				VertexType = (VertexType.Id)Enum.ToObject(typeof(VertexType.Id), ft);
 				return;
 			}
 			
-			throw new Exception("Unspecified vertex class: Id="+pGraphElement.Id);
+			throw new Exception("Unspecified DataTto type: Id="+pGraphElement.Id+
+				", Props="+JsonSerializer.SerializeToString(pGraphElement.Properties));
 		}
 
 
@@ -64,26 +66,19 @@ namespace Fabric.Infrastructure.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static T ToElement<T>(IGraphElement pGraphElement) where T : IElementWithId, new() {
+		public static T ToElement<T>(IGraphElement pGraphElement) where T : IElement, new() {
 			return ToElement<T>(FromGraphElement(pGraphElement));
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public static T ToElement<T>(IDataDto pDto) where T : IElementWithId, new() {
+		public static T ToElement<T>(IDataDto pDto) where T : IElement, new() {
 			if ( pDto.Id == null ) {
-				throw new FabArgumentNullFault("DataDto.Id was null.");
-			}
-
-			string idProp = PropDbName.TypeIdMap[typeof(T)];
-
-			if ( !pDto.Properties.ContainsKey(idProp) ) {
-				throw new Exception("Incorrect conversion from DataDto class '"+
-					pDto.Class+"' to type '"+typeof(T).Name+"'.");
+				new FabPropertyNullFault("DataDto.Id was null.");
 			}
 
 			T result = new T();
 			result.Id = pDto.Id;
-			result.FillWithData(pDto.Properties);
+			result.Fill(pDto.Properties);
 
 			IEdge edge = (result as IEdge);
 

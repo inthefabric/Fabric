@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App" xml:space="preserve">
+    <value>A registered project, application, or business that has direct access to the Fabric API.
+
+An !App's primary purpose is to facilitate User interaction with Fabric. To accomplish this, an !App typically creates an interface for its Users. This interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. 
+
+When a User becomes a Member of an !App, they are granting that !App permission to perform various actions on their behalf (via the !App's interface). It is vital for an !App to provide each User with a positive experience and do nothing to violate the User's trust.
+
+Every !App has a special 'Data Provider' Member, which is typically controlled by that !App's administrator. The 'Data Provider' allows the !App to interact with Fabric as itself (rather than on behalf of a particular User).
+
+Every item added to Fabric is associated with (via Member) a User and and an !App. Thus, Fabric can determine which !App is responsible for any particular item, enforce applicable access rights, analyze the data for a particular !App or Member, etc.</value>
+  </data>
+  <data name="Artifact" xml:space="preserve">
+    <value>An object which is able to (via Factor connections) accumulate meaning, context, user sentiment, and relationships.  !Artifacts and Factors are the central components of the Fabric architecture.
+
+There are no restrictions on what an !Artifact can represent.  Fabric encourages the generous use of Factors to identify and describe each new !Artifact. Ideally, the Factor connections will distinguish an !Artifact from all others.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>When a fault or error occurs, a !FabError is included in the response data. The information it provides should help determine what caused the issue for the given request.</value>
+  </data>
+  <data name="Fault" xml:space="preserve">
+    <value>The base class for all Fault objects.</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>An association between a User and an App. The App administrator(s) can grant various access privileges to a !Member by creating a MemberTypeAssign that uses a different MemberType.
+
+Every item added to Fabric is associated with a particular !Member. This enables Fabric to determine which App or User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular App and/or User, etc.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>A registered Fabric account that has indirect access (via Apps) to the Fabric API. A !User can become a Member of an App, and then use the App's interface to interact with Fabric. An App's interface hides the complex details of the Fabric API, and instead provides intuitive features like custom inputs, searches, summaries, and visualizations. 
+
+!Users control their private account data and preferences using the Fabric website.
+
+Every item added to Fabric is associated with (via Member) a !User and and an App. Thus, Fabric can determine which !User is responsible for any particular item, enforce applicable access rights, analyze the data for a particular !User or Member, etc.</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. !Classes and Instances are closely related, and are the primary method for generating new Artifacts.
+
+A !Class represents a particular group, type, set, or category of items. Each !Class must uniquely identifiable (via name and disambiguation) amongst all other !Classes.
+[(EX|Ellie's Class Example|Ellie is building an App for dog lovers, but there are not yet animal-related !Classes for Ellie to use. She first creates broad !Classes (like 'Animal', 'Mammal', and 'Canine') and relationships between them (like 'Canine is a Mammal').
+
+She then creates narrower !Classes for each dog grouping (like 'Working Dog') and breed (like 'Great Dane'), adding relevant relationships along the way. A !Class named 'Boxer' already exists, but it has a sports-related meaning. She adds a new 'Boxer' !Class with a 'Dog Breed' disambiguation value to resolve this conflict.)]</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>A hyperlink or path (uniform resource locator) to some web page, a file, or some other type of content.
+
+While a !Url is a type of Artifact, it should be used with certain constraints. Consider an scenario where a !Url leads to web page with a news article and a photo. The proper prodedure is to create a new Instance for both the news article and photo. With this method:
+- The news article and photo Instances can receive Factors independently.
+- The !Url should only receive Factors related to the actual web page, its design, etc.
+- Every !Url that displays this particular news article can refer the same news article Instance.</value>
+  </data>
+  <data name="Descriptor" xml:space="preserve">
+    <value>A Factor component that describes and refines the relationship between the Factor's two Artifacts. !Descriptors are the only required Factor component.
+
+First, the DescriptorType provides semantic meaning to the relationship, such as: a A "is a" B, or C "sounds like" D. Since this relationship is directional (flowing _from_ the Factor's primary Artifact and _to_ the related Artifact), the DescriptorType must coordinate correctly with the relationship's direction.
+[(EX|Relationship Example|_Objective:_
+Describe that a circle is a shape. 
+
+_Method:_
+- The Factor uses 'Circle' as the primary Artifact and 'Shape' as the related Artifact.
+- The !Descriptor uses the 'Is A' DescriptorType.
+
+_Factor Phrase:_
+Circle ... Is A ... Shape.)]
+
+!Descriptors also offer optional (but powerful) refinement capabilities, which allow a !Descriptor to be very specific. Using any Artifact, a !Descriptor may refine the DescriptorType, the Factor's primary Artifact, and/or the Factor's related Artifact. Note: while these Artifact links are discussed here in the context of a !Descriptor, the actual traversal links exist with the Factor.
+[(EX|Refinement Example|_Objective:_
+Describe that car A and car B have headlights with a similar shape.
+
+_Method:_
+- The Factor uses 'Car A' as the primary Artifact and 'Car B' as the related Artifact.
+- The !Descriptor uses the 'Is Similar To' DescriptorType, uses 'Headlight' to refine both Artifacts, and uses 'Shape' to refine the DescriptorType
+
+_Factor Phrase:_
+Car A (more specifically, its) Headlight ... Is Similar To (more specifically, by) Shape ... Car B (more specifically, its) Headlight.)]</value>
+  </data>
+  <data name="Director" xml:space="preserve">
+    <value>A Factor component that creates a directional, action-based flow between the Factor's two Artifacts.
+
+The nature of a !Director's pathway depends on its DirectorType. The !Director can  represent a factual, well-defined path, a virtual link, a suggested flow, etc.
+
+A !Director specifies a DirectorAction for each of the Factor's Artifacts, which give additional meaning to the !Director's pathway. The primary action is meant to be performed on the primary Artifact before the pathway begins. The related action is meant to be performed on the related Artifact after the pathway ends.
+[(EX|Defined Pathway Example|_Objective:_
+Direct along the defined pathway of listening to a particular album's third and fourth songs (song C and D) in order.
+
+_Method:_
+- The Factor uses 'Song C' as the primary Artifact and 'Song D' as the related Artifact.
+- The Descriptor uses the 'IsRelatedTo' DescriptorType.
+- The !Director uses the 'Defined Path' DirectorType and the 'Listen' DirectorAction for each Artifact.
+
+_Factor Phrase:_
+Song C ... Is Related To ... Song D. (The) Listen (action on) ... Song C ...  (leads to the) Listen (action on) ... Song D ... (via) Defined Path.)] [(EX|Suggested Pathway Example|_Objective:_
+Direct along a suggested pathway of listening to song A and then learning about that song's vocalist, singer B.
+
+_Method:_
+- The Factor uses 'Song A' as the primary Artifact and 'Singer B' as the related Artifact.
+- The Descriptor uses the 'IsRelatedTo' DescriptorType.
+- The !Director uses the 'Suggested Path' DirectorType, the 'Listen' primary DirectorAction, and the 'Learn' related DirectorAction.
+
+_Factor Phrase:_
+Song A ... Is Related To ... Song B. (The) Listen (action on) ... Song A ... (leads to the) Learn (action on) ... Singer B ... (via) Suggested Path.)]</value>
+  </data>
+  <data name="Eventor" xml:space="preserve">
+    <value>A Factor component that applies the concept of time to a particular Factor.
+
+An !Eventor places a Factor at a specific point in time and describes why it is significant to the Factor. The EventorType provides this significance, establishing that this particular point in time is when the Factor started, occurred, is expected, etc.
+
+Each !Eventor represents one particular point in time, however, the precision of that point in time can vary. The optional time values allow a point in time to provide a level of precision ranging from one second to one year.
+[(EX|Started Example|_Objective:_
+Specify that Albert Einstein was born (i.e. started his life) on March 14, 1879.
+
+_Method:_
+- The Factor uses 'Albert Einstein' as the primary Artifact and 'Life' as the related Artifact.
+- The Descriptor uses the 'Has A' DescriptorType. 
+- The !Eventor uses '1879' as its Year value, '3' as its Month value, '14' as its Day value, and the 'Started' EventorType.
+
+_Factor Phrase:_
+Albert Einstein ... Has A ... Life, ... (an event which) Started ... (on the) Day ... 1879 ... 3 ... 14.)] [(EX|Expected Example|_Objective:_
+Specify that person A plans to attend college B in the year 2024.
+
+_Method:_
+- The Factor uses 'Person A' as the primary Artifact and 'College B' as the related Artifact.
+- The Descriptor uses the 'Participates In' DescriptorType and the 'Attend' Artifact to refine it.
+- The !Eventor uses '2024' as its Year value and the 'Is Expected' EventorType.
+
+_Factor Phrase:_
+Person A ... Participates In (more specifically, by) Attend(ing) ... College B, ... (an event which) Is Expected (to occur) ... (in the) Year ... 2024.)]
+
+_Note: every Factor recieves a timestamp upon creation. This timestamp is not related to the !Eventor._</value>
+  </data>
+  <data name="Factor" xml:space="preserve">
+    <value>Provides a specific piece of information, knowledge, or opinion about a pair of Artifacts. !Factors and Artifacts are the central components of the Fabric architecture.
+
+A !Factor forms a directional relationship from its primary Artifact to its related Artifact. It contains one or more components, called !Factor components. Each component has a specific ability to refine, describe, and/or supplement this Artifact relationship in a meaningful way.
+
+There are six !Factor components: Descriptor, Director, Eventor, Identor, Locator, and Vector. The Descriptor is the only required component; the rest are optional. A !Factor typically uses one or two component, but (in very complex cases) could potentially use four or more.
+
+Just as there are no restrictions on what a particular !Artifact can represent, there are no restrictions on the type of meaning or information a !Factors can provide. A FactorAssertion allows a !Factor to specify that it represents (among other things) a fact or an opinion. This level of confidence for a particular Factor allows Users and Apps to more effectively find the type of information they desire.</value>
+  </data>
+  <data name="Identor" xml:space="preserve">
+    <value>A Factor component that applies a name or identifier to a particular Factor.
+
+An !Identor attaches a text-based value to a Factor. This value can represent a a full name, a nickname, a globally-unique identifier, a reference key to some other system, etc.
+
+The IdentorType hints at the purpose or intent of the !Identor. A "Text" IdentorType is typically meant to provide enhanced search capabilities (like finding a person by an alternate name) or some other organizational use.  A "Key" IdentorType is typically meant to associate a Factor with some external system (like a Product ID from an online store) or to provide an App with a "reverse lookup" for their own internal IDs.
+[(EX|Alternate Name Example|_Objective:_
+Identify that Grand Valley State University is also known as (has the alternate name of) 'Grand Valley'.
+
+_Method:_
+- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Name' as the related Artifact.
+- The Descriptor uses the 'Has A' DescriptorType, and an 'Alternative' Artifact to refine the Factor's related Artifact.
+- The !Identor uses 'Grand Valley' as its text value, and the 'Text' IdentorType.
+
+_Factor Phrase:_
+Grand Valley State University ... Has A ... Name (more specifically, an) Alternative, ... (identified by the) Text ... 'Grand Valley'.)] [(EX|Abbreviation Example|_Objective:_
+Identify that Grand Valley State University is also known as (has the abbreviation of) 'GVSU'.
+
+_Method:_
+- The Factor uses 'Grand Valley State University' as the primary Artifact and 'Abbreviation' as the related Artifact.
+- The Descriptor uses the 'Has A' DescriptorType. 
+- The !Identor uses 'GVSU' as its text value, and the 'Text' IdentorType.
+
+_Factor Phrase:_
+Grand Valley State University ... Has A(n) ... Abbreviation, ... (identified by the) Text ... 'GVSU'.)] [(EX|Identifier Example|_Objective:_
+Identify that game A is accessible in store B via its ID, which is '123a-45678'.
+
+_Method:_
+- The Factor uses 'Game A' as the primary Artifact and 'Store B' as the related Artifact.
+- The Descriptor uses the 'Is Found In' DescriptorType. 
+- The !Identor uses '123a-45678' as its text value, and the 'Key' IdentorType.
+
+_Factor Phrase:_
+Game A ... Is Found In ... Store B, ... (identified by the) Key ... '123a-45678'.)]</value>
+  </data>
+  <data name="Locator" xml:space="preserve">
+    <value>A Factor component that positions a Factor using geographic or relative coordinates.
+
+A !Locator attaches a three-dimensional coordinate to a Factor. The LocatorType defines the spatial context of the coordinate, supporting both geographic and relative positioning.
+
+Geographic coordinates represent a position on a sphere, like Earth.  They use X for longitude, Y for latitude, and Z for elevation (in metres above sea level). Use zero for elevation if it is not known or specified.
+[(EX|Geographic Example|_Objective:_
+Specify that person A took photo B from a spot near the Eiffel Tower.
+
+_Method:_
+- The Factor uses 'Photo B' as the primary Artifact and 'Person A' as the related Artifact.
+- The Descriptor uses the 'Is Created By' DescriptorType. 
+- The !Locator uses the 'Earth Coordinate' LocatorType, a '2.292977' value for X, a '48.858154' value for Y, and (optionally) a '34.24' value for Z.
+
+_Factor Phrase:_
+Photo B ... Is Created By ... Person A, ... (at an) Earth Coordinate (location of) ... X (longitude) = '2.292977' ... Y (latitude) = '48.858154' ... Z (elevation) = '34.24' (metres above sea level).)]
+
+Relative coordinates represent a position relative to the origin and size/bounds of the Factor's primary Artifact. There are LocatorTypes for one, two, and three-dimensional relative coordinates. For coordinates which have:
+- One dimension, use X for time or progress, and leave Y and Z equal to zero.
+- Two dimensions, use X for width, Y for height, and leave Z equal to zero.
+- Three dimensions, use X, Y, and Z values which correspond to the Artifact's X, Y, and Z values. If these axes are undefined, use X for width (or breadth), Y for length (or depth), and Z for height (or elevation).
+[(EX|Relative 1D Example|_Objective:_
+Specify that book A refers to painting B on page 148 of 200 (about 74% of the book's length).
+
+_Method:_
+- The Factor uses 'Book A' as the primary Artifact and 'Painting B' as the related Artifact.
+- The Descriptor uses the 'Refers To' DescriptorType. 
+- The !Locator uses the 'Related 1D' LocatorType, a '0.74' value for X, a '0.0' value for Y, and a '0.0' value for Z.
+
+_Factor Phrase:_
+Book A ... Refers To ... Painting B, ... (at a) Relative 1D (location of) ... X (position) = 0.74.)] [(EX|Relative 2D Example|_Objective:_
+Specify that photo A includes person B near the top-right (25% from the top, 84% from the left) of the image.
+
+_Method:_
+- The Factor uses 'Photo A' as the primary Artifact and 'Person B' as the related Artifact.
+- The Descriptor uses the 'Refers To' DescriptorType. 
+- The !Locator uses the 'Relative 2D' LocatorType, a '0.84' value for X, a '0.25' value for Y, and a '0.0' value for Z.
+
+_Factor Phrase:_
+Photo A ... Refers To ... Person B, ... (at a) Relative 2D (location of) ... X (width) = '0.84' ... Y (height) = '0.25'.)]</value>
+  </data>
+  <data name="Vector" xml:space="preserve">
+    <value>A Factor component that applies a meaningful numeric axis and value to a particular Factor.
+
+A !Vector attaches a numeric value to a Factor, using an arbitrary Artifact to define its "axis". This axis depends entiedgey upon the !Vector's purpose. For example, a factual !Vector might use an Artifact like "Height" or "Shutter Speed". A !Vector that provides an opinion might use an Artifact like "Quality" or "Excitement". While the choice of an axis Artififact is not restricted, it can be beneficial to use Artifacts which are other Apps or Users are already using as !Vector axes. Note: while the axis Artifact link is discussed here in the context of a Vector, the actual traversal link exists with the Factor.
+
+The VectorType provides boundaries and context for the !Vector's value. It can identify the value as a percentage, a level of agreement or disagreement, an opinion-based rating, or simply a plain numeric value. Each VectorType provides additional information, such as a VectorRange, to provide further meaning for the levels within the the allowed value boundaries.
+
+A !Vector's numeric value often reflects a measurement or a has a specific unit. Furthermore, a !Vector can use VectorUnitPrefix to specify an order of magnitude for the value. A !Vector's value is a long integer, so the prefix is especially useful when fractional values are involved, or when the desired number is larger than a long integer.
+[(EX|Small Value Example|_Objective:_
+Specify that image A (which is a photo) has a shutter speed of 1/250 second.
+
+_Method:_
+- The Factor uses 'Image A' as the primary Artifact and 'Photo' as the related Artifact.
+- The Descriptor uses the 'Is A' DescriptorType. 
+- The !Vector uses the 'Shutter Speed' Artifact as the axis, the 'Positive Long' VectorType, '4' as the value, the 'Milli' VectorUnitPrefix, and the 'Second' VectorUnit.
+
+_Factor Phrase:_
+Image A ... Is A ... Photo, ... (which, along the) Shutter Speed (axis) ... (with a) Positive Long (numerical range), ... (has a value) '4' ... Milli ... Second(s).)] [(EX|Large Value Example|_Objective:_
+Specify that Earth and the Andromeda Galaxy are 2.5 million light years (2.2705 x 10^22 metres) apart.
+
+_Method:_
+- The Factor uses 'Earth' as the primary Artifact and 'Andromeda Galaxy' as the related Artifact.
+- The Descriptor uses the 'Is Related To' DescriptorType. 
+- The !Vector uses the 'Distance' Artifact as the axis, the 'Positive Long' VectorType, '22,705' as the value, the 'Exa' VectorUnitPrefix (represents 10^18), and the 'Metre' VectorUnit.
+
+_Factor Phrase:_
+Earth ... Is Related To ... Andromeda Galaxy, ... (which, along the) Distance (axis) ... (with a) Positive Long (numerical range), ... (has a value) '22,705' ... Exa ... Metre(s).)] [(EX|Negative Value Example|_Objective:_
+Specify that article A mentions person B in a very unfair manner, about 80% of the maximum unfairness imaginable.
+
+_Method:_
+- The Factor uses 'Article A' as the primary Artifact and 'Person B' as the related Artifact.
+- The Descriptor uses the 'Refers To' DescriptorType. 
+- The !Vector uses the 'Fairness' Artifact as the axis, the 'Opposable Favorability' VectorType, '-80' as the value, the default 'Base' VectorUnitPrefix, and the default 'None' VectorUnit. This VectorType has bounds of -100 to +100.
+
+_Factor Phrase:_
+Article A ... Refers To ... Person B, ... (which, along the) Fairness (axis) ... (with a) Opposable Favorabillity (numerical range), ... (has a value) '-80'.)]</value>
+  </data>
+  <data name="Response" xml:space="preserve">
+    <value>The response wrapper for most API requests. It contains a data payload, error information, and/or other metadata.</value>
+  </data>
+  <data name="Vertex" xml:space="preserve">
+    <value>The base class for all vertices present in the Fabric "graph".  Only Vertices are present and traversable via the [[Traversal Service|Serv|Traversal]].</value>
+  </data>
+  <data name="TravRoot" xml:space="preserve">
+    <value>Represents the root, or starting point, of all [[Traversal Service|Serv|Traversal]] queries. The !Root provides traversal links to all other available objects.</value>
+  </data>
+  <data name="OauthAccess" xml:space="preserve">
+    <value>Provides an OAuth access token and other related information. Every Fabric API request requires an access token. To include an OAuth access token with a FabricAPI request, add an "Authorization" header to the HTTP request with a value of "Bearer=[your OAuth access code here]".</value>
+  </data>
+  <data name="OauthError" xml:space="preserve">
+    <value>To comply with the OAuth 2.0 specification, all Fabric OAuth requests return a FabOauthError (instead of FabFault or FabError) when errors occur.</value>
+  </data>
+  <data name="OauthLogin" xml:space="preserve">
+    <value>This object is unique -- the API never returns this object directly. Instead, the properties shown below are included as query-string parameters for a redirect URI. This URI is provided by an App, and the App is responsible for accepting (and reacting to) the incoming redirect.
+
+This redirect is used in one particular scenario: the [[OAuth login process|Oper|Oauth.Login]]. After the user completes this process, Fabric performs a redirect with success or failure information.  The success redirect includes the 'code' and 'state' parameters. The failure redirect includes the 'error', 'error_description', and 'state' parameters.</value>
+  </data>
+  <data name="OauthLogout" xml:space="preserve">
+    <value>The result of an OAuth logout.</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>The base class for all !Objects returned by Fabric's services.</value>
+  </data>
+  <data name="Instance" xml:space="preserve">
+    <value>Represents any item (real, imaginary, virtual, conceptual, or otherwise) that an App or User can define and/or use to generate meaning. Classes and !Instances are closely related, and are the primary method for generating new Artifacts.
+
+An !Instance represents a singular, unique item. It may have a specific name, however, the name is not required to be unique. Instead, the creator should apply Factors to make the Instance as specific and meaningful as possible.
+[(EX|Ellie's Instance Example|_Continued from Ellie's Class Example..._
+
+After completing her new Classes, Ellie would like to add her own dog. She creates an !Instance named 'Gulliver', and attaches several Factors to make the Instance as unique as possible. Her Factors define that Gulliver is a Lhasa Apso breed, is owned by Ellie, and was born in September 2007.)] [(EX|Zach's Instance Example|Zach built an App that allows users to rate restaurants and individual meals. He created Classes for restaurant chains and meal types. He also created !Instances for specific restaurants (with relevant relationships for each).
+
+When Users rate a particular meal, they also specify the restaurant, the day/time the meal was served, and the meal type. Behind the scenes, the App uses this data to construct a new !Instance and its relationships. Because Zach's !Instances are well-defined, one User could rate the same meal (at the same restaurant) every day, creating a unique and meaningful Instance each time.)]</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>The complete collection of Fabric API services.</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>A collection of ServiceOperations which all share a similar purpose.</value>
+  </data>
+  <data name="ServiceOperation" xml:space="preserve">
+    <value>A task, query, or operation that belongs to a Service.</value>
+  </data>
+  <data name="MetaTime" xml:space="preserve">
+    <value>Contains the current Fabric system time. Fabric uses the UTC timezone for all dates, times, and timestamps.</value>
+  </data>
+  <data name="MetaVersion" xml:space="preserve">
+    <value>Contains the current Fabric version information. Fabric uses semantic versioning.</value>
+  </data>
+  <data name="AppDefinesMember" xml:space="preserve">
+    <value>Connects an App to all of its Members.</value>
+  </data>
+  <data name="ArtifactUsedAsPrimaryByFactor" xml:space="preserve">
+    <value>Connects an Artifact to all of the Factors using it as the primary Artifact.</value>
+  </data>
+  <data name="ArtifactUsedAsRelatedByFactor" xml:space="preserve">
+    <value>Connects an Artifact to all of the Factors using it as the related Artifact.</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>An item (Vertex or Link) in Fabric's graph structure.</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>A connection between one Vertex and another.</value>
+  </data>
+  <data name="MemberCreatesArtifact" xml:space="preserve">
+    <value>Connects a Member to all the Artifacts it has created.</value>
+  </data>
+  <data name="MemberCreatesFactor" xml:space="preserve">
+    <value>Connects a Member to all the Factors it has created.</value>
+  </data>
+  <data name="TravAppRoot" xml:space="preserve">
+    <value>Provides an App traversal entry point.</value>
+  </data>
+  <data name="TravArtifactRoot" xml:space="preserve">
+    <value>Provides an Artifact traversal entry point.</value>
+  </data>
+  <data name="TravClassRoot" xml:space="preserve">
+    <value>Provides a Class traversal entry point.</value>
+  </data>
+  <data name="TraversalResponse" xml:space="preserve">
+    <value>The response wrapper for traversal API requests.</value>
+  </data>
+  <data name="TravFactorRoot" xml:space="preserve">
+    <value>Provides a Factor traversal entry point.</value>
+  </data>
+  <data name="TravInstanceRoot" xml:space="preserve">
+    <value>Provides an Instance traversal entry point.</value>
+  </data>
+  <data name="TravMemberRoot" xml:space="preserve">
+    <value>Provides a Member traversal entry point.</value>
+  </data>
+  <data name="TravStep" xml:space="preserve">
+    <value>Provides information about an available traversal step.</value>
+  </data>
+  <data name="TravTypedRoot" xml:space="preserve">
+    <value>The base class for all traversal entry points.</value>
+  </data>
+  <data name="TravUrlRoot" xml:space="preserve">
+    <value>Provides a Url traversal entry point.</value>
+  </data>
+  <data name="TravUserRoot" xml:space="preserve">
+    <value>Provides a User traversal entry point.</value>
+  </data>
+  <data name="TravVertexRoot" xml:space="preserve">
+    <value>Provides a Vertex traversal entry point.</value>
+  </data>
+  <data name="UserDefinesMember" xml:space="preserve">
+    <value>Connects a User to all of its Members.</value>
+  </data>
+  <data name="CreateFabClass" xml:space="preserve">
+    <value>Contains the data needed to create a new Class.</value>
+  </data>
+  <data name="CreateFabDescriptor" xml:space="preserve">
+    <value>Contains the data needed to create a new Descriptor.</value>
+  </data>
+  <data name="CreateFabDirector" xml:space="preserve">
+    <value>Contains the data needed to create a new Director.</value>
+  </data>
+  <data name="CreateFabElement" xml:space="preserve">
+    <value>The base class for the creation of Elements.</value>
+  </data>
+  <data name="CreateFabEventor" xml:space="preserve">
+    <value>Contains the data needed to create a new Eventor.</value>
+  </data>
+  <data name="CreateFabFactor" xml:space="preserve">
+    <value>Contains the data needed to create a new Factor.</value>
+  </data>
+  <data name="CreateFabIdentor" xml:space="preserve">
+    <value>Contains the data needed to create a new Identor.</value>
+  </data>
+  <data name="CreateFabInstance" xml:space="preserve">
+    <value>Contains the data needed to create a new Instance.</value>
+  </data>
+  <data name="CreateFabLocator" xml:space="preserve">
+    <value>Contains the data needed to create a new Locator.</value>
+  </data>
+  <data name="CreateFabMember" xml:space="preserve">
+    <value>Contains the data needed to create a new Member.</value>
+  </data>
+  <data name="CreateFabObject" xml:space="preserve">
+    <value>The base class for the creation of Objects.</value>
+  </data>
+  <data name="CreateFabUrl" xml:space="preserve">
+    <value>Contains the data needed to create a new Url.</value>
+  </data>
+  <data name="CreateFabVector" xml:space="preserve">
+    <value>Contains the data needed to create a new Vector.</value>
+  </data>
+  <data name="CreateFabArtifact" xml:space="preserve">
+    <value>The base class for the creation of Artifacts.</value>
+  </data>
+  <data name="CreateFabVertex" xml:space="preserve">
+    <value>The base class for the creation of Vertices.</value>
+  </data>
+  <data name="TravResponse" xml:space="preserve">
+    <value>The response wrapper for traversal API requests.</value>
+  </data>
+</root>

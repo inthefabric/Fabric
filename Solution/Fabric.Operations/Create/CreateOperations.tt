@@ -1,0 +1,158 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Fabric.Api.Objects;
+using Fabric.Api.Objects.Conversions;
+using Fabric.Domain;
+using Weaver.Core.Query;
+
+namespace Fabric.Operations.Create {
+<#
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in vertexSchemas ) {
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string baseName = (vp == null ? "CreateOperationBase" : "Create"+vp.Names.Domain+"Operation");
+	string createObjName = "Create"+v.Names.Api;
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
+	bool isInternal = v.IsSpecInternal(v.CreateAccess);
+	string apiType = (isInternal && v.IsSpecInternal(v.GetAccess) && vp != null ? vp : v).Names.Api;
+
+	bool hasUniqueChecks = false;
+
+	foreach ( DomainProperty dp in props ) {
+		if ( dp.EnforceUnique ) {
+			hasUniqueChecks = true;
+			break;
+		}
+	}
+
+	if ( v.IsAbstract ) {
+#>
+
+
+	/*================================================================================================*/
+	public abstract class Create<#= v.Names.Domain #>Operation<TDom, TApi, TCre> : 
+								<#= baseName #><TDom, TApi, TCre> where TDom : <#= v.Names.Domain #>, new()
+								where TApi : <#= v.Names.Api #> where TCre : Create<#= v.Names.Api #> {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	OutputCreateEdges(v, vp);
+#>
+
+	}
+<#
+		continue;
+	} //end "IsAbstract" condition
+#>
+
+
+	/*================================================================================================*/
+	public <#= v.CustomCreate ? "partial " : "" #>class Create<#= v.Names.Domain #>Operation : <#= baseName #><<#= v.Names.Domain #>, <#= apiType #>, Create<#= v.Names.Api #>> {
+		
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		protected override <#= v.Names.Domain #> ToDomain(Create<#= v.Names.Api #> pCreateObj) {
+			return ApiToDomain.From<#= createObjName #>(pCreateObj);
+		}
+<#
+	if ( !isInternal ) {
+#>
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override <#= v.Names.Api #> ToApi(<#= v.Names.Domain #> pDomainObj) {
+			return DomainToApi.From<#= v.Names.Domain #>(pDomainObj);
+		}
+<#
+	} //end "isInternal" condition
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<#
+	if ( v.CustomCreate ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AfterSessionStart() {
+			CreateOperationsCustom.<#= v.Names.Domain #>AfterSessionStart(Tasks, Build, NewDom, NewCre);
+		}
+
+<#
+	} //end "CustomCreate" condition
+
+	if ( hasUniqueChecks ) {
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void CheckForDuplicates() {
+<#
+	foreach ( DomainProperty dp in props ) {
+		if ( dp.EnforceUnique ) {
+			string displayName = (dp.Name == "NameKey" ? "Name" : dp.Name); //ugly special case
+#>
+			Tasks.FindDuplicate<#= v.Names.Domain #><#= dp.Name #>(Build, NewDom);
+<#
+		} //end EnforceUnique condition
+	} //end props loop
+#>
+		}
+
+<#
+	} //end "hasUniqueChecks" condition
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddVertex(out IWeaverVarAlias<<#= v.Names.Domain #>> pAlias) {
+			Tasks.Add<#= v.Names.Domain #>(Build, NewDom, out pAlias);
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		protected override void AddEdges() {
+			Add<#= v.Names.Domain #>Edges(NewDomAlias);
+		}
+
+<#
+	OutputCreateEdges(v, vp);
+#>
+
+	}
+<#
+} // end verts loop
+#>
+
+}
+<#+
+private void OutputCreateEdges(IVertexSchema pVertex, IVertexSchema pParent) {
+	IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemasForVertex(pVertex, true);
+#>
+		/*--------------------------------------------------------------------------------------------*/
+		<#= pVertex.IsAbstract ? "protected" : "private" #> void Add<#= pVertex.Names.Domain #>Edges(IWeaverVarAlias<<#= pVertex.Names.Domain #>> pAlias) {
+<#+
+	if ( pParent != null ) {
+#>
+			Add<#= pParent.Names.Domain #>Edges(new WeaverVarAlias<<#= pParent.Names.Domain #>>(pAlias.Name));
+<#+
+	} //end parent condition
+
+	foreach ( IEdgeSchema e in edges ) {
+#>
+			Tasks.Add<#= e.GetClassNameDom() #>(Build, NewDom, NewCre, pAlias);
+<#+
+	} //end edges loop
+#>
+		}
+<#+
+} //end function
+#>

@@ -1,0 +1,65 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Enums" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System.Collections.Generic;
+
+namespace Fabric.Api.Lang {
+
+	/*================================================================================================*/
+	public static partial class SmartLinks {
+
+		private static readonly IDictionary<string, string> VertMap = new Dictionary<string, string> {
+<#
+IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in verts ) {
+#>
+			{"<#= v.Names.Domain #>", "<#= v.Names.Api #>"},
+			{"<#= v.Names.DomainPlural #>", "<#= v.Names.Api #>"},
+			{"<#= v.Names.Api #>", "<#= v.Names.Api #>"},
+			{"<#= v.Names.ApiPlural #>", "<#= v.Names.Api #>"},
+			{"Create<#= v.Names.Api #>", "<#= v.Names.Api #>"},
+			{"Create<#= v.Names.ApiPlural #>", "<#= v.Names.Api #>"},
+<#
+} //end vertex loop
+#>
+		};
+
+		private static readonly IDictionary<string, string> EdgeMap = new Dictionary<string, string> {
+<#
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
+
+foreach ( IEdgeSchema e in edges ) {
+	string api = e.GetClassNameApi(false);
+#>
+			{"<#= e.GetClassNameDom() #>", "<#= api #>"},
+			{"<#= api #>", "<#= api #>"},
+<#
+} //end edge loop
+#>
+		};
+
+		private static readonly IDictionary<string, string> EnumMap = new Dictionary<string, string> {
+<#
+IList<IEnumSchema> enums = SchemaUtil.GetEnumSchemas();
+
+foreach ( IEnumSchema e in enums ) {
+#>
+			{"<#= e.Name #>", "<#= e.Name #>"},
+<#
+} //end edge loop
+#>
+		};
+
+	}
+
+}

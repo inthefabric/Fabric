@@ -1,0 +1,77 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Weaver.Core.Elements;
+using Weaver.Titan.Elements;
+
+namespace Fabric.Domain {
+<#
+IList<IEdgeSchema> edgeSchemas = SchemaUtil.GetEdgeSchemas();
+IList<string> edgeTypeNames = SchemaUtil.GetEdgeTypeNames();
+
+foreach ( string tn in edgeTypeNames ) {
+#>
+
+
+	/*================================================================================================*/
+	public class <#= tn #> : IWeaverEdgeType {
+
+		public string Label { get { return null; } }
+
+	}
+<#
+} // end edgeTypeNames loop
+
+foreach ( IEdgeSchema e in edgeSchemas ) {
+	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+	string className = e.GetClassNameDom();
+	string fv = e.GetFromVertex().Names.Domain;
+	string tv = e.GetToVertex().Names.Domain;
+	string outConn = e.GetOutgoingWeaverEdgeConn();
+	string inConn = e.GetIncomingWeaverEdgeConn();
+#>
+
+
+	/*================================================================================================*/
+	[WeaverTitanEdge("<#= e.NameDb #>", WeaverEdgeConn.<#= outConn #>, typeof(<#= fv #>),
+		WeaverEdgeConn.<#= inConn #>, typeof(<#= tv #>))]
+	public class <#= className #> : EdgeBase<<#= fv #>, <#= e.NameDom #>, <#= tv #>> {
+<#
+	foreach ( EdgeProperty ep in props ) {
+#>
+
+		[WeaverTitanProperty("<#= ep.DbName #>")]
+		public virtual <#= ep.GetDataTypeName() #> <#= ep.Name #> { get; set; }
+<#
+	} // end property loop
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual <#= fv #> From<#= fv #> {
+			get { return OutVertex; }
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public virtual <#= tv #> To<#= tv #> {
+			get { return InVertex; }
+		}
+
+	}
+<#
+} // end edges loop
+#>
+
+}

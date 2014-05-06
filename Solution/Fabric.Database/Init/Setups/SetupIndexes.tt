@@ -1,0 +1,104 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+namespace Fabric.Database.Init.Setups {
+
+
+	/*================================================================================================*/
+	public partial class SetupIndexes {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public void Create() {
+			CreateVerts();
+			CreateEdges();
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void CreateVerts() {
+<#
+IList<IVertexSchema> verts = SchemaUtil.GetVertexSchemas();
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
+
+foreach ( IVertexSchema v in verts ) {
+	IList<DomainProperty> vertProps = SchemaUtil.GetVertexDomainProperties(v);
+#>
+
+			//<#= v.Names.Domain #>
+<#
+	foreach ( DomainProperty dp in vertProps ) {
+		string isUni = (dp.EnforceUnique+"").ToLower();
+		string ind = "None";
+
+		if ( dp.IsIndexed && dp.IsElastic ) {
+			ind = "Both";
+		}
+		else if ( dp.IsIndexed ) {
+			ind = "Standard";
+		}
+		else if ( dp.IsElastic ) {
+			ind = "Elastic";
+		}
+#>
+			AddProp(Elem.Vertex, "<#= dp.DbName #>", "<#= dp.GetTitanTypeName() #>", Index.<#= ind #>, <#= isUni #>);
+<#
+	} // end property loop
+} // end vertex loop
+#>
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private void CreateEdges() {
+<#
+foreach ( IEdgeSchema e in edges ) {
+	var order = e.Sort+"";
+#>
+
+			//<#= e.GetClassNameDom() #>
+<#
+	IList<EdgeProperty> edgeProps = SchemaUtil.GetEdgeProperties(e);
+	IList<DomainProperty> vertProps = SchemaUtil.GetVertexDomainProperties(e.GetFromVertex());
+	string cardin = "OneTo"+(e.GetIsMultiple() ? "Many" : "One");
+	var sort = new List<string>();
+	var sig = new List<string>();
+
+	foreach ( EdgeProperty ep in edgeProps ) {
+		sort.Insert((int)ep.SortIndex, ep.DbName);
+#>
+			AddProp(Elem.Edge, "<#= ep.DbName #>", "<#= ep.GetTitanTypeName() #>", Index.None, false);
+<#
+	} // end edge property loop
+
+	foreach ( DomainProperty dp in vertProps ) {
+		sig.Add(dp.DbName);
+	} // end vert property loop
+
+	string sortArray = (sort.Count == 0 ? "new string[0]" :
+		"new[] {"+string.Join(", ", sort.Select(x => "\""+x+"\""))+"}");
+	string sigArray = (sig.Count == 0 ? "new string[0]" :
+		"new[] {"+string.Join(",", sig.Select(x => "\""+x+"\""))+"}");
+#>
+			AddEdge("<#= e.NameDb #>", Cardin.<#= cardin #>, Sort.<#= order #>,
+				<#= sortArray #>,
+				<#= sigArray #>
+			);
+<#
+} // end edge loop
+#>
+		}
+
+	}
+
+}

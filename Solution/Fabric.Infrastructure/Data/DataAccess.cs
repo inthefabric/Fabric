@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fabric.Infrastructure.Api;
 using RexConnectClient.Core;
 using RexConnectClient.Core.Result;
 using RexConnectClient.Core.Transfer;
@@ -10,9 +9,11 @@ using Weaver.Exec.RexConnect;
 namespace Fabric.Infrastructure.Data {
 
 	/*================================================================================================*/
-	public class DataAccess : IDataAccess {
+	public class DataAccess : IDataAccess { //TEST: DataAccess
 
-		protected IApiContext vApiCtx;
+		public string ExecuteName { get; private set; }
+
+		protected IDataContext vDataCtx;
 		protected WeaverRequest vReq;
 		protected RexConnContext vRexConnCtx;
 
@@ -23,30 +24,43 @@ namespace Fabric.Infrastructure.Data {
 		private Action<IDataAccess, RexConnDataAccess> vPreExecute;
 		private Action<IDataAccess, IResponseResult> vPostExecute;
 		private Action<IDataAccess, Exception> vPostExecuteErr;
+		private Action<IDataAccess, string, string> vLogOutput;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		public void Build(IApiContext pApiCtx, string pSessionId=null, bool pSetCmdIds=false,
-																			bool pOmitCmdTimers=true) {
-			vApiCtx = pApiCtx;
-			vReq = new WeaverRequest("0", pSessionId); //pApiCtx.ContextId.ToString("N")
+		public void Build(IDataContext pDataCtx) {
+			vDataCtx = pDataCtx;
+			vReq = new WeaverRequest("0", pDataCtx.ResumeSessionId);
 
-			vRexConnCtx = new RexConnContext(vReq, pApiCtx.RexConnUrl, pApiCtx.RexConnPort);
-			vRexConnCtx.SetCacheProvider(pApiCtx.Cache.RexConn);
+			vRexConnCtx = new RexConnContext(vReq, vDataCtx.RexConnUrl, vDataCtx.RexConnPort);
+			vRexConnCtx.SetCacheProvider(vDataCtx.RexConnCacheProv);
+			
+			vRexConnCtx.Logger = (level, category, text, ex) => {
+				if ( ex != null ) {
+					vLogOutput(this, "RexConn", level+" / "+category+" / "+text+" / "+ex);
+				}
 
-			vSetCmdIds = pSetCmdIds;
-			vOmitCmdTimers = pOmitCmdTimers;
+				//vLogOutput(this, category, text);
+			};
+
+			vSetCmdIds = vDataCtx.SetCommandIds;
+			vOmitCmdTimers = vDataCtx.OmitCommandTimers;
 			vCmdIndex = 0;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		internal void SetExecuteHooks(Action<IDataAccess, RexConnDataAccess> pPreExecute,
+		public void SetExecuteHooks(Action<IDataAccess, RexConnDataAccess> pPreExecute,
 													Action<IDataAccess, IResponseResult> pPostExecute,
 													Action<IDataAccess, Exception> pPostExecuteErr) {
 			vPreExecute = pPreExecute;
 			vPostExecute = pPostExecute;
 			vPostExecuteErr = pPostExecuteErr;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetLoggingHook(Action<IDataAccess, string, string> pOutput) {
+			vLogOutput = pOutput;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -61,7 +75,7 @@ namespace Fabric.Infrastructure.Data {
 
 		/*--------------------------------------------------------------------------------------------*/
 		public void AppendScriptToLatestCommand(string pScript) {
-			vLatestCmd.Cmd += pScript;
+			vLatestCmd.Args[0] += pScript;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -208,9 +222,6 @@ namespace Fabric.Infrastructure.Data {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public string ExecuteName { get; private set; }
-
-		/*--------------------------------------------------------------------------------------------*/
 		private void CacheQueryScript(bool pCache, RequestCmd pCmd) {
 			if ( !pCache ) {
 				return;
@@ -241,7 +252,7 @@ namespace Fabric.Infrastructure.Data {
 		/*--------------------------------------------------------------------------------------------*/
 		private void LogAction(IResponseResult pRes) {
 			//DBv1: 
-			//	TotalMs, QueryMs, Timestamp, QueryChars
+			//	TotalMs, QueryMs, Timestamp, QueryChars, ExecuteName
 
 			const string name = "DBv1";
 			const string x = " | ";
@@ -250,9 +261,10 @@ namespace Fabric.Infrastructure.Data {
 				pRes.ExecutionMilliseconds +x+
 				pRes.Response.Timer +x+
 				DateTime.UtcNow.Ticks +x+
-				pRes.RequestJson.Length;
+				pRes.RequestJson.Length +x+
+				ExecuteName;
 			
-			Log.Info(vApiCtx.ContextId, name, v1);
+			vLogOutput(this, name, v1);
 		}
 
 	}

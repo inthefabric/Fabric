@@ -5,17 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{506266BF-35D7-4DC5-BEE7-735A9690B5DF}</ProjectGuid>
+    <ProjectGuid>{E9638290-CA4D-46FA-A5F7-0B712FA1C647}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fabric.Infrastructure</RootNamespace>
     <AssemblyName>Fabric.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -23,48 +24,46 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLive|AnyCPU'">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DebugLive\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>False</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\..\Packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="GoogleAnalyticsTracker">
+      <HintPath>..\..\Packages\GoogleAnalyticsTracker.1.7.11\lib\net40\GoogleAnalyticsTracker.dll</HintPath>
     </Reference>
-    <Reference Include="RexConnectClient.Core, Version=0.5.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="log4net">
+      <HintPath>..\..\Packages\log4net.2.0.2\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="metrics">
+      <HintPath>..\..\Packages\Metrics.1.0.8\lib\net40\metrics.dll</HintPath>
+    </Reference>
+    <Reference Include="RexConnectClient.Core">
       <HintPath>..\..\Packages\RexConnectClient.0.5.0.1\lib\RexConnectClient.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.59.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\ServiceStack.Text.3.9.59\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Packages\Metrics.1.0.8\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="Weaver.Core, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Weaver.Core">
       <HintPath>..\..\Packages\Weaver.0.5.4\lib\Weaver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Exec.RexConnect, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Weaver.Exec.RexConnect">
       <HintPath>..\..\Packages\Weaver.Exec.RexConnect.0.5.4\lib\Weaver.Exec.RexConnect.dll</HintPath>
     </Reference>
-    <Reference Include="Weaver.Titan, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Weaver.Titan">
       <HintPath>..\..\Packages\Weaver.Titan.0.5.4\lib\Weaver.Titan.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -75,109 +74,64 @@
     <Compile Include="..\..\Global\GlobalAssemblyVersion.cs">
       <Link>Properties\GlobalAssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Api\ApiContext.cs" />
-    <Compile Include="Api\ApiFunc.cs" />
-    <Compile Include="Api\ApiEnums.cs" />
-    <Compile Include="Api\IAnalyticsManager.cs" />
-    <Compile Include="Api\IMetricsManager.cs" />
-    <Compile Include="Data\ApiContextDataExt.cs" />
-    <Compile Include="Data\IDataAccess.cs" />
-    <Compile Include="Data\DataAccessFull.cs" />
-    <Compile Include="Data\IDataResult.cs" />
-    <Compile Include="Data\IDataDto.cs" />
-    <Compile Include="Data\DataResult.cs" />
+    <Compile Include="Broadcast\AnalyticsManager.cs" />
+    <Compile Include="Broadcast\GraphiteTcp.cs" />
+    <Compile Include="Broadcast\IAnalyticsManager.cs" />
+    <Compile Include="Broadcast\IMetricsManager.cs" />
+    <Compile Include="Broadcast\MetricsManager.cs" />
+    <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="Cache\ICacheManager.cs" />
+    <Compile Include="Cache\IMemCache.cs" />
+    <Compile Include="Cache\MemCache.cs" />
+    <Compile Include="Data\IDataAccessFactory.cs" />
+    <Compile Include="Data\DataAccessFactory.cs" />
+    <Compile Include="Data\IDataContext.cs" />
+    <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\DataAccess.cs" />
-    <Compile Include="Data\DataDto.cs" />
-    <Compile Include="Weaver\DbNames.cs">
-      <DependentUpon>DbNames.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Weaver\Weave.cs" />
-    <Compile Include="Api\EncryptUtil.cs" />
-    <Compile Include="Api\AuthUtil.cs" />
-    <Compile Include="Api\ICacheManager.cs" />
-    <Compile Include="Api\IMemCache.cs" />
-    <Compile Include="Api\ServiceOpAttribute.cs" />
-    <Compile Include="Api\ServiceOpParamAttribute.cs" />
-    <Compile Include="Api\IApiContext.cs" />
-    <Compile Include="Api\Faults\FabArgumentLengthFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentNullFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentOutOfRangeFault.cs" />
-    <Compile Include="Api\Faults\FabDuplicateFault.cs" />
-    <Compile Include="Api\Faults\FabFault.cs" />
-    <Compile Include="Api\Faults\FabMembershipFault.cs" />
-    <Compile Include="Api\Faults\FabNotFoundFault.cs" />
-    <Compile Include="Api\IApiFunc.cs" />
-    <Compile Include="Domain\Types\IBaseType.cs" />
-    <Compile Include="Domain\Types\VectorUnitPrefix.cs" />
-    <Compile Include="Domain\Types\VectorUnitDerived.cs" />
-    <Compile Include="Domain\Types\VectorUnit.cs" />
-    <Compile Include="Domain\Types\VectorRangeLevel.cs" />
-    <Compile Include="Domain\Types\VectorRange.cs" />
-    <Compile Include="Domain\Types\EventorType.cs" />
-    <Compile Include="Domain\Types\DirectorAction.cs" />
-    <Compile Include="Domain\Types\DirectorType.cs" />
-    <Compile Include="Domain\Types\DescriptorType.cs" />
-    <Compile Include="Domain\Types\FactorAssertion.cs" />
-    <Compile Include="Domain\Types\IdentorType.cs" />
-    <Compile Include="Domain\Types\LocatorType.cs" />
-    <Compile Include="Domain\Types\MemberType.cs" />
-    <Compile Include="Domain\FabricIdEnums.cs" />
-    <Compile Include="Domain\DomainValidator.cs" />
-    <Compile Include="Domain\DomainValidators.cs">
-      <DependentUpon>DomainValidators.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Domain\Types\BaseType.cs" />
-    <Compile Include="Domain\Types\StaticTypes.cs" />
-    <Compile Include="Domain\Types\VectorType.cs" />
-    <Compile Include="FabricUtil.cs" />
-    <Compile Include="Log.cs" />
-    <Compile Include="Traversal\FuncAttribute.cs" />
-    <Compile Include="Traversal\FuncParamAttribute.cs" />
-    <Compile Include="Traversal\IStepLink.cs" />
-    <Compile Include="Traversal\StepLink.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sharpflake.cs" />
-    <Compile Include="Weaver\TxBuilder.cs" />
-    <Compile Include="Weaver\DomainBuilders.cs">
-      <DependentUpon>DomainBuilders.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Weaver\DomainBuilder.cs" />
-    <Compile Include="Api\Faults\FabPreventedFault.cs" />
-    <Compile Include="Api\Faults\FabArgumentValueFault.cs" />
     <Compile Include="Data\DataAccessException.cs" />
+    <Compile Include="Data\DataAccessFull.cs" />
+    <Compile Include="Data\DataDto.cs" />
+    <Compile Include="Data\DataResult.cs" />
+    <Compile Include="Data\IDataAccess.cs" />
+    <Compile Include="Data\IDataDto.cs" />
+    <Compile Include="Data\IDataResult.cs" />
+    <Compile Include="Faults\FabArgumentMissingFault.cs" />
+    <Compile Include="Faults\FabPropertyLengthFault.cs" />
+    <Compile Include="Faults\FabPropertyNullFault.cs" />
+    <Compile Include="Faults\FabPropertyOutOfRangeFault.cs" />
+    <Compile Include="Faults\FabPropertyValueFault.cs" />
+    <Compile Include="Faults\FabDuplicateFault.cs" />
+    <Compile Include="Faults\FabFault.cs" />
+    <Compile Include="Faults\FabOauthFault.cs" />
+    <Compile Include="Faults\FabNotFoundFault.cs" />
+    <Compile Include="Faults\FabPreventedFault.cs" />
+    <Compile Include="Broadcast\Logger.cs" />
+    <Compile Include="Faults\FabStepFault.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\ITxBuilder.cs" />
+    <Compile Include="Query\Sharpflake.cs" />
+    <Compile Include="Query\TxBuilder.cs" />
+    <Compile Include="Query\Weave.cs" />
+    <Compile Include="Spec\SpecRangeAttribute.cs" />
+    <Compile Include="Spec\SpecStepAttribute.cs" />
+    <Compile Include="Spec\SpecFromEnumAttribute.cs" />
+    <Compile Include="Spec\SpecToLowerCaseAttribute.cs" />
+    <Compile Include="Spec\SpecUniqueAttribute.cs" />
+    <Compile Include="Spec\SpecRegexAttribute.cs" />
+    <Compile Include="Spec\SpecInternalAttribute.cs" />
+    <Compile Include="Spec\SpecOptionalAttribute.cs" />
+    <Compile Include="Spec\SpecLenAttribute.cs" />
+    <Compile Include="Util\AuthUtil.cs" />
+    <Compile Include="Util\DataUtil.cs" />
+    <Compile Include="Util\EncryptUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Domain\DomainValidators.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainValidators.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
-    <None Include="Weaver\DbNames.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbNames.cs</LastGenOutput>
-    </None>
-    <None Include="Weaver\DomainBuilders.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainBuilders.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fabric.Domain.Meta\Fabric.Domain.Meta.csproj">
-      <Project>{0E13CDB3-4140-4AD8-ACEF-4C2967CD7EAE}</Project>
-      <Name>Fabric.Domain.Meta</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fabric.Domain\Fabric.Domain.csproj">
-      <Project>{E28CDF51-883C-4A8F-8C27-C681AF79F591}</Project>
-      <Name>Fabric.Domain</Name>
+      <Project>{CDBE2265-0187-44BF-81EF-20AC39E8CC46}</Project>
+      <Name>Fabric.New.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

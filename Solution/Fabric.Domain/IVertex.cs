@@ -1,23 +1,14 @@
-﻿using System;
-using System.Linq.Expressions;
-using Weaver.Core.Elements;
+﻿using Weaver.Core.Elements;
 
 namespace Fabric.Domain {
 
 	/*================================================================================================*/
-	public interface IVertex : IWeaverVertex {
+	public interface IVertex : IElement, IWeaverVertex {
 
-		byte FabType { get; }
+		long VertexId { get; set; }
+		long Timestamp { get; set; }
+		byte VertexType { get; set; }
 
-
-		////////////////////////////////////////////////////////////////////////////////////////////////
-		/*--------------------------------------------------------------------------------------------*/
-		long GetTypeId();
-		void SetTypeId(long pTypeId);
-
-		/*--------------------------------------------------------------------------------------------*/
-		Expression<Func<T, object>> GetTypeIdProp<T>() where T : IVertex;
-		
 	}
 
 }

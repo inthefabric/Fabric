@@ -1,0 +1,56 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Fabric.Domain.Schemas.Edges" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using Fabric.Api.Objects.Traversal;
+
+namespace Fabric.Api.Objects {
+<#
+IList<IEdgeSchema> edges = SchemaUtil.GetEdgeSchemas();
+
+foreach ( IEdgeSchema e in edges ) {
+	string name = e.GetClassNameApi(false);
+	IList<EdgeProperty> props = SchemaUtil.GetEdgeProperties(e);
+
+	if ( props.Count == 0 ) {
+		continue;
+	}
+
+	IVertexSchema fv = e.GetFromVertex();
+	IVertexSchema tv = e.GetToVertex();
+
+	if ( fv.IsSpecInternal(fv.GetAccess) || tv.IsSpecInternal(tv.GetAccess) ) {
+		continue;
+	}
+#>
+
+	/*================================================================================================*/
+	public class <#= name #> : FabLink {
+
+<#
+	foreach ( EdgeProperty p in props ) {
+		//TODO: add support for edge properties?
+#>
+		//<#= p.Name #>
+<#
+	} //end props loop
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public <#= name #>() : base(typeof(<#= fv.Names.Api #>), typeof(<#= tv.Names.Api #>)) {}
+
+	}
+<#
+} //end edge loop
+#>
+
+}

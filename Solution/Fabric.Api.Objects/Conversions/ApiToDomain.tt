@@ -1,0 +1,138 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Fabric.Domain.Schemas\bin\Debug\Fabric.Domain.Schemas.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Fabric.Domain.Schemas.Vertices" #>
+<#@ import namespace="Fabric.Domain.Schemas.Utils" #>
+<#@ output extension=".cs" #>
+
+// GENERATED CODE
+// Changes made to this source file will be overwritten
+
+using System;
+using System.Collections.Generic;
+using Fabric.Domain;
+using Fabric.Domain.Enums;
+
+namespace Fabric.Api.Objects.Conversions {
+
+	/*================================================================================================*/
+	public static partial class ApiToDomain {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		private static void FromCreateFabElement(Vertex pDomain, CreateFabElement pApi) {
+			//do nothing...
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static string ToLowerCase(string pValue) {
+			return (pValue == null ? null : pValue.ToLower());
+		}
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static VertexType.Id GetVertexTypeId(Type pFabType) {
+			return VertexTypeIdMap[pFabType];
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static readonly IDictionary<Type, VertexType.Id> VertexTypeIdMap = 
+			new Dictionary<Type, VertexType.Id> {
+<#
+IList<IVertexSchema> vertexSchemas = SchemaUtil.GetVertexSchemas();
+
+foreach ( IVertexSchema v in vertexSchemas ) {
+	if ( v.GetAccess == Access.Internal ) {
+		continue;
+	}
+#>
+				{ typeof(Fab<#= v.Names.Domain #>), VertexType.Id.<#= v.Names.Domain #> },
+<#
+} // end vertex loop
+#>
+			};
+<#
+
+foreach ( IVertexSchema v in vertexSchemas ) { 
+	IVertexSchema vp = SchemaUtil.GetVertexParent(v);
+	string apiName = "Create"+v.Names.Api;
+	string baseName = (vp == null ? "CreateFabElement" : "Create"+vp.Names.Api);
+
+	IList<DomainProperty> props = SchemaUtil.GetVertexDomainProperties(v);
+	IDictionary<string, IList<ApiProperty>> subMap = SchemaUtil.GetVertexApiPropertySubMap(v);
+	IDictionary<DomainProperty, IList<PropertyMapping>> propMap = 
+		SchemaUtil.GetVertexDomainPropertyMaps(v, true);
+	bool custom = false;
+#>
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static <#= v.Names.Domain #> From<#= apiName #>(<#= apiName #> pApi) {
+			var dom = new <#= v.Names.Domain #>();
+			From<#= apiName #>(dom, pApi);
+			return dom;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		private static void From<#= apiName #>(<#= v.Names.Domain #> pDomain, <#= apiName #> pApi) {
+			From<#= baseName #>(pDomain, pApi);
+<#
+	foreach ( DomainProperty dp in props ) {
+		if ( !propMap.ContainsKey(dp) ) {
+			continue;
+		}
+
+		foreach ( PropertyMapping pm in propMap[dp] ) {
+			string sub = (pm.Api.SubObjectOf == null ? null : pm.Api.SubObjectOf.Substring(3));
+
+			if ( pm.Custom == CustomDir.Both || pm.Custom == CustomDir.ApiToDomain ) {
+				custom = true;
+#>
+			//Custom: <#= (pm.ApiToDomainNote ?? "") #>
+			//pDomain.<#= pm.Domain.Name #> <== pApi.<#= sub+(sub == null ? "" : ".") #><#= dp.Name #>  (requires custom)
+<#
+				continue;
+			}
+
+			if ( sub == null ) {
+				if ( dp.ToLowerCase ) {
+#>
+			pDomain.<#= dp.Name #> = ToLowerCase(pApi.<#= pm.Api.Name #>);
+<#
+				}
+				else {
+#>
+			pDomain.<#= dp.Name #> = pApi.<#= pm.Api.Name #>;
+<#
+				} // end "ToLowerCase" conditions
+			}
+			else {
+#>
+			if ( pApi.<#= sub #> != null ) { pDomain.<#= dp.Name #> = pApi.<#= sub #>.<#= pm.Api.Name #>; }
+<#
+			} //end "sub" conditions
+
+		} // end propMap loop
+
+	} // end property loop
+
+	if ( custom ) {
+#>
+			From<#= apiName #>Custom(pDomain, pApi);
+<#
+	} // end custom condition
+#>
+		}
+<#
+} // end vertex loop
+#>
+
+	}
+
+}
