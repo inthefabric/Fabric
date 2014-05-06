@@ -93,6 +93,7 @@ namespace Fabric.Domain.Schemas.Vertices {
 			IsDefining = new DomainProperty<bool>("IsDefining", "f_de");
 			
 			Note = new DomainProperty<string>("Note", "f_no");
+			Note.IsNullable = true;
 
 			DescriptorType = new DomainProperty<byte>("DescriptorType", "f_det");
 

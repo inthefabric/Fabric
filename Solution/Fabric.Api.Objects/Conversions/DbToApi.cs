@@ -140,7 +140,7 @@ namespace Fabric.Api.Objects.Conversions {
 			FillVertex(pDto, pDom);
 			pDom.AssertionType = GetByte(pDto, "f_at", true);
 			pDom.IsDefining = GetBool(pDto, "f_de", true);
-			pDom.Note = GetString(pDto, "f_no", true);
+			pDom.Note = GetString(pDto, "f_no", false);
 			pDom.DescriptorType = GetByte(pDto, "f_det", true);
 			pDom.DirectorType = GetNullableByte(pDto, "f_dit", false);
 			pDom.DirectorPrimaryAction = GetNullableByte(pDto, "f_dip", false);
