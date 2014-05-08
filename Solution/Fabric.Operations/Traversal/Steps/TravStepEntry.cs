@@ -17,6 +17,8 @@ namespace Fabric.Operations.Traversal.Steps {
 			if ( pStepType != typeof(FabVertex) || pPathType == typeof(FabVertex) ) {
 				return;
 			}
+
+			//TODO: BUG this doesn't work for 'artifacts' and 'vertices' traversals
 			
 			pPath.AddScript(
 				".has("+
