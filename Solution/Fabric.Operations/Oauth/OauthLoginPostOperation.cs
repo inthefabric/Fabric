@@ -1,4 +1,6 @@
-﻿using Fabric.Domain;
+﻿using System.Diagnostics;
+using System.Threading;
+using Fabric.Domain;
 using Fabric.Operations.Create;
 
 namespace Fabric.Operations.Oauth {
@@ -52,7 +54,22 @@ namespace Fabric.Operations.Oauth {
 				throw pTasks.NewFault(LoginErrors.access_denied, LoginErrorDescs.NotLoggedIn);
 			}
 
-			Member mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, (long)pOpCtx.Auth.CookieUserId);
+			//The member may not be ready immediately after the first login.
+			var sw = Stopwatch.StartNew();
+			long userId = (long)pOpCtx.Auth.CookieUserId;
+			Member mem = null;
+
+			while ( mem == null ) {
+				if ( sw.ElapsedMilliseconds > 10000 ) {
+					pTasks.NewFault(LoginErrors.server_error, LoginErrorDescs.Unexpected);
+				}
+
+				mem = pTasks.GetMember(pOpCtx.Data, app.VertexId, userId);
+
+				if ( mem == null ) {
+					Thread.Sleep(200);
+				}
+			}
 
 			if ( !pAllowScope ) {
 				pTasks.DenyScope(pOpCtx.Data, mem);

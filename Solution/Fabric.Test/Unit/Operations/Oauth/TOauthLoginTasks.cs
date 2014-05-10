@@ -111,6 +111,7 @@ namespace Fabric.Test.Unit.Operations.Oauth {
 		[TestCase("http://TESTing.com/1/2/3/4", "TESTing.com")]
 		[TestCase("http://subdomain.TESTing.com/1/2/3/4", "subdomain.TESTing.com")]
 		[TestCase("http://1.2.3.4.com/5/6/7/8", "1.2.3.4.com")]
+		[TestCase("http://localhost:1234/5/6/7/8", "localhost:1234")]
 		public void GetDomainFromRedirUri(string pRedirUri, string pExpectDomain) {
 			string result = OauthLoginTasks.GetDomainFromRedirUri(pRedirUri);
 			Assert.AreEqual(pExpectDomain, result, "Incorrect result.");
