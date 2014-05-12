@@ -52,13 +52,13 @@ namespace Fabric.Test.Integration.Operations.Web {
 				.ToQuery();
 
 			VerificationQueryFunc = () => {
-				IDataResult dr = OpCtx.Data.Execute(memQ, "Test-UpdateMemType1");
+				IDataResult dr = OpCtx.ExecuteForTest(memQ, "UpdateMemType1-Verify");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified (1).");
 
-				dr = OpCtx.Data.Execute(userDefMemQ, "Test-UpdateMemType2");
+				dr = OpCtx.ExecuteForTest(userDefMemQ, "UpdateMemType2-Verify");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified (2).");
 
-				dr = OpCtx.Data.Execute(appDefMemQ, "Test-UpdateMemType3");
+				dr = OpCtx.ExecuteForTest(appDefMemQ, "UpdateMemType3-Verify");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified (3).");
 			};
 		}

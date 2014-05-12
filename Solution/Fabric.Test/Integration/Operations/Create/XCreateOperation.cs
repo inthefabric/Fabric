@@ -60,7 +60,7 @@ namespace Fabric.Test.Integration.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		protected void SetNewElementQuery(IWeaverQuery pQuery) {
 			VerificationQueryFunc = () => {
-				IDataResult dr = OpCtx.Data.Execute(pQuery, "Test-CreateOperations");
+				IDataResult dr = OpCtx.ExecuteForTest(pQuery, "CreateOperations-Verify");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified.");
 			};
 		}

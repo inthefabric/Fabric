@@ -36,7 +36,7 @@ namespace Fabric.Test.Integration.Operations.Web {
 				.ToQuery();
 
 			VerificationQueryFunc = () => {
-				IDataResult dr = OpCtx.Data.Execute(verify, "Test-AddAppDomain");
+				IDataResult dr = OpCtx.ExecuteForTest(verify, "AddAppDomain-Verify");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified.");
 			};
 		}
@@ -61,7 +61,7 @@ namespace Fabric.Test.Integration.Operations.Web {
 				.ToQuery();
 
 			VerificationQueryFunc = () => {
-				IDataResult dr = OpCtx.Data.Execute(verify, "Test-RemoveAppDomain");
+				IDataResult dr = OpCtx.ExecuteForTest(verify, "RemoveAppDomain-Verify");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified.");
 			};
 		}

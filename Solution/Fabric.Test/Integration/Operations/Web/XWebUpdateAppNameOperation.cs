@@ -37,7 +37,7 @@ namespace Fabric.Test.Integration.Operations.Web {
 				.ToQuery();
 
 			VerificationQueryFunc = () => {
-				IDataResult dr = OpCtx.Data.Execute(verify, "Test-UpdateAppName");
+				IDataResult dr = OpCtx.ExecuteForTest(verify, "UpdateAppName-Verify");
 				Assert.AreEqual(1, dr.GetCommandResultCount(), "New element not verified.");
 			};
 		}

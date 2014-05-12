@@ -56,8 +56,8 @@ namespace Fabric.Test.Integration.Operations.Oauth {
 						.Has(x => x.Refresh)
 					.ToQuery();
 
-				IDataResult dr1 = OpCtx.Data.Execute(q1, "Test-OauthLogoutOperation");
-				IDataResult dr2 = OpCtx.Data.Execute(q2, "Test-OauthLogoutOperation");
+				IDataResult dr1 = OpCtx.ExecuteForTest(q1, "OauthLogoutOperation-Token");
+				IDataResult dr2 = OpCtx.ExecuteForTest(q2, "OauthLogoutOperation-Refresh");
 
 				Assert.AreEqual(0, dr1.GetCommandResultCount(), "Tokens were not cleared.");
 				Assert.AreEqual(0, dr2.GetCommandResultCount(), "Refresh were not cleared.");
