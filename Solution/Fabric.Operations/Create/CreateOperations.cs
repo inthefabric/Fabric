@@ -33,7 +33,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddAppEdges(NewDomAlias);
 		}
 
@@ -89,7 +89,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddClassEdges(NewDomAlias);
 		}
 
@@ -119,7 +119,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddEmailEdges(NewDomAlias);
 		}
 
@@ -160,7 +160,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddFactorEdges(NewDomAlias);
 		}
 
@@ -207,7 +207,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddInstanceEdges(NewDomAlias);
 		}
 
@@ -247,7 +247,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddMemberEdges(NewDomAlias);
 		}
 
@@ -279,7 +279,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddOauthAccessEdges(NewDomAlias);
 		}
 
@@ -320,7 +320,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddUrlEdges(NewDomAlias);
 		}
 
@@ -355,7 +355,7 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			AddUserEdges(NewDomAlias);
 		}
 

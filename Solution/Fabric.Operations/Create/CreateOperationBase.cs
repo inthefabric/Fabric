@@ -36,12 +36,13 @@ namespace Fabric.Operations.Create {
 		public virtual TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
 															CreateOperationTasks pTasks, TCre pNewCre) {
 			SetExecuteData(pOpCtx, pBuild, pTasks, pNewCre,
-				pOpCtx.GetSharpflakeId<Vertex>(), pOpCtx.Data.Build(null, true));
+				pOpCtx.GetSharpflakeId<Vertex>(), pOpCtx.Data.Build(null, true), true);
 
 			Build.SetDataAccess(vDataAcc);
 
 			Build.StartSession();
-			CheckAndAssemble();
+			CheckAndAddVertex();
+			AddEdges();
 			Build.CommitAndCloseSession();
 			
 			vDataRes = vDataAcc.Execute(GetType().Name);
@@ -53,7 +54,8 @@ namespace Fabric.Operations.Create {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetExecuteData(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
-					CreateOperationTasks pTasks, TCre pNewCre, long pVertexId, IDataAccess pAccess) {
+					CreateOperationTasks pTasks, TCre pNewCre, long pVertexId, IDataAccess pAccess,
+					bool pRequireAuthAndSetCreator) {
 			vOpCtx = pOpCtx;
 			Build = pBuild;
 			Tasks = pTasks;
@@ -61,7 +63,11 @@ namespace Fabric.Operations.Create {
 			vVertexId = pVertexId;
 
 			NewCre = pNewCre;
-			BeforeValidation();
+
+			if ( pRequireAuthAndSetCreator ) {
+				VerifyAuthAndSetCreator();
+			}
+
 			NewCre.Validate();
 
 			NewDom = ToDomain(NewCre);
@@ -70,11 +76,10 @@ namespace Fabric.Operations.Create {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		public void CheckAndAssemble() {
+		public void CheckAndAddVertex() {
 			AfterSessionStart();
 			CheckForDuplicates();
 			AddVertexBase();
-			AddEdges();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -102,7 +107,7 @@ namespace Fabric.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		protected void BeforeValidation() {
+		private void VerifyAuthAndSetCreator() {
 			if ( vOpCtx.Auth.ActiveMemberId == null ) {
 				throw new FabPreventedFault(FabFault.Code.AuthorizationRequired,
 					"Authorization is required to create new items.");
@@ -138,7 +143,7 @@ namespace Fabric.Operations.Create {
 		protected abstract void AddVertex(out IWeaverVarAlias<TDom> pAlias);
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected abstract void AddEdges();
+		internal abstract void AddEdges();
 
 	}
 

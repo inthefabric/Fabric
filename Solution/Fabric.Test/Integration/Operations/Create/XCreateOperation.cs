@@ -13,6 +13,22 @@ using NUnit.Framework;
 using Weaver.Core.Query;
 
 namespace Fabric.Test.Integration.Operations.Create {
+	
+	/*================================================================================================*/
+	public static class XCreateOperation {
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		/*--------------------------------------------------------------------------------------------*/
+		public static void CheckNewVertex(Vertex pVertex, VertexType.Id pType) {
+			Assert.NotNull(pVertex.Id, "Incorrect Id.");
+			Assert.Less(1L, pVertex.VertexId, "Incorrect VertexId.");
+			Assert.AreEqual((byte)pType, pVertex.VertexType, "Incorrect VertexType.");
+			Assert.Less(DateTime.UtcNow.AddMinutes(-1).Ticks, pVertex.Timestamp, "Incorrect Timestamp.");
+		}
+
+	};
+
 
 	/*================================================================================================*/
 	public abstract class XCreateOperation<T> : IntegrationTest where T : Vertex {
@@ -51,10 +67,7 @@ namespace Fabric.Test.Integration.Operations.Create {
 
 		/*--------------------------------------------------------------------------------------------*/
 		protected void CheckNewVertex(Vertex pVertex, VertexType.Id pType) {
-			Assert.NotNull(pVertex.Id, "Incorrect Id.");
-			Assert.Less(1L, pVertex.VertexId, "Incorrect VertexId.");
-			Assert.AreEqual((byte)pType, pVertex.VertexType, "Incorrect VertexType.");
-			Assert.Less(DateTime.UtcNow.AddMinutes(-1).Ticks, pVertex.Timestamp,"Incorrect Timestamp.");
+			XCreateOperation.CheckNewVertex(pVertex, pType);
 		}
 
 

@@ -119,7 +119,7 @@ foreach ( IVertexSchema v in vertexSchemas ) {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		protected override void AddEdges() {
+		internal override void AddEdges() {
 			Add<#= v.Names.Domain #>Edges(NewDomAlias);
 		}
 

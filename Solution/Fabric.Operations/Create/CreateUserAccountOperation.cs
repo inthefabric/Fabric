@@ -11,7 +11,7 @@ using Weaver.Core.Query;
 namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
-	public class CreateUserAccountOperation { //TEST: CreateUserAccountOperation
+	public class CreateUserAccountOperation { //TEST: CreateUserAccountOperation (unit)
 
 		public enum ResultStatus {
 			Success = 1,
@@ -43,7 +43,10 @@ namespace Fabric.Operations.Create {
 			vOpCtx = pOpCtx;
 			vBuild = pBuild;
 			vTasks = pTasks;
+
 			vDataAcc = vOpCtx.Data.Build(null, true);
+			vBuild.SetDataAccess(vDataAcc);
+
 			vEmail = pEmail;
 			vUsername = pUsername;
 			vPassword = pPassword;
@@ -103,20 +106,23 @@ namespace Fabric.Operations.Create {
 			////
 
 			var userOp = new CreateUserOperation();
-			userOp.SetExecuteData(vOpCtx, vBuild, vTasks, userCre, userId, vDataAcc);
+			userOp.SetExecuteData(vOpCtx, vBuild, vTasks, userCre, userId, vDataAcc, false);
 
 			var memOp = new CreateMemberOperation();
-			memOp.SetExecuteData(vOpCtx, vBuild, vTasks, memCre, memId, vDataAcc);
+			memOp.SetExecuteData(vOpCtx, vBuild, vTasks, memCre, memId, vDataAcc, false);
 
 			var emailOp = new CreateEmailOperation();
-			emailOp.SetExecuteData(vOpCtx, vBuild, vTasks, emailCre, emailId, vDataAcc);
+			emailOp.SetExecuteData(vOpCtx, vBuild, vTasks, emailCre, emailId, vDataAcc, false);
 
 			////
 
 			vBuild.StartSession();
-			userOp.CheckAndAssemble();
-			memOp.CheckAndAssemble();
-			emailOp.CheckAndAssemble();
+			userOp.CheckAndAddVertex();
+			memOp.CheckAndAddVertex();
+			emailOp.CheckAndAddVertex();
+			userOp.AddEdges();
+			memOp.AddEdges();
+			emailOp.AddEdges();
 			vBuild.CommitAndCloseSession();
 
 			////

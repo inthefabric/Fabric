@@ -41,7 +41,7 @@ namespace Fabric.Infrastructure.Data {
 					vLogOutput(this, "RexConn", level+" / "+category+" / "+text+" / "+ex);
 				}
 
-				//vLogOutput(this, category, text);
+				vLogOutput(this, category, text);
 			};
 
 			vSetCmdIds = vDataCtx.SetCommandIds;

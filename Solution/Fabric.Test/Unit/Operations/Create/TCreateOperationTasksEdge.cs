@@ -38,6 +38,8 @@ namespace Fabric.Test.Unit.Operations.Create {
 		[SetUp]
 		public void SetUp() {
 			vMockBuild = new Mock<ICreateOperationBuilder>(MockBehavior.Strict);
+			vMockBuild.Setup(x => x.GetNextAliasName()).Returns(VerifyVertVar);
+
 			vTasks = new CreateOperationTasks();
 			vAddQueryCallbacks = new Queue<Action<IWeaverQuery, bool, string>>();
 			vSetupLatestCallbacks = new Queue<Action<bool, bool>>();
@@ -103,7 +105,7 @@ namespace Fabric.Test.Unit.Operations.Create {
 		
 		/*--------------------------------------------------------------------------------------------*/
 		private void SetupPrimaryEdge(string pEdgeName) {
-			const string script = "g.addEdge(a,"+VerifyVertVar+",_P);";
+			const string script = "g.addEdge("+AddVertVar+","+VerifyVertVar+",_P);";
 			const bool cache = true;
 			const bool omit = true;
 			const bool cond = false;
@@ -134,7 +136,7 @@ namespace Fabric.Test.Unit.Operations.Create {
 			const bool omit = true;
 			const bool cond = false;
 
-			string script = "g.addEdge("+VerifyVertVar+",a,_P";
+			string script = "g.addEdge("+VerifyVertVar+","+AddVertVar+",_P";
 			var param = new List<object> { pEdgeName1 };
 
 			if ( pProps.Length > 0 ) {

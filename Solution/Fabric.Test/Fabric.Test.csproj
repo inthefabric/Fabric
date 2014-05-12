@@ -53,6 +53,8 @@
     <Compile Include="Integration\Api\Executors\XExecutorBase.cs" />
     <Compile Include="Integration\Api\Executors\XMenuExecutors.cs" />
     <Compile Include="Integration\Api\Executors\XCreateExecutors.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateUserAccountOperation.cs" />
+    <Compile Include="Integration\Operations\Create\XCreateAppAccountOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateFactorOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateUserOperation.cs" />
     <Compile Include="Integration\Operations\Create\XCreateUrlOperation.cs" />

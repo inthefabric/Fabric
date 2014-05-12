@@ -10,6 +10,7 @@ namespace Fabric.Operations.Create {
 		private readonly IList<IDataResultCheck> vChecks;
 		private IDataAccess vDataAcc;
 		private string vLatestConditionCmdId;
+		private int vAliasCount;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,6 +22,11 @@ namespace Fabric.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public void SetDataAccess(IDataAccess pDataAcc) {
 			vDataAcc = pDataAcc;
+		}
+
+		/*--------------------------------------------------------------------------------------------*/
+		public string GetNextAliasName() {
+			return "x"+vAliasCount++;
 		}
 
 

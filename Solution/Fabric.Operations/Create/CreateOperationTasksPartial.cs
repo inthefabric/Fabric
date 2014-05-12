@@ -17,7 +17,7 @@ namespace Fabric.Operations.Create {
 		private static void AddVertex<T>(ICreateOperationBuilder pCreCtx, T pVertex,
 												out IWeaverVarAlias<T> pAlias) where T : Vertex, new() {
 			IWeaverQuery q = Weave.Inst.Graph.AddVertex(pVertex);
-			q = WeaverQuery.StoreResultAsVar("a", q, out pAlias);
+			q = WeaverQuery.StoreResultAsVar(pCreCtx.GetNextAliasName(), q, out pAlias);
 			pCreCtx.AddQuery(q, true);
 			pCreCtx.SetupLatestCommand();
 		}
@@ -69,7 +69,7 @@ namespace Fabric.Operations.Create {
 
 			IWeaverQuery q = Weave.Inst.Graph
 				.V.ExactIndex(pProp, pValue)
-				.ToQueryAsVar("unq", out alias);
+				.ToQueryAsVar(pCreCtx.GetNextAliasName(), out alias);
 
 			pCreCtx.AddQuery(q, true, alias.Name+"?0:1;");
 			string cmdId = pCreCtx.SetupLatestCommand(false, true);
@@ -85,7 +85,7 @@ namespace Fabric.Operations.Create {
 		private static IWeaverVarAlias<T> VerifyVertex<T>(ICreateOperationBuilder pCreCtx, 
 															long pVertexId) where T : Vertex, new() {
 			IWeaverVarAlias<T> alias;
-			const string var = "vv";
+			string var = pCreCtx.GetNextAliasName();
 
 			IWeaverQuery q = Weave.Inst.Graph.V
 				.ExactIndex<T>(x => x.VertexId, pVertexId)

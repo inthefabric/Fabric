@@ -19,6 +19,7 @@ namespace Fabric.Test.Unit.Operations.Create {
 
 		private static readonly Logger Log = Logger.Build<TCreateOperationTasksVertex>();
 		private const string Prefix = "_P";
+		private const string AddVertVar = "a";
 
 		private Mock<ICreateOperationBuilder> vMockBuild;
 		private CreateOperationTasks vTasks;
@@ -29,6 +30,8 @@ namespace Fabric.Test.Unit.Operations.Create {
 		[SetUp]
 		public void SetUp() {
 			vMockBuild = new Mock<ICreateOperationBuilder>(MockBehavior.Strict);
+			vMockBuild.Setup(x => x.GetNextAliasName()).Returns(AddVertVar);
+
 			vTasks = new CreateOperationTasks();
 		}
 
@@ -44,7 +47,8 @@ namespace Fabric.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestAddVertex(
 							Action<ICreateOperationBuilder> pAdd, string[] pProps, object[] pParams) {
-			string script = "a=g.addVertex(["+String.Join(",", pProps.Select(x => x+":"+Prefix))+"]);";
+			string script = AddVertVar+"=g.addVertex(["+
+				string.Join(",", pProps.Select(x => x+":"+Prefix))+"]);";
 			const string cmdId = "1234";
 			const bool cache = true;
 			const bool omit = false;

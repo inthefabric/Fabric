@@ -17,6 +17,7 @@ namespace Fabric.Test.Unit.Operations.Create {
 
 		private static readonly Logger Log = Logger.Build<TCreateOperationTasksDuplicate>();
 		private const string Prefix = "_P";
+		private const string DupVar = "d";
 
 		private Mock<ICreateOperationBuilder> vMockBuild;
 		private CreateOperationTasks vTasks;
@@ -27,6 +28,8 @@ namespace Fabric.Test.Unit.Operations.Create {
 		[SetUp]
 		public void SetUp() {
 			vMockBuild = new Mock<ICreateOperationBuilder>(MockBehavior.Strict);
+			vMockBuild.Setup(x => x.GetNextAliasName()).Returns(DupVar);
+
 			vTasks = new CreateOperationTasks();
 		}
 
@@ -92,7 +95,8 @@ namespace Fabric.Test.Unit.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		private void TestFindDuplicate(
 								Action<ICreateOperationBuilder> pFind, string pProp, object[] pParams) {
-			TestFindDuplicate(vMockBuild, pFind, "unq=g.V('"+pProp+"',_P);", "unq?0:1;", pParams);
+			TestFindDuplicate(vMockBuild, pFind, DupVar+"=g.V('"+pProp+"',_P);",
+				DupVar+"?0:1;", pParams);
 		}
 
 
