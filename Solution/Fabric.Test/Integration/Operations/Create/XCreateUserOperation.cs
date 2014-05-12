@@ -25,8 +25,6 @@ namespace Fabric.Test.Integration.Operations.Create {
 		protected override void TestSetUp() {
 			base.TestSetUp();
 
-			vMockAuth.Setup(x => x.SetNewUserMember(It.IsAny<long>()));
-
 			vCreateUser = new CreateFabUser();
 			vCreateUser.Name = "myUsername";
 			vCreateUser.Password = "myPassword";
@@ -49,8 +47,6 @@ namespace Fabric.Test.Integration.Operations.Create {
 			Assert.AreEqual(vCreateUser.Name, result.Name, "Incorrect Name.");
 			Assert.AreEqual(DataUtil.HashPassword(vCreateUser.Password), result.Password,
 				"Incorrect Password.");
-
-			vMockAuth.Verify(x => x.SetNewUserMember(result.VertexId), Times.Once);
 
 			IWeaverQuery verify = Weave.Inst.Graph
 				.V.ExactIndex<User>(x => x.VertexId, result.VertexId)

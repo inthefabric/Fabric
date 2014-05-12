@@ -17,10 +17,10 @@ namespace Fabric.Operations.Create {
 		protected TCre NewCre { get; private set; }
 		protected IWeaverVarAlias<TDom> NewDomAlias { get; private set; }
 		protected ICreateOperationBuilder Build { get; private set; }
+		internal string AddVertexCommandId { get; private set; }
 
 		private long vVertexId;
 		private IOperationContext vOpCtx;
-		private string vCmdAddVertex;
 		private IDataAccess vDataAcc;
 		private IDataResult vDataRes;
 
@@ -35,10 +35,30 @@ namespace Fabric.Operations.Create {
 		/*--------------------------------------------------------------------------------------------*/
 		public virtual TDom Execute(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
 															CreateOperationTasks pTasks, TCre pNewCre) {
+			SetExecuteData(pOpCtx, pBuild, pTasks, pNewCre,
+				pOpCtx.GetSharpflakeId<Vertex>(), pOpCtx.Data.Build(null, true));
+
+			Build.SetDataAccess(vDataAcc);
+
+			Build.StartSession();
+			CheckAndAssemble();
+			Build.CommitAndCloseSession();
+			
+			vDataRes = vDataAcc.Execute(GetType().Name);
+			Build.PerformChecks(vDataRes);
+
+			int cmdI = vDataRes.GetCommandIndexByCmdId(AddVertexCommandId);
+			return vDataRes.ToElementAt<TDom>(cmdI, 0);
+		}
+		
+		/*--------------------------------------------------------------------------------------------*/
+		public void SetExecuteData(IOperationContext pOpCtx, ICreateOperationBuilder pBuild,
+					CreateOperationTasks pTasks, TCre pNewCre, long pVertexId, IDataAccess pAccess) {
 			vOpCtx = pOpCtx;
 			Build = pBuild;
 			Tasks = pTasks;
-			vVertexId = vOpCtx.GetSharpflakeId<Vertex>();
+			vDataAcc = pAccess;
+			vVertexId = pVertexId;
 
 			NewCre = pNewCre;
 			BeforeValidation();
@@ -47,26 +67,14 @@ namespace Fabric.Operations.Create {
 			NewDom = ToDomain(NewCre);
 			NewDom.VertexId = vVertexId;
 			NewDom.Timestamp = vOpCtx.UtcNow.Ticks;
+		}
 
-			vDataAcc = vOpCtx.Data.Build(null, true);
-			Build.SetDataAccess(vDataAcc);
-
-			////
-
-			Build.StartSession();
+		/*--------------------------------------------------------------------------------------------*/
+		public void CheckAndAssemble() {
 			AfterSessionStart();
 			CheckForDuplicates();
 			AddVertexBase();
 			AddEdges();
-			Build.CommitAndCloseSession();
-
-			////
-			
-			vDataRes = vDataAcc.Execute(GetType().Name);
-			Build.PerformChecks(vDataRes);
-
-			int addVertId = vDataRes.GetCommandIndexByCmdId(vCmdAddVertex);
-			return vDataRes.ToElementAt<TDom>(addVertId, 0);
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
@@ -94,11 +102,7 @@ namespace Fabric.Operations.Create {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
-		private void BeforeValidation() {
-			if ( (NewCre as CreateFabUser) != null ) {
-				vOpCtx.Auth.SetNewUserMember(vVertexId);
-			}
-
+		protected void BeforeValidation() {
 			if ( vOpCtx.Auth.ActiveMemberId == null ) {
 				throw new FabPreventedFault(FabFault.Code.AuthorizationRequired,
 					"Authorization is required to create new items.");
@@ -127,7 +131,7 @@ namespace Fabric.Operations.Create {
 			IWeaverVarAlias<TDom> alias;
 			AddVertex(out alias);
 			NewDomAlias = alias;
-			vCmdAddVertex = vDataAcc.GetLatestCommandId();
+			AddVertexCommandId = vDataAcc.GetLatestCommandId();
 		}
 
 		/*--------------------------------------------------------------------------------------------*/

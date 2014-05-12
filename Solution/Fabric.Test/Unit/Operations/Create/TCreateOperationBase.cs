@@ -46,7 +46,6 @@ namespace Fabric.Test.Unit.Operations.Create {
 
 			MockAuth = new Mock<IOperationAuth>(MockBehavior.Strict);
 			MockAuth.Setup(x => x.ActiveMemberId).Returns(MemId);
-			MockAuth.Setup(x => x.SetNewUserMember(VertId));
 
 			vMockAcc = new Mock<IDataAccess>(MockBehavior.Strict);
 

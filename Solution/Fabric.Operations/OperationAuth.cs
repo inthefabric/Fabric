@@ -67,13 +67,6 @@ namespace Fabric.Operations {
 			vActiveMember = null;
 		}
 
-		/*--------------------------------------------------------------------------------------------*/
-		public void SetNewUserMember(long pVertexId) {
-			vActiveMember = new Member();
-			vActiveMember.VertexId = pVertexId;
-			vActiveMember.MemberType = (byte)MemberType.Id.Member;
-		}
-
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
