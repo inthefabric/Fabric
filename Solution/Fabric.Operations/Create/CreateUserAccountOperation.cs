@@ -3,6 +3,7 @@ using Fabric.Api.Objects;
 using Fabric.Database.Init.Setups;
 using Fabric.Domain;
 using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Broadcast;
 using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Faults;
 using Fabric.Infrastructure.Query;
@@ -11,7 +12,9 @@ using Weaver.Core.Query;
 namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
-	public class CreateUserAccountOperation { //TEST: CreateUserAccountOperation (unit)
+	public class CreateUserAccountOperation {
+
+		private static readonly Logger Log = Logger.Build<CreateUserAccountOperation>();
 
 		public enum ResultStatus {
 			Success = 1,
@@ -65,7 +68,9 @@ namespace Fabric.Operations.Create {
 					Status = ResultStatus.DuplicateUsername
 				};
 			}
-			catch ( Exception ) {
+			catch ( Exception e ) {
+				Log.Error("Unexpected error", e);
+
 				return new Result {
 					Status = ResultStatus.UnexpectedError
 				};

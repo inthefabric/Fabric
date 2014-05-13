@@ -2,13 +2,16 @@
 using Fabric.Api.Objects;
 using Fabric.Domain;
 using Fabric.Domain.Enums;
+using Fabric.Infrastructure.Broadcast;
 using Fabric.Infrastructure.Data;
 using Fabric.Infrastructure.Faults;
 
 namespace Fabric.Operations.Create {
 
 	/*================================================================================================*/
-	public class CreateAppAccountOperation { //TEST: CreateAppAccountOperation (unit)
+	public class CreateAppAccountOperation {
+
+		private static readonly Logger Log = Logger.Build<CreateAppAccountOperation>();
 
 		public enum ResultStatus {
 			Success = 1,
@@ -60,7 +63,9 @@ namespace Fabric.Operations.Create {
 					Status = ResultStatus.NotFoundMemberOrUser
 				};
 			}
-			catch ( Exception ) {
+			catch ( Exception e ) {
+				Log.Error("Unexpected error", e);
+
 				return new Result {
 					Status = ResultStatus.UnexpectedError
 				};
