@@ -8,7 +8,7 @@ using Weaver.Core.Query;
 namespace Fabric.Operations.Internal {
 
 	/*================================================================================================*/
-	public class InternalInitDbOperation : IInternalOperation {
+	public class InternalInitDbOperation {
 
 		private static readonly Logger Log = Logger.Build<InternalInitDbOperation>();
 
@@ -22,7 +22,15 @@ namespace Fabric.Operations.Internal {
 		public void Perform(IOperationContext pOpCtx, string pPass) {
 			vOpCtx = pOpCtx;
 
-			if ( pPass != "build-0.3.0" ) {
+#if LIVE && !DEBUG
+			vResult = new {
+				Error = "Not allowed in Release mode."
+			};
+
+			return;
+#endif
+
+			if ( pPass != "internalFab030" ) {
 				vResult = new {
 					Error = "Password required."
 				};

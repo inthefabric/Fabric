@@ -38,7 +38,6 @@ namespace Fabric.Api {
 		public static int RexConnPort;
 		public static int NodeCount;
 		public static string[] NodeIpList;
-		public static int NodeIndex;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +118,6 @@ namespace Fabric.Api {
 
 		/*--------------------------------------------------------------------------------------------*/
 		private IApiRequest NewReq() {
-			int i = (NodeIndex++)%NodeCount;
 			var oc = new OperationContext(AccessFactory, Cache, Metrics, AnalyticsProv);
 			return new ApiRequest(oc, Context.Request);
 		}
@@ -163,15 +161,13 @@ namespace Fabric.Api {
 				NodeIpList[i] = ConfigurationManager.AppSettings[ConfPrefix+"NodeIp"+(i+1)];
 			}
 #endif
-
-			NodeIndex = 0;
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
 		private static void BuildObjects() {
 			Version = new FabMetaVersion();
-			Version.SetBuild(0, 3, 0, "0b38d50");
-			Version.SetDate(2014, 5, 10);
+			Version.SetBuild(0, 3, 0, "2dcdf4b");
+			Version.SetDate(2014, 5, 12);
 
 			Log.Debug("Fabric Version: "+Version.Version+
 				" ("+Version.Year+'.'+Version.Month+'.'+Version.Day+")");
